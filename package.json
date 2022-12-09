@@ -1,0 +1,54 @@
+{
+  "name": "a11y-puppeteer",
+  "version": "0.0.9",
+  "description": "fast WCAG evaluation with puppeteer",
+  "main": "./build/a11y.js",
+  "keywords": [
+    "accessibility"
+  ],
+  "author": "Jeff Mendez",
+  "contributors": [
+    "Jeff Mendez <jeff@a11ywatch.com>"
+  ],
+  "scripts": {
+    "prepare": "tsc",
+    "lint": "eslint .",
+    "fix": "prettier --write '**/*.{js,jsx,ts,tsx}'",
+    "test": "node build/a11y.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/a11ywatch/a11y.git"
+  },
+  "homepage": "https://github.com/a11ywatch/a11y",
+  "bugs": "https://github.com/a11ywatch/a11y/issues",
+  "license": "MIT",
+  "dependencies": {
+    "axe-core": "4.2.1",
+    "html_codesniffer_fork": "2.7.1",
+    "jsdom": "19.0.0"
+  },
+  "peerDependecies": {
+    "puppeteer": "^19.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.9",
+    "prettier": "^2.8.0",
+    "puppeteer": "^19.2.0",
+    "typescript": "^4.9.3"
+  },
+  "files": [
+    "build"
+  ],
+  "jest": {
+    "clearMocks": true,
+    "collectCoverageFrom": [
+      "lib/**/*.js"
+    ],
+    "transform": {
+      "^.+\\.(t|j)s?$": [
+        "@swc/jest"
+      ]
+    }
+  }
+}
