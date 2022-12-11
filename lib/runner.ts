@@ -16,6 +16,9 @@
     notice: 3,
   };
 
+  // root html element
+  let rootElement = null;
+
   // shape the issue
   function shapeIssue(issue) {
     let context = "";
@@ -51,7 +54,10 @@
 
     // element test area
     function isElementInTestArea(element) {
-      const rootElement = window.document.querySelector(options.rootElement);
+      if (!rootElement) {
+        rootElement = window.document.querySelector(options.rootElement);
+      }
+
       return rootElement ? rootElement.contains(element) : true;
     }
 
