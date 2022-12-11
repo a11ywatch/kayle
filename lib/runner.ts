@@ -18,6 +18,8 @@
 
   // root html element
   let rootElement = null;
+  // hidden elements
+  let hiddenElements = null;
 
   // shape the issue
   function shapeIssue(issue) {
@@ -63,16 +65,23 @@
 
     // outside hidden selectors
     function isElementOutsideHiddenArea(element) {
-      const hiddenElements = window.document.querySelectorAll(
-        options.hideElements
-      );
-
-      if (hiddenElements.length) {
-        return !Array.from(hiddenElements).some((hiddenElement) =>
-          hiddenElement.contains(element)
+      if (!hiddenElements) {
+        hiddenElements = window.document.querySelectorAll(
+          options.hideElements
         );
       }
-      return true;
+      let found = true;
+
+      if (hiddenElements && hiddenElements.length) {
+        found = false;
+        for (let i = 0; i < hiddenElements.length; i++) {
+          if (hiddenElements[i].contains(element)) {
+            found = true;
+            break;
+          }
+        }
+      }
+      return found;
     }
 
     // handle issues from runner
@@ -148,7 +157,7 @@
     return selectorParts.join(" > ");
   }
 
-  // build css sslectors
+  // build css slectors
   function buildElementIdentifier(element) {
     if (element.id) {
       return `#${element.id}`;

@@ -53,10 +53,7 @@ a11y supports multiple test runners which return different results. The built-in
 
 - `axe`: run tests using [aXe-core][axe].
 - `htmlcs` (default): run tests using [HTML CodeSniffer][htmlcs]
-
-## About
-
-This project started as fork of pa11y out of performance needs.
+- `custom`: custom runners
 
 ## LICENSE
 
