@@ -3,7 +3,10 @@ import { runnersJavascript } from "./runner-js";
 import { defaultOptions, RunnerConfig } from "./config";
 import { extractArgs } from "./option";
 
-const blank = 'about:blank';
+const blank = "about:blank";
+
+let Console = null;
+let DOM = null;
 
 // fall back run html codesniffer as linter
 export const a11yLint = async (
@@ -29,11 +32,14 @@ export const a11yLint = async (
     return Promise.resolve();
   }
 
-  const jsdom = await import("jsdom");
+  if (!DOM || !Console) {
+    const { JSDOM, VirtualConsole } = await import("jsdom");
+    DOM = JSDOM;
+    Console = VirtualConsole;
+  }
 
   return new Promise(async (resolve) => {
-    const { JSDOM } = jsdom;
-    const vConsole = new jsdom.VirtualConsole();
+    const vConsole = new Console();
 
     // Forward messages to the console.
     if (forward) {
@@ -42,7 +48,7 @@ export const a11yLint = async (
       });
     }
 
-    const dom = new JSDOM(html, {
+    const dom = new DOM(html, {
       runScripts: "dangerously",
       virtualConsole: vConsole,
     });
@@ -60,11 +66,14 @@ export const a11yLint = async (
       runners: config.runners ?? ["htmlcs"],
       standard: config.standard ?? "WCAG2AA",
     });
-    
+
     resolve({
       documentTitle: results.documentTitle,
-      pageUrl: results.pageUrl && results.pageUrl !== blank ? results.pageUrl : urlSource && source || blank,
-      issues: results.issues || []
+      pageUrl:
+        results.pageUrl !== blank
+          ? results.pageUrl
+          : (urlSource && source) || blank,
+      issues: results.issues || [],
     });
   });
 };

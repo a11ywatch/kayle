@@ -8,7 +8,11 @@ export const htmlcsRunner = {
     };
 
     function configureHtmlCodeSniffer() {
-      if (!options.rules || options.rules && !options.rules.length || options.standard === "Section508") {
+      if (
+        !options.rules ||
+        (options.rules && !options.rules.length) ||
+        options.standard === "Section508"
+      ) {
         return;
       }
 
