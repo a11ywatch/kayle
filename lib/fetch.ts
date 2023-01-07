@@ -12,14 +12,7 @@ export const fetchHtml = (url: string): Promise<string> => {
       });
 
       res.on("end", () => {
-        let parsedData = null;
-        try {
-          parsedData = JSON.parse(rawData);
-        } catch (e) {
-          console.error(e);
-        }
-
-        resolve(parsedData);
+        resolve(rawData);
       });
     }).on("error", (err) => {
       console.error(err.message);

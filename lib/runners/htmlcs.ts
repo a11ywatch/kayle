@@ -8,7 +8,7 @@ export const htmlcsRunner = {
     };
 
     function configureHtmlCodeSniffer() {
-      if (!options.rules.length || options.standard === "Section508") {
+      if (!options.rules || options.rules && !options.rules.length || options.standard === "Section508") {
         return;
       }
 
@@ -43,7 +43,6 @@ export const htmlcsRunner = {
           typeof window.define === "function" &&
           // @ts-ignore
           window.define.amd &&
-          // @ts-ignore
           typeof window.require === "function"
         ) {
           // @ts-ignore

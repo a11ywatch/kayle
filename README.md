@@ -1,24 +1,23 @@
-# a11y
+# a11y-js
 
-a11y is a high performance web accessibility issue detector that runs around + 10,000x faster
-than other headless runners.
+A high performance web accessibility issue detector that runs around + 10,000x faster
+than other headless runners with the option to connect to browsers over `CDP` or pure `JSDOM`.
 
-You need to have an active instance of puppeteer running with a connection to get started.
-This library does not open a new browser for you. The script used for detection runs very fast. 
+You need to have an active instance of puppeteer running with a connection to get started or use the `a11yLint` method.
 
-You can view the [pagemind](https://github.com/a11ywatch/pagemind) repo for more info on the usage.
+You can view the [pagemind](https://github.com/a11ywatch/pagemind) repo for more info on the usage when using the `CDP` default a11y.
 
 
 Getting Started:
 
 ```sh
-npm i a11y-puppeteer --save
+npm i a11y-js --save
 ```
 
 Requires node ^13
 
 ```js
-import { a11y } from "a11y-puppeteer"
+import { a11y } from "a11y-js"
 
 // navigate to the page prior to active instance
 await page.goTo("https://mywebsite.com")
@@ -47,6 +46,19 @@ a11y resolves with an array of objects, containing details about the page and ac
 }
 ```
 
+## Linting
+
+Straight forward linting. You can pass a url or valid html.
+
+Linting is handled on the same machine not sandboxed.
+
+```js
+import { a11yLint } from "a11y-js"
+
+await a11yLint("https://a11ywatch.com");
+
+```
+
 ## Runners
 
 a11y supports multiple test runners which return different results. The built-in test runners are:
@@ -54,6 +66,10 @@ a11y supports multiple test runners which return different results. The built-in
 - `axe`: run tests using [aXe-core][axe].
 - `htmlcs` (default): run tests using [HTML CodeSniffer][htmlcs]
 - `custom`: custom runners
+
+## Todo
+
+Ship typescript files with package.
 
 ## LICENSE
 

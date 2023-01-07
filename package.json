@@ -1,8 +1,8 @@
 {
-  "name": "a11y-puppeteer",
-  "version": "0.0.11",
-  "description": "fast WCAG evaluation with puppeteer",
-  "main": "./build/a11y.js",
+  "name": "a11y-js",
+  "version": "0.0.3",
+  "description": "fast accessibility evaluation headless or pure JSDOM",
+  "main": "./build/index.js",
   "keywords": [
     "accessibility"
   ],
@@ -14,7 +14,8 @@
     "prepare": "tsc",
     "lint": "eslint .",
     "fix": "prettier --write '**/*.{js,jsx,ts,tsx}'",
-    "test": "node build/a11y.js"
+    "test": "node build/a11y.js",
+    "test:lint": "node build/lint.js"
   },
   "repository": {
     "type": "git",
@@ -24,14 +25,15 @@
   "bugs": "https://github.com/a11ywatch/a11y/issues",
   "license": "MIT",
   "dependencies": {
-    "axe-core": "4.2.1",
+    "axe-core": "4.6.2",
     "html_codesniffer_fork": "2.7.1",
-    "jsdom": "19.0.0"
+    "jsdom": "21.0.0"
   },
   "peerDependecies": {
     "puppeteer": "^19.2.0"
   },
   "devDependencies": {
+    "@types/jsdom": "^20.0.1",
     "@types/node": "^18.11.9",
     "prettier": "^2.8.0",
     "puppeteer": "^19.2.0",

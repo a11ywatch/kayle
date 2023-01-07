@@ -66,9 +66,7 @@
     // outside hidden selectors
     function isElementOutsideHiddenArea(element) {
       if (!hiddenElements) {
-        hiddenElements = window.document.querySelectorAll(
-          options.hideElements
-        );
+        hiddenElements = window.document.querySelectorAll(options.hideElements);
       }
       let found = true;
 
