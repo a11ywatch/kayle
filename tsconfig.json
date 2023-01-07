@@ -1,12 +1,15 @@
 {
   "compilerOptions": {
-    "outDir": "build",
-    "target": "es6",
+    "target": "es5",
     "module": "commonjs",
-    "lib": ["es6", "dom", "dom.iterable"],
-    "sourceMap": false,
+    "lib": ["dom", "es6", "es2021"],
+    "sourceMap": true,
     "allowJs": true,
+    "outDir": "build/",
+    "declaration": true,
     "moduleResolution": "node",
+    "rootDirs": ["lib"],
+    "baseUrl": ".",
     "noEmit": false,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -16,11 +19,8 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
-    "removeComments": true,
-    "baseUrl": ".",
-    "paths": {
-      "@app/*": ["./lib/*"]
-    }
+    "resolveJsonModule": true,
+    "removeComments": true
   },
-  "include": ["./lib/**/*", "package.json"]
+  "include": ["./lib"]
 }

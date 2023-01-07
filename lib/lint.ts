@@ -3,6 +3,8 @@ import { runnersJavascript } from "./runner-js";
 import { defaultOptions, RunnerConfig } from "./config";
 import { extractArgs } from "./option";
 
+const blank = 'about:blank';
+
 // fall back run html codesniffer as linter
 export const a11yLint = async (
   source?: string, // url or html source
@@ -11,10 +13,11 @@ export const a11yLint = async (
   forward?: boolean // forward messages to console
 ) => {
   const config = extractArgs(o, defaultOptions);
-
   let html = source;
+  let urlSource = false;
 
   if (source && source.startsWith("http")) {
+    urlSource = true;
     try {
       html = await fetchHtml(source);
     } catch (e) {
@@ -57,7 +60,11 @@ export const a11yLint = async (
       runners: config.runners ?? ["htmlcs"],
       standard: config.standard ?? "WCAG2AA",
     });
-
-    resolve(results);
+    
+    resolve({
+      documentTitle: results.documentTitle,
+      pageUrl: results.pageUrl && results.pageUrl !== blank ? results.pageUrl : urlSource && source || blank,
+      issues: results.issues || []
+    });
   });
 };

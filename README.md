@@ -67,10 +67,6 @@ a11y supports multiple test runners which return different results. The built-in
 - `htmlcs` (default): run tests using [HTML CodeSniffer][htmlcs]
 - `custom`: custom runners
 
-## Todo
-
-Ship typescript files with package.
-
 ## LICENSE
 
 check the license file in the root of the project.

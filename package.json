@@ -1,8 +1,8 @@
 {
   "name": "a11y-js",
-  "version": "0.0.3",
+  "version": "0.0.9",
   "description": "fast accessibility evaluation headless or pure JSDOM",
-  "main": "./build/index.js",
+  "main": "./index.js",
   "keywords": [
     "accessibility"
   ],
@@ -15,7 +15,8 @@
     "lint": "eslint .",
     "fix": "prettier --write '**/*.{js,jsx,ts,tsx}'",
     "test": "node build/a11y.js",
-    "test:lint": "node build/lint.js"
+    "test:lint": "node build/lint.js",
+    "pub": "tsc && cp package.json build && cp package-lock.json build && cp README.md build && cp LICENSE build && cd build && npm publish"
   },
   "repository": {
     "type": "git",
@@ -39,9 +40,6 @@
     "puppeteer": "^19.2.0",
     "typescript": "^4.9.3"
   },
-  "files": [
-    "build"
-  ],
   "jest": {
     "clearMocks": true,
     "collectCoverageFrom": [
