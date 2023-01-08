@@ -3,12 +3,10 @@ import { runnersJavascript } from "./runner-js";
 import { defaultOptions, RunnerConfig } from "./config";
 import { extractArgs } from "./option";
 
-const blank = "about:blank";
-
 let Console = null;
 let DOM = null;
 
-// fall back run html codesniffer as linter
+// fall back run as linter
 export const a11yLint = async (
   source?: string, // url or html source
   o: Partial<RunnerConfig> = {},
@@ -37,20 +35,21 @@ export const a11yLint = async (
     DOM = JSDOM;
     Console = VirtualConsole;
   }
+  let vConsole = undefined;
 
   return new Promise(async (resolve) => {
-    const vConsole = new Console();
-
     // Forward messages to the console.
     if (forward) {
+      vConsole = new Console();
       vConsole.on("log", function (message) {
         console.log(message);
       });
     }
 
     const dom = new DOM(html, {
+      url: urlSource ? source : undefined,
       runScripts: "dangerously",
-      virtualConsole: vConsole,
+      virtualConsole: vConsole
     });
 
     dom.window.eval(runnersJavascript.a11y);
@@ -62,17 +61,14 @@ export const a11yLint = async (
       hideElements: config.hideElements,
       ignore: config.ignore || [],
       rootElement: config.rootElement,
-      rules: config.rules ?? [],
-      runners: config.runners ?? ["htmlcs"],
-      standard: config.standard ?? "WCAG2AA",
+      rules: config.rules || [],
+      runners: config.runners || ["htmlcs"],
+      standard: config.standard || "WCAG2AA",
     });
 
     resolve({
       documentTitle: results.documentTitle,
-      pageUrl:
-        results.pageUrl !== blank
-          ? results.pageUrl
-          : (urlSource && source) || blank,
+      pageUrl: results.pageUrl,
       issues: results.issues || [],
     });
   });
