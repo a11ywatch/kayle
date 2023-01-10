@@ -2,6 +2,7 @@
 export const defaultOptions = {
   actions: [],
   browser: null,
+  page: null,
   headers: {},
   hideElements: null,
   ignore: [],

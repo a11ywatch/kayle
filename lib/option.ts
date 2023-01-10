@@ -12,6 +12,10 @@ export function extractArgs(o, defaults) {
       options.ignore.push("warning");
     }
   }
+  // default to a runner
+  if(options.runners && !["axe", "htmlcs"].includes(options.runners)) {
+    options.runners = ["htmlcs"];
+  }
 
   return options;
 }
