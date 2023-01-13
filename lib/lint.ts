@@ -49,7 +49,7 @@ export const a11yLint = async (
     const dom = new DOM(html, {
       url: urlSource ? source : undefined,
       runScripts: "dangerously",
-      virtualConsole: vConsole
+      virtualConsole: vConsole,
     });
 
     dom.window.eval(runnersJavascript.a11y);

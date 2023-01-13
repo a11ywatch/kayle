@@ -110,20 +110,30 @@
       return acc;
     }
 
-    // Set up the issues set
-    const pageIssues = [];
+    // Execute all of the runners and process issues parallel
+    const runnerIssues = await Promise.all(
+      options.runners.map((runner) =>
+        a11y.runners[runner](options, a11y).catch((e) => {
+          console.error(e);
+          return [];
+        })
+      )
+    );
 
-    // Execute all of the runners and process issues
-    for (const runner of options.runners) {
-      const runnerIssues = await a11y.runners[runner](options, a11y);
+    // fast direct assign
+    const issues =
+      runnerIssues.length === 1 ? processIssues(runnerIssues[0]) : [];
 
-      pageIssues.push(...runnerIssues);
+    if (runnerIssues.length > 1) {
+      for (const pageIssues of runnerIssues) {
+        issues.push(...processIssues(pageIssues));
+      }
     }
 
     return {
       documentTitle: window.document.title,
       pageUrl: window.location.href,
-      issues: processIssues(pageIssues),
+      issues,
     };
   }
 

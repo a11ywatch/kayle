@@ -13,7 +13,7 @@ export function extractArgs(o, defaults) {
     }
   }
   // default to a runner
-  if(options.runners && !["axe", "htmlcs"].includes(options.runners)) {
+  if (options.runners && !["axe", "htmlcs"].includes(options.runners)) {
     options.runners = ["htmlcs"];
   }
 
