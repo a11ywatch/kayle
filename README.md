@@ -3,7 +3,7 @@
 A high performance web accessibility issue detector that runs around + 10,000x faster
 than other headless runners with the option to connect to browsers over `CDP` or pure `JSDOM`.
 
-You need to have an active instance of puppeteer running with a connection to get started or use the `a11y` method.
+You need to have an active instance of puppeteer running with a connection to get started or use the [a11yLint](./lib/lint.ts) method.
 
 You can view the [pagemind](https://github.com/a11ywatch/pagemind) repo for more info on the usage when using the `CDP` default a11y.
 

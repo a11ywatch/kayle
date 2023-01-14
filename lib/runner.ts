@@ -115,7 +115,7 @@
     }
 
     // mutate issues with acc builder return counter
-    function processIssuesMut(issues, acc) {
+    function processIssuesMulti(issues, acc) {
       // valid acc count
       let ic = 0;
 
@@ -159,8 +159,8 @@
     let ic = 0;
 
     for (const is of runnerIssues) {
-      // mutate runner issues pre-allocated
-      ic += processIssuesMut(is, issues);
+      // add runner issues pre-allocated
+      ic += processIssuesMulti(is, issues);
     }
 
     issues.length = ic;
