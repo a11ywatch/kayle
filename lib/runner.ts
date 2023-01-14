@@ -84,13 +84,12 @@
 
     // handle issues from runner
     function processIssues(issues) {
-      const n = issues.length;
       // pre-allocate array
-      const acc = new Array(n);
+      const acc = new Array(issues.length);
 
       // valid acc count
       let ic = 0;
-      for (let i = 0; i < n; i++) {
+      for (let i = 0; i < acc.length; i++) {
         const issue = issues[i];
 
         if (
@@ -121,14 +120,31 @@
     );
 
     // fast direct assign
-    const issues =
-      runnerIssues.length === 1 ? processIssues(runnerIssues[0]) : [];
-
-    if (runnerIssues.length > 1) {
-      for (const pageIssues of runnerIssues) {
-        issues.push(...processIssues(pageIssues));
-      }
+    if (runnerIssues.length === 1) {
+      return {
+        documentTitle: window.document.title,
+        pageUrl: window.location.href,
+        issues: processIssues(runnerIssues[0]),
+      };
     }
+
+    // pre-allocate array if multi runners -- todo: constant checks up to 50 runners instead of reduce.
+    const issues = runnerIssues.length ? new Array(runnerIssues.reduce(
+      (ac, cv) => ac + cv.length,
+      0
+    )) : [];
+    
+    let ic = 0;
+
+    for (const is of runnerIssues) {
+      const pageIssue = processIssues(is);
+      for (const issue of pageIssue) {
+        issues[ic] = issue;
+      }
+      ic += pageIssue.length;
+    }
+
+    issues.length = ic;
 
     return {
       documentTitle: window.document.title,
