@@ -82,24 +82,29 @@
       return found;
     }
 
+    // validate issue is correct
+    function validateIssue(issue) {
+      return (
+        (options.rootElement && !isElementInTestArea(issue.element)) ||
+        (options.hideElements && !isElementOutsideHiddenArea(issue.element)) ||
+        !isIssueNotIgnored(issue)
+      );
+    }
+
     // handle issues from runner
     function processIssues(issues) {
       // pre-allocate array
       const acc = new Array(issues.length);
-
       // valid acc count
       let ic = 0;
+
       for (let i = 0; i < acc.length; i++) {
         const issue = issues[i];
 
-        if (
-          (options.rootElement && !isElementInTestArea(issue.element)) ||
-          (options.hideElements &&
-            !isElementOutsideHiddenArea(issue.element)) ||
-          !isIssueNotIgnored(issue)
-        ) {
+        if (validateIssue(issue)) {
           continue;
         }
+
         acc[ic] = shapeIssue(issue);
         ic++;
       }
@@ -107,6 +112,24 @@
       acc.length = ic;
 
       return acc;
+    }
+
+    // mutate issues with acc builder return counter
+    function processIssuesMut(issues, acc) {
+      // valid acc count
+      let ic = 0;
+
+      for (let i = 0; i < issues.length; i++) {
+        const issue = issues[i];
+
+        if (validateIssue(issue)) {
+          continue;
+        }
+        acc[ic] = shapeIssue(issue);
+        ic++;
+      }
+
+      return ic;
     }
 
     // Execute all of the runners and process issues parallel
@@ -129,19 +152,15 @@
     }
 
     // pre-allocate array if multi runners -- todo: constant checks up to 50 runners instead of reduce.
-    const issues = runnerIssues.length ? new Array(runnerIssues.reduce(
-      (ac, cv) => ac + cv.length,
-      0
-    )) : [];
-    
+    const issues = runnerIssues.length
+      ? new Array(runnerIssues.reduce((ac, cv) => ac + cv.length, 0))
+      : [];
+
     let ic = 0;
 
     for (const is of runnerIssues) {
-      const pageIssue = processIssues(is);
-      for (const issue of pageIssue) {
-        issues[ic] = issue;
-      }
-      ic += pageIssue.length;
+      // mutate runner issues pre-allocated
+      ic += processIssuesMut(is, issues);
     }
 
     issues.length = ic;
@@ -192,6 +211,7 @@
     }
     const siblings = getSiblings(element);
     const childIndex = siblings.indexOf(element);
+    // todo: combo filter check
     if (!isOnlySiblingOfType(element, siblings) && childIndex !== -1) {
       identifier += `:nth-child(${childIndex + 1})`;
     }
