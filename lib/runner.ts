@@ -38,7 +38,7 @@
       message: issue.message,
       context: context,
       selector: selector,
-      runner: issue.runner || "a11y",
+      runner: issue.runner || "a11y", // default
       runnerExtras: issue.runnerExtras || {},
       recurrence: issue.recurrence || 0,
     };
@@ -200,35 +200,49 @@
     return selectorParts.join(" > ");
   }
 
+  // return siblings of element
+  function getSiblings(element) {
+    let dupSibling = 0;
+    let siblingIndex = 0; // increment until sibling index found
+
+    for (const node of element.parentNode.childNodes) {
+      if (isElementNode(node)) {
+        siblingIndex++;
+      }
+      if (node.tagName === element.tagName) {
+        dupSibling += 1;
+        // break loop on multi duplicates
+        if (dupSibling === 2) {
+          break;
+        }
+      }
+    }
+
+    return {
+      siblingIndex,
+      onlySibling: dupSibling <= 1,
+    };
+  }
+
   // build css slectors
   function buildElementIdentifier(element) {
     if (element.id) {
       return `#${element.id}`;
     }
+
     let identifier = element.tagName.toLowerCase();
+
     if (!element.parentNode) {
       return identifier;
     }
-    const siblings = getSiblings(element);
-    const childIndex = siblings.indexOf(element);
-    // todo: combo filter check
-    if (!isOnlySiblingOfType(element, siblings) && childIndex !== -1) {
-      identifier += `:nth-child(${childIndex + 1})`;
+
+    const { onlySibling, siblingIndex } = getSiblings(element);
+
+    if (!onlySibling) {
+      identifier += `:nth-child(${siblingIndex + 1})`;
     }
+
     return identifier;
-  }
-
-  // return siblings of element
-  function getSiblings(element) {
-    return Array.from(element.parentNode.childNodes).filter(isElementNode);
-  }
-
-  // check if sibling is only type
-  function isOnlySiblingOfType(element, siblings) {
-    return (
-      siblings.filter((sibling) => sibling.tagName === element.tagName)
-        .length <= 1
-    );
   }
 
   // valid element node

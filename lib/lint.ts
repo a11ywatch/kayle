@@ -1,6 +1,6 @@
 import { fetchHtml } from "./fetch";
 import { runnersJavascript } from "./runner-js";
-import { defaultOptions, RunnerConfig } from "./config";
+import { RunnerConfig } from "./config";
 import { extractArgs } from "./option";
 
 let Console = null;
@@ -13,7 +13,7 @@ export const a11yLint = async (
   runner?: keyof typeof runnersJavascript,
   forward?: boolean // forward messages to console
 ) => {
-  const config = extractArgs(o, defaultOptions);
+  const config = extractArgs(o);
   let html = source;
   let urlSource = false;
 

@@ -1,6 +1,6 @@
 import { extractArgs } from "./option";
 import { runAction } from "./action";
-import { defaultOptions, RunnerConfig } from "./config";
+import { RunnerConfig } from "./config";
 import type { Browser, Page } from "puppeteer";
 import { runnersJavascript } from "./runner-js";
 
@@ -15,7 +15,7 @@ type Controls = {
  * @returns {Promise} Returns a promise which resolves with results.
  */
 export async function a11y(o: Partial<RunnerConfig> = {}) {
-  const config = extractArgs(o, defaultOptions);
+  const config = extractArgs(o);
 
   // control headless
   const controls: Controls = {
@@ -52,19 +52,17 @@ async function auditPage(config: RunnerConfig, controls: Controls) {
 }
 
 async function runActionsList(config: RunnerConfig, controls: Controls) {
-  if (config.actions.length) {
-    for (const action of config.actions) {
-      await runAction(controls.browser, controls.page, config, action);
-    }
+  for (const action of config.actions) {
+    await runAction(controls.browser, controls.page, config, action);
   }
 }
 
 async function injectRunners(config: RunnerConfig, controls: Controls) {
-  await controls.page.evaluate(runnersJavascript.a11y); // Inject the test runner
-
-  for (const runner of config.runners) {
-    await controls.page.evaluate(runnersJavascript[runner]);
-  }
+  await Promise.all(
+    ["a11y", ...config.runners].map((runner) =>
+      controls.page.evaluate(runnersJavascript[runner])
+    )
+  );
 }
 
 async function audit(config: RunnerConfig, controls: Controls) {
