@@ -1,6 +1,6 @@
 {
   "name": "a11y-js",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "description": "fast accessibility evaluation for nodejs",
   "main": "./index.js",
   "keywords": [
@@ -16,7 +16,7 @@
     "fix": "prettier --write '**/*.{js,jsx,ts,tsx}'",
     "test": "node build/a11y.js",
     "test:lint": "node build/lint.js",
-    "pub": "tsc && cp package.json build && cp package-lock.json build && cp README.md build && cp LICENSE build && cd build && npm publish"
+    "pub": "tsc && cp package.json package-lock.json README.md LICENSE build && cd build && npm publish"
   },
   "repository": {
     "type": "git",
