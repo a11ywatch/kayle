@@ -1,8 +1,10 @@
+import type { Browser, Page } from "puppeteer";
+
 // default config for runner
 export const defaultOptions = {
   actions: [],
-  browser: null,
-  page: null,
+  browser: null as Browser,
+  page: null as Page,
   headers: {},
   hideElements: null,
   ignore: [],

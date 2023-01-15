@@ -67,6 +67,13 @@ a11y supports multiple test runners which return different results. The built-in
 - `htmlcs` (default): run tests using [HTML CodeSniffer][htmlcs]
 - `custom`: custom runners
 
+## Testing
+
+In order to run full e2e test first run `npm install puppeteer` to install chromium locally.
+Run the command to compile test and run.
+
+1. `npm run test`
+
 ## LICENSE
 
 check the license file in the root of the project.

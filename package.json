@@ -12,9 +12,10 @@
   ],
   "scripts": {
     "prepare": "tsc",
+    "compile:test": "tsc --project tsconfig.test.json",
     "lint": "eslint .",
     "fix": "prettier --write '**/*.{js,jsx,ts,tsx}'",
-    "test": "node build/a11y.js",
+    "test": "npm run compile:test && node _tests/tests/basic.js",
     "test:lint": "node build/lint.js",
     "pub": "tsc && cp package.json package-lock.json README.md LICENSE build && cd build && npm publish"
   },
@@ -37,7 +38,7 @@
     "@types/jsdom": "^20.0.1",
     "@types/node": "^18.11.9",
     "prettier": "^2.8.0",
-    "puppeteer": "^19.2.0",
+    "puppeteer": "^19.5.2",
     "typescript": "^4.9.3"
   },
   "jest": {
