@@ -175,18 +175,21 @@
   // Truncate the html.
   function getElementContext(element) {
     let outerHTML = element.outerHTML;
-    let innerHTML = "";
     if (!outerHTML) {
       return "";
     }
     if (element.innerHTML.length > 31) {
-      innerHTML = `${element.innerHTML.substring(0, 31)}...`;
-      outerHTML = outerHTML.replace(element.innerHTML, innerHTML);
+      outerHTML = outerHTML.replace(element.innerHTML, `${element.innerHTML.substring(0, 31)}...`);
     }
     if (outerHTML.length > 251) {
       outerHTML = `${outerHTML.substring(0, 250)}...`;
     }
     return outerHTML;
+  }
+
+  // valid element node
+  function isElementNode(element) {
+    return element.nodeType === window.Node.ELEMENT_NODE;
   }
 
   // get css selelector
@@ -245,8 +248,4 @@
     return identifier;
   }
 
-  // valid element node
-  function isElementNode(element) {
-    return element.nodeType === window.Node.ELEMENT_NODE;
-  }
 })(this);

@@ -26,6 +26,7 @@ function loadRunnerScript(runner) {
 			`;
 }
 
+// top level runners
 export const runnersJavascript = {
   a11y: readFileSync(`${__dirname}/runner.js`, "utf-8"),
   htmlcs: loadRunnerScript("htmlcs"),
