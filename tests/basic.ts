@@ -2,6 +2,9 @@ import assert from "assert";
 import puppeteer from "puppeteer";
 import { a11y } from "../lib/a11y";
 import { drakeMock } from "./html-mock"; // static html of 11 issues
+import {
+  performance,
+} from "perf_hooks";
 
 (async () => {
   const browser = await puppeteer.launch();
