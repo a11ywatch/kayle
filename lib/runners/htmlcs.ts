@@ -1,12 +1,6 @@
 export const htmlcsRunner = {
   scripts: [require.resolve("html_codesniffer_fork/build/HTMLCS.js")],
   run: async (options) => {
-    const issueTypeMap = {
-      1: "error",
-      2: "warning",
-      3: "notice",
-    };
-
     function configureHtmlCodeSniffer() {
       if (
         !options.rules ||
@@ -36,7 +30,7 @@ export const htmlcsRunner = {
               if (error) {
                 return reject(error);
               }
-              resolve(htmlcs.getMessages().map(processIssue));
+              resolve(htmlcs.getMessages());
             }
           );
         };
@@ -62,17 +56,6 @@ export const htmlcsRunner = {
           runCodeSniffer(window.HTMLCS);
         }
       });
-    }
-
-    function processIssue(issue) {
-      return {
-        code: issue.code,
-        message: issue.msg,
-        type: issueTypeMap[issue.type] || "unknown",
-        element: issue.element,
-        recurrence: issue.recurrence,
-        runner: "htmlcs",
-      };
     }
 
     configureHtmlCodeSniffer();
