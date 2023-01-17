@@ -29,10 +29,9 @@ export function extractArgs(o) {
   }
   // default to a runner
   if (
-    (options.runners && !["axe", "htmlcs"].includes(options.runners)) ||
-    !options.runners
+    !options.runners.some((runner) => runner === "axe" || runner === "htmlcs")
   ) {
-    options.runners = ["htmlcs"];
+    options.runners.push("htmlcs");
   }
 
   // todo: validate all options

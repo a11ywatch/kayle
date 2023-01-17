@@ -78,30 +78,30 @@ export const axeRunner = {
     }
 
     function processIssue(axeIssue) {
-      // todo:
-      let issues = [null];
+      const issues = new Array(axeIssue.nodes.length)
+
       if (axeIssue.nodes.length) {
-        const selectors = axeIssue.nodes.map((node) =>
-          selectorToString(node.target)
-        );
-        issues = selectors.map((selector) =>
-          window.document.querySelector(selector)
-        );
+        let nodeIter = 0;
+        for(const node of axeIssue.nodes) {
+          issues[nodeIter] = {
+            type: axeImpactToA11yLevel(axeIssue.impact),
+            code: axeIssue.id,
+            message: `${axeIssue.help} (${axeIssue.helpUrl})`,
+            element: window.document.querySelector(selectorToString(node.target)),
+            runnerExtras: {
+              description: axeIssue.description,
+              impact: axeIssue.impact,
+              help: axeIssue.help,
+              helpUrl: axeIssue.helpUrl,
+            },
+            runner: "axe",
+          }
+          nodeIter++;
+        }
+        issues.length = nodeIter;
       }
 
-      return issues.map((element) => ({
-        type: axeImpactToA11yLevel(axeIssue.impact),
-        code: axeIssue.id,
-        message: `${axeIssue.help} (${axeIssue.helpUrl})`,
-        element,
-        runnerExtras: {
-          description: axeIssue.description,
-          impact: axeIssue.impact,
-          help: axeIssue.help,
-          helpUrl: axeIssue.helpUrl,
-        },
-        runner: "axe",
-      }));
+      return issues;
     }
 
     function selectorToString(selectors) {
