@@ -1,32 +1,37 @@
 export const axeRunner = {
   scripts: [require.resolve("axe-core/axe.min.js")],
   run: async (options) => {
-    async function runAxeCore() {
-      // @ts-ignore
-      const result = await window.axe.run(
-        options.rootElement || window.document,
-        getAxeOptions()
-      );
-      // todo: quick merge
-      return [].concat(
-        ...result.violations.map(processViolation),
-        ...result.incomplete.map(processIncomplete)
-      );
+    const axeOptions = { runOnly: undefined, rules: undefined };
+
+    if (options.standard) {
+      axeOptions.runOnly = a11yStandardToAxe();
     }
 
-    function getAxeOptions() {
-      const axeOptions = { runOnly: undefined, rules: undefined };
+    axeOptions.rules = a11yRulesToAxe(
+      Array.isArray(options.rules) ? options.rules : [],
+      Array.isArray(options.ignore) ? options.ignore : []
+    );
 
-      if (options.standard) {
-        axeOptions.runOnly = a11yStandardToAxe();
-      }
+    async function runAxeCore() {
+      return new Promise(async (resolve) => {
+        // @ts-ignore
+        const result = await window.axe.run(
+          options.rootElement || window.document,
+          axeOptions
+        );
 
-      axeOptions.rules = a11yRulesToAxe(
-        Array.isArray(options.rules) ? options.rules : [],
-        Array.isArray(options.ignore) ? options.ignore : []
-      );
+        const issues = [];
 
-      return axeOptions;
+        for (const item of result.violations) {
+          processViolation(item, issues);
+        }
+
+        for (const item of result.incomplete) {
+          processIncomplete(item, issues);
+        }
+
+        resolve(issues);
+      });
     }
 
     function a11yStandardToAxe() {
@@ -67,27 +72,24 @@ export const axeRunner = {
       return axeRules;
     }
 
-    function processViolation(issue) {
-      issue.type = "error";
-      return processIssue(issue);
+    function processViolation(issue, issues) {
+      return processIssue(issue, issues, "error");
     }
 
-    function processIncomplete(issue) {
-      issue.type = "warning";
-      return processIssue(issue);
+    function processIncomplete(issue, issues) {
+      return processIssue(issue, issues, "warning");
     }
 
-    function processIssue(axeIssue) {
-      const issues = new Array(axeIssue.nodes.length)
-
-      if (axeIssue.nodes.length) {
-        let nodeIter = 0;
-        for(const node of axeIssue.nodes) {
-          issues[nodeIter] = {
-            type: axeImpactToA11yLevel(axeIssue.impact),
+    function processIssue(axeIssue, issues, impact) {
+      if (axeIssue.nodes && axeIssue.nodes.length) {
+        for (const node of axeIssue.nodes) {
+          issues.push({
+            type: impact,
             code: axeIssue.id,
             message: `${axeIssue.help} (${axeIssue.helpUrl})`,
-            element: window.document.querySelector(selectorToString(node.target)),
+            element: window.document.querySelector(
+              selectorToString(node.target)
+            ),
             runnerExtras: {
               description: axeIssue.description,
               impact: axeIssue.impact,
@@ -95,13 +97,9 @@ export const axeRunner = {
               helpUrl: axeIssue.helpUrl,
             },
             runner: "axe",
-          }
-          nodeIter++;
+          });
         }
-        issues.length = nodeIter;
       }
-
-      return issues;
     }
 
     function selectorToString(selectors) {
@@ -110,19 +108,6 @@ export const axeRunner = {
         .join(" ");
     }
 
-    function axeImpactToA11yLevel(impact) {
-      switch (impact) {
-        case "critical":
-        case "serious":
-          return "error";
-        case "moderate":
-          return "warning";
-        case "minor":
-          return "notice";
-        default:
-          return "error";
-      }
-    }
     // Configure and run aXe
     return await runAxeCore();
   },

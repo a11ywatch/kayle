@@ -179,7 +179,10 @@
       return "";
     }
     if (element.innerHTML.length > 31) {
-      outerHTML = outerHTML.replace(element.innerHTML, `${element.innerHTML.substring(0, 31)}...`);
+      outerHTML = outerHTML.replace(
+        element.innerHTML,
+        `${element.innerHTML.substring(0, 31)}...`
+      );
     }
     if (outerHTML.length > 251) {
       outerHTML = `${outerHTML.substring(0, 250)}...`;
@@ -247,5 +250,4 @@
 
     return identifier;
   }
-
 })(this);
