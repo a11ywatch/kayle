@@ -1,6 +1,6 @@
 {
   "name": "a11y-js",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "extremely fast accessibility evaluation for nodejs",
   "main": "./index.js",
   "keywords": [
@@ -28,7 +28,7 @@
   "license": "MIT",
   "dependencies": {
     "axe-core": "4.5.1",
-    "html_codesniffer_fork": "3.0.2",
+    "html_codesniffer_fork": "3.0.3-canary-1",
     "jsdom": "21.0.0"
   },
   "peerDependecies": {
