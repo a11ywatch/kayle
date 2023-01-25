@@ -91,7 +91,7 @@
       );
     }
 
-    // handle issues from runner
+    // handle issues from runner auto sort errors leading list
     function processIssues(issues) {
       // pre-allocate array
       const acc = new Array(issues.length);
@@ -105,8 +105,16 @@
           continue;
         }
 
-        acc[ic] = shapeIssue(issue);
-        ic++;
+        if(issue.type === "error") {
+          acc[ic] = shapeIssue(issue)
+          ic++;
+        } else {
+          // move to end
+          queueMicrotask(() => {
+            acc[ic] = shapeIssue(issue)
+            ic++;
+          })
+        }
       }
 
       acc.length = ic;

@@ -21,6 +21,7 @@ import {
     page,
     browser,
     runners: ["htmlcs"],
+    includeWarnings: true
   });
   const nextTime = performance.now() - startTime;
 
