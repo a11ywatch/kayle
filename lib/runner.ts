@@ -105,15 +105,15 @@
           continue;
         }
 
-        if(issue.type === "error") {
-          acc[ic] = shapeIssue(issue)
+        if (issue.type === "error") {
+          acc[ic] = shapeIssue(issue);
           ic++;
         } else {
           // move to end
           queueMicrotask(() => {
-            acc[ic] = shapeIssue(issue)
+            acc[ic] = shapeIssue(issue);
             ic++;
-          })
+          });
         }
       }
 
@@ -133,8 +133,17 @@
         if (validateIssue(issue)) {
           continue;
         }
-        acc[ic] = shapeIssue(issue);
-        ic++;
+
+        if (issue.type === "error") {
+          acc[ic] = shapeIssue(issue);
+          ic++;
+        } else {
+          // move to end
+          queueMicrotask(() => {
+            acc[ic] = shapeIssue(issue);
+            ic++;
+          });
+        }
       }
 
       return ic;
@@ -241,7 +250,7 @@
   // build css slectors
   function buildElementIdentifier(element) {
     if (element.id) {
-      return `#${element.id}`;
+      return `${element.id[0] !== "#" ? "#" : ""}${element.id}`;
     }
 
     let identifier = element.tagName.toLowerCase();
