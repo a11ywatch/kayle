@@ -6,7 +6,6 @@ You need to have an active page object and browser with a connection to get star
 
 You can view the [pagemind](https://github.com/a11ywatch/pagemind) repo for more info on the usage when using the `CDP` default a11y.
 
-
 Getting Started:
 
 ```sh
@@ -62,8 +61,8 @@ await a11yLint("https://a11ywatch.com");
 
 a11y supports multiple test runners which return different results. The built-in test runners are:
 
-- `axe`: run tests using [aXe-core][axe].
-- `htmlcs` (default): run tests using [HTML CodeSniffer][htmlcs]
+- `axe`: run tests using [axe-core](./lib/runners/axe.ts).
+- `htmlcs` (default): run tests using [HTML CodeSniffer](./lib/runners/htmlcs.ts)
 - `custom`: custom runners
 
 ## Testing

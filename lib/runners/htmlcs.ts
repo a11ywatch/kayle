@@ -1,21 +1,20 @@
 export const htmlcsRunner = {
   scripts: [require.resolve("html_codesniffer_fork/build/HTMLCS.js")],
   run: async (options) => {
-    function configureHtmlCodeSniffer() {
-      if (
+    // map standards to window
+    if (
+      !(
         !options.rules ||
         (options.rules && !options.rules.length) ||
         options.standard === "Section508"
-      ) {
-        return;
-      }
-
+      )
+    ) {
       for (const rule of options.rules) {
         // @ts-ignore
         if (window.HTMLCS_WCAG2AAA.sniffs.includes(rule)) {
           window[`HTMLCS_${options.standard}`].sniffs[0].include.push(rule);
         } else {
-          throw new Error(`${rule} is not a valid WCAG 2.1 rule`);
+          console.error(`${rule} is not a valid WCAG 2.1 rule`);
         }
       }
     }
@@ -57,8 +56,6 @@ export const htmlcsRunner = {
         }
       });
     }
-
-    configureHtmlCodeSniffer();
 
     return await runHtmlCodeSniffer();
   },
