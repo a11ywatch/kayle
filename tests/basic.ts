@@ -19,7 +19,7 @@ import { performance } from "perf_hooks";
     page,
     browser,
     runners: ["htmlcs"],
-    includeWarnings: true,
+    includeWarnings: true
   });
   const nextTime = performance.now() - startTime;
 

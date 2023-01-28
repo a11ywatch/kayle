@@ -97,19 +97,16 @@
       let ic = 0;
 
       for (let i = 0; i < acc.length; i++) {
-        const issue = issues[i];
-
-        if (validateIssue(issue)) {
+        if (validateIssue(issues[i])) {
           continue;
         }
-
-        if (issue.type === "error") {
-          acc[ic] = shapeIssue(issue);
+        if (issues[i].type === "error") {
+          acc[ic] = shapeIssue(issues[i]);
           ic++;
         } else {
           // move to end
           queueMicrotask(() => {
-            acc[ic] = shapeIssue(issue);
+            acc[ic] = shapeIssue(issues[i]);
             ic++;
           });
         }
