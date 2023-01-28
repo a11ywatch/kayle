@@ -19,44 +19,19 @@ export const htmlcsRunner = {
       }
     }
 
-    function runHtmlCodeSniffer() {
-      return new Promise((resolve, reject) => {
-        const runCodeSniffer = (htmlcs) => {
-          htmlcs.process(
-            options.standard,
-            options.rootElement || window.document,
-            (error) => {
-              if (error) {
-                return reject(error);
-              }
-              resolve(htmlcs.getMessages());
-            }
-          );
-        };
-
-        // amd mod
-        if (
+    return new Promise((resolve, reject) => {
+      // @ts-ignore
+      window.HTMLCS.process(
+        options.standard,
+        options.rootElement || window.document,
+        (error) => {
+          if (error) {
+            return reject(error);
+          }
           // @ts-ignore
-          typeof window.define === "function" &&
-          // @ts-ignore
-          window.define.amd &&
-          typeof window.require === "function"
-        ) {
-          // @ts-ignore
-          window.require(["htmlcs"], (htmlcs) => {
-            Object.keys(htmlcs).forEach((key) => {
-              window[key] = htmlcs[key];
-            });
-
-            runCodeSniffer(htmlcs.HTMLCS);
-          });
-        } else {
-          // @ts-ignore
-          runCodeSniffer(window.HTMLCS);
+          resolve(window.HTMLCS.getMessages());
         }
-      });
-    }
-
-    return await runHtmlCodeSniffer();
+      );
+    });
   },
 };
