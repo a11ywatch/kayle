@@ -1,8 +1,8 @@
 import { extractArgs } from "./option";
 import { runAction } from "./action";
 import { RunnerConfig } from "./config";
-import type { Browser, Page } from "puppeteer";
 import { runnersJavascript } from "./runner-js";
+import type { Browser, Page } from "puppeteer";
 
 type Controls = {
   page: Page;

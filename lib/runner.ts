@@ -2,8 +2,6 @@
 // IIFE is here so we don't pollute the window
 ((exports) => {
   const a11y = (exports.__a11y = {
-    getElementContext,
-    getElementSelector,
     run: runA11y,
     runners: {},
   });
@@ -32,13 +30,13 @@
     }
 
     return {
+      context: context,
+      selector: selector,
       code: issue.code,
       type: issue.type,
       typeCode: issueCodeMap[issue.type] || 0,
       message: issue.message,
-      context: context,
-      selector: selector,
-      runner: issue.runner || "a11y", // default
+      runner: issue.runner || "a11y",
       runnerExtras: issue.runnerExtras || {},
       recurrence: issue.recurrence || 0,
     };
@@ -123,10 +121,8 @@
     }
 
     // mutate issues with acc builder return counter
-    function processIssuesMulti(issues, acc) {
+    function processIssuesMulti(issues, acc, ic) {
       // valid acc count
-      let ic = 0;
-
       for (let i = 0; i < issues.length; i++) {
         const issue = issues[i];
 
@@ -168,16 +164,14 @@
       };
     }
 
-    // pre-allocate array if multi runners -- todo: constant checks up to 50 runners instead of reduce.
-    const issues = runnerIssues.length
-      ? new Array(runnerIssues.reduce((ac, cv) => ac + cv.length, 0))
-      : [];
+    // pre-allocate array if multi runners
+    const issues = new Array(runnerIssues.reduce((ac, cv) => ac + cv.length, 0))
 
     let ic = 0;
 
     for (const is of runnerIssues) {
       // add runner issues pre-allocated
-      ic += processIssuesMulti(is, issues);
+      ic = processIssuesMulti(is, issues, ic);
     }
 
     issues.length = ic;
@@ -192,18 +186,22 @@
   // Truncate the html.
   function getElementContext(element) {
     let outerHTML = element.outerHTML;
+
     if (!outerHTML) {
       return "";
     }
+
     if (element.innerHTML.length > 31) {
       outerHTML = outerHTML.replace(
         element.innerHTML,
         `${element.innerHTML.substring(0, 31)}...`
       );
     }
+
     if (outerHTML.length > 251) {
       outerHTML = `${outerHTML.substring(0, 250)}...`;
     }
+
     return outerHTML;
   }
 
@@ -214,12 +212,16 @@
 
   // get css selelector
   function getElementSelector(element, selectorParts = []) {
+
     if (isElementNode(element)) {
       selectorParts.unshift(buildElementIdentifier(element));
+
+      // recursive build selectors todo: maxticks
       if (!element.id && element.parentNode) {
         return getElementSelector(element.parentNode, selectorParts);
       }
     }
+
     return selectorParts.join(" > ");
   }
 

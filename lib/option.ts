@@ -35,6 +35,5 @@ export function extractArgs(o) {
   }
 
   // todo: validate all options
-
   return options;
 }
