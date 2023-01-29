@@ -8,23 +8,20 @@ import { performance } from "perf_hooks";
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.setContent(drakeMock);
-  await page.setRequestInterception(true);
-
-  page.on("request", (request) => {
-    request.abort();
-  });
 
   const startTime = performance.now();
-  const { issues, pageUrl, documentTitle } = await a11y({
+  const { issues, pageUrl, documentTitle, meta, automateable } = await a11y({
     page,
     browser,
     runners: ["htmlcs"],
-    includeWarnings: true
+    includeWarnings: true,
   });
   const nextTime = performance.now() - startTime;
 
   console.log(issues);
   console.log(issues.length);
+  console.log(meta);
+  console.log(automateable);
   console.log("time took", nextTime);
 
   // valid list

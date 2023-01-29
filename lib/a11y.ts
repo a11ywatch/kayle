@@ -4,6 +4,43 @@ import { RunnerConfig } from "./config";
 import { runnersJavascript } from "./runner-js";
 import type { Browser, Page } from "puppeteer";
 
+export type MetaInfo = {
+  errorCount: number;
+  warningCount: number;
+  noticeCount: number;
+  accessScore: number;
+  possibleIssuesFixedByCdn: number;
+};
+
+// exact issue information for page
+export type Issue = {
+  context: string;
+  code: string;
+  message: string;
+  type: "error" | "warning" | "notice";
+  typeCode: number;
+  runner: "htmlcs" | "axe" | "a11ywatch";
+  runnerExtras: Record<string, unknown>;
+  recurrence: number;
+  selector: string;
+};
+
+// indexs of automatable issues
+export type Automatable = {
+  // indexs of all missing alt tags.
+  missingAltIndexs: number[];
+};
+
+// the main audit for a url
+export type Audit = {
+  automateable: Automatable;
+  documentTitle: string;
+  issues: Issue[];
+  meta: MetaInfo;
+  pageUrl: string;
+};
+
+// headless controls
 type Controls = {
   page: Page;
   browser: Browser;
@@ -14,7 +51,7 @@ type Controls = {
  * @param {Object} [config={}] - Options to change the way tests run.
  * @returns {Promise} Returns a promise which resolves with results.
  */
-export async function a11y(o: Partial<RunnerConfig> = {}) {
+export async function a11y(o: Partial<RunnerConfig> = {}): Promise<Audit> {
   const config = extractArgs(o);
 
   // control headless
@@ -28,6 +65,7 @@ export async function a11y(o: Partial<RunnerConfig> = {}) {
   return Promise.race([
     new Promise((resolve) => {
       timer = setTimeout(resolve, config.timeout);
+      // todo: return the shape on timeout error
       return null;
     }),
     auditPage(config, controls)

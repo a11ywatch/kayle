@@ -23,7 +23,9 @@ export const htmlcsRunner = {
       // @ts-ignore
       window.HTMLCS.process(
         options.standard,
-        options.rootElement && window.document.querySelector(options.rootElement) || window.document,
+        (options.rootElement &&
+          window.document.querySelector(options.rootElement)) ||
+          window.document,
         (error) => {
           if (error) {
             return reject(error);

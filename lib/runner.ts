@@ -90,9 +90,9 @@
     }
 
     // handle issues from runner auto sort errors leading list
-    function processIssues(issues) {
+    function processIssues(issues, meta, missingAltIndexs) {
       // pre-allocate array
-      const acc = new Array(issues.length);
+      const acc = new Array((issues && issues.length) || 0);
       // valid acc count
       let ic = 0;
 
@@ -101,11 +101,23 @@
           continue;
         }
         if (issues[i].type === "error") {
+          // missing alt capture index of array
+          if (issues[i].code === "WCAG2AA.Principle1.Guideline1_1.1_1_1.H37") {
+            missingAltIndexs.push(ic);
+          }
           acc[ic] = shapeIssue(issues[i]);
           ic++;
+          meta.errorCount++;
+          meta.accessScore -= 2;
         } else {
           // move to end
           queueMicrotask(() => {
+            if (issues[i].type === "warning") {
+              meta.warningCount++;
+            }
+            if (issues[i].type === "notice") {
+              meta.noticeCount++;
+            }
             acc[ic] = shapeIssue(issues[i]);
             ic++;
           });
@@ -117,23 +129,33 @@
       return acc;
     }
 
-    // mutate issues with acc builder return counter
-    function processIssuesMulti(issues, acc, ic) {
+    // get issues with acc builder return counter
+    function processIssuesMulti(issues, acc, ic, meta, missingAltIndexs) {
       // valid acc count
       for (let i = 0; i < issues.length; i++) {
-        const issue = issues[i];
-
-        if (validateIssue(issue)) {
+        if (validateIssue(issues[i])) {
           continue;
         }
 
-        if (issue.type === "error") {
-          acc[ic] = shapeIssue(issue);
+        if (issues[i].type === "error") {
+          // missing alt capture index of array
+          if (issues[i].code === "WCAG2AA.Principle1.Guideline1_1.1_1_1.H37") {
+            missingAltIndexs.push(ic);
+          }
+          acc[ic] = shapeIssue(issues[i]);
           ic++;
+          meta.errorCount++;
+          meta.accessScore -= 2;
         } else {
           // move to end
           queueMicrotask(() => {
-            acc[ic] = shapeIssue(issue);
+            if (issues[i].type === "warning") {
+              meta.warningCount++;
+            }
+            if (issues[i].type === "notice") {
+              meta.noticeCount++;
+            }
+            acc[ic] = shapeIssue(issues[i]);
             ic++;
           });
         }
@@ -152,23 +174,42 @@
       )
     );
 
+    // meta information keep records shaped to numbers
+    const meta = {
+      errorCount: 0,
+      warningCount: 0,
+      noticeCount: 0,
+      accessScore: 100,
+      possibleIssuesFixedByCdn: 0,
+    };
+
+    // alt elements that require fixing
+    const missingAltIndexs = [];
+
     // fast direct assign
     if (runnerIssues.length === 1) {
       return {
         documentTitle: window.document.title,
         pageUrl: window.location.href,
-        issues: processIssues(runnerIssues[0]),
+        issues: processIssues(runnerIssues[0], meta, missingAltIndexs),
+        meta,
+        // automateable indexs to capture
+        automateable: {
+          missingAltIndexs,
+        },
       };
     }
 
     // pre-allocate array if multi runners
-    const issues = new Array(runnerIssues.reduce((ac, cv) => ac + cv.length, 0))
+    const issues = new Array(
+      runnerIssues.reduce((ac, cv) => ac + cv.length, 0)
+    );
 
     let ic = 0;
 
     for (const is of runnerIssues) {
       // add runner issues pre-allocated
-      ic = processIssuesMulti(is, issues, ic);
+      ic = processIssuesMulti(is, issues, ic, meta, missingAltIndexs);
     }
 
     issues.length = ic;
@@ -177,6 +218,11 @@
       documentTitle: window.document.title,
       pageUrl: window.location.href,
       issues,
+      meta,
+      // automateable indexs to capture
+      automateable: {
+        missingAltIndexs,
+      },
     };
   }
 
@@ -209,7 +255,6 @@
 
   // get css selelector
   function getElementSelector(element, selectorParts = []) {
-
     if (isElementNode(element)) {
       selectorParts.unshift(buildElementIdentifier(element));
 
