@@ -46,6 +46,34 @@ type Controls = {
   browser: Browser;
 };
 
+// watcher cycle timeout
+function Watcher() {
+  this.timer = null;
+}
+
+// watch until timeout
+Watcher.prototype.watch = function (timeout: number) {
+  return new Promise((resolve) => {
+    this.timer = setTimeout(() => {
+      resolve({
+        docuementTitle: "",
+        pageUrl: "",
+        meta: {
+          errorCount: 0,
+          warningCount: 0,
+          noticeCount: 0,
+          accessScore: 0,
+          possibleIssuesFixedByCdn: 0,
+        },
+        automateable: {
+          missingAltIndexs: [],
+        },
+        issues: [],
+      });
+    }, timeout);
+  });
+};
+
 /**
  * Run accessibility tests for page.
  * @param {Object} [config={}] - Options to change the way tests run.
@@ -53,30 +81,20 @@ type Controls = {
  */
 export async function a11y(o: Partial<RunnerConfig> = {}): Promise<Audit> {
   const config = extractArgs(o);
-
-  // control headless
-  const controls: Controls = {
-    page: config.page,
-    browser: config.browser,
-  };
-
-  let timer: ReturnType<typeof setTimeout> = null;
-
-  return Promise.race([
-    new Promise((resolve) => {
-      timer = setTimeout(resolve, config.timeout);
-      // todo: return the shape on timeout error
-      return null;
+  const watcher = new Watcher();
+  const results = await Promise.race([
+    watcher.watch(config.timeout),
+    auditPage(config, {
+      page: config.page,
+      browser: config.browser,
     }),
-    auditPage(config, controls)
-      .then((value) => {
-        clearTimeout(timer);
-        return value;
-      })
-      .catch((_) => {
-        // console.error(e)
-      }),
   ]);
+
+  if (results.docuementTitle || results.pageUrl) {
+    clearTimeout(watcher.timer);
+  }
+
+  return results;
 }
 
 // run accessibility audit

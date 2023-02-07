@@ -19,7 +19,7 @@ import { performance } from "perf_hooks";
   const nextTime = performance.now() - startTime;
 
   console.log(issues);
-  console.log(issues.length);
+  console.log(`Issue count ${issues.length}`);
   console.log(meta);
   console.log(automateable);
   console.log("time took", nextTime);
