@@ -7,7 +7,6 @@ export type RunnerConfig = {
   actions?: string[];
   browser: Browser;
   page: Page;
-  headers?: Record<string, unknown>;
   hideElements?: boolean;
   ignore?: string[];
   includeNotices?: boolean;

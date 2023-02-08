@@ -4,7 +4,6 @@ export function extractArgs(o) {
     actions: o.actions || [],
     browser: o.browser,
     page: o.page,
-    headers: o.headers || {},
     hideElements: o.hideElements,
     ignore: o.ignore || [],
     includeNotices: o.includeNotices,
