@@ -1,5 +1,5 @@
 export const htmlcsRunner = {
-  scripts: [require.resolve("html_codesniffer_fork/build/HTMLCS.js")],
+  scripts: [require.resolve("fast_htmlcs/build/HTMLCS.js")],
   run: async (options) => {
     // map standards to window
     if (
