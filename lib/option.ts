@@ -32,7 +32,11 @@ export function extractArgs(o) {
   ) {
     options.runners.push("htmlcs");
   }
-
+  // swap axe position for conflictions on script eval order
+  if(options.runners.length === 2 && options.runners[1] === "axe") {
+    options.runners[1] = options.runners[0]
+    options.runners[0] = "axe"
+  }
   // todo: validate all options
   return options;
 }

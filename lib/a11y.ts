@@ -101,9 +101,17 @@ async function runActionsList(config: RunnerConfig) {
 }
 
 async function injectRunners(config: RunnerConfig) {
-  await Promise.all(
-    ["a11y", ...config.runners].map((runner) =>
+  if (config.runners.length === 2) {
+    return await Promise.all(
+      ["a11y", config.runners[0], config.runners[1]].map((runner) =>
       config.page.evaluate(runnersJavascript[runner])
+      )
+    );
+  }
+
+  await Promise.all(
+    ["a11y", config.runners[0]].map((runner) =>
+    config.page.evaluate(runnersJavascript[runner])
     )
   );
 }
