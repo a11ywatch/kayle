@@ -16,8 +16,5 @@ export type RunnerConfig = {
   runners?: string[];
   standard?: Standard;
   timeout?: number;
-  viewport: {
-    width?: number;
-    height?: number;
-  };
+  origin?: string; // origin of the html if static
 };

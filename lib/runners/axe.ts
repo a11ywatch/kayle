@@ -12,11 +12,18 @@ export const axeRunner = {
       Array.isArray(options.ignore) ? options.ignore : []
     );
 
+    // @ts-ignore todo: fix origin crashing test in axe-core when set direct html
+    window.axe.configure({
+      allowedOrigins: window.origin === "null" ? [] : [window.origin],
+    });
+
     async function runAxeCore() {
       return new Promise(async (resolve) => {
         // @ts-ignore
         const result = await window.axe.run(
-          options.rootElement || window.document,
+          (options.rootElement &&
+            window.document.querySelector(options.rootElement)) ||
+            window.document,
           axeOptions
         );
 

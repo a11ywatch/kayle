@@ -124,6 +124,10 @@ async function injectRunners(config: RunnerConfig, controls: Controls) {
 async function audit(config: RunnerConfig, controls: Controls) {
   return await controls.page.evaluate(
     (runOptions) => {
+      // set top level app origin replicate
+      if(runOptions.origin && window.origin === "null") {
+        window.origin = runOptions.origin;
+      }
       // @ts-ignore
       return window.__a11y.run(runOptions);
     },
@@ -134,6 +138,7 @@ async function audit(config: RunnerConfig, controls: Controls) {
       rules: config.rules || [],
       runners: config.runners,
       standard: config.standard,
+      origin: config.origin
     }
   );
 }

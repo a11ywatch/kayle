@@ -1,7 +1,7 @@
 import assert from "assert";
 import puppeteer from "puppeteer";
 import { a11y } from "../lib/a11y";
-import { drakeMock } from "./html-mock"; // static html of 11 issues
+import { jmendezMock } from "./html-mock"; // static html of 11 issues
 import { performance } from "perf_hooks";
 
 (async () => {
@@ -16,14 +16,15 @@ import { performance } from "perf_hooks";
     ],
   });
   const page = await browser.newPage();
-  await page.setContent(drakeMock);
+  await page.setContent(jmendezMock);
 
   const startTime = performance.now();
   const { issues, pageUrl, documentTitle, meta, automateable } = await a11y({
     page,
     browser,
-    runners: ["htmlcs"],
+    runners: ["axe"],
     includeWarnings: true,
+    origin: "https://jeffmendez.com"
   });
   const nextTime = performance.now() - startTime;
 
