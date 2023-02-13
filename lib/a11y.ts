@@ -2,7 +2,6 @@ import { extractArgs } from "./option";
 import { runAction } from "./action";
 import { RunnerConfig } from "./config";
 import { runnersJavascript } from "./runner-js";
-import type { Browser, Page } from "puppeteer";
 
 export type MetaInfo = {
   errorCount: number;
@@ -38,12 +37,6 @@ export type Audit = {
   issues: Issue[];
   meta: MetaInfo;
   pageUrl: string;
-};
-
-// headless controls
-type Controls = {
-  page: Page;
-  browser: Browser;
 };
 
 // watcher cycle timeout
@@ -84,10 +77,7 @@ export async function a11y(o: Partial<RunnerConfig> = {}): Promise<Audit> {
   const watcher = new Watcher();
   const results = await Promise.race([
     watcher.watch(config.timeout),
-    auditPage(config, {
-      page: config.page,
-      browser: config.browser,
-    }),
+    auditPage(config),
   ]);
 
   if (results.docuementTitle || results.pageUrl) {
@@ -98,34 +88,31 @@ export async function a11y(o: Partial<RunnerConfig> = {}): Promise<Audit> {
 }
 
 // run accessibility audit
-async function auditPage(config: RunnerConfig, controls: Controls) {
-  await Promise.all([
-    runActionsList(config, controls),
-    injectRunners(config, controls),
-  ]);
+async function auditPage(config: RunnerConfig) {
+  await Promise.all([runActionsList(config), injectRunners(config)]);
 
-  return await audit(config, controls);
+  return await audit(config);
 }
 
-async function runActionsList(config: RunnerConfig, controls: Controls) {
+async function runActionsList(config: RunnerConfig) {
   for (const action of config.actions) {
-    await runAction(controls.browser, controls.page, config, action);
+    await runAction(config.browser, config.page, config, action);
   }
 }
 
-async function injectRunners(config: RunnerConfig, controls: Controls) {
+async function injectRunners(config: RunnerConfig) {
   await Promise.all(
     ["a11y", ...config.runners].map((runner) =>
-      controls.page.evaluate(runnersJavascript[runner])
+      config.page.evaluate(runnersJavascript[runner])
     )
   );
 }
 
-async function audit(config: RunnerConfig, controls: Controls) {
-  return await controls.page.evaluate(
+async function audit(config: RunnerConfig) {
+  return await config.page.evaluate(
     (runOptions) => {
       // set top level app origin replicate
-      if(runOptions.origin && window.origin === "null") {
+      if (runOptions.origin && window.origin === "null") {
         window.origin = runOptions.origin;
       }
       // @ts-ignore
@@ -138,7 +125,7 @@ async function audit(config: RunnerConfig, controls: Controls) {
       rules: config.rules || [],
       runners: config.runners,
       standard: config.standard,
-      origin: config.origin
+      origin: config.origin,
     }
   );
 }

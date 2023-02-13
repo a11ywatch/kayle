@@ -24,7 +24,7 @@ import { performance } from "perf_hooks";
     browser,
     runners: ["axe"],
     includeWarnings: true,
-    origin: "https://jeffmendez.com"
+    origin: "https://jeffmendez.com",
   });
   const nextTime = performance.now() - startTime;
 

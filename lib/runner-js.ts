@@ -17,13 +17,10 @@ function loadRunnerScript(runner) {
   let bundle = "";
 
   for (const runnerScript of mods.scripts) {
-    bundle += `\n\n${readFileSync(runnerScript, "utf-8")}`;
+    bundle += `${readFileSync(runnerScript, "utf-8")}`;
   }
 
-  return `
-				;${bundle};
-				;window.__a11y.runners['${runner}'] = ${mods.run.toString()};
-			`;
+  return `;${bundle};window.__a11y.runners['${runner}'] = ${mods.run.toString()};`;
 }
 
 // top level runners

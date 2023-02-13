@@ -13,7 +13,7 @@ export function extractArgs(o) {
     runners: o.runners || ["htmlcs"],
     standard: o.standard || "WCAG2AA",
     timeout: o.timeout || 60000,
-    origin: o.origin
+    origin: o.origin,
   };
 
   if (options.ignore) {
