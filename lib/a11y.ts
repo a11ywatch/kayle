@@ -2,7 +2,6 @@ import { extractArgs } from "./option";
 import { runAction } from "./action";
 import { RunnerConfig } from "./config";
 import { runnersJavascript } from "./runner-js";
-import { localeMap } from "./build";
 
 export type MetaInfo = {
   errorCount: number;
@@ -40,6 +39,9 @@ export type Audit = {
   pageUrl: string;
 };
 
+// map of locales to use for axe
+let localeMap = null;
+
 // watcher cycle timeout
 function Watcher() {
   this.timer = null;
@@ -66,6 +68,24 @@ Watcher.prototype.watch = function (timeout: number) {
       });
     }, timeout);
   });
+};
+
+/**
+ * Set the locale object for runtime handling.
+ *
+ * @param {String} [runner=""] - The runner being used.
+ * @param {Object} [config={}] - Options to change the way tests run.
+ * @returns {void}
+ */
+const setLocale = (runner: string, config: RunnerConfig) => {
+  if (runner === "axe" && config.language) {
+    if (!localeMap) {
+      localeMap = require("./locales");
+    }
+    if (localeMap.hasOwnProperty(config.language)) {
+      config.locale = localeMap[config.language];
+    }
+  }
 };
 
 /**
@@ -105,16 +125,20 @@ async function runActionsList(config: RunnerConfig) {
 async function injectRunners(config: RunnerConfig) {
   if (config.runners.length === 2) {
     return await Promise.all(
-      ["a11y", config.runners[0], config.runners[1]].map((runner) =>
-        config.page.evaluate(runnersJavascript[runner])
-      )
+      ["a11y", config.runners[0], config.runners[1]].map((runner) => {
+        setLocale(runner, config);
+
+        return config.page.evaluate(runnersJavascript[runner]);
+      })
     );
   }
 
   await Promise.all(
-    ["a11y", config.runners[0]].map((runner) =>
-      config.page.evaluate(runnersJavascript[runner])
-    )
+    ["a11y", config.runners[0]].map((runner) => {
+      setLocale(runner, config);
+
+      return config.page.evaluate(runnersJavascript[runner]);
+    })
   );
 }
 
@@ -137,12 +161,7 @@ async function audit(config: RunnerConfig) {
       standard: config.standard,
       origin: config.origin,
       language: config.language,
-      locale:
-        config.language &&
-        config.runners.some((runner) => runner === "axe") &&
-        localeMap.hasOwnProperty(config.language)
-          ? localeMap[config.language]
-          : undefined,
+      locale: config.locale,
     }
   );
 }

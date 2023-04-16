@@ -18,4 +18,6 @@ export type RunnerConfig = {
   timeout?: number;
   origin?: string; // origin of the html if static
   language?: string; // add language locale. todo: build lang scripts.
+  /* @private */
+  locale?: Record<string, unknown>;
 };

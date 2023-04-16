@@ -1,6 +1,6 @@
 {
   "name": "a11y-js",
-  "version": "0.3.2",
+  "version": "0.3.6",
   "description": "extremely fast accessibility evaluation for nodejs",
   "main": "./index.js",
   "keywords": [
@@ -12,6 +12,7 @@
   ],
   "scripts": {
     "prepare": "tsc",
+    "compile:locales": "tsc build.ts && node build.js",
     "compile:test": "tsc --project tsconfig.test.json",
     "lint": "eslint .",
     "fix": "prettier --write '**/*.{js,jsx,ts,tsx}'",
@@ -19,7 +20,7 @@
     "test:axe": "npm run compile:test && node _tests/tests/basic-axe.js",
     "test:i18n": "npm run compile:test && node _tests/tests/i18n.js",
     "test:lint": "node build/lint.js",
-    "pub": "tsc && cp package.json package-lock.json README.md LICENSE build && cd build && npm publish"
+    "pub": "npm run compile:locales && tsc && cp package.json package-lock.json README.md LICENSE build && cd build && npm publish"
   },
   "repository": {
     "type": "git",
@@ -38,7 +39,7 @@
   },
   "devDependencies": {
     "@types/jsdom": "^20.0.1",
-    "@types/node": "^18.11.9",
+    "@types/node": "^18.15.11",
     "prettier": "^2.8.0",
     "puppeteer": "^19.6.3",
     "typescript": "^4.9.3"

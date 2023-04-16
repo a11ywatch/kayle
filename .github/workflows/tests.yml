@@ -25,6 +25,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+      - name: Install and build locales
+        run: npm i typescript && npm run compile:locales
       - name: Install and build
         run: npm ci && npm run prepare
       - name: Run tests

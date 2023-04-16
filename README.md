@@ -8,6 +8,8 @@ You can view the [pagemind](https://github.com/a11ywatch/pagemind) repo for more
 
 Getting Started:
 
+If you cloned the repo run `npm i typescript && npm run compile:locales` first other wise skip and run install below.
+
 ```sh
 npm i a11y-js --save
 ```
@@ -67,7 +69,7 @@ a11y supports multiple test runners which return different results. The built-in
 
 ## i18n
 
-[Locales](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/i18n) supported by the runner injected at runtime.
+[Locales](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/i18n) supported by the runner injected at runtime using pre-compiled locales.
 
 1. da ("Danish")
 1. de ("German")
@@ -81,7 +83,7 @@ a11y supports multiple test runners which return different results. The built-in
 1. pt_BR ("Portuguese Brazil")
 1. ja ("Japanese")
 
-In order to add more locales PRs to fast_htmlcs and fast_axe-core are required. Adding build time locales is a WIP.
+In order to add more locales PRs to fast_htmlcs and fast_axe-core are required.
 
 ## Testing
 
