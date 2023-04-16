@@ -1,6 +1,6 @@
 {
   "name": "a11y-js",
-  "version": "0.2.17",
+  "version": "0.3.2",
   "description": "extremely fast accessibility evaluation for nodejs",
   "main": "./index.js",
   "keywords": [
@@ -17,6 +17,7 @@
     "fix": "prettier --write '**/*.{js,jsx,ts,tsx}'",
     "test": "npm run compile:test && node _tests/tests/basic.js",
     "test:axe": "npm run compile:test && node _tests/tests/basic-axe.js",
+    "test:i18n": "npm run compile:test && node _tests/tests/i18n.js",
     "test:lint": "node build/lint.js",
     "pub": "tsc && cp package.json package-lock.json README.md LICENSE build && cd build && npm publish"
   },
@@ -33,13 +34,13 @@
     "jsdom": "21.0.0"
   },
   "peerDependecies": {
-    "puppeteer": "^19.2.0"
+    "puppeteer": "^19.6.3"
   },
   "devDependencies": {
     "@types/jsdom": "^20.0.1",
     "@types/node": "^18.11.9",
     "prettier": "^2.8.0",
-    "puppeteer": "^19.6.1",
+    "puppeteer": "^19.6.3",
     "typescript": "^4.9.3"
   },
   "jest": {

@@ -33,7 +33,8 @@ export const htmlcsRunner = {
           // @ts-ignore
           resolve(window.HTMLCS.getMessages());
         },
-        (error) => reject(error)
+        (error) => reject(error),
+        options.language
       );
     });
   },

@@ -2,6 +2,7 @@ import { extractArgs } from "./option";
 import { runAction } from "./action";
 import { RunnerConfig } from "./config";
 import { runnersJavascript } from "./runner-js";
+import { localeMap } from "./build";
 
 export type MetaInfo = {
   errorCount: number;
@@ -75,6 +76,7 @@ Watcher.prototype.watch = function (timeout: number) {
 export async function a11y(o: Partial<RunnerConfig> = {}): Promise<Audit> {
   const config = extractArgs(o);
   const watcher = new Watcher();
+
   const results = await Promise.race([
     watcher.watch(config.timeout),
     auditPage(config),
@@ -104,14 +106,14 @@ async function injectRunners(config: RunnerConfig) {
   if (config.runners.length === 2) {
     return await Promise.all(
       ["a11y", config.runners[0], config.runners[1]].map((runner) =>
-      config.page.evaluate(runnersJavascript[runner])
+        config.page.evaluate(runnersJavascript[runner])
       )
     );
   }
 
   await Promise.all(
     ["a11y", config.runners[0]].map((runner) =>
-    config.page.evaluate(runnersJavascript[runner])
+      config.page.evaluate(runnersJavascript[runner])
     )
   );
 }
@@ -134,6 +136,13 @@ async function audit(config: RunnerConfig) {
       runners: config.runners,
       standard: config.standard,
       origin: config.origin,
+      language: config.language,
+      locale:
+        config.language &&
+        config.runners.some((runner) => runner === "axe") &&
+        localeMap.hasOwnProperty(config.language)
+          ? localeMap[config.language]
+          : undefined,
     }
   );
 }

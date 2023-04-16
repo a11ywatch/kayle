@@ -17,4 +17,5 @@ export type RunnerConfig = {
   standard?: Standard;
   timeout?: number;
   origin?: string; // origin of the html if static
+  language?: string; // add language locale. todo: build lang scripts.
 };

@@ -15,6 +15,7 @@ export const axeRunner = {
     // @ts-ignore todo: fix origin crashing test in axe-core when set direct html
     window.axe.configure({
       allowedOrigins: window.origin === "null" ? [] : [window.origin],
+      locale: options.locale,
     });
 
     async function runAxeCore() {
@@ -93,14 +94,13 @@ export const axeRunner = {
           issues.push({
             type: impact,
             code: axeIssue.id,
-            message: `${axeIssue.help} (${axeIssue.helpUrl})`,
+            message: axeIssue.help,
             element: window.document.querySelector(
               selectorToString(node.target)
             ),
             runnerExtras: {
               description: axeIssue.description,
               impact: axeIssue.impact,
-              help: axeIssue.help,
               helpUrl: axeIssue.helpUrl,
             },
             runner: "axe",

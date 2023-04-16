@@ -65,6 +65,24 @@ a11y supports multiple test runners which return different results. The built-in
 - `htmlcs` (default): run tests using [HTML CodeSniffer](./lib/runners/htmlcs.ts)
 - `custom`: custom runners
 
+## i18n
+
+[Locales](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/i18n) supported by the runner injected at runtime.
+
+1. da ("Danish")
+1. de ("German")
+1. es ("Spanish")
+1. eu ("Basque")
+1. fr ("French")
+1. he ("Hebrew")
+1. nl ("Dutch")
+1. no_NB ("Norwegian")
+1. pl ("Polish Poland")
+1. pt_BR ("Portuguese Brazil")
+1. ja ("Japanese")
+
+In order to add more locales PRs to fast_htmlcs and fast_axe-core are required. Adding build time locales is a WIP.
+
 ## Testing
 
 In order to run full e2e test first run `npm install puppeteer` to install chromium locally.
