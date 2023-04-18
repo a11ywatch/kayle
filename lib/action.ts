@@ -1,26 +1,37 @@
+import type { Browser, Page } from "puppeteer";
+
+const FAILED_M = "Failed action:";
+
+// todo: i18n errors
 export const actions = [
   {
     name: "navigate-url",
     match: /^navigate to( url)? (.+)$/i,
-    run: async (_, page, __, matches) => {
-      const navigateTo = matches[2];
+    run: async (_, page: Page, __, matches) => {
+      const url = matches[2];
+
+      if (!url) {
+        throw new Error(`${FAILED_M} A valid url is required"`);
+      }
+
       try {
-        await page.goto(navigateTo);
+        await page.goto(url);
       } catch (error) {
-        throw new Error(`Failed action: Could not navigate to "${navigateTo}"`);
+        throw new Error(`${FAILED_M} Could not navigate to "${url}"`);
       }
     },
   },
   {
     name: "click-element",
     match: /^click( element)? (.+)$/i,
-    run: async (_, page, __, matches) => {
+    run: async (_, page: Page, __, matches) => {
       const selector = matches[2];
+
       try {
         await page.click(selector);
       } catch (error) {
         throw new Error(
-          `Failed action: no element matching selector "${selector}"`
+          `${FAILED_M} no element matching selector "${selector}"`
         );
       }
     },
@@ -28,37 +39,43 @@ export const actions = [
   {
     name: "set-field-value",
     match: /^set( field)? (.+?) to (.+)$/i,
-    run: async (_, page, __, matches) => {
+    run: async (_, page: Page, __, matches) => {
       const selector = matches[2];
-      const value = matches[3];
+
       try {
         await page.evaluate(
           (targetSelector, desiredValue) => {
             const target = document.querySelector(targetSelector);
+
             if (!target) {
               return Promise.reject(new Error("No element found"));
             }
+
             const prototype = Object.getPrototypeOf(target);
+
             const { set: prototypeValueSetter } =
               Object.getOwnPropertyDescriptor(prototype, "value") || {};
+
             if (prototypeValueSetter) {
               prototypeValueSetter.call(target, desiredValue);
             } else {
               target.value = desiredValue;
             }
+
             target.dispatchEvent(
               new Event("input", {
                 bubbles: true,
               })
             );
+
             return Promise.resolve();
           },
           selector,
-          value
+          matches[3]
         );
       } catch (error) {
         throw new Error(
-          `Failed action: no element matching selector "${selector}"`
+          `${FAILED_M} no element matching selector "${selector}"`
         );
       }
     },
@@ -66,7 +83,7 @@ export const actions = [
   {
     name: "clear-field-value",
     match: /^clear( field)? (.+?)$/i,
-    run: async (_, page, __, matches) => {
+    run: async (_, page: Page, __, matches) => {
       const selector = matches[2];
       try {
         await page.evaluate((targetSelector) => {
@@ -74,9 +91,11 @@ export const actions = [
           if (!target) {
             return Promise.reject(new Error("No element found"));
           }
-          const prototype = Object.getPrototypeOf(target);
           const { set: prototypeValueSetter } =
-            Object.getOwnPropertyDescriptor(prototype, "value") || {};
+            Object.getOwnPropertyDescriptor(
+              Object.getPrototypeOf(target),
+              "value"
+            ) || {};
           if (prototypeValueSetter) {
             prototypeValueSetter.call(target, "");
           } else {
@@ -91,7 +110,7 @@ export const actions = [
         }, selector);
       } catch (error) {
         throw new Error(
-          `Failed action: no element matching selector "${selector}"`
+          `${FAILED_M} no element matching selector "${selector}"`
         );
       }
     },
@@ -99,17 +118,17 @@ export const actions = [
   {
     name: "check-field",
     match: /^(check|uncheck)( field)? (.+)$/i,
-    run: async (_, page, __, matches) => {
+    run: async (_, page: Page, __, matches) => {
       const checked = matches[1] !== "uncheck";
       const selector = matches[3];
       try {
         await page.evaluate(
-          (targetSelector, isChecked) => {
+          (targetSelector, checked) => {
             const target = document.querySelector(targetSelector);
             if (!target) {
               return Promise.reject(new Error("No element found"));
             }
-            target.checked = isChecked;
+            target.checked = checked;
             target.dispatchEvent(
               new Event("change", {
                 bubbles: true,
@@ -122,7 +141,7 @@ export const actions = [
         );
       } catch (error) {
         throw new Error(
-          `Failed action: no element matching selector "${selector}"`
+          `${FAILED_M} no element matching selector "${selector}"`
         );
       }
     },
@@ -130,24 +149,22 @@ export const actions = [
   {
     name: "screen-capture",
     match: /^(screen[ -]?capture|capture[ -]?screen)( to)? (.+)$/i,
-    run: async (_, page, __, matches) => {
+    run: async (_, page: Page, __, matches) =>
       await page.screenshot({
         path: matches[3],
         fullPage: true,
-      });
-    },
+      }),
   },
   {
     name: "wait-for-url",
     match: /^wait for (fragment|hash|host|path|url)( to (not )?be)? ([^\s]+)$/i,
-    run: async (_, page, __, matches) => {
+    run: async (_, page: Page, __, matches) => {
       const expectedValue = matches[4];
       const negated = matches[3] !== undefined;
-      const subject = matches[1];
 
       let property = "";
 
-      switch (subject) {
+      switch (matches[1]) {
         case "fragment":
         case "hash":
           property = "hash";
@@ -163,14 +180,11 @@ export const actions = [
           break;
       }
 
-      function locationHasProperty(locationProperty, value, isNegated) {
-        return isNegated
-          ? window.location[locationProperty] !== value
-          : window.location[locationProperty] === value;
-      }
-
       await page.waitForFunction(
-        locationHasProperty,
+        (locationProperty, value, isNegated) =>
+          isNegated
+            ? window.location[locationProperty] !== value
+            : window.location[locationProperty] === value,
         {},
         property,
         expectedValue,
@@ -181,7 +195,7 @@ export const actions = [
   {
     name: "wait-for-element-state",
     match: /^wait for( element)? (.+)( to be) (added|removed|visible|hidden)$/i,
-    run: async (_, page, __, matches) => {
+    run: async (_, page: Page, __, matches) => {
       const selector = matches[2];
       const state = matches[4];
 
@@ -189,34 +203,26 @@ export const actions = [
         (targetSelector, desiredState) => {
           const targetElement = document.querySelector(targetSelector);
 
-          const statusChecks = {
-            isAddedOrRemoved: (el) =>
-              Boolean(
-                (desiredState === "added" && el) ||
-                  (desiredState === "removed" && !el)
-              ),
-            isHiddenOrVisible: (isVisible) =>
-              (desiredState === "visible" && isVisible) ||
-              (desiredState === "hidden" && !isVisible),
-            isTargetVisible: (el) =>
-              Boolean(
-                el &&
-                  (el.offsetWidth ||
-                    el.offsetHeight ||
-                    el.getClientRects().length)
-              ),
-          };
-
           // Check for added/removed states
-          if (statusChecks.isAddedOrRemoved(targetElement)) {
+          if (
+            (targetElement && desiredState === "added") ||
+            (!targetElement && desiredState === "removed")
+          ) {
             return true;
           }
 
-          // Check element visibility
-          const isTargetVisible = statusChecks.isTargetVisible(targetElement);
+          const visible = !!(
+            targetElement &&
+            (targetElement.offsetWidth ||
+              targetElement.offsetHeight ||
+              targetElement.getClientRects().length)
+          );
 
           // Check for visible/hidden states
-          return statusChecks.isHiddenOrVisible(isTargetVisible);
+          return (
+            (desiredState === "visible" && visible) ||
+            (desiredState === "hidden" && !visible)
+          );
         },
         {
           polling: 200,
@@ -229,16 +235,18 @@ export const actions = [
   {
     name: "wait-for-element-event",
     match: /^wait for( element)? (.+) to emit (.+)$/i,
-    run: async (_, page, __, matches) => {
+    run: async (_, page: Page, __, matches) => {
       const selector = matches[2];
-      const eventType = matches[3];
+
       try {
         await page.evaluate(
           (targetSelector, desiredEvent) => {
             const target = document.querySelector(targetSelector);
+
             if (!target) {
               return Promise.reject(new Error("No element found"));
             }
+
             target.addEventListener(
               desiredEvent,
               () => {
@@ -251,7 +259,7 @@ export const actions = [
             );
           },
           selector,
-          eventType
+          matches[3]
         );
         await page.waitForFunction(
           () => {
@@ -269,7 +277,7 @@ export const actions = [
         );
       } catch (error) {
         throw new Error(
-          `Failed action: no element matching selector "${selector}"`
+          `${FAILED_M} no element matching selector "${selector}"`
         );
       }
     },
@@ -285,13 +293,19 @@ export const actions = [
  * @param {Object[]} customActions - Optional custom actions list.
  * @returns {Promise} Returns a promise which resolves with undefined.
  */
-export async function runAction(browser, page, options, act, customActions?) {
+export async function runAction(
+  browser: Browser,
+  page: Page,
+  options,
+  act,
+  customActions?
+) {
   const action = (customActions ?? actions).find((item) =>
     item.match.test(act)
   );
 
   if (!action) {
-    throw new Error(`Failed action: "${act}" cannot be resolved`);
+    throw new Error(`${FAILED_M} "${act}" cannot be resolved`);
   }
 
   await action.run(browser, page, options, act.match(action.match));

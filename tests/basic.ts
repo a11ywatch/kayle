@@ -19,13 +19,15 @@ import { performance } from "perf_hooks";
   await page.setContent(drakeMock);
 
   const startTime = performance.now();
-  const { issues, pageUrl, documentTitle, meta, automateable } = await a11y({
+  const audit = await a11y({
     page,
     browser,
     runners: ["htmlcs"],
     includeWarnings: true,
   });
+
   const nextTime = performance.now() - startTime;
+  const { issues, pageUrl, documentTitle, meta, automateable } = audit;
 
   console.log(issues);
   console.log(`Issue count ${issues.length}`);
