@@ -1,14 +1,10 @@
 # a11y-js
 
-A high performance web accessibility issue detector that runs at warp speed with the option to connect to browsers over `CDP` or pure `JSDOM`.
+High performance universal web accessibility evaluation using [`CDP`](https://chromedevtools.github.io/devtools-protocol/) or [`JSDOM`](https://github.com/jsdom/jsdom).
 
-You need to have an active page object and browser with a connection to get started or use the [a11yLint](./lib/lint.ts) method.
-
-You can view the [pagemind](https://github.com/a11ywatch/pagemind) repo for more info on the usage when using the `CDP` default a11y.
+This package is the fastest most efficient web accessibility auditer available OSS with runners pre-compiled for usage.
 
 Getting Started:
-
-If you cloned the repo run `npm i typescript && npm run compile:locales` first other wise skip and run install below.
 
 ```sh
 npm i a11y-js --save
@@ -24,7 +20,7 @@ await page.goTo("https://mywebsite.com")
 const results = await a11y({ page, browser, ...extraConfigs })
 ```
 
-a11y resolves with an array of objects, containing details about the page and accessibility issues:
+a11y contains details about the page and accessibility issues:
 
 ```js
 // sample of results for an audit.
@@ -89,16 +85,17 @@ await a11yLint("https://a11ywatch.com");
 a11y supports multiple test runners which return different results. The built-in test runners are:
 
 - `axe`: run tests using [axe-core](./lib/runners/axe.ts).
-- `htmlcs` (default): run tests using [HTML CodeSniffer](./lib/runners/htmlcs.ts)
+- `fast_htmlcs` (default): run tests using [HTML CodeSniffer](./lib/runners/htmlcs.ts)
 - `custom`: custom runners
 
 ## i18n
 
-[Locales](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/i18n) supported by the runner injected at runtime using pre-compiled locales.
+[Locales](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/i18n) supported by the runner injected at runtime using pre-compiled locales. In order to pre-compile the locales run `./build.sh`.
 
 1. da ("Danish")
 1. de ("German")
 1. es ("Spanish")
+1. ja ("Japanese")
 1. eu ("Basque")
 1. fr ("French")
 1. he ("Hebrew")
@@ -106,9 +103,13 @@ a11y supports multiple test runners which return different results. The built-in
 1. no_NB ("Norwegian")
 1. pl ("Polish Poland")
 1. pt_BR ("Portuguese Brazil")
-1. ja ("Japanese")
+1. zh-CN ("Chinese-Simplified")
+1. zh-TW ("Chinese-Traditional")
 
-In order to add more locales PRs to fast_htmlcs and fast_axe-core are required.
+## Performance
+
+1. This project is the fastest web accessibility runner OSS. The `htmlcs` and `axe-core` handling of the runners runs 
+between 400 - 100,000x faster than the standalone methods. This library optimizes the scripts to take advtage of v8 and pre-compiles locales in separate scripts for blazing fast speeds.
 
 ## Testing
 
@@ -116,6 +117,22 @@ In order to run full e2e test first run `npm install puppeteer` to install chrom
 Run the command to compile test and run.
 
 1. `npm run test`
+
+## Developing
+
+In order to develop you need yarn v2 installed for the workspace.
+
+Run the following to install on ^node@16.10
+
+`corepack enable && corepack prepare yarn@stable --activate`.
+
+Use the command `./build.sh` to compile all the scripts for each locale.
+
+## Notes
+
+1. You need to have an active page object and browser with a connection to get started or use the [a11yLint](./lib/lint.ts) method.
+
+1. Using CDP provides more accuracy for issues. Look at JSDOM as a quick linter and CDP as e2e.
 
 ## LICENSE
 

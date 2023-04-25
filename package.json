@@ -1,58 +1,11 @@
 {
-  "name": "a11y-js",
-  "version": "0.3.7",
-  "description": "extremely fast accessibility evaluation for nodejs",
-  "main": "./index.js",
-  "keywords": [
-    "accessibility"
-  ],
-  "author": "Jeff Mendez",
-  "contributors": [
-    "Jeff Mendez <jeff@a11ywatch.com>"
-  ],
-  "scripts": {
-    "prepare": "tsc",
-    "compile:locales": "tsc build.ts && node build.js",
-    "compile:test": "tsc --project tsconfig.test.json",
-    "lint": "eslint .",
-    "fix": "prettier --write '**/*.{js,jsx,ts,tsx}'",
-    "test": "npm run compile:test && node _tests/tests/basic.js",
-    "test:axe": "npm run compile:test && node _tests/tests/basic-axe.js",
-    "test:i18n": "npm run compile:test && node _tests/tests/i18n.js",
-    "test:lint": "node build/lint.js",
-    "pub": "npm run compile:locales && tsc && cp package.json package-lock.json README.md LICENSE build && cd build && npm publish"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/a11ywatch/a11y.git"
-  },
-  "homepage": "https://github.com/a11ywatch/a11y",
-  "bugs": "https://github.com/a11ywatch/a11y/issues",
-  "license": "MIT",
-  "dependencies": {
-    "axe-core": "4.6.3",
-    "fast_htmlcs": "0.0.3",
-    "jsdom": "21.0.0"
-  },
-  "peerDependecies": {
-    "puppeteer": "^19.6.3"
-  },
-  "devDependencies": {
-    "@types/jsdom": "^20.0.1",
-    "@types/node": "^18.15.11",
-    "prettier": "^2.8.0",
-    "puppeteer": "^19.6.3",
-    "typescript": "^4.9.3"
-  },
-  "jest": {
-    "clearMocks": true,
-    "collectCoverageFrom": [
-      "lib/**/*.js"
-    ],
-    "transform": {
-      "^.+\\.(t|j)s?$": [
-        "@swc/jest"
-      ]
-    }
-  }
+  "private": true,
+  "name": "a11yjs",
+  "description": "Blazing fast accessibility evaluation for nodejs",
+  "version": "0.3.4",
+  "workspaces": [
+    "a11y-js",
+    "fast_htmlcs",
+    "fast_axecore"
+  ]
 }

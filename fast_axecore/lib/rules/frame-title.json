@@ -1,0 +1,25 @@
+{
+  "id": "frame-title",
+  "selector": "frame, iframe",
+  "matches": "no-negative-tabindex-matches",
+  "tags": [
+    "cat.text-alternatives",
+    "wcag2a",
+    "wcag412",
+    "section508",
+    "section508.22.i"
+  ],
+  "actIds": ["cae760"],
+  "metadata": {
+    "description": "Ensures <iframe> and <frame> elements have an accessible name",
+    "help": "Frames must have an accessible name"
+  },
+  "all": [],
+  "any": [
+    "non-empty-title",
+    "aria-label",
+    "aria-labelledby",
+    "presentational-role"
+  ],
+  "none": []
+}

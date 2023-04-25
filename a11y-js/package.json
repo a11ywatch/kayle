@@ -1,0 +1,50 @@
+{
+  "name": "a11y-js",
+  "version": "0.3.8",
+  "description": "Blazing fast accessibility evaluation for nodejs",
+  "main": "./build/index.js",
+  "keywords": [
+    "accessibility"
+  ],
+  "author": "Jeff Mendez",
+  "contributors": [
+    "Jeff Mendez <jeff@a11ywatch.com>"
+  ],
+  "scripts": {
+    "prepare": "tsc",
+    "compile:test": "tsc --project tsconfig.test.json",
+    "lint": "eslint .",
+    "fix": "prettier --write '**/*.{js,jsx,ts,tsx}'",
+    "test": "npm run compile:test && node _tests/tests/basic.js",
+    "test:lint": "node build/lint.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/a11ywatch/a11y.git"
+  },
+  "homepage": "https://github.com/a11ywatch/a11y",
+  "bugs": "https://github.com/a11ywatch/a11y/issues",
+  "license": "MIT",
+  "dependencies": {
+    "fast_axecore": "workspace:*",
+    "fast_htmlcs": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^20.0.1",
+    "@types/node": "^18.11.9",
+    "prettier": "^2.8.0",
+    "puppeteer": "^19.6.3",
+    "typescript": "^4.9.3"
+  },
+  "jest": {
+    "clearMocks": true,
+    "collectCoverageFrom": [
+      "lib/**/*.js"
+    ],
+    "transform": {
+      "^.+\\.(t|j)s?$": [
+        "@swc/jest"
+      ]
+    }
+  }
+}

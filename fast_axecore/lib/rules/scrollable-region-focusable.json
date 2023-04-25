@@ -1,0 +1,14 @@
+{
+  "id": "scrollable-region-focusable",
+  "selector": "*:not(select,textarea)",
+  "matches": "scrollable-region-focusable-matches",
+  "tags": ["cat.keyboard", "wcag2a", "wcag211"],
+  "actIds": ["0ssw9k"],
+  "metadata": {
+    "description": "Ensure elements that have scrollable content are accessible by keyboard",
+    "help": "Scrollable region must have keyboard access"
+  },
+  "all": [],
+  "any": ["focusable-content", "focusable-element"],
+  "none": []
+}

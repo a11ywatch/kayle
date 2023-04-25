@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "lib": ["dom", "es6", "es2021"],
+    "sourceMap": true,
+    "allowJs": true,
+    "outDir": "dist/",
+    "declaration": true,
+    "moduleResolution": "node",
+    "rootDirs": ["."],
+    "baseUrl": ".",
+    "noEmit": false,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "noUnusedLocals": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "removeComments": true
+  },
+  "exclude": ["./Gruntfile.js", "build", "Contrib", "dist"]
+}

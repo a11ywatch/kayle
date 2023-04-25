@@ -1,0 +1,44 @@
+{
+  "name": "fast_htmlcs",
+  "version": "0.0.5",
+  "description": "HTML_CodeSniffer is a client-side JavaScript that checks a HTML document or source code, and detects violations of a defined coding standard.",
+  "license": "BSD-3-Clause",
+  "main": "index.js",
+  "keywords": [
+    "htmlcs"
+  ],
+  "scripts": {
+    "prepare": "grunt build",
+    "prepack": "grunt build",
+    "build": "tsc && grunt build",
+    "test": "grunt eslint",
+    "fix": "prettier --write '**/*.{js,jsx,ts,tsx}'",
+    "fix:trans": "prettier --write 'Translations/*.{js,jsx,ts,tsx}'"
+  },
+  "engines": {
+    "node": ">=6"
+  },
+  "files": [
+    "build",
+    "index.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/squizlabs/HTML_CodeSniffer.git"
+  },
+  "author": "Squiz",
+  "bugs": {
+    "url": "https://github.com/squizlabs/HTML_CodeSniffer/issues"
+  },
+  "homepage": "http://squizlabs.github.io/HTML_CodeSniffer/",
+  "devDependencies": {
+    "grunt": "^1.1.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-uglify": "^4.0.0",
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-eslint": "^21.0.0",
+    "load-grunt-tasks": "^4.0.0",
+    "prettier": "^2.8.3",
+    "typescript": "^4.9.4"
+  }
+}

@@ -25,9 +25,18 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+
+      - name: Install yarn
+        run: corepack enable && corepack prepare yarn@stable --activate
+
       - name: Install and build locales
-        run: npm i typescript && npm run compile:locales
-      - name: Install and build
-        run: npm ci && npm run prepare
-      - name: Run tests
-        run: npm test
+        run: yarn && ./build.sh
+
+      # - name: Run Tests fast_axecore
+      #   run: cd ./fast_axecore && yarn test 
+
+      - name: Run Tests fast_htmlcs
+        run: cd ./fast_htmlcs && yarn test 
+
+      - name: Run Tests a11y.js
+        run: cd ./a11y-js && yarn test 

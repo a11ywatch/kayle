@@ -1,0 +1,8 @@
+.swc
+.DS_Store
+.nyc_output
+coverage
+node_modules
+test/integration/tmp
+build
+_tests

@@ -1,0 +1,13 @@
+{
+  "name": "axe-puppeteer",
+  "version": "0.0.0",
+  "private": true,
+  "main": "axe-puppeteer.js",
+  "scripts": {
+    "test": "node axe-puppeteer.js https://deque.com"
+  },
+  "devDependencies": {
+    "axe-core": "^4.6.2",
+    "puppeteer": "^19.5.0"
+  }
+}
