@@ -1,6 +1,6 @@
 {
   "name": "a11y-js",
-  "version": "0.3.8",
+  "version": "0.3.11",
   "description": "Blazing fast accessibility evaluation for nodejs",
   "main": "./build/index.js",
   "keywords": [
@@ -9,6 +9,10 @@
   "author": "Jeff Mendez",
   "contributors": [
     "Jeff Mendez <jeff@a11ywatch.com>"
+  ],
+  "files": [
+    "build",
+    "package.json"
   ],
   "scripts": {
     "prepare": "tsc",

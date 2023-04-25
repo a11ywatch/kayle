@@ -1,8 +1,8 @@
 # a11y-js
 
-High performance universal web accessibility evaluation using [`CDP`](https://chromedevtools.github.io/devtools-protocol/) or [`JSDOM`](https://github.com/jsdom/jsdom).
+High performance universal web accessibility evaluations using [`CDP`](https://chromedevtools.github.io/devtools-protocol/) or [`JSDOM`](https://github.com/jsdom/jsdom).
 
-This package is the fastest most efficient web accessibility auditer available OSS with runners pre-compiled for usage.
+This package is the fastest and most efficient web accessibility auditer available OSS with universal localized runners pre-compiled for usage.
 
 Getting Started:
 
@@ -13,14 +13,15 @@ npm i a11y-js --save
 Requires node ^13
 
 ```js
-import { a11y } from "a11y-js"
+import { a11y, goToPage } from "a11y-js"
 
-// navigate to the page prior to active instance
-await page.goTo("https://mywebsite.com")
+const page = await browser.newPage();
+
+// navigate to the page using puppeteer page object using `goToPage` method for request interception
+await goToPage({ page, timeout: 15000 }, "https://jeffmendez.com")
+
 const results = await a11y({ page, browser, ...extraConfigs })
 ```
-
-a11y contains details about the page and accessibility issues:
 
 ```js
 // sample of results for an audit.
@@ -84,9 +85,9 @@ await a11yLint("https://a11ywatch.com");
 
 a11y supports multiple test runners which return different results. The built-in test runners are:
 
-- `axe`: run tests using [axe-core](./lib/runners/axe.ts).
-- `fast_htmlcs` (default): run tests using [HTML CodeSniffer](./lib/runners/htmlcs.ts)
-- `custom`: custom runners
+- [`a11y-js`](./a11y-js/README.md) core.
+- [`fast_axecore`](./fast_htmlcs/README.md): run tests using [axe-core](./lib/runners/axe.ts).
+- [`fast_htmlcs`](./fast_htmlcs/README.md): run tests using [HTML CodeSniffer](./lib/runners/htmlcs.ts)
 
 ## i18n
 

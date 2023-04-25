@@ -1,6 +1,6 @@
 import assert from "assert";
 import puppeteer from "puppeteer";
-import { a11y } from "../lib/a11y";
+import { a11y, setNetworkInterception } from "../lib";
 import { drakeMock } from "./html-mock"; // static html of 11 issues
 import { performance } from "perf_hooks";
 
@@ -16,6 +16,8 @@ import { performance } from "perf_hooks";
     ],
   });
   const page = await browser.newPage();
+
+  await setNetworkInterception(page);
   await page.setContent(drakeMock);
 
   const startTime = performance.now();

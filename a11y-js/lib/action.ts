@@ -1,4 +1,4 @@
-const failedActionElement = "Failed action: no element matching selector"
+const failedActionElement = "Failed action: no element matching selector";
 
 export const actions = [
   {
@@ -21,9 +21,7 @@ export const actions = [
       try {
         await page.click(selector);
       } catch (error) {
-        throw new Error(
-          `${failedActionElement} "${selector}"`
-        );
+        throw new Error(`${failedActionElement} "${selector}"`);
       }
     },
   },
@@ -59,9 +57,7 @@ export const actions = [
           value
         );
       } catch (error) {
-        throw new Error(
-          `${failedActionElement} "${selector}"`
-        );
+        throw new Error(`${failedActionElement} "${selector}"`);
       }
     },
   },
@@ -92,9 +88,7 @@ export const actions = [
           return Promise.resolve();
         }, selector);
       } catch (error) {
-        throw new Error(
-          `${failedActionElement} "${selector}"`
-        );
+        throw new Error(`${failedActionElement} "${selector}"`);
       }
     },
   },
@@ -123,9 +117,7 @@ export const actions = [
           checked
         );
       } catch (error) {
-        throw new Error(
-          `${failedActionElement} "${selector}"`
-        );
+        throw new Error(`${failedActionElement} "${selector}"`);
       }
     },
   },
@@ -270,9 +262,7 @@ export const actions = [
           }
         );
       } catch (error) {
-        throw new Error(
-          `${failedActionElement} "${selector}"`
-        );
+        throw new Error(`${failedActionElement} "${selector}"`);
       }
     },
   },

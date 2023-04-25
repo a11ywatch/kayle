@@ -2,7 +2,6 @@
   "private": true,
   "name": "a11yjs",
   "description": "Blazing fast accessibility evaluation for nodejs",
-  "version": "0.3.4",
   "workspaces": [
     "a11y-js",
     "fast_htmlcs",

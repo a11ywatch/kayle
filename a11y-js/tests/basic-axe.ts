@@ -1,7 +1,8 @@
 import assert from "assert";
 import puppeteer from "puppeteer";
-import { a11y } from "../lib/a11y";
-import { jmendezMock } from "./html-mock"; // static html of 11 issues
+import { a11y, setNetworkInterception } from "../lib";
+
+import { jmendezMock } from "./html-small-mock"; // static html of 11 issues
 import { performance } from "perf_hooks";
 
 (async () => {
@@ -16,6 +17,9 @@ import { performance } from "perf_hooks";
     ],
   });
   const page = await browser.newPage();
+  
+  await setNetworkInterception(page);
+
   await page.setContent(jmendezMock);
 
   const startTime = performance.now();

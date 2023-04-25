@@ -15,10 +15,13 @@ npm i a11y-js --save
 Requires node ^13
 
 ```js
-import { a11y } from "a11y-js"
+import { a11y, goToPage } from "a11y-js"
 
-// navigate to the page prior to active instance
-await page.goTo("https://mywebsite.com")
+const page = await browser.newPage();
+
+// navigate to the page using puppeteer page object using `goToPage` method for request interception
+await goToPage({ page, timeout: 15000 }, "https://mywebsite.com")
+
 const results = await a11y({ page, browser, ...extraConfigs })
 ```
 
@@ -64,6 +67,23 @@ a11y supports multiple test runners which return different results. The built-in
 - `axe`: run tests using [axe-core](./lib/runners/axe.ts).
 - `htmlcs` (default): run tests using [HTML CodeSniffer](./lib/runners/htmlcs.ts)
 - `custom`: custom runners
+
+## Utils
+
+You can use the [`goToPage`](./lib/utils/go-to-page.ts#L45) method to navigate to a remote url with high performance request interception or [`setNetworkInterception`](./lib/utils/go-to-page.ts#L34).
+
+```js
+import { a11y, setNetworkInterception } from "a11y-js"
+
+const page = await browser.newPage();
+
+// perform request interceptions for assets on markup
+await setNetworkInterception(page)
+// your html code
+await page.setContent("<html><body><main></main></body></html>");
+
+const results = await a11y({ page, browser, ...extraConfigs })
+```
 
 ## Testing
 

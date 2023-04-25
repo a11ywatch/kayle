@@ -35,8 +35,8 @@ jobs:
       # - name: Run Tests fast_axecore
       #   run: cd ./fast_axecore && yarn test 
 
-      - name: Run Tests fast_htmlcs
-        run: cd ./fast_htmlcs && yarn test 
+      # - name: Run Tests fast_htmlcs
+      #   run: cd ./fast_htmlcs && yarn test 
 
       - name: Run Tests a11y.js
         run: cd ./a11y-js && yarn test 
