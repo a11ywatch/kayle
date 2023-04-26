@@ -1,9 +1,8 @@
 import { blockedResourceTypes, skippedResources } from "./resource-ignore";
 import type { RunnerConfig } from "../config";
-import type { Page, HTTPRequest } from "puppeteer";
 
 // block expensive network resources from the page
-export const networkBlock = (request: HTTPRequest, allowImage?: boolean) => {
+export const networkBlock = (request, allowImage?: boolean) => {
   const resourceType = request.resourceType();
 
   // allow images upon reload intercepting.
@@ -31,7 +30,10 @@ export const networkBlock = (request: HTTPRequest, allowImage?: boolean) => {
 };
 
 // block expensive resources
-export const setNetworkInterception = async (page: Page): Promise<boolean> => {
+export const setNetworkInterception = async (page): Promise<boolean> => {
+  if (!page.setRequestInterception) {
+    return false;
+  }
   try {
     await page.setRequestInterception(true);
     page.on("request", networkBlock);
@@ -53,6 +55,7 @@ export const goToPage = async (
 ): Promise<boolean> => {
   let valid = false;
 
+  // todo: lazy import interception between playwright/puppeteer/etc or split util
   await setNetworkInterception(page);
 
   return new Promise(async (resolve) => {

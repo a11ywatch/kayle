@@ -1,4 +1,4 @@
-name: Build and test
+name: Bench Compare
 
 on:
   push:
@@ -32,11 +32,8 @@ jobs:
       - name: Install and build locales
         run: yarn && ./build.sh
 
-      # - name: Run Tests fast_axecore
-      #   run: cd ./fast_axecore && yarn test 
+      - name: Run Bench compare Playwright a11y.js axecore vs @axe-core/playwright
+        run: cd ./a11y-js && yarn bench:playwright:axe
 
-      # - name: Run Tests fast_htmlcs
-      #   run: cd ./fast_htmlcs && yarn test 
-
-      - name: Run Tests a11y.js
-        run: cd ./a11y-js && yarn test && yarn test:playwright
+      - name: Run Bench compare a11y.js vs pa11y
+        run: cd ./a11y-js && yarn bench:puppeteer:pa11y

@@ -4,9 +4,7 @@ A high performance web accessibility issue detector that runs at warp speed with
 
 You need to have an active page object and browser with a connection to get started or use the [a11yLint](./lib/lint.ts) method.
 
-You can view the [pagemind](https://github.com/a11ywatch/pagemind) repo for more info on the usage when using the `CDP` default a11y.
-
-Getting Started:
+Getting Started: checkout the [playwright-example](./tests/basic-playwright.spec.ts) or [puppeteer](./tests/basic.ts)
 
 ```sh
 npm i a11y-js --save
@@ -15,49 +13,61 @@ npm i a11y-js --save
 Requires node ^13
 
 ```js
-import { a11y, goToPage } from "a11y-js"
+import { a11y } from "a11y-js"
 
 const page = await browser.newPage();
 
-// navigate to the page using puppeteer page object using `goToPage` method for request interception
-await goToPage({ page, timeout: 15000 }, "https://mywebsite.com")
+// navigate to the page
+await page.goTo("https://mywebsite.com")
 
-const results = await a11y({ page, browser, ...extraConfigs })
+const results = await a11y({ page, browser })
 ```
 
-a11y resolves with an array of objects, containing details about the page and accessibility issues:
+[a11y](./lib/a11y.ts) contains details about the page and accessibility issues:
 
 ```js
-{
-    documentTitle: 'The title of the page',
-    pageUrl: 'The URL that a11y was run against',
-    issues: [
-        {
-            code: 'WCAG2AA.Principle1.Guideline1_1.1_1_1.H30.2',
-            context: '<a href="https://example.com/"><img src="example.jpg" alt=""/></a>',
-            message: 'Img element is the only content of the link, but is missing alt text. The alt text should describe the purpose of the link.',
-            selector: 'html > body > p:nth-child(1) > a',
-            type: 'error',
-            typeCode: 1,
-            runner: "a11y",
-            recurrence: 0
+// sample of results for an audit.
+const results = {
+  documentTitle: 'Drake Industries | Custom, Durable, High-Quality Labels, Asset Tags and Custom Server Bezels',
+  pageUrl: 'https://drake.com',
+  issues: [
+    {
+      context: '<a class="expandMenu"><i></i><i></i><i></i></a>',
+      selector: '#hs_cos_wrapper_module_14725592865174 > a',
+      code: 'WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.A.EmptyNoId',
+      type: 'error',
+      typeCode: 1,
+      message: 'Anchor element found with no link content and no name and/or ID attribute.',
+      runner: 'htmlcs',
+      runnerExtras: {},
+      recurrence: 5 // issue found 5 times against the page
+    },
+    {
+        context: '<a href="https://www.drake.com/labels?hsLang=en">Learn more</a>',
+        selector: '#hs_cos_wrapper_module_1569856007055222 > div > div:nth-child(3) > a',
+        code: 'color-contrast',
+        type: 'error',
+        typeCode: 1,
+        message: 'Elements must have sufficient color contrast',
+        recurrence: 0,
+        runner: 'axe',
+        runnerExtras: {
+            description: 'Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds',
+            impact: 'serious',
+            helpUrl: 'https://dequeuniversity.com/rules/axe/4.6/color-contrast?application=axeAPI'
         }
-        // more issues...
-    ]
+    },
+    /// ...more issues
+  ],
+  meta: {
+    errorCount: 11,
+    warningCount: 15,
+    noticeCount: 0,
+    accessScore: 78,
+    possibleIssuesFixedByCdn: 0
+  },
+  automateable: { missingAltIndexs: [5,22] }
 }
-```
-
-## Linting
-
-Straight forward linting. You can pass a url or valid html.
-
-Linting is handled on the same machine not sandboxed.
-
-```js
-import { a11yLint } from "a11y-js"
-
-await a11yLint("https://a11ywatch.com");
-
 ```
 
 ## Runners
@@ -85,9 +95,22 @@ await page.setContent("<html><body><main></main></body></html>");
 const results = await a11y({ page, browser, ...extraConfigs })
 ```
 
+## Linting
+
+Straight forward linting. You can pass a url or valid html.
+
+Linting is handled on the same machine not sandboxed.
+
+```js
+import { a11yLint } from "a11y-js"
+
+await a11yLint("https://a11ywatch.com");
+
+```
+
 ## Testing
 
-In order to run full e2e test first run `npm install puppeteer` to install chromium locally.
+In order to run full e2e test first run `npm install puppeteer` or `npm install @playwright/test` to install chromium locally.
 Run the command to compile test and run.
 
 1. `npm run test`

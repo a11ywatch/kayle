@@ -1,6 +1,6 @@
 import assert from "assert";
 import puppeteer from "puppeteer";
-import { a11y, setNetworkInterception } from "../lib";
+import { a11y, setNetworkInterception } from "a11y-js";
 import { jmendezMock } from "./html-small-mock"; // static html of 11 issues
 import { performance } from "perf_hooks";
 

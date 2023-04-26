@@ -183,34 +183,26 @@ export const actions = [
         (targetSelector, desiredState) => {
           const targetElement = document.querySelector(targetSelector);
 
-          const statusChecks = {
-            isAddedOrRemoved: (el) =>
-              Boolean(
-                (desiredState === "added" && el) ||
-                  (desiredState === "removed" && !el)
-              ),
-            isHiddenOrVisible: (isVisible) =>
-              (desiredState === "visible" && isVisible) ||
-              (desiredState === "hidden" && !isVisible),
-            isTargetVisible: (el) =>
-              Boolean(
-                el &&
-                  (el.offsetWidth ||
-                    el.offsetHeight ||
-                    el.getClientRects().length)
-              ),
-          };
-
           // Check for added/removed states
-          if (statusChecks.isAddedOrRemoved(targetElement)) {
+          if (
+            (targetElement && desiredState === "added") ||
+            (!targetElement && desiredState === "removed")
+          ) {
             return true;
           }
 
-          // Check element visibility
-          const isTargetVisible = statusChecks.isTargetVisible(targetElement);
+          const visible = !!(
+            targetElement &&
+            (targetElement.offsetWidth ||
+              targetElement.offsetHeight ||
+              targetElement.getClientRects().length)
+          );
 
           // Check for visible/hidden states
-          return statusChecks.isHiddenOrVisible(isTargetVisible);
+          return (
+            (desiredState === "visible" && visible) ||
+            (desiredState === "hidden" && !visible)
+          );
         },
         {
           polling: 200,

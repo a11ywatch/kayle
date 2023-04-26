@@ -1,6 +1,6 @@
 {
   "name": "a11y-js",
-  "version": "0.3.11",
+  "version": "0.3.18",
   "description": "Blazing fast accessibility evaluation for nodejs",
   "main": "./build/index.js",
   "keywords": [
@@ -19,8 +19,14 @@
     "compile:test": "tsc --project tsconfig.test.json",
     "lint": "eslint .",
     "fix": "prettier --write '**/*.{js,jsx,ts,tsx}'",
+    "bench:playwright:axe": "npm run compile:test && node _tests/bench/compare-playwright.js",
+    "bench:puppeteer:pa11y": "npm run compile:test && node _tests/bench/compare-puppeteer-pa11y.js",
     "test": "npm run compile:test && node _tests/tests/basic.js",
-    "test:lint": "node build/lint.js"
+    "test:playwright": "npx playwright test ./tests/basic-playwright.spec.ts",
+    "test:playwright:axe": "npx playwright test ./tests/basic-axe-playwright.spec.ts",
+    "test:playwright:axecore": "npx playwright test ./tests/axecore-playwright.spec.ts",
+    "test:lint": "node build/lint.js",
+    "publish": "yarn prepare && yarn npm publish"
   },
   "repository": {
     "type": "git",
@@ -34,8 +40,12 @@
     "fast_htmlcs": "workspace:*"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.6.1",
+    "@playwright/test": "^1.32.3",
     "@types/jsdom": "^20.0.1",
     "@types/node": "^18.11.9",
+    "pa11y": "^6.2.3",
+    "playwright": "^1.32.3",
     "prettier": "^2.8.0",
     "puppeteer": "^19.6.3",
     "typescript": "^4.9.3"

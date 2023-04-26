@@ -108,9 +108,7 @@ export async function a11y(o: Partial<RunnerConfig> = {}): Promise<Audit> {
     auditPage(config),
   ]);
 
-  if (results.docuementTitle || results.pageUrl) {
-    clearTimeout(watcher.timer);
-  }
+  clearTimeout(watcher.timer);
 
   return results;
 }

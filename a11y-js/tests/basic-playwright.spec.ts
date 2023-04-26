@@ -1,33 +1,20 @@
 import assert from "assert";
-import puppeteer from "puppeteer";
-import { a11y, setNetworkInterception } from "a11y-js";
+import { a11y } from "a11y-js";
 import { jmendezMock } from "./html-small-mock"; // static html of 11 issues
 import { performance } from "perf_hooks";
+import { test, expect } from "@playwright/test";
 
-(async () => {
-  const browser = await puppeteer.launch({
-    dumpio: true,
-    args: [
-      "--headless",
-      "--no-sandbox",
-      "--no-first-run",
-      "--disable-web-security",
-      "--disable-features=site-per-process",
-    ],
-  });
-  const page = await browser.newPage();
-
-  await setNetworkInterception(page);
-
+test("can test page with custom htmlcs", async ({ page, browser }) => {
+  // todo: playwright request interception
+  // await setNetworkInterception(page);
   await page.setContent(jmendezMock);
 
   const startTime = performance.now();
   const { issues, pageUrl, documentTitle, meta, automateable } = await a11y({
     page,
     browser,
-    runners: ["axe"],
+    runners: ["htmlcs"],
     includeWarnings: true,
-    origin: "https://jeffmendez.com",
   });
   const nextTime = performance.now() - startTime;
 
@@ -42,5 +29,8 @@ import { performance } from "perf_hooks";
   assert(typeof pageUrl === "string");
   assert(typeof documentTitle === "string");
 
-  await browser.close();
-})();
+  // Expect a title "to contain" a substring.
+  await expect(page).toHaveTitle(documentTitle);
+
+  await page.close();
+});

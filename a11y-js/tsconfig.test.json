@@ -21,6 +21,6 @@
       "resolveJsonModule": true,
       "removeComments": true
     },
-    "include": ["./lib", "./tests"]
+    "include": ["./lib", "./tests", "./bench"]
   }
   
