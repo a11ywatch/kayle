@@ -116,7 +116,7 @@ a11y supports multiple test runners which return different results. The built-in
 - [`fast_axecore`](./fast_htmlcs/README.md): run tests using [axe-core](./lib/runners/axe.ts).
 - [`fast_htmlcs`](./fast_htmlcs/README.md): run tests using [HTML CodeSniffer](./lib/runners/htmlcs.ts)
 
-If you run [@playwright/axe-core](./a11y-js/tests/axecore-playwright.spec.ts) vs [our custom axe-core](./a11y-js/tests/basic-axe-playwright.spec) setup of axe the issues run over 90% faster over 20 runs by default with improved resolution of issues. The performance scales the larger the page.
+If you run [@playwright/axe-core](./a11y-js/tests/axecore-playwright.spec.ts) vs [our custom axe-core](./a11y-js/tests/basic-axe-playwright.spec.ts) setup of axe the issues run over 90% faster over 20 runs by default with improved resolution of issues. The performance scales the larger the page.
 
 For the mock test case used `@playwright/axe-core` found 2 errors while `fast_axecore` or our custom version of it found 6 errors using a small [sample mock](./a11y-js/tests/html-small-mock.ts).
 
