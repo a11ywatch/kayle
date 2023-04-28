@@ -83,12 +83,10 @@ a11y supports multiple test runners which return different results. The built-in
 You can use the [`goToPage`](./lib/utils/go-to-page.ts#L45) method to navigate to a remote url with high performance request interception or [`setNetworkInterception`](./lib/utils/go-to-page.ts#L34).
 
 ```js
-import { a11y, setNetworkInterception } from "a11y-js"
+import { a11y } from "a11y-js"
 
 const page = await browser.newPage();
 
-// perform request interceptions for assets on markup
-await setNetworkInterception(page)
 // your html code
 await page.setContent("<html><body><main></main></body></html>");
 

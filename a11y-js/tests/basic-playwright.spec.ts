@@ -1,12 +1,12 @@
 import assert from "assert";
-import { a11y } from "a11y-js";
+import { a11y, setNetworkInterception } from "a11y-js";
 import { jmendezMock } from "./html-small-mock"; // static html of 11 issues
 import { performance } from "perf_hooks";
 import { test, expect } from "@playwright/test";
 
 test("can test page with custom htmlcs", async ({ page, browser }) => {
   // todo: playwright request interception
-  // await setNetworkInterception(page);
+  await setNetworkInterception(page);
   await page.setContent(jmendezMock);
 
   const startTime = performance.now();

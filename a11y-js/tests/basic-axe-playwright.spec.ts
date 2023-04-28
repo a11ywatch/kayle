@@ -5,7 +5,6 @@ import { performance } from "perf_hooks";
 import { test, expect } from "@playwright/test";
 
 test("can test page with axe", async ({ page, browser }) => {
-  // todo: playwright request interception
   await setNetworkInterception(page);
   await page.setContent(drakeMock);
 

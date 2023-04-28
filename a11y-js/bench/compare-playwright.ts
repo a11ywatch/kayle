@@ -1,4 +1,4 @@
-import { a11y, setNetworkInterception } from "a11y-js";
+import { a11y } from "a11y-js";
 import { chromium } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { drakeMock } from "../tests/html-mock"; // static html of www.drake.com Jan 21, 2022
@@ -39,8 +39,6 @@ async function launchBench() {
     await page.setContent(drakeMock);
 
     const startTime = performance.now();
-
-    await setNetworkInterception(page);
 
     await a11y({
       page,

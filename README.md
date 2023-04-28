@@ -1,6 +1,6 @@
 # a11y-js
 
-Blazing fast universal and accurate web accessibility evaluations using [`CDP`](https://chromedevtools.github.io/devtools-protocol/) or [`JSDOM`](https://github.com/jsdom/jsdom).
+Incredibly fast and accurate universal web accessibility evaluator for puppeteer or playwright 🏎️ 🌎.
 
 Getting Started: checkout the [playwright-example](./a11y-js/tests/basic-playwright.spec.ts) or [puppeteer](./a11y-js/tests/basic.ts)
 
@@ -205,10 +205,6 @@ Run the following to install on ^node@16.10
 `corepack enable && corepack prepare yarn@stable --activate` and reload shell after.
 
 Use the command `./build.sh` to compile all the scripts for each locale.
-
-## Todo
-
-1. auto request interception toggling for puppeteer and playwright.
 
 ## LICENSE
 

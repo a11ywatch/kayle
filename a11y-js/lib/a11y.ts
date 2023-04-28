@@ -2,6 +2,7 @@ import { extractArgs } from "./option";
 import { runAction } from "./action";
 import { RunnerConfig } from "./config";
 import { runnersJavascript } from "./runner-js";
+import { setNetworkInterception } from "./utils/go-to-page"
 
 export type MetaInfo = {
   errorCount: number;
@@ -101,7 +102,11 @@ const getRunner = (language: string, runner: string) => {
  */
 export async function a11y(o: Partial<RunnerConfig> = {}): Promise<Audit> {
   const config = extractArgs(o);
+
+  await setNetworkInterception(config.page);
+
   const watcher = new Watcher();
+
 
   const results = await Promise.race([
     watcher.watch(config.timeout),

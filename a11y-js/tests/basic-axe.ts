@@ -9,7 +9,6 @@ import { performance } from "perf_hooks";
   const page = await browser.newPage();
 
   await setNetworkInterception(page);
-
   await page.setContent(drakeMock);
 
   const startTime = performance.now();

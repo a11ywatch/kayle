@@ -1,27 +1,47 @@
 import { blockedResourceTypes, skippedResources } from "./resource-ignore";
 import type { RunnerConfig } from "../config";
 
-const blocknet = (request, route, allowImage) => {
-  const resourceType = request.resourceType();
+type Request = {
+  isInterceptResolutionHandled?(): boolean;
+  continue(): Promise<void>;
+  abort(): Promise<void>;
+};
 
+/**
+ * Block network based on resource type and url.
+ * @param {Object} [req={}] - Intercept config for resourceType, request, and url.
+ * @param {Boolean} [allowImage=false] - All the image to continue - useful on reload intercept.
+ * @returns {Promise} Returns a promise void.
+ */
+const blocknet = async (
+  {
+    resourceType,
+    request,
+    url,
+  }: {
+    resourceType: string;
+    request: Request;
+    url: string;
+  },
+  allowImage?: boolean
+) => {
   // ignore intercepted request
   if (
     request.isInterceptResolutionHandled &&
+    typeof request.isInterceptResolutionHandled === "function" &&
     request.isInterceptResolutionHandled()
   ) {
-    return;
+    return await Promise.resolve();
   }
 
   // allow images upon reload intercepting.
   if (resourceType === "image" && allowImage) {
-    return request.continue();
+    return await request.continue();
   }
 
   if (blockedResourceTypes.hasOwnProperty(resourceType)) {
-    return request.abort();
+    return await request.abort();
   }
-
-  const url = request.url ? request.url() : route;
 
   if (url && resourceType === "script") {
     const urlBase = url.split("?");
@@ -29,30 +49,59 @@ const blocknet = (request, route, allowImage) => {
     const requestUrl = splitBase.length ? splitBase[0] : "";
 
     if (skippedResources.hasOwnProperty(requestUrl)) {
-      return request.abort();
+      return await request.abort();
     }
   }
 
-  return request.continue();
+  return await request.continue();
 };
+
+// http request shaped partial for puppeteer or playwright
+type HttpRequest = {
+  url?(): string;
+  resourceType?(): string;
+  request?(): { resourceType(): string };
+};
+
 // block expensive network resources from the page
-export const networkBlock = (routeOrRequest, req, allowImage) =>
-  typeof routeOrRequest === "string"
-    ? blocknet(req.request(), routeOrRequest, allowImage)
-    : blocknet(routeOrRequest, routeOrRequest.url(), allowImage);
+export const networkBlock = async (
+  request: Partial<HttpRequest> & Request,
+  req?: any,
+  allowImage?: boolean
+) => {
+  const { resourceType, url } = request.request
+    ? { resourceType: request.request().resourceType(), url: req.url() }
+    : {
+        resourceType: request.resourceType(),
+        url: request.url(),
+      };
+
+  return await blocknet({ resourceType, request, url }, allowImage);
+};
 
 // block expensive resources
 export const setNetworkInterception = async (page): Promise<boolean> => {
   // playwright
   if (!page.setRequestInterception) {
-    return await page.route("**/*", networkBlock);
+    if (
+      page._route &&
+      (!page._routes.length ||
+        !page._routes.some((route) => route.url === "**/*"))
+    ) {
+      return await page.route("**/*", networkBlock);
+    }
+    return
   }
-  try {
-    await page.setRequestInterception(true);
-    page.on("request", networkBlock);
-    return true;
-  } catch (e) {
-    return false;
+  // if request listeners are not set add interception
+  if (!page.listenerCount("request")) {
+    try {
+      await page.setRequestInterception(true);
+      page.on("request", networkBlock);
+
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 };
 

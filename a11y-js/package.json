@@ -1,6 +1,6 @@
 {
   "name": "a11y-js",
-  "version": "0.3.20",
+  "version": "0.3.27",
   "description": "Blazing fast accessibility evaluation for nodejs",
   "main": "./build/index.js",
   "keywords": [
@@ -16,16 +16,16 @@
   ],
   "scripts": {
     "prepare": "tsc",
-    "compile:test": "tsc --project tsconfig.test.json",
+    "compile:test": "tsc && tsc --project tsconfig.test.json",
     "lint": "eslint .",
     "fix": "prettier --write '**/*.{js,jsx,ts,tsx}'",
     "bench:playwright:axe": "npm run compile:test && node _tests/bench/compare-playwright.js",
     "bench:puppeteer:pa11y": "npm run compile:test && node _tests/bench/compare-puppeteer-pa11y.js",
     "test": "npm run compile:test && node _tests/tests/basic.js",
     "test:puppeteer:axe": "npm run compile:test && node _tests/tests/basic-axe.js",
-    "test:playwright": "npx playwright test ./tests/basic-playwright.spec.ts",
-    "test:playwright:axe": "npx playwright test ./tests/basic-axe-playwright.spec.ts",
-    "test:playwright:axecore": "npx playwright test ./tests/axecore-playwright.spec.ts",
+    "test:playwright": "npm run compile:test && npx playwright test ./tests/basic-playwright.spec.ts",
+    "test:playwright:axe": "npm run compile:test && npx playwright test ./tests/basic-axe-playwright.spec.ts",
+    "test:playwright:axecore": "npm run compile:test && npx playwright test ./tests/axecore-playwright.spec.ts",
     "test:lint": "node build/lint.js",
     "publish": "yarn prepare && yarn npm publish"
   },
