@@ -1,9 +1,16 @@
 import { blockedResourceTypes, skippedResources } from "./resource-ignore";
 import type { RunnerConfig } from "../config";
 
-// block expensive network resources from the page
-export const networkBlock = (request, allowImage?: boolean) => {
+const blocknet = (request, route, allowImage) => {
   const resourceType = request.resourceType();
+
+  // ignore intercepted request
+  if (
+    request.isInterceptResolutionHandled &&
+    request.isInterceptResolutionHandled()
+  ) {
+    return;
+  }
 
   // allow images upon reload intercepting.
   if (resourceType === "image" && allowImage) {
@@ -14,7 +21,7 @@ export const networkBlock = (request, allowImage?: boolean) => {
     return request.abort();
   }
 
-  const url = request.url();
+  const url = request.url ? request.url() : route;
 
   if (url && resourceType === "script") {
     const urlBase = url.split("?");
@@ -28,11 +35,17 @@ export const networkBlock = (request, allowImage?: boolean) => {
 
   return request.continue();
 };
+// block expensive network resources from the page
+export const networkBlock = (routeOrRequest, req, allowImage) =>
+  typeof routeOrRequest === "string"
+    ? blocknet(req.request(), routeOrRequest, allowImage)
+    : blocknet(routeOrRequest, routeOrRequest.url(), allowImage);
 
 // block expensive resources
 export const setNetworkInterception = async (page): Promise<boolean> => {
+  // playwright
   if (!page.setRequestInterception) {
-    return false;
+    return await page.route("**/*", networkBlock);
   }
   try {
     await page.setRequestInterception(true);
@@ -55,7 +68,6 @@ export const goToPage = async (
 ): Promise<boolean> => {
   let valid = false;
 
-  // todo: lazy import interception between playwright/puppeteer/etc or split util
   await setNetworkInterception(page);
 
   return new Promise(async (resolve) => {

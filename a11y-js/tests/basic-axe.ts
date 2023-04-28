@@ -1,25 +1,16 @@
 import assert from "assert";
 import puppeteer from "puppeteer";
 import { a11y, setNetworkInterception } from "a11y-js";
-import { jmendezMock } from "./html-small-mock"; // static html of 11 issues
+import { drakeMock } from "./html-mock"; // static html of 11 issues
 import { performance } from "perf_hooks";
 
 (async () => {
-  const browser = await puppeteer.launch({
-    dumpio: true,
-    args: [
-      "--headless",
-      "--no-sandbox",
-      "--no-first-run",
-      "--disable-web-security",
-      "--disable-features=site-per-process",
-    ],
-  });
+  const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
   await setNetworkInterception(page);
 
-  await page.setContent(jmendezMock);
+  await page.setContent(drakeMock);
 
   const startTime = performance.now();
   const { issues, pageUrl, documentTitle, meta, automateable } = await a11y({
@@ -27,7 +18,7 @@ import { performance } from "perf_hooks";
     browser,
     runners: ["axe"],
     includeWarnings: true,
-    origin: "https://jeffmendez.com",
+    origin: "https://www.drake.com",
   });
   const nextTime = performance.now() - startTime;
 

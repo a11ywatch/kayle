@@ -1,5 +1,5 @@
 import assert from "assert";
-import { jmendezMock } from "./html-small-mock"; // static html of 11 issues
+import { drakeMock } from "./html-mock"; // static html of 11 issues
 import { performance } from "perf_hooks";
 import { test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
@@ -11,7 +11,7 @@ test("can test page with axe using @axe-core/playwright", async ({
 }) => {
   // todo: playwright request interception
   // await setNetworkInterception(page);
-  await page.setContent(jmendezMock);
+  await page.setContent(drakeMock);
 
   const startTime = performance.now();
   // todo: pass in custom axe-source from our pre-compiled locales to weigh out differences

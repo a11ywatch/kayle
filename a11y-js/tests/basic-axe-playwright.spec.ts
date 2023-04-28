@@ -1,13 +1,13 @@
 import assert from "assert";
-import { a11y } from "a11y-js";
-import { jmendezMock } from "./html-small-mock"; // static html of 11 issues
+import { a11y, setNetworkInterception } from "a11y-js";
+import { drakeMock } from "./html-mock"; // static html of 11 issues
 import { performance } from "perf_hooks";
 import { test, expect } from "@playwright/test";
 
 test("can test page with axe", async ({ page, browser }) => {
   // todo: playwright request interception
-  // await setNetworkInterception(page);
-  await page.setContent(jmendezMock);
+  await setNetworkInterception(page);
+  await page.setContent(drakeMock);
 
   const startTime = performance.now();
   const { issues, pageUrl, documentTitle, meta, automateable } = await a11y({
@@ -15,6 +15,7 @@ test("can test page with axe", async ({ page, browser }) => {
     browser,
     runners: ["axe"],
     includeWarnings: true,
+    origin: "https://www.drake.com",
   });
   const nextTime = performance.now() - startTime;
 

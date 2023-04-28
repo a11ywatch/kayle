@@ -13,12 +13,12 @@ npm i a11y-js --save
 Requires node ^13
 
 ```js
-import { a11y } from "a11y-js"
+import { a11y, goToPage } from "a11y-js"
 
 const page = await browser.newPage();
 
 // navigate to the page
-await page.goTo("https://mywebsite.com")
+await goToPage("https://mywebsite.com")
 
 const results = await a11y({ page, browser })
 ```
