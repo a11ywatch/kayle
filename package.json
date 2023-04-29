@@ -1,6 +1,5 @@
 {
-  "private": true,
-  "name": "a11yjs",
+  "name": "a11y",
   "description": "Extremely fast accessibility evaluation for nodejs",
   "workspaces": [
     "a11y-js",
