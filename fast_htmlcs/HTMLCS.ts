@@ -40,10 +40,7 @@ _global.HTMLCS = new (function () {
     _standards.size && _standards.clear();
     _tags.size && _tags.clear();
 
-    // Set a language to use Todo: remove.
-    var languages = Object.keys(_global.translation);
-
-    if (language && languages.indexOf(language) !== -1) {
+    if (_global.translation.hasOwnProperty(language)) {
       this.lang = language;
     }
 
@@ -68,19 +65,7 @@ _global.HTMLCS = new (function () {
    * @return {String}
    */
   this.getTranslation = function (text) {
-    const translations = _global.translation[this.lang];
-
-    if (!translations) {
-      return "";
-    }
-
-    const translation = translations[text];
-
-    if (!translation) {
-      return "";
-    }
-
-    return translation;
+    return _global.translation[this.lang][text];
   };
 
   /**

@@ -66,14 +66,22 @@ async function launchBench() {
   // bench axe-core
   await benchMethod(runPlaywrightAxeCore);
 
+  const fastestLib = a11yAxeTime < axeBuilderTime ? "a11y-js" : "@axe-core/playwright";
+  const a11yAxeAVG = a11yAxeTime / iterations;
+  const axeAVG = axeBuilderTime / iterations;
+
   console.log(
     `Fastest is ${
-      a11yAxeTime < axeBuilderTime ? "a11y-js" : "@axe-core"
+      fastestLib
     } by ${relativeDifference(
-      a11yAxeTime / iterations,
-      axeBuilderTime / iterations
+      a11yAxeAVG,
+      axeAVG
     )}%`
   );
+
+
+  console.log(`a11y-js:axe-core x ${(a11yAxeAVG / 1000)} ops (${iterations} runs sampled)`)
+  console.log(`@axe-core/playwright x ${(axeAVG / 1000)} ops (${iterations} runs sampled)`)
 
   await context.close();
   await browser.close();

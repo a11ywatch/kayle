@@ -1,6 +1,6 @@
 {
   "name": "a11y-js",
-  "version": "0.3.28",
+  "version": "0.3.29",
   "description": "Extremely fast accessibility evaluation for nodejs",
   "main": "./build/index.js",
   "keywords": [
@@ -23,6 +23,7 @@
     "bench:playwright:axe": "npm run compile:test && node _tests/bench/compare-playwright.js",
     "bench:puppeteer:pa11y": "npm run compile:test && node _tests/bench/compare-puppeteer-pa11y.js",
     "test": "npm run compile:test && node _tests/tests/basic.js",
+    "test:i18n": "npm run compile:test && node _tests/tests/i18n.js",
     "test:puppeteer": "npm run compile:test && node _tests/tests/basic.js",
     "test:puppeteer:axe": "npm run compile:test && node _tests/tests/basic-axe.js",
     "test:playwright": "npm run compile:test && npx playwright test ./tests/basic-playwright.spec.ts",

@@ -19,7 +19,9 @@ type Snif = null | {
 declare global {
     var _global: {
         HTMLCS: HTMLCS;
-        translation: string
+        translation: {
+            [key: string]: Record<string, unknown>
+        }
     },
     HTMLCS: HTMLCS;
     var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1: Snif;
