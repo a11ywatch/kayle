@@ -34,8 +34,6 @@ _global.HTMLCS_Section508 = {
     var msgCodeParts = code.split(".", 3);
     var paragraph = msgCodeParts[1].toLowerCase();
 
-    var retval = [["Section", "1194.22 (" + paragraph + ")"]];
-
-    return retval;
+    return [["Section", "1194.22 (" + paragraph + ")"]];
   },
 };

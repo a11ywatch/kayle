@@ -16,4 +16,6 @@ export type RunnerConfig = {
   timeout?: number;
   origin?: string;
   language?: string;
+  // prevent auto intercept request to prevent fetching resources
+  noIntercept?: boolean;
 };

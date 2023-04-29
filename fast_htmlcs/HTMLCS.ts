@@ -8,8 +8,8 @@ _global.HTMLCS = new (function () {
   var _msgOverrides = {};
   var _duplicates = new Map();
   /*
-        Message type constants.
-    */
+  *  Message type constants.
+  */
   this.ERROR = "error";
   this.WARNING = "warning";
   this.NOTICE = "notice";
@@ -33,13 +33,12 @@ _global.HTMLCS = new (function () {
     failCallback,
     language
   ) {
-    // Clear previous runs. todo: remove for clear opt
-    _standards.size && _standards.clear();
-    _tags.size && _tags.clear();
-
     if (!content) {
       return false;
     }
+    // Clear previous runs. todo: remove for clear opt
+    _standards.size && _standards.clear();
+    _tags.size && _tags.clear();
 
     // Set a language to use Todo: remove.
     var languages = Object.keys(_global.translation);
@@ -69,13 +68,13 @@ _global.HTMLCS = new (function () {
    * @return {String}
    */
   this.getTranslation = function (text) {
-    var translations = _global.translation[this.lang];
+    const translations = _global.translation[this.lang];
 
     if (!translations) {
       return "";
     }
 
-    var translation = translations[text];
+    const translation = translations[text];
 
     if (!translation) {
       return "";
@@ -89,6 +88,7 @@ _global.HTMLCS = new (function () {
    *
    * @param {String}   standard The name of the standard to load.
    * @param {Function} callback The function to call once the standard is loaded.
+   * @param {Function} failCallback The function to call on failure.
    */
   this.loadStandard = function (standard, callback, failCallback) {
     if (!standard) {
@@ -101,7 +101,8 @@ _global.HTMLCS = new (function () {
         _standard = standard;
         callback.call(this);
       },
-      failCallback
+      failCallback,
+      undefined
     );
   };
 
@@ -127,6 +128,7 @@ _global.HTMLCS = new (function () {
         element = elementFrame.contentWindow.document;
       }
 
+      // @ts-ignore
       elementFrame.load = function () {
         this.onreadystatechange = null;
         this.onload = null;
@@ -147,6 +149,7 @@ _global.HTMLCS = new (function () {
       };
 
       // Satisfy IE which doesn't like onload being set dynamically.
+      // @ts-ignore
       elementFrame.onreadystatechange = function () {
         if (/^(complete|loaded)$/.test(this.readyState) === true) {
           this.onreadystatechange = null;
@@ -154,6 +157,7 @@ _global.HTMLCS = new (function () {
         }
       };
 
+      // @ts-ignore
       elementFrame.onload = elementFrame.load;
 
       if (!HTMLCS.isFullDoc(content) && content.indexOf("<body") === -1) {
@@ -301,6 +305,7 @@ _global.HTMLCS = new (function () {
         const tag = _tags.get(tagName);
 
         if (tag.length > 0) {
+          // @ts-ignore
           _processSniffs(element, tag, topElement);
 
           // Save "top" messages, and reset the messages array.
@@ -352,6 +357,7 @@ _global.HTMLCS = new (function () {
         // - Clear out the list of sniffs (so they aren't run again), so the
         //   callback (if not already recursed) can run afterwards.
         sniff.process(element, topElement, function () {
+          // @ts-ignore
           _processSniffs(element, sniffs, topElement);
           sniffs = [];
         });
@@ -422,12 +428,15 @@ _global.HTMLCS = new (function () {
     if (options) {
       if (options.include && options.include.length > 0) {
         // Included sniffs.
+        // @ts-ignore
         ruleSet.sniffs = options.include;
       } else if (options.exclude) {
         // Excluded sniffs.
         for (var i = 0; i < options.exclude.length; i++) {
+          // @ts-ignore
           var index = ruleSet.sniffs.find(options.exclude[i]);
           if (index >= 0) {
+            // @ts-ignore
             ruleSet.sniffs.splice(index, 1);
           }
         }
@@ -437,6 +446,7 @@ _global.HTMLCS = new (function () {
     // Register the sniffs for this standard.
     _registerSniffs(
       standard,
+      // @ts-ignore
       ruleSet.sniffs.slice(0, ruleSet.sniffs.length),
       callback,
       failCallback
@@ -630,21 +640,26 @@ _global.HTMLCS = new (function () {
     var script = document.createElement("script");
     script.onload = function () {
       script.onload = null;
+      // @ts-ignore
       script.onreadystatechange = null;
       callback.call(this);
     };
 
     script.onerror = function () {
       script.onload = null;
+      // @ts-ignore
       script.onreadystatechange = null;
       if (failCallback) {
         failCallback.call(this);
       }
     };
 
+    // @ts-ignore
     script.onreadystatechange = function () {
       if (/^(complete|loaded)$/.test(this.readyState) === true) {
+        // @ts-ignore
         script.onreadystatechange = null;
+        // @ts-ignore
         script.onload();
       }
     };

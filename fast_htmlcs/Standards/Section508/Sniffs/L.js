@@ -142,7 +142,7 @@ _global.HTMLCS_Section508_Sniffs_L = {
           }
         } //end if
       } //end if
-    } //end for
+    }
 
     return errors;
   },

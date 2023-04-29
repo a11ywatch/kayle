@@ -35,15 +35,11 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
       this.addNullAltTextResults(top);
       this.addMediaAlternativesResults(top);
     } else {
-      var nodeName = element.nodeName.toLowerCase();
-
-      switch (nodeName) {
-        case "img":
-          this.testLinkStutter(element);
-          this.testLongdesc(element);
-          break;
-      } //end if
-    } //end if
+      if (element.nodeName === "IMG") {
+        this.testLinkStutter(element);
+        this.testLongdesc(element);
+      }
+    }
   },
 
   /**
@@ -179,11 +175,12 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
       var element = elements[el];
 
       var nodeName = element.nodeName.toLowerCase();
+
       var linkOnlyChild = false;
       var missingAlt = false;
       var nullAlt = false;
 
-      if (element.parentNode.nodeName.toLowerCase() === "a") {
+      if (element.parentNode.nodeName === "A") {
         var prevNode = HTMLCS.util.getPreviousSiblingElement(element, null);
         var nextNode = HTMLCS.util.getNextSiblingElement(element, null);
 
@@ -201,7 +198,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
             linkOnlyChild = true;
           }
         }
-      } //end if
+      }
 
       if (element.hasAttribute("alt") === false) {
         missingAlt = true;
@@ -262,8 +259,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
         default:
           // No other tags defined.
           break;
-      } //end switch
-    } //end for
+      } 
+    }
 
     return errors;
   },
@@ -302,7 +299,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
    * @param {DOMNode} element The image element to test.
    */
   testLinkStutter: function (element) {
-    if (element.parentNode.nodeName.toLowerCase() === "a") {
+    if (element.parentNode && element.parentNode.nodeName === "A") {
       var anchor = element.parentNode;
 
       // If contained by an "a" link, check that the alt text does not duplicate
@@ -423,8 +420,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
             );
           }
         }
-      } //end if
-    } //end if
+      }
+    }
   },
 
   /**
@@ -520,8 +517,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
             errors.object.generalAlt.push(element);
           }
         }
-      } //end if
-    } //end if
+      }
+    }
 
     var elements = HTMLCS.util.getAllElements(top, "applet");
 
@@ -539,7 +536,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
           errors.applet.missingBody.push(element);
           hasError = true;
         }
-      } //end if
+      }
 
       var altAttr = element.getAttribute("alt") || "";
       if (HTMLCS.util.isStringEmpty(altAttr) === true) {
@@ -556,7 +553,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
         // No error? Remind of obligations about equivalence of alternatives.
         errors.applet.generalAlt.push(element);
       }
-    } //end if
+    }
 
     return errors;
   },
@@ -571,6 +568,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
   _getLinkAltText: function (anchor) {
     var anchor = anchor.cloneNode(true);
     var nodes = [];
+
     for (var i = 0; i < anchor.childNodes.length; i++) {
       nodes.push(anchor.childNodes[i]);
     }
@@ -581,7 +579,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
 
       // If it's an element, add any sub-nodes to the process list.
       if (node.nodeType === 1) {
-        if (node.nodeName.toLowerCase() === "img") {
+        if (node.nodeName === "IMG") {
           if (node.hasAttribute("alt") === true) {
             alt = node.getAttribute("alt");
             if (!alt) {

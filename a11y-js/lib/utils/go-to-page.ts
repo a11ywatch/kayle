@@ -90,7 +90,7 @@ export const setNetworkInterception = async (page): Promise<boolean> => {
     ) {
       return await page.route("**/*", networkBlock);
     }
-    return
+    return;
   }
   // if request listeners are not set add interception
   if (!page.listenerCount("request")) {

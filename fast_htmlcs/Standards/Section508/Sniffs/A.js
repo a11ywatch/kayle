@@ -178,8 +178,8 @@ _global.HTMLCS_Section508_Sniffs_A = {
         default:
           // No other tags defined.
           break;
-      } //end switch
-    } //end for
+      } 
+    }
 
     return errors;
   },

@@ -1,4 +1,5 @@
 var fs = require("fs");
+
 var scriptPath = __dirname + "/build/HTMLCS.js";
 
 if (fs.existsSync(scriptPath) === true) {

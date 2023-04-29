@@ -492,8 +492,8 @@ _global.HTMLCS.util = (function () {
         ) {
           contained = true;
         }
-      } //end if
-    } //end if
+      }
+    }
 
     return contained;
   };
@@ -558,7 +558,11 @@ _global.HTMLCS.util = (function () {
       colour = self.colourStrToRGB(colour);
     }
 
-    var transformed = {};
+    var transformed = {
+      red: 0,
+      green: 0,
+      blue: 0
+    };
 
     for (var x in colour) {
       if (colour[x] <= 0.03928) {
@@ -566,7 +570,7 @@ _global.HTMLCS.util = (function () {
       } else {
         transformed[x] = Math.pow((colour[x] + 0.055) / 1.055, 2.4);
       }
-    } //end for
+    } 
 
     return (
       transformed.red * 0.2126 +
@@ -719,7 +723,7 @@ _global.HTMLCS.util = (function () {
         hsvColour.hue = 2.0 + (colour.blue - colour.red) / chroma;
       } else {
         hsvColour.hue = 4.0 + (colour.red - colour.green) / chroma;
-      } //end if
+      }
 
       hsvColour.hue = hsvColour.hue * 60.0;
       if (hsvColour.hue >= 360.0) {
@@ -727,7 +731,7 @@ _global.HTMLCS.util = (function () {
       }
 
       hsvColour.saturation = chroma / hsvColour.value;
-    } //end if
+    }
 
     return hsvColour;
   };
@@ -796,7 +800,7 @@ _global.HTMLCS.util = (function () {
       colour.red = colour.red + minColour;
       colour.green = colour.green + minColour;
       colour.blue = colour.blue + minColour;
-    } //end if
+    }
 
     return colour;
   };
@@ -1011,7 +1015,7 @@ _global.HTMLCS.util = (function () {
 
               headerIds.rows[rownum] += colspan;
               headerIds.cols[colnum] += rowspan;
-            } //end if
+            }
           } else if (nodeName === "TD") {
             if (
               cell.hasAttribute("headers") === true &&
@@ -1019,12 +1023,12 @@ _global.HTMLCS.util = (function () {
             ) {
               retval.used = true;
             }
-          } //end if
+          }
 
           colnum += colspan;
-        } //end if
-      } //end for
-    } //end for
+        }
+      } 
+    } 
 
     for (var i = 0; i < headerIds.rows.length; i++) {
       if (headerIds.rows[i] > 1) {
@@ -1047,7 +1051,7 @@ _global.HTMLCS.util = (function () {
     ) {
       // If only one column OR one row header.
       retval.required = false;
-    } //end if
+    }
 
     // Calculate expected heading IDs. If they are not there or incorrect, flag
     // them.
@@ -1079,9 +1083,9 @@ _global.HTMLCS.util = (function () {
             };
             retval.wrongHeaders.push(val);
           }
-        } //end if
-      } //end if
-    } //end for
+        }
+      }
+    } 
 
     return retval;
   };
@@ -1198,8 +1202,8 @@ _global.HTMLCS.util = (function () {
                     if (headingIds.cols[j] && i >= headingIds.cols[j].first) {
                       exp = exp.concat(headingIds.cols[j].ids);
                     }
-                  } //end for
-                } //end for
+                  } 
+                } 
 
                 if (exp.length > 0) {
                   // Sort and filter expected ids by unique value.
@@ -1223,10 +1227,10 @@ _global.HTMLCS.util = (function () {
             }
 
             colnum += colspan;
-          } //end if
-        } //end for
-      } //end for
-    } //end for
+          }
+        } 
+      } 
+    } 
 
     // Build the column and row headers that we expect.
     return cells;
@@ -1283,10 +1287,10 @@ _global.HTMLCS.util = (function () {
         }
 
         break;
-      } //end if
+      }
 
       prevNode = prevNode.previousSibling;
-    } //end if
+    }
 
     return prevNode;
   };
@@ -1342,10 +1346,10 @@ _global.HTMLCS.util = (function () {
         }
 
         break;
-      } //end if
+      }
 
       nextNode = nextNode.nextSibling;
-    } //end if
+    }
 
     return nextNode;
   };

@@ -30,7 +30,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_2_1_2_1 = {
    * @param {DOMNode} element The element registered.
    * @param {DOMNode} top     The top element of the tested code.
    */
-  process: function (element, top) {
+  process: function (element, _) {
     var nodeName = element.nodeName.toLowerCase();
 
     if (nodeName !== "video") {

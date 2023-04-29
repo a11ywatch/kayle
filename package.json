@@ -1,10 +1,19 @@
 {
   "private": true,
   "name": "a11yjs",
-  "description": "Blazing fast accessibility evaluation for nodejs",
+  "description": "Extremely fast accessibility evaluation for nodejs",
   "workspaces": [
     "a11y-js",
     "fast_htmlcs",
     "fast_axecore"
-  ]
+  ],
+  "scripts": {
+    "build": "yarn build:fast_htmlcs && yarn build:fast_axe && yarn build:a11y-js",
+    "build:fast_htmlcs": "cd fast_htmlcs && yarn build",
+    "build:fast_axe": "cd fast_axecore && yarn build",
+    "build:a11y-js": "cd a11y-js && yarn build",
+    "pub:fast_htmlcs": "yarn build:fast_htmlcs && yarn npm publish",
+    "pub:fast_axecore": "yarn build:fast_axecore && yarn npm publish",
+    "pub:a11y-js": "yarn build:a11y-js && yarn npm publish"
+  }
 }

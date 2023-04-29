@@ -127,7 +127,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_6 = {
             code
           );
         } //end if
-      } //end for
+      }
     } //end if
   },
 };

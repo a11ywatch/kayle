@@ -89,7 +89,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         case "h6":
           this.testEmptyHeading(element);
           break;
-      } //end switch
+      } 
     } //end if
   },
 
@@ -196,7 +196,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
           }
         }
       }
-    } //end for
+    }
   },
 
   /**
@@ -727,8 +727,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             }
           } //end if
         } //end if
-      } //end for
-    } //end for
+      }
+    }
 
     return retval;
   },
@@ -908,7 +908,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         );
         break;
       } //end if
-    } //end for
+    }
   },
 
   /**
@@ -977,7 +977,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
           );
           break;
         }
-      } //end for
+      }
     } //end if
   },
 
@@ -1057,7 +1057,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
           break;
         }
       }
-    } //end for
+    }
 
     if (linksLength > 1) {
       // Going to throw a warning here, mainly because we cannot easily tell

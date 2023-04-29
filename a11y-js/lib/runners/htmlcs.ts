@@ -25,9 +25,11 @@ const runAudit = async (options) => {
         window.document.querySelector(options.rootElement)) ||
         window.document,
       (error) => {
+
         if (error) {
           return reject(error);
         }
+    
         // @ts-ignore
         resolve(window.HTMLCS.getMessages());
       },

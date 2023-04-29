@@ -53,7 +53,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_2_2_2_2 = {
             );
           }
         }
-      } //end for
+      }
     } else if (element.nodeName.toLowerCase() === "blink") {
       HTMLCS.addMessage(
         HTMLCS.ERROR,

@@ -206,6 +206,10 @@ Run the following to install on ^node@16.10
 
 Use the command `./build.sh` to compile all the scripts for each locale.
 
+## Discord
+
+If you want to chat about the project checkout our [Discord](https://discord.gg/ukmJcjQ5).
+
 ## LICENSE
 
 check the license file in the root of each project.
