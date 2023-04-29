@@ -1,6 +1,6 @@
 {
   "name": "fast_htmlcs",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "HTML_CodeSniffer is a client-side JavaScript that checks a HTML document or source code, and detects violations of a defined coding standard.",
   "license": "BSD-3-Clause",
   "main": "index.js",

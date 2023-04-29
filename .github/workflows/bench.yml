@@ -17,6 +17,7 @@ jobs:
           # - node-version: 14.x
           - node-version: 16.x
           - node-version: 19.x
+          - node-version: latest
 
     steps:
       - name: Checkout code from ${{ github.repository }}
@@ -32,7 +33,7 @@ jobs:
       - name: Install and build locales
         run: yarn && ./build.sh
 
-      - name: Run Bench compare Playwright a11y.js axecore vs @axe-core/playwright
+      - name: Run Bench compare a11y.js Playwright fast_axecore vs @axe-core/playwright
         run: cd ./a11y-js && yarn bench:playwright:axe
 
       - name: Run Bench compare a11y.js vs pa11y

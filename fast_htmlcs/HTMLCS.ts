@@ -115,6 +115,7 @@ _global.HTMLCS = new (function () {
   this.run = function (callback, content) {
     var element = null;
     var loadingFrame = false;
+
     // todo: remove iframe handling
     if (typeof content === "string") {
       loadingFrame = true;
@@ -202,6 +203,7 @@ _global.HTMLCS = new (function () {
    */
   this.isFullDoc = function (content) {
     var fullDoc = false;
+
     if (typeof content === "string") {
       if (
         content.startsWith("<html") ||
@@ -215,10 +217,8 @@ _global.HTMLCS = new (function () {
       ) {
         fullDoc = true;
       }
-    } else {
-      if (content.nodeName === "HTML" || content.documentElement) {
-        fullDoc = true;
-      }
+    } else if (content && (content.nodeName === "HTML" || content.documentElement)){
+      fullDoc = true;
     }
 
     return fullDoc;
@@ -276,7 +276,7 @@ _global.HTMLCS = new (function () {
    * @param {Node}     topElement The top element of the processing.
    * @param {Function} [callback] The function to call once all tests are run.
    */
-  var _run = function (elements, topElement, callback) {
+  var _run = function (elements, topElement: Element, callback) {
     var topMsgs = [];
 
     while (elements.length > 0) {
@@ -315,7 +315,7 @@ _global.HTMLCS = new (function () {
           }
         }
       }
-    } //end while
+    } 
 
     _messages.push(...topMsgs);
 
@@ -328,7 +328,7 @@ _global.HTMLCS = new (function () {
 
     _currentSniff = HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1;
 
-    for (var element of presentationElems) {
+    for (const element of presentationElems) {
       _currentSniff.testSemanticPresentationRole(element);
     }
 
@@ -365,7 +365,7 @@ _global.HTMLCS = new (function () {
         // Process the sniff.
         sniff.process(element, topElement);
       }
-    } //end while
+    } 
 
     if (callback instanceof Function === true) {
       callback.call(this);
@@ -379,7 +379,7 @@ _global.HTMLCS = new (function () {
    * @param {Function} callback The function to call once the standard is included.
    * @param {Object}   options  The options for the standard (e.g. exclude sniffs).
    */
-  var _includeStandard = function (standard, callback, failCallback, options) {
+  var _includeStandard = function (standard: string, callback, failCallback, options) {
     if (standard.indexOf("http") !== 0) {
       standard = _getStandardPath(standard);
     } //end id
@@ -573,27 +573,9 @@ _global.HTMLCS = new (function () {
    *
    * @returns {String} The path to the local standard.
    */
-  var _getStandardPath = function (standard) {
+  var _getStandardPath = function (standard: string) {
     // Get the include path of a local standard.
-    var scripts = document.getElementsByTagName("script");
-    var path = "";
-
-    // Loop through all the script tags that exist in the document and find the one
-    // that has included this file.
-    for (const script of scripts) {
-      if (script.src) {
-        if (script.src.endsWith("HTMLCS.js")) {
-          // We have found our appropriate <script> tag that includes
-          // this file, we can extract the path.
-          path = script.src.replace(/HTMLCS\.js/, "");
-          // trim any trailing bits
-          path = path.substring(0, path.indexOf("?"));
-          break;
-        }
-      }
-    }
-
-    return path + "Standards/" + standard + "/ruleset.js";
+    return "Standards/" + standard + "/ruleset.js";
   };
 
   /**

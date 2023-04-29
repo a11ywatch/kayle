@@ -1663,9 +1663,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"a11yjs@workspace:.":
+"a11y@workspace:.":
   version: 0.0.0-use.local
-  resolution: "a11yjs@workspace:."
+  resolution: "a11y@workspace:."
   languageName: unknown
   linkType: soft
 
