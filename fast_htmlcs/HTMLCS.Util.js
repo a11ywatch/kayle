@@ -819,12 +819,17 @@ _global.HTMLCS.util = (function () {
     }
 
     var element = element.cloneNode(true);
-    var nodes = [];
+    var nodes = new Array(element.childNodes.length);
+
     for (var i = 0; i < element.childNodes.length; i++) {
-      nodes.push(element.childNodes[i]);
+      nodes[i] = element.childNodes[i];
     }
 
+    nodes.length = element.childNodes.length;
+
+    // todo: pre-allocate
     var text = [element.textContent];
+
     while (nodes.length > 0) {
       var node = nodes.shift();
 
@@ -836,9 +841,12 @@ _global.HTMLCS.util = (function () {
             text.push(node.getAttribute("alt"));
           }
         } else {
+
           for (var i = 0; i < node.childNodes.length; i++) {
-            nodes.push(node.childNodes[i]);
+            nodes[i] = node.childNodes[i];
           }
+
+          nodes.length = node.childNodes.length;
         }
       } else if (node.nodeType === 3) {
         // Text node.
@@ -894,15 +902,20 @@ _global.HTMLCS.util = (function () {
       return null;
     }
 
-    var rows = [];
     var allRows = table.getElementsByTagName(childNodeName);
+    var rows = new Array(allRows.length);
+
+    let rowIndex = 0;
 
     // Filter out rows that don't belong to this table.
     for (var i = 0, l = allRows.length; i < l; i++) {
       if (self.findParentNode(allRows[i], "table") === table) {
-        rows.push(allRows[i]);
+        rows[rowIndex] = allRows[i]
+        rowIndex++
       }
     }
+
+    rows.length = rowIndex;
 
     return rows;
   };

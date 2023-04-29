@@ -1,6 +1,6 @@
 {
   "name": "fast_htmlcs",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "HTML_CodeSniffer is a client-side JavaScript that checks a HTML document or source code, and detects violations of a defined coding standard.",
   "license": "BSD-3-Clause",
   "main": "index.js",
@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "prepare": "grunt build",
-    "prepack": "grunt build",
+    "prepack": "tsc && grunt build --lang=en,fr,es,it,ja,nl,pl,zh_CN,zh_TW",
     "build": "tsc && grunt build",
     "test": "grunt eslint",
     "fix": "prettier --write '**/*.{js,jsx,ts,tsx}'",

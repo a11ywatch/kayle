@@ -40,7 +40,7 @@ _global.HTMLCS = new (function () {
     _standards.size && _standards.clear();
     _tags.size && _tags.clear();
 
-    if (_global.translation.hasOwnProperty(language)) {
+    if (typeof _global.translation[language] !== "undefined") {
       this.lang = language;
     }
 
@@ -402,7 +402,7 @@ _global.HTMLCS = new (function () {
     var ruleSet = {};
 
     for (var x in oldRuleSet) {
-      if (oldRuleSet.hasOwnProperty(x) === true) {
+      if (typeof oldRuleSet[x] !== "undefined") {
         ruleSet[x] = oldRuleSet[x];
       }
     }
@@ -547,8 +547,7 @@ _global.HTMLCS = new (function () {
   var _getSniffPath = function (standard, sniff) {
     var parts = standard.split("/");
     parts.pop();
-    var path = parts.join("/") + "/Sniffs/" + sniff.replace(/\./g, "/") + ".js";
-    return path;
+    return parts.join("/") + "/Sniffs/" + sniff.replace(/\./g, "/") + ".js";
   };
 
   /**
