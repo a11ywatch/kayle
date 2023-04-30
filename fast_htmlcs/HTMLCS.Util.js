@@ -30,9 +30,10 @@ _global.HTMLCS.util = (function () {
       return true;
     }
 
-    var empty = true;
+    let empty = true;
 
-    if (string.indexOf(String.fromCharCode(160)) !== -1) {
+    // fast check for non empty string or fallback to charchode nbsp find
+    if (string && string[0] !== " " || string.indexOf(String.fromCharCode(160)) !== -1) {
       // Has an NBSP, therefore cannot be empty.
       empty = false;
     } else if (/^\s*$/.test(string) === false) {
@@ -127,7 +128,7 @@ _global.HTMLCS.util = (function () {
     }
 
     return retval;
-  }; //end getDocumentType()
+  };
 
   /**
    * Get the window object relating to the passed element.
@@ -137,13 +138,7 @@ _global.HTMLCS.util = (function () {
    * @returns {Window}
    */
   self.getElementWindow = function (element) {
-    var doc = null;
-
-    if (element.ownerDocument) {
-      doc = element.ownerDocument;
-    } else {
-      doc = element;
-    }
+    const doc = element.ownerDocument || element;
 
     return doc.defaultView || doc.parentWindow;
   };
@@ -161,13 +156,14 @@ _global.HTMLCS.util = (function () {
     if (element.hasAttribute("aria-labelledby") === true) {
       // Checking aria-labelled by where the label exists AND it has text available
       // to an accessibility API.
-      var labelledByIds = element.getAttribute("aria-labelledby").split(/\s+/);
+      const labelledByIds = element
+        .getAttribute("aria-labelledby")
+        .split(/\s+/);
 
-      for (var id of labelledByIds) {
+      for (const id of labelledByIds) {
         var elem = document.getElementById(id);
         if (elem) {
-          var text = self.getElementTextContent(elem);
-          if (/^\s*$/.test(text) === false) {
+          if (/^\s*$/.test(self.getElementTextContent(elem)) === false) {
             found = true;
             break;
           }
@@ -191,10 +187,9 @@ _global.HTMLCS.util = (function () {
    * @returns {Object}
    */
   self.style = function (element, pseudo) {
-    var computedStyle = null;
-    var w = self.getElementWindow(element);
+    const w = self.getElementWindow(element);
 
-    return element.currentStyle || w.getComputedStyle(element, pseudo || null)
+    return element.currentStyle || w.getComputedStyle(element, pseudo || null);
   };
 
   /**
@@ -249,8 +244,8 @@ _global.HTMLCS.util = (function () {
    * @return {Boolean}
    */
   self.isAriaHidden = function (element) {
-    var testElement = element.parentElement;
-    var hiddenElement = false;
+    let testElement = element.parentElement;
+    let hiddenElement = false;
 
     while (testElement) {
       if (
@@ -276,8 +271,8 @@ _global.HTMLCS.util = (function () {
    * @return {Boolean}
    */
   self.isAccessibilityHidden = function (element) {
-    var testElement = element.parentElement;
-    var hiddenElement = false;
+    let testElement = element.parentElement;
+    let hiddenElement = false;
 
     while (testElement) {
       if (
@@ -299,7 +294,7 @@ _global.HTMLCS.util = (function () {
   };
 
   /**
-   * Returns TRUE if the element is able to be focused .
+   * Returns TRUE if the element is able to be focused todo: checkfor tabindex.
    *
    * @param {Node} element DOM Node to test.
    *
@@ -310,10 +305,9 @@ _global.HTMLCS.util = (function () {
       return false;
     }
 
-    var nodeName = element.nodeName;
+    const nodeName = element.nodeName;
 
-    if (
-      // Hyperlinks without empty hrefs are focusable.
+    return (
       (nodeName === "A" &&
         element.hasAttribute("href") &&
         /^\s*$/.test(element.getAttribute("href")) === false) ||
@@ -323,11 +317,7 @@ _global.HTMLCS.util = (function () {
       nodeName === "TEXTAREA" ||
       nodeName === "BUTTON" ||
       nodeName === "OBJECT"
-    ) {
-      return true;
-    }
-
-    return false;
+    );
   };
 
   /**
@@ -339,11 +329,7 @@ _global.HTMLCS.util = (function () {
    */
   self.isKeyboardTabbable = function (element) {
     if (element.hasAttribute("tabindex") === true) {
-      if (element.getAttribute("tabindex") === "-1") {
-        return false;
-      } else {
-        return true;
-      }
+      return !(element.getAttribute("tabindex") === "-1");
     }
     return self.isFocusable(element);
   };
@@ -448,7 +434,7 @@ _global.HTMLCS.util = (function () {
    * @returns {Boolean}
    */
   self.contains = function (parent, child) {
-    var contained = false;
+    let contained = false;
 
     // If the parent and the child are the same, they can't contain each
     // other.
@@ -506,13 +492,10 @@ _global.HTMLCS.util = (function () {
    * @returns {Number}
    */
   self.contrastRatio = function (colour1, colour2) {
-    var ratio =
+    const ratio =
       (0.05 + self.relativeLum(colour1)) / (0.05 + self.relativeLum(colour2));
-    if (ratio < 1) {
-      ratio = 1 / ratio;
-    }
 
-    return ratio;
+    return ratio < 1 ? 1 / ratio : ratio;
   };
 
   /**
@@ -530,13 +513,13 @@ _global.HTMLCS.util = (function () {
    * @returns {Number}
    */
   self.relativeLum = function (color) {
-    var colour = color;
+    let colour = color;
 
     if (colour.charAt) {
       colour = self.colourStrToRGB(colour);
     }
 
-    var transformed = {
+    const transformed = {
       red: 0,
       green: 0,
       blue: 0,
@@ -572,16 +555,19 @@ _global.HTMLCS.util = (function () {
 
     if (colour.substring(0, 3) === "rgb") {
       // rgb[a](0, 0, 0[, 0]) format.
-      var matches = /^rgba?\s*\((\d+),\s*(\d+),\s*(\d+)([^)]*)\)$/.exec(colour);
+      const matches = /^rgba?\s*\((\d+),\s*(\d+),\s*(\d+)([^)]*)\)$/.exec(colour);
+
       colour = {
         red: matches[1] / 255,
         green: matches[2] / 255,
         blue: matches[3] / 255,
         alpha: 1.0,
       };
+    
       if (matches[4]) {
         colour.alpha = parseFloat(/^,\s*(.*)$/.exec(matches[4])[1]);
       }
+    
     } else {
       // Hex digit format.
       if (colour.charAt(0) === "#") {
@@ -597,6 +583,7 @@ _global.HTMLCS.util = (function () {
       }
 
       var alpha = 1; // Default if alpha is not specified
+  
       if (colour.length === 8) {
         alpha = parseInt(colour.substr(6, 2), 16) / 255;
       }
@@ -605,7 +592,7 @@ _global.HTMLCS.util = (function () {
         red: parseInt(colour.substr(0, 2), 16) / 255,
         green: parseInt(colour.substr(2, 2), 16) / 255,
         blue: parseInt(colour.substr(4, 2), 16) / 255,
-        alpha: alpha,
+        alpha,
       };
     }
 
@@ -625,7 +612,8 @@ _global.HTMLCS.util = (function () {
    * @returns {String}
    */
   self.RGBtoColourStr = function (colour) {
-    var colourStr = "#";
+    let colourStr = "#";
+
     colour.red = Math.round(colour.red * 255);
     colour.green = Math.round(colour.green * 255);
     colour.blue = Math.round(colour.blue * 255);
@@ -681,7 +669,7 @@ _global.HTMLCS.util = (function () {
       colour = self.colourStrToRGB(colour);
     }
 
-    var hsvColour = {
+    const hsvColour = {
       hue: 0,
       saturation: 0,
       value: 0,
@@ -726,7 +714,7 @@ _global.HTMLCS.util = (function () {
    * @returns {Object}
    */
   self.HSVtosRGB = function (hsvColour) {
-    var colour = {
+    const colour = {
       red: 0,
       green: 0,
       blue: 0,
@@ -798,16 +786,20 @@ _global.HTMLCS.util = (function () {
       includeAlt = true;
     }
 
-    const nodes = new Array(element.childNodes.length);
+    const nodeSize = element.childNodes.length;
+    const nodes = new Array(nodeSize);
 
-    for (var i = 0; i < element.childNodes.length; i++) {
+    for (var i = 0; i < nodeSize; i++) {
       nodes[i] = element.childNodes[i];
     }
 
-    nodes.length = element.childNodes.length;
+    nodes.length = nodeSize;
 
-    // todo: pre-allocate
-    var text = [element.textContent];
+    const text = new Array(nodeSize);
+
+    text[0] = element.textContent;
+
+    let nodeIndex = 1;
 
     while (nodes.length > 0) {
       var node = nodes.shift();
@@ -817,20 +809,24 @@ _global.HTMLCS.util = (function () {
         if (node.nodeName === "IMG") {
           // If an image, include the alt text unless we are blocking it.
           if (includeAlt === true && node.hasAttribute("alt") === true) {
-            text.push(node.getAttribute("alt"));
+            text[nodeIndex] = node.getAttribute("alt");
+            nodeIndex++;
           }
         } else {
           for (var i = 0; i < node.childNodes.length; i++) {
             nodes[i] = node.childNodes[i];
           }
-
           nodes.length = node.childNodes.length;
         }
       } else if (node.nodeType === 3) {
         // Text node.
-        text.push(node.nodeValue);
+        text[nodeIndex] = node.nodeValue;
+
+        nodeIndex++;
       }
     }
+
+    text.length = nodeIndex;
 
     // Push the text nodes together and trim.
     return text.join("").replace(/^\s+|\s+$/g, "");
@@ -880,8 +876,8 @@ _global.HTMLCS.util = (function () {
       return null;
     }
 
-    var allRows = table.getElementsByTagName(childNodeName);
-    var rows = new Array(allRows.length);
+    const allRows = table.getElementsByTagName(childNodeName);
+    const rows = new Array(allRows.length);
 
     let rowIndex = 0;
 
@@ -1312,7 +1308,8 @@ _global.HTMLCS.util = (function () {
       immediate = false;
     }
 
-    var nextNode = element.nextSibling;
+    let nextNode = element.nextSibling;
+
     while (nextNode !== null) {
       if (nextNode.nodeType === 3) {
         if (
