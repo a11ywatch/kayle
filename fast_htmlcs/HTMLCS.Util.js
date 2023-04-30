@@ -11,7 +11,7 @@
  *
  */
 _global.HTMLCS.util = (function () {
-  var self = {};
+  const self = {};
 
   /**
    * Returns true if the string is "empty" according to WCAG standards.
@@ -547,7 +547,7 @@ _global.HTMLCS.util = (function () {
    * @returns {Object}
    */
   self.colourStrToRGB = function (color) {
-    var colour = color.toLowerCase();
+    let colour = color.toLowerCase();
 
     if (colour.substring(0, 3) === "rgb") {
       // rgb[a](0, 0, 0[, 0]) format.
@@ -672,9 +672,9 @@ _global.HTMLCS.util = (function () {
       value: 0,
     };
 
-    var maxColour = Math.max(colour.red, colour.green, colour.blue);
-    var minColour = Math.min(colour.red, colour.green, colour.blue);
-    var chroma = maxColour - minColour;
+    const maxColour = Math.max(colour.red, colour.green, colour.blue);
+    const minColour = Math.min(colour.red, colour.green, colour.blue);
+    const chroma = maxColour - minColour;
 
     if (chroma === 0) {
       hsvColour.value = colour.red;
@@ -758,7 +758,7 @@ _global.HTMLCS.util = (function () {
           colour.red = chroma;
           colour.blue = interCol;
           break;
-      } //end switch
+      }
 
       colour.red = colour.red + minColour;
       colour.green = colour.green + minColour;
@@ -1246,7 +1246,8 @@ _global.HTMLCS.util = (function () {
       immediate = false;
     }
 
-    var prevNode = element.previousSibling;
+    let prevNode = element.previousSibling;
+
     while (prevNode !== null) {
       if (prevNode.nodeType === 3) {
         if (
@@ -1363,15 +1364,23 @@ _global.HTMLCS.util = (function () {
     if (self.isVisuallyHidden(element)) {
       return "";
     } else if (element.getAttribute("aria-labelledby")) {
-      var nameParts = [];
-      var parts = element.getAttribute("aria-labelledby").split(" ");
+      const parts = element.getAttribute("aria-labelledby").split(" ");
+      const nameParts = new Array(parts.length);
+
+      let partsIndex = 0;
+
       for (var i = 0; i < parts.length; i++) {
         var x = parts[i];
-        var nameElement = top.getElementById(x);
+        const nameElement = top.getElementById(x);
+  
         if (nameElement) {
-          nameParts.push(nameElement.textContent);
+          nameParts[partsIndex] = nameElement.textContent;
+          partsIndex++;
         }
       }
+
+      nameParts.length = partsIndex;
+
       return nameParts.join(" ");
     } else if (element.getAttribute("aria-label")) {
       return element.getAttribute("aria-label");
