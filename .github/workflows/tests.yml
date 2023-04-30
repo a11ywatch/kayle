@@ -38,5 +38,8 @@ jobs:
       # - name: Run Tests fast_htmlcs
       #   run: cd ./fast_htmlcs && yarn test 
 
-      - name: Run Tests a11y.js
-        run: cd ./a11y-js && yarn test && yarn test:playwright
+      - name: Run Playwright a11y.js
+        run: cd ./a11y-js && yarn test:playwright && yarn test:playwright:axe
+
+      - name: Run Puppeteer a11y.js
+        run: cd ./a11y-js && yarn test:puppeteer && yarn test:puppeteer:axe

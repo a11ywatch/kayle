@@ -10,9 +10,7 @@
  * +--------------------------------------------------------------------+
  *
  */
-_global.HTMLCS.util = (function () {
-  const self = {};
-
+_global.HTMLCS.util = {
   /**
    * Returns true if the string is "empty" according to WCAG standards.
    *
@@ -25,7 +23,7 @@ _global.HTMLCS.util = (function () {
    *
    * @returns {Boolean}
    */
-  self.isStringEmpty = function (string) {
+  isStringEmpty: function (string) {
     if (typeof string !== "string") {
       return true;
     }
@@ -45,8 +43,7 @@ _global.HTMLCS.util = (function () {
     }
 
     return empty;
-  };
-
+  },
   /**
    * Get the document type being tested.
    *
@@ -59,7 +56,7 @@ _global.HTMLCS.util = (function () {
    *
    * @return {String}
    */
-  self.getDocumentType = function (document) {
+  getDocumentType: function (document) {
     let retval = null;
     let doctype = document.doctype;
 
@@ -132,8 +129,7 @@ _global.HTMLCS.util = (function () {
     }
 
     return retval;
-  };
-
+  },
   /**
    * Get the window object relating to the passed element.
    *
@@ -141,12 +137,12 @@ _global.HTMLCS.util = (function () {
    *
    * @returns {Window}
    */
-  self.getElementWindow = function (element) {
+  getElementWindow: function (element) {
     const doc = element.ownerDocument || element;
 
+    // @ts-ignore check for element window
     return doc.defaultView || doc.parentWindow;
-  };
-
+  },
   /**
    * Returns true if the element has a valid aria label.
    *
@@ -154,7 +150,7 @@ _global.HTMLCS.util = (function () {
    *
    * @return {Boolean}
    */
-  self.hasValidAriaLabel = function (element) {
+  hasValidAriaLabel: function (element) {
     let found = false;
 
     if (element.hasAttribute("aria-labelledby") === true) {
@@ -167,7 +163,10 @@ _global.HTMLCS.util = (function () {
       for (const id of labelledByIds) {
         const elem = document.getElementById(id);
 
-        if (elem && /^\s*$/.test(self.getElementTextContent(elem)) === false) {
+        if (
+          elem &&
+          /^\s*$/.test(this.getElementTextContent(elem)) === false
+        ) {
           found = true;
           break;
         }
@@ -178,7 +177,7 @@ _global.HTMLCS.util = (function () {
     }
 
     return found;
-  };
+  },
 
   /**
    * Return the appropriate computed style object for an element.
@@ -186,15 +185,15 @@ _global.HTMLCS.util = (function () {
    * It's accessed in different ways depending on whether it's IE or not.
    *
    * @param {Node} element An element with style.
+   * @param {String} pseudo A pseudo element.
    *
    * @returns {Object}
    */
-  self.style = function (element, pseudo) {
-    const w = self.getElementWindow(element);
-
-    return element.currentStyle || w.getComputedStyle(element, pseudo || null);
-  };
-
+  style: function (element, pseudo) {
+    return (
+      element.currentStyle || this.getElementWindow(element).getComputedStyle(element, pseudo || null)
+    );
+  },
   /**
    * Return true if an element is hidden visually.
    *
@@ -205,18 +204,18 @@ _global.HTMLCS.util = (function () {
    *
    * @returns {Boolean}
    */
-  self.isVisuallyHidden = function (element) {
+  isVisuallyHidden: function (element) {
     // Handle titles in svg as a special visually hidden case (hidden by browsers but
     // available to accessibility apis.
     if (
       element.nodeName === "title" &&
-      self.findParentNode(element, "svg") !== null
+      this.findParentNode(element, "svg") !== null
     ) {
       return true;
     }
 
     // Do not point to elem if its hidden. Use computed styles.
-    let style = self.style(element);
+    let style = this.style(element);
     let hidden = false;
 
     if (style !== null) {
@@ -234,8 +233,7 @@ _global.HTMLCS.util = (function () {
     }
 
     return hidden;
-  };
-
+  },
   /**
    * Returns true if the element is deliberately hidden from Accessibility APIs using ARIA hidden.
    *
@@ -245,7 +243,7 @@ _global.HTMLCS.util = (function () {
    *
    * @return {Boolean}
    */
-  self.isAriaHidden = function (element) {
+  isAriaHidden: function (element) {
     let testElement = element.parentElement;
     let hiddenElement = false;
 
@@ -263,8 +261,7 @@ _global.HTMLCS.util = (function () {
     }
 
     return hiddenElement;
-  };
-
+  },
   /**
    * Returns true if the element is deliberately hidden from Accessibility APIs.
    *
@@ -272,7 +269,7 @@ _global.HTMLCS.util = (function () {
    *
    * @return {Boolean}
    */
-  self.isAccessibilityHidden = function (element) {
+  isAccessibilityHidden: function (element) {
     let testElement = element.parentElement;
     let hiddenElement = false;
 
@@ -293,8 +290,7 @@ _global.HTMLCS.util = (function () {
     }
 
     return hiddenElement;
-  };
-
+  },
   /**
    * Returns TRUE if the element is able to be focused todo: checkfor tabindex.
    *
@@ -302,8 +298,8 @@ _global.HTMLCS.util = (function () {
    *
    * @return {Boolean}
    */
-  self.isFocusable = function (element) {
-    if (self.isDisabled(element) || self.isVisuallyHidden(element)) {
+  isFocusable: function (element) {
+    if (this.isDisabled(element) || this.isVisuallyHidden(element)) {
       return false;
     }
 
@@ -320,8 +316,7 @@ _global.HTMLCS.util = (function () {
       nodeName === "BUTTON" ||
       nodeName === "OBJECT"
     );
-  };
-
+  },
   /**
    * Returns TRUE if the element is able to be focused by keyboard tabbing.
    *
@@ -329,13 +324,12 @@ _global.HTMLCS.util = (function () {
    *
    * @return {Boolean}
    */
-  self.isKeyboardTabbable = function (element) {
+  isKeyboardTabbable: function (element) {
     if (element.hasAttribute("tabindex") === true) {
       return !(element.getAttribute("tabindex") === "-1");
     }
-    return self.isFocusable(element);
-  };
-
+    return this.isFocusable(element);
+  },
   /**
    * Returns TRUE if the element is able to be accessed via the keyboard.
    *
@@ -343,14 +337,13 @@ _global.HTMLCS.util = (function () {
    *
    * @return {Boolean}
    */
-  self.isKeyboardNavigable = function (element) {
+  isKeyboardNavigable: function (element) {
     return (
       (element.hasAttribute("accesskey") &&
         /^\s*$/.test(element.getAttribute("accesskey")) === false) ||
-      self.isKeyboardTabbable(element)
+      this.isKeyboardTabbable(element)
     );
-  };
-
+  },
   /**
    * Return true if an element is disabled.
    *
@@ -361,13 +354,12 @@ _global.HTMLCS.util = (function () {
    *
    * @returns {Boolean}
    */
-  self.isDisabled = function (element) {
+  isDisabled: function (element) {
     return (
       element.disabled === true ||
       element.getAttribute("aria-disabled") === "true"
     );
-  };
-
+  },
   /**
    * Return true if an element is in a document.
    *
@@ -375,7 +367,7 @@ _global.HTMLCS.util = (function () {
    *
    * @returns {Boolean}
    */
-  self.isInDocument = function (element) {
+  isInDocument: function (element) {
     // Check whether the element is in the document, by looking up its
     // DOM tree for a document object.
     let parent = element.parentNode;
@@ -390,7 +382,7 @@ _global.HTMLCS.util = (function () {
     }
 
     return true;
-  };
+  },
 
   /**
    * Returns all elements that are visible to the accessibility API.
@@ -400,14 +392,14 @@ _global.HTMLCS.util = (function () {
    *
    * @return {Array}
    */
-  self.getAllElements = function (element, selector) {
+  getAllElements: function (element, selector) {
     const elements = (element || document).querySelectorAll(selector || "*");
     const visibleElements = new Array(elements.length);
 
     let visibleIndexs = 0;
 
     for (const elem of elements) {
-      if (!HTMLCS.util.isAccessibilityHidden(elem)) {
+      if (!this.isAccessibilityHidden(elem)) {
         visibleElements[visibleIndexs] = elem;
         visibleIndexs++;
       }
@@ -416,8 +408,7 @@ _global.HTMLCS.util = (function () {
     visibleElements.length = visibleIndexs;
 
     return visibleElements;
-  };
-
+  },
   /**
    * Returns true if the passed child is contained by the passed parent.
    *
@@ -429,7 +420,7 @@ _global.HTMLCS.util = (function () {
    *
    * @returns {Boolean}
    */
-  self.contains = function (parent, child) {
+  contains: function (parent, child) {
     let contained = false;
 
     // If the parent and the child are the same, they can't contain each
@@ -456,8 +447,7 @@ _global.HTMLCS.util = (function () {
     }
 
     return contained;
-  };
-
+  },
   /**
    * Returns true if the table passed is a layout table.
    *
@@ -469,73 +459,9 @@ _global.HTMLCS.util = (function () {
    *
    * @returns {Boolean}
    */
-  self.isLayoutTable = function (table) {
+  isLayoutTable: function (table) {
     return table.querySelector("th") === null;
-  };
-
-  /**
-   * Calculate the contrast ratio between two colours.
-   *
-   * Colours should be in rgb() or 3/6-digit hex format; order does not matter
-   * (ie. it doesn't matter which is the lighter and which is the darker).
-   * Values should be in the range [1.0, 21.0]... a ratio of 1.0 means "they're
-   * exactly the same contrast", 21.0 means it's white-on-black or v.v.
-   * Formula as per WCAG 2.0 definitions.
-   *
-   * @param {String} colour1 The first colour to compare.
-   * @param {String} colour2 The second colour to compare.
-   *
-   * @returns {Number}
-   */
-  self.contrastRatio = function (colour1, colour2) {
-    const ratio =
-      (0.05 + self.relativeLum(colour1)) / (0.05 + self.relativeLum(colour2));
-
-    return ratio < 1 ? 1 / ratio : ratio;
-  };
-
-  /**
-   * Calculate relative luminescence for a colour in the sRGB colour profile.
-   *
-   * Supports rgb() and hex colours. rgba() also supported but the alpha
-   * channel is currently ignored.
-   * Hex colours can have an optional "#" at the front, which is stripped.
-   * Relative luminescence formula is defined in the definitions of WCAG 2.0.
-   * It can be either three or six hex digits, as per CSS conventions.
-   * It should return a value in the range [0.0, 1.0].
-   *
-   * @param {String} colour The color to calculate from.
-   *
-   * @returns {Number}
-   */
-  self.relativeLum = function (color) {
-    let colour = color;
-
-    if (colour.charAt) {
-      colour = self.colourStrToRGB(colour);
-    }
-
-    const transformed = {
-      red: 0,
-      green: 0,
-      blue: 0,
-    };
-
-    for (var x in colour) {
-      if (colour[x] <= 0.03928) {
-        transformed[x] = colour[x] / 12.92;
-      } else {
-        transformed[x] = Math.pow((colour[x] + 0.055) / 1.055, 2.4);
-      }
-    }
-
-    return (
-      transformed.red * 0.2126 +
-      transformed.green * 0.7152 +
-      transformed.blue * 0.0722
-    );
-  };
-
+  },
   /**
    * Convert a colour string to a structure with red/green/blue/alpha elements.
    *
@@ -546,8 +472,8 @@ _global.HTMLCS.util = (function () {
    *
    * @returns {Object}
    */
-  self.colourStrToRGB = function (color) {
-    let colour = color.toLowerCase();
+  colourStrToRGB: function (color) {
+    let colour: string | { red: number, blue: number, green: number, alpha?: number } = color.toLowerCase();
 
     if (colour.substring(0, 3) === "rgb") {
       // rgb[a](0, 0, 0[, 0]) format.
@@ -556,8 +482,11 @@ _global.HTMLCS.util = (function () {
       );
 
       colour = {
+        // @ts-ignore
         red: matches[1] / 255,
+        // @ts-ignore
         green: matches[2] / 255,
+        // @ts-ignore
         blue: matches[3] / 255,
         alpha: 1.0,
       };
@@ -594,8 +523,72 @@ _global.HTMLCS.util = (function () {
     }
 
     return colour;
-  };
+  },
+  /**
+   * Calculate relative luminescence for a colour in the sRGB colour profile.
+   *
+   * Supports rgb() and hex colours. rgba() also supported but the alpha
+   * channel is currently ignored.
+   * Hex colours can have an optional "#" at the front, which is stripped.
+   * Relative luminescence formula is defined in the definitions of WCAG 2.0.
+   * It can be either three or six hex digits, as per CSS conventions.
+   * It should return a value in the range [0.0, 1.0].
+   *
+   * @param {String} colour The color to calculate from.
+   *
+   * @returns {Number}
+   */
+  relativeLum: function (color) {
+    let colour = color;
 
+    if (colour.charAt) {
+      colour = this.colourStrToRGB(colour);
+    }
+
+    const transformed = {
+      red: 0,
+      green: 0,
+      blue: 0,
+    };
+
+    // @ts-ignore todo check colour iter
+    for (const x in colour) {
+      // @ts-ignore
+      if (colour[x] <= 0.03928) {
+        // @ts-ignore
+        transformed[x] = colour[x] / 12.92;
+      } else {
+         // @ts-ignore
+        transformed[x] = Math.pow((colour[x] + 0.055) / 1.055, 2.4);
+      }
+    }
+
+    return (
+      transformed.red * 0.2126 +
+      transformed.green * 0.7152 +
+      transformed.blue * 0.0722
+    );
+  },
+  /**
+   * Calculate the contrast ratio between two colours.
+   *
+   * Colours should be in rgb() or 3/6-digit hex format; order does not matter
+   * (ie. it doesn't matter which is the lighter and which is the darker).
+   * Values should be in the range [1.0, 21.0]... a ratio of 1.0 means "they're
+   * exactly the same contrast", 21.0 means it's white-on-black or v.v.
+   * Formula as per WCAG 2.0 definitions.
+   *
+   * @param {String} colour1 The first colour to compare.
+   * @param {String} colour2 The second colour to compare.
+   *
+   * @returns {Number}
+   */
+  contrastRatio: function (colour1, colour2) {
+    const ratio =
+      (0.05 + this.relativeLum(colour1)) / (0.05 + this.relativeLum(colour2));
+
+    return ratio < 1 ? 1 / ratio : ratio;
+  },
   /**
    * Convert an RGB colour structure to a hex colour.
    *
@@ -608,7 +601,7 @@ _global.HTMLCS.util = (function () {
    *
    * @returns {String}
    */
-  self.RGBtoColourStr = function (colour) {
+  RGBtoColourStr: function (colour) {
     let colourStr = "#";
 
     colour.red = Math.round(colour.red * 255);
@@ -642,7 +635,7 @@ _global.HTMLCS.util = (function () {
     }
 
     return colourStr;
-  };
+  },
 
   /**
    * Convert an RGB colour into hue-saturation-value.
@@ -660,11 +653,8 @@ _global.HTMLCS.util = (function () {
    *
    * @returns {Object}
    */
-  self.sRGBtoHSV = function (colour) {
-    // If this is a string, then convert to a colour structure.
-    if (colour.charAt) {
-      colour = self.colourStrToRGB(colour);
-    }
+  sRGBtoHSV: function (color) {
+    const colour = typeof color === "string" && color.charAt ? this.colourStrToRGB(color) : color
 
     const hsvColour = {
       hue: 0,
@@ -697,7 +687,7 @@ _global.HTMLCS.util = (function () {
     }
 
     return hsvColour;
-  };
+  },
 
   /**
    * Convert a hue-saturation-value structure into an RGB structure.
@@ -710,7 +700,7 @@ _global.HTMLCS.util = (function () {
    *
    * @returns {Object}
    */
-  self.HSVtosRGB = function (hsvColour) {
+  HSVtosRGB: function (hsvColour) {
     const colour = {
       red: 0,
       green: 0,
@@ -766,7 +756,7 @@ _global.HTMLCS.util = (function () {
     }
 
     return colour;
-  };
+  },
 
   /**
    * Gets the text contents of an element.
@@ -776,7 +766,7 @@ _global.HTMLCS.util = (function () {
    *
    * @returns {String} The text contents.
    */
-  self.getElementTextContent = function (element, hasAlt) {
+  getElementTextContent: function (element, hasAlt) {
     let includeAlt = hasAlt;
 
     if (includeAlt === undefined) {
@@ -827,8 +817,7 @@ _global.HTMLCS.util = (function () {
 
     // Push the text nodes together and trim.
     return text.join("").replace(/^\s+|\s+$/g, "");
-  };
-
+  },
   /**
    * Find a parent node matching a selector.
    *
@@ -837,13 +826,13 @@ _global.HTMLCS.util = (function () {
    *
    * @return DOMNode|null
    */
-  self.findParentNode = function (node, selector) {
+  findParentNode: function (node, selector) {
     if (node && node.matches && node.matches(selector)) {
       return node;
     }
 
     while (node && node.parentNode) {
-      node = node.parentNode;
+      node = node.parentNode as Element;
 
       if (node && node.matches && node.matches(selector)) {
         return node;
@@ -851,7 +840,7 @@ _global.HTMLCS.util = (function () {
     }
 
     return null;
-  };
+  },
 
   /**
    * Iterate parent nodes of an element.
@@ -861,14 +850,14 @@ _global.HTMLCS.util = (function () {
    *
    * @return void
    */
-  self.eachParentNode = function (node, cb) {
+  eachParentNode: function (node, cb) {
     while (node && node.parentNode) {
       cb(node);
-      node = node.parentNode;
+      node = node.parentNode as Element;
     }
-  };
+  },
 
-  self.getChildrenForTable = function (table, childNodeName) {
+  getChildrenForTable: function (table, childNodeName) {
     if (table.nodeName !== "TABLE") {
       return null;
     }
@@ -880,7 +869,7 @@ _global.HTMLCS.util = (function () {
 
     // Filter out rows that don't belong to this table.
     for (var i = 0, l = allRows.length; i < l; i++) {
-      if (self.findParentNode(allRows[i], "table") === table) {
+      if (this.findParentNode(allRows[i], "table") === table) {
         rows[rowIndex] = allRows[i];
         rowIndex++;
       }
@@ -889,8 +878,7 @@ _global.HTMLCS.util = (function () {
     rows.length = rowIndex;
 
     return rows;
-  };
-
+  },
   /**
    * Test for the correct headers attributes on table cell elements.
    *
@@ -913,8 +901,8 @@ _global.HTMLCS.util = (function () {
    *
    * @return {Object} The above return value structure.
    */
-  self.testTableHeaders = function (element) {
-    var retval = {
+  testTableHeaders: function (element) {
+    const retval = {
       required: true,
       used: false,
       correct: true,
@@ -925,15 +913,15 @@ _global.HTMLCS.util = (function () {
       isMultiLevelHeadersTable: false,
     };
 
-    var rows = self.getChildrenForTable(element, "tr");
-    var skipCells = [];
+    const rows = this.getChildrenForTable(element, "tr");
+    const skipCells = [];
 
     // Header IDs already used.
-    var headerIds = {
+    const headerIds = {
       rows: [],
       cols: [],
     };
-    var multiHeaders = {
+    const multiHeaders = {
       rows: 0,
       cols: 0,
     };
@@ -1039,7 +1027,8 @@ _global.HTMLCS.util = (function () {
 
     // Calculate expected heading IDs. If they are not there or incorrect, flag
     // them.
-    var cells = HTMLCS.util.getCellHeaders(element);
+    const cells = this.getCellHeaders(element);
+
     for (var i = 0; i < cells.length; i++) {
       var cell = cells[i].cell;
       var expected = cells[i].headers;
@@ -1072,8 +1061,7 @@ _global.HTMLCS.util = (function () {
     }
 
     return retval;
-  };
-
+  },
   /**
    * Return expected cell headers from a table.
    *
@@ -1096,14 +1084,14 @@ _global.HTMLCS.util = (function () {
    *
    * @returns {Array}
    */
-  self.getCellHeaders = function (table) {
+  getCellHeaders: function (table) {
     if (typeof table !== "object") {
       return null;
     } else if (table.nodeName !== "TABLE") {
       return null;
     }
 
-    var rows = self.getChildrenForTable(table, "tr");
+    var rows = this.getChildrenForTable(table, "tr");
     var skipCells = [];
     var headingIds = {
       rows: {},
@@ -1193,12 +1181,15 @@ _global.HTMLCS.util = (function () {
                   // Sort and filter expected ids by unique value.
                   var filteredExp = exp
                     .sort()
-                    .filter(function (value, index, self) {
-                      return self.indexOf(value) === index;
+                    .filter(function (value, index) {
+                      return this.indexOf(value) === index;
                     });
 
-                  exp = " " + filteredExp.join(" ") + " ";
+                  // @ts-ignore
+                  exp = ` ${filteredExp.join(" ")} `;
+
                   exp = exp
+                    // @ts-ignore
                     .replace(/\s+/g, " ")
                     .replace(/(\w+\s)\1+/g, "$1")
                     .replace(/^\s*(.*?)\s*$/g, "$1");
@@ -1218,7 +1209,7 @@ _global.HTMLCS.util = (function () {
 
     // Build the column and row headers that we expect.
     return cells;
-  };
+  },
 
   /**
    * Get the previous sibling element.
@@ -1237,7 +1228,7 @@ _global.HTMLCS.util = (function () {
    *
    * @returns {DOMNode} The appropriate node or null if none is found.
    */
-  self.getPreviousSiblingElement = function (element, tagName, immediate) {
+  getPreviousSiblingElement: function (element, tagName, immediate) {
     if (tagName === undefined) {
       tagName = null;
     }
@@ -1251,7 +1242,7 @@ _global.HTMLCS.util = (function () {
     while (prevNode !== null) {
       if (prevNode.nodeType === 3) {
         if (
-          HTMLCS.util.isStringEmpty(prevNode.nodeValue) === false &&
+          this.isStringEmpty(prevNode.nodeValue) === false &&
           immediate === true
         ) {
           // Failed. Immediate node requested and we got text instead.
@@ -1278,7 +1269,7 @@ _global.HTMLCS.util = (function () {
     }
 
     return prevNode;
-  };
+  },
 
   /**
    * Get the next sibling element.
@@ -1297,7 +1288,7 @@ _global.HTMLCS.util = (function () {
    *
    * @returns {DOMNode} The appropriate node or null if none is found.
    */
-  self.getNextSiblingElement = function (element, tagName, immediate) {
+  getNextSiblingElement: function (element, tagName, immediate) {
     if (tagName === undefined) {
       tagName = null;
     }
@@ -1311,7 +1302,7 @@ _global.HTMLCS.util = (function () {
     while (nextNode !== null) {
       if (nextNode.nodeType === 3) {
         if (
-          HTMLCS.util.isStringEmpty(nextNode.nodeValue) === false &&
+          this.isStringEmpty(nextNode.nodeValue) === false &&
           immediate === true
         ) {
           // Failed. Immediate node requested and we got text instead.
@@ -1338,8 +1329,7 @@ _global.HTMLCS.util = (function () {
     }
 
     return nextNode;
-  };
-
+  },
   /**
    * Get the text content of a DOM node.
    *
@@ -1347,10 +1337,9 @@ _global.HTMLCS.util = (function () {
    *
    * @returns {String} The text content.
    */
-  self.getTextContent = function (element) {
+  getTextContent: function (element) {
     return element.textContent || element.innerText;
-  };
-
+  },
   /**
    * Get the accessible name.
    *
@@ -1359,9 +1348,9 @@ _global.HTMLCS.util = (function () {
    *
    * @returns {String} The accessible name.
    */
-  self.getAccessibleName = function (element, top) {
+  getAccessibleName: function (element, top) {
     // See https://www.w3.org/TR/accname-1.1/#terminology
-    if (self.isVisuallyHidden(element)) {
+    if (this.isVisuallyHidden(element)) {
       return "";
     } else if (element.getAttribute("aria-labelledby")) {
       const parts = element.getAttribute("aria-labelledby").split(" ");
@@ -1372,7 +1361,7 @@ _global.HTMLCS.util = (function () {
       for (var i = 0; i < parts.length; i++) {
         var x = parts[i];
         const nameElement = top.getElementById(x);
-  
+
         if (nameElement) {
           nameParts[partsIndex] = nameElement.textContent;
           partsIndex++;
@@ -1394,7 +1383,5 @@ _global.HTMLCS.util = (function () {
     }
     // Give up - we only test the 3 most obvious cases.
     return "";
-  };
-
-  return self;
-})();
+  },
+};

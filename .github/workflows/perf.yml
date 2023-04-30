@@ -34,10 +34,10 @@ jobs:
         run: yarn && ./build.sh
 
       - name: Run Bench fast_htmlcs
-        run: cd ./a11y-js && yarn bench:playwright:htmlcs | tee output.json
+        run: cd ./a11y-js && yarn bench:playwright:htmlcs > output.json
 
       - name: Download previous benchmark data
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         with:
           path: ./cache
           key: ${{ runner.os }}-benchmark
@@ -46,6 +46,6 @@ jobs:
         uses: benchmark-action/github-action-benchmark@v1
         with:
           tool: 'customSmallerIsBetter'
-          output-file-path: ./output.json
+          output-file-path: a11y-js/output.json
           external-data-json-path: ./cache/benchmark-data.json
           fail-on-alert: true

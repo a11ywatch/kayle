@@ -1,7 +1,7 @@
 import assert from "assert";
 import puppeteer from "puppeteer";
 import { a11y, setNetworkInterception } from "a11y-js";
-import { jmendezMock } from "./html-small-mock"; // static html of 11 issues
+import { drakeMock } from "./html-mock"; // static html of 11 issues
 import { performance } from "perf_hooks";
 
 (async () => {
@@ -12,7 +12,7 @@ import { performance } from "perf_hooks";
   // page.on('console', msg => console.log('PAGE LOG:', msg.text()));
 
   await setNetworkInterception(page);
-  await page.setContent(jmendezMock);
+  await page.setContent(drakeMock);
 
   const startTime = performance.now();
   const { issues, pageUrl, documentTitle, meta, automateable } = await a11y({
@@ -31,8 +31,10 @@ import { performance } from "perf_hooks";
 
   // valid list
   assert(Array.isArray(issues));
-  // must return at least 7 or runner messed up.
-  assert(issues.length === 7);
+  // must return at least 11 errors or runner messed up.
+  assert(meta.errorCount === 11);
+  // must return at least 15 warnings or runner messed up.
+  assert(meta.warningCount === 15);
   assert(typeof pageUrl === "string");
   assert(typeof documentTitle === "string");
 
