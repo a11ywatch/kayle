@@ -33,7 +33,10 @@ _global.HTMLCS.util = (function () {
     let empty = true;
 
     // fast check for non empty string or fallback to charchode nbsp find
-    if (string && string[0] !== " " || string.indexOf(String.fromCharCode(160)) !== -1) {
+    if (
+      (string && string[0] !== " ") ||
+      string.indexOf(String.fromCharCode(160)) !== -1
+    ) {
       // Has an NBSP, therefore cannot be empty.
       empty = false;
     } else if (/^\s*$/.test(string) === false) {
@@ -57,12 +60,13 @@ _global.HTMLCS.util = (function () {
    * @return {String}
    */
   self.getDocumentType = function (document) {
-    var retval = null;
-    var doctype = document.doctype;
+    let retval = null;
+    let doctype = document.doctype;
+
     if (doctype) {
-      var doctypeName = doctype.name;
-      var publicId = doctype.publicId;
-      var systemId = doctype.systemId;
+      let doctypeName = doctype.name;
+      let publicId = doctype.publicId;
+      let systemId = doctype.systemId;
 
       if (doctypeName === null) {
         doctypeName = "";
@@ -151,7 +155,7 @@ _global.HTMLCS.util = (function () {
    * @return {Boolean}
    */
   self.hasValidAriaLabel = function (element) {
-    var found = false;
+    let found = false;
 
     if (element.hasAttribute("aria-labelledby") === true) {
       // Checking aria-labelled by where the label exists AND it has text available
@@ -161,12 +165,11 @@ _global.HTMLCS.util = (function () {
         .split(/\s+/);
 
       for (const id of labelledByIds) {
-        var elem = document.getElementById(id);
-        if (elem) {
-          if (/^\s*$/.test(self.getElementTextContent(elem)) === false) {
-            found = true;
-            break;
-          }
+        const elem = document.getElementById(id);
+
+        if (elem && /^\s*$/.test(self.getElementTextContent(elem)) === false) {
+          found = true;
+          break;
         }
       }
     } else if (element.hasAttribute("aria-label") === true) {
@@ -203,8 +206,6 @@ _global.HTMLCS.util = (function () {
    * @returns {Boolean}
    */
   self.isVisuallyHidden = function (element) {
-    var hidden = false;
-
     // Handle titles in svg as a special visually hidden case (hidden by browsers but
     // available to accessibility apis.
     if (
@@ -215,7 +216,8 @@ _global.HTMLCS.util = (function () {
     }
 
     // Do not point to elem if its hidden. Use computed styles.
-    var style = self.style(element);
+    let style = self.style(element);
+    let hidden = false;
 
     if (style !== null) {
       if (style.visibility === "hidden" || style.display === "none") {
@@ -376,7 +378,8 @@ _global.HTMLCS.util = (function () {
   self.isInDocument = function (element) {
     // Check whether the element is in the document, by looking up its
     // DOM tree for a document object.
-    var parent = element.parentNode;
+    let parent = element.parentNode;
+
     while (parent && parent.ownerDocument) {
       parent = parent.parentNode;
     } //end while
@@ -398,26 +401,19 @@ _global.HTMLCS.util = (function () {
    * @return {Array}
    */
   self.getAllElements = function (element, selector) {
-    var elements = (element || document).querySelectorAll(selector || "*");
-    var auditor = document.getElementById("HTMLCS-wrapper");
-    var visibleElements = [];
+    const elements = (element || document).querySelectorAll(selector || "*");
+    const visibleElements = new Array(elements.length);
 
-    if (auditor) {
-      for (const elem of elements) {
-        if (
-          !HTMLCS.util.isAccessibilityHidden(elem) &&
-          !auditor.contains(elem)
-        ) {
-          visibleElements.push(elem);
-        }
-      }
-    } else {
-      for (const elem of elements) {
-        if (!HTMLCS.util.isAccessibilityHidden(elem)) {
-          visibleElements.push(elem);
-        }
+    let visibleIndexs = 0;
+
+    for (const elem of elements) {
+      if (!HTMLCS.util.isAccessibilityHidden(elem)) {
+        visibleElements[visibleIndexs] = elem;
+        visibleIndexs++;
       }
     }
+
+    visibleElements.length = visibleIndexs;
 
     return visibleElements;
   };
@@ -555,7 +551,9 @@ _global.HTMLCS.util = (function () {
 
     if (colour.substring(0, 3) === "rgb") {
       // rgb[a](0, 0, 0[, 0]) format.
-      const matches = /^rgba?\s*\((\d+),\s*(\d+),\s*(\d+)([^)]*)\)$/.exec(colour);
+      const matches = /^rgba?\s*\((\d+),\s*(\d+),\s*(\d+)([^)]*)\)$/.exec(
+        colour
+      );
 
       colour = {
         red: matches[1] / 255,
@@ -563,11 +561,10 @@ _global.HTMLCS.util = (function () {
         blue: matches[3] / 255,
         alpha: 1.0,
       };
-    
+
       if (matches[4]) {
         colour.alpha = parseFloat(/^,\s*(.*)$/.exec(matches[4])[1]);
       }
-    
     } else {
       // Hex digit format.
       if (colour.charAt(0) === "#") {
@@ -583,7 +580,7 @@ _global.HTMLCS.util = (function () {
       }
 
       var alpha = 1; // Default if alpha is not specified
-  
+
       if (colour.length === 8) {
         alpha = parseInt(colour.substr(6, 2), 16) / 255;
       }
