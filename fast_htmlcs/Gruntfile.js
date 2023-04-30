@@ -2,7 +2,7 @@ module.exports = function (grunt) {
   var langs;
 
   if (grunt.option("lang")) {
-    langs = (grunt.option("lang") || "").split(/[,;]/g).map(function (lang) {
+    langs = (grunt.option("lang") || "").split(/[,;]/g).map((lang) => {
       lang = lang.trim();
       return lang !== "en" ? "." + lang : "";
     });
@@ -10,18 +10,13 @@ module.exports = function (grunt) {
     langs = [""];
   }
 
-  const handleLanguage = (language) => {
-    const translationFile = `Translations/${
+  // handle the translation file 
+  const handleLanguage = (language) => ({
+    translationFile: `Translations/${
       language ? language.replace(".", "") : language || "en"
-    }.js`;
-
-    const distExt = `build/HTMLCS${language}.js`;
-
-    return {
-      translationFile,
-      distExt,
-    };
-  };
+    }.js`,
+    distExt: `build/HTMLCS${language}.js`,
+  });
 
   // debug languages
   const langFiles = langs.map((lang) => {
@@ -79,10 +74,10 @@ module.exports = function (grunt) {
   });
 
   grunt.file.setBase("./");
+
   require("load-grunt-tasks")(grunt);
 
   grunt.registerTask("default", ["eslint"]);
   grunt.registerTask("build", ["uglify:dist", "copy:dist"]);
-
-  return grunt.registerTask("build-debug", ["uglify:debug", "copy:dist"]);
+  grunt.registerTask("build-debug", ["uglify:debug", "copy:dist"]);
 };

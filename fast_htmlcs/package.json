@@ -1,6 +1,6 @@
 {
   "name": "fast_htmlcs",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "HTML_CodeSniffer is a client-side JavaScript that checks a HTML document or source code, and detects violations of a defined coding standard.",
   "license": "BSD-3-Clause",
   "main": "index.js",
@@ -8,9 +8,9 @@
     "htmlcs"
   ],
   "scripts": {
-    "prepare": "grunt build",
+    "build:all": "tsc && grunt build --lang=en,fr,es,it,ja,nl,pl,zh_CN,zh_TW",
     "prepack": "tsc && grunt build --lang=en,fr,es,it,ja,nl,pl,zh_CN,zh_TW",
-    "build": "tsc && grunt build",
+    "build": "yarn build:all && npx swc --copy-files --config-file .swcrc --ignore ./dist/*.d.ts ./dist -d ./dist",
     "test": "grunt eslint",
     "fix": "prettier --write '**/*.{js,jsx,ts,tsx}'",
     "fix:trans": "prettier --write 'Translations/*.{js,jsx,ts,tsx}'"
@@ -32,13 +32,15 @@
   },
   "homepage": "http://squizlabs.github.io/HTML_CodeSniffer/",
   "devDependencies": {
+    "@swc/cli": "^0.1.62",
+    "@swc/core": "^1.3.56",
     "eslint": "8.39.0",
-    "grunt": "^1.1.0",
+    "grunt": "^1.6.1",
     "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-uglify": "^4.0.0",
+    "grunt-contrib-uglify": "^5.2.2",
     "grunt-contrib-watch": "^1.1.0",
     "grunt-eslint": "^21.0.0",
-    "load-grunt-tasks": "^4.0.0",
+    "load-grunt-tasks": "^5.1.0",
     "prettier": "^2.8.3",
     "typescript": "^4.9.4"
   }

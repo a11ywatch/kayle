@@ -1,19 +1,20 @@
 _global.HTMLCS = new (function () {
-  var _standards = new Map();
-  var _tags = new Map();
-  var _standard = "";
+  const _standards = new Map();
+  const _tags = new Map();
+  const _duplicates = new Map();
+
+  let _standard = "";
   var _currentSniff = null;
 
   var _messages = [];
+  // todo: use map
   var _msgOverrides = {};
-  var _duplicates = new Map();
   /*
    *  Message type constants.
    */
   this.ERROR = "error";
   this.WARNING = "warning";
   this.NOTICE = "notice";
-
   // The current language to use.
   this.lang = "en";
 
@@ -64,18 +65,16 @@ _global.HTMLCS = new (function () {
    *
    * @return {String}
    */
-  this.getTranslation = function (text) {
-    return _global.translation[this.lang][text];
-  };
+  this.getTranslation = (text) => _global.translation[this.lang][text];
 
   /**
    * Loads the specified standard and its sniffs.
    *
-   * @param {String}   standard The name of the standard to load.
+   * @param {String} standard The name of the standard to load.
    * @param {Function} callback The function to call once the standard is loaded.
    * @param {Function} failCallback The function to call on failure.
    */
-  this.loadStandard = function (standard, callback, failCallback) {
+  this.loadStandard = (standard, callback, failCallback) => {
     if (!standard) {
       return false;
     }
@@ -98,13 +97,14 @@ _global.HTMLCS = new (function () {
    * @param {String|Node} content  An HTML string or a DOM node object.
    */
   this.run = function (callback, content) {
-    var element = null;
-    var loadingFrame = false;
+    let element = null;
+    let loadingFrame = false;
 
     // todo: remove iframe handling
     if (typeof content === "string") {
       loadingFrame = true;
-      var elementFrame = document.createElement("iframe");
+
+      let elementFrame = document.createElement("iframe");
       elementFrame.style.display = "none";
       elementFrame = document.body.insertBefore(elementFrame, null);
 
@@ -121,16 +121,13 @@ _global.HTMLCS = new (function () {
 
         if (!HTMLCS.isFullDoc(content)) {
           element = element.querySelector("body");
-          var div = element.querySelector("div");
-          if (div && div.id === "__HTMLCS-source-wrap") {
-            div.id = "";
-            element = div;
-          }
         }
 
         // todo: remove converting elements to array
-        var elements = HTMLCS.util.getAllElements(element);
+        const elements = HTMLCS.util.getAllElements(element);
+
         elements.unshift(element);
+
         _run(elements, element, callback);
       };
 
@@ -165,7 +162,7 @@ _global.HTMLCS = new (function () {
 
     // Get all the elements in the parent element.
     // Add the parent element too, which will trigger "_top" element codes.
-    var elements = HTMLCS.util.getAllElements(element);
+    const elements = HTMLCS.util.getAllElements(element);
 
     elements.unshift(element);
 
@@ -186,8 +183,8 @@ _global.HTMLCS = new (function () {
    *
    * @returns {Boolean}
    */
-  this.isFullDoc = function (content) {
-    var fullDoc = false;
+  this.isFullDoc = (content) => {
+    let fullDoc = false;
 
     if (typeof content === "string") {
       if (
@@ -222,9 +219,9 @@ _global.HTMLCS = new (function () {
    * @param {Number}  recurrence  The amount of times this issue re-appeared.
    * @param {Object}  [data]      Extra data to store for the message.
    */
-  this.addMessage = function (type, element, msg, code, data) {
-    var ccode = _getMessageCode(code);
-    var textId = ccode + element.outerHTML;
+  this.addMessage = (type, element, msg, code, data) => {
+    const ccode = _getMessageCode(code);
+    const textId = ccode + element.outerHTML;
 
     if (!_duplicates.has(textId)) {
       // track the position to use to update the prior message on duplicates.
@@ -239,7 +236,7 @@ _global.HTMLCS = new (function () {
         runner: "htmlcs",
       });
     } else {
-      var pos = _duplicates.get(textId);
+      const pos = _duplicates.get(textId);
       // increment the recurrence counter.
       _messages[pos].recurrence = _messages[pos].recurrence + 1;
     }
@@ -253,9 +250,7 @@ _global.HTMLCS = new (function () {
    *
    * @returns {Array} Array of message objects.
    */
-  this.getMessages = function () {
-    return _messages;
-  };
+  this.getMessages = () => _messages;
 
   /**
    * Runs the sniffs in the loaded standard for the specified element.
@@ -264,12 +259,13 @@ _global.HTMLCS = new (function () {
    * @param {Node}     topElement The top element of the processing.
    * @param {Function} [callback] The function to call once all tests are run.
    */
-  var _run = function (elements, topElement: Element, callback) {
-    var topMsgs = [];
+  const _run = (elements, topElement: Element, callback) => {
+    // todo: pre-allocate
+    let topMsgs = [];
 
     while (elements.length > 0) {
-      var element = elements.shift();
-      var tagName = "";
+      const element = elements.shift();
+      let tagName = "";
 
       if (element === topElement) {
         tagName = "_top";
@@ -279,7 +275,7 @@ _global.HTMLCS = new (function () {
 
       // First check whether any "top" messages need to be shifted off for this
       // element. If so, dump off into the main messages.
-      for (var i = 0; i < topMsgs.length; ) {
+      for (let i = 0; i < topMsgs.length; ) {
         if (element === topMsgs[i].element) {
           _messages.push(topMsgs[i]);
           // todo: remove splicing
@@ -293,8 +289,8 @@ _global.HTMLCS = new (function () {
         const tag = _tags.get(tagName);
 
         if (tag.length > 0) {
-          // @ts-ignore
-          _processSniffs(element, tag, topElement);
+          // do not pass in callback
+          _processSniffs(element, tag, topElement, undefined);
 
           // Save "top" messages, and reset the messages array.
           if (tagName === "_top") {
@@ -310,7 +306,7 @@ _global.HTMLCS = new (function () {
     // Due to filtering of presentation roles for general sniffing these need to be handled
     // separately. The 1.3.1 sniff needs to run to detect any incorrect usage of the presentation
     // role.
-    var presentationElems = topElement.querySelectorAll(
+    const presentationElems = topElement.querySelectorAll(
       '[role="presentation"]'
     );
 
@@ -333,7 +329,7 @@ _global.HTMLCS = new (function () {
    * @param {Node}     topElement The top element of the processing.
    * @param {Function} [callback] The function to call once the processing is completed.
    */
-  var _processSniffs = function (element, sniffs, topElement, callback) {
+  const _processSniffs = (element, sniffs, topElement, callback) => {
     while (sniffs.length > 0) {
       var sniff = sniffs.shift();
       _currentSniff = sniff;
@@ -367,19 +363,20 @@ _global.HTMLCS = new (function () {
    * @param {Function} callback The function to call once the standard is included.
    * @param {Object}   options  The options for the standard (e.g. exclude sniffs).
    */
-  var _includeStandard = function (
+  const _includeStandard = (
     standard: string,
     callback,
     failCallback,
     options
-  ) {
+  )  => {
     if (standard.indexOf("http") !== 0) {
       standard = _getStandardPath(standard);
     } //end id
 
     // See if the ruleset object is already included (eg. if minified).
-    var parts = standard.split("/");
-    var ruleSet = _global["HTMLCS_" + parts[parts.length - 2]];
+    const parts = standard.split("/");
+    const ruleSet = _global["HTMLCS_" + parts[parts.length - 2]];
+
     if (ruleSet) {
       // Already included.
       _registerStandard(standard, callback, failCallback, options);
@@ -402,12 +399,12 @@ _global.HTMLCS = new (function () {
    * @param {Function} callback The function to call once the standard is registered.
    * @param {Object}   options  The options for the standard (e.g. exclude sniffs).
    */
-  var _registerStandard = function (standard, callback, failCallback, options) {
+  const _registerStandard = (standard, callback, failCallback, options) => {
     // Get the object name.
-    var parts = standard.split("/");
+    const parts = standard.split("/");
     // Get a copy of the ruleset object.
-    var oldRuleSet = _global["HTMLCS_" + parts[parts.length - 2]];
-    var ruleSet = {};
+    const oldRuleSet = _global["HTMLCS_" + parts[parts.length - 2]];
+    const ruleSet = {};
 
     for (var x in oldRuleSet) {
       if (typeof oldRuleSet[x] !== "undefined") {
@@ -425,16 +422,16 @@ _global.HTMLCS = new (function () {
         ruleSet.sniffs = options.include;
       } else if (options.exclude) {
         // Excluded sniffs.
-        for (var i = 0; i < options.exclude.length; i++) {
+        for (let i = 0; i < options.exclude.length; i++) {
           // @ts-ignore
-          var index = ruleSet.sniffs.find(options.exclude[i]);
+          const index = ruleSet.sniffs.find(options.exclude[i]);
           if (index >= 0) {
             // @ts-ignore
             ruleSet.sniffs.splice(index, 1);
           }
         }
       }
-    } //end if
+    }
 
     // Register the sniffs for this standard.
     _registerSniffs(
@@ -453,14 +450,15 @@ _global.HTMLCS = new (function () {
    * @param {Array}    sniffs   List of sniffs to register.
    * @param {Function} callback The function to call once the sniffs are registered.
    */
-  var _registerSniffs = function (standard, sniffs, callback, failCallback) {
+  const _registerSniffs = (standard, sniffs, callback, failCallback) => {
     if (sniffs.length === 0) {
       callback.call(this);
       return;
     }
 
     // Include and register sniffs.
-    var sniff = sniffs.shift();
+    const sniff = sniffs.shift();
+
     _loadSniffFile(
       standard,
       sniff,
@@ -479,10 +477,11 @@ _global.HTMLCS = new (function () {
    *                                 and object specifying another standard.
    * @param {Function}      callback The function to call once the sniff is included and registered.
    */
-  var _loadSniffFile = function (standard, sniff, callback, failCallback) {
+  const _loadSniffFile = (standard, sniff, callback, failCallback) => {
     if (typeof sniff === "string") {
-      var sniffObj = _getSniff(standard, sniff);
-      var cb = function () {
+      const sniffObj = _getSniff(standard, sniff);
+
+      const cb = function () {
         _registerSniff(standard, sniff);
         callback.call(this);
       };
@@ -500,7 +499,7 @@ _global.HTMLCS = new (function () {
         function () {
           if (sniff.messages) {
             // Add message overrides.
-            for (var msg in sniff.messages) {
+            for (const msg in sniff.messages) {
               _msgOverrides[msg] = sniff.messages[msg];
             }
           }
@@ -522,9 +521,9 @@ _global.HTMLCS = new (function () {
    * @param {String} standard The name of the standard.
    * @param {String} sniff    The name of the sniff.
    */
-  var _registerSniff = function (standard, sniff) {
+  const _registerSniff = (standard, sniff) => {
     // Get the sniff object.
-    var sniffObj = _getSniff(standard, sniff);
+    const sniffObj = _getSniff(standard, sniff);
 
     if (!sniffObj) {
       return false;
@@ -532,8 +531,8 @@ _global.HTMLCS = new (function () {
 
     // Call the register method of the sniff, it should return an array of tags.
     if (sniffObj.register) {
-      var watchedTags = sniffObj.register();
-
+      const watchedTags = sniffObj.register();
+      
       for (var i = 0; i < watchedTags.length; i++) {
         if (!_tags.has(watchedTags[i])) {
           _tags.set(watchedTags[i], [sniffObj]);
@@ -552,8 +551,8 @@ _global.HTMLCS = new (function () {
    *
    * @returns {String} The path to the JS file of the sniff.
    */
-  var _getSniffPath = function (standard, sniff) {
-    var parts = standard.split("/");
+  const _getSniffPath = (standard, sniff) => {
+    const parts = standard.split("/");
     parts.pop();
     return parts.join("/") + "/Sniffs/" + sniff.replace(/\./g, "/") + ".js";
   };
@@ -565,8 +564,7 @@ _global.HTMLCS = new (function () {
    *
    * @returns {String} The path to the local standard.
    */
-  var _getStandardPath = function (standard: string) {
-    // Get the include path of a local standard.
+  const _getStandardPath = (standard: string) => {
     return "Standards/" + standard + "/ruleset.js";
   };
 
@@ -578,9 +576,9 @@ _global.HTMLCS = new (function () {
    *
    * @returns {Object} The sniff object.
    */
-  var _getSniff = function (standard, sniff) {
-    var name = "HTMLCS_";
-    var cstandard = _standards.has(standard) && _standards.get(standard); // standard should always exist
+  const _getSniff = (standard, sniff) => {
+    const cstandard = _standards.has(standard) && _standards.get(standard); // standard should always exist
+    let name = "HTMLCS_";
 
     name += ((cstandard && cstandard.name) || "") + "_Sniffs_";
     name += sniff.split(".").join("_");
@@ -590,6 +588,7 @@ _global.HTMLCS = new (function () {
     }
 
     _global[name]._name = sniff;
+
     return _global[name];
   };
 
@@ -597,12 +596,11 @@ _global.HTMLCS = new (function () {
    * Returns the full message code.
    *
    * A full message code includes the standard name, the sniff name and the given code.
-   *
+   * @param code String - The message code.
+   * 
    * @returns {String} The full message code.
    */
-  var _getMessageCode = function (code) {
-    return _standard + "." + _currentSniff._name + "." + code;
-  };
+  const _getMessageCode = (code) => _standard + "." + _currentSniff._name + "." + code;
 
   /**
    * Includes the specified JS file.
@@ -610,8 +608,9 @@ _global.HTMLCS = new (function () {
    * @param {String}   src      The URL to the JS file.
    * @param {Function} callback The function to call once the script is loaded.
    */
-  var _includeScript = function (src, callback, failCallback) {
-    var script = document.createElement("script");
+  const _includeScript = (src, callback, failCallback) => {
+    const script = document.createElement("script");
+
     script.onload = function () {
       script.onload = null;
       // @ts-ignore

@@ -9,7 +9,7 @@ import { performance } from "perf_hooks";
   const page = await browser.newPage();
 
   // uncomment to log values for debuging
-  // page.on('console', msg => console.log('PAGE LOG:', msg.text()));
+  page.on('console', msg => console.log('PAGE LOG:', msg.text()));
 
   await setNetworkInterception(page);
   await page.setContent(drakeMock);
