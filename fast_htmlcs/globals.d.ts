@@ -1,28 +1,33 @@
-
 export {};
 
 // html elements for iframes
-type HtmlEle = Element | Document | HTMLIFrameElement | HTMLBodyElement | HTMLDivElement | null;
+type HtmlEle =
+  | Element
+  | Document
+  | HTMLIFrameElement
+  | HTMLBodyElement
+  | HTMLDivElement
+  | null;
 
 type HTMLCS = {
-    run(callback: void, content: string): void
-    isFullDoc(content: string): boolean
-    util: {
-        getAllElements?(element: HtmlEle): HtmlEle[]
-    }
-}
+  run(callback: void, content: string): void;
+  isFullDoc(content: string): boolean;
+  util: {
+    getAllElements?(element: HtmlEle): HtmlEle[];
+  };
+};
 
 type Snif = null | {
-    testSemanticPresentationRole(element: Element): boolean
-}
+  testSemanticPresentationRole(element: Element): boolean;
+};
 
 declare global {
-    var _global: {
-        HTMLCS: HTMLCS;
-        translation: {
-            [key: string]: Record<string, unknown>
-        }
+  var _global: {
+      HTMLCS: HTMLCS;
+      translation: {
+        [key: string]: Record<string, unknown>;
+      };
     },
     HTMLCS: HTMLCS;
-    var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1: Snif;
+  var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1: Snif;
 }

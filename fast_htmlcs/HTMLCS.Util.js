@@ -145,15 +145,7 @@ _global.HTMLCS.util = (function () {
       doc = element;
     }
 
-    var window = null;
-
-    if (doc.defaultView) {
-      window = doc.defaultView;
-    } else {
-      window = doc.parentWindow;
-    }
-
-    return window;
+    return doc.defaultView || doc.parentWindow;
   };
 
   /**
@@ -200,15 +192,9 @@ _global.HTMLCS.util = (function () {
    */
   self.style = function (element, pseudo) {
     var computedStyle = null;
-    var window = self.getElementWindow(element);
+    var w = self.getElementWindow(element);
 
-    if (element.currentStyle) {
-      computedStyle = element.currentStyle;
-    } else if (window.getComputedStyle) {
-      computedStyle = window.getComputedStyle(element, pseudo || null);
-    }
-
-    return computedStyle;
+    return element.currentStyle || w.getComputedStyle(element, pseudo || null)
   };
 
   /**
@@ -359,7 +345,6 @@ _global.HTMLCS.util = (function () {
         return true;
       }
     }
-
     return self.isFocusable(element);
   };
 
@@ -371,14 +356,11 @@ _global.HTMLCS.util = (function () {
    * @return {Boolean}
    */
   self.isKeyboardNavigable = function (element) {
-    if (
-      element.hasAttribute("accesskey") &&
-      /^\s*$/.test(element.getAttribute("accesskey")) === false
-    ) {
-      return true;
-    }
-
-    return self.isKeyboardTabbable(element);
+    return (
+      (element.hasAttribute("accesskey") &&
+        /^\s*$/.test(element.getAttribute("accesskey")) === false) ||
+      self.isKeyboardTabbable(element)
+    );
   };
 
   /**
@@ -392,17 +374,10 @@ _global.HTMLCS.util = (function () {
    * @returns {Boolean}
    */
   self.isDisabled = function (element) {
-    var disabled = false;
-
-    // Do not point to elem if its hidden. Use computed styles.
-    if (
+    return (
       element.disabled === true ||
       element.getAttribute("aria-disabled") === "true"
-    ) {
-      disabled = true;
-    }
-
-    return disabled;
+    );
   };
 
   /**
@@ -564,7 +539,7 @@ _global.HTMLCS.util = (function () {
     var transformed = {
       red: 0,
       green: 0,
-      blue: 0
+      blue: 0,
     };
 
     for (var x in colour) {
@@ -573,7 +548,7 @@ _global.HTMLCS.util = (function () {
       } else {
         transformed[x] = Math.pow((colour[x] + 0.055) / 1.055, 2.4);
       }
-    } 
+    }
 
     return (
       transformed.red * 0.2126 +
@@ -816,13 +791,14 @@ _global.HTMLCS.util = (function () {
    *
    * @returns {String} The text contents.
    */
-  self.getElementTextContent = function (element, includeAlt) {
+  self.getElementTextContent = function (element, hasAlt) {
+    let includeAlt = hasAlt;
+
     if (includeAlt === undefined) {
       includeAlt = true;
     }
 
-    var element = element.cloneNode(true);
-    var nodes = new Array(element.childNodes.length);
+    const nodes = new Array(element.childNodes.length);
 
     for (var i = 0; i < element.childNodes.length; i++) {
       nodes[i] = element.childNodes[i];
@@ -844,7 +820,6 @@ _global.HTMLCS.util = (function () {
             text.push(node.getAttribute("alt"));
           }
         } else {
-
           for (var i = 0; i < node.childNodes.length; i++) {
             nodes[i] = node.childNodes[i];
           }
@@ -913,8 +888,8 @@ _global.HTMLCS.util = (function () {
     // Filter out rows that don't belong to this table.
     for (var i = 0, l = allRows.length; i < l; i++) {
       if (self.findParentNode(allRows[i], "table") === table) {
-        rows[rowIndex] = allRows[i]
-        rowIndex++
+        rows[rowIndex] = allRows[i];
+        rowIndex++;
       }
     }
 
@@ -1043,8 +1018,8 @@ _global.HTMLCS.util = (function () {
 
           colnum += colspan;
         }
-      } 
-    } 
+      }
+    }
 
     for (var i = 0; i < headerIds.rows.length; i++) {
       if (headerIds.rows[i] > 1) {
@@ -1101,7 +1076,7 @@ _global.HTMLCS.util = (function () {
           }
         }
       }
-    } 
+    }
 
     return retval;
   };
@@ -1218,8 +1193,8 @@ _global.HTMLCS.util = (function () {
                     if (headingIds.cols[j] && i >= headingIds.cols[j].first) {
                       exp = exp.concat(headingIds.cols[j].ids);
                     }
-                  } 
-                } 
+                  }
+                }
 
                 if (exp.length > 0) {
                   // Sort and filter expected ids by unique value.
@@ -1244,9 +1219,9 @@ _global.HTMLCS.util = (function () {
 
             colnum += colspan;
           }
-        } 
-      } 
-    } 
+        }
+      }
+    }
 
     // Build the column and row headers that we expect.
     return cells;
@@ -1293,7 +1268,7 @@ _global.HTMLCS.util = (function () {
         // If this an element, we break regardless. If it's an "a" node,
         // it's the one we want. Otherwise, there is no adjacent "a" node
         // and it can be ignored.
-        if (tagName === null || prevNode.nodeName.toLowerCase() === tagName) {
+        if (tagName === null || prevNode.nodeName === tagName) {
           // Correct element, or we aren't picky.
           break;
         } else if (immediate === true) {
@@ -1378,7 +1353,7 @@ _global.HTMLCS.util = (function () {
    * @returns {String} The text content.
    */
   self.getTextContent = function (element) {
-    return element.textContent || element.innerText
+    return element.textContent || element.innerText;
   };
 
   /**

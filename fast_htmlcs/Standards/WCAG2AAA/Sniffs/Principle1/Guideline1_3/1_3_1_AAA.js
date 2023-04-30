@@ -26,7 +26,10 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1_AAA = {
    */
   process: function (element, top) {
     if (element === top) {
-      HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1.testHeadingOrder(top, HTMLCS.ERROR);
+      HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1.testHeadingOrder(
+        top,
+        HTMLCS.ERROR
+      );
     }
   },
 };

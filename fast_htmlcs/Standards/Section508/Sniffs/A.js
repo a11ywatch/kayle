@@ -178,7 +178,7 @@ _global.HTMLCS_Section508_Sniffs_A = {
         default:
           // No other tags defined.
           break;
-      } 
+      }
     }
 
     return errors;

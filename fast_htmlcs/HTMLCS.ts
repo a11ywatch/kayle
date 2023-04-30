@@ -8,8 +8,8 @@ _global.HTMLCS = new (function () {
   var _msgOverrides = {};
   var _duplicates = new Map();
   /*
-  *  Message type constants.
-  */
+   *  Message type constants.
+   */
   this.ERROR = "error";
   this.WARNING = "warning";
   this.NOTICE = "notice";
@@ -202,7 +202,10 @@ _global.HTMLCS = new (function () {
       ) {
         fullDoc = true;
       }
-    } else if (content && (content.nodeName === "HTML" || content.documentElement)){
+    } else if (
+      content &&
+      (content.nodeName === "HTML" || content.documentElement)
+    ) {
       fullDoc = true;
     }
 
@@ -300,7 +303,7 @@ _global.HTMLCS = new (function () {
           }
         }
       }
-    } 
+    }
 
     _messages.push(...topMsgs);
 
@@ -350,7 +353,7 @@ _global.HTMLCS = new (function () {
         // Process the sniff.
         sniff.process(element, topElement);
       }
-    } 
+    }
 
     if (callback instanceof Function === true) {
       callback.call(this);
@@ -364,7 +367,12 @@ _global.HTMLCS = new (function () {
    * @param {Function} callback The function to call once the standard is included.
    * @param {Object}   options  The options for the standard (e.g. exclude sniffs).
    */
-  var _includeStandard = function (standard: string, callback, failCallback, options) {
+  var _includeStandard = function (
+    standard: string,
+    callback,
+    failCallback,
+    options
+  ) {
     if (standard.indexOf("http") !== 0) {
       standard = _getStandardPath(standard);
     } //end id
