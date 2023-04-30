@@ -1,0 +1,51 @@
+name: Performance Regression
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  checkout_and_test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          # - node-version: 14.x
+          - node-version: 16.x
+          - node-version: 19.x
+          - node-version: latest
+
+    steps:
+      - name: Checkout code from ${{ github.repository }}
+        uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install yarn
+        run: corepack enable && corepack prepare yarn@stable --activate
+
+      - name: Install and build locales
+        run: yarn && ./build.sh
+
+      - name: Run Bench fast_htmlcs
+        run: cd ./a11y-js && yarn bench:playwright:htmlcs | tee output.json
+
+      - name: Download previous benchmark data
+        uses: actions/cache@v1
+        with:
+          path: ./cache
+          key: ${{ runner.os }}-benchmark
+
+      - name: Store benchmark result
+        uses: benchmark-action/github-action-benchmark@v1
+        with:
+          tool: 'customSmallerIsBetter'
+          output-file-path: ./output.json
+          external-data-json-path: ./cache/benchmark-data.json
+          fail-on-alert: true

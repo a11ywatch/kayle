@@ -20,6 +20,7 @@
     "compile:test": "tsc && tsc --project tsconfig.test.json",
     "lint": "eslint .",
     "fix": "prettier --write '**/*.{js,jsx,ts,tsx}'",
+    "bench:playwright:htmlcs": "npm run compile:test && node _tests/bench/fast_htmlcs-playwright.js",
     "bench:playwright:axe": "npm run compile:test && node _tests/bench/compare-playwright.js",
     "bench:puppeteer:pa11y": "npm run compile:test && node _tests/bench/compare-puppeteer-pa11y.js",
     "test": "npm run compile:test && node _tests/tests/basic.js",

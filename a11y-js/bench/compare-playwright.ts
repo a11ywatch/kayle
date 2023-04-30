@@ -76,10 +76,10 @@ async function launchBench() {
   );
 
   console.log(
-    `a11y-js:axe-core x ${a11yAxeAVG / 1000} ops (${iterations} runs sampled)`
+    `a11y-js:axe-core x ${1000 / a11yAxeAVG} ops/s (${iterations} runs sampled)`
   );
   console.log(
-    `@axe-core/playwright x ${axeAVG / 1000} ops (${iterations} runs sampled)`
+    `@axe-core/playwright x ${1000 / axeAVG} ops/s (${iterations} runs sampled)`
   );
 
   await context.close();
