@@ -1,13 +1,6 @@
-# HTML_CodeSniffer
+# fast_htmlcs
 
-This fork is made for performance and accuracy.
-
-Todo: 
-
-1. remove grunt and use ts.
-1. load only translations for the page and not the entire language pack.
-1. improve performance.
-1. add coverage base.
+This fork of HTML_CodeSniffer for performance and accuracy.
 
 ## What is HTML_CodeSniffer?
 
@@ -28,12 +21,7 @@ where you wish to enforce consistency across a web site.
 HTML_CodeSniffer can be called in multiple ways:
 * Called directly in JavaScript source, HTML_CodeSniffer will provide a list of known
   and potential violations to the calling script.
-* It also comes with a pop-up auditor interface, accessible via a bookmarklet,
-  letting you browse through messages emitted from one of the defined standards.
-  Where possible, the auditor also points you to the HTML element causing the problem.
-* It can also be run on the command line with the assistance of a headless browser app.
 * Using as a Node.js module, installed with npm: `npm i --save html_codesniffer`
-
 
 ## Using the source code
 
