@@ -150,7 +150,7 @@ This project is the fastest web accessibility runner OSS. The `htmlcs` and `axe-
 
 ## Benchmarks
 
-1. `fast_htmlcs` runs over 100 times base faster than htmlcs or HTML codesniffer.
+1. `fast_htmlcs` runs over 110 times base faster than htmlcs or HTML codesniffer.
 1. `fast_axecore` runs over 30%-100%+ base faster than the original axe by default and scales the larger the website.
 
 Currently `fast_htmlcs` runs around 50x faster than axe-core and has several differences of handling the way issues are found. They both capture different cases and is best to used together which this library handles efficiently.
