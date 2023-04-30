@@ -1,11 +1,10 @@
 # a11y-js
 
-Incredibly fast and accurate universal web accessibility evaluator for puppeteer or playwright 🏎️ 🌎.
+Incredibly fast and precise universal web accessibility evaluator for puppeteer or playwright 🏎️ 🌎.
 
 Getting Started: checkout the [playwright-example](./a11y-js/tests/basic-playwright.spec.ts) or [puppeteer](./a11y-js/tests/basic.ts)
 
-Over 150-1000% faster than other accessibility runners like `@axe-core/playwright` or `pa11y`. 
-Also over 10-38% increased issue detection compared to `pa11y`.
+Over 150-1000% faster than other accessibility runners like `@axe-core/playwright` or `pa11y` along with [10-48%](./a11y-js/test-results) increase on issues found. 
 
 ```sh
 npm i a11y-js --save
@@ -122,7 +121,8 @@ For the mock test case used `@playwright/axe-core` found 2 errors while `fast_ax
 
 ## i18n
 
-[Locales](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/i18n) supported by the runner using pre-compiled locales. In order to pre-compile the locales run `./build.sh`.
+[Locales](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/i18n) supported by the runner using pre-compiled locales. In order to pre-compile the locales run `./build.sh`. Some locales are only available in certain runners. Our goal is to unify the languages and eventually unify the runners in a way that we can get 
+the best aspects of testing without worrying about a `name`.
 
 1. da ("Danish")
 1. de ("German")
@@ -209,6 +209,30 @@ Use the command `./build.sh` to compile all the scripts for each locale.
 ## Discord
 
 If you want to chat about the project checkout our [Discord](https://discord.gg/ukmJcjQ5).
+
+## About
+
+This project took Axecore and HTMLCS from versions that were complete and semi-stable.
+We patched and fixed a lot of bugs that increased the accuracy of tests passing and issues being found.
+One of the main goals was to have the audit run quickly since we noticed some of the tests would take several seconds to
+complete. The performance increases we made to the project were not only done at edge cases that would scale beyond
+make the ability of auditing at the MS level for almost any website. Right now, the project is moving forward based on performance
+and accuracy for ensuring minimal to no false positives.
+
+## Next Level
+
+As we set the foundation to mark test cases that can pass and increase our target on automating accessibility we have a couple of layers that 
+can make a major difference to the project. The following will save drastic time and money if done.
+
+1. Use a fast [crawler](https://github.com/a11ywatch/crawler) to gather all of the html to send to a web accessibility service that can perform audits like [pagemind](https://github.com/a11ywatch/pagemind) over CDP.
+
+2. Pre-compile the scripts to the browser so that you are not sending it over the wire per request and simply performing the audit as a side effect for navigating like a chrome extension.
+
+### Experimental Todo
+
+Using the dom and javascript to perform the evals is a bit expensive. We need javascript usage from a real browser to accurate render the markup and display the things 
+that need to be tested. Beyond the point of rendering we do not need javascript, which leads to using [wasm](https://webassembly.org/) to evaluate the markup could perform 
+better especially for larger websites.
 
 ## LICENSE
 

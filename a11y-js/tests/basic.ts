@@ -7,7 +7,8 @@ import { performance } from "perf_hooks";
 (async () => {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
-  
+
+  // uncomment to log values for debuging
   // page.on('console', msg => console.log('PAGE LOG:', msg.text()));
 
   await setNetworkInterception(page);
@@ -30,6 +31,8 @@ import { performance } from "perf_hooks";
 
   // valid list
   assert(Array.isArray(issues));
+  // must return at least 7 or runner messed up.
+  assert(issues.length === 7);
   assert(typeof pageUrl === "string");
   assert(typeof documentTitle === "string");
 

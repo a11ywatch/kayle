@@ -1,4 +1,4 @@
-const runAudit = async (options) => {
+const run = async (options) => {
   // map standards to window
   if (
     !(
@@ -25,11 +25,10 @@ const runAudit = async (options) => {
         window.document.querySelector(options.rootElement)) ||
         window.document,
       (error) => {
-
         if (error) {
           return reject(error);
         }
-    
+
         // @ts-ignore
         resolve(window.HTMLCS.getMessages());
       },
@@ -42,7 +41,7 @@ const runAudit = async (options) => {
 const htmlcsRunner = {
   en: {
     scripts: [require.resolve("fast_htmlcs/build/HTMLCS.js")],
-    run: runAudit,
+    run,
   },
 };
 
@@ -52,7 +51,7 @@ const locales = ["fr", "es", "it", "ja", "nl", "pl", "zh_CN", "zh_TW"];
 for (const lang of locales) {
   htmlcsRunner[lang.replace("_", "-")] = {
     scripts: [require.resolve(`fast_htmlcs/build/HTMLCS.${lang}.js`)],
-    run: runAudit,
+    run,
   };
 }
 

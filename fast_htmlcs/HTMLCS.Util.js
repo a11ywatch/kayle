@@ -138,6 +138,7 @@ _global.HTMLCS.util = (function () {
    */
   self.getElementWindow = function (element) {
     var doc = null;
+
     if (element.ownerDocument) {
       doc = element.ownerDocument;
     } else {
@@ -145,6 +146,7 @@ _global.HTMLCS.util = (function () {
     }
 
     var window = null;
+
     if (doc.defaultView) {
       window = doc.defaultView;
     } else {
@@ -163,6 +165,7 @@ _global.HTMLCS.util = (function () {
    */
   self.hasValidAriaLabel = function (element) {
     var found = false;
+
     if (element.hasAttribute("aria-labelledby") === true) {
       // Checking aria-labelled by where the label exists AND it has text available
       // to an accessibility API.
@@ -1375,11 +1378,7 @@ _global.HTMLCS.util = (function () {
    * @returns {String} The text content.
    */
   self.getTextContent = function (element) {
-    if (element.textContent !== undefined) {
-      return element.textContent;
-    } else {
-      return element.innerText;
-    }
+    return element.textContent || element.innerText
   };
 
   /**

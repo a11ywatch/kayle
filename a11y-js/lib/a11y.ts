@@ -1,8 +1,9 @@
 import { extractArgs } from "./option";
 import { runAction } from "./action";
 import { RunnerConfig } from "./config";
-import { runnersJavascript } from "./runner-js";
+import { runnersJavascript, getRunner } from "./runner-js";
 import { setNetworkInterception } from "./utils/go-to-page";
+import { Watcher } from "./watcher";
 
 export type MetaInfo = {
   errorCount: number;
@@ -39,62 +40,6 @@ export type Audit = {
   pageUrl: string;
 };
 
-// watcher cycle timeout
-function Watcher() {
-  this.timer = null;
-}
-
-// watch until timeout
-Watcher.prototype.watch = function (timeout: number) {
-  return new Promise((resolve) => {
-    this.timer = setTimeout(() => {
-      resolve({
-        docuementTitle: "",
-        pageUrl: "",
-        meta: {
-          errorCount: 0,
-          warningCount: 0,
-          noticeCount: 0,
-          accessScore: 0,
-        },
-        automateable: {
-          missingAltIndexs: [],
-        },
-        issues: [],
-      });
-    }, timeout);
-  });
-};
-
-/**
- * Get the runner for the page.
- * @param {String} [language="en"] - The language.
- * @param {String} [runner=""] - The runner type.
- * @returns {String} Returns the runner javascript by locale.
- */
-const getRunner = (language: string, runner: string) => {
-  // if langauge exist get the runner type
-  if (language) {
-    if (runner === "axe") {
-      const script = `axe_${language}`;
-
-      if (runnersJavascript.hasOwnProperty(script)) {
-        return runnersJavascript[script];
-      }
-    }
-
-    if (runner === "htmlcs") {
-      const script = `htmlcs_${language}`;
-
-      if (runnersJavascript.hasOwnProperty(script)) {
-        return runnersJavascript[script];
-      }
-    }
-  }
-
-  return runnersJavascript[runner];
-};
-
 /**
  * Run accessibility tests for page.
  * @param {Object} [config={}] - Options to change the way tests run.
@@ -106,7 +51,6 @@ export async function a11y(o: Partial<RunnerConfig> = {}): Promise<Audit> {
   }
 
   const config = extractArgs(o);
-
 
   const watcher = new Watcher();
 

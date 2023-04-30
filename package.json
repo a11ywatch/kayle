@@ -11,6 +11,7 @@
     "build:fast_htmlcs": "cd fast_htmlcs && yarn build --lang=en,fr,es,it,ja,nl,pl,zh_CN,zh_TW",
     "build:fast_axe": "cd fast_axecore && yarn build --lang=en,da,de,es,eu,pl,fr,he,ja,ko,nl,no_NB,pt_BR",
     "build:a11y-js": "cd a11y-js && yarn build",
+    "build:test": "yarn build:fast_htmlcs && yarn build:fast_axe && cd a11y-js && npx playwright test",
     "build:test:fast_htmlcs": "yarn build:fast_htmlcs && yarn test:playwright",
     "pub:fast_htmlcs": "yarn build:fast_htmlcs && yarn npm publish",
     "pub:fast_axecore": "yarn build:fast_axecore && yarn npm publish",

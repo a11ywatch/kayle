@@ -54,4 +54,33 @@ const runnersJavascript = {
   // axe_pt_BR: loadRunnerScript("axe", "pt-BR"),
 };
 
-export { runnersJavascript };
+/**
+ * Get the runner for the page.
+ * @param {String} [language="en"] - The language.
+ * @param {String} [runner=""] - The runner type.
+ * @returns {String} Returns the runner javascript by locale.
+ */
+const getRunner = (language: string, runner: string) => {
+  // if langauge exist get the runner type
+  if (language) {
+    if (runner === "axe") {
+      const script = `axe_${language}`;
+
+      if (typeof runnersJavascript[script] !== "undefined") {
+        return runnersJavascript[script];
+      }
+    }
+
+    if (runner === "htmlcs") {
+      const script = `htmlcs_${language}`;
+
+      if (typeof runnersJavascript[script] !== "undefined") {
+        return runnersJavascript[script];
+      }
+    }
+  }
+
+  return runnersJavascript[runner];
+};
+
+export { runnersJavascript, getRunner };
