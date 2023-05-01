@@ -1,6 +1,6 @@
 {
   "name": "fast_htmlcs",
-  "version": "0.0.14",
+  "version": "0.0.16",
   "description": "HTML_CodeSniffer is a client-side JavaScript that checks a HTML document or source code, and detects violations of a defined coding standard.",
   "license": "BSD-3-Clause",
   "main": "index.js",
@@ -9,8 +9,9 @@
   ],
   "scripts": {
     "build:all": "tsc && grunt build --lang=en,fr,es,it,ja,nl,pl,zh_CN,zh_TW",
-    "prepack": "tsc && grunt build --lang=en,fr,es,it,ja,nl,pl,zh_CN,zh_TW",
-    "build": "yarn build:all && npx swc --copy-files --config-file .swcrc --ignore ./dist/*.d.ts ./dist -d ./dist",
+    "prepack": "tsc && grunt build --lang=en,fr,es,it,ja,nl,pl,zh_CN,zh_TW && yarn swc:dist",
+    "build": "yarn build:all && yarn swc:dist",
+    "swc:dist": "npx swc --copy-files --config-file .swcrc ./build -d ./build",
     "test": "grunt eslint",
     "fix": "prettier --write '**/*.{js,jsx,ts,tsx}'",
     "fix:trans": "prettier --write 'Translations/*.{js,jsx,ts,tsx}'"
@@ -34,6 +35,7 @@
   "devDependencies": {
     "@swc/cli": "^0.1.62",
     "@swc/core": "^1.3.56",
+    "@swc/helpers": "^0.5.1",
     "eslint": "8.39.0",
     "grunt": "^1.6.1",
     "grunt-contrib-copy": "^1.0.0",

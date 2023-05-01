@@ -153,7 +153,7 @@ This project is the fastest web accessibility runner OSS. The `htmlcs` and `axe-
 1. `fast_htmlcs` runs over 110 times base faster than htmlcs or HTML codesniffer.
 1. `fast_axecore` runs over 30%-100%+ base faster than the original axe by default and scales the larger the website.
 
-Currently `fast_htmlcs` runs around 50x faster than axe-core and has several differences of handling the way issues are found. They both capture different cases and is best to used together which this library handles efficiently.
+Currently `fast_htmlcs` runs around 50x faster than axe-core and has several differences of handling the way issues are found. They both capture different cases and is best to used together which this library handles efficiently. We use [swc](https://swc.rs/) to minify the scripts for small bundle sizes under 142kb for HTMLCS compared to the original being 365kb. 
 
 If you use [`@playwright/axe-core`](https://playwright.dev/docs/next/accessibility-testing) you can swap it out with the following [playwright-axe-example](./a11y-js/tests/basic-axe-playwright.spec.ts) and get an increase in issues found and major performance boost of at least 100%. You can also include multiple runners to extend the issues beyond the basics in folds.
 
