@@ -35,7 +35,7 @@ export const blockedResourceTypes = {
   beacon: null,
   csp_report: null,
   websocket: null,
-  script: null,
+  // script: null,
   preflight: null,
   image: null,
   imageset: null,
