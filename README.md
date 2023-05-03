@@ -6,10 +6,7 @@ Getting Started: checkout the [playwright-example](./a11y-js/tests/basic-playwri
 
 Over 150-1000% faster than other accessibility runners like `@axe-core/playwright` or `pa11y` along with [10-48%](./a11y-js/test-results) increase on issues found. 
 
-| Lib     | Coverage | Universal | Speed ETA | Bundle Size |
-|---------|----------|-----------|-----------|-------------|
-| a11y-js | 86%      | yes       | 1000      | 290kb       |
-| pa11y   | 41%      | no        | 80        | 1.3mb       |
+If you want to use a browser make sure to have [playwright](https://github.com/microsoft/playwright) or [puppeteer](https://github.com/puppeteer/puppeteer) installed.
 
 ```sh
 npm i a11y-js --save

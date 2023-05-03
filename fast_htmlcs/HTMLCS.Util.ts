@@ -163,10 +163,7 @@ _global.HTMLCS.util = {
       for (const id of labelledByIds) {
         const elem = document.getElementById(id);
 
-        if (
-          elem &&
-          /^\s*$/.test(this.getElementTextContent(elem)) === false
-        ) {
+        if (elem && /^\s*$/.test(this.getElementTextContent(elem)) === false) {
           found = true;
           break;
         }
@@ -191,7 +188,8 @@ _global.HTMLCS.util = {
    */
   style: function (element, pseudo) {
     return (
-      element.currentStyle || this.getElementWindow(element).getComputedStyle(element, pseudo || null)
+      element.currentStyle ||
+      this.getElementWindow(element).getComputedStyle(element, pseudo || null)
     );
   },
   /**
@@ -473,7 +471,10 @@ _global.HTMLCS.util = {
    * @returns {Object}
    */
   colourStrToRGB: function (color) {
-    let colour: string | { red: number, blue: number, green: number, alpha?: number } = color.toLowerCase();
+    let colour:
+      | string
+      | { red: number; blue: number; green: number; alpha?: number } =
+      color.toLowerCase();
 
     if (colour.substring(0, 3) === "rgb") {
       // rgb[a](0, 0, 0[, 0]) format.
@@ -558,7 +559,7 @@ _global.HTMLCS.util = {
         // @ts-ignore
         transformed[x] = colour[x] / 12.92;
       } else {
-         // @ts-ignore
+        // @ts-ignore
         transformed[x] = Math.pow((colour[x] + 0.055) / 1.055, 2.4);
       }
     }
@@ -654,7 +655,10 @@ _global.HTMLCS.util = {
    * @returns {Object}
    */
   sRGBtoHSV: function (color) {
-    const colour = typeof color === "string" && color.charAt ? this.colourStrToRGB(color) : color
+    const colour =
+      typeof color === "string" && color.charAt
+        ? this.colourStrToRGB(color)
+        : color;
 
     const hsvColour = {
       hue: 0,
@@ -1179,11 +1183,9 @@ _global.HTMLCS.util = {
 
                 if (exp.length > 0) {
                   // Sort and filter expected ids by unique value.
-                  var filteredExp = exp
-                    .sort()
-                    .filter(function (value, index) {
-                      return this.indexOf(value) === index;
-                    });
+                  var filteredExp = exp.sort().filter(function (value, index) {
+                    return this.indexOf(value) === index;
+                  });
 
                   // @ts-ignore
                   exp = ` ${filteredExp.join(" ")} `;

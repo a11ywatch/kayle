@@ -10,7 +10,7 @@ module.exports = function (grunt) {
     langs = [""];
   }
 
-  // handle the translation file 
+  // handle the translation file
   const handleLanguage = (language) => ({
     translationFile: `Translations/${
       language ? language.replace(".", "") : language || "en"

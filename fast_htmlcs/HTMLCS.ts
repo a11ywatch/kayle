@@ -368,7 +368,7 @@ _global.HTMLCS = new (function () {
     callback,
     failCallback,
     options
-  )  => {
+  ) => {
     if (standard.indexOf("http") !== 0) {
       standard = _getStandardPath(standard);
     } //end id
@@ -532,7 +532,7 @@ _global.HTMLCS = new (function () {
     // Call the register method of the sniff, it should return an array of tags.
     if (sniffObj.register) {
       const watchedTags = sniffObj.register();
-      
+
       for (var i = 0; i < watchedTags.length; i++) {
         if (!_tags.has(watchedTags[i])) {
           _tags.set(watchedTags[i], [sniffObj]);
@@ -597,10 +597,11 @@ _global.HTMLCS = new (function () {
    *
    * A full message code includes the standard name, the sniff name and the given code.
    * @param code String - The message code.
-   * 
+   *
    * @returns {String} The full message code.
    */
-  const _getMessageCode = (code) => _standard + "." + _currentSniff._name + "." + code;
+  const _getMessageCode = (code) =>
+    _standard + "." + _currentSniff._name + "." + code;
 
   /**
    * Includes the specified JS file.

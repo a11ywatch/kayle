@@ -32,8 +32,8 @@ import { performance } from "perf_hooks";
   assert(Array.isArray(issues));
   // must return at least 44 errors or runner messed up.
   assert(meta.errorCount === 44);
-  // must return at least 24 warnings or runner messed up.
-  assert(meta.warningCount === 24);
+  // must return at least 34 warnings or runner messed up.
+  assert(meta.warningCount === 34);
   assert(typeof pageUrl === "string");
   assert(typeof documentTitle === "string");
 

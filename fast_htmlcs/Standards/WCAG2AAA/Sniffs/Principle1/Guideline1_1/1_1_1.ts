@@ -51,84 +51,84 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
    * @param {DOMNode} element The element to test.
    */
   addNullAltTextResults: function (top) {
-    var errors = this.testNullAltText(top);
+    const errors = this.testNullAltText(top);
 
-    for (var i = 0; i < errors.img.emptyAltInLink.length; i++) {
+    for (const emptyAltInLink of errors.img.emptyAltInLink) {
       HTMLCS.addMessage(
         HTMLCS.ERROR,
-        errors.img.emptyAltInLink[i],
+        emptyAltInLink,
         _global.HTMLCS.getTranslation("1_1_1_H30.2"),
         "H30.2"
       );
     }
 
-    for (var i = 0; i < errors.img.nullAltWithTitle.length; i++) {
+    for (const nullAltWithTitle of errors.img.nullAltWithTitle) {
       HTMLCS.addMessage(
         HTMLCS.ERROR,
-        errors.img.nullAltWithTitle[i],
+        nullAltWithTitle,
         _global.HTMLCS.getTranslation("1_1_1_H67.1"),
         "H67.1"
       );
     }
 
-    for (var i = 0; i < errors.img.ignored.length; i++) {
+    for (const ignored of errors.img.ignored) {
       HTMLCS.addMessage(
         HTMLCS.WARNING,
-        errors.img.ignored[i],
+        ignored,
         _global.HTMLCS.getTranslation("1_1_1_H67.2"),
         "H67.2"
       );
     }
 
-    for (var i = 0; i < errors.img.missingAlt.length; i++) {
+    for (const missingAlt of errors.img.missingAlt) {
       HTMLCS.addMessage(
         HTMLCS.ERROR,
-        errors.img.missingAlt[i],
+        missingAlt,
         _global.HTMLCS.getTranslation("1_1_1_H37"),
         "H37"
       );
     }
 
-    for (var i = 0; i < errors.img.generalAlt.length; i++) {
+    for (const generalAlt of errors.img.generalAlt) {
       HTMLCS.addMessage(
         HTMLCS.NOTICE,
-        errors.img.generalAlt[i],
+        generalAlt,
         _global.HTMLCS.getTranslation("1_1_1_G94.Image"),
         "G94.Image"
       );
     }
 
-    for (var i = 0; i < errors.inputImage.missingAlt.length; i++) {
+    for (const missingAlt of errors.inputImage.missingAlt) {
       HTMLCS.addMessage(
         HTMLCS.ERROR,
-        errors.inputImage.missingAlt[i],
+        missingAlt,
         _global.HTMLCS.getTranslation("1_1_1_H36"),
         "H36"
       );
     }
 
-    for (var i = 0; i < errors.inputImage.generalAlt.length; i++) {
+    for (const generalAlt of errors.inputImage.generalAlt) {
       HTMLCS.addMessage(
         HTMLCS.NOTICE,
-        errors.inputImage.generalAlt[i],
+        generalAlt,
         _global.HTMLCS.getTranslation("1_1_1_G94.Button"),
         "G94.Button"
       );
     }
 
-    for (var i = 0; i < errors.area.missingAlt.length; i++) {
+    for (const missingAlt of errors.area.missingAlt) {
       HTMLCS.addMessage(
         HTMLCS.ERROR,
-        errors.area.missingAlt[i],
+        missingAlt,
         _global.HTMLCS.getTranslation("1_1_1_H24"),
         "H24"
       );
     }
 
-    for (var i = 0; i < errors.area.generalAlt.length; i++) {
+    for (const generalAlt of errors.area.generalAlt) {
       HTMLCS.addMessage(
         HTMLCS.NOTICE,
-        errors.area.generalAlt[i],
+        generalAlt,
         _global.HTMLCS.getTranslation("1_1_1_H24.2"),
         "H24.2"
       );
@@ -148,6 +148,11 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
    * @returns {Object} A structured list of errors.
    */
   testNullAltText: function (top) {
+    const elements = HTMLCS.util.getAllElements(
+      top,
+      'img, area, input[type="image"]'
+    );
+
     const errors = {
       img: {
         generalAlt: [],
@@ -166,32 +171,25 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
       },
     };
 
-    const elements = HTMLCS.util.getAllElements(
-      top,
-      'img, area, input[type="image"]'
-    );
-
     for (var el = 0; el < elements.length; el++) {
-      var element = elements[el];
+      const element = elements[el];
 
-      var nodeName = element.nodeName.toLowerCase();
-
-      var linkOnlyChild = false;
-      var missingAlt = false;
-      var nullAlt = false;
+      let linkOnlyChild = false;
+      let missingAlt = false;
+      let nullAlt = false;
 
       if (element.parentNode.nodeName === "A") {
-        var prevNode = HTMLCS.util.getPreviousSiblingElement(element, null) as Element;
-        var nextNode = HTMLCS.util.getNextSiblingElement(element, null)  as Element;
-
-        if (prevNode === null && nextNode === null) {
-          var textContent = element.parentNode.textContent;
+        if (
+          HTMLCS.util.getPreviousSiblingElement(element, null) === null &&
+          HTMLCS.util.getNextSiblingElement(element, null) === null
+        ) {
+          let textContent = element.parentNode.textContent;
 
           if (element.parentNode.textContent !== undefined) {
-            var textContent = element.parentNode.textContent;
+            textContent = element.parentNode.textContent;
           } else {
             // @ts-ignore Keep IE8 happy.
-            var textContent = element.parentNode.innerText;
+            textContent = element.parentNode.innerText;
           }
 
           if (HTMLCS.util.isStringEmpty(textContent) === true) {
@@ -210,8 +208,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
       }
 
       // Now determine which test(s) should fire.
-      switch (nodeName) {
-        case "img":
+      switch (element.nodeName) {
+        case "IMG":
           if (
             linkOnlyChild === true &&
             (missingAlt === true || nullAlt === true)
@@ -238,7 +236,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
           }
           break;
 
-        case "input":
+        case "INPUT":
           // Image submit buttons.
           if (missingAlt === true || nullAlt === true) {
             errors.inputImage.missingAlt.push(element);
@@ -247,7 +245,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
           }
           break;
 
-        case "area":
+        case "AREA":
           // Area tags in a client-side image map.
           if (missingAlt === true || nullAlt === true) {
             errors.area.missingAlt.push(element);
@@ -300,19 +298,19 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
    */
   testLinkStutter: function (element) {
     if (element.parentNode && element.parentNode.nodeName === "A") {
-      var anchor = element.parentNode;
+      const anchor = element.parentNode;
 
       // If contained by an "a" link, check that the alt text does not duplicate
       // the link text, or if no link text, check an adjacent link does not
       // duplicate it.
-      var nodes = {
+      const nodes = {
         anchor: {
           href: anchor.getAttribute("href"),
           text: HTMLCS.util.getElementTextContent(anchor, false),
           alt: this._getLinkAltText(anchor),
         },
         previous: undefined,
-        next: undefined
+        next: undefined,
       };
 
       if (nodes.anchor.alt === null) {
@@ -344,8 +342,16 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
       //     (This leaves one link with no text at all - the two should be
       //      combined into one link.)
       if (nodes.anchor.text === "") {
-        var prevLink = HTMLCS.util.getPreviousSiblingElement(anchor, "A", true) as Element;
-        var nextLink = HTMLCS.util.getNextSiblingElement(anchor, "A", true) as Element;
+        const prevLink = HTMLCS.util.getPreviousSiblingElement(
+          anchor,
+          "A",
+          true
+        ) as Element;
+        const nextLink = HTMLCS.util.getNextSiblingElement(
+          anchor,
+          "A",
+          true
+        ) as Element;
 
         if (prevLink !== null) {
           nodes.previous = {
@@ -435,48 +441,48 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
    * @param {DOMNode} element The element to test.
    */
   addMediaAlternativesResults: function (top) {
-    var errors = this.testMediaTextAlternatives(top);
+    const errors = this.testMediaTextAlternatives(top);
 
-    for (var i = 0; i < errors.object.missingBody.length; i++) {
+    for (const missingBody of errors.object.missingBody) {
       HTMLCS.addMessage(
         HTMLCS.ERROR,
-        errors.object.missingBody[i],
+        missingBody,
         _global.HTMLCS.getTranslation("1_1_1_H53,ARIA6"),
         "H53,ARIA6"
       );
     }
 
-    for (var i = 0; i < errors.object.generalAlt.length; i++) {
+    for (const generalAlt of errors.object.generalAlt) {
       HTMLCS.addMessage(
         HTMLCS.NOTICE,
-        errors.object.generalAlt[i],
+        generalAlt,
         _global.HTMLCS.getTranslation("1_1_1_G94,G92.Object,ARIA6"),
         "G94,G92.Object,ARIA6"
       );
     }
 
-    for (var i = 0; i < errors.applet.missingBody.length; i++) {
+    for (const missingBody of errors.applet.missingBody) {
       HTMLCS.addMessage(
         HTMLCS.ERROR,
-        errors.applet.missingBody[i],
+        missingBody,
         _global.HTMLCS.getTranslation("1_1_1_H35.3"),
         "H35.3"
       );
     }
 
-    for (var i = 0; i < errors.applet.missingAlt.length; i++) {
+    for (const missingAlt of errors.applet.missingAlt) {
       HTMLCS.addMessage(
         HTMLCS.ERROR,
-        errors.applet.missingAlt[i],
+        missingAlt,
         _global.HTMLCS.getTranslation("1_1_1_H35.2"),
         "H35.2"
       );
     }
 
-    for (var i = 0; i < errors.applet.generalAlt.length; i++) {
+    for (const generalAlt of errors.applet.generalAlt) {
       HTMLCS.addMessage(
         HTMLCS.NOTICE,
-        errors.applet.generalAlt[i],
+        generalAlt,
         _global.HTMLCS.getTranslation("1_1_1_G94,G92.Applet"),
         "G94,G92.Applet"
       );
@@ -484,7 +490,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
   },
 
   testMediaTextAlternatives: function (top) {
-    var errors = {
+    const errors = {
       object: {
         missingBody: [],
         generalAlt: [],
@@ -496,10 +502,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
       },
     };
 
-    var elements = HTMLCS.util.getAllElements(top, "object");
-
-    for (var el = 0; el < elements.length; el++) {
-      var element = elements[el];
+    for (const element of HTMLCS.util.getAllElements(top, "object")) {
       var childObject = element.querySelector("object");
 
       // If we have an object as our alternative, skip it. Pass the blame onto
@@ -521,26 +524,28 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
       }
     }
 
-    var elements = HTMLCS.util.getAllElements(top, "applet");
-
-    for (var el = 0; el < elements.length; el++) {
+    for (const element of HTMLCS.util.getAllElements(top, "applet")) {
       // Test firstly for whether we have an object alternative.
-      var childObject = element.querySelector("object");
-      var hasError = false;
+      let childObject = element.querySelector("object");
+      let hasError = false;
 
       // If we have an object as our alternative, skip it. Pass the blame onto
       // the child. (This is a special case: those that don't understand APPLET
       // may understand OBJECT, but APPLET shouldn't be nested.)
       if (childObject === null) {
-        var textAlt = HTMLCS.util.getElementTextContent(element, true);
-        if (HTMLCS.util.isStringEmpty(textAlt) === true) {
+        if (
+          HTMLCS.util.isStringEmpty(
+            HTMLCS.util.getElementTextContent(element, true)
+          ) === true
+        ) {
           errors.applet.missingBody.push(element);
           hasError = true;
         }
       }
 
-      var altAttr = element.getAttribute("alt") || "";
-      if (HTMLCS.util.isStringEmpty(altAttr) === true) {
+      if (
+        HTMLCS.util.isStringEmpty(element.getAttribute("alt") || "") === true
+      ) {
         errors.applet.missingAlt.push(element);
         hasError = true;
       }
@@ -566,17 +571,22 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
    *
    * @returns {String} The alt text.
    */
-  _getLinkAltText: function (anchor) {
-    var anchor = anchor.cloneNode(true);
-    var nodes = [];
+  _getLinkAltText: function (anc: Node) {
+    const anchor = anc.cloneNode(true);
+    const nodes = new Array(anchor.childNodes.length);
 
-    for (var i = 0; i < anchor.childNodes.length; i++) {
-      nodes.push(anchor.childNodes[i]);
+    for (let i = 0; i < anchor.childNodes.length; i++) {
+      nodes[i] = anchor.childNodes[i]
     }
 
-    var alt = null;
+    nodes.length = anchor.childNodes.length;
+
+    let alt = null;
+
+    // todo: remove while loop node shift for Direct Node manipulation
+
     while (nodes.length > 0) {
-      var node = nodes.shift();
+      const node = nodes.shift();
 
       // If it's an element, add any sub-nodes to the process list.
       if (node.nodeType === 1) {
