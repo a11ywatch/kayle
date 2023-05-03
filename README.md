@@ -95,20 +95,8 @@ type RunnerConfig = {
   timeout?: number; // timeout for running the audit.
   origin?: string; // the origin of the page.
   language?: string; // the language to use for testing and getting localized data in.
+  noIntercept?: boolean; // skip setting up request interception.
 };
-
-```
-
-## Linting
-
-Straight forward linting. You can pass a url or valid html.
-
-Linting is handled on the same machine not sandboxed.
-
-```js
-import { a11yLint } from "a11y-js"
-
-await a11yLint("https://a11ywatch.com");
 
 ```
 
@@ -123,6 +111,8 @@ a11y supports multiple test runners which return different results. The built-in
 If you run [@playwright/axe-core](./a11y-js/tests/axecore-playwright.spec.ts) vs [our custom axe-core](./a11y-js/tests/basic-axe-playwright.spec.ts) setup of axe the issues run over 90% faster over 20 runs by default with improved resolution of issues. The performance scales the larger the page.
 
 For the mock test case used `@playwright/axe-core` found 2 errors while `fast_axecore` or our custom version of it found 6 errors using a small [sample mock](./a11y-js/tests/html-small-mock.ts).
+
+The issues are sorted displaying the following order "issues", "warnings", and "notices". The sorting is done with an efficient algorithm leveraging the js engine with `setImmediate` instead of the standard `.sort` method for arrays.
 
 ## i18n
 
@@ -149,6 +139,20 @@ This project is the fastest web accessibility runner OSS. The `htmlcs` and `axe-
 
 - Playwright runs 100% faster than puppeteer.
 
+
+## Linting
+
+Straight forward linting. You can pass a url or valid html.
+
+Linting is handled on the same machine not sandboxed.
+
+```js
+import { a11yLint } from "a11y-js"
+
+await a11yLint("https://a11ywatch.com");
+
+```
+
 ## Testing
 
 The [test-results](./test-results/) are checked in to avoid hindering performance on updates. The comparison between using `fast_htmlcs`, `fast_axecore`, and the metrics for the 3rd party `@axe-core/playwright`.
@@ -168,6 +172,8 @@ If you use [`@playwright/axe-core`](https://playwright.dev/docs/next/accessibili
 
 The current results using htmlcs for a small to large website range between 150-1000% faster.
 Since pa11y does not allow testing against static html we needed to use a url which leads to latency.
+
+There are several differences with the lib compared to pa11y. One of them is that we do not duplicate audit data and keep all records unique. If an issue is found twice on a page we use a `recurrence` property to determine how many times. We also gather meta data to help do usefull things without having to iterate over the entire collection.
 
 Running `pa11y` using the url `https://www.drake.com` using both htmlcs and axe only 28 errors were found compared to `a11y-js` 44.
 

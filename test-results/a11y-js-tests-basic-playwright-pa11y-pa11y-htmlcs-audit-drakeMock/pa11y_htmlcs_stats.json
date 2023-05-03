@@ -1,10 +1,10 @@
 {
   "mock": "[drakeMock]",
   "htmlSize": 71784,
-  "duration": 43.15412503480911,
+  "duration": 62.50737500190735,
   "errors": 11,
-  "warnings": 15,
+  "warnings": 29,
   "runner": [
-    "fast_htmlcs"
+    "htmlcs"
   ]
 }
