@@ -79,17 +79,10 @@ async function runActionsList(config: RunnerConfig) {
 
 async function injectRunners(config: RunnerConfig) {
   // load axe first to avoid conflictions axe indexed as first item in array when multiple items exist
-  if (config.runners.length === 2) {
-    return await Promise.all([
-      config.page.evaluate(runnersJavascript["a11y"]),
-      config.page.evaluate(getRunner(config.language, config.runners[0])),
-      config.page.evaluate(getRunner(config.language, config.runners[1])),
-    ]);
-  }
-
-  await Promise.all([
+  return await Promise.all([
     config.page.evaluate(runnersJavascript["a11y"]),
     config.page.evaluate(getRunner(config.language, config.runners[0])),
+    config.runners.length === 2 ? config.page.evaluate(getRunner(config.language, config.runners[1])) : undefined,
   ]);
 }
 

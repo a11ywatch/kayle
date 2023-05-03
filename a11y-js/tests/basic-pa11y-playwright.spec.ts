@@ -2,7 +2,7 @@
 import { writeFileSync } from "fs";
 import assert from "assert";
 import pa11y from "pa11y";
-import { drakeMock } from "./html-mock"; // static html of 11 issues
+import { drakeMock } from "./mocks/html-mock";
 import { performance } from "perf_hooks";
 import { test, expect } from "@playwright/test";
 

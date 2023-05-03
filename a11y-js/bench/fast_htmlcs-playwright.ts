@@ -1,6 +1,6 @@
 import { a11y } from "a11y-js";
 import { chromium } from "@playwright/test";
-import { drakeMock } from "../tests/html-mock"; // static html of www.drake.com Jan 21, 2022
+import { drakeMock } from "../tests/mocks/html-mock"; // static html of www.drake.com Jan 21, 2022
 
 // amount of iterations
 const iterations = process.env.BENCH_COUNT

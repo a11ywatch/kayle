@@ -1,6 +1,6 @@
 import assert from "assert";
 import { writeFileSync } from "fs";
-import { drakeMock } from "./html-mock"; // static html of 11 issues
+import { drakeMock } from "./mocks/html-mock";
 import { performance } from "perf_hooks";
 import { test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";

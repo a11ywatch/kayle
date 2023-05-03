@@ -15,7 +15,7 @@ import { performance } from "perf_hooks";
   const { issues, pageUrl, documentTitle, meta, automateable } = await a11y({
     page,
     browser,
-    runners: ["axe"],
+    runners: ["htmlcs"],
     includeWarnings: true,
     origin: "https://www.drake.com",
   });

@@ -27,6 +27,7 @@
     "test:i18n": "npm run compile:test && node _tests/tests/i18n.js",
     "test:puppeteer": "npm run compile:test && node _tests/tests/basic.js",
     "test:puppeteer:axe": "npm run compile:test && node _tests/tests/basic-axe.js",
+    "test:puppeteer:htmlcs": "npm run compile:test && node _tests/tests/basic-htmlcs.js",
     "test:playwright": "npm run compile:test && npx playwright test ./tests/basic-playwright.spec.ts",
     "test:playwright:axe": "npm run compile:test && npx playwright test ./tests/basic-axe-playwright.spec.ts",
     "test:playwright:axecore": "npm run compile:test && npx playwright test ./tests/axecore-playwright.spec.ts",

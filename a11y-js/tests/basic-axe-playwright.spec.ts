@@ -1,7 +1,7 @@
 import assert from "assert";
 import { writeFileSync } from "fs";
 import { a11y, setNetworkInterception } from "a11y-js";
-import { drakeMock } from "./html-mock"; // static html of 11 issues
+import { drakeMock } from "./mocks/html-mock";
 import { performance } from "perf_hooks";
 import { test, expect } from "@playwright/test";
 

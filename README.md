@@ -168,47 +168,6 @@ Currently `fast_htmlcs` runs around 50x faster than axe-core and has several dif
 
 If you use [`@playwright/axe-core`](https://playwright.dev/docs/next/accessibility-testing) you can swap it out with the following [playwright-axe-example](./a11y-js/tests/basic-axe-playwright.spec.ts) and get an increase in issues found and major performance boost of at least 100%. You can also include multiple runners to extend the issues beyond the basics in folds.
 
-### Compare Puppeteer - Pa11y Vs a11y-js
-
-The current results using htmlcs for a small to large website range between 150-1000% faster.
-Since pa11y does not allow testing against static html we needed to use a url which leads to latency.
-
-There are several differences with the lib compared to pa11y. One of them is that we do not duplicate audit data and keep all records unique. If an issue is found twice on a page we use a `recurrence` property to determine how many times. We also gather meta data to help do usefull things without having to iterate over the entire collection.
-
-Running `pa11y` using the url `https://www.drake.com` using both htmlcs and axe only 28 errors were found compared to `a11y-js` 44.
-
-Bench ran `yarn bench:puppeteer:pa11y`.
-
-The performance doubles when using playwright instead of puppeteer which is the reason for the range on the benchmarks below.
-Pa11y does not support Playwright so the tests are ran only in puppeteer for that case.
-
-#### htmlcs | fast_htmlcs
-
-url: https://www.drake.com
-
-BENCH: a11y-js htmlcs 20x
-BENCH: pa11y htmlcs 20x
-
-Fastest is a11y-js by 162-320%
-
-#### axe-core | fast_axecore
-
-url: https://www.drake.com
-
-BENCH: a11y-js axecore 20x
-BENCH: pa11y axecore 20x
-
-Fastest is a11y-js by 150-300%
-
-#### htmlcs & axecore
-
-url: https://www.drake.com
-
-BENCH: a11y-js htmlcs & axe 20x
-BENCH: pa11y htmlcs & axe 20x
-
-Fastest is a11y-js by 152-302%
-
 ## Developing
 
 In order to develop you need yarn v2 installed for the workspace.
