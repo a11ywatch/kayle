@@ -46,13 +46,15 @@ async function launchBench() {
   await context.close();
   await browser.close();
 
-  console.log(JSON.stringify([
-    {
-        "name": "Custom fast_htmlcs - OPS/S [MEDIUM:PAGE]",
-        "unit": "OPS/S",
-        "value": 1000 / a11yAxeAVG 
-    },
-  ]))
+  console.log(
+    JSON.stringify([
+      {
+        name: "Custom fast_htmlcs - OPS/S [MEDIUM:PAGE]",
+        unit: "OPS/S",
+        value: 1000 / a11yAxeAVG,
+      },
+    ])
+  );
 }
 
 launchBench();

@@ -82,7 +82,9 @@ async function injectRunners(config: RunnerConfig) {
   return await Promise.all([
     config.page.evaluate(runnersJavascript["a11y"]),
     config.page.evaluate(getRunner(config.language, config.runners[0])),
-    config.runners.length === 2 ? config.page.evaluate(getRunner(config.language, config.runners[1])) : undefined,
+    config.runners.length === 2
+      ? config.page.evaluate(getRunner(config.language, config.runners[1]))
+      : undefined,
   ]);
 }
 

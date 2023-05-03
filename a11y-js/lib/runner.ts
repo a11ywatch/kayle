@@ -20,7 +20,7 @@
   let hiddenElements = null;
 
   // shape the issue
-  function shapeIssue(issue) {
+  const shapeIssue = (issue) => {
     let context = "";
     let selector = "";
 
@@ -40,57 +40,141 @@
       runnerExtras: issue.runnerExtras || {},
       recurrence: issue.recurrence || 0,
     };
-  }
+  };
+
+  // Truncate the html.
+  const getElementContext = (element) => {
+    let outerHTML = element.outerHTML;
+
+    if (!outerHTML) {
+      return "";
+    }
+
+    if (element.innerHTML.length > 31) {
+      outerHTML = outerHTML.replace(
+        element.innerHTML,
+        `${element.innerHTML.substring(0, 31)}...`
+      );
+    }
+
+    if (outerHTML.length > 251) {
+      outerHTML = `${outerHTML.substring(0, 250)}...`;
+    }
+
+    return outerHTML;
+  };
+
+  // valid element node
+  const isElementNode = (element) =>
+    element.nodeType === window.Node.ELEMENT_NODE;
+
+  // get css selelector
+  const getElementSelector = (element, selectorParts = []) => {
+    if (isElementNode(element)) {
+      selectorParts.unshift(buildElementIdentifier(element));
+
+      // recursive build selectors todo: maxticks
+      if (!element.id && element.parentNode) {
+        return getElementSelector(element.parentNode, selectorParts);
+      }
+    }
+
+    return selectorParts.join(" > ");
+  };
+
+  // return siblings of element
+  const getSiblings = (element) => {
+    let dupSibling = 0;
+    let siblingIndex = 0; // increment until sibling index found
+
+    for (const node of element.parentNode.childNodes) {
+      if (isElementNode(node)) {
+        siblingIndex++;
+      }
+      if (node.tagName === element.tagName) {
+        dupSibling += 1;
+        // break loop on multi duplicates
+        if (dupSibling === 2) {
+          break;
+        }
+      }
+    }
+
+    return {
+      siblingIndex,
+      onlySibling: dupSibling <= 1,
+    };
+  };
+
+  // build css slectors
+  const buildElementIdentifier = (element) => {
+    if (element.id) {
+      return `${element.id[0] !== "#" ? "#" : ""}${element.id}`;
+    }
+
+    let identifier = element.tagName.toLowerCase();
+
+    if (!element.parentNode) {
+      return identifier;
+    }
+
+    const { onlySibling, siblingIndex } = getSiblings(element);
+
+    if (!onlySibling) {
+      identifier += `:nth-child(${siblingIndex + 1})`;
+    }
+
+    return identifier;
+  };
 
   // runner to get accessibility issues
   async function runA11y(options) {
     // determine if valid issue
-    function isIssueNotIgnored(issue) {
+    const isIssueNotIgnored = (issue) => {
       return !options.ignore.some(
         (element) =>
           element === issue.type || element === issue.code.toLowerCase()
       );
-    }
+    };
 
     // element test area
-    function isElementInTestArea(element) {
+    const isElementInTestArea = (element) => {
       if (!rootElement) {
         rootElement = window.document.querySelector(options.rootElement);
       }
-
       return rootElement ? rootElement.contains(element) : true;
-    }
+    };
 
     // outside hidden selectors
-    function isElementOutsideHiddenArea(element) {
+    const isElementOutsideHiddenArea = (element) => {
       if (!hiddenElements && typeof options.hideElements === "string") {
         hiddenElements = window.document.querySelectorAll(options.hideElements);
       }
+
       let found = true;
 
       if (hiddenElements && hiddenElements.length) {
         found = false;
-        for (let i = 0; i < hiddenElements.length; i++) {
-          if (hiddenElements[i].contains(element)) {
+
+        for (const ele of hiddenElements) {
+          if (ele.contains(element)) {
             found = true;
             break;
           }
         }
       }
+
       return found;
-    }
+    };
 
     // validate issue is correct
-    function validateIssue(issue) {
-      return (
-        (options.rootElement && !isElementInTestArea(issue.element)) ||
-        (options.hideElements && !isElementOutsideHiddenArea(issue.element)) ||
-        !isIssueNotIgnored(issue)
-      );
-    }
+    const validateIssue = (issue) =>
+      (options.rootElement && !isElementInTestArea(issue.element)) ||
+      (options.hideElements && !isElementOutsideHiddenArea(issue.element)) ||
+      !isIssueNotIgnored(issue);
 
     // handle issues from runner auto sort errors leading list
-    function processIssues(issues, meta, missingAltIndexs) {
+    const processIssues = (issues, meta, missingAltIndexs) => {
       // pre-allocate array
       const acc = new Array((issues && issues.length) || 0);
       // valid acc count
@@ -107,16 +191,16 @@
           }
           acc[ic] = shapeIssue(issues[i]);
           ic++;
-          meta.errorCount++;
+          meta.errorCount += (issues[i].recurrence ?? 0) + 1;
           meta.accessScore -= 2;
         } else {
           // move to end
           queueMicrotask(() => {
             if (issues[i].type === "warning") {
-              meta.warningCount++;
+              meta.warningCount += (issues[i].recurrence ?? 0) + 1;
             }
             if (issues[i].type === "notice") {
-              meta.noticeCount++;
+              meta.noticeCount += (issues[i].recurrence ?? 0) + 1;
             }
             acc[ic] = shapeIssue(issues[i]);
             ic++;
@@ -127,10 +211,10 @@
       acc.length = ic;
 
       return acc;
-    }
+    };
 
     // get issues with acc builder return counter
-    function processIssuesMulti(issues, acc, ic, meta, missingAltIndexs) {
+    const processIssuesMulti = (issues, acc, ic, meta, missingAltIndexs) => {
       // valid acc count
       for (let i = 0; i < issues.length; i++) {
         if (validateIssue(issues[i])) {
@@ -144,16 +228,16 @@
           }
           acc[ic] = shapeIssue(issues[i]);
           ic++;
-          meta.errorCount++;
+          meta.errorCount += (issues[i].recurrence ?? 0) + 1;
           meta.accessScore -= 2;
         } else {
           // move to end
           queueMicrotask(() => {
             if (issues[i].type === "warning") {
-              meta.warningCount++;
+              meta.warningCount += (issues[i].recurrence ?? 0) + 1;
             }
             if (issues[i].type === "notice") {
-              meta.noticeCount++;
+              meta.noticeCount += (issues[i].recurrence ?? 0) + 1;
             }
             acc[ic] = shapeIssue(issues[i]);
             ic++;
@@ -162,7 +246,7 @@
       }
 
       return ic;
-    }
+    };
 
     // Execute all of the runners and process issues parallel
     const runnerIssues = await Promise.all(
@@ -223,91 +307,5 @@
         missingAltIndexs,
       },
     };
-  }
-
-  // Truncate the html.
-  function getElementContext(element) {
-    let outerHTML = element.outerHTML;
-
-    if (!outerHTML) {
-      return "";
-    }
-
-    if (element.innerHTML.length > 31) {
-      outerHTML = outerHTML.replace(
-        element.innerHTML,
-        `${element.innerHTML.substring(0, 31)}...`
-      );
-    }
-
-    if (outerHTML.length > 251) {
-      outerHTML = `${outerHTML.substring(0, 250)}...`;
-    }
-
-    return outerHTML;
-  }
-
-  // valid element node
-  function isElementNode(element) {
-    return element.nodeType === window.Node.ELEMENT_NODE;
-  }
-
-  // get css selelector
-  function getElementSelector(element, selectorParts = []) {
-    if (isElementNode(element)) {
-      selectorParts.unshift(buildElementIdentifier(element));
-
-      // recursive build selectors todo: maxticks
-      if (!element.id && element.parentNode) {
-        return getElementSelector(element.parentNode, selectorParts);
-      }
-    }
-
-    return selectorParts.join(" > ");
-  }
-
-  // return siblings of element
-  function getSiblings(element) {
-    let dupSibling = 0;
-    let siblingIndex = 0; // increment until sibling index found
-
-    for (const node of element.parentNode.childNodes) {
-      if (isElementNode(node)) {
-        siblingIndex++;
-      }
-      if (node.tagName === element.tagName) {
-        dupSibling += 1;
-        // break loop on multi duplicates
-        if (dupSibling === 2) {
-          break;
-        }
-      }
-    }
-
-    return {
-      siblingIndex,
-      onlySibling: dupSibling <= 1,
-    };
-  }
-
-  // build css slectors
-  function buildElementIdentifier(element) {
-    if (element.id) {
-      return `${element.id[0] !== "#" ? "#" : ""}${element.id}`;
-    }
-
-    let identifier = element.tagName.toLowerCase();
-
-    if (!element.parentNode) {
-      return identifier;
-    }
-
-    const { onlySibling, siblingIndex } = getSiblings(element);
-
-    if (!onlySibling) {
-      identifier += `:nth-child(${siblingIndex + 1})`;
-    }
-
-    return identifier;
   }
 })(this);

@@ -1,4 +1,3 @@
-
 import { writeFileSync } from "fs";
 import assert from "assert";
 import pa11y from "pa11y";
@@ -10,17 +9,17 @@ test("pa11y htmlcs audit drakeMock", async ({ page, browser }, testInfo) => {
   await page.setContent(drakeMock);
 
   page.removeListener = (_, __) => {
-    return page
-  }
+    return page;
+  };
 
   // @ts-ignore patch page for pa11y
   page.setUserAgent = (_: string) => {
-    return ""
-  }
+    return "";
+  };
   // @ts-ignore patch page for pa11y
-  page.setViewport  = (_: string) => {
-    return ""
-  }
+  page.setViewport = (_: string) => {
+    return "";
+  };
 
   const startTime = performance.now();
   const results = await pa11y("", {
@@ -28,7 +27,7 @@ test("pa11y htmlcs audit drakeMock", async ({ page, browser }, testInfo) => {
     browser,
     runners: ["htmlcs"],
     includeWarnings: true,
-    ignoreUrl: true
+    ignoreUrl: true,
   });
   const endTime = performance.now() - startTime;
 
@@ -43,11 +42,11 @@ test("pa11y htmlcs audit drakeMock", async ({ page, browser }, testInfo) => {
 
   // iterate and build all issues
   for (const issue of issues) {
-    if(issue.type === "error") {
-      errorCount++
+    if (issue.type === "error") {
+      errorCount++;
     }
-    if(issue.type === "warning") {
-      warningCount++
+    if (issue.type === "warning") {
+      warningCount++;
     }
   }
 
