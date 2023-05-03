@@ -90,7 +90,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
           this.testEmptyHeading(element);
           break;
       }
-    } //end if
+    } 
   },
 
   /**
@@ -231,7 +231,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
    * @param {DOMNode} element The element registered.
    * @param {DOMNode} top     The top element of the tested code.
    */
-  testLabelsOnInputs: function (element, top, muteErrors) {
+  testLabelsOnInputs: function (element, _, muteErrors) {
     var nodeName = element.nodeName.toLowerCase();
     var inputType = nodeName;
     if (inputType === "input") {
@@ -242,9 +242,12 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
       }
     }
 
-    var hasLabel = false;
+    var hasLabel = undefined;
+
     var addToLabelList = function (found) {
-      if (!hasLabel) hasLabel = {};
+      if (!hasLabel) {
+        hasLabel = {}
+      };
       hasLabel[found] = true;
     };
 
@@ -272,7 +275,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
     }
 
     // Find an implicit label.
-    var foundImplicit = false;
+    var foundImplicit = false as boolean;
     if (element.parentNode) {
       HTMLCS.util.eachParentNode(element, function (parent) {
         if (parent.nodeName.toLowerCase() === "label") {
@@ -280,7 +283,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         }
       });
     }
-    if (foundImplicit === true) {
+
+    if (foundImplicit) {
       addToLabelList("implicit");
     }
 
@@ -361,7 +365,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
           _global.HTMLCS.getTranslation("1_3_1_F68"),
           "F68"
         );
-      } //end if
+      } 
     }
 
     return hasLabel;
@@ -537,7 +541,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         );
         scopeAttr = null;
       }
-    } //end if
+    } 
 
     if (headersAttr.isMultiLevelHeadersTable) {
       HTMLCS.addMessage(
@@ -590,8 +594,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             "H43.MissingHeadersAttrs"
           );
         }
-      } //end if
-    } //end if
+      } 
+    } 
 
     // Errors where either is permitted, but neither are done properly (missing
     // certain elements).
@@ -725,8 +729,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
               retval.correct = false;
               retval.invalid.push(element);
             }
-          } //end if
-        } //end if
+          } 
+        } 
       }
     }
 
@@ -785,8 +789,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             "H73.3.NoSummary"
           );
         }
-      } //end if
-    } //end if
+      } 
+    } 
 
     if (caption !== "") {
       if (HTMLCS.util.isLayoutTable(table) === true) {
@@ -813,7 +817,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
           "H39.3.NoCaption"
         );
       }
-    } //end if
+    } 
   },
 
   /**
@@ -892,7 +896,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
           // Record that this name is used, but there is no fieldset.
           fieldset = null;
         }
-      } //end if
+      } 
 
       if (usedNames[optionName] === undefined) {
         usedNames[optionName] = fieldset;
@@ -907,7 +911,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
           "H71.SameName"
         );
         break;
-      } //end if
+      } 
     }
   },
 
@@ -978,7 +982,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
           break;
         }
       }
-    } //end if
+    } 
   },
 
   testHeadingOrder: function (top, level) {
@@ -996,6 +1000,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             headings[i],
             _global.HTMLCS.getTranslation("1_3_1_G141_a").replace(
               /\{\{headingNum\}\}/g,
+              // @ts-ignore
               headingNum
             ),
             "G141"
@@ -1006,7 +1011,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
           level,
           headings[i],
           _global.HTMLCS.getTranslation("1_3_1_G141_b")
+            // @ts-ignore
             .replace(/\{\{headingNum\}\}/g, headingNum)
+            // @ts-ignore
             .replace(/\{\{properHeadingNum\}\}/g, lastHeading + 1),
           "G141"
         );
@@ -1080,7 +1087,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
           "H48"
         );
       }
-    } //end if
+    } 
   },
 
   /**

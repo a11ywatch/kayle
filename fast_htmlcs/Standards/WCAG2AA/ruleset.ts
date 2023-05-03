@@ -73,7 +73,5 @@ _global.HTMLCS_WCAG2AA = {
       ],
     },
   ],
-  getMsgInfo: function (code) {
-    return HTMLCS_WCAG2AAA.getMsgInfo(code);
-  },
+  getMsgInfo: (code) => HTMLCS_WCAG2AAA.getMsgInfo(code),
 };

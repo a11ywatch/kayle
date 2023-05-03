@@ -10,12 +10,23 @@ type HtmlEle =
 type RGB = { red: number; blue: number; green: number; alpha?: number };
 type HSV = { hue: number; saturation: number; value: number };
 
+type RetVal = {
+  required: boolean;
+  used: boolean;
+  correct: boolean;
+  allowScope: boolean;
+  missingThId: any[];
+  missingTd: any[];
+  wrongHeaders: any[];
+  isMultiLevelHeadersTable: boolean;
+};
+
 type HTMLCS = {
   ERROR: string;
   NOTICE: string;
   WARNING: string;
   run(callback: void, content: string): void;
-  isFullDoc(content: string): boolean;
+  isFullDoc(content: string | Node): boolean;
   addMessage(
     message: string,
     element: Element,
@@ -27,7 +38,7 @@ type HTMLCS = {
     getAllElements?(element: HtmlEle, selector?: string): Element[];
     isStringEmpty(string): boolean;
     getDocumentType(document: Document): string;
-    getElementWindow(element: Element): HTMLElement;
+    getElementWindow(element: Element): HTMLElement & { document?: Document };
     isAccessibilityHidden(element: Element): boolean;
     hasValidAriaLabel(element: Element): boolean;
     style(
@@ -53,7 +64,7 @@ type HTMLCS = {
     findParentNode(node: Element, selector: string): Node;
     eachParentNode(node: Element, cb: (node: Element) => void): void;
     getChildrenForTable(table: Element, childNodeName: string): Element[];
-    testTableHeaders(table: Element): void;
+    testTableHeaders(table: Element): RetVal;
     getCellHeaders(tableCell: Element): Element[];
     getPreviousSiblingElement(
       element: Element,
@@ -93,6 +104,28 @@ type GuideLine = {
   _labelNames?: string[];
   register(): string[];
   process(element: Element, top?: Element): void;
+  testSemanticPresentationRole?(element: Element): void;
+  testEmptyDupeLabelForAttrs?(
+    top: Element & { getElementById?(id: string): HTMLElement }
+  );
+  testLabelsOnInputs?(
+    element: Element,
+    top?: Element,
+    muteErrors?: boolean
+  ): boolean;
+  testPresentationMarkup?(element: Element): void;
+  testNonSemanticHeading?(element: Element): void;
+  testTableHeaders?(element: Element): void;
+  testTableCaptionSummary?(element: Element): void;
+  testFieldsetLegend?(element: Element): void;
+  testOptgroup?(element: Element): void;
+  testRequiredFieldsets?(element: Element): void;
+  testListsWithBreaks?(element: Element): void;
+  testHeadingOrder?(element: Element, level: string): void;
+  testEmptyHeading?(element: Element): void;
+  testUnstructuredNavLinks?(element: Element): void;
+  testGeneralTable?(element: Element): void;
+  _testTableScopeAttrs?(element: Element): void;
 };
 
 declare global {
@@ -101,8 +134,7 @@ declare global {
       translation: {
         [key: string]: Record<string, unknown>;
       };
-      // todo: remove any;
-      HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1: any;
+      HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1: any; // todo: remove any;
       HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_2_1_2_1: GuideLine;
       HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_2_1_2_2: GuideLine;
       HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_2_1_2_3: GuideLine;
@@ -114,6 +146,7 @@ declare global {
       HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_2_1_2_9: GuideLine;
       HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1_A: GuideLine;
       HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1_AAA: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1: GuideLine;
       HTMLCS_WCAG2A: RuleSet;
       HTMLCS_WCAG2AAA: RuleSet;
       HTMLCS_WCAG2AA: RuleSet;
