@@ -11,7 +11,7 @@
  *
  */
 
-_global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_2_1_2_1 = {
+_global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_2_1_2_7 = {
   /**
    * Determines the elements to register for processing.
    *
@@ -21,7 +21,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_2_1_2_1 = {
    * @returns {Array} The list of elements.
    */
   register: function () {
-    return ["object", "embed", "applet", "bgsound", "audio", "video"];
+    return ["object", "embed", "applet", "video"];
   },
 
   /**
@@ -31,24 +31,12 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_2_1_2_1 = {
    * @param {DOMNode} top     The top element of the tested code.
    */
   process: function (element, _) {
-    var nodeName = element.nodeName.toLowerCase();
-
-    if (nodeName !== "video") {
-      HTMLCS.addMessage(
-        HTMLCS.NOTICE,
-        element,
-        _global.HTMLCS.getTranslation("1_2_1_G158"),
-        "G158"
-      );
-    }
-
-    if (nodeName !== "bgsound" && nodeName !== "audio") {
-      HTMLCS.addMessage(
-        HTMLCS.NOTICE,
-        element,
-        _global.HTMLCS.getTranslation("1_2_1_G159,G166"),
-        "G159,G166"
-      );
-    }
+    // Check for elements that could potentially contain video.
+    HTMLCS.addMessage(
+      HTMLCS.NOTICE,
+      element,
+      _global.HTMLCS.getTranslation("1_2_7_G8"),
+      "G8"
+    );
   },
 };

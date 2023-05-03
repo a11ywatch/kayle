@@ -533,54 +533,48 @@ _global.HTMLCS_WCAG2AAA = {
     const techniques = msgCodeParts[4].split(",");
     const techniquesStr = [];
 
-    // From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith
-    const startsWith = (str: string, search: string, rawPos?: number) => {
-      const pos = typeof rawPos === "number" && rawPos > 0 ? rawPos : 0;
-
-      return str.substring(pos, pos + search.length) === search;
-    };
-
     const getPrefix = (x) => {
-      if (startsWith(x, "ARIA")) {
+      if (x.startsWith("ARIA")) {
         return "aria/";
       }
-      if (startsWith(x, "SCR")) {
+      if (x.startsWith("SCR")) {
         return "client-side-script/";
       }
-      if (startsWith(x, "C")) {
+      if (x.startsWith("C")) {
         return "css/";
       }
-      if (startsWith(x, "FLASH")) {
+      if (x.startsWith("FLASH")) {
         return "flash/";
       }
-      if (startsWith(x, "F")) {
+      if (x.startsWith("F")) {
         return "failures/";
       }
-      if (startsWith(x, "G")) {
+      if (x.startsWith("G")) {
         return "general/";
       }
-      if (startsWith(x, "H")) {
+      if (x.startsWith("H")) {
         return "html/";
       }
-      if (startsWith(x, "PDF")) {
+      if (x.startsWith("PDF")) {
         return "pdf/";
       }
-      if (startsWith(x, "SVR")) {
+      if (x.startsWith("SVR")) {
         return "server-side-script/";
       }
-      if (startsWith(x, "SL")) {
+      if (x.startsWith("SL")) {
         return "silverlight/";
       }
-      if (startsWith(x, "SM")) {
+      if (x.startsWith("SM")) {
         return "smil/";
       }
-      if (startsWith(x, "T")) {
+      if (x.startsWith("T")) {
         return "text/";
       }
       return "";
     };
 
     for (let i = 0; i < techniques.length; i++) {
+      // @ts-ignore todo: remove need for split and direct assign
       techniques[i] = techniques[i].split(".");
 
       if (techniques[i][0] !== "") {

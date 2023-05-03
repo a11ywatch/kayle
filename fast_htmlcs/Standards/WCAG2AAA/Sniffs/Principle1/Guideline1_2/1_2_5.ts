@@ -11,7 +11,7 @@
  *
  */
 
-_global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_2_1_2_7 = {
+_global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_2_1_2_5 = {
   /**
    * Determines the elements to register for processing.
    *
@@ -30,13 +30,12 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_2_1_2_7 = {
    * @param {DOMNode} element The element registered.
    * @param {DOMNode} top     The top element of the tested code.
    */
-  process: function (element, top) {
-    // Check for elements that could potentially contain video.
+  process: function (element, _) {
     HTMLCS.addMessage(
       HTMLCS.NOTICE,
       element,
-      _global.HTMLCS.getTranslation("1_2_7_G8"),
-      "G8"
+      _global.HTMLCS.getTranslation("1_2_5_G78,G173,G8"),
+      "G78,G173,G8"
     );
   },
 };

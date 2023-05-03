@@ -590,20 +590,19 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
 
       // If it's an element, add any sub-nodes to the process list.
       if (node.nodeType === 1 && node.nodeName === "IMG") {
-          if (node.hasAttribute("alt") === true) {
+        if (node.hasAttribute("alt") === true) {
+          alt = node.getAttribute("alt");
 
-            alt = node.getAttribute("alt");
-
-            if (!alt) {
-              alt = "";
-            } else {
-              // Trim the alt text.
-              alt = alt.replace(/^\s+|\s+$/g, "");
-            }
-
-            break;
+          if (!alt) {
+            alt = "";
+          } else {
+            // Trim the alt text.
+            alt = alt.replace(/^\s+|\s+$/g, "");
           }
+
+          break;
         }
+      }
     }
 
     return alt;

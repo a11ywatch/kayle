@@ -72,6 +72,27 @@ type HTMLCS = {
 
 type Snif = null | {
   testSemanticPresentationRole(element: Element): boolean;
+  testHeadingOrder?(element: Element, typeCode: string): boolean;
+};
+
+type Rule = {
+  standard: string;
+  include: string[];
+};
+
+// a rule to follow
+type RuleSet = {
+  name: string;
+  description: string;
+  sniffs: Rule[] | string[];
+  getMsgInfo(code: string): string | string[][];
+};
+
+// a guideline
+type GuideLine = {
+  _labelNames?: string[];
+  register(): string[];
+  process(element: Element, top?: Element): void;
 };
 
 declare global {
@@ -82,10 +103,26 @@ declare global {
       };
       // todo: remove any;
       HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1: any;
-      HTMLCS_WCAG2AAA: any;
+      HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_2_1_2_1: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_2_1_2_2: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_2_1_2_3: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_2_1_2_4: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_2_1_2_5: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_2_1_2_6: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_2_1_2_7: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_2_1_2_8: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_2_1_2_9: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1_A: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1_AAA: GuideLine;
+      HTMLCS_WCAG2A: RuleSet;
+      HTMLCS_WCAG2AAA: RuleSet;
+      HTMLCS_WCAG2AA: RuleSet;
     },
     HTMLCS: HTMLCS;
   var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1: Snif;
+  var HTMLCS_WCAG2A: RuleSet;
+  var HTMLCS_WCAG2AA: RuleSet;
+  var HTMLCS_WCAG2AAA: RuleSet;
 }
 
 export { RGB, HSV, Snif, HTMLCS };
