@@ -88,24 +88,24 @@ _global.HTMLCS_WCAG2AAA = {
     "Principle4.Guideline4_1.4_1_3",
   ],
   getMsgInfo: function (code) {
-    var principles = {
-      Principle1: {
-        name: "Perceivable",
-        link: "http://www.w3.org/TR/WCAG21/#perceivable",
-      },
-      Principle2: {
-        name: "Operable",
-        link: "http://www.w3.org/TR/WCAG21/#operable",
-      },
-      Principle3: {
-        name: "Understandable",
-        link: "http://www.w3.org/TR/WCAG21/#understandable",
-      },
-      Principle4: {
-        name: "Robust",
-        link: "http://www.w3.org/TR/WCAG21/#robust",
-      },
-    };
+    // const principles = {
+    //   Principle1: {
+    //     name: "Perceivable",
+    //     link: "http://www.w3.org/TR/WCAG21/#perceivable",
+    //   },
+    //   Principle2: {
+    //     name: "Operable",
+    //     link: "http://www.w3.org/TR/WCAG21/#operable",
+    //   },
+    //   Principle3: {
+    //     name: "Understandable",
+    //     link: "http://www.w3.org/TR/WCAG21/#understandable",
+    //   },
+    //   Principle4: {
+    //     name: "Robust",
+    //     link: "http://www.w3.org/TR/WCAG21/#robust",
+    //   },
+    // };
 
     /**
      * List of success criteria, their links in the WCAG21 doc, and their
@@ -114,7 +114,7 @@ _global.HTMLCS_WCAG2AAA = {
      * Priority 0 indicates a conformance requirement. CR1 isn't shown because
      * all it says is "to conform to each level, it must pass all at that level".
      */
-    var successCritList = {
+    const successCritList = {
       CR2: {
         name: "Full pages",
         landmark: "cc2",
@@ -527,18 +527,20 @@ _global.HTMLCS_WCAG2AAA = {
       },
     };
 
-    var msgCodeParts = code.split(".", 5);
-    var principle = msgCodeParts[1];
-    var successCrit = msgCodeParts[3].split("_").slice(0, 3).join(".");
-    var techniques = msgCodeParts[4].split(",");
-    var techniquesStr = [];
-    function getPrefix(x) {
-      // From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith
-      function startsWith(str, search, rawPos) {
-        var pos = rawPos > 0 ? rawPos | 0 : 0;
-        return str.substring(pos, pos + search.length) === search;
-      }
+    // var principle = msgCodeParts[1];
+    const msgCodeParts = code.split(".", 5);
+    const successCrit = msgCodeParts[3].split("_").slice(0, 3).join(".");
+    const techniques = msgCodeParts[4].split(",");
+    const techniquesStr = [];
 
+    // From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith
+    const startsWith = (str: string, search: string, rawPos?: number) => {
+      const pos = typeof rawPos === "number" && rawPos > 0 ? rawPos : 0;
+
+      return str.substring(pos, pos + search.length) === search;
+    };
+
+    const getPrefix = (x) => {
       if (startsWith(x, "ARIA")) {
         return "aria/";
       }
@@ -576,10 +578,11 @@ _global.HTMLCS_WCAG2AAA = {
         return "text/";
       }
       return "";
-    }
+    };
 
-    for (var i = 0; i < techniques.length; i++) {
+    for (let i = 0; i < techniques.length; i++) {
       techniques[i] = techniques[i].split(".");
+
       if (techniques[i][0] !== "") {
         techniquesStr.push(
           '<a href="https://www.w3.org/WAI/WCAG21/Techniques/' +
@@ -592,7 +595,7 @@ _global.HTMLCS_WCAG2AAA = {
       }
     }
 
-    var successCritStr = [
+    const successCritStr = [
       '<a href="http://www.w3.org/TR/WCAG21/#' +
         successCritList[successCrit].landmark,
       '" target="_blank">',
@@ -601,21 +604,23 @@ _global.HTMLCS_WCAG2AAA = {
       successCritList[successCrit].name,
       "</a>",
     ].join("");
-    /* eslint-disable-next-line no-unused-vars */
-    var principleStr = [
-      '<a href="',
-      principles[principle].link,
-      '" target="_blank">',
-      principles[principle].name,
-      "</a>",
-    ].join("");
 
-    var retval = [
+    /* eslint-disable-next-line no-unused-vars */
+    // var principleStr = [
+    //   '<a href="',
+    //   principles[principle].link,
+    //   '" target="_blank">',
+    //   principles[principle].name,
+    //   "</a>",
+    // ].join("");
+
+    const retval = [
       [
         _global.HTMLCS.getTranslation("auditor_success_criterion"),
         successCritStr,
       ],
     ];
+
     if (techniquesStr.length > 0) {
       retval.push([
         _global.HTMLCS.getTranslation("auditor_suggested_techniques"),

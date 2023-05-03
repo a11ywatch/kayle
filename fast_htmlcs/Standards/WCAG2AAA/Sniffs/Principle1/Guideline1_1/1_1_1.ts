@@ -576,7 +576,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
     const nodes = new Array(anchor.childNodes.length);
 
     for (let i = 0; i < anchor.childNodes.length; i++) {
-      nodes[i] = anchor.childNodes[i]
+      nodes[i] = anchor.childNodes[i];
     }
 
     nodes.length = anchor.childNodes.length;
@@ -589,10 +589,11 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
       const node = nodes.shift();
 
       // If it's an element, add any sub-nodes to the process list.
-      if (node.nodeType === 1) {
-        if (node.nodeName === "IMG") {
+      if (node.nodeType === 1 && node.nodeName === "IMG") {
           if (node.hasAttribute("alt") === true) {
+
             alt = node.getAttribute("alt");
+
             if (!alt) {
               alt = "";
             } else {
@@ -603,7 +604,6 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
             break;
           }
         }
-      }
     }
 
     return alt;

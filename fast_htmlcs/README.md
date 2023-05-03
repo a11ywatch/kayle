@@ -147,6 +147,7 @@ dom.window.HTMLCS_RUNNER.run('WCAG2AA');
 HTML_CodeSniffer supports _very_ basic string translations. The auditor will use the current language of the document it is being run in (e.g. `<html lang="en">`). A language code can be supplied if you need to tell HTML_CodeSniffer which language you want to use.
 
 Example usage:
+
 ```javascript
 HTMLCSAuditor.run('WCAG2AA', null, {
   lang: 'pl'

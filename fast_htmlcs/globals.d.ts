@@ -82,6 +82,7 @@ declare global {
       };
       // todo: remove any;
       HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1: any;
+      HTMLCS_WCAG2AAA: any;
     },
     HTMLCS: HTMLCS;
   var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1: Snif;

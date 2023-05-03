@@ -181,28 +181,33 @@
       let ic = 0;
 
       for (let i = 0; i < acc.length; i++) {
+
         if (validateIssue(issues[i])) {
           continue;
         }
+        
         if (issues[i].type === "error") {
+          const issue = issues[i];
           // missing alt capture index of array
-          if (issues[i].code === "WCAG2AA.Principle1.Guideline1_1.1_1_1.H37") {
+          if (issue.code === "WCAG2AA.Principle1.Guideline1_1.1_1_1.H37") {
             missingAltIndexs.push(ic);
           }
-          acc[ic] = shapeIssue(issues[i]);
+          acc[ic] = shapeIssue(issue);
           ic++;
-          meta.errorCount += (issues[i].recurrence ?? 0) + 1;
+          meta.errorCount += (issue.recurrence ?? 0) + 1;
           meta.accessScore -= 2;
         } else {
           // move to end
           queueMicrotask(() => {
-            if (issues[i].type === "warning") {
-              meta.warningCount += (issues[i].recurrence ?? 0) + 1;
+            const issue = issues[i];
+
+            if (issue.type === "warning") {
+              meta.warningCount += (issue.recurrence ?? 0) + 1;
             }
-            if (issues[i].type === "notice") {
-              meta.noticeCount += (issues[i].recurrence ?? 0) + 1;
+            if (issue.type === "notice") {
+              meta.noticeCount += (issue.recurrence ?? 0) + 1;
             }
-            acc[ic] = shapeIssue(issues[i]);
+            acc[ic] = shapeIssue(issue);
             ic++;
           });
         }
@@ -222,24 +227,28 @@
         }
 
         if (issues[i].type === "error") {
+          const issue = issues[i];
+
           // missing alt capture index of array
-          if (issues[i].code === "WCAG2AA.Principle1.Guideline1_1.1_1_1.H37") {
+          if (issue.code === "WCAG2AA.Principle1.Guideline1_1.1_1_1.H37") {
             missingAltIndexs.push(ic);
           }
-          acc[ic] = shapeIssue(issues[i]);
+          acc[ic] = shapeIssue(issue);
           ic++;
-          meta.errorCount += (issues[i].recurrence ?? 0) + 1;
+          meta.errorCount += (issue.recurrence ?? 0) + 1;
           meta.accessScore -= 2;
         } else {
           // move to end
           queueMicrotask(() => {
-            if (issues[i].type === "warning") {
-              meta.warningCount += (issues[i].recurrence ?? 0) + 1;
+            const issue = issues[i];
+
+            if (issue.type === "warning") {
+              meta.warningCount += (issue.recurrence ?? 0) + 1;
             }
-            if (issues[i].type === "notice") {
-              meta.noticeCount += (issues[i].recurrence ?? 0) + 1;
+            if (issue.type === "notice") {
+              meta.noticeCount += (issue.recurrence ?? 0) + 1;
             }
-            acc[ic] = shapeIssue(issues[i]);
+            acc[ic] = shapeIssue(issue);
             ic++;
           });
         }
