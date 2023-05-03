@@ -6,7 +6,13 @@ You need to have an active page object and browser with a connection to get star
 
 Getting Started: checkout the [playwright-example](./tests/basic-playwright.spec.ts) or [puppeteer](./tests/basic.ts)
 
+If you want to use a browser make sure to have [playwright](https://github.com/microsoft/playwright) or [puppeteer](https://github.com/puppeteer/puppeteer) installed.
+
 ```sh
+# install a browser automation lib first
+# npm install @playwright/core
+# or 
+# npm install puppeteer
 npm i a11y-js --save
 ```
 
@@ -15,9 +21,10 @@ Requires node ^13
 ```js
 import { a11y, goToPage } from "a11y-js"
 
+// browser code not shown. get a normal browser handle from puppeteer or playwright.
 const page = await browser.newPage();
 
-// navigate to the page
+// optional navigate to the page with intercept util, the a11y method just needs a page with the html ready.
 await goToPage("https://mywebsite.com")
 
 const results = await a11y({ page, browser })

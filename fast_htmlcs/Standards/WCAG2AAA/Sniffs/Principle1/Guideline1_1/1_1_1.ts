@@ -148,7 +148,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
    * @returns {Object} A structured list of errors.
    */
   testNullAltText: function (top) {
-    var errors = {
+    const errors = {
       img: {
         generalAlt: [],
         missingAlt: [],
@@ -166,7 +166,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
       },
     };
 
-    elements = HTMLCS.util.getAllElements(
+    const elements = HTMLCS.util.getAllElements(
       top,
       'img, area, input[type="image"]'
     );
@@ -181,8 +181,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
       var nullAlt = false;
 
       if (element.parentNode.nodeName === "A") {
-        var prevNode = HTMLCS.util.getPreviousSiblingElement(element, null);
-        var nextNode = HTMLCS.util.getNextSiblingElement(element, null);
+        var prevNode = HTMLCS.util.getPreviousSiblingElement(element, null) as Element;
+        var nextNode = HTMLCS.util.getNextSiblingElement(element, null)  as Element;
 
         if (prevNode === null && nextNode === null) {
           var textContent = element.parentNode.textContent;
@@ -190,7 +190,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
           if (element.parentNode.textContent !== undefined) {
             var textContent = element.parentNode.textContent;
           } else {
-            // Keep IE8 happy.
+            // @ts-ignore Keep IE8 happy.
             var textContent = element.parentNode.innerText;
           }
 
@@ -311,6 +311,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
           text: HTMLCS.util.getElementTextContent(anchor, false),
           alt: this._getLinkAltText(anchor),
         },
+        previous: undefined,
+        next: undefined
       };
 
       if (nodes.anchor.alt === null) {
@@ -342,8 +344,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
       //     (This leaves one link with no text at all - the two should be
       //      combined into one link.)
       if (nodes.anchor.text === "") {
-        var prevLink = HTMLCS.util.getPreviousSiblingElement(anchor, "A", true);
-        var nextLink = HTMLCS.util.getNextSiblingElement(anchor, "A", true);
+        var prevLink = HTMLCS.util.getPreviousSiblingElement(anchor, "A", true) as Element;
+        var nextLink = HTMLCS.util.getNextSiblingElement(anchor, "A", true) as Element;
 
         if (prevLink !== null) {
           nodes.previous = {
@@ -498,7 +500,6 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
 
     for (var el = 0; el < elements.length; el++) {
       var element = elements[el];
-
       var childObject = element.querySelector("object");
 
       // If we have an object as our alternative, skip it. Pass the blame onto
