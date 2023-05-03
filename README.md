@@ -151,7 +151,9 @@ This project is the fastest web accessibility runner OSS. The `htmlcs` and `axe-
 
 ## Testing
 
-1. `npm run test`
+The [test-results](./test-results/) are checked in to avoid hindering performance on updates. The comparison between using `fast_htmlcs`, `fast_axecore`, and the metrics for the 3rd party `@axe-core/playwright`.
+ 
+1. `yarn build:test`
 
 ## Benchmarks
 
