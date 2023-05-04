@@ -43,7 +43,7 @@
   };
 
   // Truncate the html.
-  const getElementContext = (element) => {
+  const getElementContext = (element: Element) => {
     let outerHTML = element.outerHTML;
 
     if (!outerHTML) {
@@ -53,19 +53,19 @@
     if (element.innerHTML.length > 31) {
       outerHTML = outerHTML.replace(
         element.innerHTML,
-        `${element.innerHTML.substring(0, 31)}...`
+        `${element.innerHTML.substring(0, 32)}...`
       );
     }
 
     if (outerHTML.length > 251) {
-      outerHTML = `${outerHTML.substring(0, 250)}...`;
+      outerHTML = `${outerHTML.substring(0, 251)}...`;
     }
 
     return outerHTML;
   };
 
   // valid element node
-  const isElementNode = (element) =>
+  const isElementNode = (element: Element) =>
     element.nodeType === window.Node.ELEMENT_NODE;
 
   // get css selelector

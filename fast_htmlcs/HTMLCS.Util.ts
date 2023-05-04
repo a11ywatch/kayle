@@ -476,7 +476,7 @@ _global.HTMLCS.util = {
       | { red: number; blue: number; green: number; alpha?: number } =
       color.toLowerCase();
 
-    if (colour.substring(0, 3) === "rgb") {
+    if (colour.substr(0, 3) === "rgb") {
       // rgb[a](0, 0, 0[, 0]) format.
       const matches = /^rgba?\s*\((\d+),\s*(\d+),\s*(\d+)([^)]*)\)$/.exec(
         colour

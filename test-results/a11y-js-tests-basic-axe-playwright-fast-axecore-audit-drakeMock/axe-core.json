@@ -93,7 +93,7 @@
       "recurrence": 0
     },
     {
-      "context": "<a id=\"cta_button_5479613_e9c3ff65-5303-42df-b466-cd64a84bfc67\" class=\"cta_button \" href=\"https://www.drake.com/cs/c/?cta_guid=e9c3ff65-5303-42df-b466-cd64a84bfc67&amp;signature=AAH58kGAMYo1BUIq0oKzlaNzc9AdXBdQ2g&amp;pageId=8839032963&amp;placement_g...",
+      "context": "<a id=\"cta_button_5479613_e9c3ff65-5303-42df-b466-cd64a84bfc67\" class=\"cta_button \" href=\"https://www.drake.com/cs/c/?cta_guid=e9c3ff65-5303-42df-b466-cd64a84bfc67&amp;signature=AAH58kGAMYo1BUIq0oKzlaNzc9AdXBdQ2g&amp;pageId=8839032963&amp;placement_gu...",
       "selector": "#cta_button_5479613_e9c3ff65-5303-42df-b466-cd64a84bfc67",
       "code": "color-contrast",
       "type": "error",
@@ -108,7 +108,7 @@
       "recurrence": 0
     },
     {
-      "context": "<a id=\"cta_button_5479613_5d5e3141-f749-4fa7-b734-25667e531cfe\" class=\"cta_button \" href=\"https://www.drake.com/cs/c/?cta_guid=5d5e3141-f749-4fa7-b734-25667e531cfe&amp;signature=AAH58kHo1qzsXaPOT8WcWuRYgZglZwRuZw&amp;pageId=8839032963&amp;placement_g...",
+      "context": "<a id=\"cta_button_5479613_5d5e3141-f749-4fa7-b734-25667e531cfe\" class=\"cta_button \" href=\"https://www.drake.com/cs/c/?cta_guid=5d5e3141-f749-4fa7-b734-25667e531cfe&amp;signature=AAH58kHo1qzsXaPOT8WcWuRYgZglZwRuZw&amp;pageId=8839032963&amp;placement_gu...",
       "selector": "#cta_button_5479613_5d5e3141-f749-4fa7-b734-25667e531cfe",
       "code": "duplicate-id-active",
       "type": "error",
@@ -123,7 +123,7 @@
       "recurrence": 0
     },
     {
-      "context": "<span class=\"hs-cta-wrapper\" id=\"hs-cta-wrapper-991abde1-792b-4f15-b338-a79c214c3e94\"><span class=\"hs-cta-node hs-cta...</span>",
+      "context": "<span class=\"hs-cta-wrapper\" id=\"hs-cta-wrapper-991abde1-792b-4f15-b338-a79c214c3e94\"><span class=\"hs-cta-node hs-cta-...</span>",
       "selector": "#hs-cta-wrapper-991abde1-792b-4f15-b338-a79c214c3e94",
       "code": "duplicate-id",
       "type": "error",
@@ -138,7 +138,7 @@
       "recurrence": 0
     },
     {
-      "context": "<span class=\"hs-cta-node hs-cta-991abde1-792b-4f15-b338-a79c214c3e94\" id=\"hs-cta-991abde1-792b-4f15-b338-a79c214c3e94\" style=\"visibility: visible;\" data-hs-drop=\"true\"><a id=\"cta_button_5479613_5d5e3...</span>",
+      "context": "<span class=\"hs-cta-node hs-cta-991abde1-792b-4f15-b338-a79c214c3e94\" id=\"hs-cta-991abde1-792b-4f15-b338-a79c214c3e94\" style=\"visibility: visible;\" data-hs-drop=\"true\"><a id=\"cta_button_5479613_5d5e31...</span>",
       "selector": "#hs-cta-991abde1-792b-4f15-b338-a79c214c3e94",
       "code": "duplicate-id",
       "type": "error",
@@ -153,7 +153,7 @@
       "recurrence": 0
     },
     {
-      "context": "<h5 class=\"normal\">\n  <div class=\"span12 widget-sp...</h5>",
+      "context": "<h5 class=\"normal\">\n  <div class=\"span12 widget-spa...</h5>",
       "selector": "html > body > div:nth-child(3) > div > div:nth-child(3) > div > div > div:nth-child(3) > div > div > div:nth-child(3) > div > h5",
       "code": "heading-order",
       "type": "error",
@@ -183,7 +183,7 @@
       "recurrence": 0
     },
     {
-      "context": "<html class=\"no-js\" lang=\"en\"><!--<![endif]--><head><style>.h...</html>",
+      "context": "<html class=\"no-js\" lang=\"en\"><!--<![endif]--><head><style>.hs...</html>",
       "selector": "html",
       "code": "landmark-one-main",
       "type": "error",
@@ -198,7 +198,7 @@
       "recurrence": 0
     },
     {
-      "context": "<div id=\"hs_menu_wrapper_module_14725592865174\" class=\"hs-menu-wrapper active-branch flyouts hs-menu-flow-horizontal\" role=\"navigation\" data-sitemap-name=\"default\" data-menu-id=\"7594291203\" aria-label=\"Navigation Menu\">\n   <ul role=\"menu\" class=\"acti...",
+      "context": "<div id=\"hs_menu_wrapper_module_14725592865174\" class=\"hs-menu-wrapper active-branch flyouts hs-menu-flow-horizontal\" role=\"navigation\" data-sitemap-name=\"default\" data-menu-id=\"7594291203\" aria-label=\"Navigation Menu\">\n   <ul role=\"menu\" class=\"activ...",
       "selector": "#hs_menu_wrapper_module_14725592865174",
       "code": "landmark-unique",
       "type": "error",
@@ -213,7 +213,7 @@
       "recurrence": 0
     },
     {
-      "context": "<span class=\"hs-cta-node hs-cta-c6bb571b-d0e3-4b19-8cfc-e4c399f4e7d7\" id=\"hs-cta-c6bb571b-d0e3-4b19-8cfc-e4c399f4e7d7\" style=\"visibility: visible;\" data-hs-drop=\"true\"><a id=\"cta_button_5479613_df9b8...</span>",
+      "context": "<span class=\"hs-cta-node hs-cta-c6bb571b-d0e3-4b19-8cfc-e4c399f4e7d7\" id=\"hs-cta-c6bb571b-d0e3-4b19-8cfc-e4c399f4e7d7\" style=\"visibility: visible;\" data-hs-drop=\"true\"><a id=\"cta_button_5479613_df9b8a...</span>",
       "selector": "#hs-cta-c6bb571b-d0e3-4b19-8cfc-e4c399f4e7d7",
       "code": "region",
       "type": "error",
@@ -228,7 +228,7 @@
       "recurrence": 0
     },
     {
-      "context": "<div class=\"span6 widget-span widget-type-linked_image siteLogo\" style=\"\" data-widget-type=\"linked_image\" data-x=\"0\" data-w=\"6\">\n  <div class=\"cell-wrapper lay...</div>",
+      "context": "<div class=\"span6 widget-span widget-type-linked_image siteLogo\" style=\"\" data-widget-type=\"linked_image\" data-x=\"0\" data-w=\"6\">\n  <div class=\"cell-wrapper layo...</div>",
       "selector": "html > body > div:nth-child(3) > div > div > div > div > div > div:nth-child(3) > div > div > div > div > div > div:nth-child(3) > div > div:nth-child(3)",
       "code": "region",
       "type": "error",
@@ -243,7 +243,7 @@
       "recurrence": 0
     },
     {
-      "context": "<div class=\"row-fluid-wrapper row-depth-1 row-number-5 \">\n  <div class=\"row-fluid \">\n  <...</div>",
+      "context": "<div class=\"row-fluid-wrapper row-depth-1 row-number-5 \">\n  <div class=\"row-fluid \">\n  <d...</div>",
       "selector": "html > body > div:nth-child(3) > div > div:nth-child(3) > div > div > div:nth-child(3) > div > div > div:nth-child(3)",
       "code": "region",
       "type": "error",
@@ -258,7 +258,7 @@
       "recurrence": 0
     },
     {
-      "context": "<div class=\"row-fluid-wrapper row-depth-1 row-number-6 \">\n  <div class=\"row-fluid \">\n  <...</div>",
+      "context": "<div class=\"row-fluid-wrapper row-depth-1 row-number-6 \">\n  <div class=\"row-fluid \">\n  <h...</div>",
       "selector": "html > body > div:nth-child(3) > div > div:nth-child(3) > div > div > div:nth-child(3) > div > div > div:nth-child(3)",
       "code": "region",
       "type": "error",
@@ -273,7 +273,7 @@
       "recurrence": 0
     },
     {
-      "context": "<span class=\"hs-cta-node hs-cta-35a2f8b1-1a3b-4565-ab55-7d3fa7204fc5\" id=\"hs-cta-35a2f8b1-1a3b-4565-ab55-7d3fa7204fc5\" style=\"visibility: visible;\" data-hs-drop=\"true\"><a id=\"cta_button_5479613_194b0...</span>",
+      "context": "<span class=\"hs-cta-node hs-cta-35a2f8b1-1a3b-4565-ab55-7d3fa7204fc5\" id=\"hs-cta-35a2f8b1-1a3b-4565-ab55-7d3fa7204fc5\" style=\"visibility: visible;\" data-hs-drop=\"true\"><a id=\"cta_button_5479613_194b08...</span>",
       "selector": "#hs-cta-35a2f8b1-1a3b-4565-ab55-7d3fa7204fc5",
       "code": "region",
       "type": "error",
@@ -288,7 +288,7 @@
       "recurrence": 0
     },
     {
-      "context": "<div class=\"row-fluid-wrapper row-depth-1 row-number-8 \">\n  <div class=\"row-fluid \">\n  <...</div>",
+      "context": "<div class=\"row-fluid-wrapper row-depth-1 row-number-8 \">\n  <div class=\"row-fluid \">\n  <d...</div>",
       "selector": "html > body > div:nth-child(3) > div > div:nth-child(3)",
       "code": "region",
       "type": "error",
@@ -303,7 +303,7 @@
       "recurrence": 0
     },
     {
-      "context": "<div class=\"row-fluid-wrapper row-depth-1 row-number-14 \">\n  <div class=\"row-fluid \">\n  <...</div>",
+      "context": "<div class=\"row-fluid-wrapper row-depth-1 row-number-14 \">\n  <div class=\"row-fluid \">\n  <d...</div>",
       "selector": "html > body > div:nth-child(3) > div > div:nth-child(3)",
       "code": "region",
       "type": "error",
@@ -318,7 +318,7 @@
       "recurrence": 0
     },
     {
-      "context": "<div class=\"row-fluid-wrapper row-depth-1 row-number-23 \">\n  <div class=\"row-fluid \">\n  <...</div>",
+      "context": "<div class=\"row-fluid-wrapper row-depth-1 row-number-23 \">\n  <div class=\"row-fluid \">\n  <d...</div>",
       "selector": "html > body > div:nth-child(3) > div > div:nth-child(3) > div > div > div > div > div > div > div > div:nth-child(3) > div:nth-child(3)",
       "code": "region",
       "type": "error",
@@ -333,7 +333,7 @@
       "recurrence": 0
     },
     {
-      "context": "<div class=\"row-fluid-wrapper row-depth-1 row-number-24 \">\n  <div class=\"row-fluid \">\n  <...</div>",
+      "context": "<div class=\"row-fluid-wrapper row-depth-1 row-number-24 \">\n  <div class=\"row-fluid \">\n  <d...</div>",
       "selector": "html > body > div:nth-child(3) > div > div:nth-child(3) > div > div > div > div > div > div > div > div:nth-child(3) > div:nth-child(3)",
       "code": "region",
       "type": "error",
@@ -348,7 +348,7 @@
       "recurrence": 0
     },
     {
-      "context": "<span class=\"hs-cta-node hs-cta-86d6c762-411a-4956-9636-fc97da9ae88c\" id=\"hs-cta-86d6c762-411a-4956-9636-fc97da9ae88c\" style=\"visibility: visible;\" data-hs-drop=\"true\"><a id=\"cta_button_5479613_34d26...</span>",
+      "context": "<span class=\"hs-cta-node hs-cta-86d6c762-411a-4956-9636-fc97da9ae88c\" id=\"hs-cta-86d6c762-411a-4956-9636-fc97da9ae88c\" style=\"visibility: visible;\" data-hs-drop=\"true\"><a id=\"cta_button_5479613_34d266...</span>",
       "selector": "#hs-cta-86d6c762-411a-4956-9636-fc97da9ae88c",
       "code": "region",
       "type": "error",
@@ -363,7 +363,7 @@
       "recurrence": 0
     },
     {
-      "context": "<div class=\"row-fluid-wrapper row-depth-1 row-number-26 \">\n  <div class=\"row-fluid \">\n  <...</div>",
+      "context": "<div class=\"row-fluid-wrapper row-depth-1 row-number-26 \">\n  <div class=\"row-fluid \">\n  <d...</div>",
       "selector": "html > body > div:nth-child(3) > div > div:nth-child(3) > div > div > div > div > div > div > div > div:nth-child(3) > div:nth-child(3)",
       "code": "region",
       "type": "error",
@@ -378,7 +378,7 @@
       "recurrence": 0
     },
     {
-      "context": "<div class=\"row-fluid-wrapper row-depth-1 row-number-27 \">\n  <div class=\"row-fluid \">\n  <...</div>",
+      "context": "<div class=\"row-fluid-wrapper row-depth-1 row-number-27 \">\n  <div class=\"row-fluid \">\n  <d...</div>",
       "selector": "html > body > div:nth-child(3) > div > div:nth-child(3) > div > div > div > div > div > div > div > div:nth-child(3) > div:nth-child(3)",
       "code": "region",
       "type": "error",
@@ -393,7 +393,7 @@
       "recurrence": 0
     },
     {
-      "context": "<span class=\"hs-cta-node hs-cta-b850b68f-326a-43cb-8f57-07d5e8074b31\" id=\"hs-cta-b850b68f-326a-43cb-8f57-07d5e8074b31\" style=\"visibility: visible;\" data-hs-drop=\"true\"><a id=\"cta_button_5479613_e9c3f...</span>",
+      "context": "<span class=\"hs-cta-node hs-cta-b850b68f-326a-43cb-8f57-07d5e8074b31\" id=\"hs-cta-b850b68f-326a-43cb-8f57-07d5e8074b31\" style=\"visibility: visible;\" data-hs-drop=\"true\"><a id=\"cta_button_5479613_e9c3ff...</span>",
       "selector": "#hs-cta-b850b68f-326a-43cb-8f57-07d5e8074b31",
       "code": "region",
       "type": "error",
@@ -408,7 +408,7 @@
       "recurrence": 0
     },
     {
-      "context": "<div class=\"row-fluid-wrapper row-depth-1 row-number-3 \">\n  <div class=\"row-fluid \">\n  <...</div>",
+      "context": "<div class=\"row-fluid-wrapper row-depth-1 row-number-3 \">\n  <div class=\"row-fluid \">\n  <d...</div>",
       "selector": "html > body > div:nth-child(3) > div > div:nth-child(3) > div > div > div > div > div > div > div > div > div > div:nth-child(3)",
       "code": "region",
       "type": "error",
@@ -423,7 +423,7 @@
       "recurrence": 0
     },
     {
-      "context": "<div class=\"row-fluid-wrapper row-depth-1 row-number-4 \">\n  <div class=\"row-fluid \">\n  <...</div>",
+      "context": "<div class=\"row-fluid-wrapper row-depth-1 row-number-4 \">\n  <div class=\"row-fluid \">\n  <d...</div>",
       "selector": "html > body > div:nth-child(3) > div > div:nth-child(3) > div > div > div > div > div > div > div > div > div > div:nth-child(3)",
       "code": "region",
       "type": "error",
@@ -438,7 +438,7 @@
       "recurrence": 0
     },
     {
-      "context": "<span class=\"hs-cta-node hs-cta-991abde1-792b-4f15-b338-a79c214c3e94\" id=\"hs-cta-991abde1-792b-4f15-b338-a79c214c3e94\" style=\"visibility: visible;\" data-hs-drop=\"true\"><a id=\"cta_button_5479613_5d5e3...</span>",
+      "context": "<span class=\"hs-cta-node hs-cta-991abde1-792b-4f15-b338-a79c214c3e94\" id=\"hs-cta-991abde1-792b-4f15-b338-a79c214c3e94\" style=\"visibility: visible;\" data-hs-drop=\"true\"><a id=\"cta_button_5479613_5d5e31...</span>",
       "selector": "#hs-cta-991abde1-792b-4f15-b338-a79c214c3e94",
       "code": "region",
       "type": "error",
@@ -453,7 +453,7 @@
       "recurrence": 0
     },
     {
-      "context": "<div class=\"row-fluid-wrapper row-depth-1 row-number-4 \">\n  <div class=\"row-fluid \">\n  <...</div>",
+      "context": "<div class=\"row-fluid-wrapper row-depth-1 row-number-4 \">\n  <div class=\"row-fluid \">\n  <d...</div>",
       "selector": "html > body > div:nth-child(3) > div > div > div > div > div > div:nth-child(3) > div > div > div > div > div > div > div > div:nth-child(3) > div:nth-child(3)",
       "code": "region",
       "type": "error",
@@ -468,7 +468,7 @@
       "recurrence": 0
     },
     {
-      "context": "<div class=\"span4 widget-span widget-type-cell footerBlock center\" style=\"\" data-widget-type=\"cell\" data-x=\"4\" data-w=\"4\">\n  \n  <div class=\"row-fluid-wra...</div>",
+      "context": "<div class=\"span4 widget-span widget-type-cell footerBlock center\" style=\"\" data-widget-type=\"cell\" data-x=\"4\" data-w=\"4\">\n  \n  <div class=\"row-fluid-wrap...</div>",
       "selector": "html > body > div:nth-child(3) > div > div > div > div > div > div:nth-child(3) > div > div > div > div > div > div > div > div:nth-child(3)",
       "code": "region",
       "type": "error",
@@ -483,7 +483,7 @@
       "recurrence": 0
     },
     {
-      "context": "<span class=\"hs-cta-node hs-cta-991abde1-792b-4f15-b338-a79c214c3e94\" id=\"hs-cta-991abde1-792b-4f15-b338-a79c214c3e94\" style=\"visibility: visible;\" data-hs-drop=\"true\"><a id=\"cta_button_5479613_5d5e3...</span>",
+      "context": "<span class=\"hs-cta-node hs-cta-991abde1-792b-4f15-b338-a79c214c3e94\" id=\"hs-cta-991abde1-792b-4f15-b338-a79c214c3e94\" style=\"visibility: visible;\" data-hs-drop=\"true\"><a id=\"cta_button_5479613_5d5e31...</span>",
       "selector": "#hs-cta-991abde1-792b-4f15-b338-a79c214c3e94",
       "code": "region",
       "type": "error",
@@ -498,7 +498,7 @@
       "recurrence": 0
     },
     {
-      "context": "<div class=\"row-fluid-wrapper row-depth-1 row-number-9 \">\n  <div class=\"row-fluid \">\n  <...</div>",
+      "context": "<div class=\"row-fluid-wrapper row-depth-1 row-number-9 \">\n  <div class=\"row-fluid \">\n  <d...</div>",
       "selector": "html > body > div:nth-child(3) > div > div > div > div > div > div:nth-child(3)",
       "code": "region",
       "type": "error",
@@ -528,7 +528,7 @@
       "recurrence": 0
     },
     {
-      "context": "<h1>SAME DAY QUOTES<br>INDUSTRY LEA...</h1>",
+      "context": "<h1>SAME DAY QUOTES<br>INDUSTRY LEAD...</h1>",
       "selector": "#hs_cos_wrapper_module_14725521757543705 > h1",
       "code": "color-contrast",
       "type": "warning",
@@ -543,7 +543,7 @@
       "recurrence": 0
     },
     {
-      "context": "<span id=\"hs_cos_wrapper_module_14725522135704937\" class=\"hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_text\" style=\"\" data-hs-cos-general-type=\"widget\" data-hs-cos-type=\"text\">Drake has earned the trust of p...</span>",
+      "context": "<span id=\"hs_cos_wrapper_module_14725522135704937\" class=\"hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_text\" style=\"\" data-hs-cos-general-type=\"widget\" data-hs-cos-type=\"text\">Drake has earned the trust of pr...</span>",
       "selector": "#hs_cos_wrapper_module_14725522135704937",
       "code": "color-contrast",
       "type": "warning",
@@ -558,7 +558,7 @@
       "recurrence": 0
     },
     {
-      "context": "<a id=\"cta_button_5479613_194b0892-e4a9-41da-856b-ac3dab1de122\" class=\"cta_button \" href=\"https://www.drake.com/cs/c/?cta_guid=194b0892-e4a9-41da-856b-ac3dab1de122&amp;signature=AAH58kFzHOX7ZBuUW0ajj6GGXQnU6_qR2g&amp;pageId=8839032963&amp;placement_g...",
+      "context": "<a id=\"cta_button_5479613_194b0892-e4a9-41da-856b-ac3dab1de122\" class=\"cta_button \" href=\"https://www.drake.com/cs/c/?cta_guid=194b0892-e4a9-41da-856b-ac3dab1de122&amp;signature=AAH58kFzHOX7ZBuUW0ajj6GGXQnU6_qR2g&amp;pageId=8839032963&amp;placement_gu...",
       "selector": "#cta_button_5479613_194b0892-e4a9-41da-856b-ac3dab1de122",
       "code": "color-contrast",
       "type": "warning",
@@ -588,7 +588,7 @@
       "recurrence": 0
     },
     {
-      "context": "<span id=\"hs_cos_wrapper_module_15559652447921724_\" class=\"hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text\" style=\"\" data-hs-cos-general-type=\"widget\" data-hs-cos-type=\"rich_text\">Drake Industries offers a full ...</span>",
+      "context": "<span id=\"hs_cos_wrapper_module_15559652447921724_\" class=\"hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text\" style=\"\" data-hs-cos-general-type=\"widget\" data-hs-cos-type=\"rich_text\">Drake Industries offers a full r...</span>",
       "selector": "#hs_cos_wrapper_module_15559652447921724_",
       "code": "color-contrast",
       "type": "warning",
@@ -633,7 +633,7 @@
       "recurrence": 0
     },
     {
-      "context": "<span id=\"hs_cos_wrapper_module_1561486570471274_\" class=\"hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text\" style=\"\" data-hs-cos-general-type=\"widget\" data-hs-cos-type=\"rich_text\">Contact Drake to talk to an exp...</span>",
+      "context": "<span id=\"hs_cos_wrapper_module_1561486570471274_\" class=\"hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text\" style=\"\" data-hs-cos-general-type=\"widget\" data-hs-cos-type=\"rich_text\">Contact Drake to talk to an expe...</span>",
       "selector": "#hs_cos_wrapper_module_1561486570471274_",
       "code": "color-contrast",
       "type": "warning",
@@ -648,7 +648,7 @@
       "recurrence": 0
     },
     {
-      "context": "<a id=\"cta_button_5479613_5d5e3141-f749-4fa7-b734-25667e531cfe\" class=\"cta_button \" href=\"https://www.drake.com/cs/c/?cta_guid=5d5e3141-f749-4fa7-b734-25667e531cfe&amp;signature=AAH58kHo1qzsXaPOT8WcWuRYgZglZwRuZw&amp;pageId=8839032963&amp;placement_g...",
+      "context": "<a id=\"cta_button_5479613_5d5e3141-f749-4fa7-b734-25667e531cfe\" class=\"cta_button \" href=\"https://www.drake.com/cs/c/?cta_guid=5d5e3141-f749-4fa7-b734-25667e531cfe&amp;signature=AAH58kHo1qzsXaPOT8WcWuRYgZglZwRuZw&amp;pageId=8839032963&amp;placement_gu...",
       "selector": "#cta_button_5479613_5d5e3141-f749-4fa7-b734-25667e531cfe",
       "code": "color-contrast",
       "type": "warning",

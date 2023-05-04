@@ -104,6 +104,8 @@ type GuideLine = {
   _labelNames?: string[];
   register(): string[];
   process(element: Element, top?: Element): void;
+  checkValidAttributes?(element: Element): void;
+  checkControlGroups?(element: Element): void;
   testSemanticPresentationRole?(element: Element): void;
   testEmptyDupeLabelForAttrs?(
     top: Element & { getElementById?(id: string): HTMLElement }
@@ -147,6 +149,13 @@ declare global {
       HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1_A: GuideLine;
       HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1_AAA: GuideLine;
       HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_2: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_3: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_4: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_6: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_1: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_2: GuideLine;
       HTMLCS_WCAG2A: RuleSet;
       HTMLCS_WCAG2AAA: RuleSet;
       HTMLCS_WCAG2AA: RuleSet;

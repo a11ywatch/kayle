@@ -20,9 +20,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
    *
    * @returns {Array} The list of elements.
    */
-  register: function () {
-    return ["_top", "input", "select", "textarea"];
-  },
+  register: () => ["_top", "input", "select", "textarea"],
 
   /**
    * Checks that the values of the autocomplete attribute are values listed in the HTML 5.2 spec.
@@ -30,7 +28,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
    * @param {DOMNode} element The element registered.
    */
   checkValidAttributes: function (element) {
-    var valid_attributes = [
+    const valid_attributes = [
       "additional-name",
       "address-level1",
       "address-level2",
@@ -96,9 +94,11 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
     ];
 
     var valuesStr = element.getAttribute("autocomplete");
+
     if (typeof valuesStr !== "string") {
       return;
     }
+
     var values = valuesStr.split(" ");
 
     var hasFaultyValue = false;
@@ -133,7 +133,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
    * @param {DOMNode} element The element registered.
    */
   checkControlGroups: function (element) {
-    var textFields = [
+    const textFields = [
       "name",
       "honorific-prefix",
       "given-name",
@@ -172,7 +172,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
       "tel-local-suffix",
       "tel-extension",
     ];
-    var isText =
+    const isText =
       (element.tagName === "INPUT" &&
         element.getAttribute("type") === "hidden") ||
       (element.tagName === "INPUT" &&
@@ -182,15 +182,15 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
       element.tagName === "TEXTAREA" ||
       element.tagName === "SELECT";
 
-    var multilineFields = ["street-address"];
-    var isMultiline =
+    const multilineFields = ["street-address"];
+    const isMultiline =
       (element.tagName === "INPUT" &&
         element.getAttribute("type") === "hidden") ||
       element.tagName === "TEXTAREA" ||
       element.tagName === "SELECT";
 
-    var passwordFields = ["new-password", "current-password"];
-    var isPassword =
+    const passwordFields = ["new-password", "current-password"];
+    const isPassword =
       (element.tagName === "INPUT" &&
         element.getAttribute("type") === "hidden") ||
       (element.tagName === "INPUT" &&
@@ -202,8 +202,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
       element.tagName === "TEXTAREA" ||
       element.tagName === "SELECT";
 
-    var urlFields = ["url", "photo", "impp"];
-    var isUrl =
+    const urlFields = ["url", "photo", "impp"];
+    const isUrl =
       (element.tagName === "INPUT" &&
         element.getAttribute("type") === "hidden") ||
       (element.tagName === "INPUT" &&
@@ -215,8 +215,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
       element.tagName === "TEXTAREA" ||
       element.tagName === "SELECT";
 
-    var telFields = ["tel"];
-    var isTel =
+    const telFields = ["tel"];
+    const isTel =
       (element.tagName === "INPUT" &&
         element.getAttribute("type") === "hidden") ||
       (element.tagName === "INPUT" &&
@@ -227,7 +227,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
       element.tagName === "TEXTAREA" ||
       element.tagName === "SELECT";
 
-    var numericFields = [
+    const numericFields = [
       "cc-exp-month",
       "cc-exp-year",
       "transaction-amount",
@@ -235,7 +235,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
       "bday-month",
       "bday-year",
     ];
-    var isNumeric =
+    const isNumeric =
       (element.tagName === "INPUT" &&
         element.getAttribute("type") === "hidden") ||
       (element.tagName === "INPUT" &&
@@ -247,8 +247,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
       element.tagName === "TEXTAREA" ||
       element.tagName === "SELECT";
 
-    var monthFields = ["cc-exp"];
-    var isMonth =
+    const monthFields = ["cc-exp"];
+    const isMonth =
       (element.tagName === "INPUT" &&
         element.getAttribute("type") === "hidden") ||
       (element.tagName === "INPUT" &&
@@ -260,8 +260,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
       element.tagName === "TEXTAREA" ||
       element.tagName === "SELECT";
 
-    var dateFields = ["bday"];
-    var isDate =
+    const dateFields = ["bday"];
+    const isDate =
       (element.tagName === "INPUT" &&
         element.getAttribute("type") === "hidden") ||
       (element.tagName === "INPUT" &&
@@ -273,7 +273,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
       element.tagName === "TEXTAREA" ||
       element.tagName === "SELECT";
 
-    var values = element.getAttribute("autocomplete").split(" ");
+    const values = element.getAttribute("autocomplete").split(" ");
 
     for (var i = 0; i < values.length; i++) {
       values[i] = values[i].trim();
@@ -369,11 +369,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
    */
   process: function (element, top) {
     if (element === top) {
-      var els = HTMLCS.util.getAllElements(element, "*[autocomplete]");
-      for (var i = 0; i < els.length; i++) {
-        var x = els[i];
-        this.checkValidAttributes(x);
-        this.checkControlGroups(x);
+      for (const ele of HTMLCS.util.getAllElements(element, "*[autocomplete]")) {
+        this.checkValidAttributes(ele);
+        this.checkControlGroups(ele);
       }
     } else {
       HTMLCS.addMessage(
@@ -383,7 +381,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
         "H98"
       );
       // See table in https://www.w3.org/TR/html52/sec-forms.html#the-input-element
-      var types_to_skip = [
+      const types_to_skip = [
         "hidden",
         "checkbox",
         "radio",

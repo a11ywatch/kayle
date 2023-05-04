@@ -188,7 +188,7 @@ complete. The performance increases we made to the project were not only done at
 make the ability of auditing at the MS level for almost any website. Right now, the project is moving forward based on performance
 and accuracy for ensuring minimal to no false positives.
 
-## Next Level
+## Teleportation like Speeds
 
 As we set the foundation to mark test cases that can pass and increase our target on automating accessibility we have a couple of layers that 
 can make a major difference to the project. The following will save drastic time and money if done.

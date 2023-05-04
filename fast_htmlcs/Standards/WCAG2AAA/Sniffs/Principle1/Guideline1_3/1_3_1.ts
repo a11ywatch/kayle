@@ -42,55 +42,55 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
    * @param {DOMNode} top     The top element of the tested code.
    */
   process: function (element, top) {
-    var nodeName = element.nodeName.toLowerCase();
+    const nodeName = element.nodeName;
 
     if (element === top) {
       this.testPresentationMarkup(top);
       this.testEmptyDupeLabelForAttrs(top);
     } else {
       switch (nodeName) {
-        case "input":
-        case "textarea":
-        case "button":
+        case "INPUT":
+        case "TEXTAREA":
+        case "BUTTON":
           this.testLabelsOnInputs(element, top);
           break;
 
-        case "form":
+        case "FORM":
           this.testRequiredFieldsets(element);
           break;
 
-        case "select":
+        case "SELECT":
           this.testLabelsOnInputs(element, top);
           this.testOptgroup(element);
           break;
 
-        case "p":
-        case "div":
+        case "P":
+        case "DIV":
           this.testNonSemanticHeading(element);
           this.testListsWithBreaks(element);
           this.testUnstructuredNavLinks(element);
           break;
 
-        case "table":
+        case "TABLE":
           this.testGeneralTable(element);
           this.testTableHeaders(element);
           this.testTableCaptionSummary(element);
           break;
 
-        case "fieldset":
+        case "FIELDSET":
           this.testFieldsetLegend(element);
           break;
 
-        case "h1":
-        case "h2":
-        case "h3":
-        case "h4":
-        case "h5":
-        case "h6":
+        case "H1":
+        case "H2":
+        case "H3":
+        case "H4":
+        case "H5":
+        case "H6":
           this.testEmptyHeading(element);
           break;
       }
-    } 
+    }
   },
 
   /**
@@ -110,13 +110,13 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         element.nodeName === "I"
       )
     ) {
-      var childElements = element.querySelectorAll(
+      const childElements = element.querySelectorAll(
         "*:not(" + ["div", "span", "b", "i"].join("):not(") + ")"
       );
-      var children = new Array(childElements.length);
-      var childIterator = 0;
+      const children = new Array(childElements.length);
+      let childIterator = 0;
 
-      for (var child of childElements) {
+      for (const child of childElements) {
         if (!child.hasAttribute("role")) {
           children[childIterator] = child;
           childIterator++;
@@ -143,8 +143,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
    */
   testEmptyDupeLabelForAttrs: function (top) {
     this._labelNames = {};
-    var labels = top.getElementsByTagName("label");
     var refNode = null;
+    var labels = top.getElementsByTagName("label");
 
     for (var i = 0; i < labels.length; i++) {
       var labelFor = labels[i].getAttribute("for");
@@ -234,6 +234,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
   testLabelsOnInputs: function (element, _, muteErrors) {
     var nodeName = element.nodeName.toLowerCase();
     var inputType = nodeName;
+
     if (inputType === "input") {
       if (element.hasAttribute("type") === true) {
         inputType = element.getAttribute("type");
@@ -246,8 +247,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 
     var addToLabelList = function (found) {
       if (!hasLabel) {
-        hasLabel = {}
-      };
+        hasLabel = {};
+      }
       hasLabel[found] = true;
     };
 
@@ -365,7 +366,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
           _global.HTMLCS.getTranslation("1_3_1_F68"),
           "F68"
         );
-      } 
+      }
     }
 
     return hasLabel;
@@ -390,58 +391,51 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
     var doctype = HTMLCS.util.getDocumentType(_doc);
 
     if (doctype && (doctype === "html5" || doctype === "xhtml5")) {
-      var tags = HTMLCS.util.getAllElements(
+      for (const tag of HTMLCS.util.getAllElements(
         top,
         "strike, tt, big, center, font"
-      );
-      for (var i = 0; i < tags.length; i++) {
-        var msgCode =
-          "H49." +
-          tags[i].nodeName.substr(0, 1).toUpperCase() +
-          tags[i].nodeName.substr(1).toLowerCase();
+      )) {
         HTMLCS.addMessage(
           HTMLCS.ERROR,
-          tags[i],
+          tag,
           _global.HTMLCS.getTranslation("1_3_1_H49."),
-          msgCode
+          "H49." +
+            tag.nodeName.substr(0, 1).toUpperCase() +
+            tag.nodeName.substr(1).toLowerCase()
         );
       }
 
       // Align attributes, too.
-      var tags = HTMLCS.util.getAllElements(top, "*[align]");
-
-      for (var i = 0; i < tags.length; i++) {
-        var msgCode = "H49.AlignAttr";
-        HTMLCS.addMessage(HTMLCS.ERROR, tags[i], "Align attributes .", msgCode);
+      for (const tag of HTMLCS.util.getAllElements(top, "*[align]")) {
+        HTMLCS.addMessage(
+          HTMLCS.ERROR,
+          tag,
+          "Align attributes .",
+          "H49.AlignAttr"
+        );
       }
     } else {
-      var tags = HTMLCS.util.getAllElements(
+      for (const tag of HTMLCS.util.getAllElements(
         top,
         "b, i, u, s, strike, tt, big, small, center, font"
-      );
-      for (var i = 0; i < tags.length; i++) {
-        var msgCode =
-          "H49." +
-          tags[i].nodeName.substr(0, 1).toUpperCase() +
-          tags[i].nodeName.substr(1).toLowerCase();
+      )) {
         HTMLCS.addMessage(
           HTMLCS.WARNING,
-          tags[i],
+          tag,
           _global.HTMLCS.getTranslation("1_3_1_H49.Semantic"),
-          msgCode
+          "H49." +
+            tag.nodeName.substr(0, 1).toUpperCase() +
+            tag.nodeName.substr(1).toLowerCase()
         );
       }
 
       // Align attributes, too.
-      var tags = HTMLCS.util.getAllElements(top, "*[align]");
-
-      for (var i = 0; i < tags.length; i++) {
-        var msgCode = "H49.AlignAttr";
+      for (const tag of HTMLCS.util.getAllElements(top, "*[align]")) {
         HTMLCS.addMessage(
           HTMLCS.WARNING,
-          tags[i],
+          tag,
           _global.HTMLCS.getTranslation("1_3_1_H49.AlignAttr.Semantic"),
-          msgCode
+          "H49.AlignAttr"
         );
       }
     }
@@ -464,9 +458,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
     if (tag === "p" || tag === "div") {
       var children = element.childNodes;
       if (children.length === 1 && children[0].nodeType === 1) {
-        var childTag = children[0].nodeName.toLowerCase();
-
-        if (/^(strong|em|b|i|u)$/.test(childTag) === true) {
+        if (/^(STRONG|EM|B|I|U)$/.test(children[0].nodeName) === true) {
           HTMLCS.addMessage(
             HTMLCS.WARNING,
             element,
@@ -504,10 +496,10 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
     var scopeAttr = this._testTableScopeAttrs(table);
 
     // Invalid scope attribute - emit always if scope tested.
-    for (var i = 0; i < scopeAttr.invalid.length; i++) {
+    for (const invalid of scopeAttr.invalid) {
       HTMLCS.addMessage(
         HTMLCS.ERROR,
-        scopeAttr.invalid[i],
+        invalid,
         _global.HTMLCS.getTranslation("1_3_1_H63.3"),
         "H63.3"
       );
@@ -541,7 +533,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         );
         scopeAttr = null;
       }
-    } 
+    }
 
     if (headersAttr.isMultiLevelHeadersTable) {
       HTMLCS.addMessage(
@@ -594,8 +586,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             "H43.MissingHeadersAttrs"
           );
         }
-      } 
-    } 
+      }
+    }
 
     // Errors where either is permitted, but neither are done properly (missing
     // certain elements).
@@ -699,8 +691,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
     for (var tagType in elements) {
       for (var i = 0; i < elements[tagType].length; i++) {
         var element = elements[tagType][i];
-
         var scope = "";
+
         if (element.hasAttribute("scope") === true) {
           retval.used = true;
           if (element.getAttribute("scope")) {
@@ -729,8 +721,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
               retval.correct = false;
               retval.invalid.push(element);
             }
-          } 
-        } 
+          }
+        }
       }
     }
 
@@ -789,8 +781,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             "H73.3.NoSummary"
           );
         }
-      } 
-    } 
+      }
+    }
 
     if (caption !== "") {
       if (HTMLCS.util.isLayoutTable(table) === true) {
@@ -817,7 +809,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
           "H39.3.NoCaption"
         );
       }
-    } 
+    }
   },
 
   /**
@@ -826,7 +818,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
    * @param {DOMNode} fieldset Fieldset element to test upon.
    */
   testFieldsetLegend: function (fieldset) {
-    var legend = fieldset.querySelector("legend");
+    const legend = fieldset.querySelector("legend");
 
     if (legend === null || legend.parentNode !== fieldset) {
       HTMLCS.addMessage(
@@ -846,9 +838,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
    * @param {DOMNode} select Select element to test upon.
    */
   testOptgroup: function (select) {
-    var optgroup = select.querySelector("optgroup");
-
-    if (optgroup === null) {
+    if (select.querySelector("optgroup") === null) {
       // Optgroup isn't being used.
       HTMLCS.addMessage(
         HTMLCS.WARNING,
@@ -896,7 +886,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
           // Record that this name is used, but there is no fieldset.
           fieldset = null;
         }
-      } 
+      }
 
       if (usedNames[optionName] === undefined) {
         usedNames[optionName] = fieldset;
@@ -911,7 +901,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
           "H71.SameName"
         );
         break;
-      } 
+      }
     }
   },
 
@@ -982,26 +972,25 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
           break;
         }
       }
-    } 
+    }
   },
-
   testHeadingOrder: function (top, level) {
-    var lastHeading = 0;
-    var headings = HTMLCS.util.getAllElements(top, "h1, h2, h3, h4, h5, h6");
+    let lastHeading = 0;
 
-    for (var i = 0; i < headings.length; i++) {
-      var headingNum = parseInt(headings[i].nodeName.substr(1, 1));
+    for (const heading of HTMLCS.util.getAllElements(top, "h1, h2, h3, h4, h5, h6")) {
+      const headingNum = parseInt(heading.nodeName.substring(1, 2));
+      const headingNumStr = headingNum + ""
+
       if (headingNum - lastHeading > 1) {
         if (lastHeading === 0) {
           // If last heading is empty, we are at document top and we are
           // expecting a H1, generally speaking.
           HTMLCS.addMessage(
             level,
-            headings[i],
+            heading,
             _global.HTMLCS.getTranslation("1_3_1_G141_a").replace(
               /\{\{headingNum\}\}/g,
-              // @ts-ignore
-              headingNum
+              headingNumStr
             ),
             "G141"
           );
@@ -1009,12 +998,10 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 
         HTMLCS.addMessage(
           level,
-          headings[i],
+          heading,
           _global.HTMLCS.getTranslation("1_3_1_G141_b")
-            // @ts-ignore
-            .replace(/\{\{headingNum\}\}/g, headingNum)
-            // @ts-ignore
-            .replace(/\{\{properHeadingNum\}\}/g, lastHeading + 1),
+            .replace(/\{\{headingNum\}\}/g, headingNumStr)
+            .replace(/\{\{properHeadingNum\}\}/g, (lastHeading + 1) + ""),
           "G141"
         );
       }
@@ -1031,9 +1018,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
    * @returns void
    */
   testEmptyHeading: function (element) {
-    var text = HTMLCS.util.getElementTextContent(element, true);
-
-    if (/^\s*$/.test(text) === true) {
+    if (
+      /^\s*$/.test(HTMLCS.util.getElementTextContent(element, true)) === true
+    ) {
       HTMLCS.addMessage(
         HTMLCS.ERROR,
         element,
@@ -1051,13 +1038,12 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
    * @returns void
    */
   testUnstructuredNavLinks: function (element) {
-    var linksLength = 0;
+    let linksLength = 0;
 
-    var childNodes = element.childNodes;
-    for (var i = 0; i < childNodes.length; i++) {
+    for (const childNodes of element.childNodes) {
       if (
-        childNodes[i].nodeType === 1 &&
-        childNodes[i].nodeName.toLowerCase() === "a"
+        childNodes.nodeType === 1 &&
+        childNodes.nodeName === "A"
       ) {
         linksLength++;
         if (linksLength > 1) {
@@ -1070,11 +1056,11 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
       // Going to throw a warning here, mainly because we cannot easily tell
       // whether it is just a paragraph with multiple links, or a navigation
       // structure.
-      var parent = element.parentNode;
+      let parent = element.parentNode;
       while (
         parent !== null &&
-        parent.nodeName.toLowerCase() !== "ul" &&
-        parent.nodeName.toLowerCase() !== "ol"
+        parent.nodeName !== "UL" &&
+        parent.nodeName !== "OL"
       ) {
         parent = parent.parentNode;
       }
@@ -1087,7 +1073,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
           "H48"
         );
       }
-    } 
+    }
   },
 
   /**
