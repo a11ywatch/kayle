@@ -977,9 +977,12 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
   testHeadingOrder: function (top, level) {
     let lastHeading = 0;
 
-    for (const heading of HTMLCS.util.getAllElements(top, "h1, h2, h3, h4, h5, h6")) {
+    for (const heading of HTMLCS.util.getAllElements(
+      top,
+      "h1, h2, h3, h4, h5, h6"
+    )) {
       const headingNum = parseInt(heading.nodeName.substring(1, 2));
-      const headingNumStr = headingNum + ""
+      const headingNumStr = headingNum + "";
 
       if (headingNum - lastHeading > 1) {
         if (lastHeading === 0) {
@@ -1001,7 +1004,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
           heading,
           _global.HTMLCS.getTranslation("1_3_1_G141_b")
             .replace(/\{\{headingNum\}\}/g, headingNumStr)
-            .replace(/\{\{properHeadingNum\}\}/g, (lastHeading + 1) + ""),
+            .replace(/\{\{properHeadingNum\}\}/g, lastHeading + 1 + ""),
           "G141"
         );
       }
@@ -1041,10 +1044,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
     let linksLength = 0;
 
     for (const childNodes of element.childNodes) {
-      if (
-        childNodes.nodeType === 1 &&
-        childNodes.nodeName === "A"
-      ) {
+      if (childNodes.nodeType === 1 && childNodes.nodeName === "A") {
         linksLength++;
         if (linksLength > 1) {
           break;

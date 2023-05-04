@@ -369,7 +369,10 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
    */
   process: function (element, top) {
     if (element === top) {
-      for (const ele of HTMLCS.util.getAllElements(element, "*[autocomplete]")) {
+      for (const ele of HTMLCS.util.getAllElements(
+        element,
+        "*[autocomplete]"
+      )) {
         this.checkValidAttributes(ele);
         this.checkControlGroups(ele);
       }

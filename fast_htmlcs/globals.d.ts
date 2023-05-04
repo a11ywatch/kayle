@@ -115,6 +115,10 @@ type GuideLine = {
     top?: Element,
     muteErrors?: boolean
   ): boolean;
+  testNullAltText?(top: Element): void;
+  addNullAltTextResults?(top: Element): void;
+  addMediaAlternativesResults?(element: Element): void;
+  testMediaTextAlternatives?(element: Element): void;
   testPresentationMarkup?(element: Element): void;
   testNonSemanticHeading?(element: Element): void;
   testTableHeaders?(element: Element): void;
@@ -156,12 +160,18 @@ declare global {
       HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_6: GuideLine;
       HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_1: GuideLine;
       HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_2: GuideLine;
+      HTMLCS_Section508_Sniffs_A: GuideLine;
+      HTMLCS_Section508_Sniffs_B: GuideLine;
+      HTMLCS_Section508_Sniffs_C: GuideLine;
+      HTMLCS_Section508_Sniffs_D: GuideLine;
       HTMLCS_WCAG2A: RuleSet;
       HTMLCS_WCAG2AAA: RuleSet;
       HTMLCS_WCAG2AA: RuleSet;
+      HTMLCS_Section508: RuleSet;
     },
     HTMLCS: HTMLCS;
   var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1: Snif;
+  var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1: any; // todo: remove any;
   var HTMLCS_WCAG2A: RuleSet;
   var HTMLCS_WCAG2AA: RuleSet;
   var HTMLCS_WCAG2AAA: RuleSet;

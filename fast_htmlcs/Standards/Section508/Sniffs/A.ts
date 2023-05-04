@@ -68,7 +68,7 @@ _global.HTMLCS_Section508_Sniffs_A = {
    * @returns {Object} A structured list of errors.
    */
   testNullAltText: function (top) {
-    var errors = {
+    const errors = {
       img: {
         generalAlt: [],
         missingAlt: [],
@@ -86,31 +86,27 @@ _global.HTMLCS_Section508_Sniffs_A = {
       },
     };
 
-    elements = HTMLCS.util.getAllElements(
+    for (const element of HTMLCS.util.getAllElements(
       top,
       'img, area, input[type="image"]'
-    );
-
-    for (var el = 0; el < elements.length; el++) {
-      var element = elements[el];
-
+    )) {
       var nodeName = element.nodeName;
       var linkOnlyChild = false;
       var missingAlt = false;
       var nullAlt = false;
 
       if (element.parentNode.nodeName === "A") {
-        var prevNode = HTMLCS.util.getPreviousSiblingElement(element, null);
-        var nextNode = HTMLCS.util.getNextSiblingElement(element, null);
+        const prevNode = HTMLCS.util.getPreviousSiblingElement(element, null);
+        const nextNode = HTMLCS.util.getNextSiblingElement(element, null);
 
         if (prevNode === null && nextNode === null) {
-          var textContent = element.parentNode.textContent;
+          let textContent = element.parentNode.textContent;
 
           if (element.parentNode.textContent !== undefined) {
-            var textContent = element.parentNode.textContent;
+            textContent = element.parentNode.textContent;
           } else {
-            // Keep IE8 happy.
-            var textContent = element.parentNode.innerText;
+            // @ts-ignore Keep IE8 happy.
+            textContent = element.parentNode.innerText;
           }
 
           if (HTMLCS.util.isStringEmpty(textContent) === true) {
@@ -194,12 +190,12 @@ _global.HTMLCS_Section508_Sniffs_A = {
    * @param {DOMNode} element The element to test.
    */
   addNullAltTextResults: function (top) {
-    var errors = this.testNullAltText(top);
+    const errors = this.testNullAltText(top);
 
-    for (var i = 0; i < errors.img.emptyAltInLink.length; i++) {
+    for (const emptyAltInLink of errors.img.emptyAltInLink) {
       HTMLCS.addMessage(
         HTMLCS.ERROR,
-        errors.img.emptyAltInLink[i],
+        emptyAltInLink,
         "Img element is the only content of the link, but is missing alt text. The alt text should describe the purpose of the link.",
         "Img.EmptyAltInLink"
       );
@@ -279,7 +275,7 @@ _global.HTMLCS_Section508_Sniffs_A = {
   },
 
   testMediaTextAlternatives: function (top) {
-    var errors = {
+    const errors = {
       object: {
         missingBody: [],
         generalAlt: [],
@@ -291,11 +287,7 @@ _global.HTMLCS_Section508_Sniffs_A = {
       },
     };
 
-    var elements = HTMLCS.util.getAllElements(top, "object");
-
-    for (var el = 0; el < elements.length; el++) {
-      var element = elements[el];
-
+    for (const element of HTMLCS.util.getAllElements(top, "object")) {
       var childObject = element.querySelector("object");
 
       // If we have an object as our alternative, skip it. Pass the blame onto
@@ -310,9 +302,7 @@ _global.HTMLCS_Section508_Sniffs_A = {
       } //end if
     } //end if
 
-    var elements = HTMLCS.util.getAllElements(top, "applet");
-
-    for (var el = 0; el < elements.length; el++) {
+    for (const element of HTMLCS.util.getAllElements(top, "applet")) {
       // Test firstly for whether we have an object alternative.
       var childObject = element.querySelector("object");
       var hasError = false;
@@ -353,7 +343,7 @@ _global.HTMLCS_Section508_Sniffs_A = {
    * @param {DOMNode} element The element to test.
    */
   addMediaAlternativesResults: function (top) {
-    var errors =
+    const errors =
       HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1.testMediaTextAlternatives(
         top
       );

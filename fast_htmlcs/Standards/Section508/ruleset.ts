@@ -30,10 +30,9 @@ _global.HTMLCS_Section508 = {
     "O",
     "P",
   ],
-  getMsgInfo: function (code) {
-    var msgCodeParts = code.split(".", 3);
-    var paragraph = msgCodeParts[1].toLowerCase();
+  getMsgInfo: (code) => {
+    const msgCodeParts = code.split(".", 3);
 
-    return [["Section", "1194.22 (" + paragraph + ")"]];
+    return [["Section", "1194.22 (" + msgCodeParts[1].toLowerCase() + ")"]];
   },
 };

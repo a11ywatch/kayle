@@ -45,7 +45,7 @@ _global.HTMLCS_Section508_Sniffs_D = {
       // potentially hidden text (eg. "click to expand" sections). For instance,
       // such text should be stored semantically in the page, not loaded into
       // a container through AJAX (and thus not accessible with scripting off).
-      var hasScript = HTMLCS.util.getAllElements(
+      const hasScript = HTMLCS.util.getAllElements(
         top,
         'script, link[rel="stylesheet"]'
       );
