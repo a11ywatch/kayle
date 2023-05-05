@@ -20,7 +20,7 @@ const cache = {
    * @param {Function} [creator] - Default value to set if there is a cache miss. Functions are evaluated before caching. To override a value already saved, use `set()`.
    * @returns {*} The item stored
    */
-  get(key, creator) {
+  get(key, creator?: () => void) {
     validateCreator(creator);
 
     if (key in _cache) {

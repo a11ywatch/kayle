@@ -33,9 +33,6 @@ import v2Reporter from './reporters/v2';
 import * as commons from '../commons';
 import * as utils from './utils';
 
-import _thisWillBeDeletedDoNotUse from './_exposed-for-testing.js';
-
-axe._thisWillBeDeletedDoNotUse = _thisWillBeDeletedDoNotUse;
 axe.constants = constants;
 axe.log = log;
 axe.AbstractVirtualNode = AbstractVirtualNode;

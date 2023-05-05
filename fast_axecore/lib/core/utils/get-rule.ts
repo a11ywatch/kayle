@@ -4,8 +4,8 @@
  * @return {Rule}
  */
 function getRule(ruleId) {
-  // TODO: es-modules_audit
-  var rule = axe._audit.rules.find(rule => rule.id === ruleId);
+  // @ts-ignore TODO: es-modules_audit
+  const rule = axe._audit.rules.find(rule => rule.id === ruleId);
 
   if (!rule) {
     throw new Error(`Cannot find rule by id: ${ruleId}`);

@@ -47,7 +47,9 @@ const constants = {
   NA: undefined,
   PASS: undefined,
   CANTTELL: undefined,
-  FAIL: undefined
+  FAIL: undefined,
+  CANTTELL_GROUP: undefined,
+  NA_GROUP: undefined
 };
 
 for (const definition of definitions) {

@@ -49,6 +49,8 @@ test("pa11y htmlcs audit drakeMock", async ({ page, browser }, testInfo) => {
     }
   }
 
+  console.log({ errorCount: errorCount, warningCount: warningCount, noticeCount: 0, accessScore: undefined })
+
   // valid list
   assert(Array.isArray(issues));
   // must return at least 11 errors or runner messed up.
