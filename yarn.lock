@@ -4227,10 +4227,8 @@ __metadata:
     revalidator: ^0.3.1
     sinon: ^15.0.1
     standard-version: ^9.5.0
-    typedarray: ^0.0.7
     typescript: ^4.9.4
     uglify-js: ^3.17.4
-    weakmap-polyfill: ^2.0.4
   languageName: unknown
   linkType: soft
 
@@ -9302,13 +9300,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typedarray@npm:^0.0.7":
-  version: 0.0.7
-  resolution: "typedarray@npm:0.0.7"
-  checksum: 29337342f85f0bb1d9aca211d3a15355e9d46a942efcc63fb922e7b9a0ed86e3559e7beb70e362942d0dab4cb5aa3a5f07a6d94d39028e0fe7051c25ffb79679
-  languageName: node
-  linkType: hard
-
 "typescript@npm:^4.9.3, typescript@npm:^4.9.4":
   version: 4.9.5
   resolution: "typescript@npm:4.9.5"
@@ -9516,13 +9507,6 @@ __metadata:
   dependencies:
     xml-name-validator: ^4.0.0
   checksum: eba070e78deb408ae8defa4d36b429f084b2b47a4741c4a9be3f27a0a3d1845e277e3072b04391a138f7e43776842627d1334e448ff13ff90ad9fb1214ee7091
-  languageName: node
-  linkType: hard
-
-"weakmap-polyfill@npm:^2.0.4":
-  version: 2.0.4
-  resolution: "weakmap-polyfill@npm:2.0.4"
-  checksum: 4c733a927f7ac6b1244a4acf6a227bddfd74aa60eb03c21a10f7133b47b2d47c3b2a684f1c4723d574a5c5be516f7bb37af5eed7369a93aed5e19fb8eab6948c
   languageName: node
   linkType: hard
 

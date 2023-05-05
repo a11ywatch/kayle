@@ -1,6 +1,6 @@
 {
   "name": "a11y-js",
-  "version": "0.3.51",
+  "version": "0.3.54",
   "description": "Extremely fast accessibility evaluation for nodejs",
   "main": "./build/index.js",
   "keywords": [

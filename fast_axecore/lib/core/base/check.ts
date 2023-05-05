@@ -139,6 +139,7 @@ Check.prototype.runSync = function runSync(node, options, context) {
 
   const checkOptions = this.getOptions(options.options);
   const checkResult = new CheckResult(this);
+  // todo: look into preventing mutating
   const helper = checkHelper(checkResult, options);
 
   // throw error if a check is run that requires async behavior

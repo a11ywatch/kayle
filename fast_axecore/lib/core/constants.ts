@@ -43,7 +43,11 @@ const constants = {
     timeout: 10000
   }),
   allOrigins: '<unsafe_all_origins>',
-  sameOrigin: '<same_origin>'
+  sameOrigin: '<same_origin>',
+  NA: undefined,
+  PASS: undefined,
+  CANTTELL: undefined,
+  FAIL: undefined
 };
 
 for (const definition of definitions) {

@@ -7,7 +7,7 @@ import DqElement from './dq-element';
  * @param  {Function} callback    The callback to expose when `this.async()` is called
  * @return {Object}               Bound to `this` for a check's fn
  */
-function checkHelper(checkResult, options, resolve, reject) {
+function checkHelper(checkResult, options, resolve?:(checkResult) => Promise<void>, reject?:(result) => Promise<void>) {
   return {
     isAsync: false,
     async() {

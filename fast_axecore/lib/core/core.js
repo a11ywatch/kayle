@@ -24,7 +24,6 @@ import finishRun from './public/finish-run';
 import setup from './public/setup';
 import teardown from './public/teardown';
 
-import naReporter from './reporters/na';
 import noPassesReporter from './reporters/no-passes';
 import rawEnvReporter from './reporters/raw-env';
 import rawReporter from './reporters/raw';
@@ -64,7 +63,7 @@ axe.runPartial = runPartial;
 axe.finishRun = finishRun;
 axe.commons = commons;
 axe.utils = utils;
-axe.addReporter('na', naReporter);
+
 axe.addReporter('no-passes', noPassesReporter);
 axe.addReporter('rawEnv', rawEnvReporter);
 axe.addReporter('raw', rawReporter);

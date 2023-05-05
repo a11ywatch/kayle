@@ -20,17 +20,23 @@ const criteriaMap = {
  */
 function aggregate(map: string[], values: string[], initial?: string) {
   const valSize = values.length;
+
+  if (valSize === 1) {
+    return map[criteriaMap[values[0]]];
+  }
+
   const maxPoint = valSize / 2;
+  const tailEnd = valSize - 1;
   let mapIndex = initial ? criteriaMap[initial] : 0;
 
   if (mapIndex !== 3) {
     for (let i = 0; i < valSize; i++) {
       // double ended iterator max
       if(i > maxPoint) {
-        break
+        break;
       }
       const head = criteriaMap[values[i]];
-      const tail = criteriaMap[values[valSize - i]];
+      const tail = criteriaMap[values[tailEnd - i]];
       const maxV = tail > head ? tail : head;
     
       if (maxV > mapIndex) {

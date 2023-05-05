@@ -1,7 +1,7 @@
 {
   "name": "fast_axecore",
   "description": "Accessibility engine for automated Web UI testing",
-  "version": "4.6.9",
+  "version": "4.6.12",
   "license": "MPL-2.0",
   "engines": {
     "node": ">=4"
@@ -124,10 +124,8 @@
     "revalidator": "^0.3.1",
     "sinon": "^15.0.1",
     "standard-version": "^9.5.0",
-    "typedarray": "^0.0.7",
     "typescript": "^4.9.4",
-    "uglify-js": "^3.17.4",
-    "weakmap-polyfill": "^2.0.4"
+    "uglify-js": "^3.17.4"
   },
   "lint-staged": {
     "*.{md,json,ts,html}": [

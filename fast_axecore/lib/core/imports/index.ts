@@ -3,21 +3,10 @@ import doT from '@deque/dot';
 import emojiRegexText from 'emoji-regex';
 import memoize from 'memoizee';
 
-import es6promise from 'es6-promise';
-import { Uint32Array } from 'typedarray';
-import 'weakmap-polyfill';
-
 // prevent striping newline characters from strings (e.g. failure
 // summaries). value must be synced with build/configure.js
 doT.templateSettings.strip = false;
 
-if (!('Promise' in window)) {
-  es6promise.polyfill();
-}
-
-if (!('Uint32Array' in window)) {
-  window.Uint32Array = Uint32Array;
-}
 if (window.Uint32Array) {
   // @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray/some
   if (!('some' in window.Uint32Array.prototype)) {
