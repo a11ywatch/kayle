@@ -19,10 +19,8 @@ test("@axe-core/playwright audit drakeMock", async ({
     accessibilityScanResults;
 
   // console.log(incomplete);
-  console.log(`Issue count ${violations.length}`);
-  console.log(`Warning count ${incomplete.length}`);
+  console.log({ errorCount: violations.length, warningCount: incomplete.length, noticeCount: 0, accessScore: undefined })
   console.log("time took", endTime);
-
   // valid list
   assert(Array.isArray(incomplete));
   assert(typeof url === "string");

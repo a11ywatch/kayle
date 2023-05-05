@@ -1,7 +1,7 @@
 {
   "name": "fast_axecore",
   "description": "Accessibility engine for automated Web UI testing",
-  "version": "4.6.4",
+  "version": "4.6.8",
   "license": "MPL-2.0",
   "engines": {
     "node": ">=4"
@@ -73,6 +73,7 @@
   "scripts": {
     "develop": "grunt dev --force",
     "build": "grunt --lang=en,da,de,es,eu,pl,fr,he,ja,ko,nl,no_NB,pt_BR",
+    "build:fast_axecore": "yarn build",
     "eslint": "eslint --color --format stylish '{lib,test,build,doc}/**/*.js' 'Gruntfile.js'",
     "version": "echo \"use 'npm run release' to bump axe-core version\" && exit 1",
     "release": "git fetch origin --tags --force && standard-version -a",
@@ -81,6 +82,7 @@
     "sri-update": "grunt build && node build/sri-update && git add sri-history.json",
     "sri-validate": "node build/sri-update --validate",
     "fmt": "prettier --write .",
+    "fix": "prettier --write '**/*.{js,jsx,ts,tsx}'",
     "prepare": "grunt",
     "prebuild": "node ./build/check-node-version.js",
     "pretest": "node ./build/check-node-version.js",

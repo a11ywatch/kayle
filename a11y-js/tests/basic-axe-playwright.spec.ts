@@ -8,6 +8,7 @@ import { test, expect } from "@playwright/test";
 test("fast_axecore audit drakeMock", async ({ page, browser }, testInfo) => {
   await setNetworkInterception(page);
   await page.setContent(drakeMock);
+  page.on("console", (msg) => console.log("PAGE LOG:", msg.text()));
 
   const startTime = performance.now();
   const results = await a11y({
@@ -22,7 +23,6 @@ test("fast_axecore audit drakeMock", async ({ page, browser }, testInfo) => {
   const { issues, pageUrl, documentTitle, meta, automateable } = results;
 
   // console.log(issues);
-  console.log(`Issue count ${issues.length}`);
   console.log(meta);
   console.log(automateable);
   console.log("time took", endTime);

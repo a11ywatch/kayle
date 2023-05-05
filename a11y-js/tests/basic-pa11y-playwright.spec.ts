@@ -37,7 +37,6 @@ test("pa11y htmlcs audit drakeMock", async ({ page, browser }, testInfo) => {
   let warningCount = 0;
 
   // console.log(issues);
-  console.log(`Issue count ${issues.length}`);
   console.log("time took", endTime);
 
   // iterate and build all issues

@@ -13,6 +13,8 @@
     "build:a11y-js": "cd a11y-js && yarn build",
     "build:test": "./build.sh && npx playwright test --workers 1",
     "build:test:fast_htmlcs": "yarn build:fast_htmlcs && yarn test:playwright",
+    "build:test:axe": "yarn build:fast_axecore && yarn test:axe",
+    "build:test:playwright:axe": "yarn build:fast_axecore && yarn test:playwright:axe",
     "pub:fast_htmlcs": "yarn build:fast_htmlcs && yarn npm publish",
     "pub:fast_axecore": "yarn build:fast_axecore && yarn npm publish",
     "pub:a11y-js": "yarn build:a11y-js && yarn npm publish"
