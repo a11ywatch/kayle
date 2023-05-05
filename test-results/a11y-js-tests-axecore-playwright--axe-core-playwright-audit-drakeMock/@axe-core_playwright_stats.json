@@ -1,9 +1,9 @@
 {
   "mock": "[drakeMock]",
   "htmlSize": 71784,
-  "duration": 921.6340410113335,
-  "errors": 8,
-  "warnings": 56,
+  "duration": 1260.1862080097198,
+  "errors": 7,
+  "warnings": 1,
   "runner": [
     "@axe-core/playwright"
   ]

@@ -9,11 +9,12 @@
  */
 function aggregate(map, values, initial) {
   values = values.slice();
+
   if (initial) {
     values.push(initial);
   }
 
-  var sorting = values.map(val => map.indexOf(val)).sort(); // Stupid NodeJS array.sort functor doesn't work!!
+  const sorting = values.map(val => map.indexOf(val)).sort(); // Stupid NodeJS array.sort functor doesn't work!!
 
   return map[sorting.pop()];
 }

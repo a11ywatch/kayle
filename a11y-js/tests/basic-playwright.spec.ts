@@ -20,7 +20,7 @@ test("fast_htmlcs audit drakeMock", async ({ page, browser }, testInfo) => {
 
   const { issues, pageUrl, documentTitle, meta, automateable } = results;
 
-  console.log(issues);
+  // console.log(issues);
   console.log(`Issue count ${issues.length}`);
   console.log(meta);
   console.log(automateable);

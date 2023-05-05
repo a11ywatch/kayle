@@ -15,12 +15,12 @@ test("@axe-core/playwright audit drakeMock", async ({
   const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
   const endTime = performance.now() - startTime;
 
-  const { url, incomplete, inapplicable, violations } =
+  const { url, incomplete, violations } =
     accessibilityScanResults;
 
-  console.log(incomplete);
-  console.log(`Issue count ${incomplete.length + violations.length}`);
-  console.log(`Warning count ${inapplicable.length}`);
+  // console.log(incomplete);
+  console.log(`Issue count ${violations.length}`);
+  console.log(`Warning count ${incomplete.length}`);
   console.log("time took", endTime);
 
   // valid list
@@ -41,8 +41,8 @@ test("@axe-core/playwright audit drakeMock", async ({
         mock: "[drakeMock]",
         htmlSize: drakeMock.length,
         duration: endTime,
-        errors: incomplete.length + violations.length,
-        warnings: inapplicable.length,
+        errors: violations.length,
+        warnings: incomplete.length,
         runner: ["@axe-core/playwright"],
       },
       null,

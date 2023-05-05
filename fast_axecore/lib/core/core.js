@@ -35,18 +35,15 @@ import * as commons from '../commons';
 import * as utils from './utils';
 
 import _thisWillBeDeletedDoNotUse from './_exposed-for-testing.js';
-axe._thisWillBeDeletedDoNotUse = _thisWillBeDeletedDoNotUse;
 
+axe._thisWillBeDeletedDoNotUse = _thisWillBeDeletedDoNotUse;
 axe.constants = constants;
 axe.log = log;
-
 axe.AbstractVirtualNode = AbstractVirtualNode;
 axe.SerialVirtualNode = SerialVirtualNode;
 axe.VirtualNode = VirtualNode;
 axe._cache = cache;
-
 axe.imports = imports;
-
 axe.cleanup = cleanup;
 axe.configure = configure;
 axe.frameMessenger = frameMessenger;
@@ -65,10 +62,8 @@ axe.setup = setup;
 axe.teardown = teardown;
 axe.runPartial = runPartial;
 axe.finishRun = finishRun;
-
 axe.commons = commons;
 axe.utils = utils;
-
 axe.addReporter('na', naReporter);
 axe.addReporter('no-passes', noPassesReporter);
 axe.addReporter('rawEnv', rawEnvReporter);

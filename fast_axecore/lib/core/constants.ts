@@ -46,7 +46,7 @@ const constants = {
   sameOrigin: '<same_origin>'
 };
 
-definitions.forEach(definition => {
+for (const definition of definitions) {
   const name = definition.name;
   const value = definition.value;
   const priority = definition.priority;
@@ -60,7 +60,7 @@ definitions.forEach(definition => {
   constants.resultGroups[priority] = group;
 
   constants.resultGroupMap[value] = group;
-});
+}
 
 // Freeze everything
 Object.freeze(constants.results);

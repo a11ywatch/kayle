@@ -21,7 +21,7 @@ test("fast_axecore audit drakeMock", async ({ page, browser }, testInfo) => {
 
   const { issues, pageUrl, documentTitle, meta, automateable } = results;
 
-  console.log(issues);
+  // console.log(issues);
   console.log(`Issue count ${issues.length}`);
   console.log(meta);
   console.log(automateable);
@@ -31,6 +31,8 @@ test("fast_axecore audit drakeMock", async ({ page, browser }, testInfo) => {
   assert(Array.isArray(issues));
   assert(typeof pageUrl === "string");
   assert(typeof documentTitle === "string");
+  assert(meta.warningCount === 10);
+  assert(meta.errorCount === 34);
 
   await expect(page).toHaveTitle(documentTitle);
 
