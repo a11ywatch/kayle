@@ -20,9 +20,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_1 = {
    *
    * @returns {Array} The list of elements.
    */
-  register: function () {
-    return ["iframe", "a", "area", "_top"];
-  },
+  register: () => ["iframe", "a", "area", "_top"],
 
   /**
    * Process the registered element.
@@ -34,15 +32,13 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_1 = {
     if (element === top) {
       this.testGenericBypassMsg(top);
     } else {
-      var nodeName = element.nodeName.toLowerCase();
-
-      switch (nodeName) {
-        case "iframe":
+      switch (element.nodeName) {
+        case "IFRAME":
           this.testIframeTitle(element);
           break;
 
-        case "a":
-        case "area":
+        case "A":
+        case "AREA":
           this.testSameDocFragmentLinks(element, top);
           break;
       }
@@ -57,10 +53,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_1 = {
    * @returns void
    */
   testIframeTitle: function (element) {
-    var nodeName = element.nodeName.toLowerCase();
+    if (element.nodeName === "IFRAME") {
+      let hasTitle = false;
 
-    if (nodeName === "iframe") {
-      var hasTitle = false;
       if (element.hasAttribute("title") === true) {
         if (
           element.getAttribute("title") &&
@@ -85,7 +80,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_1 = {
           "H64.2"
         );
       }
-    } //end if
+    }
   },
 
   /**
@@ -124,21 +119,26 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_1 = {
       var href = element.getAttribute("href");
       href = href.trim();
       if (href.length > 1 && href.charAt(0) === "#") {
-        var id = href.substr(1);
+        const id = href.substring(1);
 
         try {
-          var doc = top;
+          let doc: Document | (Element & { getElementById?() }) = top;
+
           if (doc.ownerDocument) {
             doc = doc.ownerDocument;
           }
 
           // First search for an element with the appropriate ID, then search for a
           // named anchor using the name attribute.
-          var target = doc.getElementById(id);
+          let target =
+            typeof doc.getElementById === "function"
+              ? doc.getElementById(id)
+              : null;
+
           if (target === null) {
-            var _doc = HTMLCS.util.getElementWindow(top).document;
-            var doctype = HTMLCS.util.getDocumentType(_doc);
-            var nameSelector = "a";
+            const _doc = HTMLCS.util.getElementWindow(top).document;
+            const doctype = HTMLCS.util.getDocumentType(_doc);
+            let nameSelector = "a";
 
             if (doctype && doctype.indexOf("html5") === -1) {
               nameSelector = "*";
@@ -173,8 +173,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_1 = {
           }
         } catch (ex) {
           // Ignore error
-        } //end try
-      } //end if
+        }
+      }
     }
   },
 };

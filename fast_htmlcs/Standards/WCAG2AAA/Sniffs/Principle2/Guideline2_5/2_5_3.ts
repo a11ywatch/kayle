@@ -30,7 +30,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_3 = {
    * @param {DOMNode} element The element registered.
    * @param {DOMNode} top     The top element of the tested code.
    */
-  process: function (element, top) {
+  process: function (element, top: Element & { getElementById?(id: string) }) {
     if (element == top) {
       HTMLCS.addMessage(
         HTMLCS.NOTICE,
@@ -39,34 +39,37 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_3 = {
         "F96"
       );
     } else {
-      var nodeName = element.nodeName.toLowerCase();
+      let visibleLabel = "";
+      let accessibleName = "";
+      let refNode = null;
 
-      var visibleLabel = "";
-      var accessibleName = "";
-      switch (nodeName) {
-        case "a":
+      switch (element.nodeName) {
+        case "A":
           visibleLabel = HTMLCS.util.getTextContent(element);
           accessibleName = HTMLCS.util.getAccessibleName(element, top);
           break;
-        case "button":
+        case "BUTTON":
           visibleLabel = HTMLCS.util.getTextContent(element);
           accessibleName = HTMLCS.util.getAccessibleName(element, top);
           break;
-        case "label":
+        case "LABEL":
           visibleLabel = HTMLCS.util.getTextContent(element);
-          var labelFor = element.getAttribute("for");
+          const labelFor = element.getAttribute("for");
+
           if (labelFor) {
             if (top.ownerDocument) {
-              var refNode = top.ownerDocument.getElementById(labelFor);
+              refNode = top.ownerDocument.getElementById(labelFor);
             } else {
-              var refNode = top.getElementById(labelFor);
+              if (typeof top.getElementById === "function") {
+                refNode = top.getElementById(labelFor);
+              }
             }
             if (refNode) {
               accessibleName = HTMLCS.util.getAccessibleName(refNode, top);
             }
           }
           break;
-        case "input":
+        case "INPUT":
           if (element.getAttribute("type") === "submit") {
             visibleLabel = element.getAttribute("value");
           }
@@ -74,8 +77,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_3 = {
           break;
       }
       if (!!visibleLabel && !!accessibleName) {
-        var a = visibleLabel.replace(/[^A-Za-z]/g, "").toLowerCase();
-        var b = accessibleName.replace(/[^A-Za-z]/g, "").toLowerCase();
+        const a = visibleLabel.replace(/[^A-Za-z]/g, "").toLowerCase();
+        const b = accessibleName.replace(/[^A-Za-z]/g, "").toLowerCase();
+
         if (!!a && !!b && b.indexOf(a) === -1) {
           HTMLCS.addMessage(
             HTMLCS.WARNING,

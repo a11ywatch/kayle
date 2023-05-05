@@ -11,7 +11,7 @@
  *
  */
 
-_global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_1_2_1_2 = {
+_global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_3_2_3_1 = {
   /**
    * Determines the elements to register for processing.
    *
@@ -21,7 +21,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_1_2_1_2 = {
    * @returns {Array} The list of elements.
    */
   register: function () {
-    return ["object", "applet", "embed"];
+    return ["_top"];
   },
 
   /**
@@ -30,12 +30,19 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_1_2_1_2 = {
    * @param {DOMNode} element The element registered.
    * @param {DOMNode} top     The top element of the tested code.
    */
-  process: function (element, top) {
+  process: function (_, top) {
+    // The "small" flashing area is deliberately vague - users should see
+    // technique G176 for more details, as the threshold depends on both the
+    // size and resolution of a screen.
+    // The technique gives a baseline (based on a 15-17 inch monitor read at
+    // 22-26 inches, at 1024 x 768 resolution). A 10-degree field of vision is
+    // approximately 341 x 256 pixels in this environment, and a flashing area
+    // needs to be no more than 25% of this (not necessarily rectangular).
     HTMLCS.addMessage(
-      HTMLCS.WARNING,
-      element,
-      _global.HTMLCS.getTranslation("2_1_2_F10"),
-      "F10"
+      HTMLCS.NOTICE,
+      top,
+      _global.HTMLCS.getTranslation("2_3_1_G19,G176"),
+      "G19,G176"
     );
   },
 };

@@ -36,11 +36,10 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_1_2_1_1 = {
     // tied to the default action of a link or button - not merely a click.
     if (element === top) {
       // Cannot detect event listeners here so only onclick attributes are checked.
-      var keyboardTriggers = HTMLCS.util.getAllElements(
+      for (const elem of HTMLCS.util.getAllElements(
         top,
         "*[onclick], *[onkeyup], *[onkeydown], *[onkeypress], *[onfocus], *[onblur]"
-      );
-      keyboardTriggers.forEach(function (elem) {
+      )) {
         if (HTMLCS.util.isKeyboardNavigable(elem) === false) {
           HTMLCS.addMessage(
             HTMLCS.WARNING,
@@ -49,63 +48,75 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_1_2_1_1 = {
             "G90"
           );
         }
-      });
+      }
 
-      var dblClickEls = HTMLCS.util.getAllElements(top, "*[ondblclick]");
-      for (var i = 0; i < dblClickEls.length; i++) {
+      for (const dblClickEl of HTMLCS.util.getAllElements(
+        top,
+        "*[ondblclick]"
+      )) {
         HTMLCS.addMessage(
           HTMLCS.WARNING,
-          dblClickEls[i],
+          dblClickEl,
           _global.HTMLCS.getTranslation("2_1_1_SCR20.DblClick"),
           "SCR20.DblClick"
         );
       }
 
-      var mouseOverEls = HTMLCS.util.getAllElements(top, "*[onmouseover]");
-      for (var i = 0; i < mouseOverEls.length; i++) {
+      for (const moseOverEle of HTMLCS.util.getAllElements(
+        top,
+        "*[onmouseover]"
+      )) {
         HTMLCS.addMessage(
           HTMLCS.WARNING,
-          mouseOverEls[i],
+          moseOverEle,
           _global.HTMLCS.getTranslation("2_1_1_SCR20.MouseOver"),
           "SCR20.MouseOver"
         );
       }
 
-      var mouseOutEls = HTMLCS.util.getAllElements(top, "*[onmouseout]");
-      for (var i = 0; i < mouseOutEls.length; i++) {
+      for (const mouseOutEle of HTMLCS.util.getAllElements(
+        top,
+        "*[onmouseout]"
+      )) {
         HTMLCS.addMessage(
           HTMLCS.WARNING,
-          mouseOutEls[i],
+          mouseOutEle,
           _global.HTMLCS.getTranslation("2_1_1_SCR20.MouseOut"),
           "SCR20.MouseOut"
         );
       }
 
-      var mouseMoveEls = HTMLCS.util.getAllElements(top, "*[onmousemove]");
-      for (var i = 0; i < mouseMoveEls.length; i++) {
+      for (const mouseMoveEle of HTMLCS.util.getAllElements(
+        top,
+        "*[onmousemove]"
+      )) {
         HTMLCS.addMessage(
           HTMLCS.WARNING,
-          mouseMoveEls[i],
+          mouseMoveEle,
           _global.HTMLCS.getTranslation("2_1_1_SCR20.MouseMove"),
           "SCR20.MouseMove"
         );
       }
 
-      var mouseDownEls = HTMLCS.util.getAllElements(top, "*[onmousedown]");
-      for (var i = 0; i < mouseDownEls.length; i++) {
+      for (const mouseDownEle of HTMLCS.util.getAllElements(
+        top,
+        "*[onmousedown]"
+      )) {
         HTMLCS.addMessage(
           HTMLCS.WARNING,
-          mouseDownEls[i],
+          mouseDownEle,
           _global.HTMLCS.getTranslation("2_1_1_SCR20.MouseDown"),
           "SCR20.MouseDown"
         );
       }
 
-      var mouseUpEls = HTMLCS.util.getAllElements(top, "*[onmouseup]");
-      for (var i = 0; i < mouseUpEls.length; i++) {
+      for (const mouseUpEle of HTMLCS.util.getAllElements(
+        top,
+        "*[onmouseup]"
+      )) {
         HTMLCS.addMessage(
           HTMLCS.WARNING,
-          mouseUpEls[i],
+          mouseUpEle,
           _global.HTMLCS.getTranslation("2_1_1_SCR20.MouseUp"),
           "SCR20.MouseUp"
         );

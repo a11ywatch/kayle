@@ -1350,7 +1350,10 @@ _global.HTMLCS.util = {
    *
    * @returns {String} The accessible name.
    */
-  getAccessibleName: function (element, top) {
+  getAccessibleName: function (
+    element,
+    top: Element & { getElementById?(id: string) }
+  ) {
     // See https://www.w3.org/TR/accname-1.1/#terminology
     if (this.isVisuallyHidden(element)) {
       return "";
@@ -1360,13 +1363,15 @@ _global.HTMLCS.util = {
 
       let partsIndex = 0;
 
-      for (var i = 0; i < parts.length; i++) {
-        var x = parts[i];
-        const nameElement = top.getElementById(x);
+      // fix element top document types to make sure correct interface
+      if (top && typeof top.getElementById === "function") {
+        for (const part of parts) {
+          const nameElement = top.getElementById(part);
 
-        if (nameElement) {
-          nameParts[partsIndex] = nameElement.textContent;
-          partsIndex++;
+          if (nameElement) {
+            nameParts[partsIndex] = nameElement.textContent;
+            partsIndex++;
+          }
         }
       }
 

@@ -20,9 +20,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_2 = {
    *
    * @returns {Array} The list of elements.
    */
-  register: function () {
-    return ["html"];
-  },
+  register: () => ["html"],
 
   /**
    * Process the registered element.
@@ -30,14 +28,13 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_2 = {
    * @param {DOMNode} element The element registered.
    * @param {DOMNode} top     The top element of the tested code.
    */
-  process: function (element, top) {
+  process: function (element, _) {
     // Find a head first.
-    var children = element.childNodes;
-    var head = null;
+    let head = null;
 
-    for (var i = 0; i < children.length; i++) {
-      if (children[i].nodeName.toLowerCase() === "head") {
-        head = children[i];
+    for (const childNodes of element.childNodes) {
+      if (childNodes.nodeName === "HEAD") {
+        head = childNodes;
         break;
       }
     }
@@ -50,12 +47,11 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_2 = {
         "H25.1.NoHeadEl"
       );
     } else {
-      var children = head.childNodes;
-      var title = null;
+      let title = null;
 
-      for (var i = 0; i < children.length; i++) {
-        if (children[i].nodeName.toLowerCase() === "title") {
-          title = children[i];
+      for (const childNode of head.childNodes) {
+        if (childNode.nodeName === "TITLE") {
+          title = childNode;
           break;
         }
       }
@@ -83,7 +79,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_2 = {
             "H25.2"
           );
         }
-      } //end if
-    } //end if
+      }
+    }
   },
 };

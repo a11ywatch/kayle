@@ -20,9 +20,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_2_2_2_1 = {
    *
    * @returns {Array} The list of elements.
    */
-  register: function () {
-    return ["meta"];
-  },
+  register: () => ["meta"],
 
   /**
    * Process the registered element.
@@ -30,7 +28,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_2_2_2_1 = {
    * @param {DOMNode} element The element registered.
    * @param {DOMNode} top     The top element of the tested code.
    */
-  process: function (element, top) {
+  process: function (element, _) {
     // Meta refresh testing under H76/F41. Fails if a non-zero timeout is provided.
     // NOTE: H76 only lists criterion 3.2.5, but F41 also covers refreshes to
     // same page (no URL content), which is covered by non-adjustable timeouts
@@ -63,7 +61,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_2_2_2_1 = {
             );
           }
         }
-      } //end if
-    } //end if
+      }
+    }
   },
 };

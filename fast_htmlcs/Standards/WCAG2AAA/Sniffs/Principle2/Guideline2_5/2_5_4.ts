@@ -11,7 +11,7 @@
  *
  */
 
-_global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_2_2_2_2 = {
+_global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_4 = {
   /**
    * Determines the elements to register for processing.
    *
@@ -21,7 +21,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_2_2_2_2 = {
    * @returns {Array} The list of elements.
    */
   register: function () {
-    return ["_top", "blink"];
+    return ["_top"];
   },
 
   /**
@@ -31,36 +31,25 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_2_2_2_2 = {
    * @param {DOMNode} top     The top element of the tested code.
    */
   process: function (element, top) {
-    if (element === top) {
-      HTMLCS.addMessage(
-        HTMLCS.NOTICE,
+    HTMLCS.addMessage(
+      HTMLCS.NOTICE,
+      top,
+      _global.HTMLCS.getTranslation("2_5_4.Check"),
+      ""
+    );
+
+    if (element == top) {
+      for (const allEle of HTMLCS.util.getAllElements(
         element,
-        _global.HTMLCS.getTranslation("2_2_2_SCR33,SCR22,G187,G152,G186,G191"),
-        "SCR33,SCR22,G187,G152,G186,G191"
-      );
-
-      var elements = HTMLCS.util.getAllElements(top, "*");
-      for (var i = 0; i < elements.length; i++) {
-        var computedStyle = HTMLCS.util.style(elements[i]);
-
-        if (computedStyle) {
-          if (/blink/.test(computedStyle["text-decoration"]) === true) {
-            HTMLCS.addMessage(
-              HTMLCS.WARNING,
-              elements[i],
-              _global.HTMLCS.getTranslation("2_2_2_F4"),
-              "F4"
-            );
-          }
-        }
+        "*[ondevicemotion]"
+      )) {
+        HTMLCS.addMessage(
+          HTMLCS.WARNING,
+          allEle,
+          _global.HTMLCS.getTranslation("2_5_4.Devicemotion"),
+          ""
+        );
       }
-    } else if (element.nodeName.toLowerCase() === "blink") {
-      HTMLCS.addMessage(
-        HTMLCS.ERROR,
-        element,
-        _global.HTMLCS.getTranslation("2_2_2_F47"),
-        "F47"
-      );
-    } //end if
+    }
   },
 };

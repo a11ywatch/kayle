@@ -43,7 +43,7 @@ type HTMLCS = {
     hasValidAriaLabel(element: Element): boolean;
     style(
       element: Element & { currentStyle?: ElementCSSInlineStyle },
-      pseudo: Element
+      pseudo?: Element
     ): boolean;
     isVisuallyHidden(element: Element): boolean;
     isAriaHidden(element: Element): boolean;
@@ -77,7 +77,7 @@ type HTMLCS = {
       immediate?: boolean
     ): ChildNode | Element;
     getTextContent(element: Element & { innerText?: string }): string;
-    getAccessibleName(element: Element, top: Document): string;
+    getAccessibleName(element: Element, top: Element): string;
   };
 };
 
@@ -102,6 +102,7 @@ type RuleSet = {
 // a guideline
 type GuideLine = {
   _labelNames?: string[];
+  // todo: move to getter
   register(): string[];
   process(element: Element, top?: Element): void;
   checkValidAttributes?(element: Element): void;
@@ -130,7 +131,10 @@ type GuideLine = {
   testHeadingOrder?(element: Element, level: string): void;
   testEmptyHeading?(element: Element): void;
   testUnstructuredNavLinks?(element: Element): void;
+  testIframeTitle?(element: Element): void;
   testGeneralTable?(element: Element): void;
+  testGenericBypassMsg?(element: Element): void;
+  testSameDocFragmentLinks?(element: Element, top: Element): void;
   _testTableScopeAttrs?(element: Element): void;
 };
 
@@ -160,6 +164,33 @@ declare global {
       HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_6: GuideLine;
       HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_1: GuideLine;
       HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_2: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_1_2_1_1: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_1_2_1_2: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_1_2_1_4: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_2_2_2_1: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_2_2_2_2: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_2_2_2_3: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_2_2_2_4: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_2_2_2_5: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_2_2_2_6: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_3_2_3_1: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_3_2_3_2: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_3_2_3_3: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_1: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_2: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_3: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_4: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_5: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_6: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_7: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_8: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_9: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_1: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_2: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_3: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_4: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_5: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_6: GuideLine;
       HTMLCS_Section508_Sniffs_A: GuideLine;
       HTMLCS_Section508_Sniffs_B: GuideLine;
       HTMLCS_Section508_Sniffs_C: GuideLine;
@@ -177,4 +208,4 @@ declare global {
   var HTMLCS_WCAG2AAA: RuleSet;
 }
 
-export { RGB, HSV, Snif, HTMLCS };
+export { RGB, HSV, Snif, HTMLCS, GuideLine };

@@ -83,7 +83,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_1 = {
   isValidLanguageTag: function (langTag) {
     // Allow irregular or private-use tags starting with 'i' or 'x'.
     // Values after it are 1-8 alphanumeric characters.
-    var regexStr = "^([ix](-[a-z0-9]{1,8})+)$|";
+    let regexStr = "^([ix](-[a-z0-9]{1,8})+)$|";
 
     // Core language tags - 2 to 8 letters
     regexStr += "^[a-z]{2,8}";
@@ -117,6 +117,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_1 = {
     // Throw the correct lang code depending on whether this is a document
     // element or not.
     var valid = true;
+
     if (regex.test(langTag) === false) {
       valid = false;
     }
