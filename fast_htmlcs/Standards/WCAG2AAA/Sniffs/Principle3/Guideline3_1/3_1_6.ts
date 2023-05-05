@@ -30,9 +30,11 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_6 = {
    * @param {DOMNode} element The element registered.
    * @param {DOMNode} top     The top element of the tested code.
    */
-  process: function (element, top) {
-    var rb = element.querySelectorAll("rb");
-    var rt = element.querySelectorAll("rt");
+  process: function (element, _) {
+    // todo: remove deprecated rb query
+    const rb = element.querySelectorAll("rb");
+    const rt = element.querySelectorAll("rt");
+
     if (rt.length === 0) {
       // Vary the message depending on whether an rb element exists. If it doesn't,
       // the presumption is that we are using HTML5 that uses the body of the ruby
@@ -54,8 +56,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_6 = {
       }
     }
 
-    var rp = element.querySelectorAll("rp");
-    if (rp.length === 0) {
+    if (element.querySelectorAll("rp").length === 0) {
       // No "ruby parentheses" tags for those user agents that don't support
       // ruby at all.
       HTMLCS.addMessage(

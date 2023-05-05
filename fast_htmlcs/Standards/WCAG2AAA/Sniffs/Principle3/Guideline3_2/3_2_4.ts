@@ -11,7 +11,7 @@
  *
  */
 
-_global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_2_3_2_5 = {
+_global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_2_3_2_4 = {
   /**
    * Determines the elements to register for processing.
    *
@@ -21,7 +21,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_2_3_2_5 = {
    * @returns {Array} The list of elements.
    */
   register: function () {
-    return ["a"];
+    return ["_top"];
   },
 
   /**
@@ -30,32 +30,12 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_2_3_2_5 = {
    * @param {DOMNode} element The element registered.
    * @param {DOMNode} top     The top element of the tested code.
    */
-  process: function (element, top) {
-    var nodeName = element.nodeName.toLowerCase();
-
-    if (nodeName === "a") {
-      this.checkNewWindowTarget(element);
-    }
-  },
-
-  /**
-   * Test for links that open in new windows but don't warn users (technique H83).
-   *
-   * @param {DOMNode} link The link to test.
-   */
-  checkNewWindowTarget: function (link) {
-    var hasTarget = link.hasAttribute("target");
-
-    if (hasTarget === true) {
-      var target = link.getAttribute("target") || "";
-      if (target === "_blank" && /new window/i.test(link.innerHTML) === false) {
-        HTMLCS.addMessage(
-          HTMLCS.WARNING,
-          link,
-          _global.HTMLCS.getTranslation("3_2_5_H83.3"),
-          "H83.3"
-        );
-      }
-    }
+  process: function (_, top) {
+    HTMLCS.addMessage(
+      HTMLCS.NOTICE,
+      top,
+      _global.HTMLCS.getTranslation("3_2_4_G197"),
+      "G197"
+    );
   },
 };

@@ -30,7 +30,7 @@ _global.HTMLCS_Section508_Sniffs_H = {
    * @param {DOMNode} element The element registered.
    * @param {DOMNode} top     The top element of the tested code.
    */
-  process: function (table, top) {
+  process: function (table, _) {
     var headersAttr = HTMLCS.util.testTableHeaders(table);
 
     // Incorrect usage of headers - error; emit always.
@@ -77,7 +77,7 @@ _global.HTMLCS_Section508_Sniffs_H = {
             "IncompleteHeadersAttrs"
           );
         }
-      } //end if
-    } //end if
+      }
+    }
   },
 };

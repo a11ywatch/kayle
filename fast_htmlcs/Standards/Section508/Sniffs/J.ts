@@ -1,7 +1,7 @@
 /**
  * +--------------------------------------------------------------------+
  * | This HTML_CodeSniffer file is Copyright (c)                        |
- * | Squiz Pty Ltd (ABN 77 084 670 600)                                 |
+ * | Squiz Australia Pty Ltd ABN 53 131 581 247                         |
  * +--------------------------------------------------------------------+
  * | IMPORTANT: Your use of this Software is subject to the terms of    |
  * | the Licence provided in the file licence.txt. If you cannot find   |
@@ -11,7 +11,7 @@
  *
  */
 
-_global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_3_3_3_1 = {
+_global.HTMLCS_Section508_Sniffs_J = {
   /**
    * Determines the elements to register for processing.
    *
@@ -21,7 +21,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_3_3_3_1 = {
    * @returns {Array} The list of elements.
    */
   register: function () {
-    return ["form"];
+    return ["_top"];
   },
 
   /**
@@ -30,12 +30,13 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_3_3_3_1 = {
    * @param {DOMNode} element The element registered.
    * @param {DOMNode} top     The top element of the tested code.
    */
-  process: function (element, top) {
+  process: function (_, top) {
+    // The term in Sec. 508 is "flicker" rather than flash.
     HTMLCS.addMessage(
       HTMLCS.NOTICE,
-      element,
-      _global.HTMLCS.getTranslation("3_3_1_G83,G84,G85"),
-      "G83,G84,G85"
+      top,
+      "Check that no component of the content flickers at a rate of greater than 2 and less than 55 times per second.",
+      "Flicker"
     );
   },
 };

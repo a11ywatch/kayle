@@ -11,7 +11,7 @@
  *
  */
 
-_global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_3_3_3_2 = {
+_global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_2_3_2_5 = {
   /**
    * Determines the elements to register for processing.
    *
@@ -21,7 +21,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_3_3_3_2 = {
    * @returns {Array} The list of elements.
    */
   register: function () {
-    return ["form"];
+    return ["a"];
   },
 
   /**
@@ -31,14 +31,30 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_3_3_3_2 = {
    * @param {DOMNode} top     The top element of the tested code.
    */
   process: function (element, top) {
-    // Only the generic message will be displayed here. If there were problems
-    // with input boxes not having labels, it will be pulled up as errors in
-    // other Success Criteria (eg. 1.3.1, 4.1.2).
-    HTMLCS.addMessage(
-      HTMLCS.NOTICE,
-      element,
-      _global.HTMLCS.getTranslation("3_3_2_G131,G89,G184,H90"),
-      "G131,G89,G184,H90"
-    );
+    var nodeName = element.nodeName.toLowerCase();
+
+    if (nodeName === "a") {
+      this.checkNewWindowTarget(element);
+    }
+  },
+
+  /**
+   * Test for links that open in new windows but don't warn users (technique H83).
+   *
+   * @param {DOMNode} link The link to test.
+   */
+  checkNewWindowTarget: function (link) {
+    if (link.hasAttribute("target") === true) {
+      const target = link.getAttribute("target") || "";
+
+      if (target === "_blank" && /new window/i.test(link.innerHTML) === false) {
+        HTMLCS.addMessage(
+          HTMLCS.WARNING,
+          link,
+          _global.HTMLCS.getTranslation("3_2_5_H83.3"),
+          "H83.3"
+        );
+      }
+    }
   },
 };

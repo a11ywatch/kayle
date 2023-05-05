@@ -52,7 +52,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
       }
 
       this.addProcessLinksMessages(top);
-    } //end if
+    } 
   },
 
   addProcessLinksMessages: function (top) {
@@ -177,7 +177,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
             // Hence, thrown as a warning, not an error.
             errors.placeholder.push(element);
           }
-        } //end if
+        } 
       } else {
         if (nameFound === false) {
           // Href provided, but no content, title or valid aria label.
@@ -190,8 +190,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
           ) {
             errors.noContent.push(element);
           }
-        } //end if
-      } //end if
+        } 
+      } 
     }
 
     return errors;
@@ -270,7 +270,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
           "Input" +
           nodeName.substr(6, 1).toUpperCase() +
           nodeName.substr(7).toLowerCase();
-      } //end if
+      } 
 
       var matchingRequiredNames = requiredNames[nodeName];
       var requiredValue = requiredValues[nodeName];
@@ -328,7 +328,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
                 break;
               }
             }
-          } //end if
+          } 
         }
 
         if (i === matchingRequiredNames.length) {
@@ -379,7 +379,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
             subcode: msgSubCode + ".Name",
           });
         }
-      } //end if
+      } 
 
       var valueFound = false;
 
@@ -410,11 +410,11 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
         if (element.hasAttribute(requiredValue) === true) {
           valueFound = true;
         }
-      } //end if
+      } 
 
       // Check for valid aria labels.
       if (valueFound === false) {
-        valuFound = HTMLCS.util.hasValidAriaLabel(element);
+        valueFound = HTMLCS.util.hasValidAriaLabel(element);
       }
 
       if (valueFound === false) {
@@ -472,7 +472,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
             subcode: msgSubCode + ".Value",
           });
         }
-      } //end if
+      } 
     }
 
     return {

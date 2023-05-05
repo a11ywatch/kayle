@@ -20,9 +20,7 @@ _global.HTMLCS_Section508_Sniffs_P = {
    *
    * @returns {Array} The list of elements.
    */
-  register: function () {
-    return ["_top", "meta"];
-  },
+  register: () => ["_top", "meta"],
 
   /**
    * Process the registered element.
@@ -68,8 +66,8 @@ _global.HTMLCS_Section508_Sniffs_P = {
               );
             }
           }
-        } //end if
-      } //end if
-    } //end if
+        }
+      }
+    }
   },
 };

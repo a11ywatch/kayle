@@ -1,8 +1,8 @@
-var fs = require("fs");
+import { existsSync } from "fs";
 
-var scriptPath = __dirname + "/build/HTMLCS.js";
+const scriptPath = __dirname + "/build/HTMLCS.js";
 
-if (fs.existsSync(scriptPath) === true) {
+if (existsSync(scriptPath) === true) {
   module.exports = require(scriptPath);
 } else {
   throw new Error(

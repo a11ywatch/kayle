@@ -7,9 +7,12 @@ type HtmlEle =
   | HTMLDivElement
   | null;
 
+// red, green, blue object
 type RGB = { red: number; blue: number; green: number; alpha?: number };
+// hue and saturation
 type HSV = { hue: number; saturation: number; value: number };
 
+// pass fail table scopes
 type RetVal = {
   required: boolean;
   used: boolean;
@@ -21,6 +24,7 @@ type RetVal = {
   isMultiLevelHeadersTable: boolean;
 };
 
+// the injected global object for the runner
 type HTMLCS = {
   ERROR: string;
   NOTICE: string;
@@ -82,8 +86,10 @@ type HTMLCS = {
 };
 
 type Snif = null | {
+  isValidLanguageTag?(element): boolean;
   testSemanticPresentationRole(element: Element): boolean;
   testHeadingOrder?(element: Element, typeCode: string): boolean;
+  testLabelsOnInputs?(element: Element, top: Element, t: boolean): boolean;
 };
 
 type Rule = {
@@ -99,14 +105,20 @@ type RuleSet = {
   getMsgInfo(code: string): string | string[][];
 };
 
-// a guideline
+// Guidelines to follow
 type GuideLine = {
   _labelNames?: string[];
   // todo: move to getter
   register(): string[];
   process(element: Element, top?: Element): void;
+  addNullAltTextResults?(top: Element): void;
+  addMediaAlternativesResults?(element: Element): void;
+  addProcessLinksMessages?(element: Element): void;
+  checkFormSubmitButton?(element: Element): void;
   checkValidAttributes?(element: Element): void;
+  checkNewWindowTarget?(element: Element): void;
   checkControlGroups?(element: Element): void;
+  isValidLanguageTag?(langTag?: string): void;
   testSemanticPresentationRole?(element: Element): void;
   testEmptyDupeLabelForAttrs?(
     top: Element & { getElementById?(id: string): HTMLElement }
@@ -117,14 +129,13 @@ type GuideLine = {
     muteErrors?: boolean
   ): boolean;
   testNullAltText?(top: Element): void;
-  addNullAltTextResults?(top: Element): void;
-  addMediaAlternativesResults?(element: Element): void;
   testMediaTextAlternatives?(element: Element): void;
   testPresentationMarkup?(element: Element): void;
   testNonSemanticHeading?(element: Element): void;
   testTableHeaders?(element: Element): void;
   testTableCaptionSummary?(element: Element): void;
   testFieldsetLegend?(element: Element): void;
+  testKeyboard?(element: Element): void;
   testOptgroup?(element: Element): void;
   testRequiredFieldsets?(element: Element): void;
   testListsWithBreaks?(element: Element): void;
@@ -135,6 +146,8 @@ type GuideLine = {
   testGeneralTable?(element: Element): void;
   testGenericBypassMsg?(element: Element): void;
   testSameDocFragmentLinks?(element: Element, top: Element): void;
+  processLinks?(element: Element): void;
+  processFormControls?(element: Element): void;
   _testTableScopeAttrs?(element: Element): void;
 };
 
@@ -191,10 +204,40 @@ declare global {
       HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_4: GuideLine;
       HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_5: GuideLine;
       HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_6: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_1: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_2: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_3: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_4: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_5: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_6: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_2_3_2_1: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_2_3_2_2: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_2_3_2_3: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_2_3_2_4: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_2_3_2_5: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_3_3_3_1: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_3_3_3_2: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_3_3_3_3: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_3_3_3_4: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_3_3_3_5: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_3_3_3_6: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_1: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_3: GuideLine;
       HTMLCS_Section508_Sniffs_A: GuideLine;
       HTMLCS_Section508_Sniffs_B: GuideLine;
       HTMLCS_Section508_Sniffs_C: GuideLine;
       HTMLCS_Section508_Sniffs_D: GuideLine;
+      HTMLCS_Section508_Sniffs_G: GuideLine;
+      HTMLCS_Section508_Sniffs_H: GuideLine;
+      HTMLCS_Section508_Sniffs_I: GuideLine;
+      HTMLCS_Section508_Sniffs_J: GuideLine;
+      HTMLCS_Section508_Sniffs_K: GuideLine;
+      HTMLCS_Section508_Sniffs_L: GuideLine;
+      HTMLCS_Section508_Sniffs_M: GuideLine;
+      HTMLCS_Section508_Sniffs_N: GuideLine;
+      HTMLCS_Section508_Sniffs_O: GuideLine;
+      HTMLCS_Section508_Sniffs_P: GuideLine;
       HTMLCS_WCAG2A: RuleSet;
       HTMLCS_WCAG2AAA: RuleSet;
       HTMLCS_WCAG2AA: RuleSet;
@@ -203,6 +246,7 @@ declare global {
     HTMLCS: HTMLCS;
   var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1: Snif;
   var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1: any; // todo: remove any;
+  var HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_1: Snif;
   var HTMLCS_WCAG2A: RuleSet;
   var HTMLCS_WCAG2AA: RuleSet;
   var HTMLCS_WCAG2AAA: RuleSet;

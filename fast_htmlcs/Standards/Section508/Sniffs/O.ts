@@ -43,29 +43,32 @@ _global.HTMLCS_Section508_Sniffs_O = {
         var href = element.getAttribute("href");
         href = href.trim();
         if (href.length > 1 && href.charAt(0) === "#") {
-          var id = href.substr(1);
+          var id = href.substring(1);
 
           try {
-            var doc = top;
+            let doc: (Element & { getElementById?(id: string) }) | Document =
+              top;
+
             if (doc.ownerDocument) {
               doc = doc.ownerDocument;
             }
 
+            let target = null;
+
             // First search for an element with the appropriate ID, then search for a
             // named anchor using the name attribute.
-            var target = doc.getElementById(id);
-            if (target === null) {
-              target = doc.querySelector('a[name="' + id + '"]');
+            if (doc && typeof doc.getElementById === "function") {
+              target = doc.getElementById(id);
+              if (target === null) {
+                target = doc.querySelector('a[name="' + id + '"]');
+              }
             }
 
             if (
               target === null ||
               HTMLCS.util.contains(top, target) === false
             ) {
-              if (
-                HTMLCS.isFullDoc(top) === true ||
-                top.nodeName.toLowerCase() === "body"
-              ) {
+              if (HTMLCS.isFullDoc(top) === true || top.nodeName === "BODY") {
                 HTMLCS.addMessage(
                   HTMLCS.ERROR,
                   element,
@@ -87,8 +90,8 @@ _global.HTMLCS_Section508_Sniffs_O = {
             }
           } catch (ex) {
             // Ignore error
-          } //end try
-        } //end if
+          }
+        }
       }
     }
   },
