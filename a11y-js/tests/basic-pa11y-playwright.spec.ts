@@ -25,7 +25,7 @@ test("pa11y htmlcs audit drakeMock", async ({ page, browser }, testInfo) => {
   const results = await pa11y("", {
     page,
     browser,
-    runners: ["htmlcs"],
+    runners: ["htmlcs", "axe"],
     includeWarnings: true,
     ignoreUrl: true,
   });
@@ -53,10 +53,8 @@ test("pa11y htmlcs audit drakeMock", async ({ page, browser }, testInfo) => {
 
   // valid list
   assert(Array.isArray(issues));
-  // must return at least 11 errors or runner messed up.
-  assert(errorCount === 11);
-  // must return at least 15 warnings or runner messed up.
-  assert(warningCount === 29);
+  assert(errorCount === 29);
+  assert(warningCount === 53);
   assert(typeof pageUrl === "string");
   assert(typeof documentTitle === "string");
 
@@ -80,7 +78,7 @@ test("pa11y htmlcs audit drakeMock", async ({ page, browser }, testInfo) => {
         duration: endTime,
         errors: errorCount,
         warnings: warningCount,
-        runner: ["htmlcs"],
+        runner: ["htmlcs", "axe"],
       },
       null,
       2

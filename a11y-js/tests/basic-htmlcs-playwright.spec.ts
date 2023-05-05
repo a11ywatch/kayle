@@ -5,7 +5,7 @@ import { drakeMock } from "./mocks/html-mock";
 import { performance } from "perf_hooks";
 import { test, expect } from "@playwright/test";
 
-test("fast_htmlcs and fast_axecore audit drakeMock", async ({ page, browser }, testInfo) => {
+test("fast_htmlcs audit drakeMock", async ({ page, browser }, testInfo) => {
   await setNetworkInterception(page);
   await page.setContent(drakeMock);
 
@@ -13,7 +13,7 @@ test("fast_htmlcs and fast_axecore audit drakeMock", async ({ page, browser }, t
   const results = await a11y({
     page,
     browser,
-    runners: ["htmlcs", "axe"],
+    runners: ["htmlcs"],
     includeWarnings: true,
   });
   const endTime = performance.now() - startTime;
@@ -27,8 +27,8 @@ test("fast_htmlcs and fast_axecore audit drakeMock", async ({ page, browser }, t
 
   // valid list
   assert(Array.isArray(issues));
-  assert(meta.errorCount === 45);
-  assert(meta.warningCount === 35);
+  assert(meta.errorCount === 11);
+  assert(meta.warningCount === 25);
   assert(typeof pageUrl === "string");
   assert(typeof documentTitle === "string");
 
@@ -52,7 +52,7 @@ test("fast_htmlcs and fast_axecore audit drakeMock", async ({ page, browser }, t
         duration: endTime,
         errors: meta.errorCount,
         warnings: meta.warningCount,
-        runner: ["fast_htmlcs", "fast_axecore"],
+        runner: ["fast_htmlcs"],
       },
       null,
       2

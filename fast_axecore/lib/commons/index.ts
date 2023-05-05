@@ -17,19 +17,6 @@ import * as table from './table';
 import * as text from './text';
 import * as utils from '../core/utils';
 
-var commons = {
-  aria,
-  color,
-  dom,
-  forms,
-  math,
-  matches,
-  standards,
-  table,
-  text,
-  utils
-};
-
 export {
   aria,
   color,

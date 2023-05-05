@@ -15,7 +15,7 @@ import { getNodeFromTree } from '../../core/utils';
  * @property {Bool} debug Enable logging for formControlValue
  * @return {string} Concatenated text value for referenced elements
  */
-function arialabelledbyText(vNode, context = {}) {
+function arialabelledbyText(vNode, context = { inLabelledByContext: undefined, inControlContext: undefined, startNode: undefined }) {
   if (!(vNode instanceof AbstractVirtualNode)) {
     if (vNode.nodeType !== 1) {
       return '';
