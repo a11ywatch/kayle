@@ -5,6 +5,16 @@ import isFocusable from '../dom/is-focusable';
 import { getNodeFromTree } from '../../core/utils';
 import AbstractVirtualNode from '../../core/base/virtual-node/abstract-virtual-node';
 
+export type RoleOptions = {
+  [x: string]: any;
+  noPresentational?: boolean;
+  noImplicit?: boolean;
+  fallback?: boolean;
+  abstracts?: boolean;
+  dpub?: boolean;
+  chromium?: boolean;
+};
+
 // when an element inherits the presentational role from a parent
 // is not defined in the spec, but through testing it seems to be
 // when a specific HTML parent relationship is required and that
@@ -86,7 +96,10 @@ function getInheritedRole(vNode, explicitRoleOptions) {
   return getInheritedRole(vNode.parent, explicitRoleOptions);
 }
 
-function resolveImplicitRole(vNode, { chromium, ...explicitRoleOptions }) {
+function resolveImplicitRole(
+  vNode,
+  { chromium, ...explicitRoleOptions }: RoleOptions
+) {
   const implicitRole = getImplicitRole(vNode, {
     chromium
   });
@@ -122,9 +135,17 @@ function hasConflictResolution(vNode) {
  * @param {Object} options
  * @see getRole for option details
  * @returns {string|null} Role or null
- * @deprecated noImplicit option is deprecated. Use aria.getExplicitRole instead.
  */
-function resolveRole(node, { noImplicit, ...roleOptions } = {}) {
+function resolveRole(
+  node,
+  { noImplicit, ...roleOptions }: RoleOptions = {
+    noImplicit: undefined,
+    fallback: undefined,
+    abstracts: undefined,
+    dpub: undefined,
+    chromium: undefined
+  }
+) {
   const vNode =
     node instanceof AbstractVirtualNode ? node : getNodeFromTree(node);
   if (vNode.props.nodeType !== 1) {
@@ -167,9 +188,18 @@ function resolveRole(node, { noImplicit, ...roleOptions } = {}) {
  * @param {boolean} options.chromium Include implicit roles from chromium-based browsers in role result
  * @returns {string|null} Role or null
  *
- * @deprecated noImplicit option is deprecated. Use aria.getExplicitRole instead.
  */
-function getRole(node, { noPresentational, ...options } = {}) {
+function getRole(
+  node,
+  { noPresentational, ...options }: RoleOptions = {
+    noPresentational: false,
+    noImplicit: undefined,
+    fallback: undefined,
+    abstracts: undefined,
+    dpub: undefined,
+    chromium: undefined
+  }
+) {
   const role = resolveRole(node, options);
 
   if (noPresentational && ['presentation', 'none'].includes(role)) {

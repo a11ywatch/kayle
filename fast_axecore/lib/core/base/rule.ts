@@ -127,7 +127,10 @@ Rule.prototype.matches = function matches() {
  * @param  {Mixed}   options Options specific to this rule
  * @return {Array}           All matching `HTMLElement`s
  */
-Rule.prototype.gather = function gather(context, options = { performanceTimer: undefined }) {
+Rule.prototype.gather = function gather(
+  context,
+  options = { performanceTimer: undefined }
+) {
   const markStart = 'mark_gather_start_' + this.id;
   const markEnd = 'mark_gather_end_' + this.id;
   const markHiddenStart = 'mark_isVisibleToScreenReaders_start_' + this.id;
@@ -222,7 +225,12 @@ Rule.prototype.runChecksSync = function runChecksSync(
  * @param  {Mixed}   options  Options specific to this rule
  * @param  {Function} callback Function to call when evaluate is complete; receives a RuleResult instance
  */
-Rule.prototype.run = function run(context, options = { performanceTimer: undefined}, resolve, reject) {
+Rule.prototype.run = function run(
+  context,
+  options = { performanceTimer: undefined },
+  resolve,
+  reject
+) {
   if (options.performanceTimer) {
     this._trackPerformance();
   }
@@ -300,7 +308,10 @@ Rule.prototype.run = function run(context, options = { performanceTimer: undefin
  * @param  {Context}   context  The resolved Context object
  * @param  {Mixed}   options  Options specific to this rule
  */
-Rule.prototype.runSync = function runSync(context, options = { performanceTimer: undefined }) {
+Rule.prototype.runSync = function runSync(
+  context,
+  options = { performanceTimer: undefined }
+) {
   if (options.performanceTimer) {
     this._trackPerformance();
   }

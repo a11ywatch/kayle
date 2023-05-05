@@ -10,7 +10,10 @@ import isUnsupportedRole from './is-unsupported-role';
  * @param {Object} options Use `allowAbstract` if you want abstracts, and `flagUnsupported: true` to report unsupported roles
  * @return {Boolean}
  */
-function isValidRole(role, { allowAbstract, flagUnsupported = false } = {}) {
+function isValidRole(
+  role,
+  { allowAbstract, flagUnsupported = false } = { allowAbstract: false }
+) {
   const roleDefinition = standards.ariaRoles[role];
   const isRoleUnsupported = isUnsupportedRole(role);
   if (!roleDefinition || (flagUnsupported && isRoleUnsupported)) {

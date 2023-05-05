@@ -12,7 +12,10 @@ import { getRootNode } from '../../core/utils';
  * @property {String[]} popupRoles Overrides which roles can be popup. Defaults to aria-haspopup values
  * @returns {boolean}
  */
-export default function isComboboxPopup(virtualNode, { popupRoles } = {}) {
+export default function isComboboxPopup(
+  virtualNode,
+  { popupRoles } = { popupRoles: undefined }
+) {
   const role = getRole(virtualNode);
   popupRoles ??= ariaAttrs['aria-haspopup'].values;
   if (!popupRoles.includes(role)) {

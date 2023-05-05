@@ -18,7 +18,11 @@ import { getNodeFromTree } from '../../core/utils';
  * When True, the result will only contain text from the element
  * @return {String}
  */
-function visibleVirtual(element, screenReader, noRecursing) {
+function visibleVirtual(
+  element,
+  screenReader?: boolean,
+  noRecursing?: boolean
+) {
   const vNode =
     element instanceof AbstractVirtualNode ? element : getNodeFromTree(element);
   const visibleMethod = screenReader

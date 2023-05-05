@@ -1,8 +1,16 @@
 import isValidRole from './is-valid-role';
 import { getNodeFromTree, tokenList } from '../../core/utils';
 import AbstractVirtuaNode from '../../core/base/virtual-node/abstract-virtual-node';
+import { RoleOptions } from './get-role';
 
-function getExplicitRole(vNode, { fallback, abstracts, dpub } = {}) {
+function getExplicitRole(
+  vNode,
+  { fallback, abstracts, dpub }: RoleOptions = {
+    fallback: undefined,
+    abstracts: undefined,
+    dpub: undefined
+  }
+) {
   vNode = vNode instanceof AbstractVirtuaNode ? vNode : getNodeFromTree(vNode);
 
   if (vNode.props.nodeType !== 1) {

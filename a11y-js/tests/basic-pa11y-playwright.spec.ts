@@ -36,9 +36,6 @@ test("pa11y htmlcs audit drakeMock", async ({ page, browser }, testInfo) => {
   let errorCount = 0;
   let warningCount = 0;
 
-  // console.log(issues);
-  console.log("time took", endTime);
-
   // iterate and build all issues
   for (const issue of issues) {
     if (issue.type === "error") {
@@ -49,6 +46,7 @@ test("pa11y htmlcs audit drakeMock", async ({ page, browser }, testInfo) => {
     }
   }
 
+  console.log("time took", endTime);
   console.log({ errorCount: errorCount, warningCount: warningCount, noticeCount: 0, accessScore: undefined })
 
   // valid list

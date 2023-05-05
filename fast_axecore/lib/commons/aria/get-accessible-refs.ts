@@ -11,7 +11,7 @@ const idRefsRegex = /^idrefs?$/;
  */
 function cacheIdRefs(node, idRefs, refAttrs) {
   if (node.hasAttribute) {
-    if (node.nodeName.toUpperCase() === 'LABEL' && node.hasAttribute('for')) {
+    if (node.nodeName === 'LABEL' && node.hasAttribute('for')) {
       const id = node.getAttribute('for');
       idRefs[id] = idRefs[id] || [];
       idRefs[id].push(node);

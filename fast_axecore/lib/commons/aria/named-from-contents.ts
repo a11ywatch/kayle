@@ -11,7 +11,7 @@ import AbstractVirtuaNode from '../../core/base/virtual-node/abstract-virtual-no
  * @property {Bool} strict Whether or not to follow the spects strictly
  * @return {Bool}
  */
-function namedFromContents(vNode, { strict } = {}) {
+function namedFromContents(vNode, { strict } = { strict: false }) {
   vNode = vNode instanceof AbstractVirtuaNode ? vNode : getNodeFromTree(vNode);
   if (vNode.props.nodeType !== 1) {
     return false;
