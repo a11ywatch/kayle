@@ -32,7 +32,7 @@ function labelVirtual(virtualNode) {
     const id = escapeSelector(virtualNode.attr('id'));
     doc = getRootNode(virtualNode.actualNode);
     ref = doc.querySelector('label[for="' + id + '"]');
-    candidate = ref && visible(ref, true);
+    candidate = ref && visible(ref, true, undefined);
     if (candidate) {
       return candidate;
     }

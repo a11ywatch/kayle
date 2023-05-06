@@ -2,6 +2,33 @@ import cache from '../../core/base/cache';
 import { querySelectorAll } from '../../core/utils';
 import isCurrentPageLink from './is-current-page-link';
 
+function generateFirstPageLink() {
+  let firstPageLink;
+
+  if (!window.location.origin) {
+    firstPageLink = querySelectorAll(
+      // TODO: es-module-_tree
+      axe._tree,
+      'a:not([href^="#"]):not([href^="/#"]):not([href^="javascript:"])'
+    )[0];
+  } else {
+    for (const node of querySelectorAll(
+      axe._tree,
+      'a[href]:not([href^="javascript:"])'
+    )) {
+      if (
+        !isCurrentPageLink((node as Node & { actualNode?: Node }).actualNode)
+      ) {
+        firstPageLink = node;
+        break;
+      }
+    }
+  }
+
+  // null will signify no first page link
+  return firstPageLink || null;
+}
+
 /**
  * Determines if element is a skip link.
  *
@@ -31,23 +58,4 @@ export default function isSkipLink(element) {
     element.compareDocumentPosition(firstPageLink.actualNode) ===
     element.DOCUMENT_POSITION_FOLLOWING
   );
-}
-
-function generateFirstPageLink() {
-  let firstPageLink;
-  if (!window.location.origin) {
-    firstPageLink = querySelectorAll(
-      // TODO: es-module-_tree
-      axe._tree,
-      'a:not([href^="#"]):not([href^="/#"]):not([href^="javascript:"])'
-    )[0];
-  } else {
-    firstPageLink = querySelectorAll(
-      axe._tree,
-      'a[href]:not([href^="javascript:"])'
-    ).find(link => !isCurrentPageLink(link.actualNode));
-  }
-
-  // null will signify no first page link
-  return firstPageLink || null;
 }

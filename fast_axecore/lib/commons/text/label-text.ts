@@ -11,7 +11,14 @@ import { closest, nodeSorter } from '../../core/utils';
  * @property {Bool} inLabelledByContext
  * @return {String} Label text
  */
-function labelText(virtualNode, context = {}) {
+function labelText(
+  virtualNode,
+  context = {
+    inControlContext: undefined,
+    inLabelledByContext: undefined,
+    startNode: undefined
+  }
+) {
   const { alreadyProcessed } = accessibleTextVirtual;
   if (
     context.inControlContext ||

@@ -1,8 +1,10 @@
 const whitespaceRegex = /[\t\r\n\f]/g;
 
 class AbstractVirtualNode {
+  
   constructor() {
     this.parent = undefined;
+    this.actualNode = undefined;
   }
 
   get props() {
