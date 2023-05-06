@@ -23,7 +23,7 @@ test("fast_htmlcs and fast_axecore audit drakeMock", async ({ page, browser }, t
   // console.log(issues);
   console.log(meta);
   console.log(automateable);
-  console.log("time took", endTime);
+  console.log("a11y-js(fast_htmlcs, fast_axecore): time took", endTime);
 
   // valid list
   assert(Array.isArray(issues));

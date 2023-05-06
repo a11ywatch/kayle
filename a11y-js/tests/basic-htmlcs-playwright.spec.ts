@@ -23,7 +23,7 @@ test("fast_htmlcs audit drakeMock", async ({ page, browser }, testInfo) => {
   // console.log(issues);
   console.log(meta);
   console.log(automateable);
-  console.log("time took", endTime);
+  console.log("fast_htmlcs: time took", endTime);
 
   // valid list
   assert(Array.isArray(issues));

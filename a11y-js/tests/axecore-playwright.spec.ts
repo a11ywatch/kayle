@@ -20,7 +20,7 @@ test("@axe-core/playwright audit drakeMock", async ({
 
   // console.log(incomplete);
   console.log({ errorCount: violations.length, warningCount: incomplete.length, noticeCount: 0, accessScore: undefined })
-  console.log("time took", endTime);
+  console.log("@axe-core/playwright: time took", endTime);
   // valid list
   assert(Array.isArray(incomplete));
   assert(typeof url === "string");

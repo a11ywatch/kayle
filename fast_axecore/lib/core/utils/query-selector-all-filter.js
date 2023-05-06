@@ -130,6 +130,7 @@ function querySelectorAllFilter(domTree, selector, filter) {
   // find nodes using the cache rather than looping through the
   // the entire tree
   const nodes = getNodesMatchingExpression(domTree, expressions, filter);
+
   if (nodes) {
     return nodes;
   }

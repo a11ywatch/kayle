@@ -30,7 +30,7 @@ jobs:
         run: corepack enable && corepack prepare yarn@stable --activate
 
       - name: Install and build locales
-        run: yarn --no-immutable && ./build.sh
+        run: yarn --no-immutable && yarn build
 
       # - name: Run Tests fast_axecore
       #   run: cd ./fast_axecore && yarn test 

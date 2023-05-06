@@ -9,7 +9,7 @@ function urlPropsFromAttribute(node, attribute) {
   if (!node.hasAttribute(attribute)) {
     return undefined;
   }
-
+  
   const nodeName = node.nodeName.toUpperCase();
   let parser = node;
 

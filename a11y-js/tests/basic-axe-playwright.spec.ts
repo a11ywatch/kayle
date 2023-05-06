@@ -25,7 +25,7 @@ test("fast_axecore audit drakeMock", async ({ page, browser }, testInfo) => {
   // console.log(issues);
   console.log(meta);
   console.log(automateable);
-  console.log("time took", endTime);
+  console.log("fast_axecore: time took", endTime);
 
   // valid list
   assert(Array.isArray(issues));

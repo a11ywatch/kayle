@@ -15,14 +15,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@axe-core/playwright@npm:^4.6.1":
-  version: 4.6.1
-  resolution: "@axe-core/playwright@npm:4.6.1"
+"@axe-core/playwright@npm:^4.7.0":
+  version: 4.7.0
+  resolution: "@axe-core/playwright@npm:4.7.0"
   dependencies:
-    axe-core: ^4.6.3
+    axe-core: ^4.7.0
   peerDependencies:
     playwright: ">= 1.0.0"
-  checksum: 5609c49cbfea423a5b7fcd7af995a550cffb7f5807a5f9b4e9ab6be54224b850c05dc7d65808719ce19e9d5cdef295b8d4cebb7880c1973ab7423fe020d55370
+  checksum: c76058ed85e00ef02090175e4e2dff4a4aab08874d39ab10507c7c6e7202873af91dc9fe34b6e40e513323ef6737a5684edb042339ab8358fdb49687d89607e3
   languageName: node
   linkType: hard
 
@@ -1879,13 +1879,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "a11y-js@workspace:a11y-js"
   dependencies:
-    "@axe-core/playwright": ^4.6.1
     "@playwright/test": ^1.32.3
     "@types/jsdom": ^20.0.1
     "@types/node": ^18.11.9
     fast_axecore: "workspace:*"
     fast_htmlcs: "workspace:*"
-    pa11y: ^6.2.3
     playwright: ^1.32.3
     prettier: ^2.8.0
     puppeteer: ^19.6.3
@@ -1896,6 +1894,9 @@ __metadata:
 "a11y@workspace:.":
   version: 0.0.0-use.local
   resolution: "a11y@workspace:."
+  dependencies:
+    "@axe-core/playwright": ^4.7.0
+    pa11y: ^6.2.3
   languageName: unknown
   linkType: soft
 
@@ -2255,7 +2256,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axe-core@npm:^4.6.3":
+"axe-core@npm:^4.7.0":
   version: 4.7.0
   resolution: "axe-core@npm:4.7.0"
   checksum: f086bcab42be1761ba2b0b127dec350087f4c3a853bba8dd58f69d898cefaac31a1561da23146f6f3c07954c76171d1f2ce460e555e052d2b02cd79af628fa4a

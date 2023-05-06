@@ -46,7 +46,7 @@ test("pa11y htmlcs audit drakeMock", async ({ page, browser }, testInfo) => {
     }
   }
 
-  console.log("time took", endTime);
+  console.log("pa11y(htmlcs, axe): time took", endTime);
   console.log({ errorCount: errorCount, warningCount: warningCount, noticeCount: 0, accessScore: undefined })
 
   // valid list
