@@ -12,6 +12,7 @@ export default function findNearbyElms(vNode, margin = 0) {
   const gridPosition = grid.getGridPositionOfRect(rect, margin);
 
   const neighbors = [];
+
   grid.loopGridPosition(gridPosition, vNeighbors => {
     for (const vNeighbor of vNeighbors) {
       if (

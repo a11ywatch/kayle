@@ -22,8 +22,11 @@ const nonTextInputTypes = [
  * @returns {Bool}
  */
 function isNativeTextbox(node) {
-  node = node instanceof AbstractVirtuaNode ? node : getNodeFromTree(node);
-  const nodeName = node.props.nodeName;
+  const nodeName = (
+    node instanceof AbstractVirtuaNode ? node : getNodeFromTree(node)
+  ).props.nodeName;
+
+  // TODO: nodeName should be caps
   return (
     nodeName === 'textarea' ||
     (nodeName === 'input' &&

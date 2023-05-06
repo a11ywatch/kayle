@@ -7,9 +7,6 @@ import getExplicitRole from '../aria/get-explicit-role';
  * @param {VirtualNode|Element} node Node to determine if aria listbox
  * @returns {Bool}
  */
-function isAriaListbox(node) {
-  const role = getExplicitRole(node);
-  return role === 'listbox';
-}
+const isAriaListbox = node => getExplicitRole(node) === 'listbox';
 
 export default isAriaListbox;

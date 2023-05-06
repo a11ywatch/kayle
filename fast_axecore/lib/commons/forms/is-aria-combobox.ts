@@ -7,9 +7,6 @@ import getExplicitRole from '../aria/get-explicit-role';
  * @param {VirtualNode|Element} node Node to determine if aria combobox
  * @returns {Bool}
  */
-function isAriaCombobox(node) {
-  const role = getExplicitRole(node);
-  return role === 'combobox';
-}
+const isAriaCombobox = node => getExplicitRole(node) === 'combobox';
 
 export default isAriaCombobox;

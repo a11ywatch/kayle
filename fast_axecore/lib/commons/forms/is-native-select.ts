@@ -8,10 +8,8 @@ import AbstractVirtuaNode from '../../core/base/virtual-node/abstract-virtual-no
  * @param {VirtualNode|Element} node Node to determine if select
  * @returns {Bool}
  */
-function isNativeSelect(node) {
-  node = node instanceof AbstractVirtuaNode ? node : getNodeFromTree(node);
-  const nodeName = node.props.nodeName;
-  return nodeName === 'select';
-}
+const isNativeSelect = node =>
+  (node instanceof AbstractVirtuaNode ? node : getNodeFromTree(node)).props
+    .nodeName;
 
 export default isNativeSelect;

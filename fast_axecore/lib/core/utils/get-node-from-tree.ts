@@ -6,8 +6,12 @@ import cache from '../base/cache';
  * @param {Object} vNode The flattened, virtual DOM tree
  * @param {Node}   node  The HTML DOM node
  */
-function getNodeFromTree(vNode: string, node?: string) {
+function getNodeFromTree(
+  vNode: string | HTMLElement | Element | ParentNode,
+  node?: string
+) {
   const el = node || vNode;
+
   return cache.get('nodeMap') ? cache.get('nodeMap').get(el) : null;
 }
 

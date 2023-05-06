@@ -23,15 +23,19 @@ function getElementByReference(node, attr) {
     fragment = decodeURIComponent(fragment.substr(fragment.indexOf('#') + 1));
   }
 
-  let candidate = document.getElementById(fragment);
+  const candidate = document.getElementById(fragment);
+
   if (candidate) {
     return candidate;
   }
 
-  candidate = document.getElementsByName(fragment);
-  if (candidate.length) {
-    return candidate[0];
+  // todo: use a faster selecter if only needing the first element.
+  const candidateList = document.getElementsByName(fragment);
+
+  if (candidateList.length) {
+    return candidateList[0];
   }
+
   return null;
 }
 

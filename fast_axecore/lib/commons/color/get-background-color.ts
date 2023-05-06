@@ -47,7 +47,10 @@ export default function getBackgroundColor(
 }
 
 function _getBackgroundColor(elm, bgElms, shadowOutlineEmMax) {
-  let bgColors = getTextShadowColors(elm, { minRatio: shadowOutlineEmMax, maxRatio: undefined });
+  let bgColors = getTextShadowColors(elm, {
+    minRatio: shadowOutlineEmMax,
+    maxRatio: undefined
+  });
 
   if (bgColors.length) {
     bgColors = [{ color: bgColors.reduce(flattenShadowColors) }];

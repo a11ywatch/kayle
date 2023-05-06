@@ -80,7 +80,7 @@
     "sri-update": "grunt build && node build/sri-update && git add sri-history.json",
     "sri-validate": "node build/sri-update --validate",
     "fmt": "prettier --write .",
-    "fix": "prettier --write '**/*.{js,jsx,ts,tsx}'",
+    "fix": "prettier --write '**/*.{ts,tsx}'",
     "prepare": "grunt",
     "prebuild": "node ./build/check-node-version.js",
     "pretest": "node ./build/check-node-version.js",

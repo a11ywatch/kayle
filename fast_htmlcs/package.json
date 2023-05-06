@@ -13,7 +13,7 @@
     "build": "yarn build:all && yarn swc:dist",
     "swc:dist": "npx swc --copy-files --config-file .swcrc ./build -d ./build",
     "test": "grunt eslint",
-    "fix": "prettier --write '**/*.{js,jsx,ts,tsx}'",
+    "fix": "prettier --write '**/*.{ts,tsx}'",
     "fix:trans": "prettier --write 'Translations/*.{js,jsx,ts,tsx}'"
   },
   "engines": {

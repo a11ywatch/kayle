@@ -6,6 +6,9 @@
  * @param {DOMRect}
  * @returns {boolean}
  */
-export function isPointInRect({ x, y }, { top, right, bottom, left }) {
+export function isPointInRect(
+  { x, y }: DOMPoint,
+  { top, right, bottom, left }
+) {
   return y >= top && x <= right && y <= bottom && x >= left;
 }

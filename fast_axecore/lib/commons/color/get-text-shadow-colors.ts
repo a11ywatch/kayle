@@ -8,7 +8,10 @@ import assert from '../../core/utils/assert';
  * @property {Bool} minRatio Ignore shadows smaller than this, ratio shadow size divided by font size
  * @property {Bool} maxRatio Ignore shadows equal or larger than this, ratio shadow size divided by font size
  */
-function getTextShadowColors(node, { minRatio, maxRatio } = { minRatio: undefined, maxRatio: undefined }) {
+function getTextShadowColors(
+  node,
+  { minRatio, maxRatio } = { minRatio: undefined, maxRatio: undefined }
+) {
   const style = window.getComputedStyle(node);
   const textShadow = style.getPropertyValue('text-shadow');
 
@@ -25,7 +28,7 @@ function getTextShadowColors(node, { minRatio, maxRatio } = { minRatio: undefine
 
   const shadows = parseTextShadows(textShadow);
   const shadowColors = new Array(shadows.length);
-  
+
   let j = 0;
 
   for (const shadow of shadows) {
@@ -48,7 +51,7 @@ function getTextShadowColors(node, { minRatio, maxRatio } = { minRatio: undefine
   }
 
   shadowColors.length = j;
- 
+
   return shadowColors;
 }
 

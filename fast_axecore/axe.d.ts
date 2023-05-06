@@ -2,7 +2,7 @@
 // Project: https://github.com/dequelabs/axe-core
 // Definitions by: Marcy Sutton <https://github.com/marcysutton>
 
-declare namespace axe {
+export declare namespace axe {
   type ImpactValue = 'minor' | 'moderate' | 'serious' | 'critical' | null;
 
   type TagValue = string;
@@ -460,5 +460,3 @@ declare namespace axe {
   type TopicData = { topic: string } & ReplyData;
   type ReplyData = { channelId: string; message: any; keepalive: boolean };
 }
-
-export = axe;

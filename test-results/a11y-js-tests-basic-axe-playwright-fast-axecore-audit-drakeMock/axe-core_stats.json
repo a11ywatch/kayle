@@ -1,7 +1,7 @@
 {
   "mock": "[drakeMock]",
   "htmlSize": 71784,
-  "duration": 389.19741690158844,
+  "duration": 360.921875,
   "errors": 34,
   "warnings": 10,
   "runner": [

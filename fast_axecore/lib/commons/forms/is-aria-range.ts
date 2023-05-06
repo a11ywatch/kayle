@@ -9,9 +9,6 @@ const rangeRoles = ['progressbar', 'scrollbar', 'slider', 'spinbutton'];
  * @param {VirtualNode|Element} node Node to determine if aria range
  * @returns {Bool}
  */
-function isAriaRange(node) {
-  const role = getExplicitRole(node);
-  return rangeRoles.includes(role);
-}
+const isAriaRange = node => rangeRoles.includes(getExplicitRole(node));
 
 export default isAriaRange;

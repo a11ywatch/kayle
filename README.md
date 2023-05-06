@@ -2,11 +2,9 @@
 
 Incredibly fast and precise universal web accessibility evaluator for puppeteer or playwright 🏎️ 🌎.
 
-Getting Started: checkout the [playwright-example](./a11y-js/tests/basic-playwright.spec.ts) or [puppeteer](./a11y-js/tests/basic.ts)
-
 Over 150-1000% faster than other accessibility runners like `@axe-core/playwright` or `pa11y` along with [10-48%](./a11y-js/test-results) increase on issues found. 
 
-If you want to use a browser make sure to have [playwright](https://github.com/microsoft/playwright) or [puppeteer](https://github.com/puppeteer/puppeteer) installed.
+Getting Started: checkout the [playwright-example](./a11y-js/tests/basic-playwright.spec.ts) or [puppeteer](./a11y-js/tests/basic.ts).
 
 ```sh
 npm i a11y-js --save

@@ -7,15 +7,21 @@ import constants from '../../core/constants';
 import cache from '../../core/base/cache';
 import assert from '../../core/utils/assert';
 
+type VNode = (VirtualNode | HTMLElement) & {
+  _stackingOrder?: number[];
+  actualNode?: HTMLElement;
+  _subGrid?: Grid;
+};
+
 /**
  * Setup the 2d grid and add every element to it, even elements not
  * included in the flat tree
  * @returns gridSize
  */
 export default function createGrid(
-  root = document.body,
-  rootGrid,
-  parentVNode = null
+  root: HTMLElement | ShadowRoot = document.body,
+  rootGrid?: any,
+  parentVNode?: Node
 ) {
   // Prevent multiple calls per run
   if (cache.get('gridCreated') && !parentVNode) {
@@ -27,8 +33,10 @@ export default function createGrid(
   // filter function into the treeWalker to filter out head elements,
   // which would be called for every node
   if (!parentVNode) {
-    let vNode = getNodeFromTree(document.documentElement);
+    let vNode: VNode = getNodeFromTree(document.documentElement);
+
     if (!vNode) {
+      // @ts-ignore
       vNode = new VirtualNode(document.documentElement);
     }
 
@@ -48,11 +56,15 @@ export default function createGrid(
     root,
     window.NodeFilter.SHOW_ELEMENT,
     null,
+    // @ts-ignore check if param is needed
     false
   );
-  let node = parentVNode ? treeWalker.nextNode() : treeWalker.currentNode;
+  let node = (
+    parentVNode ? treeWalker.nextNode() : treeWalker.currentNode
+  ) as Element;
+
   while (node) {
-    let vNode = getNodeFromTree(node);
+    let vNode = getNodeFromTree(node as HTMLElement);
 
     if (vNode && vNode.parent) {
       parentVNode = vNode.parent;
@@ -71,6 +83,7 @@ export default function createGrid(
     }
 
     if (!vNode) {
+      // @ts-ignore
       vNode = new axe.VirtualNode(node, parentVNode);
     }
 
@@ -97,8 +110,9 @@ export default function createGrid(
       createGrid(node.shadowRoot, grid, vNode);
     }
 
-    node = treeWalker.nextNode();
+    node = treeWalker.nextNode() as Element;
   }
+
   return constants.gridSize;
 }
 
@@ -346,6 +360,11 @@ function addNodeToGrid(grid, vNode) {
 }
 
 class Grid {
+  container = null;
+  // todo: add shape
+  cells: any = [];
+  boundaries = undefined;
+
   constructor(container = null) {
     this.container = container;
     this.cells = [];
@@ -370,7 +389,7 @@ class Grid {
     const rowIndex = this.toGridIndex(y);
     const colIndex = this.toGridIndex(x);
     assert(
-      isPointInRect({ y: rowIndex, x: colIndex }, this.boundaries),
+      isPointInRect({ y: rowIndex, x: colIndex } as DOMPoint, this.boundaries),
       'Element midpoint exceeds the grid bounds'
     );
     const row = this.cells[rowIndex - this.cells._negativeIndex] ?? [];

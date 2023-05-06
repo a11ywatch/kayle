@@ -12,7 +12,7 @@ const disabledNodeNames = ['fieldset', 'button', 'select', 'input', 'textarea'];
  * @param {VirtualNode} virtualNode
  * @return {boolean} whether or not the element is disabled in some way
  */
-function isDisabled(virtualNode) {
+const isDisabled = virtualNode => {
   let disabledState = virtualNode._isDisabled;
   if (typeof disabledState === 'boolean') {
     return disabledState; // From cache
@@ -35,6 +35,6 @@ function isDisabled(virtualNode) {
 
   virtualNode._isDisabled = disabledState;
   return disabledState;
-}
+};
 
 export default isDisabled;

@@ -7,9 +7,6 @@ import getExplicitRole from '../aria/get-explicit-role';
  * @param {VirtualNode|Element} node Node to determine if aria textbox
  * @returns {Bool}
  */
-function isAriaTextbox(node) {
-  const role = getExplicitRole(node);
-  return role === 'textbox';
-}
+const isAriaTextbox = node => getExplicitRole(node) === 'textbox';
 
 export default isAriaTextbox;
