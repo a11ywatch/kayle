@@ -175,6 +175,10 @@ Run the following to install on ^node@16.10
 
 Use the command `./build.sh` to compile all the scripts for each locale.
 
+## AccessScore
+
+Access score or `accessScore` is going to switch to a new algorithm that uses incompletion points. Depending on the incompletion a direct impact score will be negated starting from 100.
+
 ## Discord
 
 If you want to chat about the project checkout our [Discord](https://discord.gg/ukmJcjQ5).

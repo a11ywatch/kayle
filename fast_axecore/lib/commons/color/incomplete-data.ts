@@ -4,6 +4,7 @@
  * @inner
  */
 let data = {};
+
 const incompleteData = {
   /**
    * Store incomplete data by key with a string value

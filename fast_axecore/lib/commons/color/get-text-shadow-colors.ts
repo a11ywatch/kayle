@@ -8,9 +8,10 @@ import assert from '../../core/utils/assert';
  * @property {Bool} minRatio Ignore shadows smaller than this, ratio shadow size divided by font size
  * @property {Bool} maxRatio Ignore shadows equal or larger than this, ratio shadow size divided by font size
  */
-function getTextShadowColors(node, { minRatio, maxRatio } = {}) {
+function getTextShadowColors(node, { minRatio, maxRatio } = { minRatio: undefined, maxRatio: undefined }) {
   const style = window.getComputedStyle(node);
   const textShadow = style.getPropertyValue('text-shadow');
+
   if (textShadow === 'none') {
     return [];
   }
@@ -22,26 +23,32 @@ function getTextShadowColors(node, { minRatio, maxRatio } = {}) {
     `Unable to determine font-size value ${fontSizeStr}`
   );
 
-  const shadowColors = [];
   const shadows = parseTextShadows(textShadow);
-  shadows.forEach(({ colorStr, pixels }) => {
-    // Defaults only necessary for IE
-    colorStr = colorStr || style.getPropertyValue('color');
-    const [offsetY, offsetX, blurRadius = 0] = pixels;
+  const shadowColors = new Array(shadows.length);
+  
+  let j = 0;
+
+  for (const shadow of shadows) {
+    const colorStr = shadow.colorStr || style.getPropertyValue('color');
+    const [offsetY, offsetX, blurRadius = 0] = shadow.pixels;
+
     if (
       (!minRatio || blurRadius >= fontSize * minRatio) &&
       (!maxRatio || blurRadius < fontSize * maxRatio)
     ) {
-      const color = textShadowColor({
+      shadowColors[j] = textShadowColor({
         colorStr,
         offsetY,
         offsetX,
         blurRadius,
         fontSize
       });
-      shadowColors.push(color);
+      j++;
     }
-  });
+  }
+
+  shadowColors.length = j;
+ 
   return shadowColors;
 }
 
@@ -50,9 +57,10 @@ function getTextShadowColors(node, { minRatio, maxRatio } = {}) {
  * either at the start or the end, and either in rgb(a) or as a named color
  */
 function parseTextShadows(textShadow) {
-  let current = { pixels: [] };
+  let current = { pixels: [], colorStr: undefined };
   let str = textShadow.trim();
   const shadows = [current];
+
   if (!str) {
     return [];
   }
@@ -87,7 +95,7 @@ function parseTextShadows(textShadow) {
         current.pixels.length >= 2,
         `Missing pixel value in text-shadow: ${textShadow}`
       );
-      current = { pixels: [] };
+      current = { pixels: [], colorStr: undefined };
       shadows.push(current);
       str = str.substr(1).trim();
     } else {

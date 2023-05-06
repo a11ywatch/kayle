@@ -47,7 +47,8 @@ export default function getBackgroundColor(
 }
 
 function _getBackgroundColor(elm, bgElms, shadowOutlineEmMax) {
-  let bgColors = getTextShadowColors(elm, { minRatio: shadowOutlineEmMax });
+  let bgColors = getTextShadowColors(elm, { minRatio: shadowOutlineEmMax, maxRatio: undefined });
+
   if (bgColors.length) {
     bgColors = [{ color: bgColors.reduce(flattenShadowColors) }];
   }
@@ -57,6 +58,7 @@ function _getBackgroundColor(elm, bgElms, shadowOutlineEmMax) {
 
   // Search the stack until we have an alpha === 1 background
   (elmStack || []).some(bgElm => {
+    // @ts-ignore todo remove direct
     const bgElmStyle = window.getComputedStyle(bgElm);
 
     if (elementHasImage(bgElm, bgElmStyle)) {
@@ -68,6 +70,7 @@ function _getBackgroundColor(elm, bgElms, shadowOutlineEmMax) {
 
     // Get the background color
     const bgColor = getOwnBackgroundColor(bgElmStyle);
+
     if (bgColor.alpha === 0) {
       return false;
     }

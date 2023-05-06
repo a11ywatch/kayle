@@ -72,7 +72,7 @@ function hslToRgb([hue, saturation, lightness, alpha]) {
  * @param {number} blue
  * @param {number} alpha
  */
-function Color(red?: number, green?: number, blue?: number, alpha = 1) {
+function Color(red?: number, green?: number, blue?: number, alpha: number = 1) {
   /** @type {number} */
   this.red = red;
 
