@@ -32,14 +32,8 @@ jobs:
       - name: Install and build locales
         run: yarn --no-immutable && yarn build
 
-      # - name: Run Tests fast_axecore
-      #   run: cd ./fast_axecore && yarn test 
+      - name: Run Playwright kayle.js
+        run: cd ./kayle && yarn test:playwright && yarn test:playwright:axe
 
-      # - name: Run Tests fast_htmlcs
-      #   run: cd ./fast_htmlcs && yarn test 
-
-      - name: Run Playwright a11y.js
-        run: cd ./a11y-js && yarn test:playwright && yarn test:playwright:axe
-
-      - name: Run Puppeteer a11y.js
-        run: cd ./a11y-js && yarn test:puppeteer && yarn test:puppeteer:axe
+      - name: Run Puppeteer kayle.js
+        run: cd ./kayle && yarn test:puppeteer && yarn test:puppeteer:axe

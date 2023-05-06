@@ -1,8 +1,8 @@
 {
-  "name": "a11y",
+  "name": "kayle_workspace",
   "description": "Extremely fast accessibility evaluation for nodejs",
   "workspaces": [
-    "a11y-js",
+    "kayle",
     "fast_htmlcs",
     "fast_axecore"
   ],
@@ -10,17 +10,14 @@
     "build": "./build.sh true",
     "build:fast_htmlcs": "cd fast_htmlcs && yarn build",
     "build:fast_axe": "cd fast_axecore && yarn build --lang=en,da,de,es,eu,pl,fr,he,ja,ko,nl,no_NB,pt_BR",
-    "build:a11y-js": "cd a11y-js && yarn build",
+    "build:kayle": "cd kayle && yarn build",
     "build:test": "yarn build && npx playwright test --workers=1",
     "build:test:fast_htmlcs": "yarn build:fast_htmlcs && yarn test:playwright",
     "build:test:axe": "yarn build:fast_axecore && yarn test:axe",
     "build:test:playwright:axe": "yarn build:fast_axecore && yarn test:playwright:axe",
     "pub:fast_htmlcs": "yarn build:fast_htmlcs && yarn npm publish",
     "pub:fast_axecore": "yarn build:fast_axecore && yarn npm publish",
-    "pub:a11y-js": "yarn build:a11y-js && yarn npm publish"
-  },
-  "dependencies": {
-    "@axe-core/playwright": "^4.7.0",
-    "pa11y": "^6.2.3"
+    "pub:kayle": "yarn build:kayle && yarn npm publish",
+    "fix": "npx prettier --write '**/*.{ts,tsx,md}'"
   }
 }

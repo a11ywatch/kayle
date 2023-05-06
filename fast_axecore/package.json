@@ -42,7 +42,7 @@
   "homepage": "https://www.deque.com/axe/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/a11ywatch/a11y-js/fast_axecore.git"
+    "url": "https://github.com/a11ywatch/kayle/fast_axecore.git"
   },
   "keywords": [
     "Accessibility",

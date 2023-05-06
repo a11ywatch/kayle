@@ -33,8 +33,8 @@ jobs:
       - name: Install and build locales
         run: yarn --no-immutable && yarn build
 
-      - name: Run Bench compare a11y.js Playwright fast_axecore vs @axe-core/playwright
-        run: cd ./a11y-js && yarn bench:playwright:axe
+      - name: Run Bench playwright fast_axecore
+        run: cd ./kayle && yarn bench:playwright:axe
 
-      - name: Run Bench compare a11y.js vs pa11y
-        run: cd ./a11y-js && yarn bench:puppeteer:pa11y
+      - name: Run Bench playwright fast_htmlcs
+        run: cd ./kayle && yarn bench:playwright:htmlcs

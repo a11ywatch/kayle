@@ -19,9 +19,10 @@ where you wish to enforce consistency across a web site.
 ## Using HTML_CodeSniffer
 
 HTML_CodeSniffer can be called in multiple ways:
-* Called directly in JavaScript source, HTML_CodeSniffer will provide a list of known
+
+- Called directly in JavaScript source, HTML_CodeSniffer will provide a list of known
   and potential violations to the calling script.
-* Using as a Node.js module, installed with npm: `npm i --save html_codesniffer`
+- Using as a Node.js module, installed with npm: `npm i --save html_codesniffer`
 
 ## Using the source code
 
@@ -31,11 +32,11 @@ The HTML_CodeSniffer auditor can be built using [Node.js](https://nodejs.org/) a
 task runner](http://gruntjs.com/). It has been tested with the recent version of Node.js
 (starting from version 6.0) and Grunt.
 
-* Install Node.js with your package manager of choice, for example `sudo apt-get install nodejs`
-* You may need to update the Node.js package manager (npm) itself: `npm install -g npm`
-* Install the Grunt CLI helper if you haven't already done so: `npm install -g grunt-cli`
-* Get Node.js to install the dependencies Grunt needs: `npm install`
-* Run Grunt to build the auditor: `grunt build`
+- Install Node.js with your package manager of choice, for example `sudo apt-get install nodejs`
+- You may need to update the Node.js package manager (npm) itself: `npm install -g npm`
+- Install the Grunt CLI helper if you haven't already done so: `npm install -g grunt-cli`
+- Get Node.js to install the dependencies Grunt needs: `npm install`
+- Run Grunt to build the auditor: `grunt build`
 
 You should see two new directories: `node_modules` (containing the Node.js
 dependencies), and `build` (containing your auditor). You can then move
@@ -79,33 +80,34 @@ npm i puppeteer-core
 The test script assumes a recent version of Node.js to be available.
 
 ```javascript
-const puppeteer = require('puppeteer-core');
+const puppeteer = require("puppeteer-core");
 
 // Replace with the path to the chrome executable in your file system. This one assumes MacOSX.
-const executablePath = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+const executablePath =
+  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 
 // Replace with the url you wish to test.
-const url = 'https://www.squiz.net';
+const url = "https://www.squiz.net";
 
 (async () => {
   const browser = await puppeteer.launch({
-    executablePath
+    executablePath,
   });
 
   const page = await browser.newPage();
 
-  page.on('console', msg => {
-    console.log(msg.text())
+  page.on("console", (msg) => {
+    console.log(msg.text());
   });
 
   await page.goto(url);
 
   await page.addScriptTag({
-    path: 'build/HTMLCS.js'
+    path: "build/HTMLCS.js",
   });
 
   await page.evaluate(function () {
-    HTMLCS_RUNNER.run('WCAG2AA');
+    HTMLCS_RUNNER.run("WCAG2AA");
   });
 
   await browser.close();
@@ -121,36 +123,36 @@ an environment wrapper like [JSDom](https://github.com/jsdom/jsdom).
 An example Node.js script:
 
 ```javascript
-var jsdom = require('jsdom');
+var jsdom = require("jsdom");
 var { JSDOM } = jsdom;
-var fs = require('fs');
+var fs = require("fs");
 
-var HTMLCS = fs.readFileSync('./build/HTMLCS.js', 'utf-8');
+var HTMLCS = fs.readFileSync("./build/HTMLCS.js", "utf-8");
 var vConsole = new jsdom.VirtualConsole();
 
 // Forward messages to the console.
-vConsole.on('log', function(message) {
-    console.log(message)
+vConsole.on("log", function (message) {
+  console.log(message);
 });
 
 var dom = new JSDOM('<img src="test.png" />', {
-    runScripts: "dangerously",
-    virtualConsole: vConsole
+  runScripts: "dangerously",
+  virtualConsole: vConsole,
 });
 
 dom.window.eval(HTMLCS);
-dom.window.HTMLCS_RUNNER.run('WCAG2AA');
+dom.window.HTMLCS_RUNNER.run("WCAG2AA");
 ```
 
 ## Translations
 
-HTML_CodeSniffer supports _very_ basic string translations. The auditor will use the current language of the document it is being run in (e.g. `<html lang="en">`). A language code can be supplied if you need to tell HTML_CodeSniffer which language you want to use.
+HTML*CodeSniffer supports \_very* basic string translations. The auditor will use the current language of the document it is being run in (e.g. `<html lang="en">`). A language code can be supplied if you need to tell HTML_CodeSniffer which language you want to use.
 
 Example usage:
 
 ```javascript
-HTMLCSAuditor.run('WCAG2AA', null, {
-  lang: 'pl'
+HTMLCSAuditor.run("WCAG2AA", null, {
+  lang: "pl",
 });
 ```
 
@@ -176,19 +178,19 @@ contribute, you do not need to do both.
 More information on HTML_CodeSniffer can be found on its GitHub site,
 [http://squizlabs.github.io/HTML_CodeSniffer/](http://squizlabs.github.io/HTML_CodeSniffer/). This site provides:
 
-* Information on the tests performed (and messages emitted) by HTML_CodeSniffer's standards, organised by conformance level and Success Criterion;
-* A source test area that allows you to try out HTML_CodeSniffer with your own HTML source code; and
-* A link to the HTML_CodeSniffer bookmarklet, letting you check other pages using the pop-up auditor interface.
+- Information on the tests performed (and messages emitted) by HTML_CodeSniffer's standards, organised by conformance level and Success Criterion;
+- A source test area that allows you to try out HTML_CodeSniffer with your own HTML source code; and
+- A link to the HTML_CodeSniffer bookmarklet, letting you check other pages using the pop-up auditor interface.
 
 ## Translation Contributors
 
 Special thanks to:
 
-* [nsulzycki](https://github.com/nsulzycki) (Polish Translation)
-* [dmassiani](https://github.com/dmassiani) (French Translation)
-* [jamadam](https://github.com/jamadam) (Japanese Translation)
-* [tassoman](https://github.com/tassoman) (Italian Translation)
-* [bdeclerc](https://github.com/bdeclerc) (Dutch Translation)
+- [nsulzycki](https://github.com/nsulzycki) (Polish Translation)
+- [dmassiani](https://github.com/dmassiani) (French Translation)
+- [jamadam](https://github.com/jamadam) (Japanese Translation)
+- [tassoman](https://github.com/tassoman) (Italian Translation)
+- [bdeclerc](https://github.com/bdeclerc) (Dutch Translation)
 
 ## License
 

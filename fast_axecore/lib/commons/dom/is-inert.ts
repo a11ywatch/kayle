@@ -6,7 +6,10 @@ import memoize from '../../core/utils/memoize';
  * @param {Boolean} [options.skipAncestors] If the ancestor tree should not be used
  * @return {Boolean} The element's inert state
  */
-export default function isInert(vNode, { skipAncestors } = { skipAncestors: undefined }) {
+export default function isInert(
+  vNode,
+  { skipAncestors } = { skipAncestors: undefined }
+) {
   if (skipAncestors) {
     return isInertSelf(vNode);
   }

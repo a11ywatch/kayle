@@ -13,7 +13,12 @@ import { isShadowRoot } from '../../core/utils';
  * @param {Object} [root] Shadow root or document root
  * @return {Array}
  */
-function shadowElementsFromPoint(nodeX, nodeY, root: Document | ShadowRoot = document, i = 0) {
+function shadowElementsFromPoint(
+  nodeX,
+  nodeY,
+  root: Document | ShadowRoot = document,
+  i = 0
+) {
   if (i > 999) {
     throw new Error('Infinite loop detected');
   }

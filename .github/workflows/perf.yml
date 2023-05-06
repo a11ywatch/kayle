@@ -34,7 +34,7 @@ jobs:
         run: yarn --no-immutable && yarn build
 
       - name: Run Bench fast_htmlcs
-        run: cd ./a11y-js && yarn bench:playwright:htmlcs > output.json
+        run: cd ./kayle && yarn bench:playwright:htmlcs > output.json
 
       - name: Download previous benchmark data
         uses: actions/cache@v3
@@ -46,6 +46,6 @@ jobs:
         uses: benchmark-action/github-action-benchmark@v1
         with:
           tool: 'customSmallerIsBetter'
-          output-file-path: a11y-js/output.json
+          output-file-path: kayle/output.json
           external-data-json-path: ./cache/benchmark-data.json
           fail-on-alert: true

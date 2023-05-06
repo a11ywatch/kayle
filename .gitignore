@@ -39,7 +39,7 @@ dist
 **/*.rs.bk
 
 # tar
-a11y-js-**.tgz
+kayle-**.tgz
 
 .yarn
 
