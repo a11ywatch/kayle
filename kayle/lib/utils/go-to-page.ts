@@ -84,9 +84,10 @@ export const setNetworkInterception = async (page): Promise<boolean> => {
   // playwright
   if (!page.setRequestInterception) {
     if (
-      page._route &&
-      (!page._routes.length ||
-        !page._routes.some((route) => route.url === "**/*"))
+      !page._route ||
+      (page._route &&
+        (!page._routes.length ||
+          !page._routes.some((route) => route.url === "**/*")))
     ) {
       return await page.route("**/*", networkBlock);
     }
@@ -97,59 +98,55 @@ export const setNetworkInterception = async (page): Promise<boolean> => {
     try {
       await page.setRequestInterception(true);
       page.on("request", networkBlock);
-
-      return true;
     } catch (e) {
-      return false;
+      //
     }
   }
 };
 
 // set RAW HTML CONTENT
-const setHtmlContent = async (
-  { page, timeout, html }: Partial<RunnerConfig> & { html?: string },
-  url: string
-): Promise<boolean> => {
-  let valid = false;
+const setHtmlIntercept = async ({
+  page,
+  html,
+}: Partial<RunnerConfig> & { html?: string }) => {
   let firstRequest = false;
 
-  try {
-    await page.setRequestInterception(true);
-  } catch (e) {
-    console.error(e);
-  }
-
-  return new Promise(async (resolve) => {
-    try {
-      page.on("request", async (request) => {
-        // initial page navigation request intercept with custom HTML
-        if (!firstRequest) {
-          firstRequest = true;
-          await request.respond({
-            status: 200,
-            contentType: "text/html",
-            body: html,
-          });
-        } else {
-          await networkBlock(request);
-        }
-      });
-
-      // navigate to url or open default window to enable web APIS
-      const res = await page.goto(url || "http://localhost", {
-        timeout: timeout || 0,
-        waitUntil: "domcontentloaded",
-      });
-
-      if (res) {
-        valid = res.status() === 304 || res.ok();
+  const blockNetwork = async (request, res) => {
+    // initial page navigation request intercept with custom HTML
+    if (!firstRequest) {
+      firstRequest = true;
+      const data = {
+        status: 200,
+        contentType: "text/html",
+        body: html,
+      };
+      if (request.respond) {
+        await request.respond(data);
+      } else {
+        await request.fulfill(data);
       }
-    } catch (e) {
-      //
+    } else {
+      await networkBlock(request, res);
     }
+  };
 
-    resolve(valid);
-  });
+  try {
+    if (!page.setRequestInterception) {
+      if (
+        !page._route ||
+        (page._route &&
+          (!page._routes.length ||
+            !page._routes.some((route) => route.url === "**/*")))
+      ) {
+        await page.route("**/*", blockNetwork);
+      }
+    } else {
+      await page.setRequestInterception(true);
+      page.on("request", blockNetwork);
+    }
+  } catch (e) {
+    //
+  }
 };
 
 /**
@@ -163,26 +160,26 @@ export const goToPage = async (
   url: string
 ): Promise<boolean> => {
   if (html) {
-    return setHtmlContent({ page, html, timeout }, url);
+    await setHtmlIntercept({ page, html, timeout });
   } else {
-    let valid = false;
-
     await setNetworkInterception(page);
-
-    return new Promise(async (resolve) => {
-      try {
-        const res = await page.goto(url, {
-          timeout: timeout || 0,
-          waitUntil: "domcontentloaded",
-        });
-        if (res) {
-          valid = res.status() === 304 || res.ok();
-        }
-      } catch (e) {
-        // page does not exist
-      }
-
-      resolve(valid);
-    });
   }
+
+  let valid = false;
+
+  return new Promise(async (resolve) => {
+    try {
+      const res = await page.goto(url, {
+        timeout: timeout || 0,
+        waitUntil: "domcontentloaded",
+      });
+      if (res) {
+        valid = res.status() === 304 || res.ok();
+      }
+    } catch (e) {
+      // page does not exist
+    }
+
+    resolve(valid);
+  });
 };

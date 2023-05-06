@@ -2,7 +2,7 @@ import { extractArgs } from "./option";
 import { runAction } from "./action";
 import { RunnerConfig } from "./config";
 import { runnersJavascript, getRunner } from "./runner-js";
-import { setNetworkInterception } from "./utils/go-to-page";
+import { goToPage, setNetworkInterception } from "./utils/go-to-page";
 import { Watcher } from "./watcher";
 
 export type MetaInfo = {
@@ -42,11 +42,22 @@ export type Audit = {
 
 /**
  * Run accessibility tests for page.
- * @param {Object} [config={}] - Options to change the way tests run.
+ * @param {Object} [config={}] config - Options to change the way tests run.
  * @returns {Promise} Returns a promise which resolves with results.
  */
-export async function kayle(o: Partial<RunnerConfig> = {}): Promise<Audit> {
-  if (!o.noIntercept) {
+export async function kayle(
+  o: Partial<RunnerConfig & { html?: string }> = {}
+): Promise<Audit> {
+  if (
+    typeof o.page.url === "function" &&
+    o.page.url() === "about:blank" &&
+    (o.origin || o.html)
+  ) {
+    await goToPage(
+      { page: o.page, html: o.html, timeout: o.timeout },
+      o.origin
+    );
+  } else if (!o.noIntercept) {
     await setNetworkInterception(o.page);
   }
 

@@ -1,17 +1,17 @@
 {
   "documentTitle": "Drake Industries | Custom, Durable, High-Quality Labels, Asset Tags and Custom Server Bezels",
-  "pageUrl": "about:blank",
+  "pageUrl": "https://www.drake.com/",
   "issues": [
     {
       "context": "<a class=\"expandMenu\"><i></i><i></i><i></i></a>",
-      "selector": "#hs_cos_wrapper_module_14725592865174 > a",
+      "selector": "#hs_cos_wrapper_module_14725592865174 > a:nth-child(3)",
       "code": "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.A.EmptyNoId",
       "type": "error",
       "typeCode": 1,
       "message": "Anchor element found with no link content and no name and/or ID attribute.",
       "runner": "htmlcs",
       "runnerExtras": {},
-      "recurrence": 0
+      "recurrence": 1
     },
     {
       "context": "<a href=\"https://www.drake.com/labels?hsLang=en\">Learn more</a>",
@@ -136,14 +136,14 @@
     },
     {
       "context": "<i></i>",
-      "selector": "#hs_cos_wrapper_module_14725592865174 > a > i:nth-child(3)",
+      "selector": "#hs_cos_wrapper_module_14725592865174 > a:nth-child(3) > i:nth-child(3)",
       "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.H49.I",
       "type": "warning",
       "typeCode": 2,
       "message": "Semantic markup should be used to mark emphasised or special text so that it can be programmatically determined.",
       "runner": "htmlcs",
       "runnerExtras": {},
-      "recurrence": 10
+      "recurrence": 21
     },
     {
       "context": "<h1>SAME DAY QUOTES<br>INDUSTRY LEAD...</h1>",
@@ -290,8 +290,8 @@
     }
   ],
   "meta": {
-    "errorCount": 11,
-    "warningCount": 25,
+    "errorCount": 12,
+    "warningCount": 36,
     "noticeCount": 0,
     "accessScore": 78
   },

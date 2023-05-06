@@ -1,6 +1,6 @@
 {
   "documentTitle": "Drake Industries | Custom, Durable, High-Quality Labels, Asset Tags and Custom Server Bezels",
-  "pageUrl": "about:blank",
+  "pageUrl": "https://www.drake.com/",
   "issues": [
     {
       "context": "<a href=\"https://www.drake.com/labels?hsLang=en\">Learn more</a>",
@@ -513,21 +513,6 @@
       "recurrence": 0
     },
     {
-      "context": "<a href=\"https://www.drake.com\" role=\"menuitem\">Home</a>",
-      "selector": "#hs_menu_wrapper_module_14725592865174 > ul > li:nth-child(3) > a",
-      "code": "color-contrast",
-      "type": "warning",
-      "typeCode": 2,
-      "message": "Elements must have sufficient color contrast",
-      "runner": "axe",
-      "runnerExtras": {
-        "description": "Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds",
-        "impact": "serious",
-        "helpUrl": "https://dequeuniversity.com/rules/axe/4.6/color-contrast?application=axeAPI"
-      },
-      "recurrence": 0
-    },
-    {
       "context": "<h1>SAME DAY QUOTES<br>INDUSTRY LEAD...</h1>",
       "selector": "#hs_cos_wrapper_module_14725521757543705 > h1",
       "code": "color-contrast",
@@ -665,7 +650,7 @@
   ],
   "meta": {
     "errorCount": 34,
-    "warningCount": 10,
+    "warningCount": 9,
     "noticeCount": 0,
     "accessScore": 32
   },

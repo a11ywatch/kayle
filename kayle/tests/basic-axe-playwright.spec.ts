@@ -1,26 +1,21 @@
 import assert from "assert";
 import { writeFileSync } from "fs";
-import { kayle, setNetworkInterception } from "kayle";
+import { kayle } from "kayle";
 import { drakeMock } from "./mocks/html-mock";
 import { performance } from "perf_hooks";
 import { test, expect } from "@playwright/test";
 
-test("fast_axecore audit drakeMock", async ({ playwright }, testInfo) => {
-  const browser = await playwright.chromium.launch();
-  const incognitoBrowser = await browser.newContext();
-  const page = await incognitoBrowser.newPage();
-
-  await setNetworkInterception(page);
-  await page.setContent(drakeMock);
+test("fast_axecore audit drakeMock", async ({  page, browser  }, testInfo) => {
   // page.on("console", (msg) => console.log("PAGE LOG:", msg.text()));
 
   const startTime = performance.now();
   const results = await kayle({
     page,
-    browser: incognitoBrowser,
+    browser,
     runners: ["axe"],
     includeWarnings: true,
     origin: "https://www.drake.com",
+    html: drakeMock
   });
   const endTime = performance.now() - startTime;
 
@@ -35,14 +30,12 @@ test("fast_axecore audit drakeMock", async ({ playwright }, testInfo) => {
   assert(Array.isArray(issues));
   assert(typeof pageUrl === "string");
   assert(typeof documentTitle === "string");
-  assert(meta.warningCount === 10);
+  assert(meta.warningCount === 9);
   assert(meta.errorCount === 34);
 
   await expect(page).toHaveTitle(documentTitle);
 
   await page.close();
-  await incognitoBrowser.close();
-  await browser.close();
 
   writeFileSync(
     testInfo.outputPath("axe-core.json"),

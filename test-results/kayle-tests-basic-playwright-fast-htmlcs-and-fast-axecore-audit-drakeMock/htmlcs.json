@@ -1,6 +1,6 @@
 {
   "documentTitle": "Drake Industries | Custom, Durable, High-Quality Labels, Asset Tags and Custom Server Bezels",
-  "pageUrl": "about:blank",
+  "pageUrl": "https://www.drake.com/",
   "issues": [
     {
       "context": "<a href=\"https://www.drake.com/labels?hsLang=en\">Learn more</a>",
@@ -513,21 +513,6 @@
       "recurrence": 0
     },
     {
-      "context": "<a href=\"https://www.drake.com\" role=\"menuitem\">Home</a>",
-      "selector": "#hs_menu_wrapper_module_14725592865174 > ul > li:nth-child(3) > a",
-      "code": "color-contrast",
-      "type": "warning",
-      "typeCode": 2,
-      "message": "Elements must have sufficient color contrast",
-      "runner": "axe",
-      "runnerExtras": {
-        "description": "Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds",
-        "impact": "serious",
-        "helpUrl": "https://dequeuniversity.com/rules/axe/4.6/color-contrast?application=axeAPI"
-      },
-      "recurrence": 0
-    },
-    {
       "context": "<h1>SAME DAY QUOTES<br>INDUSTRY LEAD...</h1>",
       "selector": "#hs_cos_wrapper_module_14725521757543705 > h1",
       "code": "color-contrast",
@@ -663,6 +648,17 @@
       "recurrence": 0
     },
     {
+      "context": "<span class=\"hs-cta-node hs-cta-991abde1-792b-4f15-b338-a79c214c3e94\" id=\"hs-cta-991abde1-792b-4f15-b338-a79c214c3e94\" style=\"visibility: visible;\" data-hs-drop=\"true\"><a id=\"cta_button_5479613_5d5e31...</span>",
+      "selector": "#hs-cta-991abde1-792b-4f15-b338-a79c214c3e94",
+      "code": "WCAG2AA.Principle4.Guideline4_1.4_1_1.F77",
+      "type": "error",
+      "typeCode": 1,
+      "message": "Duplicate id attribute value \"hs-cta-991abde1-792b-4f15-b338-a79c214c3e94\" found on the web page.",
+      "runner": "htmlcs",
+      "runnerExtras": {},
+      "recurrence": 0
+    },
+    {
       "context": "<a id=\"cta_button_5479613_5d5e3141-f749-4fa7-b734-25667e531cfe\" class=\"cta_button \" href=\"https://www.drake.com/cs/c/?cta_guid=5d5e3141-f749-4fa7-b734-25667e531cfe&amp;signature=AAH58kHo1qzsXaPOT8WcWuRYgZglZwRuZw&amp;pageId=8839032963&amp;placement_gu...",
       "selector": "#cta_button_5479613_5d5e3141-f749-4fa7-b734-25667e531cfe",
       "code": "WCAG2AA.Principle4.Guideline4_1.4_1_1.F77",
@@ -686,14 +682,14 @@
     },
     {
       "context": "<i></i>",
-      "selector": "#hs_cos_wrapper_module_14725592865174 > a > i:nth-child(3)",
+      "selector": "#hs_cos_wrapper_module_14725592865174 > a:nth-child(3) > i:nth-child(3)",
       "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.H49.I",
       "type": "warning",
       "typeCode": 2,
       "message": "Semantic markup should be used to mark emphasised or special text so that it can be programmatically determined.",
       "runner": "htmlcs",
       "runnerExtras": {},
-      "recurrence": 10
+      "recurrence": 21
     },
     {
       "context": "<h1>SAME DAY QUOTES<br>INDUSTRY LEAD...</h1>",
@@ -840,8 +836,8 @@
     }
   ],
   "meta": {
-    "errorCount": 45,
-    "warningCount": 35,
+    "errorCount": 46,
+    "warningCount": 45,
     "noticeCount": 0,
     "accessScore": 10
   },

@@ -1,9 +1,9 @@
 {
   "mock": "[drakeMock]",
   "htmlSize": 71784,
-  "duration": 454.0326249599457,
+  "duration": 704.8367079496384,
   "errors": 34,
-  "warnings": 10,
+  "warnings": 9,
   "runner": [
     "fast_axecore"
   ]

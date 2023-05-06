@@ -6,27 +6,45 @@ Incredibly fast and precise universal web accessibility evaluator for puppeteer 
 
 Getting Started: checkout the [playwright-example](./kayle/tests/basic-playwright.spec.ts) or [puppeteer](./kayle/tests/basic.ts).
 
-
 ```sh
 npm i kayle --save
 ```
 
+Playwright
+
 ```ts
-import { kayle, goToPage } from "kayle";
+import { kayle } from "kayle";
+import { chromium } from "playwright";
 
-// puppeteer or playwright page
+const browser = await chromium.launch({ headless: "new" });
 const page = await browser.newPage();
-
-// optional navigate with request interception
-// or pass in html the first param obj.
-await goToPage({ page }, "https://a11ywatch.com");
-// You can also have an active page and skip using `goToPage`.
 
 const results = await kayle({
   page,
   browser,
   runners: ["htmlcs", "axe"],
   includeWarnings: true,
+  origin: "https://a11ywatch.com",
+  // html: ""
+});
+```
+
+Puppeteer
+
+```ts
+import { kayle } from "kayle";
+import { launch } from "puppeteer";
+
+const browser = await launch({ headless: "new" });
+const page = await browser.newPage();
+
+const results = await kayle({
+  page,
+  browser,
+  runners: ["htmlcs", "axe"],
+  includeWarnings: true,
+  origin: "https://a11ywatch.com",
+  // html: ""
 });
 ```
 
@@ -49,8 +67,7 @@ const results = {
       recurrence: 5, // issue found 5 times against the page
     },
     {
-      context:
-        '<a href="https://a11ywatch.com/demo">Learn more</a>',
+      context: '<a href="https://a11ywatch.com/demo">Learn more</a>',
       selector:
         "#hs_cos_wrapper_module_1569856007055222 > div > div:nth-child(3) > a",
       code: "color-contrast",
