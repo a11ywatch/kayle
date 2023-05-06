@@ -5,7 +5,11 @@ import { drakeMock } from "./mocks/html-mock";
 import { performance } from "perf_hooks";
 import { test, expect } from "@playwright/test";
 
-test("fast_axecore audit drakeMock", async ({ page, browser }, testInfo) => {
+test("fast_axecore audit drakeMock", async ({ playwright }, testInfo) => {
+  const browser = await playwright.chromium.launch()
+  const incognitoBrowser = await browser.newContext();
+  const page = await incognitoBrowser.newPage();
+
   await setNetworkInterception(page);
   await page.setContent(drakeMock);
   // page.on("console", (msg) => console.log("PAGE LOG:", msg.text()));
@@ -13,7 +17,7 @@ test("fast_axecore audit drakeMock", async ({ page, browser }, testInfo) => {
   const startTime = performance.now();
   const results = await a11y({
     page,
-    browser,
+    browser: incognitoBrowser,
     runners: ["axe"],
     includeWarnings: true,
     origin: "https://www.drake.com",
@@ -37,6 +41,8 @@ test("fast_axecore audit drakeMock", async ({ page, browser }, testInfo) => {
   await expect(page).toHaveTitle(documentTitle);
 
   await page.close();
+  await incognitoBrowser.close();
+  await browser.close();
 
   writeFileSync(
     testInfo.outputPath("axe-core.json"),

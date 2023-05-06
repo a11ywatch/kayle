@@ -5,7 +5,11 @@ import { drakeMock } from "./mocks/html-mock";
 import { performance } from "perf_hooks";
 import { test, expect } from "@playwright/test";
 
-test("pa11y htmlcs audit drakeMock", async ({ page, browser }, testInfo) => {
+test("pa11y htmlcs audit drakeMock", async ({ playwright }, testInfo) => {
+  const browser = await playwright.chromium.launch()
+  const incognitoBrowser = await browser.newContext();
+  const page = await incognitoBrowser.newPage();
+
   await page.setContent(drakeMock);
 
   page.removeListener = (_, __) => {
@@ -24,7 +28,7 @@ test("pa11y htmlcs audit drakeMock", async ({ page, browser }, testInfo) => {
   const startTime = performance.now();
   const results = await pa11y("", {
     page,
-    browser,
+    browser: incognitoBrowser,
     runners: ["htmlcs", "axe"],
     includeWarnings: true,
     ignoreUrl: true,
@@ -60,6 +64,8 @@ test("pa11y htmlcs audit drakeMock", async ({ page, browser }, testInfo) => {
   await expect(page).toHaveTitle(documentTitle);
 
   await page.close();
+  await incognitoBrowser.close();
+  await browser.close();
 
   writeFileSync(
     testInfo.outputPath("pa11y_htmlcs.json"),

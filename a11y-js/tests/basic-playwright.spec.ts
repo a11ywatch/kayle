@@ -5,14 +5,18 @@ import { drakeMock } from "./mocks/html-mock";
 import { performance } from "perf_hooks";
 import { test, expect } from "@playwright/test";
 
-test("fast_htmlcs and fast_axecore audit drakeMock", async ({ page, browser }, testInfo) => {
+test("fast_htmlcs and fast_axecore audit drakeMock", async ({ playwright }, testInfo) => {
+  const browser = await playwright.chromium.launch()
+  const incognitoBrowser = await browser.newContext();
+  const page = await incognitoBrowser.newPage();
+
   await setNetworkInterception(page);
   await page.setContent(drakeMock);
 
   const startTime = performance.now();
   const results = await a11y({
     page,
-    browser,
+    browser: incognitoBrowser,
     runners: ["htmlcs", "axe"],
     includeWarnings: true,
   });
@@ -36,6 +40,8 @@ test("fast_htmlcs and fast_axecore audit drakeMock", async ({ page, browser }, t
   await expect(page).toHaveTitle(documentTitle);
 
   await page.close();
+  await incognitoBrowser.close();
+  await browser.close();
 
   writeFileSync(
     testInfo.outputPath("htmlcs.json"),

@@ -6,9 +6,12 @@ import { test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
 test("@axe-core/playwright audit drakeMock", async ({
-  page,
-  //   browser,
+  playwright,
 }, testInfo) => {
+  const browser = await playwright.chromium.launch()
+  const incognitoBrowser = await browser.newContext();
+  const page = await incognitoBrowser.newPage();
+
   await page.setContent(drakeMock);
 
   const startTime = performance.now();
@@ -26,6 +29,8 @@ test("@axe-core/playwright audit drakeMock", async ({
   assert(typeof url === "string");
 
   await page.close();
+  await incognitoBrowser.close();
+  await browser.close();
 
   writeFileSync(
     testInfo.outputPath("@axe-core_playwright.json"),
