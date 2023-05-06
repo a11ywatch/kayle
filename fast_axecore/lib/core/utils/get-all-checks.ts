@@ -3,7 +3,8 @@
  * @param {RuleResult|Rule} rule
  */
 function getAllChecks(object) {
-  var result = [];
+  const result = [];
+
   return result
     .concat(object.any || [])
     .concat(object.all || [])

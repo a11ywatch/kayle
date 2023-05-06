@@ -9,7 +9,7 @@ var uuid;
 // returns 128-bits of randomness, since that's what's usually required
 var _rng;
 
-// Allow for MSIE11 msCrypto
+// @ts-ignore Allow for MSIE11 msCrypto
 var _crypto = window.crypto || window.msCrypto;
 
 if (!_rng && _crypto && _crypto.getRandomValues) {
@@ -72,7 +72,7 @@ function parse(s, buf, offset) {
 }
 
 // **`unparse()` - Convert UUID byte array (ala parse()) into a string**
-function unparse(buf, offset) {
+function unparse(buf, offset?: number) {
   var i = offset || 0,
     bth = _byteToHex;
   return (
@@ -125,7 +125,7 @@ var _lastMSecs = 0,
   _lastNSecs = 0;
 
 // See https://github.com/broofa/node-uuid for API details
-function v1(options, buf, offset) {
+function v1(options?, buf?: number, offset?: number) {
   var i = (buf && offset) || 0;
   var b = buf || [];
 
@@ -203,7 +203,7 @@ function v1(options, buf, offset) {
 // **`v4()` - Generate random UUID**
 
 // See https://github.com/broofa/node-uuid for API details
-function v4(options, buf, offset) {
+function v4(options?, buf?, offset?: number) {
   // Deprecated - 'format' argument, as supported in v1.2
   var i = (buf && offset) || 0;
 

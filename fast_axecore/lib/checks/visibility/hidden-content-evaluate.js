@@ -1,14 +1,15 @@
 import { hasContentVirtual, getComposedParent } from '../../commons/dom';
 
-function hiddenContentEvaluate(node, options, virtualNode) {
-  const allowlist = [
-    'SCRIPT',
-    'HEAD',
-    'TITLE',
-    'NOSCRIPT',
-    'STYLE',
-    'TEMPLATE'
-  ];
+const allowlist = [
+  'SCRIPT',
+  'HEAD',
+  'TITLE',
+  'NOSCRIPT',
+  'STYLE',
+  'TEMPLATE'
+];
+
+function hiddenContentEvaluate(node, _, virtualNode) {
   if (
     !allowlist.includes(node.nodeName.toUpperCase()) &&
     hasContentVirtual(virtualNode)

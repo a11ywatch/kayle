@@ -1,3 +1,4 @@
+import { Selector } from 'css-selector-parser';
 import cssParser from './css-parser';
 
 function matchesTag(vNode, exp) {
@@ -207,9 +208,8 @@ function convertExpressions(expressions) {
  * @returns {Object[]} Array of Slick format expressions
  */
 export function convertSelector(selector) {
-  var expressions = cssParser.parse(selector);
-  expressions = expressions.selectors ? expressions.selectors : [expressions];
-  return convertExpressions(expressions);
+  const expressions: Selector & { selectors?: Selector[]} = cssParser.parse(selector);
+  return convertExpressions(expressions.selectors ? expressions.selectors : [expressions]);
 }
 
 /**
@@ -270,7 +270,7 @@ function optimizedMatchesExpression(vNode, expressions, index, matchAnyParent) {
  * @param {Object|Object[]} expressions CSS selector expression or array of expressions
  * @returns {Boolean}
  */
-export function matchesExpression(vNode, expressions, matchAnyParent) {
+export function matchesExpression(vNode, expressions, matchAnyParent?: boolean) {
   return optimizedMatchesExpression(
     vNode,
     expressions,

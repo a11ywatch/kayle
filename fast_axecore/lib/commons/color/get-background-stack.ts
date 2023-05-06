@@ -62,7 +62,7 @@ function sortPageBackground(elmStack) {
   if (
     bodyIndex > 1 &&
     htmlBgColor.alpha === 0 &&
-    !elementHasImage(document.documentElement)
+    !elementHasImage(document.documentElement, undefined)
   ) {
     // Only remove document.body if it was originally contained within the element stack
     if (bodyIndex > 1) {

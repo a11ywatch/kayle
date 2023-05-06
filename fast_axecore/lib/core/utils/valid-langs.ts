@@ -61,7 +61,7 @@ const langs = [,[,[1,1,1,1,1,1,1,1,1,1,,1,1,1,1,1,1,1,,1,1,1,1,1,1,,1],[1,1,1,1,
  * @returns {Boolean}
  */
 function isValidLang(lang) {
-  let array = langs;
+  let array: number | number[][][] = langs;
 
   // padEnd is not supported in IE11
   while (lang.length < 3) {

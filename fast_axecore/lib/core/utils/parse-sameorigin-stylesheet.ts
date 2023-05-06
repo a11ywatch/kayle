@@ -28,7 +28,7 @@ function parseSameOriginStylesheet(
   /**
    * reference -> https://developer.mozilla.org/en-US/docs/Web/API/CSSRule#Type_constants
    */
-  const cssImportRules = rules.filter(r => r.type === 3); // type === 3 -> CSSRule.IMPORT_RULE
+  const cssImportRules = rules.filter((r: {type: number}) => r.type === 3); // type === 3 -> CSSRule.IMPORT_RULE
 
   /**
    * when no `@import` rules in given sheet -> resolve the current `sheet` & exit
@@ -49,9 +49,9 @@ function parseSameOriginStylesheet(
    */
   const cssImportUrlsNotAlreadyImported = cssImportRules
     // ensure rule has a href
-    .filter(rule => rule.href)
+    .filter((rule: {href?: string}) => rule.href)
     // extract href from object
-    .map(rule => rule.href)
+    .map((rule: {href?: string}) => rule.href)
     // only href that are not already imported
     .filter(url => !importedUrls.includes(url));
 
@@ -73,7 +73,7 @@ function parseSameOriginStylesheet(
     }
   );
 
-  const nonImportCSSRules = rules.filter(r => r.type !== 3);
+  const nonImportCSSRules = rules.filter((r: {type?: number}) => r.type !== 3);
 
   // no further rules to process in this sheet
   if (!nonImportCSSRules.length) {
@@ -85,7 +85,7 @@ function parseSameOriginStylesheet(
   promises.push(
     Promise.resolve(
       options.convertDataToStylesheet({
-        data: nonImportCSSRules.map(rule => rule.cssText).join(),
+        data: nonImportCSSRules.map((rule: {cssText?}) => rule.cssText).join(),
         isCrossOrigin,
         priority,
         root: options.rootNode,

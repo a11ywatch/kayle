@@ -46,7 +46,7 @@ function getXPathArray(node, path) {
   }
 
   if (node.nodeType === 1) {
-    var element = {};
+    var element = { count: undefined, str: undefined, id: undefined};
     element.str = node.nodeName.toLowerCase();
     // add the id and the count so we can construct robust versions of the xpath
     var id = node.getAttribute && escapeSelector(node.getAttribute('id'));
@@ -77,7 +77,7 @@ function xpathToString(xpathArray) {
 }
 
 function getXpath(node) {
-  var xpathArray = getXPathArray(node);
+  var xpathArray = getXPathArray(node, undefined);
   return xpathToString(xpathArray);
 }
 

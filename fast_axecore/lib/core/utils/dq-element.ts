@@ -31,7 +31,7 @@ function getSource(element) {
  * @param {HTMLElement} element The element to serialize
  * @param {Object} spec Properties to use in place of the element when instantiated on Elements from other frames
  */
-function DqElement(elm, options = { absolutePaths: undefined }, spec = {}) {
+function DqElement(elm, options: {absolutePaths?: string, performanceTimer?: any} = { absolutePaths: undefined }, spec = {}) {
   this.spec = spec;
   if (elm instanceof AbstractVirtualNode) {
     this._virtualNode = elm;

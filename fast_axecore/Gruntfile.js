@@ -15,6 +15,7 @@ module.exports = function (grunt) {
   grunt.loadTasks('build/tasks');
 
   var langs;
+
   if (grunt.option('lang')) {
     langs = (grunt.option('lang') || '').split(/[,;]/g).map(function (lang) {
       lang = lang.trim();

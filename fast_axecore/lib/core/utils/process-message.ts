@@ -39,6 +39,7 @@ function processMessage(message, data) {
 
   // data as array
   if (Array.isArray(data)) {
+    // @ts-ignore
     data.values = data.join(', ');
 
     if (

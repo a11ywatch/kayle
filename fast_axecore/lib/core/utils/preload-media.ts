@@ -26,7 +26,7 @@ function preloadMedia({ treeRoot = axe._tree[0] }) {
        */
       const sourceWithSrc = Array.from(
         actualNode.getElementsByTagName('source')
-      ).filter(source => !!source.getAttribute('src'));
+      ).filter((source: Element) => !!source.getAttribute('src'));
       if (sourceWithSrc.length <= 0) {
         return false;
       }

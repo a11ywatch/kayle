@@ -1,7 +1,7 @@
 import Context from '../base/context';
 import getAncestry from './get-ancestry';
 
-export default function getFrameContexts(context, options = {}) {
+export default function getFrameContexts(context, options = { iframes: undefined }) {
   if (options.iframes === false) {
     return [];
   }

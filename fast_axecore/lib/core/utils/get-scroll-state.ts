@@ -6,7 +6,7 @@ import getScroll from './get-scroll';
 function getElmScrollRecursive(root) {
   // Need to also get .childNodes since SVGs in IE don't have .children.
   return Array.from(root.children || root.childNodes || []).reduce(
-    (scrolls, elm) => {
+    (scrolls: any[], elm) => {
       const scroll = getScroll(elm);
       if (scroll) {
         scrolls.push(scroll);

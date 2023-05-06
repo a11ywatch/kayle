@@ -39,7 +39,7 @@ export default function getForegroundColor(node, _, bgColor, options = {}) {
   }
 
   // If text is (semi-)transparent shadows are visible through it.
-  const textShadowColors = getTextShadowColors(node, { minRatio: 0 });
+  const textShadowColors = getTextShadowColors(node, { minRatio: 0, maxRatio: undefined });
   fgColor = textShadowColors.reduce((colorA, colorB) => {
     return flattenColors(colorA, colorB);
   }, fgColor);
@@ -95,7 +95,7 @@ function getOpacity(node, nodeStyle) {
 
   nodeStyle ??= window.getComputedStyle(node);
   const opacity = nodeStyle.getPropertyValue('opacity');
-  const finalOpacity = opacity * getOpacity(node.parentElement);
+  const finalOpacity = opacity * getOpacity(node.parentElement, undefined);
 
   // cache the results of the getOpacity check on the parent tree
   // so we don't have to look at the parent tree again for all its

@@ -164,7 +164,7 @@ function getStylesheetsFromDocumentFragment(rootNode, convertDataToStylesheet) {
     Array.from(rootNode.children)
       .filter(filerStyleAndLinkAttributesInDocumentFragment)
       // Reducer to convert `<style></style>` and `<link>` references to `CSSStyleSheet` object
-      .reduce((out, node) => {
+      .reduce((out: string[], node: Node) => {
         const nodeName = node.nodeName.toUpperCase();
         const data = nodeName === 'STYLE' ? node.textContent : node;
         const isLink = nodeName === 'LINK';
@@ -187,7 +187,7 @@ function getStylesheetsFromDocumentFragment(rootNode, convertDataToStylesheet) {
  * @returns {Array<Object>}
  */
 function getStylesheetsFromDocument(rootNode) {
-  return Array.from(rootNode.styleSheets).filter(sheet => {
+  return Array.from(rootNode.styleSheets).filter((sheet: {media: {mediaText: string}}) => {
     if (!sheet.media) {
       return false;
     }

@@ -1,6 +1,7 @@
 import log from '../log';
 
-function noop() {}
+function noop(_?: any) {}
+
 function funcGuard(f) {
   if (typeof f !== 'function') {
     throw new TypeError('Queue methods require functions as arguments');

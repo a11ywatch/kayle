@@ -22,5 +22,5 @@
     "resolveJsonModule": true,
     "removeComments": true
   },
-  "exclude": ["./Gruntfile.js", "build", "Contrib", "dist"]
+  "include": ["locales", "lib", "globalds.d.ts", "axe.d.ts"]
 }

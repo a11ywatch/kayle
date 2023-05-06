@@ -61,7 +61,6 @@ export { default as parseCrossOriginStylesheet } from './parse-crossorigin-style
 export { default as parseSameOriginStylesheet } from './parse-sameorigin-stylesheet';
 export { default as parseStylesheet } from './parse-stylesheet';
 export { default as performanceTimer } from './performance-timer';
-export { pollyfillElementsFromPoint } from './pollyfills';
 export { default as preloadCssom } from './preload-cssom';
 export { default as preloadMedia } from './preload-media';
 export { default as preload, shouldPreload, getPreloadConfig } from './preload';

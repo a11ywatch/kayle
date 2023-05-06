@@ -402,6 +402,6 @@ function generateSelector(elm, options, doc) {
  * @param {Object} optional options
  * @returns {String|Array<String>} Unique CSS selector for the node
  */
-export default function getSelector(elm, options) {
+export default function getSelector(elm, options?) {
   return getShadowSelector(generateSelector, elm, options);
 }

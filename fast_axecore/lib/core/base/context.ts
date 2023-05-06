@@ -32,7 +32,7 @@ import { isVisibleToScreenReaders } from '../../commons/dom';
  *
  * @param {Object} spec Configuration or "specification" object
  */
-export default function Context(spec, flatTree) {
+export default function Context(spec, flatTree?: boolean) {
   spec = clone(spec);
   this.frames = [];
   this.page = typeof spec?.page === 'boolean' ? spec.page : undefined;

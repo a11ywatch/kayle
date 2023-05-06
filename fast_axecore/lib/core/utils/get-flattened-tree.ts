@@ -48,7 +48,7 @@ function getSlotChildren(node) {
  * @param {String} shadowId, optional ID of the shadow DOM that is the closest shadow ancestor of the node
  * @return {VirtualNode}
  */
-function createNode(node, parent, shadowId) {
+function createNode(node, parent, shadowId?: string) {
   const vNode = new VirtualNode(node, parent, shadowId);
   cacheNodeSelectors(vNode, cache.get('selectorMap'));
 
@@ -154,7 +154,7 @@ function flattenTree(node, shadowId, parent) {
  * @param {String} [shadowId] optional ID of the shadow DOM that is the closest shadow
  *                           ancestor of the node
  */
-function getFlattenedTree(node = document.documentElement, shadowId) {
+function getFlattenedTree(node = document.documentElement, shadowId?: string) {
   hasShadowRoot = false;
   const selectorMap = {};
   cache.set('nodeMap', new WeakMap());

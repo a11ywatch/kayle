@@ -69,8 +69,9 @@
     }
   },
   "scripts": {
+    "tsc": "tsc",
     "develop": "grunt dev --force",
-    "build": "grunt --lang=en,da,de,es,eu,pl,fr,he,ja,ko,nl,no_NB,pt_BR",
+    "build": "tsc && grunt --lang=en,da,de,es,eu,pl,fr,he,ja,ko,nl,no_NB,pt_BR",
     "build:fast_axecore": "yarn build",
     "eslint": "eslint --color --format stylish '{lib,test,build,doc}/**/*.js' 'Gruntfile.js'",
     "version": "echo \"use 'npm run release' to bump axe-core version\" && exit 1",

@@ -7,5 +7,5 @@ declare global {
       [key: string]: Record<string, unknown>;
     };
   };
-  var axe: typeof axe;
+  // var axe: typeof axe;
 }

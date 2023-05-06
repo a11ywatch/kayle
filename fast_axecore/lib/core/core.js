@@ -33,6 +33,13 @@ import v2Reporter from './reporters/v2';
 import * as commons from '../commons';
 import * as utils from './utils';
 
+axe.version = axe.version;
+axe._selectorData = axe._selectorData;
+axe._audit = axe._audit;
+axe._memoizedFns = axe._memoizedFns || [];
+axe._selectCache = axe._selectCache || [];
+axe._tree = axe._tree;
+axe._uuid = undefined;
 axe.constants = constants;
 axe.log = log;
 axe.AbstractVirtualNode = AbstractVirtualNode;
