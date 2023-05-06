@@ -4,12 +4,11 @@ import getXpath from './get-xpath';
 import getNodeFromTree from './get-node-from-tree';
 import AbstractVirtualNode from '../base/virtual-node/abstract-virtual-node';
 
-function truncate(str, maxLength) {
+function truncate(str: string, maxLength?: number) {
   maxLength = maxLength || 300;
 
   if (str.length > maxLength) {
-    var index = str.indexOf('>');
-    str = str.substring(0, index + 1);
+    str = str.substring(0, str.indexOf('>') + 1);
   }
 
   return str;
@@ -32,7 +31,7 @@ function getSource(element) {
  * @param {HTMLElement} element The element to serialize
  * @param {Object} spec Properties to use in place of the element when instantiated on Elements from other frames
  */
-function DqElement(elm, options = {}, spec = {}) {
+function DqElement(elm, options = { absolutePaths: undefined }, spec = {}) {
   this.spec = spec;
   if (elm instanceof AbstractVirtualNode) {
     this._virtualNode = elm;

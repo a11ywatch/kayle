@@ -18,7 +18,10 @@ import isIconLigature from './is-icon-ligature';
  * @property {Bool} inLabelledByContext
  * @return {string}
  */
-function accessibleTextVirtual(virtualNode, context = {}) {
+function accessibleTextVirtual(
+  virtualNode,
+  context = { startNode: undefined, debug: undefined }
+) {
   context = prepareContext(virtualNode, context);
 
   // Step 2A, check visibility

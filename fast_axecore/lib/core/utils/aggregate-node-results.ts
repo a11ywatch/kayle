@@ -8,7 +8,7 @@ import constants from '../constants';
  * @param	{Array} nodeResults The array of nodes tested by the Rule
  */
 function aggregateNodeResults(nodeResults) {
-  const ruleResult = {};
+  const ruleResult = { result: undefined, impact: undefined };
 
   // For each node, retrieve the result and impact
   nodeResults = nodeResults.map(nodeResult => {

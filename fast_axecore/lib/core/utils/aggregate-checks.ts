@@ -2,7 +2,9 @@ import constants from '../constants';
 import aggregate from './aggregate';
 
 const { CANTTELL_PRIO, FAIL_PRIO } = constants;
+
 const checkMap = [];
+
 checkMap[constants.PASS_PRIO] = true;
 checkMap[constants.CANTTELL_PRIO] = null;
 checkMap[constants.FAIL_PRIO] = false;
@@ -57,6 +59,7 @@ function aggregateChecks(nodeResOriginal) {
 
   // Of each type, filter out all results not matching the final priority
   const impacts = [];
+  
   checkTypes.forEach(type => {
     nodeResult[type] = nodeResult[type].filter(check => {
       return (

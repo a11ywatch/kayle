@@ -9,7 +9,7 @@ import nativeTextMethods from './native-text-methods';
  * @property {Bool} debug Enable logging for formControlValue
  * @return {String} Accessible text
  */
-function nativeTextAlternative(virtualNode, context = {}) {
+function nativeTextAlternative(virtualNode, context = { debug: undefined }) {
   const { actualNode } = virtualNode;
   if (
     virtualNode.props.nodeType !== 1 ||

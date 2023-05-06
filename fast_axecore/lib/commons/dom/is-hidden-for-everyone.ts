@@ -28,7 +28,7 @@ const hiddenMethods = [
  */
 export default function isHiddenForEveryone(
   vNode,
-  { skipAncestors, isAncestor = false } = {}
+  { skipAncestors, isAncestor = false } = { skipAncestors: undefined }
 ) {
   vNode = vNode instanceof AbstractVirtualNode ? vNode : getNodeFromTree(vNode);
 

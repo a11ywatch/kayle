@@ -4,10 +4,8 @@
 
 Incredibly fast and precise universal web accessibility evaluator for puppeteer or playwright.
 
-Getting Started: checkout the [playwright-example](./kayle/tests/basic-playwright.spec.ts) or [puppeteer](./kayle/tests/basic.ts).
-
 ```sh
-npm i kayle --save
+npm install kayle --save
 ```
 
 Playwright
@@ -173,6 +171,8 @@ await kayleLint("https://a11ywatch.com");
 The [test-results](./test-results/) are checked in to avoid hindering performance on updates. The comparison between using `fast_htmlcs`, `fast_axecore`, and the metrics for the 3rd party `@axe-core/playwright`.
 
 1. `yarn build:test`
+
+Checkout the [playwright-example](./kayle/tests/basic-playwright.spec.ts) or [puppeteer](./kayle/tests/basic.ts) for more information.
 
 ## Benchmarks
 

@@ -26,6 +26,6 @@ function generateAncestry(node) {
  * @param {Object} optional options
  * @returns {String|Array<String>} Unique CSS selector for the node
  */
-export default function getAncestry(elm, options) {
+export default function getAncestry(elm, options?) {
   return getShadowSelector(generateAncestry, elm, options);
 }

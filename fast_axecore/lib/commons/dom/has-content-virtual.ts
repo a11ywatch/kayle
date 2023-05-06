@@ -39,7 +39,7 @@ export function hasChildTextNodes(elm) {
  * @param {Boolean} ignoreAria if true, ignores `aria label` computation for content deduction
  * @return {Boolean}
  */
-function hasContentVirtual(elm, noRecursion, ignoreAria) {
+function hasContentVirtual(elm, noRecursion?: boolean, ignoreAria?: boolean) {
   return (
     // It has text
     hasChildTextNodes(elm) ||

@@ -12,7 +12,16 @@ import getElementSpec from '../standards/get-element-spec';
  * @property {Bool} strict Should the name computation strictly follow AccName 1.1
  * @return {String} Accessible text
  */
-function subtreeText(virtualNode, context = {}) {
+function subtreeText(
+  virtualNode,
+  context = {
+    startNode: undefined,
+    strict: undefined,
+    inControlContext: undefined,
+    inLabelledByContext: undefined,
+    subtreeDescendant: undefined
+  }
+) {
   const { alreadyProcessed } = accessibleTextVirtual;
   context.startNode = context.startNode || virtualNode;
   const { strict, inControlContext, inLabelledByContext } = context;

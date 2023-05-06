@@ -5,7 +5,7 @@ import AbstractVirtualNode from '../../core/base/virtual-node/abstract-virtual-n
 
 function noParentScrolled(element, offset) {
   element = getComposedParent(element);
-  while (element && element.nodeName.toLowerCase() !== 'html') {
+  while (element && element.nodeName !== 'HTML') {
     if (element.scrollTop) {
       offset += element.scrollTop;
       if (offset >= 0) {
@@ -27,30 +27,30 @@ function noParentScrolled(element, offset) {
  * @param {Boolean} [options.isAncestor] If this function is being called on an ancestor of the target node
  * @return {Boolean|undefined}
  */
-function isOffscreen(element, { isAncestor } = {}) {
+function isOffscreen(element, { isAncestor } = { isAncestor: undefined }) {
   if (isAncestor) {
     return false;
   }
 
-  element =
+  const ele =
     element instanceof AbstractVirtualNode ? element.actualNode : element;
 
-  if (!element) {
+  if (!ele) {
     return undefined;
   }
 
   let leftBoundary;
   const docElement = document.documentElement;
-  const styl = window.getComputedStyle(element);
+  const styl = window.getComputedStyle(ele);
   const dir = window
     .getComputedStyle(document.body || docElement)
     .getPropertyValue('direction');
-  const coords = getElementCoordinates(element);
+  const coords = getElementCoordinates(ele);
 
   // bottom edge beyond
   if (
     coords.bottom < 0 &&
-    (noParentScrolled(element, coords.bottom) || styl.position === 'absolute')
+    (noParentScrolled(ele, coords.bottom) || styl.position === 'absolute')
   ) {
     return true;
   }

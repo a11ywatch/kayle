@@ -13,6 +13,7 @@ function escapeSelector(value) {
   var codeUnit;
   var result = '';
   var firstCodeUnit = string.charCodeAt(0);
+
   while (++index < length) {
     codeUnit = string.charCodeAt(index);
     // Note: there’s no need to special-case astral symbols, surrogate

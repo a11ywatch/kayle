@@ -20,12 +20,15 @@ export default function getOffset(vNodeA, vNodeB) {
  * @param {Rect} rectB
  * @returns {Point}
  */
-function getFarthestPoint(rectA, rectB) {
+function getFarthestPoint(rectA, rectB): { x?: number; y?: number } {
   const dimensionProps = [
     ['x', 'left', 'right', 'width'],
     ['y', 'top', 'bottom', 'height']
   ];
+
   const farthestPoint = {};
+
+  // todo: remove iterations
   dimensionProps.forEach(([axis, start, end, diameter]) => {
     if (rectB[start] < rectA[start] && rectB[end] > rectA[end]) {
       farthestPoint[axis] = rectA[start] + rectA[diameter] / 2; // center | middle
@@ -41,6 +44,7 @@ function getFarthestPoint(rectA, rectB) {
       farthestPoint[axis] = rectA[end]; // right | bottom
     }
   });
+
   return farthestPoint;
 }
 
@@ -51,7 +55,11 @@ function getFarthestPoint(rectA, rectB) {
  * @param {Rect} adjacentRect
  * @returns {Point}
  */
-function getClosestPoint({ x, y }, ownRect, adjacentRect) {
+function getClosestPoint(
+  { x, y }: { x?: number; y?: number },
+  ownRect,
+  adjacentRect
+) {
   if (pointInRect({ x, y }, adjacentRect)) {
     // Check if there is an opposite corner inside the adjacent rectangle
     const closestPoint = getCornerInAdjacentRect(
