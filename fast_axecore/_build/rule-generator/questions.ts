@@ -1,6 +1,6 @@
-const fs = require('fs');
-const globby = require('globby');
-const directories = require('./directories');
+import fs from 'fs';
+import { globby } from 'globby';
+import directories from './directories';
 
 /**
  * Check validity of a given string to be non-empty alphabets or dashes.
@@ -36,7 +36,7 @@ const validateGetRuleName = async input => {
   const ruleSpecs = await globby(directories.rules, {
     expandDirectories: { extensions: ['json'] }
   });
-  const axeRulesIds = ruleSpecs.reduce((out, specPath) => {
+  const axeRulesIds = ruleSpecs.reduce((out: any = [], specPath) => {
     const spec = require(specPath);
     out.push(spec.id);
     return out;
@@ -56,7 +56,7 @@ const validateGetRuleName = async input => {
  * @returns {Boolean | Error}
  */
 const validateGetCheckName = async input => {
-  const checkName = input.toLowerCase();
+  const checkName: string = input.toLowerCase();
   // 1) check if valid name
   if (!isValidName(checkName)) {
     throw new Error(
@@ -79,7 +79,7 @@ const validateGetCheckName = async input => {
     expandDirectories: { extensions: ['json'] }
   });
   const axe = require(directories.axePath);
-  const axeChecksIds = ruleSpecs.reduce((out, specPath) => {
+  const axeChecksIds: string[] = ruleSpecs.reduce((out, specPath) => {
     const spec = require(specPath);
     const checkIds = []
       .concat(spec.any || [])
@@ -161,4 +161,4 @@ const questions = {
   }
 };
 
-module.exports = questions;
+export default questions;

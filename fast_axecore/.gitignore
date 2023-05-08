@@ -16,7 +16,7 @@ test/integration/*/index.html
 # dist
 axe.js
 axe.*.js
-
+build
 # generated src file
 # lib/core/base/metadata-function-map.js
 

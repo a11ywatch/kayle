@@ -1,4 +1,4 @@
-const path = require('path');
+import path from 'path';
 
 const directories = {
   axePath: path.join(__dirname, '..', '..', 'axe.js'),
@@ -15,5 +15,4 @@ const directories = {
     'rules'
   )
 };
-
-module.exports = directories;
+export default directories;

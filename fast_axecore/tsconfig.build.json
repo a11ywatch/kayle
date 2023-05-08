@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "es2015",
+    "module": "commonjs",
+    "lib": ["dom", "es6", "es2021"],
+    "sourceMap": false,
+    "allowJs": true,
+    "checkJs": false,
+    "outDir": "build",
+    "declaration": true,
+    "moduleResolution": "node",
+    "rootDirs": ["."],
+    "baseUrl": ".",
+    "paths": {
+      "*": ["*", "build/*"]
+    },
+    "noEmit": false,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "noUnusedLocals": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "removeComments": true,
+  },
+  "include": [
+    "_build",
+  ]
+}

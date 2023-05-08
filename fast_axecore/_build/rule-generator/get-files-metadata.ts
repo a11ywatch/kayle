@@ -1,4 +1,4 @@
-const directories = require('./directories');
+import directories from './directories';
 
 /**
  * Helper to convert a given string to camel case (split by hyphens if any)
@@ -51,6 +51,12 @@ const getRuleSpecFileMeta = (ruleName, ruleHasMatches, ruleChecks) => {
   };
 };
 
+type Rules = {
+  name: string;
+  content: string;
+  dir: string;
+};
+
 /**
  * Get meta data of files to be created as RULE matches
  * @method getRuleMatchesFileMeta
@@ -64,7 +70,7 @@ const getRuleMatchesFileMeta = (
   ruleHasMatches,
   ruleHasUnitTestAssets
 ) => {
-  let files = [];
+  let files: Rules[] = [];
 
   if (ruleHasMatches) {
     const fnName = `${camelCase(ruleName)}Matches`;
@@ -212,7 +218,7 @@ const getChecksFileMeta = (ruleChecks, ruleHasUnitTestAssets) => {
  * @returns {Array<Object>} meta data of files
  */
 const getIntegrationTestAssets = (ruleName, ruleHasIntegrationTestAssets) => {
-  let files = [];
+  let files: Rules[] = [];
 
   if (ruleHasIntegrationTestAssets) {
     const htmlFile = {

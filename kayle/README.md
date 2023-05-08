@@ -1,10 +1,6 @@
 # kayle
 
-A high performance web accessibility issue detector that runs at warp speed with the option to connect to browsers over `CDP` or pure `JSDOM`.
-
-You need to have an active page object and browser with a connection to get started or use the [a11yLint](./lib/lint.ts) method.
-
-Getting Started: checkout the [playwright-example](./tests/basic-playwright.spec.ts) or [puppeteer](./tests/basic.ts)
+A high performance web accessibility auditor.
 
 If you want to use a browser make sure to have [playwright](https://github.com/microsoft/playwright) or [puppeteer](https://github.com/puppeteer/puppeteer) installed.
 
@@ -19,15 +15,12 @@ npm i kayle --save
 Requires node ^13
 
 ```js
-import { kayle, goToPage } from "kayle";
+import { kayle } from "kayle";
 
 // browser code not shown. get a normal browser handle from puppeteer or playwright.
 const page = await browser.newPage();
 
-// optional navigate to the page with intercept util, the kayle method just needs a page with the html ready.
-await goToPage("https://mywebsite.com");
-
-const results = await kayle({ page, browser });
+const results = await kayle({ page, browser, origin: "https://mywebsite.com" });
 ```
 
 [kayle](./lib/kayle.ts) contains details about the page and accessibility issues:
@@ -83,13 +76,15 @@ const results = {
 };
 ```
 
+Checkout the [playwright-example](./tests/basic-playwright.spec.ts) or [puppeteer](./tests/basic.ts) for more info.
+
 ## Runners
 
 kayle supports multiple test runners which return different results. The built-in test runners are:
 
 - `axe`: run tests using [axe-core](./lib/runners/axe.ts).
 - `htmlcs` (default): run tests using [HTML CodeSniffer](./lib/runners/htmlcs.ts)
-- `custom`: custom runners
+- `custom`: custom runners.
 
 ## Utils
 

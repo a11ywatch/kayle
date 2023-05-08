@@ -1,5 +1,5 @@
-const questions = require('./questions');
-const inquirer = require('inquirer');
+import inquirer from 'inquirer';
+import questions from './questions';
 
 /**
  * Get CHECK details as entered by the user for the prompted questions
@@ -7,8 +7,8 @@ const inquirer = require('inquirer');
  * @param {Array} checks recursively constructed list of CHECKS for the RULE
  * @returns {Array}
  */
-const getChecks = async (checks = []) => {
-  const checkDetails = await inquirer.prompt([
+const getChecks = async (checks: { getIsAnotherCheck: string }[] = []) => {
+  const checkDetails: { getIsAnotherCheck: string } = await inquirer.prompt([
     questions.getCheckName,
     questions.getCheckCategory,
     questions.getCheckType,
@@ -34,8 +34,10 @@ const getAnswers = async () => {
   ]);
 
   // answers for CHECK meta data
-  let ruleChecks = [];
+  let ruleChecks: { getIsAnotherCheck: string }[] = [];
+
   const { getIsCheck } = await inquirer.prompt([questions.getIsCheck]);
+
   if (getIsCheck) {
     ruleChecks = await getChecks();
   }
