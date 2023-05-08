@@ -79,7 +79,10 @@ function uriParser(url) {
  *	 .maxLength			Max length of the returned string (default: 25)
  * @return string	 A portion at the end of the uri, no longer than maxLength
  */
-function getFriendlyUriEnd(uri = '', options = { maxLength: 25, currentDomain: undefined }) {
+function getFriendlyUriEnd(
+  uri = '',
+  options = { maxLength: 25, currentDomain: undefined }
+) {
   if (
     // Skip certain URIs:
     uri.length <= 1 || // very short

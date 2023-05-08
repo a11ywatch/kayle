@@ -111,7 +111,12 @@ function contains(node, parent) {
   // check if any client rect is fully inside the parent rect
   // @see https://gist.github.com/Daniel-Hug/d7984d82b58d6d2679a087d896ca3d2b
   return clientRects.some(
-    (clientRect: {left: number, top: number, width: number, height: number}) =>
+    (clientRect: {
+      left: number;
+      top: number;
+      width: number;
+      height: number;
+    }) =>
       !(
         Math.ceil(clientRect.left) < Math.floor(rect.left) ||
         Math.ceil(clientRect.top) < Math.floor(rect.top) ||

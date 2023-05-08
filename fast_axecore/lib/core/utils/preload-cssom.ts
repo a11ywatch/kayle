@@ -187,13 +187,15 @@ function getStylesheetsFromDocumentFragment(rootNode, convertDataToStylesheet) {
  * @returns {Array<Object>}
  */
 function getStylesheetsFromDocument(rootNode) {
-  return Array.from(rootNode.styleSheets).filter((sheet: {media: {mediaText: string}}) => {
-    if (!sheet.media) {
-      return false;
-    }
+  return Array.from(rootNode.styleSheets).filter(
+    (sheet: { media: { mediaText: string } }) => {
+      if (!sheet.media) {
+        return false;
+      }
 
-    return filterMediaIsPrint(sheet.media.mediaText);
-  });
+      return filterMediaIsPrint(sheet.media.mediaText);
+    }
+  );
 }
 
 /**

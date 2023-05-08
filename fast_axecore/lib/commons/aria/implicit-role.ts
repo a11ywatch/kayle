@@ -11,7 +11,12 @@ import AbstractVirtuaNode from '../../core/base/virtual-node/abstract-virtual-no
  * @param {HTMLElement|VirtualNode} node The node to test
  * @return {Mixed} Either the role or `null` if there is none
  */
-function implicitRole(node, { chromium } = { chromium: undefined }) {
+function implicitRole(
+  node,
+  { chromium }: { chromiumRoles?: boolean; chromium?: boolean } = {
+    chromium: undefined
+  }
+) {
   const vNode =
     node instanceof AbstractVirtuaNode ? node : getNodeFromTree(node);
   node = vNode.actualNode;

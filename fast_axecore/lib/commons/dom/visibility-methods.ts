@@ -46,7 +46,10 @@ export function displayHidden(vNode) {
  * @param {Boolean} [options.isAncestor] If this function is being called on an ancestor for the target node
  * @return {Boolean}
  */
-export function visibilityHidden(vNode, { isAncestor } = { isAncestor: undefined }) {
+export function visibilityHidden(
+  vNode,
+  { isAncestor } = { isAncestor: undefined }
+) {
   // because the parent can be hidden, and the child visible we
   // have to ignore visibility on ancestors. we don't need to look
   // at the parent either, because visibility inherits
@@ -63,7 +66,10 @@ export function visibilityHidden(vNode, { isAncestor } = { isAncestor: undefined
  * @param {VirtualNode} vNode
  * @return {Boolean}
  */
-export function contentVisibiltyHidden(vNode, { isAncestor } = { isAncestor: undefined }) {
+export function contentVisibiltyHidden(
+  vNode,
+  { isAncestor } = { isAncestor: undefined }
+) {
   // content-visibility only applies to descendants
   // and does not hide the node with the property
   return (
@@ -108,7 +114,10 @@ export function scrollHidden(vNode) {
  * @param {VirtualNode} vNode
  * @return {Boolean}
  */
-export function overflowHidden(vNode, { isAncestor } = { isAncestor: undefined }) {
+export function overflowHidden(
+  vNode,
+  { isAncestor } = { isAncestor: undefined }
+) {
   // an ancestor that is hidden outside an overflow
   // does not mean that a descendant is also hidden
   // since the descendant can reposition itself to be

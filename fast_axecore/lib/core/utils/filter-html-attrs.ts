@@ -50,7 +50,7 @@ function setNodeAttributes(node, attributes, element, filterAttrs) {
     return node;
   }
   node = document.createElement(node.nodeName);
-  Array.from(attributes).forEach((attr: {name?: string, value?: string}) => {
+  Array.from(attributes).forEach((attr: { name?: string; value?: string }) => {
     if (!attributeMatches(element, attr.name, filterAttrs)) {
       // can't remove the value attribute from an input in IE11 so
       // we'll have to reconstruct the node and set attribute

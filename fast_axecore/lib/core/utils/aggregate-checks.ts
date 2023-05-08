@@ -59,7 +59,7 @@ function aggregateChecks(nodeResOriginal) {
 
   // Of each type, filter out all results not matching the final priority
   const impacts = [];
-  
+
   checkTypes.forEach(type => {
     nodeResult[type] = nodeResult[type].filter(check => {
       return (

@@ -1,20 +1,24 @@
 import constants from '../constants';
 
 function copyToGroup(resultObject, subResult, group) {
-  var resultCopy = Object.assign({}, subResult);
+  const resultCopy = Object.assign({}, subResult);
+
   resultCopy.nodes = (resultCopy[group] || []).concat();
+
   constants.resultGroups.forEach(group => {
     delete resultCopy[group];
   });
   resultObject[group].push(resultCopy);
 }
 
+type GroupedResults = { error: string; result: any; violations?: any[] };
+
 /**
  * Calculates the result of a Rule based on its types and the result of its child Checks
  * @param  {RuleResult} ruleResult The RuleResult to calculate the result of
  */
-function aggregateResult(results) {
-  const resultObject = {};
+function aggregateResult(results?: GroupedResults[]) {
+  const resultObject: Partial<GroupedResults> = {};
 
   // Create an array for each type
   constants.resultGroups.forEach(groupName => (resultObject[groupName] = []));
@@ -33,6 +37,7 @@ function aggregateResult(results) {
       });
     }
   });
+
   return resultObject;
 }
 

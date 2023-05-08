@@ -71,21 +71,25 @@ function normalizeResult(result) {
  * @param	{Array} frameResults	Array of objects including the RuleResults as `results` and frame as `frame`
  * @return {Array}							The merged RuleResults; should only have one result per rule
  */
-function mergeResults(frameResults, options) {
+function mergeResults(frameResults, options?) {
   const mergedResult = [];
+
   frameResults.forEach(frameResult => {
     const results = normalizeResult(frameResult);
+
     if (!results || !results.length) {
       return;
     }
 
     const frameSpec = getFrameSpec(frameResult, options);
+
     results.forEach(ruleResult => {
       if (ruleResult.nodes && frameSpec) {
         pushFrame(ruleResult.nodes, options, frameSpec);
       }
 
-      var res = findBy(mergedResult, 'id', ruleResult.id);
+      const res = findBy(mergedResult, 'id', ruleResult.id);
+
       if (!res) {
         mergedResult.push(ruleResult);
       } else {
@@ -109,9 +113,11 @@ function mergeResults(frameResults, options) {
 
 function nodeIndexSort(nodeIndexesA = [], nodeIndexesB = []) {
   const length = Math.max(nodeIndexesA?.length, nodeIndexesB?.length);
+
   for (let i = 0; i < length; i++) {
     const indexA = nodeIndexesA?.[i];
     const indexB = nodeIndexesB?.[i];
+
     if (typeof indexA !== 'number' || isNaN(indexA)) {
       // Empty arrays go at the end, otherwise shortest array first
       return i === 0 ? 1 : -1;

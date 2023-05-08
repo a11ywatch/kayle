@@ -10,7 +10,7 @@ import { querySelectorAllFilter } from '../../core/utils';
  * @instance
  * @return {Boolean|undefined} True if we know (or our best guess) that a modal is open, undefined if we can't tell (doesn't mean there isn't one open)
  */
-function isModalOpen(options) {
+function isModalOpen(options?) {
   options = options || {};
   const modalPercent = options.modalPercent || 0.75;
 

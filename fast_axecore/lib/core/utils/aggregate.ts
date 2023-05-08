@@ -18,7 +18,11 @@ const criteriaMap = {
  * @param {Array} values of values to take the highest from
  * @param {String} initial: optional starting value
  */
-function aggregate(map: readonly string[] | string[], values: string[], initial?: string) {
+function aggregate(
+  map: readonly string[] | string[],
+  values: string[],
+  initial?: string
+) {
   const valSize = values.length;
 
   if (valSize === 1) {

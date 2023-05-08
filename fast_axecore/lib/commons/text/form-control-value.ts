@@ -43,7 +43,10 @@ export const formControlValueMethods = {
  * @property {Bool} debug Enable logging for formControlValue
  * @return {string} The calculated value
  */
-function formControlValue(virtualNode, context = { startNode: undefined, debug: false }) {
+function formControlValue(
+  virtualNode,
+  context = { startNode: undefined, debug: false }
+) {
   const { actualNode } = virtualNode;
   const unsupportedRoles = unsupported.accessibleNameFromFieldValue || [];
   const role = getRole(virtualNode);

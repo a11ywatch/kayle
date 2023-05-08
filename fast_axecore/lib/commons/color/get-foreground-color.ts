@@ -39,7 +39,10 @@ export default function getForegroundColor(node, _, bgColor, options = {}) {
   }
 
   // If text is (semi-)transparent shadows are visible through it.
-  const textShadowColors = getTextShadowColors(node, { minRatio: 0, maxRatio: undefined });
+  const textShadowColors = getTextShadowColors(node, {
+    minRatio: 0,
+    maxRatio: undefined
+  });
   fgColor = textShadowColors.reduce((colorA, colorB) => {
     return flattenColors(colorA, colorB);
   }, fgColor);

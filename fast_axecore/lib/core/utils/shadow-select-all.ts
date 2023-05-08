@@ -1,4 +1,3 @@
-
 /* Find elements in shadow or light DOM trees, using an array of selectors */
 function selectAllRecursive([selectorStr, ...restSelector]: string[], doc) {
   const elms = doc.querySelectorAll(selectorStr);
@@ -14,7 +13,6 @@ function selectAllRecursive([selectorStr, ...restSelector]: string[], doc) {
   return selected;
 }
 
-
 /**
  * Find elements to match a selector.
  * Use an array of selectors to reach into shadow DOM trees
@@ -23,7 +21,10 @@ function selectAllRecursive([selectorStr, ...restSelector]: string[], doc) {
  * @param {Document} doc Optional document node
  * @returns {Node[]}
  */
-export default function shadowSelectAll(selectors: string| string[], doc = document) {
+export default function shadowSelectAll(
+  selectors: string | string[],
+  doc = document
+) {
   // Spread to avoid mutating the input
   const selectorArr = Array.isArray(selectors) ? [...selectors] : [selectors];
   if (selectors.length === 0) {

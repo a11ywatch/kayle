@@ -208,8 +208,11 @@ function convertExpressions(expressions) {
  * @returns {Object[]} Array of Slick format expressions
  */
 export function convertSelector(selector) {
-  const expressions: Selector & { selectors?: Selector[]} = cssParser.parse(selector);
-  return convertExpressions(expressions.selectors ? expressions.selectors : [expressions]);
+  const expressions: Selector & { selectors?: Selector[] } =
+    cssParser.parse(selector);
+  return convertExpressions(
+    expressions.selectors ? expressions.selectors : [expressions]
+  );
 }
 
 /**
@@ -270,7 +273,11 @@ function optimizedMatchesExpression(vNode, expressions, index, matchAnyParent) {
  * @param {Object|Object[]} expressions CSS selector expression or array of expressions
  * @returns {Boolean}
  */
-export function matchesExpression(vNode, expressions, matchAnyParent?: boolean) {
+export function matchesExpression(
+  vNode,
+  expressions,
+  matchAnyParent?: boolean
+) {
   return optimizedMatchesExpression(
     vNode,
     expressions,

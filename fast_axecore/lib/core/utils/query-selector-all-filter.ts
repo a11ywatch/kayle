@@ -122,7 +122,11 @@ function matchExpressions(domTree, expressions, filter) {
  * @param {Function} filter function (optional)
  * @return {Array} Elements matched by any of the selectors and filtered by the filter function
  */
-function querySelectorAllFilter(domTree, selector, filter?: (node: any) => void) {
+function querySelectorAllFilter(
+  domTree,
+  selector,
+  filter?: (node: any) => void
+) {
   domTree = Array.isArray(domTree) ? domTree : [domTree];
   const expressions = convertSelector(selector);
 
