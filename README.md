@@ -197,11 +197,7 @@ Use the command `./build.sh` to compile all the scripts for each locale.
 
 Access score or `accessScore` is going to switch to a new algorithm that uses incompletion points. Depending on the incompletion a direct impact score will be negated starting from 100.
 
-## Discord
-
-If you want to chat about the project checkout our [Discord](https://discord.gg/ukmJcjQ5).
-
-## Teleportation like Speeds
+## Teleportation
 
 As we set the foundation to mark test cases that can pass and increase our target on automating accessibility we have a couple of layers that
 can make a major difference to the project. The following will save drastic time and money if done.
@@ -224,6 +220,10 @@ One of the main goals was to have the audit run quickly since we noticed some of
 complete. The performance increases we made to the project were not only done at edge cases that would scale beyond
 make the ability of auditing at the MS level for almost any website. Right now, the project is moving forward based on performance
 and accuracy for ensuring minimal to no false positives.
+
+## Discord
+
+If you want to chat about the project checkout our [Discord](https://discord.gg/ukmJcjQ5).
 
 ## LICENSE
 

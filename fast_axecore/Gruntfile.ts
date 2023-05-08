@@ -36,6 +36,7 @@ module.exports = function (grunt) {
     grunt.config.set('watch.file', filepath);
   });
 
+  // @ts-ignore
   process.env.NODE_NO_HTTP2 = 1; // to hide node warning - (node:18740) ExperimentalWarning: The http2 module is an experimental API.
 
   grunt.initConfig({
