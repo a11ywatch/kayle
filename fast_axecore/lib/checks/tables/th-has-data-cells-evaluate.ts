@@ -7,6 +7,7 @@ function thHasDataCellsEvaluate(node) {
 
   // Get a list of all headers reffed to in this rule
   let reffedHeaders = [];
+
   cells.forEach(cell => {
     const headers = cell.getAttribute('headers');
     if (headers) {

@@ -13,7 +13,7 @@ import { getNodeFromTree } from '../../core/utils';
  * @param {Boolean} ignoreAria if true, ignores `aria label` computation for content deduction
  * @return {Boolean}
  */
-function hasContent(elm, noRecursion, ignoreAria) {
+function hasContent(elm, noRecursion?: boolean, ignoreAria?: boolean) {
   elm = getNodeFromTree(elm);
   return hasContentVirtual(elm, noRecursion, ignoreAria);
 }

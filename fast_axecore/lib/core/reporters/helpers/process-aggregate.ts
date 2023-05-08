@@ -9,8 +9,12 @@ function normalizeRelatedNodes(node, options) {
       .filter(checkRes => Array.isArray(checkRes.relatedNodes))
       .forEach(checkRes => {
         checkRes.relatedNodes = checkRes.relatedNodes.map(relatedNode => {
-          var res = {
-            html: relatedNode?.source ?? 'Undefined'
+          const res = {
+            html: relatedNode?.source ?? 'Undefined',
+            element: undefined,
+            target: undefined,
+            ancestry: undefined,
+            xpath: undefined
           };
           if (options.elementRef && !relatedNode?.fromFrame) {
             res.element = relatedNode?.element ?? null;

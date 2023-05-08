@@ -27,7 +27,6 @@ import teardown from './public/teardown';
 import noPassesReporter from './reporters/no-passes';
 import rawEnvReporter from './reporters/raw-env';
 import rawReporter from './reporters/raw';
-import v1Reporter from './reporters/v1';
 import v2Reporter from './reporters/v2';
 
 import * as commons from '../commons';
@@ -71,5 +70,4 @@ axe.utils = utils;
 axe.addReporter('no-passes', noPassesReporter);
 axe.addReporter('rawEnv', rawEnvReporter);
 axe.addReporter('raw', rawReporter);
-axe.addReporter('v1', v1Reporter);
 axe.addReporter('v2', v2Reporter, true);

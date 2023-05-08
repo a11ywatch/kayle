@@ -4,10 +4,10 @@
  * @return {String}          failure messages
  */
 function failureSummary(nodeData) {
-  var failingChecks = {};
-  // combine "all" and "none" as messaging is the same
-  failingChecks.none = nodeData.none.concat(nodeData.all);
-  failingChecks.any = nodeData.any;
+  const failingChecks = {
+    none: nodeData.none.concat(nodeData.all),
+    any: nodeData.any
+  };
 
   return Object.keys(failingChecks)
     .map(key => {
@@ -15,7 +15,8 @@ function failureSummary(nodeData) {
         return;
       }
 
-      var sum = axe._audit.data.failureSummaries[key];
+      const sum = axe._audit.data.failureSummaries[key];
+
       if (sum && typeof sum.failureMessage === 'function') {
         return sum.failureMessage(
           failingChecks[key].map(check => {

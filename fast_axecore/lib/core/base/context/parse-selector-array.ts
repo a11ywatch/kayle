@@ -10,6 +10,7 @@ import { getNodeFromTree, shadowSelectAll } from '../../utils';
  */
 export function parseSelectorArray(context, type) {
   const result = [];
+
   for (let i = 0, l = context[type].length; i < l; i++) {
     const item = context[type][i];
     // Handle nodes
@@ -51,6 +52,7 @@ function pushUniqueFrameSelector(context, type, selectorArray) {
 
   const frameSelector = selectorArray.shift();
   const frames = shadowSelectAll(frameSelector);
+
   frames.forEach(frame => {
     let frameContext = context.frames.find(result => result.node === frame);
     if (!frameContext) {
