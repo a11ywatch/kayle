@@ -128,7 +128,7 @@ module.exports = function (grunt) {
         entry: 'dist/commons/aria/index.js',
         destFile: 'doc/aria-supported.md',
         options: {
-          langs: langs
+          langs
         },
         listType: 'unsupported' // Possible values for listType: 'supported', 'unsupported', 'all'
       }

@@ -1,5 +1,5 @@
 function landmarkIsUniqueAfter(results) {
-  var uniqueLandmarks = [];
+  const uniqueLandmarks = [];
 
   // filter out landmark elements that share the same role and accessible text
   // so every non-unique landmark isn't reported as a failure (just the first)
@@ -12,6 +12,7 @@ function landmarkIsUniqueAfter(results) {
     };
 
     var matchedResult = uniqueLandmarks.find(findMatch);
+
     if (matchedResult) {
       matchedResult.result = false;
       matchedResult.relatedNodes.push(currentResult.relatedNodes[0]);

@@ -39,7 +39,6 @@ function traverseTable(dir, position, tableGrid, callback) {
  * @return {NodeElement}       If the callback returns true, the traversal will end and the cell will be returned
  */
 function traverse(dir, startPos, tableGrid, callback?) {
-
   if (Array.isArray(startPos)) {
     callback = tableGrid;
     tableGrid = startPos;

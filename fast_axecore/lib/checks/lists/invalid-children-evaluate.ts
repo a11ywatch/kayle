@@ -3,7 +3,11 @@ import { getExplicitRole } from '../../commons/aria';
 
 export default function invalidChildrenEvaluate(
   node,
-  options = {},
+  options = {
+    divGroups: undefined,
+    validRoles: undefined,
+    validNodeNames: undefined
+  },
   virtualNode
 ) {
   const relatedNodes = [];
@@ -15,6 +19,7 @@ export default function invalidChildrenEvaluate(
   const vChildren = mapWithNested(virtualNode.children);
   while (vChildren.length) {
     const { vChild, nested } = vChildren.shift();
+
     if (options.divGroups && !nested && isDivGroup(vChild)) {
       if (!vChild.children) {
         return undefined;

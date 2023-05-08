@@ -68,12 +68,12 @@ function pAsHeadingEvaluate(node, options, virtualNode) {
 
   const nextSibling = siblings
     .slice(currentIndex + 1)
-    .find(elm => elm.nodeName.toUpperCase() === 'P');
+    .find((elm: Node) => elm.nodeName.toUpperCase() === 'P') as Element;
 
   const prevSibling = siblings
     .slice(0, currentIndex)
     .reverse()
-    .find(elm => elm.nodeName.toUpperCase() === 'P');
+    .find((elm: Node) => elm.nodeName.toUpperCase() === 'P');
 
   const currStyle = getStyleValues(node);
   const nextStyle = nextSibling ? getStyleValues(nextSibling) : null;
@@ -82,8 +82,10 @@ function pAsHeadingEvaluate(node, options, virtualNode) {
   const optionsPassLength = options.passLength;
   const optionsFailLength = options.failLength;
 
-  const headingLength = node.textContent.trim().length;
-  const paragraphLength = nextSibling?.textContent.trim().length;
+  const headingLength = node.textContent ? node.textContent.trim().length : 0;
+  const paragraphLength = nextSibling?.textContent
+    ? nextSibling.textContent.trim().length
+    : 0;
 
   if (headingLength > paragraphLength * optionsPassLength) {
     return true;

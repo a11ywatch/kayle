@@ -15,17 +15,22 @@ import getElementSpec from '../standards/get-element-spec';
 function subtreeText(
   virtualNode,
   context: Partial<{
-    startNode: Node,
-    strict: boolean,
-    inControlContext: boolean,
-    inLabelledByContext: boolean,
-    subtreeDescendant: boolean,
-  }>  = {
+    startNode: Node;
+    strict: boolean;
+    inControlContext: boolean;
+    inLabelledByContext: boolean;
+    subtreeDescendant: boolean;
+    pixelThreshold: undefined;
+    ignoreIconLigature: boolean;
+    includeHidden: boolean;
+    occurrenceThreshold: boolean;
+  }> = {
     startNode: undefined,
     strict: undefined,
     inControlContext: undefined,
     inLabelledByContext: undefined,
     subtreeDescendant: undefined,
+    includeHidden: undefined
   }
 ) {
   const { alreadyProcessed } = accessibleTextVirtual;

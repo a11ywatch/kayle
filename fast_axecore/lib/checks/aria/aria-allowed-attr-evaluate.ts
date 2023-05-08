@@ -36,7 +36,7 @@ export default function ariaAllowedAttrEvaluate(_, options, virtualNode) {
   // @deprecated: allowed attr options to pass more attrs.
   // configure the standards spec instead
   if (Array.isArray(options[role])) {
-    allowed = options[role].concat(allowed)
+    allowed = options[role].concat(allowed);
   }
 
   const tableMap = cache.get('aria-allowed-attr-table', () => new WeakMap());

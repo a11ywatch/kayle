@@ -74,9 +74,8 @@ function linkInTextBlockEvaluate(node, options) {
 
   // Report incomplete instead of failure if we're not sure
   if (!backgroundContrast) {
-    var reason = incompleteData.get('bgColor') ?? 'bgContrast';
     this.data({
-      messageKey: reason
+      messageKey: incompleteData.get('bgColor') ?? 'bgContrast'
     });
     incompleteData.clear();
     return undefined;

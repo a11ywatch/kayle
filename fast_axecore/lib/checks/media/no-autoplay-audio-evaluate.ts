@@ -82,6 +82,7 @@ function noAutoplayAudioEvaluate(node, options) {
    */
   function convertHourMinSecToSeconds(hhMmSs) {
     const parts = hhMmSs.split(':');
+
     let secs = 0;
     let mins = 1;
 
@@ -90,7 +91,7 @@ function noAutoplayAudioEvaluate(node, options) {
       mins *= 60;
     }
 
-    return parseFloat(secs);
+    return secs;
   }
 }
 

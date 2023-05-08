@@ -2,6 +2,8 @@ import AbstractVirtualNode from './abstract-virtual-node';
 import { assert, validInputTypes } from '../../utils';
 
 class SerialVirtualNode extends AbstractVirtualNode {
+  _props = undefined;
+  _attrs = undefined;
   /**
    * Convert a serialised node into a VirtualNode object
    * @param {Object} node Serialised node

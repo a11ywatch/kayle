@@ -3,9 +3,11 @@ import { matchAncestry } from '../../core/utils';
 export default function headingOrderAfter(results) {
   // Construct a map of all headings on the page
   const headingOrder = getHeadingOrder(results);
+
   results.forEach(result => {
     result.result = getHeadingOrderOutcome(result, headingOrder);
   });
+
   return results;
 }
 

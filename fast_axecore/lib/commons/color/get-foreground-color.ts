@@ -19,7 +19,7 @@ import { getNodeFromTree } from '../../core/utils';
  *
  * @deprecated noScroll parameter
  */
-export default function getForegroundColor(node, _, bgColor, options = {}) {
+export default function getForegroundColor(node, _?, bgColor?, options = {}) {
   const nodeStyle = window.getComputedStyle(node);
   const opacity = getOpacity(node, nodeStyle);
 

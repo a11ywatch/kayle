@@ -116,7 +116,7 @@ function getLargestUnobscuredArea(vNode, obscuredNodes) {
 }
 
 // Find the largest rectangle in the array, prioritize ones that meet a minimum size
-function getLargestRect(rects, minSize) {
+function getLargestRect(rects, minSize?) {
   return rects.reduce((rectA, rectB) => {
     const rectAisMinimum = rectHasMinimumSize(minSize, rectA);
     const rectBisMinimum = rectHasMinimumSize(minSize, rectB);

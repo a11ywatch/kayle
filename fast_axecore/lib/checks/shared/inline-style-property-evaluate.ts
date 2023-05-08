@@ -21,7 +21,8 @@ export default function inlineStyleProperty(node, options) {
     return true;
   }
 
-  const data = {};
+  const data = { minValue: undefined, maxValue: undefined };
+
   if (typeof minValue === 'number') {
     data.minValue = minValue;
   }

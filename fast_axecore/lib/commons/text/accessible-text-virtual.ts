@@ -20,7 +20,11 @@ import isIconLigature from './is-icon-ligature';
  */
 function accessibleTextVirtual(
   virtualNode,
-  context = { startNode: undefined, debug: undefined }
+  context = {
+    startNode: undefined,
+    debug: undefined,
+    inControlContext: undefined
+  }
 ) {
   context = prepareContext(virtualNode, context);
 

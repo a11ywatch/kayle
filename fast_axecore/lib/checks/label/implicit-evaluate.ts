@@ -8,7 +8,8 @@ function implicitEvaluate(node, options, virtualNode) {
       const implicitLabel = sanitize(
         accessibleTextVirtual(label, {
           inControlContext: true,
-          startNode: virtualNode
+          startNode: virtualNode,
+          debug: undefined
         })
       );
       if (label.actualNode) {

@@ -34,6 +34,7 @@ function getDefaultOrigin() {
 /*eslint no-unused-vars: 0*/
 function getDefaultConfiguration(audit) {
   var config;
+
   if (audit) {
     config = clone(audit);
     // Commons are configured into axe like everything else,
@@ -170,6 +171,21 @@ const mergeFallbackMessage = (a, b) => {
  * Constructor which holds configured rules and information about the document under test
  */
 class Audit {
+  lang = undefined;
+  defaultConfig = undefined;
+  standards = undefined;
+  _defaultLocale = undefined;
+  allowedOrigins: string[] = [];
+  data: any = undefined;
+  noHtml: boolean = undefined;
+  tagExclude: string[] = [];
+  reporter = undefined;
+  commands: Record<string, any> = {};
+  rules = [];
+  checks = {};
+  brand = 'axe';
+  application = 'axeAPI';
+
   constructor(audit) {
     // defaults
     this.lang = 'en';
@@ -190,6 +206,7 @@ class Audit {
     if (this._defaultLocale) {
       return;
     }
+
     const locale = {
       checks: {},
       rules: {},
@@ -197,9 +214,11 @@ class Audit {
       incompleteFallbackMessage: '',
       lang: this.lang
     };
+
     // XXX: unable to use `for-of` here, as doing so would
     // require us to polyfill `Symbol`.
     const checkIDs = Object.keys(this.data.checks);
+
     for (let i = 0; i < checkIDs.length; i++) {
       const id = checkIDs[i];
       const check = this.data.checks[id];
@@ -210,20 +229,25 @@ class Audit {
         incomplete
       };
     }
+
     const ruleIDs = Object.keys(this.data.rules);
+
     for (let i = 0; i < ruleIDs.length; i++) {
       const id = ruleIDs[i];
       const rule = this.data.rules[id];
       const { description, help } = rule;
       locale.rules[id] = { description, help };
     }
+
     const failureSummaries = Object.keys(this.data.failureSummaries);
+
     for (let i = 0; i < failureSummaries.length; i++) {
       const type = failureSummaries[i];
       const failureSummary = this.data.failureSummaries[type];
       const { failureMessage } = failureSummary;
       locale.failureSummaries[type] = { failureMessage };
     }
+
     locale.incompleteFallbackMessage = this.data.incompleteFallbackMessage;
     this._defaultLocale = locale;
   }
@@ -233,6 +257,7 @@ class Audit {
   _resetLocale() {
     // If the default locale has not already been set, we can exit early.
     const defaultLocale = this._defaultLocale;
+
     if (!defaultLocale) {
       return;
     }
@@ -244,6 +269,7 @@ class Audit {
    */
   _applyCheckLocale(checks) {
     const keys = Object.keys(checks);
+
     for (let i = 0; i < keys.length; i++) {
       const id = keys[i];
       if (!this.data.checks[id]) {
@@ -257,6 +283,7 @@ class Audit {
    */
   _applyRuleLocale(rules) {
     const keys = Object.keys(rules);
+
     for (let i = 0; i < keys.length; i++) {
       const id = keys[i];
       if (!this.data.rules[id]) {
@@ -270,11 +297,14 @@ class Audit {
    */
   _applyFailureSummaries(messages) {
     const keys = Object.keys(messages);
+
     for (let i = 0; i < keys.length; i++) {
       const key = keys[i];
+
       if (!this.data.failureSummaries[key]) {
         throw new Error(`Locale provided for unknown failureMessage: "${key}"`);
       }
+
       this.data.failureSummaries[key] = mergeFailureMessage(
         this.data.failureSummaries[key],
         messages[key]
@@ -295,7 +325,7 @@ class Audit {
       this._applyRuleLocale(locale.rules);
     }
     if (locale.failureSummaries) {
-      this._applyFailureSummaries(locale.failureSummaries, 'failureSummaries');
+      this._applyFailureSummaries(locale.failureSummaries);
     }
     if (locale.incompleteFallbackMessage) {
       this.data.incompleteFallbackMessage = mergeFallbackMessage(

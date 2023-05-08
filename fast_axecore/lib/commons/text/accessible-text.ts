@@ -11,7 +11,7 @@ import { getNodeFromTree } from '../../core/utils';
  * @property {Bool} inLabelledByContext
  * @return {string}
  */
-function accessibleText(element, context) {
+function accessibleText(element, context?) {
   const virtualNode = getNodeFromTree(element); // throws an exception on purpose if axe._tree not correct
   return accessibleTextVirtual(virtualNode, context);
 }

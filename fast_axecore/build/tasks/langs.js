@@ -53,6 +53,8 @@ module.exports = function (grunt) {
     ].join('');
     grunt.file.write(path, template);
   }
+
+  // TODO: remove this method
   grunt.registerMultiTask(
     'langs',
     'Task for generating commons language codes from IANA registry',

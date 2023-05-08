@@ -3,11 +3,13 @@ import { escapeSelector } from '../../core/utils';
 
 function duplicateIdEvaluate(node) {
   const id = node.getAttribute('id').trim();
+
   // Since empty ID's are not meaningful and are ignored by Edge, we'll
   // let those pass.
   if (!id) {
     return true;
   }
+
   const root = getRootNode(node);
   const matchingNodes = Array.from(
     root.querySelectorAll(`[id="${escapeSelector(id)}"]`)

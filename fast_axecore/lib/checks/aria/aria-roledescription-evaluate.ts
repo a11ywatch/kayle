@@ -7,7 +7,11 @@ import { getRole } from '../../commons/aria';
  * @param {String[]} options.supportedRoles List of ARIA roles that support the `aria-roledescription` attribute
  * @return {Mixed} True if the semantic role supports `aria-roledescription`. Undefined if the semantic role is `presentation` or `none`. False otherwise.
  */
-function ariaRoledescriptionEvaluate(node, options = { supportedRoles: undefined }, virtualNode) {
+function ariaRoledescriptionEvaluate(
+  node,
+  options = { supportedRoles: undefined },
+  virtualNode
+) {
   const role = getRole(virtualNode);
   const supportedRoles = options.supportedRoles || [];
 

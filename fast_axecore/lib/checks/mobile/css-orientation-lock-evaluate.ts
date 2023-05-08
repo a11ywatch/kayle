@@ -17,18 +17,21 @@ function cssOrientationLockEvaluate(node, options, virtualNode, context) {
     }
 
     orientationRules.forEach(({ cssRules }) => {
-      Array.from(cssRules).forEach(cssRule => {
-        const locked = getIsOrientationLocked(cssRule);
+      Array.from(cssRules).forEach(
+        (cssRule: { selectorText: string; style: CSSStyleRule }) => {
+          const locked = getIsOrientationLocked(cssRule);
 
-        // if locked and not root HTML, preserve as relatedNodes
-        if (locked && cssRule.selectorText.toUpperCase() !== 'HTML') {
-          const elms =
-            Array.from(root.querySelectorAll(cssRule.selectorText)) || [];
-          relatedElements = relatedElements.concat(elms);
+          // if locked and not root HTML, preserve as relatedNodes
+          // todo: remove uppercase
+          if (locked && cssRule.selectorText.toUpperCase() !== 'HTML') {
+            const elms =
+              Array.from(root.querySelectorAll(cssRule.selectorText)) || [];
+            relatedElements = relatedElements.concat(elms);
+          }
+
+          isLocked = isLocked || locked;
         }
-
-        isLocked = isLocked || locked;
-      });
+      );
     });
   }
 
@@ -169,11 +172,13 @@ function cssOrientationLockEvaluate(node, options, virtualNode, context) {
    */
   function getAngleInDegrees(angleWithUnit) {
     const [unit] = angleWithUnit.match(/(deg|grad|rad|turn)/) || [];
+
     if (!unit) {
       return;
     }
 
     const angle = parseFloat(angleWithUnit.replace(unit, ``));
+
     switch (unit) {
       case 'rad':
         return convertRadToDeg(angle);
@@ -183,7 +188,7 @@ function cssOrientationLockEvaluate(node, options, virtualNode, context) {
         return convertTurnToDeg(angle);
       case 'deg':
       default:
-        return parseInt(angle);
+        return angle;
     }
   }
 

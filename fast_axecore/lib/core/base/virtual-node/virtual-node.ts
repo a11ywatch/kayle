@@ -7,6 +7,14 @@ let isXHTMLGlobal;
 let nodeIndex = 0;
 
 class VirtualNode extends AbstractVirtualNode {
+  shadowId = undefined;
+  children = [];
+  nodeIndex = undefined;
+  _isHidden = undefined;
+  _cache: Record<string, any> = {};
+  _isXHTML = false;
+  _type = '';
+
   /**
    * Wrap the real node and provide list of the flattened children
    * @param {Node} node the node in question
@@ -31,6 +39,7 @@ class VirtualNode extends AbstractVirtualNode {
     if (typeof isXHTMLGlobal === 'undefined') {
       isXHTMLGlobal = isXHTML(node.ownerDocument);
     }
+
     this._isXHTML = isXHTMLGlobal;
 
     // we will normalize the type prop for inputs by looking strictly
@@ -121,7 +130,9 @@ class VirtualNode extends AbstractVirtualNode {
         attrs = this.actualNode.cloneNode(false).attributes;
       }
 
-      this._cache.attrNames = Array.from(attrs).map(attr => attr.name);
+      this._cache.attrNames = Array.from(attrs).map(
+        (attr: { name: string }) => attr.name
+      );
     }
     return this._cache.attrNames;
   }
@@ -173,7 +184,7 @@ class VirtualNode extends AbstractVirtualNode {
     if (!this._cache.hasOwnProperty('clientRects')) {
       this._cache.clientRects = Array.from(
         this.actualNode.getClientRects()
-      ).filter(rect => rect.width > 0);
+      ).filter((rect: { width: number }) => rect.width > 0);
     }
     return this._cache.clientRects;
   }

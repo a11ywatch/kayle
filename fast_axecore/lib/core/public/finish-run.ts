@@ -7,7 +7,10 @@ import {
   clone
 } from '../utils';
 
-export default function finishRun(partialResults, options = { reporter: undefined }) {
+export default function finishRun(
+  partialResults,
+  options = { reporter: undefined }
+) {
   options = clone(options);
   const { environmentData } = partialResults.find(r => r.environmentData) || {};
 

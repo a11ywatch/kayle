@@ -1,13 +1,6 @@
 import { hasContentVirtual, getComposedParent } from '../../commons/dom';
 
-const allowlist = [
-  'SCRIPT',
-  'HEAD',
-  'TITLE',
-  'NOSCRIPT',
-  'STYLE',
-  'TEMPLATE'
-];
+const allowlist = ['SCRIPT', 'HEAD', 'TITLE', 'NOSCRIPT', 'STYLE', 'TEMPLATE'];
 
 function hiddenContentEvaluate(node, _, virtualNode) {
   if (

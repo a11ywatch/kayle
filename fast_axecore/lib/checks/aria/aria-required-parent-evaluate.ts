@@ -95,7 +95,12 @@ function ariaRequiredParentEvaluate(node, options, virtualNode) {
     options && Array.isArray(options.ownGroupRoles)
       ? options.ownGroupRoles
       : [];
-  let missingParents = getMissingContext(virtualNode, ownGroupRoles, undefined, undefined);
+  let missingParents = getMissingContext(
+    virtualNode,
+    ownGroupRoles,
+    undefined,
+    undefined
+  );
 
   if (!missingParents) {
     return true;
