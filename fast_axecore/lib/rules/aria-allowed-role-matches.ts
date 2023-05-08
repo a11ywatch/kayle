@@ -1,6 +1,6 @@
 import { getExplicitRole } from '../commons/aria';
 
-function ariaAllowedRoleMatches(node, virtualNode) {
+function ariaAllowedRoleMatches(_, virtualNode) {
   return (
     getExplicitRole(virtualNode, {
       dpub: true,

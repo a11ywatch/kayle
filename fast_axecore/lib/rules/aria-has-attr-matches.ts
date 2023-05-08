@@ -1,4 +1,4 @@
-function ariaHasAttrMatches(node, virtualNode) {
+function ariaHasAttrMatches(_, virtualNode) {
   const aria = /^aria-/;
 
   return virtualNode.attrNames.some(attr => {

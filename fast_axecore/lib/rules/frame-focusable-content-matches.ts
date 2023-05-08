@@ -1,4 +1,4 @@
-function frameFocusableContentMatches(node, virtualNode, context) {
+function frameFocusableContentMatches(_node, _virtualNode, context) {
   return (
     !context.initiator &&
     !context.focusable &&

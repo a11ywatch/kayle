@@ -43,7 +43,7 @@ function getBlockParent(node) {
  * @property {Bool} noLengthCompare
  * @return {Boolean}      [description]
  */
-function isInTextBlock(node, options) {
+function isInTextBlock(node, options?) {
   if (isBlock(node)) {
     // Ignore if the link is a block
     return false;

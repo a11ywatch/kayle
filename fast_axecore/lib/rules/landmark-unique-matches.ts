@@ -10,13 +10,14 @@ function landmarkUniqueMatches(node, virtualNode) {
    *
    * Info: https://www.w3.org/TR/wai-aria-practices-1.1/#aria_landmark
    */
-  var excludedParentsForHeaderFooterLandmarks = [
+  const excludedParentsForHeaderFooterLandmarks = [
     'article',
     'aside',
     'main',
     'nav',
     'section'
   ].join(',');
+
   function isHeaderFooterLandmark(headerFooterElement) {
     return !closest(
       headerFooterElement,
@@ -25,21 +26,23 @@ function landmarkUniqueMatches(node, virtualNode) {
   }
 
   function isLandmarkVirtual(virtualNode) {
-    var { actualNode } = virtualNode;
-    var landmarkRoles = getAriaRolesByType('landmark');
-    var role = getRole(actualNode);
+    const { actualNode } = virtualNode;
+    const landmarkRoles = getAriaRolesByType('landmark');
+    const role = getRole(actualNode);
+
     if (!role) {
       return false;
     }
 
-    var nodeName = actualNode.nodeName.toUpperCase();
+    // todo: check what the output returns to avoid uppercase
+    const nodeName = actualNode.nodeName.toUpperCase();
+
     if (nodeName === 'HEADER' || nodeName === 'FOOTER') {
       return isHeaderFooterLandmark(virtualNode);
     }
 
     if (nodeName === 'SECTION' || nodeName === 'FORM') {
-      var accessibleText = accessibleTextVirtual(virtualNode);
-      return !!accessibleText;
+      return !!accessibleTextVirtual(virtualNode);
     }
 
     return landmarkRoles.indexOf(role) >= 0 || role === 'region';

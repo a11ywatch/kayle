@@ -12,7 +12,7 @@ function pAsHeadingMatches(node) {
   const siblingsAfter = children
     .slice(children.indexOf(node) + 1)
     .filter(
-      elm => elm.nodeName.toUpperCase() === 'P' && elm.textContent.trim() !== ''
+      (elm: Node) => elm.nodeName.toUpperCase() === 'P' && elm.textContent.trim() !== ''
     );
 
   return siblingsAfter.length !== 0;

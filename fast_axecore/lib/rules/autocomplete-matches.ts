@@ -2,19 +2,22 @@ import { sanitize } from '../commons/text';
 import standards from '../standards';
 import { isVisibleToScreenReaders, isVisibleOnScreen } from '../commons/dom';
 
-function autocompleteMatches(node, virtualNode) {
+function autocompleteMatches(_, virtualNode) {
   const autocomplete = virtualNode.attr('autocomplete');
+
   if (!autocomplete || sanitize(autocomplete) === '') {
     return false;
   }
 
   const nodeName = virtualNode.props.nodeName;
+
   if (['textarea', 'input', 'select'].includes(nodeName) === false) {
     return false;
   }
 
   // The element is an `input` element a `type` of `hidden`, `button`, `submit` or `reset`
   const excludedInputTypes = ['submit', 'reset', 'button', 'hidden'];
+
   if (
     nodeName === 'input' &&
     excludedInputTypes.includes(virtualNode.props.type)
@@ -24,6 +27,7 @@ function autocompleteMatches(node, virtualNode) {
 
   // The element has a `disabled` or `aria-disabled="true"` attribute
   const ariaDisabled = virtualNode.attr('aria-disabled') || 'false';
+
   if (
     virtualNode.hasAttr('disabled') ||
     ariaDisabled.toLowerCase() === 'true'
@@ -35,6 +39,7 @@ function autocompleteMatches(node, virtualNode) {
   //   not a [widget](https://www.w3.org/TR/wai-aria-1.1/#widget_roles)
   const role = virtualNode.attr('role');
   const tabIndex = virtualNode.attr('tabindex');
+
   if (tabIndex === '-1' && role) {
     const roleDef = standards.ariaRoles[role];
     if (roleDef === undefined || roleDef.type !== 'widget') {
