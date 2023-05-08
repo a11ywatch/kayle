@@ -1,15 +1,13 @@
 import assert from "assert";
 import puppeteer from "puppeteer";
-import { kayle, setNetworkInterception } from "kayle";
+import { kayle } from "kayle";
 import { drakeMock } from "./mocks/html-mock";
 import { performance } from "perf_hooks";
 
 (async () => {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({headless: "new"});
   const page = await browser.newPage();
-
-  await setNetworkInterception(page);
-  await page.setContent(drakeMock);
+  // page.on("console", (msg) => console.log("PAGE LOG:", msg.text()));
 
   const startTime = performance.now();
   const { issues, pageUrl, documentTitle, meta, automateable } = await kayle({
@@ -18,14 +16,11 @@ import { performance } from "perf_hooks";
     runners: ["axe"],
     includeWarnings: true,
     origin: "https://www.drake.com",
+    html: drakeMock
   });
-  const nextTime = performance.now() - startTime;
+  const endTime = performance.now() - startTime;
 
-  console.log(issues);
-  console.log(`Issue count ${issues.length}`);
-  console.log(meta);
-  console.log(automateable);
-  console.log("time took", nextTime);
+  console.log([{meta, automateable}, ["fast_axecore: time took", endTime]]);
 
   // valid list
   assert(Array.isArray(issues));

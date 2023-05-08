@@ -1,4 +1,4 @@
-var execSync = require('child_process').execSync;
+const { execSync } = require('child_process');
 
 /*eslint
 camelcase: ["error", {"properties": "never"}]

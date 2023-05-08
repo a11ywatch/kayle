@@ -1,4 +1,3 @@
-const execSync = require('child_process').execSync;
 const chalk = require('chalk');
 
 /*eslint-env node */
@@ -11,6 +10,7 @@ module.exports = function (grunt) {
     function () {
       const testFile = this.data.testFile;
       console.log(`${chalk.green('>>')} File "${testFile}"`);
+      const { execSync } = require('child_process');
 
       execSync(`npm run test:unit -- testFiles=${testFile}`, {
         stdio: 'inherit'
