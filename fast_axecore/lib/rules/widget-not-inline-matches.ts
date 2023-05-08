@@ -1,7 +1,7 @@
 import { getRoleType } from '../commons/aria';
 import { isFocusable, isInTabOrder, isInTextBlock } from '../commons/dom';
 import svgNamespaceMatches from './svg-namespace-matches';
-import { memoize } from '../core/utils';
+import memoize from '../core/utils/memoize';
 
 export default function widgetNotInline(node, vNode) {
   return matchesFns.every(fn => fn(node, vNode));

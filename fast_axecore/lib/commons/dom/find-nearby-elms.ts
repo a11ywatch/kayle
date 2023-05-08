@@ -1,5 +1,5 @@
 import createGrid from './create-grid';
-import { memoize } from '../../core/utils';
+import memoize from '../../core/utils/memoize';
 
 export default function findNearbyElms(vNode, margin = 0) {
   createGrid(); // Ensure grid exists

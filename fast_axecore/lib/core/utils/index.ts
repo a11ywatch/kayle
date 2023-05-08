@@ -54,7 +54,6 @@ export {
   convertSelector
 } from './matches';
 export { default as matchAncestry } from './match-ancestry';
-export { default as memoize } from './memoize';
 export { default as mergeResults } from './merge-results';
 export { default as nodeSorter } from './node-sorter';
 export { default as parseCrossOriginStylesheet } from './parse-crossorigin-stylesheet';

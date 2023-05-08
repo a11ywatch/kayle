@@ -35,7 +35,7 @@ node_modules
 dist
 
 #rust
-/target
+target
 **/*.rs.bk
 
 # tar

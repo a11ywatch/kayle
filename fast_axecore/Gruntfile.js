@@ -41,7 +41,7 @@ module.exports = function (grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     clean: {
-      core: ['dist', 'tmp/core', 'tmp/rules.js', 'axe.js', 'axe.*.js'],
+      core: ['tmp/core', 'tmp/rules.js', 'axe.js', 'axe.*.js'],
       tests: ['tmp/integration-tests.js']
     },
     babel: {
@@ -52,7 +52,7 @@ module.exports = function (grunt) {
         files: [
           {
             expand: true,
-            cwd: 'lib/core',
+            cwd: 'dist/core',
             src: ['index.js'],
             dest: 'tmp/core'
           }
@@ -74,7 +74,7 @@ module.exports = function (grunt) {
         version: '<%=pkg.version%>'
       },
       rules: {
-        src: ['lib/rules/**/*.json']
+        src: ['dist/rules/**/*.json']
       }
     },
     concat: {
@@ -86,11 +86,11 @@ module.exports = function (grunt) {
         files: langs.map(function (lang, i) {
           return {
             src: [
-              'lib/intro.stub',
+              'dist/intro.stub',
               '<%= concat.engine.coreFiles %>',
               // include rules / checks / commons
               '<%= configure.rules.files[' + i + '].dest.auto %>',
-              'lib/outro.stub'
+              'dist/outro.stub'
             ],
             dest: 'axe' + lang + '.js'
           };
@@ -102,7 +102,7 @@ module.exports = function (grunt) {
         files: [
           {
             expand: true,
-            cwd: 'lib/core',
+            cwd: 'dist/core',
             src: ['core.js'],
             dest: 'tmp/core'
           }
@@ -115,17 +115,17 @@ module.exports = function (grunt) {
           {
             expand: true,
             src: [
-              'lib/checks/**/*-{evaluate,after}.js',
-              'lib/rules/**/*-matches.js'
+              'dist/checks/**/*-{evaluate,after}.js',
+              'dist/rules/**/*-matches.js'
             ],
-            dest: 'lib/core/base/metadata-function-map.js'
+            dest: 'dist/core/base/metadata-function-map.js'
           }
         ]
       }
     },
     'aria-supported': {
       data: {
-        entry: 'lib/commons/aria/index.js',
+        entry: 'dist/commons/aria/index.js',
         destFile: 'doc/aria-supported.md',
         options: {
           langs: langs
@@ -168,7 +168,7 @@ module.exports = function (grunt) {
     },
     langs: {
       generate: {
-        check: 'lib/commons/utils/valid-langs'
+        check: 'dist/commons/utils/valid-langs'
       }
     },
     validate: {
@@ -176,13 +176,13 @@ module.exports = function (grunt) {
         options: {
           type: 'check'
         },
-        src: 'lib/checks/**/*.json'
+        src: 'dist/checks/**/*.json'
       },
       rule: {
         options: {
           type: 'rule'
         },
-        src: 'lib/rules/**/*.json'
+        src: 'dist/rules/**/*.json'
       }
     },
     uglify: {
@@ -233,7 +233,7 @@ module.exports = function (grunt) {
     watch: {
       axe: {
         options: { spawn: false },
-        files: ['lib/**/*', 'Gruntfile.js'],
+        files: ['dist/**/*', 'Gruntfile.js'],
         tasks: ['build', 'prettier', 'notify', 'test']
       },
       tests: {

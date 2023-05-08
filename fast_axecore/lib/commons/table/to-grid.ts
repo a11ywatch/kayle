@@ -1,4 +1,4 @@
-import { memoize } from '../../core/utils';
+import memoize from '../../core/utils/memoize';
 
 /**
  * Converts a table to an Array of arrays, normalized for row and column spans
@@ -11,6 +11,7 @@ import { memoize } from '../../core/utils';
 function toGrid(node) {
   var table = [];
   var rows = node.rows;
+
   for (var i = 0, rowLength = rows.length; i < rowLength; i++) {
     var cells = rows[i].cells;
     table[i] = table[i] || [];

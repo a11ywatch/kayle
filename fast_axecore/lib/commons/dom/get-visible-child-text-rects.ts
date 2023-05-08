@@ -1,4 +1,5 @@
-import { getNodeFromTree, memoize } from '../../core/utils';
+import memoize from '../../core/utils/memoize';
+import { getNodeFromTree } from '../../core/utils';
 import { sanitize } from '../text';
 import { getRectCenter, isPointInRect, getIntersectionRect } from '../math';
 import getOverflowHiddenAncestors from './get-overflow-hidden-ancestors';

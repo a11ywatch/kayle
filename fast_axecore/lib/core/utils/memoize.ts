@@ -21,6 +21,7 @@ import memoize from 'memoizee';
  */
 // TODO: es-modules._memoziedFns
 axe._memoizedFns = [];
+
 function memoizeImplementation(fn) {
   // keep track of each function that is memoized so it can be cleared at
   // the end of a run. each memoized function has its own cache, so there is

@@ -20,7 +20,14 @@
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "removeComments": true
+    "removeComments": true,
   },
-  "include": ["locales", "lib", "globalds.d.ts", "axe.d.ts"]
+  "include": [
+    "locales",
+    "lib",
+    "globals.d.ts", 
+    "axe.d.ts",
+    "lib/**/*.json",
+    "lib/*.stub"
+  ]
 }

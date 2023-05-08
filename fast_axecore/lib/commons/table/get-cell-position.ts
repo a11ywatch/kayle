@@ -1,6 +1,6 @@
 import toGrid from './to-grid';
 import findUp from '../dom/find-up';
-import { memoize } from '../../core/utils';
+import memoize from '../../core/utils/memoize';
 
 /**
  * Get the x, y coordinates of a table cell; normalized for rowspan and colspan
