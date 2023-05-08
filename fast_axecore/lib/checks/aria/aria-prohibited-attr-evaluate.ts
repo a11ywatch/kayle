@@ -28,7 +28,7 @@ import standards from '../../standards';
  */
 export default function ariaProhibitedAttrEvaluate(
   node,
-  options = {},
+  options = { elementsAllowedAriaLabel: undefined },
   virtualNode
 ) {
   const elementsAllowedAriaLabel = options?.elementsAllowedAriaLabel || [];

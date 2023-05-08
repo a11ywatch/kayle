@@ -14,12 +14,18 @@ import getElementSpec from '../standards/get-element-spec';
  */
 function subtreeText(
   virtualNode,
-  context = {
+  context: Partial<{
+    startNode: Node,
+    strict: boolean,
+    inControlContext: boolean,
+    inLabelledByContext: boolean,
+    subtreeDescendant: boolean,
+  }>  = {
     startNode: undefined,
     strict: undefined,
     inControlContext: undefined,
     inLabelledByContext: undefined,
-    subtreeDescendant: undefined
+    subtreeDescendant: undefined,
   }
 ) {
   const { alreadyProcessed } = accessibleTextVirtual;

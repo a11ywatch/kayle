@@ -12,7 +12,7 @@ import { getElementUnallowedRoles } from '../../commons/aria';
  * @data {String[]} List of all unallowed roles.
  * @return {Boolean} True if the role is allowed on the element. False otherwise.
  */
-function ariaAllowedRoleEvaluate(node, options = {}, virtualNode) {
+function ariaAllowedRoleEvaluate(node, options = { ignoredTags: undefined, allowImplicit: undefined }, virtualNode) {
   /**
    * Implements allowed roles defined at:
    * https://www.w3.org/TR/html-aria/#docconformance

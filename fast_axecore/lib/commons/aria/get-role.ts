@@ -199,7 +199,7 @@ function getRole(
     dpub: undefined,
     chromium: undefined
   }
-) {
+): string {
   const role = resolveRole(node, options);
 
   if (noPresentational && ['presentation', 'none'].includes(role)) {

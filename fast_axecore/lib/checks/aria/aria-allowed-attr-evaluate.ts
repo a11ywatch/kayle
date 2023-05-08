@@ -1,4 +1,4 @@
-import { uniqueArray, closest, isHtmlElement } from '../../core/utils';
+import { closest, isHtmlElement } from '../../core/utils';
 import { getRole, allowedAttr, validateAttr } from '../../commons/aria';
 import { isFocusable } from '../../commons/dom';
 import cache from '../../core/base/cache';
@@ -27,15 +27,16 @@ import cache from '../../core/base/cache';
  * @memberof checks
  * @return {Boolean} True if each aria attribute is allowed. False otherwise.
  */
-export default function ariaAllowedAttrEvaluate(node, options, virtualNode) {
+export default function ariaAllowedAttrEvaluate(_, options, virtualNode) {
   const invalid = [];
   const role = getRole(virtualNode);
   const attrs = virtualNode.attrNames;
   let allowed = allowedAttr(role);
+
   // @deprecated: allowed attr options to pass more attrs.
   // configure the standards spec instead
   if (Array.isArray(options[role])) {
-    allowed = uniqueArray(options[role].concat(allowed));
+    allowed = options[role].concat(allowed)
   }
 
   const tableMap = cache.get('aria-allowed-attr-table', () => new WeakMap());
