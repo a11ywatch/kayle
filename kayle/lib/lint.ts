@@ -2,7 +2,7 @@ import { fetchHtml } from "./fetch";
 import { runnersJavascript } from "./runner-js";
 import { RunnerConfig } from "./config";
 import { extractArgs } from "./option";
-import { JSDOM, VirtualConsole } from "jsdom"
+import { JSDOM, VirtualConsole } from "jsdom";
 
 let Console = null;
 let DOM = null;

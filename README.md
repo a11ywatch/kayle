@@ -2,7 +2,7 @@
 
 <img src="https://user-images.githubusercontent.com/8095978/236633334-f5234171-064e-4792-a21c-9e6c782ba9cc.jpg" height="50" align="right" padding="2px" />
 
-Incredibly fast and precise universal web accessibility evaluator for puppeteer or playwright.
+Incredibly fast and precise universal web accessibility evaluator.
 
 ```sh
 npm install kayle --save

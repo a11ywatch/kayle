@@ -107,7 +107,7 @@
   };
 
   // build css slectors
-  const buildElementIdentifier = (element) => {
+  const buildElementIdentifier = (element: HTMLElement) => {
     if (element.id) {
       return `${element.id[0] !== "#" ? "#" : ""}${element.id}`;
     }
