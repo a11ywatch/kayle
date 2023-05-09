@@ -1,10 +1,8 @@
 /* global Promise */
 
-const fs = require('fs');
+const { existsSync } = require('fs');
 const chalk = require('chalk');
 const execa = require('execa');
-
-const { CI } = process.env;
 
 const createFile = require('./shared/create-file');
 const directories = require('./rule-generator/directories');
@@ -12,7 +10,7 @@ const getAnswers = require('./rule-generator/get-answers');
 const getFilesMetaData = require('./rule-generator/get-files-metadata');
 
 // prevent malicious execution from CI
-if (CI) {
+if (process.env.CI) {
   throw new Error('Cannot run Rule Generation CLI in CI.');
 }
 
@@ -21,7 +19,7 @@ run();
 
 async function run() {
   // ensure axe exists, if not build axe, then start the generator
-  const axeExists = fs.existsSync(directories.axePath);
+  const axeExists = existsSync(directories.axePath);
   if (!axeExists) {
     console.log(
       chalk.red.bold(

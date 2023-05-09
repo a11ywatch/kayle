@@ -1,6 +1,7 @@
 /*eslint-env node */
 'use strict';
-var http = require('http');
+import http from 'http';
+
 module.exports = function (grunt) {
   function getLine(data, start) {
     var len = data.length;
@@ -15,7 +16,7 @@ module.exports = function (grunt) {
     return retVal;
   }
   function getEntry(data, start) {
-    var entry = [];
+    var entry: any = [];
     var line;
     var len = data.length;
     var index = start;
@@ -62,12 +63,15 @@ module.exports = function (grunt) {
       var done = this.async();
       var ianaLangsURL =
         'http://www.iana.org/assignments/language-subtag-registry/language-subtag-registry';
+
       if (!this.data.check) {
         done(false);
         return;
       }
+
       var check = this.data.check;
-      var langs = [];
+      var langs: string[] = [];
+
       new Promise(function (resolve, reject) {
         var data = '';
         http
@@ -97,7 +101,7 @@ module.exports = function (grunt) {
             if (entry[0] !== 'Type: language') {
               continue;
             }
-            var lang = entry[1].replace('Subtag: ', '').trim();
+            var lang: string = entry[1].replace('Subtag: ', '').trim();
             langs.push(lang);
           }
           generateOutput(langs, check);

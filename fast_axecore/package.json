@@ -70,7 +70,7 @@
   },
   "scripts": {
     "compile:build": "rm -f -r build && rm -f -r tmp && tsc --project tsconfig.build.json && yarn cp:build",
-    "cp:build": "cp -r -f ./build/_build/* build/ && rm -f -r ./build/_build/",
+    "cp:build": "echo 'building fast_axecore'",
     "tsc": "yarn compile:build && tsc && cp ./lib/intro.stub dist && cp ./lib/outro.stub dist",
     "develop": "grunt dev --force",
     "build": "(rm -f -r ./dist/*) 2>/dev/null && yarn tsc && grunt --lang=en,da,de,es,eu,pl,fr,he,ja,ko,nl,no_NB,pt_BR",

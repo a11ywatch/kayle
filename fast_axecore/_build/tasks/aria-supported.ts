@@ -3,7 +3,7 @@
 
 const { roles, aria: props } = require('aria-query');
 const mdTable = require('markdown-table');
-const format = require('../shared/format');
+const formatPrettier = require('../shared/format');
 
 module.exports = function (grunt) {
   grunt.registerMultiTask(
@@ -38,7 +38,7 @@ module.exports = function (grunt) {
       };
 
       const { ariaRoles, ariaAttrs } = axe.utils.getStandards();
-      const { diff: rolesTable, notes: rolesFootnotes } = getDiff(
+      const { diff: _rolesTable, notes: rolesFootnotes } = getDiff(
         roles,
         ariaRoles,
         listType
@@ -64,7 +64,7 @@ module.exports = function (grunt) {
       const destFile = this.data.destFile;
       // Format the content so Prettier doesn't create a diff after running.
       // See https://github.com/dequelabs/axe-core/issues/1310.
-      const formattedContent = format(content, destFile);
+      const formattedContent = formatPrettier(content, destFile);
 
       // write `aria supported` file contents
       grunt.file.write(destFile, formattedContent);
@@ -74,10 +74,13 @@ module.exports = function (grunt) {
        * @returns {Set|Object} collection of aria attributes from `aria-query` module
        */
       function getAriaQueryAttributes() {
-        const ariaKeys = Array.from(props).map(([key]) => key);
-        const roleAriaKeys = Array.from(roles).reduce((out, [name, rule]) => {
-          return [...out, ...Object.keys(rule.props)];
-        }, []);
+        const ariaKeys = Array.from(props).map(([key]: any) => key);
+        const roleAriaKeys = Array.from(roles).reduce(
+          (out: string[], [name, rule]: any) => {
+            return [...out, ...Object.keys(rule.props)];
+          },
+          []
+        );
         return new Set(axe.utils.uniqueArray(roleAriaKeys, ariaKeys));
       }
 
@@ -92,12 +95,12 @@ module.exports = function (grunt) {
        * @example Example Output: [ [ 'alert', 'No' ], [ 'figure', 'Yes' ] ]
        */
       function getDiff(base, subject, type) {
-        const diff = [];
-        const notes = [];
+        const diff: string[][] = [];
+        const notes: string[][] = [];
 
         const sortedBase = Array.from(base.entries()).sort();
 
-        sortedBase.forEach(([key] = item) => {
+        sortedBase.forEach(([key]: any) => {
           switch (type) {
             case 'supported':
               if (
@@ -153,7 +156,7 @@ module.exports = function (grunt) {
        * @returns {Array<String|Object>} notes
        */
       function getSupportedElementsAsFootnote(elements) {
-        const notes = [];
+        const notes: string[] = [];
 
         const supportedElements = elements.map(element => {
           if (typeof element === 'string') {

@@ -1,5 +1,5 @@
 const { build } = require('esbuild');
-const path = require('path');
+const { basename, join } = require('path');
 
 module.exports = function (grunt) {
   grunt.registerMultiTask(
@@ -14,14 +14,15 @@ module.exports = function (grunt) {
         const dest = file.dest;
 
         src.forEach(entry => {
-          const name = path.basename(entry);
+          const name = basename(entry);
+
           if (file.cwd) {
-            entry = path.join(file.cwd, entry);
+            entry = join(file.cwd, entry);
           }
 
           build({
             entryPoints: [entry],
-            outfile: path.join(dest, name),
+            outfile: join(dest, name),
             minify: false,
             bundle: true
           })

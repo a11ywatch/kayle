@@ -5,7 +5,7 @@ import { drakeMock } from "./mocks/html-mock";
 import { performance } from "perf_hooks";
 import { test, expect } from "@playwright/test";
 
-test("fast_axecore audit drakeMock", async ({  page, browser  }, testInfo) => {
+test("fast_axecore audit drakeMock", async ({ page, browser }, testInfo) => {
   // page.on("console", (msg) => console.log("PAGE LOG:", msg.text()));
   const startTime = performance.now();
   const results = await kayle({
@@ -14,13 +14,13 @@ test("fast_axecore audit drakeMock", async ({  page, browser  }, testInfo) => {
     runners: ["axe"],
     includeWarnings: true,
     origin: "https://www.drake.com",
-    html: drakeMock
+    html: drakeMock,
   });
   const endTime = performance.now() - startTime;
 
   const { issues, pageUrl, documentTitle, meta, automateable } = results;
 
-  console.log([{meta, automateable}, ["fast_axecore: time took", endTime]]);
+  console.log([{ meta, automateable }, ["fast_axecore: time took", endTime]]);
 
   // valid list
   assert(Array.isArray(issues));

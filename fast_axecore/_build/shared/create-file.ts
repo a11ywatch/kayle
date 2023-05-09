@@ -1,8 +1,9 @@
-const fs = require('fs');
-const { promisify } = require('util');
+const { writeFile: write } = require('fs');
 const { dirname: getDirName } = require('path');
 const makeDir = require('make-dir');
-const writeFile = promisify(fs.writeFile);
+const { promisify } = require('util');
+
+const writeFile = promisify(write);
 
 /**
  * Create file with given contents at specified location
@@ -11,7 +12,5 @@ const writeFile = promisify(fs.writeFile);
  * @param {String} content contents of the file
  * @returns {Promise}
  */
-const createFile = (path, content) =>
+module.exports = (path, content) =>
   makeDir(getDirName(path)).then(() => writeFile(path, content));
-
-module.exports = createFile;

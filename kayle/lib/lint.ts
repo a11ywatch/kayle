@@ -2,6 +2,7 @@ import { fetchHtml } from "./fetch";
 import { runnersJavascript } from "./runner-js";
 import { RunnerConfig } from "./config";
 import { extractArgs } from "./option";
+import { JSDOM, VirtualConsole } from "jsdom"
 
 let Console = null;
 let DOM = null;
@@ -31,7 +32,6 @@ export const kayleLint = async (
   }
 
   if (!DOM || !Console) {
-    const { JSDOM, VirtualConsole } = await import("jsdom");
     DOM = JSDOM;
     Console = VirtualConsole;
   }

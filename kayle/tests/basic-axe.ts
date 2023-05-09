@@ -5,7 +5,7 @@ import { drakeMock } from "./mocks/html-mock";
 import { performance } from "perf_hooks";
 
 (async () => {
-  const browser = await puppeteer.launch({headless: "new"});
+  const browser = await puppeteer.launch({ headless: "new" });
   const page = await browser.newPage();
   // page.on("console", (msg) => console.log("PAGE LOG:", msg.text()));
 
@@ -16,11 +16,11 @@ import { performance } from "perf_hooks";
     runners: ["axe"],
     includeWarnings: true,
     origin: "https://www.drake.com",
-    html: drakeMock
+    html: drakeMock,
   });
   const endTime = performance.now() - startTime;
 
-  console.log([{meta, automateable}, ["fast_axecore: time took", endTime]]);
+  console.log([{ meta, automateable }, ["fast_axecore: time took", endTime]]);
 
   // valid list
   assert(Array.isArray(issues));

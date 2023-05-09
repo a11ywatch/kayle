@@ -1,6 +1,6 @@
-const path = require('path').posix;
 const glob = require('glob');
-const fs = require('fs');
+const { writeFileSync } = require('fs');
+const { posix, dirname, basename: baseN, relative } = require('path');
 
 function toTitleCase(str) {
   return str.replace(/-\w/g, txt => {
@@ -23,11 +23,8 @@ module.exports = function (grunt) {
 
         src.forEach(globPath => {
           glob.sync(globPath).forEach(filePath => {
-            const relativePath = path.relative(
-              path.dirname(file.dest),
-              filePath
-            );
-            const filename = path.basename(filePath, '.js');
+            const relativePath = relative(dirname(file.dest), filePath);
+            const filename = baseN(filePath, '.js');
             const functionName = toTitleCase(filename);
 
             outFile += `import ${functionName} from '${relativePath}';\n`;
@@ -42,7 +39,7 @@ module.exports = function (grunt) {
           .join(',\n');
         outFile += `\n};\n\nexport default metadataFunctionMap;`;
 
-        fs.writeFileSync(file.dest, outFile, 'utf-8');
+        writeFileSync(file.dest, outFile, 'utf-8');
       });
     }
   );

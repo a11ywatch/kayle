@@ -53,8 +53,7 @@ function hasMultipleOutcomes(messages) {
 
 function createSchemas() {
   var schemas = {
-
-   tool: {
+    tool: {
       properties: {
         id: {
           required: true,
@@ -74,8 +73,8 @@ function createSchemas() {
         }
       }
     },
-  
-   check: {
+
+    check: {
       properties: {
         id: {
           required: true,
@@ -122,8 +121,8 @@ function createSchemas() {
         }
       }
     },
-  
-    rule:{
+
+    rule: {
       seen: {},
       properties: {
         id: {
@@ -237,9 +236,8 @@ function createSchemas() {
           }
         }
       }
-    },
+    }
   };
-
 
   return schemas;
 }

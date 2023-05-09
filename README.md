@@ -1,4 +1,4 @@
-# 🪄 kayle
+# ✨ kayle
 
 <img src="https://user-images.githubusercontent.com/8095978/236633334-f5234171-064e-4792-a21c-9e6c782ba9cc.jpg" height="50" align="right" padding="2px" />
 
@@ -148,23 +148,23 @@ the best aspects of testing without worrying about a `name`.
 1. zh-CN ("Chinese-Simplified")
 1. zh-TW ("Chinese-Traditional")
 
-## Performance
-
-This project is the fastest web accessibility runner OSS. The `htmlcs` and `axe-core` handling of the runners runs faster due to bug fixes and improved optimizations. This library optimizes the scripts to take advtage of v8 and pre-compiles locales in separate scripts for blazing fast speeds.
-
-- Playwright runs 100% faster than puppeteer.
-
 ## Linting
 
 Straight forward linting. You can pass a url or valid html.
 
-Linting is handled on the same machine not sandboxed.
+Linting is handled on the same machine not sandboxed. You also need to install `jsdom` before hand.
 
 ```js
-import { kayleLint } from "kayle";
+import { kayleLint } from "kayle/lint";
 
 await kayleLint("https://a11ywatch.com");
 ```
+
+## Performance
+
+This project is the fastest web accessibility runner OSS. The `htmlcs` and `axe-core` handling of the runners runs faster due to bug fixes and improved optimizations. This library optimizes the scripts to take advtage of v8 and pre-compiles locales in separate scripts for blazing fast speeds.
+
+- Playwright runs 100% faster than puppeteer. Most of it is due to more fine grain control of events, ws connections, and timers.
 
 ## Testing
 

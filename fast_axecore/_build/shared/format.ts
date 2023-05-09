@@ -1,4 +1,4 @@
-const prettier = require('prettier');
+const { format } = require('prettier');
 const prettierConfig = require('../../package.json').prettier;
 
 /**
@@ -9,4 +9,4 @@ const prettierConfig = require('../../package.json').prettier;
  */
 
 module.exports = (content, filename) =>
-  prettier.format(content, { ...prettierConfig, filepath: filename });
+  format(content, { ...prettierConfig, filepath: filename });

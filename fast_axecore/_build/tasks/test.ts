@@ -1,4 +1,4 @@
-const chalk = require('chalk');
+const { green } = require('chalk');
 
 /*eslint-env node */
 ('use strict');
@@ -9,7 +9,7 @@ module.exports = function (grunt) {
     'This task runs unit tests based on which file was changed',
     function () {
       const testFile = this.data.testFile;
-      console.log(`${chalk.green('>>')} File "${testFile}"`);
+      console.log(`${green('>>')} File "${testFile}"`);
       const { execSync } = require('child_process');
 
       execSync(`npm run test:unit -- testFiles=${testFile}`, {

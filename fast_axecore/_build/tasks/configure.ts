@@ -1,7 +1,7 @@
 /*eslint-env node */
 'use strict';
 var buildRules = require('../configure');
-var format = require('../shared/format');
+var formatP = require('../shared/format');
 
 module.exports = function (grunt) {
   grunt.registerMultiTask(
@@ -28,7 +28,7 @@ module.exports = function (grunt) {
 
           // Format the content so Prettier doesn't create a diff after running.
           // See https://github.com/dequelabs/axe-core/issues/1310.
-          const descriptionsContent = format(
+          const descriptionsContent = formatP(
             result.descriptions,
             file.dest.descriptions
           );

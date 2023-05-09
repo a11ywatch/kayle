@@ -108,7 +108,7 @@ Straight forward linting. You can pass a url or valid html.
 Linting is handled on the same machine not sandboxed.
 
 ```js
-import { kayleLint } from "kayle";
+import { kayleLint } from "kayle/lint";
 
 await kayleLint("https://a11ywatch.com");
 ```

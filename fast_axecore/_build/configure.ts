@@ -6,8 +6,11 @@ var clone = require('clone');
 var doT = require('@deque/dot');
 var templates = require('./templates');
 var buildManual = require('./build-manual');
+
 var entities = new (require('html-entities').AllHtmlEntities)();
+
 var packageJSON = require('../package.json');
+
 var doTRegex = /\{\{.+?\}\}/g;
 
 var axeVersion = packageJSON.version.substring(
@@ -37,7 +40,7 @@ function makeHeaderLink(title) {
   return title.replace(/ /g, '-').replace(/[\.&]/g, '').toLowerCase();
 }
 
-function buildRules(grunt, options, commons, callback) {
+module.exports = function buildruleSet(grunt, options, commons, callback) {
   var axeImpact = Object.freeze(['minor', 'moderate', 'serious', 'critical']); // TODO: require('../axe') does not work if grunt configure is moved after uglify, npm test breaks with undefined. Complicated grunt concurrency issue.
   var locale = getLocale(grunt, options);
   options.getFiles = false;
@@ -201,7 +204,7 @@ function buildRules(grunt, options, commons, callback) {
 
     function parseChecks(collection) {
       return collection.map(function (check) {
-        var c = {};
+        var c = { options: undefined, id: undefined };
         var id = typeof check === 'string' ? check : check.id;
         var definition = clone(findCheck(checks, id));
         if (!definition) {
@@ -317,7 +320,7 @@ function buildRules(grunt, options, commons, callback) {
 
     function createActLinksForRule(rule) {
       var actIds = rule.actIds || [];
-      var actLinks = [];
+      var actLinks: string[] = [];
       actIds.forEach(id =>
         actLinks.push(`[${id}](https://act-rules.github.io/rules/${id})`)
       );
@@ -353,7 +356,8 @@ function buildRules(grunt, options, commons, callback) {
         rules = descriptions.wcag22.rules;
       }
 
-      var issueType = [];
+      var issueType: string[] = [];
+
       if (canFail) {
         issueType.push('failure');
       }
@@ -400,6 +404,7 @@ ${
       })
       .join('\n\n');
 
+    // @ts-ignore fix the variable callback overwride
     var descriptions = `
 # Rule Descriptions
 
@@ -408,7 +413,9 @@ ${TOC}
 ${ruleTables}`;
 
     // Translate failureSummaries
+    //@ts-ignore
     metadata.failureSummaries = createFailureSummaryObject(result.misc);
+    //@ts-ignore
     metadata.incompleteFallbackMessage = getIncompleteMsg(result.misc);
 
     callback({
@@ -436,6 +443,4 @@ ${ruleTables}`;
       descriptions
     });
   });
-}
-
-module.exports = buildRules;
+};

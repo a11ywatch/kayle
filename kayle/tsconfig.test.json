@@ -19,7 +19,8 @@
       "emitDecoratorMetadata": true,
       "skipLibCheck": true,
       "resolveJsonModule": true,
-      "removeComments": true
+      "removeComments": true,
+      "downlevelIteration": true
     },
     "include": ["./lib", "./tests", "./bench"]
   }
