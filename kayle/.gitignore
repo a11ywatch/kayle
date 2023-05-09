@@ -6,3 +6,4 @@ node_modules
 test/integration/tmp
 build
 _tests
+./test-results

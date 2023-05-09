@@ -1095,21 +1095,21 @@ _global.HTMLCS.util = {
       return null;
     }
 
-    var rows = this.getChildrenForTable(table, "tr");
-    var skipCells = [];
-    var headingIds = {
+    const rows = this.getChildrenForTable(table, "tr");
+    const skipCells = [];
+    const headingIds = {
       rows: {},
       cols: {},
     };
 
     // List of cells and headers. Each item should be a two-property object:
     // a "cell" object, and a normalised string of "headers".
-    var cells = [];
+    const cells = [];
 
     // Now determine the row and column headers for the table.
     // Go through once, first finding the th's to load up the header names,
     // then finding the td's to dump them off.
-    var targetNodeNames = ["TH", "TD"];
+    const targetNodeNames = ["TH", "TD"];
 
     // todo: remove array;
     for (var k = 0; k < targetNodeNames.length; k++) {
@@ -1168,13 +1168,12 @@ _global.HTMLCS.util = {
                 }
               } else if (nodeName === "TD") {
                 // Dump out the headers and cells.
-                var exp = [];
+                let exp = [];
                 for (var i = rownum; i < rownum + rowspan; i++) {
                   for (var j = colnum; j < colnum + colspan; j++) {
                     if (headingIds.rows[i] && j >= headingIds.rows[i].first) {
                       exp = exp.concat(headingIds.rows[i].ids);
                     }
-
                     if (headingIds.cols[j] && i >= headingIds.cols[j].first) {
                       exp = exp.concat(headingIds.cols[j].ids);
                     }
@@ -1183,21 +1182,17 @@ _global.HTMLCS.util = {
 
                 if (exp.length > 0) {
                   // Sort and filter expected ids by unique value.
-                  var filteredExp = exp.sort().filter(function (value, index) {
+                  const filteredExp = exp.sort().filter(function (value, index) {
                     return this.indexOf(value) === index;
                   });
 
-                  // @ts-ignore
-                  exp = ` ${filteredExp.join(" ")} `;
-
-                  exp = exp
+                  cells.push({
+                    cell: thisCell,
+                    headers: ` ${filteredExp.join(" ")} `
                     // @ts-ignore
                     .replace(/\s+/g, " ")
                     .replace(/(\w+\s)\1+/g, "$1")
-                    .replace(/^\s*(.*?)\s*$/g, "$1");
-                  cells.push({
-                    cell: thisCell,
-                    headers: exp,
+                    .replace(/^\s*(.*?)\s*$/g, "$1"),
                   });
                 }
               }

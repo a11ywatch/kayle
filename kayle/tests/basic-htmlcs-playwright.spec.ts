@@ -6,6 +6,7 @@ import { performance } from "perf_hooks";
 import { test, expect } from "@playwright/test";
 
 test("fast_htmlcs audit drakeMock", async ({ page, browser }, testInfo) => {
+  // page.on("console", (msg) => console.log("PAGE LOG:", msg.text()));
   const startTime = performance.now();
   const results = await kayle({
     page,

@@ -68,7 +68,7 @@ _global.HTMLCS_Section508_Sniffs_L = {
   },
 
   processLinks: function (top) {
-    var errors = {
+    const errors = {
       empty: [],
       emptyWithName: [],
       emptyNoId: [],
@@ -77,7 +77,7 @@ _global.HTMLCS_Section508_Sniffs_L = {
       noContent: [],
     };
 
-    var elements = HTMLCS.util.getAllElements(top, "a");
+    const elements = HTMLCS.util.getAllElements(top, "a");
 
     for (var el = 0; el < elements.length; el++) {
       var element = elements[el];

@@ -2,13 +2,10 @@ _global.HTMLCS = new (function () {
   const _standards = new Map();
   const _tags = new Map();
   const _duplicates = new Map();
+  const _messages = [];
 
   let _standard = "";
-  var _currentSniff = null;
-
-  var _messages = [];
-  // todo: use map
-  var _msgOverrides = {};
+  let _currentSniff = null;
   /*
    *  Message type constants.
    */
@@ -37,10 +34,9 @@ _global.HTMLCS = new (function () {
     if (!content) {
       return false;
     }
-    // Clear previous runs. todo: remove for clear opt
     _standards.size && _standards.clear();
     _tags.size && _tags.clear();
-
+    
     if (typeof _global.translation[language] !== "undefined") {
       this.lang = language;
     }
@@ -229,7 +225,7 @@ _global.HTMLCS = new (function () {
       _messages.push({
         type: type,
         element: element,
-        message: _msgOverrides[ccode] || msg,
+        message: msg,
         code: ccode,
         data: data,
         recurrence: 0,
@@ -260,9 +256,6 @@ _global.HTMLCS = new (function () {
    * @param {Function} [callback] The function to call once all tests are run.
    */
   const _run = (elements, topElement: Element, callback) => {
-    // todo: pre-allocate
-    let topMsgs = [];
-
     while (elements.length > 0) {
       const element = elements.shift();
       let tagName = "";
@@ -273,35 +266,15 @@ _global.HTMLCS = new (function () {
         tagName = element.tagName.toLowerCase();
       }
 
-      // First check whether any "top" messages need to be shifted off for this
-      // element. If so, dump off into the main messages.
-      for (let i = 0; i < topMsgs.length; ) {
-        if (element === topMsgs[i].element) {
-          _messages.push(topMsgs[i]);
-          // todo: remove splicing
-          topMsgs.splice(i, 1);
-        } else {
-          i++;
-        }
-      } //end for
-
       if (_tags.has(tagName)) {
         const tag = _tags.get(tagName);
 
         if (tag.length > 0) {
           // do not pass in callback
           _processSniffs(element, tag, topElement, undefined);
-
-          // Save "top" messages, and reset the messages array.
-          if (tagName === "_top") {
-            topMsgs = _messages;
-            _messages = [];
-          }
         }
       }
     }
-
-    _messages.push(...topMsgs);
 
     // Due to filtering of presentation roles for general sniffing these need to be handled
     // separately. The 1.3.1 sniff needs to run to detect any incorrect usage of the presentation
@@ -330,8 +303,10 @@ _global.HTMLCS = new (function () {
    * @param {Function} [callback] The function to call once the processing is completed.
    */
   const _processSniffs = (element, sniffs, topElement, callback) => {
+    // todo: look into remove array for direct assign
     while (sniffs.length > 0) {
-      var sniff = sniffs.shift();
+      const sniff = sniffs.shift();
+
       _currentSniff = sniff;
 
       if (sniff.useCallback === true) {
@@ -341,8 +316,7 @@ _global.HTMLCS = new (function () {
         // - Clear out the list of sniffs (so they aren't run again), so the
         //   callback (if not already recursed) can run afterwards.
         sniff.process(element, topElement, function () {
-          // @ts-ignore
-          _processSniffs(element, sniffs, topElement);
+          _processSniffs(element, sniffs, topElement, undefined);
           sniffs = [];
         });
       } else {
@@ -371,7 +345,7 @@ _global.HTMLCS = new (function () {
   ) => {
     if (standard.indexOf("http") !== 0) {
       standard = _getStandardPath(standard);
-    } //end id
+    }
 
     // See if the ruleset object is already included (eg. if minified).
     const parts = standard.split("/");
@@ -389,7 +363,7 @@ _global.HTMLCS = new (function () {
         },
         failCallback
       );
-    } //end if
+    }
   };
 
   /**
@@ -406,7 +380,7 @@ _global.HTMLCS = new (function () {
     const oldRuleSet = _global["HTMLCS_" + parts[parts.length - 2]];
     const ruleSet = {};
 
-    for (var x in oldRuleSet) {
+    for (const x in oldRuleSet) {
       if (typeof oldRuleSet[x] !== "undefined") {
         ruleSet[x] = oldRuleSet[x];
       }
@@ -425,6 +399,7 @@ _global.HTMLCS = new (function () {
         for (let i = 0; i < options.exclude.length; i++) {
           // @ts-ignore
           const index = ruleSet.sniffs.find(options.exclude[i]);
+
           if (index >= 0) {
             // @ts-ignore
             ruleSet.sniffs.splice(index, 1);
@@ -497,13 +472,6 @@ _global.HTMLCS = new (function () {
       _includeStandard(
         sniff.standard,
         function () {
-          if (sniff.messages) {
-            // Add message overrides.
-            for (const msg in sniff.messages) {
-              _msgOverrides[msg] = sniff.messages[msg];
-            }
-          }
-
           callback.call(this);
         },
         failCallback,

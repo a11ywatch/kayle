@@ -8,9 +8,6 @@ import { performance } from "perf_hooks";
   const browser = await puppeteer.launch({ headless: "new" });
   const page = await browser.newPage();
 
-  // uncomment to log values for debuging
-  // page.on("console", (msg) => console.log("PAGE LOG:", msg.text()));
-
   const startTime = performance.now();
   const { issues, pageUrl, documentTitle, meta, automateable } = await kayle({
     page,

@@ -90,7 +90,6 @@ _global.HTMLCS_Section508_Sniffs_A = {
       top,
       'img, area, input[type="image"]'
     )) {
-      var nodeName = element.nodeName;
       var linkOnlyChild = false;
       var missingAlt = false;
       var nullAlt = false;
@@ -125,7 +124,7 @@ _global.HTMLCS_Section508_Sniffs_A = {
       }
 
       // Now determine which test(s) should fire.
-      switch (nodeName) {
+      switch (element.nodeName) {
         case "IMG":
           if (
             linkOnlyChild === true &&
