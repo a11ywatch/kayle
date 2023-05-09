@@ -1,4 +1,5 @@
-const { execSync } = require('child_process');
+const {execSync}  = require('child_process')
+
 
 /*eslint
 camelcase: ["error", {"properties": "never"}]
@@ -107,22 +108,8 @@ module.exports = function (grunt) {
             src: ['core.js'],
             dest: 'tmp/core'
           }
-        ]
-      }
-    },
-    'metadata-function-map': {
-      core: {
-        files: [
-          {
-            expand: true,
-            src: [
-              'dist/checks/**/*-{evaluate,after}.js',
-              'dist/rules/**/*-matches.js'
-            ],
-            dest: 'dist/core/base/metadata-function-map.js'
-          }
-        ]
-      }
+        ],
+      },
     },
     'aria-supported': {
       data: {
@@ -273,7 +260,6 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:core',
     'validate',
-    'metadata-function-map',
     'esbuild',
     'configure',
     'babel',

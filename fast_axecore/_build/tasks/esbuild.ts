@@ -24,7 +24,7 @@ module.exports = function (grunt) {
             entryPoints: [entry],
             outfile: join(dest, name),
             minify: false,
-            bundle: true
+            bundle: true,
           })
             .then(done)
             .catch(done);
