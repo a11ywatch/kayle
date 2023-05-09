@@ -1,5 +1,4 @@
-const {execSync}  = require('child_process')
-
+const { execSync } = require('child_process');
 
 /*eslint
 camelcase: ["error", {"properties": "never"}]
@@ -108,8 +107,8 @@ module.exports = function (grunt) {
             src: ['core.js'],
             dest: 'tmp/core'
           }
-        ],
-      },
+        ]
+      }
     },
     'aria-supported': {
       data: {
@@ -152,11 +151,6 @@ module.exports = function (grunt) {
         },
         src: ['tmp/core/core.js'],
         dest: './locales/' + (grunt.option('lang') || 'new-locale') + '.json'
-      }
-    },
-    langs: {
-      generate: {
-        check: 'dist/commons/utils/valid-langs'
       }
     },
     validate: {

@@ -1,7 +1,7 @@
 {
   "name": "fast_axecore",
   "description": "Accessibility engine for automated Web UI testing",
-  "version": "4.6.15",
+  "version": "4.6.17",
   "license": "MPL-2.0",
   "engines": {
     "node": ">=4"
