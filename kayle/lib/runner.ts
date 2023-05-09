@@ -68,12 +68,11 @@
   const isElementNode = (element: Element) =>
     element.nodeType === window.Node.ELEMENT_NODE;
 
-  // get css selelector
+  // get css selelector todo: shortest path https://patents.google.com/patent/CN105094940A/en
   const getElementSelector = (element, selectorParts = []) => {
     if (isElementNode(element)) {
       selectorParts.unshift(buildElementIdentifier(element));
 
-      // recursive build selectors todo: maxticks
       if (!element.id && element.parentNode) {
         return getElementSelector(element.parentNode, selectorParts);
       }

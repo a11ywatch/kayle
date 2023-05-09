@@ -1,6 +1,6 @@
 {
   "name": "kayle",
-  "version": "0.3.67",
+  "version": "0.3.68",
   "description": "Extremely fast accessibility evaluation for nodejs",
   "main": "./build/index.js",
   "keywords": [
