@@ -1,7 +1,7 @@
 {
   "name": "fast_axecore",
   "description": "A high performance fork of axecore",
-  "version": "4.6.20",
+  "version": "4.6.21",
   "license": "MPL-2.0",
   "engines": {
     "node": ">=4"
@@ -70,7 +70,6 @@
     "clone": "^2.1.2",
     "css-selector-parser": "^1.4.1",
     "emoji-regex": "^10.2.1",
-    "es6-promise": "^4.2.8",
     "esbuild": "^0.17.18",
     "eslint": "^8.31.0",
     "eslint-config-prettier": "^8.6.0",
@@ -84,9 +83,6 @@
     "grunt-contrib-uglify": "^5.2.2",
     "grunt-contrib-watch": "^1.1.0",
     "html-entities": "1.x",
-    "jsdoc": "^3.6.11",
-    "jsdom": "^21.0.0",
-    "lint-staged": "^13.1.0",
     "make-dir": "^3.1.0",
     "markdown-table": "2.x",
     "memoizee": "^0.4.15",
@@ -99,14 +95,5 @@
     "standard-version": "^9.5.0",
     "typescript": "^5.0.4",
     "uglify-js": "^3.17.4"
-  },
-  "lint-staged": {
-    "*.{md,json,ts,html}": [
-      "prettier --write"
-    ],
-    "*.js": [
-      "eslint --fix",
-      "prettier --write"
-    ]
   }
 }

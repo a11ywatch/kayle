@@ -18,8 +18,8 @@ The rust module for crate is coming...
 
 ## Publishing
 
-1. `wasm-pack build --target web`
-1. `wasm-pack publish --target web`
+1. `wasm-pack build`
+1. `wasm-pack publish`
 
 ## Todo
 

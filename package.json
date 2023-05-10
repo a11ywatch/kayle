@@ -4,7 +4,8 @@
   "workspaces": [
     "kayle",
     "fast_htmlcs",
-    "fast_axecore"
+    "fast_axecore",
+    "kayle_innate/pkg"
   ],
   "scripts": {
     "build": "./build.sh true",

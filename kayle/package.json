@@ -43,7 +43,8 @@
   "license": "MIT",
   "dependencies": {
     "fast_axecore": "workspace:*",
-    "fast_htmlcs": "workspace:*"
+    "fast_htmlcs": "workspace:*",
+    "kayle_innate": "workspace:*"
   },
   "devDependencies": {
     "@playwright/test": "^1.32.3",

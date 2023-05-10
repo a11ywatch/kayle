@@ -26,8 +26,6 @@ if (
 if (typeof window.getComputedStyle === 'function') {
   window.axe = axe;
 }
-// local namespace for common functions
-var commons;
 
 function SupportError(error) {
   this.name = 'SupportError';
