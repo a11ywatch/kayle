@@ -23,7 +23,6 @@ const results = await kayle({
   runners: ["htmlcs", "axe"],
   includeWarnings: true,
   origin: "https://a11ywatch.com",
-  // html: ""
 });
 ```
 
@@ -42,7 +41,6 @@ const results = await kayle({
   runners: ["htmlcs", "axe"],
   includeWarnings: true,
   origin: "https://a11ywatch.com",
-  // html: ""
 });
 ```
 
@@ -61,6 +59,7 @@ const results = await autoKayle({
   runners: ["htmlcs", "axe"],
   includeWarnings: true,
   origin: "https://a11ywatch.com",
+  // store: `${process.cwd()}/_data/`, // _data folder must exist first
 });
 
 for (const result of results) {

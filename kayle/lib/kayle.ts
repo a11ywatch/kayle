@@ -4,6 +4,7 @@ import { RunnerConfig } from "./config";
 import { runnersJavascript, getRunner } from "./runner-js";
 import { goToPage, setNetworkInterception } from "./utils/go-to-page";
 import { Watcher } from "./watcher";
+import { writeFile } from "fs/promises";
 
 export type MetaInfo = {
   errorCount: number;
@@ -102,7 +103,7 @@ let extractLinks;
  * @returns {Promise} Returns a promise which resolves with array of results.
  */
 export async function autoKayle(
-  o: RunnerConf & { log?: boolean } = {},
+  o: RunnerConf & { log?: boolean; store?: string } = {},
   ignoreSet?: Set<String>,
   _results?: Audit[]
 ): Promise<Audit[]> {
@@ -125,12 +126,20 @@ export async function autoKayle(
 
   const links: string[] = await extractLinks(o);
 
+  // persist html file to disk
+  if (o.store) {
+    await writeFile(
+      `${o.store}/${encodeURIComponent(o.page.url())}`,
+      await o.page.content()
+    );
+  }
+
   await o.page.close();
 
   await Promise.all(
     links.map(async (link) => {
       if (ignoreSet.has(link)) {
-        return Promise.resolve();
+        return await Promise.resolve();
       }
 
       if (_log) {

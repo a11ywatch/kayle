@@ -7,3 +7,4 @@ test/integration/tmp
 build
 _tests
 ./test-results
+_data
