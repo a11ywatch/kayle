@@ -9,5 +9,5 @@ import type { RunnerConfig } from "../config";
 export async function extractLinks(config: RunnerConfig) {
   const htmlContent = await config.page.content();
 
-  return radiant_blast(htmlContent);
+  return radiant_blast(htmlContent, config.page.url());
 }

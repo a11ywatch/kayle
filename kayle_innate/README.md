@@ -1,6 +1,6 @@
-# kayle
+# kayle_innate
 
-The rust module for crate is coming...
+The rust lib for accessibility things.
 
 ## Building
 
