@@ -127,7 +127,28 @@ type RunnerConfig = {
 - [`fast_axecore`](./fast_htmlcs/README.md): run tests using fork of [axe-core](./lib/runners/axe.ts).
 - [`fast_htmlcs`](./fast_htmlcs/README.md): run tests using fork of [HTML CodeSniffer](./lib/runners/htmlcs.ts).
 
-The issues are sorted displaying the following order "issues", "warnings", and "notices". The sorting is done with an efficient algorithm leveraging the js engine with `setImmediate` instead of the standard `.sort` method for arrays.
+## API
+
+High performance extract all links for a web page using web assembly.
+
+```ts
+import { extractLinks } from "kayle";
+
+// pass in an active puppeteer page or use the page after `kayle` usage.
+const links = await extractLinks({ page, browser }); // list of links
+```
+
+## Linting
+
+Straight forward linting. You can pass a url or valid html.
+
+Linting is handled on the same machine not sandboxed. You also need to install `jsdom` before hand.
+
+```js
+import { kayleLint } from "kayle/lint";
+
+await kayleLint("https://a11ywatch.com");
+```
 
 ## i18n
 
@@ -147,29 +168,6 @@ the best aspects of testing without worrying about a `name`.
 1. pt_BR ("Portuguese Brazil")
 1. zh-CN ("Chinese-Simplified")
 1. zh-TW ("Chinese-Traditional")
-
-## Linting
-
-Straight forward linting. You can pass a url or valid html.
-
-Linting is handled on the same machine not sandboxed. You also need to install `jsdom` before hand.
-
-```js
-import { kayleLint } from "kayle/lint";
-
-await kayleLint("https://a11ywatch.com");
-```
-
-## Methods
-
-High performance extract all links for a web page using web assembly.
-
-```ts
-import { extractLinks } from "kayle";
-
-// pass in an active puppeteer page or use the page after `kayle` usage.
-const links = await extractLinks({ page, browser }); // list of links
-```
 
 ## Performance
 
