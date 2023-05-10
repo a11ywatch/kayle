@@ -36,6 +36,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3c6ed94e98ecff0c12dd1b04c15ec0d7d9458ca8fe806cea6f12954efe74c63b"
 
 [[package]]
+name = "case_insensitive_string"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "aca6800bfcd192a99bd5ec6893d49af169aabc61317640a46ed3ab54a62c4a3f"
+
+[[package]]
 name = "cfg-if"
 version = "0.1.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -124,6 +130,7 @@ dependencies = [
 name = "kayle_innate"
 version = "0.0.5"
 dependencies = [
+ "case_insensitive_string",
  "console_error_panic_hook",
  "lazy_static",
  "select",

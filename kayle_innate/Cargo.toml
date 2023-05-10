@@ -20,6 +20,7 @@ wee_alloc = { version = "0.4.5", optional = true }
 select = "0.6.0"
 url = "2.3.1"
 lazy_static = "1.4.0"
+case_insensitive_string = "0.1.0"
 
 [dev-dependencies]
 wasm-bindgen-test = "0.3.13"

@@ -1,6 +1,6 @@
 import assert from "assert";
 import puppeteer from "puppeteer";
-import { extractLinks } from "kayle";
+import { extractLinks } from "kayle/build/wasm";
 import { performance } from "perf_hooks";
 import { drakeMock } from "./mocks/html-mock";
 

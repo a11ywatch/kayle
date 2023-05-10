@@ -3,9 +3,8 @@
 #[macro_use]
 extern crate lazy_static;
 
-mod strings;
 mod utils;
-use crate::strings::CaseInsensitiveString;
+use case_insensitive_string::CaseInsensitiveString;
 use select::document::Document;
 use select::predicate::Name;
 use std::collections::HashSet;

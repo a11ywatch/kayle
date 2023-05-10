@@ -5,4 +5,3 @@ export {
   setNetworkInterception,
   networkBlock,
 } from "./utils/go-to-page";
-export { extractLinks } from "./wasm";

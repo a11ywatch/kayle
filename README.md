@@ -132,7 +132,7 @@ type RunnerConfig = {
 High performance extract all links for a web page using web assembly.
 
 ```ts
-import { extractLinks } from "kayle";
+import { extractLinks } from "kayle/build/wasm";
 
 // pass in an active puppeteer page or use the page after `kayle` usage.
 const links = await extractLinks({ page, browser }); // list of links
@@ -145,7 +145,7 @@ Straight forward linting. You can pass a url or valid html.
 Linting is handled on the same machine not sandboxed. You also need to install `jsdom` before hand.
 
 ```js
-import { kayleLint } from "kayle/lint";
+import { kayleLint } from "kayle/build/lint";
 
 await kayleLint("https://a11ywatch.com");
 ```
