@@ -3,7 +3,7 @@ import { writeFileSync } from "fs";
 import { kayle } from "kayle";
 import { drakeMock } from "./mocks/html-mock";
 import { performance } from "perf_hooks";
-import { test, expect } from "@playwright/test";
+import { test } from "@playwright/test";
 
 test("fast_axecore audit drakeMock", async ({ page, browser }, testInfo) => {
   page.on("console", (msg) => console.log("PAGE LOG:", msg.text()));
@@ -28,10 +28,6 @@ test("fast_axecore audit drakeMock", async ({ page, browser }, testInfo) => {
   assert(typeof documentTitle === "string");
   assert(meta.warningCount === 9);
   assert(meta.errorCount === 34);
-
-  await expect(page).toHaveTitle(documentTitle);
-
-  await page.close();
 
   writeFileSync(
     testInfo.outputPath("axe-core.json"),

@@ -56,6 +56,7 @@ export function setLogging(enabled?: boolean): void {
 /**
  * Run accessibility tests for page.
  * @param {Object} [config={}] config - Options to change the way tests run.
+ * @param {Boolean} [automa=false] automa - Automa running, enable to prevent page from closing.
  * @returns {Promise} Returns a promise which resolves with results.
  */
 export async function kayle(
@@ -122,33 +123,34 @@ export async function autoKayle(
     ignoreSet = new Set();
   }
 
-  const links = await extractLinks(o);
+  const links: string[] = await extractLinks(o);
 
   await o.page.close();
 
-  for (const link of links) {
-    if (ignoreSet.has(link)) {
-      continue;
-    }
+  await Promise.all(
+    links.map(async (link) => {
+      if (ignoreSet.has(link)) {
+        return Promise.resolve();
+      }
 
-    if (_log) {
-      console.log(`Running: ${link}`);
-    }
+      if (_log) {
+        console.log(`Running: ${link}`);
+      }
 
-    ignoreSet.add(link);
+      ignoreSet.add(link);
 
-    const page = await o.browser.newPage();
-    await autoKayle(
-      {
-        ...o,
-        page,
-        html: undefined,
-        origin: link,
-      },
-      ignoreSet,
-      _results
-    );
-  }
+      return await autoKayle(
+        {
+          ...o,
+          page: await o.browser.newPage(),
+          html: null,
+          origin: link,
+        },
+        ignoreSet,
+        _results
+      );
+    })
+  );
 
   return _results;
 }

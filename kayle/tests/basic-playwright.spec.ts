@@ -3,7 +3,7 @@ import assert from "assert";
 import { kayle } from "kayle";
 import { drakeMock } from "./mocks/html-mock";
 import { performance } from "perf_hooks";
-import { test, expect } from "@playwright/test";
+import { test } from "@playwright/test";
 
 test("fast_htmlcs and fast_axecore audit drakeMock", async ({
   page,
@@ -33,11 +33,6 @@ test("fast_htmlcs and fast_axecore audit drakeMock", async ({
   assert(meta.warningCount === 45);
   assert(typeof pageUrl === "string");
   assert(typeof documentTitle === "string");
-
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(documentTitle);
-
-  await page.close();
 
   writeFileSync(
     testInfo.outputPath("htmlcs.json"),

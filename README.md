@@ -64,10 +64,9 @@ const results = await autoKayle({
 });
 
 for (const result of results) {
-  console.log(result)
+  console.log(result);
 }
 ```
-
 
 ```js
 // sample of results for an audit.
@@ -237,12 +236,6 @@ can make a major difference to the project. The following will save drastic time
 1. Use a fast [crawler](https://github.com/a11ywatch/crawler) to gather all of the html to send to a web accessibility service that can perform audits like [pagemind](https://github.com/a11ywatch/pagemind) over CDP.
 
 2. Pre-compile the scripts to the browser so that you are not sending it over the wire per request and simply performing the audit as a side effect for navigating like a chrome extension.
-
-### Experimental
-
-Using the dom and javascript to perform the evals is a bit expensive. We need javascript usage from a real browser to accurate render the markup and display the things
-that need to be tested. Beyond the point of rendering we do not need javascript, which leads to using [wasm](https://webassembly.org/) to evaluate the markup could perform
-better especially for larger websites.
 
 ## About
 
