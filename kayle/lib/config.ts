@@ -65,6 +65,7 @@ type Page = {
   // todo: use httpclase
   goto(url: string, options?: WaitForOptions): Promise<any | null>;
   setContent(html: string, options?: WaitForOptions): Promise<void>;
+  close(): Promise<void>;
   browser(): Browser;
   target(): Target;
   // playwright

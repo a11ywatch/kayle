@@ -40,19 +40,35 @@ export type Audit = {
   pageUrl: string;
 };
 
+type RunnerConf = Partial<RunnerConfig & { html?: string }>;
+
+let _log = false;
+
+/**
+ * Enable or disable logging.
+ * @param {Object} [enabled] enabled - Enable console logging.
+ * @returns {void} Returns void.
+ */
+export function setLogging(enabled?: boolean): void {
+  _log = enabled;
+}
+
 /**
  * Run accessibility tests for page.
  * @param {Object} [config={}] config - Options to change the way tests run.
  * @returns {Promise} Returns a promise which resolves with results.
  */
 export async function kayle(
-  o: Partial<RunnerConfig & { html?: string }> = {}
+  o: RunnerConf = {},
+  automa?: boolean
 ): Promise<Audit> {
-  if (
+  const navigate =
     typeof o.page.url === "function" &&
     o.page.url() === "about:blank" &&
-    (o.origin || o.html)
-  ) {
+    (o.origin || o.html);
+
+  // navigate to a clean page
+  if (navigate) {
     await goToPage(
       { page: o.page, html: o.html, timeout: o.timeout },
       o.origin
@@ -72,7 +88,69 @@ export async function kayle(
 
   clearTimeout(watcher.timer);
 
+  !automa && navigate && (await o.page.close());
+
   return results;
+}
+
+let extractLinks;
+
+/**
+ * Run accessibility tests for page auto running until all pages complete.
+ * @param {Object} [config={}] config - Options to change the way tests run.
+ * @returns {Promise} Returns a promise which resolves with array of results.
+ */
+export async function autoKayle(
+  o: RunnerConf & { log?: boolean } = {},
+  ignoreSet?: Set<String>,
+  _results?: Audit[]
+): Promise<Audit[]> {
+  // pre init list
+  if (!_results) {
+    _results = [];
+  }
+
+  const result = await kayle(o, true);
+  _results.push(result);
+
+  // auto run links until finished.
+  if (!extractLinks) {
+    extractLinks = (await import("./wasm/extract")).extractLinks;
+  }
+
+  if (!ignoreSet) {
+    ignoreSet = new Set();
+  }
+
+  const links = await extractLinks(o);
+
+  await o.page.close();
+
+  for (const link of links) {
+    if (ignoreSet.has(link)) {
+      continue;
+    }
+
+    if (_log) {
+      console.log(`Running: ${link}`);
+    }
+
+    ignoreSet.add(link);
+
+    const page = await o.browser.newPage();
+    await autoKayle(
+      {
+        ...o,
+        page,
+        html: undefined,
+        origin: link,
+      },
+      ignoreSet,
+      _results
+    );
+  }
+
+  return _results;
 }
 
 // run accessibility audit
@@ -102,7 +180,7 @@ async function injectRunners(config: RunnerConfig) {
 }
 
 // perform audit
-async function audit(config: RunnerConfig) {
+async function audit(config: RunnerConfig): Promise<Audit> {
   return await config.page.evaluate(
     (runOptions) => {
       // set top level app origin replicate

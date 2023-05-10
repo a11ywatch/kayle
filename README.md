@@ -46,6 +46,29 @@ const results = await kayle({
 });
 ```
 
+If you need to run a full site-wide crawl import `autoKayle`.
+
+```ts
+import { autoKayle } from "kayle";
+import { launch } from "puppeteer";
+
+const browser = await launch({ headless: "new" });
+const page = await browser.newPage();
+
+const results = await autoKayle({
+  page,
+  browser,
+  runners: ["htmlcs", "axe"],
+  includeWarnings: true,
+  origin: "https://a11ywatch.com",
+});
+
+for (const result of results) {
+  console.log(result)
+}
+```
+
+
 ```js
 // sample of results for an audit.
 const results = {
