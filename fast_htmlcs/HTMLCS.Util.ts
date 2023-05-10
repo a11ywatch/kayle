@@ -1182,17 +1182,19 @@ _global.HTMLCS.util = {
 
                 if (exp.length > 0) {
                   // Sort and filter expected ids by unique value.
-                  const filteredExp = exp.sort().filter(function (value, index) {
-                    return this.indexOf(value) === index;
-                  });
+                  const filteredExp = exp
+                    .sort()
+                    .filter(function (value, index) {
+                      return this.indexOf(value) === index;
+                    });
 
                   cells.push({
                     cell: thisCell,
                     headers: ` ${filteredExp.join(" ")} `
-                    // @ts-ignore
-                    .replace(/\s+/g, " ")
-                    .replace(/(\w+\s)\1+/g, "$1")
-                    .replace(/^\s*(.*?)\s*$/g, "$1"),
+                      // @ts-ignore
+                      .replace(/\s+/g, " ")
+                      .replace(/(\w+\s)\1+/g, "$1")
+                      .replace(/^\s*(.*?)\s*$/g, "$1"),
                   });
                 }
               }

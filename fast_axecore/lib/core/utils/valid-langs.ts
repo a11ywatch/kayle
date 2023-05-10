@@ -10,8 +10,7 @@ function isValidLang(lang) {
     return !!Intl.Collator.supportedLocalesOf(lang, {
       localeMatcher: 'lookup'
     }).length;
-  } catch (_) {
-  }
+  } catch (_) {}
 }
 
 export default isValidLang;

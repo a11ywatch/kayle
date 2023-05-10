@@ -1,20 +1,19 @@
 # fast_axecore
 
-[![License](https://img.shields.io/npm/l/axe-core.svg)](LICENSE)
-[![Version](https://img.shields.io/npm/v/axe-core.svg)](https://www.npmjs.com/package/axe-core)
-[![Total npm downloads](https://img.shields.io/npm/dt/axe-core.svg)](https://www.npmjs.com/package/axe-core)
-[![Commits](https://img.shields.io/github/commit-activity/y/dequelabs/axe-core.svg)](https://github.com/dequelabs/axe-core/commits/develop)
-[![GitHub contributors](https://img.shields.io/github/contributors/dequelabs/axe-core.svg)](https://github.com/dequelabs/axe-core/graphs/contributors)
-[![Join our Slack chat](https://img.shields.io/badge/slack-chat-purple.svg?logo=slack)](https://accessibility.deque.com/axe-community)
-[![Package Quality](https://npm.packagequality.com/shield/axe-core.svg)](https://packagequality.com/#?package=axe-core)
+[![License](https://img.shields.io/npm/l/fast_axecore.svg)](LICENSE)
+[![Version](https://img.shields.io/npm/v/fast_axecore.svg)](https://www.npmjs.com/package/fast_axecore)
+[![Total npm downloads](https://img.shields.io/npm/dt/axe-core.svg)](https://www.npmjs.com/package/fast_axecore)
+[![Commits](https://img.shields.io/github/commit-activity/y/a11ywatch/kayle.svg)](https://github.com/a11ywatch/kayle/commits/main)
+[![GitHub contributors](https://img.shields.io/github/contributors/a11ywatch/kayle.svg)](https://github.com/a11ywatch/kayle/graphs/contributors)
+[![Package Quality](https://npm.packagequality.com/shield/fast_axecore.svg)](https://packagequality.com/#?package=fast_axecore)
 
-Axe is an accessibility testing engine for websites and other HTML-based user interfaces. It's fast, secure, lightweight, and was built to seamlessly integrate with any existing test environment so you can automate accessibility testing alongside your regular functional testing.
+Fast_axecore is a high performance fork of axe-core with major bug fixes and performance improvements.
 
 ## The Accessibility Rules
 
-Axe-core has different types of rules, for WCAG 2.0 and 2.1 on level A and AA, as well as a number of best practices that help you identify common accessibility practices like ensuring every page has an `h1` heading, and to help you avoid "gotchas" in ARIA like where an ARIA attribute you used will get ignored.
+Fast_axecore has different types of rules, for WCAG 2.0 and 2.1 on level A and AA, as well as a number of best practices that help you identify common accessibility practices like ensuring every page has an `h1` heading, and to help you avoid "gotchas" in ARIA like where an ARIA attribute you used will get ignored.
 
-With axe-core, you can find **on average 57% of WCAG issues automatically**. Additionally, axe-core will return elements as "incomplete" where axe-core could not be certain, and manual review is needed.
+With fast_axecore, you can find **on average 57% of WCAG issues automatically**. Additionally, fast_axecore will return elements as "incomplete" where fast_axecore could not be certain, and manual review is needed.
 
 To catch bugs earlier in the development cycle we recommend using the [axe-linter vscode extension](https://marketplace.visualstudio.com/items?itemName=deque-systems.vscode-axe-linter). To improve test coverage even further we recommend the [intelligent guided tests](https://www.youtube.com/watch?v=AtsX0dPCG_4&feature=youtu.be&ab_channel=DequeSystems) in the [axe Extension](https://www.deque.com/axe/browser-extensions/).
 

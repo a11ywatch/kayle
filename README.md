@@ -124,8 +124,8 @@ type RunnerConfig = {
 `kayle` supports multiple test runners which return different results. The built-in test runners are:
 
 - [`kayle`](./kayle/README.md) core.
-- [`fast_axecore`](./fast_htmlcs/README.md): run tests using [axe-core](./lib/runners/axe.ts).
-- [`fast_htmlcs`](./fast_htmlcs/README.md): run tests using [HTML CodeSniffer](./lib/runners/htmlcs.ts)
+- [`fast_axecore`](./fast_htmlcs/README.md): run tests using fork of [axe-core](./lib/runners/axe.ts).
+- [`fast_htmlcs`](./fast_htmlcs/README.md): run tests using fork of [HTML CodeSniffer](./lib/runners/htmlcs.ts).
 
 The issues are sorted displaying the following order "issues", "warnings", and "notices". The sorting is done with an efficient algorithm leveraging the js engine with `setImmediate` instead of the standard `.sort` method for arrays.
 
@@ -176,8 +176,8 @@ Checkout the [playwright-example](./kayle/tests/basic-playwright.spec.ts) or [pu
 
 ## Benchmarks
 
-1. `fast_htmlcs` runs over 110 times base faster than htmlcs or HTML codesniffer.
-1. `fast_axecore` runs over 30%-100%+ base faster than the original axe by default and scales the larger the website.
+1. `fast_htmlcs` runs up to 110 times base faster than htmlcs or HTML codesniffer.
+1. `fast_axecore` runs up to 60%-100%+ base faster than the original axe by default and scales the larger the website.
 
 Currently `fast_htmlcs` runs around 50x faster than axe-core and has several differences of handling the way issues are found. They both capture different cases and is best to used together which this library handles efficiently. We use [swc](https://swc.rs/) to minify the scripts for small bundle sizes under 142kb for HTMLCS compared to the original being 365kb.
 

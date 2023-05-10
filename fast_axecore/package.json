@@ -1,7 +1,7 @@
 {
   "name": "fast_axecore",
-  "description": "Accessibility engine for automated Web UI testing",
-  "version": "4.6.17",
+  "description": "A high performance fork of axecore",
+  "version": "4.6.20",
   "license": "MPL-2.0",
   "engines": {
     "node": ">=4"
@@ -9,37 +9,11 @@
   "contributors": [
     {
       "name": "Jeff Mendez",
-      "organization": "A11yWatch.",
+      "organization": "A11yWatch",
       "url": "https://a11ywatch.com"
-    },
-    {
-      "name": "David Sturley",
-      "organization": "Deque Systems, Inc.",
-      "url": "http://deque.com/"
-    },
-    {
-      "name": "Dylan Barrell",
-      "email": "dylan@barrell.com",
-      "organization": "Deque Systems, Inc.",
-      "url": "http://deque.com/"
-    },
-    {
-      "name": "Wilco Fiers",
-      "organization": "Deque Systems, Inc.",
-      "url": "http://deque.com/"
-    },
-    {
-      "name": "Dian Fay",
-      "organization": "Deque Systems, Inc.",
-      "url": "http://deque.com/"
-    },
-    {
-      "name": "Marcy Sutton",
-      "organization": "Deque Systems, Inc.",
-      "url": "http://deque.com/"
     }
   ],
-  "homepage": "https://www.deque.com/axe/",
+  "homepage": "https://a11ywatch.com/open-source#kayle",
   "repository": {
     "type": "git",
     "url": "https://github.com/a11ywatch/kayle/fast_axecore.git"
@@ -110,7 +84,6 @@
     "grunt-contrib-uglify": "^5.2.2",
     "grunt-contrib-watch": "^1.1.0",
     "html-entities": "1.x",
-    "husky": "^8.0.3",
     "jsdoc": "^3.6.11",
     "jsdom": "^21.0.0",
     "lint-staged": "^13.1.0",

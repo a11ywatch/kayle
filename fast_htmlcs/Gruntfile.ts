@@ -32,6 +32,8 @@ module.exports = function (grunt) {
     };
   });
 
+  grunt.loadNpmTasks("grunt-bytesize");
+
   grunt.initConfig({
     pkg: grunt.file.readJSON("./package.json"),
     eslint: {
@@ -71,6 +73,14 @@ module.exports = function (grunt) {
         ],
       },
     },
+    bytesize: {
+      all: {
+        src: langs.map(function (lang) {
+          // todo: fix js/min file
+          return ["./build/HTMLCS" + lang + ".js"];
+        }),
+      },
+    },
   });
 
   grunt.file.setBase("./");
@@ -78,6 +88,6 @@ module.exports = function (grunt) {
   require("load-grunt-tasks")(grunt);
 
   grunt.registerTask("default", ["eslint"]);
-  grunt.registerTask("build", ["uglify:dist", "copy:dist"]);
-  grunt.registerTask("build-debug", ["uglify:debug", "copy:dist"]);
+  grunt.registerTask("build", ["uglify:dist", "copy:dist", "bytesize"]);
+  grunt.registerTask("build-debug", ["uglify:debug", "copy:dist", "bytesize"]);
 };
