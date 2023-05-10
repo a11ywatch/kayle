@@ -23,7 +23,7 @@ pub fn kayle() {
 }
 
 #[wasm_bindgen]
-/// setup a structure tree alg for parsing and find links in docuement. Allow user to perform hybrid audits realtime.
+/// setup a structure tree alg for parsing and find links in document. Allow user to perform hybrid audits realtime.
 pub fn radiant_blast(res: &str) -> Box<[JsValue]> {
     set_panic_hook();
     let links = Document::from(res)

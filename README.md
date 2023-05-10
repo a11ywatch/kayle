@@ -160,6 +160,17 @@ import { kayleLint } from "kayle/lint";
 await kayleLint("https://a11ywatch.com");
 ```
 
+## Methods
+
+High performance extract all links for a web page using web assembly.
+
+```ts
+import { extractLinks } from "kayle";
+
+// pass in an active puppeteer page or use the page after `kayle` usage.
+const links = await extractLinks({ page, browser }); // list of links
+```
+
 ## Performance
 
 This project is the fastest web accessibility runner OSS. The `htmlcs` and `axe-core` handling of the runners runs faster due to bug fixes and improved optimizations. This library optimizes the scripts to take advtage of v8 and pre-compiles locales in separate scripts for blazing fast speeds.

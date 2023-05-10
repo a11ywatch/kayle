@@ -25,9 +25,15 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+      - uses: jetli/wasm-pack-action@v0.4.0
+        with:
+          version: 'latest'
 
       - name: Install yarn
         run: corepack enable && corepack prepare yarn@stable --activate
+
+      - name: Wasm pack build modules
+        run: cd kayle_innate && wasm-pack build --target nodejs
 
       - name: Install and build locales
         run: yarn --no-immutable && yarn build
@@ -37,3 +43,6 @@ jobs:
 
       - name: Run Puppeteer kayle.js
         run: cd ./kayle && yarn test:puppeteer && yarn test:puppeteer:axe
+
+      - name: Run Puppeteer [wasm] links handle
+        run: cd ./kayle && yarn test:puppeteer:wasm

@@ -82,12 +82,14 @@ async function auditPage(config: RunnerConfig) {
   return await audit(config);
 }
 
+// run actions
 async function runActionsList(config: RunnerConfig) {
   for (const action of config.actions) {
     await runAction(config.browser, config.page, config, action);
   }
 }
 
+// inject runners
 async function injectRunners(config: RunnerConfig) {
   // load axe first to avoid conflictions axe indexed as first item in array when multiple items exist
   return await Promise.all([
@@ -99,6 +101,7 @@ async function injectRunners(config: RunnerConfig) {
   ]);
 }
 
+// perform audit
 async function audit(config: RunnerConfig) {
   return await config.page.evaluate(
     (runOptions) => {

@@ -1,6 +1,6 @@
 {
   "name": "kayle",
-  "version": "0.3.72",
+  "version": "0.4.2",
   "description": "Extremely fast accessibility evaluation for nodejs",
   "main": "./build/index.js",
   "keywords": [
@@ -31,6 +31,7 @@
     "test:puppeteer:htmlcs": "npm run compile:test && node _tests/tests/basic-htmlcs.js",
     "test:playwright": "npm run compile:test && npx playwright test ./tests/basic-playwright.spec.ts",
     "test:playwright:axe": "npm run compile:test && npx playwright test ./tests/basic-axe-playwright.spec.ts",
+    "test:puppeteer:wasm": "npm run compile:test && node _tests/tests/wasm.js",
     "test:lint": "node build/lint.js",
     "publish": "yarn prepare && yarn npm publish"
   },

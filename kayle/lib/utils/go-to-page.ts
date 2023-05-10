@@ -121,12 +121,12 @@ const setHtmlIntercept = async ({
         body: html,
       };
       if (request.respond) {
-        await request.respond(data);
+        return await request.respond(data);
       } else {
-        await request.fulfill(data);
+        return await request.fulfill(data);
       }
     } else {
-      await networkBlock(request, res);
+      return await networkBlock(request, res);
     }
   };
 
