@@ -1,9 +1,9 @@
 import {
   getUnicodeNonBmpRegExp,
   getSupplementaryPrivateUseRegExp,
-  getPunctuationRegExp
+  getPunctuationRegExp,
+  emojiRegexText
 } from './unicode.js';
-import emojiRegexText from 'emoji-regex';
 
 /**
  * Remove specified type(s) unicode characters
@@ -22,7 +22,7 @@ function removeUnicode(str, options) {
   const { emoji, nonBmp, punctuations } = options;
 
   if (emoji) {
-    str = str.replace(emojiRegexText(), '');
+    str = str.replace(emojiRegexText, '');
   }
   if (nonBmp) {
     str = str.replace(getUnicodeNonBmpRegExp(), '');

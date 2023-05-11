@@ -10,7 +10,6 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-bytesize');
   grunt.loadTasks('build/tasks');
 
@@ -31,12 +30,7 @@ module.exports = function (grunt) {
     langs = [''];
   }
 
-  // run tests only for affected files instead of all tests
-  grunt.event.on('watch', function (action, filepath) {
-    grunt.config.set('watch.file', filepath);
-  });
-
-  process.env.NODE_NO_HTTP2 = "1"; // to hide node warning - (node:18740) ExperimentalWarning: The http2 module is an experimental API.
+  process.env.NODE_NO_HTTP2 = '1'; // to hide node warning - (node:18740) ExperimentalWarning: The http2 module is an experimental API.
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -109,16 +103,6 @@ module.exports = function (grunt) {
         ]
       }
     },
-    'aria-supported': {
-      data: {
-        entry: 'dist/commons/aria/index.js',
-        destFile: 'doc/aria-supported.md',
-        options: {
-          langs
-        },
-        listType: 'unsupported' // Possible values for listType: 'supported', 'unsupported', 'all'
-      }
-    },
     configure: {
       rules: {
         tmp: 'tmp/rules.js',
@@ -134,22 +118,6 @@ module.exports = function (grunt) {
             }
           };
         })
-      }
-    },
-    'add-locale': {
-      template: {
-        options: {
-          lang: 'xyz'
-        },
-        src: ['tmp/core/core.js'],
-        dest: './locales/_template.json'
-      },
-      newLang: {
-        options: {
-          lang: grunt.option('lang')
-        },
-        src: ['tmp/core/core.js'],
-        dest: './locales/' + (grunt.option('lang') || 'new-locale') + '.json'
       }
     },
     validate: {
@@ -211,26 +179,6 @@ module.exports = function (grunt) {
         testFile: '<%= watch.file %>'
       }
     },
-    watch: {
-      axe: {
-        options: { spawn: false },
-        files: ['dist/**/*', 'Gruntfile.js'],
-        tasks: ['build', 'prettier', 'notify', 'test']
-      },
-      tests: {
-        options: { spawn: false },
-        files: ['test/**/*'],
-        tasks: ['test']
-      }
-    },
-    notify: {
-      data: {
-        title: 'Axe-core',
-        message: 'Build complete',
-        sound: 'Pop',
-        timeout: 2
-      }
-    },
     bytesize: {
       all: {
         src: langs.map(function (lang) {
@@ -245,11 +193,7 @@ module.exports = function (grunt) {
     grunt.log.writeln(results);
   });
 
-  grunt.registerTask('translate', [
-    'validate',
-    'esbuild',
-    'add-locale:newLang'
-  ]);
+  grunt.registerTask('translate', ['validate', 'esbuild']);
   grunt.registerTask('build', [
     'clean:core',
     'validate',
@@ -258,11 +202,8 @@ module.exports = function (grunt) {
     'babel',
     'concat:engine',
     'uglify',
-    'aria-supported',
-    'add-locale:template',
     'prettier',
     'bytesize'
   ]);
   grunt.registerTask('default', ['build']);
-  grunt.registerTask('dev', ['watch']);
 };

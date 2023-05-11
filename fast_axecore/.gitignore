@@ -7,7 +7,7 @@ doc/examples/*/package-lock.json
 
 # tmp - `dev` time generated assets
 tmp
-
+_tests
 # test - runner generated assets
 test/*/index.html
 test/integration/*/index.html

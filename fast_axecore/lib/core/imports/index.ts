@@ -1,6 +1,5 @@
 import { CssSelectorParser } from 'css-selector-parser';
 import doT from '@deque/dot';
-import emojiRegexText from 'emoji-regex';
 import memoize from 'memoizee';
 
 // prevent striping newline characters from strings (e.g. failure
@@ -29,4 +28,4 @@ if (window.Uint32Array) {
  * @namespace imports
  * @memberof axe
  */
-export { CssSelectorParser, doT, emojiRegexText, memoize };
+export { CssSelectorParser, doT, memoize };

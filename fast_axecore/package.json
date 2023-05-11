@@ -1,7 +1,7 @@
 {
   "name": "fast_axecore",
-  "description": "A high performance fork of axecore",
-  "version": "4.6.21",
+  "description": "A light high performance fork of axecore",
+  "version": "4.6.22",
   "license": "MPL-2.0",
   "engines": {
     "node": ">=4"
@@ -44,6 +44,7 @@
   },
   "scripts": {
     "compile:build": "rm -f -r build && rm -f -r tmp && tsc --project tsconfig.build.json && yarn cp:build",
+    "compile:axe:test": "tsc && tsc --project tsconfig.test.json",
     "cp:build": "echo 'building fast_axecore'",
     "tsc": "yarn compile:build && tsc && cp ./lib/intro.stub dist && cp ./lib/outro.stub dist",
     "develop": "grunt dev --force",
@@ -69,7 +70,6 @@
     "chalk": "^4.x",
     "clone": "^2.1.2",
     "css-selector-parser": "^1.4.1",
-    "emoji-regex": "^10.2.1",
     "esbuild": "^0.17.18",
     "eslint": "^8.31.0",
     "eslint-config-prettier": "^8.6.0",

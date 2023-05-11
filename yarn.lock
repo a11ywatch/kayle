@@ -3407,13 +3407,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"emoji-regex@npm:^10.2.1":
-  version: 10.2.1
-  resolution: "emoji-regex@npm:10.2.1"
-  checksum: 1aa2d16881c56531fdfc03d0b36f5c2b6221cc4097499a5665b88b711dc3fb4d5b8804f0ca6f00c56e5dcf89bac75f0487eee85da1da77df3a33accc6ecbe426
-  languageName: node
-  linkType: hard
-
 "emoji-regex@npm:^7.0.1":
   version: 7.0.3
   resolution: "emoji-regex@npm:7.0.3"
@@ -4066,7 +4059,6 @@ __metadata:
     chalk: ^4.x
     clone: ^2.1.2
     css-selector-parser: ^1.4.1
-    emoji-regex: ^10.2.1
     esbuild: ^0.17.18
     eslint: ^8.31.0
     eslint-config-prettier: ^8.6.0

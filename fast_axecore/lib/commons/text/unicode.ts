@@ -83,3 +83,6 @@ export function getSupplementaryPrivateUseRegExp() {
   //      ┏━━━━━━┻━━━━━━┓┏━━━━━━┻━━━━━━┓
   return /[\uDB80-\uDBBF][\uDC00-\uDFFF]/g;
 }
+
+// emoji regex
+export const emojiRegexText = /\p{Emoji}/gu;

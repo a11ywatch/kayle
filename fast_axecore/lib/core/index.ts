@@ -1,7 +1,4 @@
 /*exported axe, commons */
-/*global axeFunction, module, define */
-// exported namespace for axe
-/*eslint no-use-before-define: 0, no-unused-vars: 0*/
 var axe = axe || {};
 axe.version = '<%= pkg.version %>';
 
@@ -10,6 +7,7 @@ if (typeof define === 'function' && define.amd) {
   // @ts-ignore Explicitly naming the module to avoid mismatched anonymous define() modules when injected in a page
   define('axe-core', [], () => axe);
 }
+
 if (
   typeof module === 'object' &&
   module.exports &&
@@ -23,6 +21,7 @@ if (
     ')(typeof window === "object" ? window : this);';
   module.exports = axe;
 }
+
 if (typeof window.getComputedStyle === 'function') {
   window.axe = axe;
 }
