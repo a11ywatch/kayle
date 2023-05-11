@@ -32,6 +32,7 @@ module.exports = function (grunt) {
             result.descriptions,
             file.dest.descriptions
           );
+
           grunt.file.write(file.dest.descriptions, descriptionsContent);
           done();
         });

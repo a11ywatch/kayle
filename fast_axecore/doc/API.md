@@ -19,7 +19,6 @@
       1. [Error result](#error-result)
       1. [Results Object](#results-object)
    1. [API Name: axe.registerPlugin](#api-name-axeregisterplugin)
-   1. [API Name: axe.cleanup](#api-name-axecleanup)
    1. [API Name: axe.setup](#api-name-axesetup)
    1. [API Name: axe.teardown](#api-name-axeteardown)
    1. [API Name: axe.frameMessenger](#api-name-axeframemessenger)
@@ -789,16 +788,6 @@ As you can see the `target` array contains one item that is an array. This array
 
 Register a plugin with the axe plugin system. See [implementing a plugin](plugins.md) for more information on the plugin system
 
-### API Name: axe.cleanup
-
-Call each plugin's cleanup function. See [implementing a plugin](plugins.md).
-
-The signature is:
-
-```js
-axe.cleanup(resolve, reject);
-```
-
 `resolve` and `reject` are functions that will be invoked on success or failure respectively.
 
 `resolve` takes no arguments and `reject` takes a single argument that must be a string or have a toString() method in its prototype.
@@ -814,16 +803,6 @@ axe.setup(DomNode);
 ```
 
 `DomNode` - is an optional DOM node to use as the root of the `VirtualNode` tree. Default is `document.documentElement`.
-
-### API Name: axe.teardown
-
-Cleanup the `VirtualNode` tree and internal caches. `axe.run` will call this function at the end of the run so there's no need to call it yourself afterwards.
-
-The signature is:
-
-```js
-axe.teardown();
-```
 
 ### API Name: axe.frameMessenger
 

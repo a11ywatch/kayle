@@ -8,7 +8,6 @@ import cache from './base/cache';
 
 import * as imports from './imports';
 
-import cleanup from './public/cleanup';
 import configure from './public/configure';
 import frameMessenger from './public/frame-messenger';
 import getRules from './public/get-rules';
@@ -19,10 +18,8 @@ import reset from './public/reset';
 import runRules from './public/run-rules';
 import runVirtualRule from './public/run-virtual-rule';
 import run from './public/run';
-import runPartial from './public/run-partial';
 import finishRun from './public/finish-run';
 import setup from './public/setup';
-import teardown from './public/teardown';
 
 import noPassesReporter from './reporters/no-passes';
 import rawEnvReporter from './reporters/raw-env';
@@ -46,7 +43,6 @@ axe.SerialVirtualNode = SerialVirtualNode;
 axe.VirtualNode = VirtualNode;
 axe._cache = cache;
 axe.imports = imports;
-axe.cleanup = cleanup;
 axe.configure = configure;
 axe.frameMessenger = frameMessenger;
 axe.getRules = getRules;
@@ -61,8 +57,6 @@ axe._runRules = runRules;
 axe.runVirtualRule = runVirtualRule;
 axe.run = run;
 axe.setup = setup;
-axe.teardown = teardown;
-axe.runPartial = runPartial;
 axe.finishRun = finishRun;
 axe.commons = commons;
 axe.utils = utils;

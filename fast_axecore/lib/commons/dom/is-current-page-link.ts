@@ -12,7 +12,8 @@ const angularRouterLinkRegex = /^#[!/]/;
  * @return {Boolean|null}
  */
 export default function isCurrentPageLink(anchor) {
-  const href = anchor.getAttribute('href');
+  const href: string = anchor.getAttribute('href');
+
   if (!href || href === '#') {
     return false;
   }
@@ -22,11 +23,12 @@ export default function isCurrentPageLink(anchor) {
   }
 
   const { hash, protocol, hostname, port, pathname } = anchor;
+
   if (angularRouterLinkRegex.test(hash)) {
     return false;
   }
 
-  if (href.charAt(0) === '#') {
+  if (href[0] === '#') {
     return true;
   }
 
@@ -46,7 +48,8 @@ export default function isCurrentPageLink(anchor) {
   // it ourselves
   // also ie11 has empty protocol, hostname, and port when the
   // link is relative, so use window.location.origin in these cases
-  let url;
+  let url: string  = "";
+
   if (!hostname) {
     url = window.location.origin;
   } else {

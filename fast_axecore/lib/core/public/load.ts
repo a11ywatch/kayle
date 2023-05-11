@@ -1,23 +1,23 @@
 import Audit from '../base/audit';
-import cleanup from './cleanup';
 import runRules from './run-rules';
 import respondable from '../utils/respondable';
 
 function runCommand(data, _keepalive, callback) {
-  var resolve = callback;
-
-  var reject = function reject(err) {
+  const resolve = callback;
+  const reject = function reject(err) {
     if (err instanceof Error === false) {
       err = new Error(err);
     }
     callback(err);
   };
 
-  var context = (data && data.context) || {};
+  const context = (data && data.context) || {};
+
   if (context.hasOwnProperty('include') && !context.include.length) {
     context.include = [document];
   }
-  var options = (data && data.options) || {};
+
+  const options = (data && data.options) || {};
 
   switch (data.command) {
     case 'rules':
@@ -27,12 +27,10 @@ function runCommand(data, _keepalive, callback) {
         (results, cleanup) => {
           resolve(results);
           // Cleanup AFTER resolve so that selectors can be generated
-          cleanup();
+          cleanup && cleanup();
         },
         reject
       );
-    case 'cleanup-plugin':
-      return cleanup(resolve, reject);
     default:
       // go through the registered commands
       if (

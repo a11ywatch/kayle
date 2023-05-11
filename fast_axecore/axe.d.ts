@@ -388,17 +388,6 @@ export declare namespace axe {
   function configure(spec: Spec): void;
 
   /**
-   * Run axe in the current window only
-   * @param   {ElementContext} context  Optional The `Context` specification object @see Context
-   * @param   {RunOptions}     options  Optional Options passed into rules or checks, temporarily modifying them.
-   * @returns {Promise<PartialResult>}  Partial result, for use in axe.finishRun.
-   */
-  function runPartial(
-    context: ElementContext,
-    options: RunOptions
-  ): Promise<PartialResult>;
-
-  /**
    * Create a report from axe.runPartial results
    * @param   {PartialResult[]}     partialResults  Results from axe.runPartial, calls in different frames on the page.
    * @param   {RunOptions}     options  Optional Options passed into rules or checks, temporarily modifying them.
