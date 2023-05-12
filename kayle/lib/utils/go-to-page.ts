@@ -102,6 +102,9 @@ export const setNetworkInterception = async (page): Promise<boolean> => {
   }
 };
 
+// playwright detect if all route
+const isAllRoute = (route) => route.url === "**/*";
+
 // set RAW HTML CONTENT
 const setHtmlIntercept = async ({
   page,
@@ -133,8 +136,7 @@ const setHtmlIntercept = async ({
       if (
         !page._route ||
         (page._route &&
-          (!page._routes.length ||
-            !page._routes.some((route) => route.url === "**/*")))
+          (!page._routes.length || !page._routes.some(isAllRoute)))
       ) {
         await page.route("**/*", blockNetwork);
       }
@@ -167,7 +169,8 @@ export const goToPage = async (
 
   return new Promise(async (resolve) => {
     try {
-      const res = await page.goto(url, {
+      // open blank page fallback for proxy intercept
+      const res = await page.goto(url ?? "http://localhost", {
         timeout: timeout || 0,
         waitUntil: "domcontentloaded",
       });

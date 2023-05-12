@@ -9,7 +9,7 @@ import { performance } from "perf_hooks";
   const page = await browser.newPage();
 
   const startTime = performance.now();
-  const { issues, pageUrl, documentTitle, meta, automateable } = await kayle({
+  const { issues, meta, automateable } = await kayle({
     page,
     browser,
     runners: ["htmlcs"],
@@ -22,9 +22,8 @@ import { performance } from "perf_hooks";
   console.log("time took", nextTime);
   console.log(issues);
 
-  assert(Array.isArray(issues));
-  assert(typeof pageUrl === "string");
-  assert(typeof documentTitle === "string");
+  // fixme: selectors should be unique across elements
+  assert(issues[0].selector !== issues[1].selector);
 
   await browser.close();
 })();
