@@ -48,7 +48,7 @@ export default function isCurrentPageLink(anchor) {
   // it ourselves
   // also ie11 has empty protocol, hostname, and port when the
   // link is relative, so use window.location.origin in these cases
-  let url: string  = "";
+  let url: string = '';
 
   if (!hostname) {
     url = window.location.origin;

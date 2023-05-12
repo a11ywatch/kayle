@@ -4,7 +4,7 @@
   "issues": [
     {
       "context": "<a href=\"https://www.drake.com/labels?hsLang=en\">Learn more</a>",
-      "selector": "#hs_cos_wrapper_module_1569856007055222 > div > div:nth-child(3) > a",
+      "selector": "#hs_cos_wrapper_module_1569856007055222>:nth-child(1)>:nth-child(3)>:nth-child(1)",
       "code": "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail",
       "type": "error",
       "typeCode": 1,
@@ -15,7 +15,7 @@
     },
     {
       "context": "<a href=\"https://www.drake.com/name-plates?hsLang=en\">Learn more</a>",
-      "selector": "#hs_cos_wrapper_module_1569856034269224 > div > div:nth-child(3) > a",
+      "selector": "#hs_cos_wrapper_module_1569856034269224>:nth-child(1)>:nth-child(3)>:nth-child(1)",
       "code": "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail",
       "type": "error",
       "typeCode": 1,
@@ -26,7 +26,7 @@
     },
     {
       "context": "<a href=\"https://www.drake.com/equipment-panel-overlays?hsLang=en\">Learn more</a>",
-      "selector": "#hs_cos_wrapper_module_1569856037305225 > div > div:nth-child(3) > a",
+      "selector": "#hs_cos_wrapper_module_1569856037305225>:nth-child(1)>:nth-child(3)>:nth-child(1)",
       "code": "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail",
       "type": "error",
       "typeCode": 1,
@@ -37,7 +37,7 @@
     },
     {
       "context": "<a href=\"https://www.drake.com/membrane-switches?hsLang=en\">Learn more</a>",
-      "selector": "#hs_cos_wrapper_module_1569856084644237 > div > div:nth-child(3) > a",
+      "selector": "#hs_cos_wrapper_module_1569856084644237>:nth-child(1)>:nth-child(3)>:nth-child(1)",
       "code": "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail",
       "type": "error",
       "typeCode": 1,
@@ -48,7 +48,7 @@
     },
     {
       "context": "<a href=\"https://www.drake.com/oem-bezel-re-branding?hsLang=en\">Learn more</a>",
-      "selector": "#hs_cos_wrapper_module_1569856082608235 > div > div:nth-child(3) > a",
+      "selector": "#hs_cos_wrapper_module_1569856082608235>:nth-child(1)>:nth-child(3)>:nth-child(1)",
       "code": "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail",
       "type": "error",
       "typeCode": 1,
@@ -59,7 +59,7 @@
     },
     {
       "context": "<a href=\"https://www.drake.com/safety?hsLang=en\">Learn more</a>",
-      "selector": "#hs_cos_wrapper_module_1569856080132233 > div > div:nth-child(3) > a",
+      "selector": "#hs_cos_wrapper_module_1569856080132233>:nth-child(1)>:nth-child(3)>:nth-child(1)",
       "code": "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail",
       "type": "error",
       "typeCode": 1,
@@ -114,7 +114,7 @@
     },
     {
       "context": "<a class=\"expandMenu\"><i></i><i></i><i></i></a>",
-      "selector": "#hs_cos_wrapper_module_14725592865174 > a:nth-child(3)",
+      "selector": "#hs_cos_wrapper_module_14725592865174>:nth-child(1)",
       "code": "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.A.EmptyNoId",
       "type": "error",
       "typeCode": 1,
@@ -125,7 +125,7 @@
     },
     {
       "context": "<i></i>",
-      "selector": "#hs_cos_wrapper_module_14725592865174 > a:nth-child(3) > i:nth-child(3)",
+      "selector": "#hs_cos_wrapper_module_14725592865174>:nth-child(1)>:nth-child(1)",
       "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.H49.I",
       "type": "warning",
       "typeCode": 2,
@@ -136,7 +136,7 @@
     },
     {
       "context": "<h5 class=\"normal\">\n  <div class=\"span12 widget-spa...</h5>",
-      "selector": "html > body > div:nth-child(3) > div > div:nth-child(3) > div > div > div:nth-child(3) > div > div > div:nth-child(3) > div > h5",
+      "selector": "body>:nth-child(2)>:nth-child(1)>:nth-child(2)>:nth-child(1)>:nth-child(1)>:nth-child(2)>:nth-child(1)>:nth-child(1)>:nth-child(2)>:nth-child(1)>:nth-child(1)",
       "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1_A.G141",
       "type": "warning",
       "typeCode": 2,
@@ -147,7 +147,7 @@
     },
     {
       "context": "<h5>Labels</h5>",
-      "selector": "#hs_cos_wrapper_module_1569856007055222 > div > div:nth-child(3) > h5",
+      "selector": "#hs_cos_wrapper_module_1569856007055222>:nth-child(1)>:nth-child(2)>:nth-child(1)",
       "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1_A.G141",
       "type": "warning",
       "typeCode": 2,
@@ -158,7 +158,7 @@
     },
     {
       "context": "<h1>SAME DAY QUOTES<br>INDUSTRY LEAD...</h1>",
-      "selector": "#hs_cos_wrapper_module_14725521757543705 > h1",
+      "selector": "#hs_cos_wrapper_module_14725521757543705>:nth-child(1)",
       "code": "WCAG2AA.Principle1.Guideline1_4.1_4_3.G145.BgImage",
       "type": "warning",
       "typeCode": 2,
@@ -202,7 +202,7 @@
     },
     {
       "context": "<h2>Capabilities</h2>",
-      "selector": "#hs_cos_wrapper_module_15559652135151720_ > h2",
+      "selector": "#hs_cos_wrapper_module_15559652135151720_>:nth-child(1)",
       "code": "WCAG2AA.Principle1.Guideline1_4.1_4_3.G145.BgImage",
       "type": "warning",
       "typeCode": 2,
@@ -224,7 +224,7 @@
     },
     {
       "context": "<h2>Request a Quote</h2>",
-      "selector": "#hs_cos_wrapper_module_1561486570471273_ > h2",
+      "selector": "#hs_cos_wrapper_module_1561486570471273_>:nth-child(1)",
       "code": "WCAG2AA.Principle1.Guideline1_4.1_4_3.G145.BgImage",
       "type": "warning",
       "typeCode": 2,
@@ -235,7 +235,7 @@
     },
     {
       "context": "<span style=\"color: #ffffff;\">VIEW OUR LIST</span>",
-      "selector": "#cta_button_5479613_34d266db-0b65-4753-b5cf-2621a0bb36eb > span",
+      "selector": "#cta_button_5479613_34d266db-0b65-4753-b5cf-2621a0bb36eb>:nth-child(1)",
       "code": "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.BgImage",
       "type": "warning",
       "typeCode": 2,
@@ -268,7 +268,7 @@
     },
     {
       "context": "<span style=\"color: #ffffff;\">VIEW OUR LIST</span>",
-      "selector": "#cta_button_5479613_34d266db-0b65-4753-b5cf-2621a0bb36eb > span",
+      "selector": "#cta_button_5479613_34d266db-0b65-4753-b5cf-2621a0bb36eb>:nth-child(1)",
       "code": "WCAG2AA.Principle1.Guideline1_4.1_4_3_F24.F24.FGColour",
       "type": "warning",
       "typeCode": 2,
@@ -279,7 +279,7 @@
     },
     {
       "context": "<div class=\"span12 widget-span widget-type-cell headerSection\" style=\"\" data-widget-type=\"cell\" data-x=\"0\" data-w=\"12\">\n  \n  <div class=\"row-fluid-wrap...</div>",
-      "selector": "html > body > div:nth-child(3) > div > div > div > div > div > div:nth-child(3) > div > div",
+      "selector": "body>:nth-child(1)>:nth-child(1)>:nth-child(1)>:nth-child(1)>:nth-child(1)>:nth-child(1)>:nth-child(2)>:nth-child(1)>:nth-child(1)",
       "code": "WCAG2AA.Principle1.Guideline1_4.1_4_10.C32,C31,C33,C38,SCR34,G206",
       "type": "warning",
       "typeCode": 2,

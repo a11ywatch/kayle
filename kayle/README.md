@@ -91,7 +91,7 @@ kayle supports multiple test runners which return different results. The built-i
 ## playwright
 
 `Fast_htmlcs`: expect runs to finish between 10-40ms with static html and around 30-90ms without.
-`Fast_axecore`: expect runs to finish between 40-350ms with static html and around 30-90ms without. 
+`Fast_axecore`: expect runs to finish between 40-350ms with static html and around 30-90ms without.
 
 We are working on making fast_axecore fast so it can run relatively near htmlcs.
 

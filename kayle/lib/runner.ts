@@ -64,66 +64,36 @@
     return outerHTML;
   };
 
-  // valid element node
-  const isElementNode = (element: Element) =>
-    element.nodeType === window.Node.ELEMENT_NODE;
+  // sibling position detection
+  const siblingPosition = (node: Node) => {
+    let i = 1;
+
+    // todo: limit nodes to 1000
+    while ((node = node.previousSibling)) {
+      if (node.nodeType == 1) {
+        i += 1;
+      }
+    }
+
+    return i;
+  };
 
   // get css selelector todo: shortest path https://patents.google.com/patent/CN105094940A/en
-  const getElementSelector = (element, selectorParts = []) => {
-    if (isElementNode(element)) {
-      selectorParts.unshift(buildElementIdentifier(element));
-
-      if (!element.id && element.parentNode) {
-        return getElementSelector(element.parentNode, selectorParts);
-      }
+  const getElementSelector = (element: HTMLElement) => {
+    if (!element) {
+      return "";
     }
 
-    return selectorParts.join(" > ");
-  };
-
-  // return siblings of element
-  const getSiblings = (element) => {
-    let dupSibling = 0;
-    let siblingIndex = 0; // increment until sibling index found
-
-    for (const node of element.parentNode.childNodes) {
-      if (isElementNode(node)) {
-        siblingIndex++;
-      }
-      if (node.tagName === element.tagName) {
-        dupSibling += 1;
-        // break loop on multi duplicates
-        if (dupSibling === 2) {
-          break;
-        }
-      }
-    }
-
-    return {
-      siblingIndex,
-      onlySibling: dupSibling <= 1,
-    };
-  };
-
-  // build css slectors
-  const buildElementIdentifier = (element: HTMLElement) => {
     if (element.id) {
-      return `${element.id[0] !== "#" ? "#" : ""}${element.id}`;
+      return "#" + element.id;
     }
 
-    let identifier = element.tagName.toLowerCase();
-
-    if (!element.parentNode) {
-      return identifier;
+    // return the direct body as primary element
+    if (element.nodeName == "BODY") {
+      return "body";
     }
 
-    const { onlySibling, siblingIndex } = getSiblings(element);
-
-    if (!onlySibling) {
-      identifier += `:nth-child(${siblingIndex + 1})`;
-    }
-
-    return identifier;
+    return `${getElementSelector(element.parentNode as HTMLElement)}>:nth-child(${siblingPosition(element)})`;
   };
 
   // runner to get accessibility issues
