@@ -57,12 +57,12 @@ export function setLogging(enabled?: boolean): void {
 /**
  * Run accessibility tests for page.
  * @param {Object} [config={}] config - Options to change the way tests run.
- * @param {Boolean} [automa=false] automa - Automa running, enable to prevent page from closing.
+ * @param {Boolean} [preventClose=false] preventClose - Prevent page page from closing on finish.
  * @returns {Promise} Returns a promise which resolves with results.
  */
 export async function kayle(
   o: RunnerConf = {},
-  automa?: boolean
+  preventClose?: boolean
 ): Promise<Audit> {
   const navigate =
     typeof o.page.url === "function" &&
@@ -90,12 +90,16 @@ export async function kayle(
 
   clearTimeout(watcher.timer);
 
-  !automa && navigate && (await o.page.close());
+  !preventClose && navigate && (await o.page.close());
 
   return results;
 }
 
 let extractLinks;
+
+// on autoKayle link find callback
+declare function callback(audit: Audit): Audit;
+declare function callback(audit: Audit): Promise<Audit>;
 
 /**
  * Run accessibility tests for page auto running until all pages complete.
@@ -103,7 +107,7 @@ let extractLinks;
  * @returns {Promise} Returns a promise which resolves with array of results.
  */
 export async function autoKayle(
-  o: RunnerConf & { log?: boolean; store?: string } = {},
+  o: RunnerConf & { log?: boolean; store?: string; cb?: typeof callback } = {},
   ignoreSet?: Set<String>,
   _results?: Audit[]
 ): Promise<Audit[]> {
@@ -113,7 +117,12 @@ export async function autoKayle(
   }
 
   const result = await kayle(o, true);
+
   _results.push(result);
+
+  if (o.cb && typeof o.cb === "function") {
+    await o.cb(result);
+  }
 
   // auto run links until finished.
   if (!extractLinks) {

@@ -2,53 +2,30 @@
 
 <img src="https://user-images.githubusercontent.com/8095978/236633334-f5234171-064e-4792-a21c-9e6c782ba9cc.jpg" height="50" align="right" padding="2px" />
 
-Incredibly fast and precise universal web accessibility engine.
+Incredibly fast and precise web accessibility engine.
 
 ```sh
 npm install kayle --save
 ```
 
-Playwright 🎭
+Playwright 🎭 or Puppeteer 🤖
 
 ```ts
 import { kayle } from "kayle";
-import { chromium } from "playwright";
 
-const browser = await chromium.launch({ headless: true });
 const page = await browser.newPage();
 
-const results = await kayle({
-  page,
-  browser,
-  runners: ["htmlcs", "axe"],
-  includeWarnings: true,
-  origin: "https://a11ywatch.com",
-});
-```
-
-Puppeteer 🤖
-
-```ts
-import { kayle } from "kayle";
-import { launch } from "puppeteer";
-
-const browser = await launch({ headless: "new" });
-const page = await browser.newPage();
-
-const results = await kayle({
-  page,
-  browser,
-  runners: ["htmlcs", "axe"],
-  includeWarnings: true,
-  origin: "https://a11ywatch.com",
-});
+const results = await kayle({ page, browser, origin: "https://mywebsite.com" });
 ```
 
 If you need to run a full site-wide crawl import `autoKayle`.
 
 ```ts
-import { autoKayle } from "kayle";
+import { autoKayle, setLogging } from "kayle";
 import { chromium } from "playwright";
+
+// enable kayle log output
+setLogging(true);
 
 const browser = await chromium.launch({ headless: true });
 const page = await browser.newPage();
@@ -59,6 +36,9 @@ const results = await autoKayle({
   runners: ["htmlcs", "axe"],
   includeWarnings: true,
   origin: "https://a11ywatch.com",
+  cb: function callback(result) { 
+    console.log(result)
+  }
   // store: `${process.cwd()}/_data/`, // _data folder must exist first
 });
 
@@ -171,7 +151,7 @@ import { kayleLint } from "kayle/build/lint";
 await kayleLint("https://a11ywatch.com");
 ```
 
-## i18n
+## Localization
 
 [Locales](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/i18n) supported by the runner using pre-compiled locales. In order to pre-compile the locales run `./build.sh`. Some locales are only available in certain runners. Our goal is to unify the languages and eventually unify the runners in a way that we can get
 the best aspects of testing without worrying about a `name`.

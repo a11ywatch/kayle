@@ -47,3 +47,5 @@ output.txt
 
 # wasm
 pkg
+
+test-results

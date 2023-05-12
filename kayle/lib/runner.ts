@@ -93,7 +93,9 @@
       return "body";
     }
 
-    return `${getElementSelector(element.parentNode as HTMLElement)}>:nth-child(${siblingPosition(element)})`;
+    return `${getElementSelector(
+      element.parentNode as HTMLElement
+    )}>:nth-child(${siblingPosition(element)})`;
   };
 
   // runner to get accessibility issues
