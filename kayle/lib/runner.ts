@@ -186,10 +186,15 @@
 
         if (issues[i].type === "error") {
           const issue = issues[i];
+
           // missing alt capture index of array
-          if (issue.code === "WCAG2AA.Principle1.Guideline1_1.1_1_1.H37") {
+          if (
+            issue.code === "WCAG2AA.Principle1.Guideline1_1.1_1_1.H37" ||
+            issue.code === "image-alt"
+          ) {
             missingAltIndexs.push(ic);
           }
+
           acc[ic] = shapeIssue(issue);
           ic++;
           meta.errorCount += (issue.recurrence ?? 0) + 1;
@@ -228,7 +233,10 @@
           const issue = issues[i];
 
           // missing alt capture index of array
-          if (issue.code === "WCAG2AA.Principle1.Guideline1_1.1_1_1.H37") {
+          if (
+            issue.code === "WCAG2AA.Principle1.Guideline1_1.1_1_1.H37" ||
+            issue.code === "image-alt"
+          ) {
             missingAltIndexs.push(ic);
           }
           acc[ic] = shapeIssue(issue);
@@ -257,12 +265,7 @@
 
     // Execute all of the runners and process issues parallel
     const runnerIssues = await Promise.all(
-      options.runners.map((runner) =>
-        kayle.runners[runner](options, kayle).catch((e) => {
-          console.error(e);
-          return [];
-        })
-      )
+      options.runners.map((runner) => kayle.runners[runner](options, kayle))
     );
 
     // meta information keep records shaped to numbers

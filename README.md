@@ -2,19 +2,19 @@
 
 <img src="https://user-images.githubusercontent.com/8095978/236633334-f5234171-064e-4792-a21c-9e6c782ba9cc.jpg" height="50" align="right" padding="2px" />
 
-Incredibly fast and precise universal web accessibility evaluator.
+Incredibly fast and precise universal web accessibility engine.
 
 ```sh
 npm install kayle --save
 ```
 
-Playwright
+Playwright 🎭
 
 ```ts
 import { kayle } from "kayle";
 import { chromium } from "playwright";
 
-const browser = await chromium.launch({ headless: "new" });
+const browser = await chromium.launch({ headless: true });
 const page = await browser.newPage();
 
 const results = await kayle({
@@ -26,7 +26,7 @@ const results = await kayle({
 });
 ```
 
-Puppeteer
+Puppeteer 🤖
 
 ```ts
 import { kayle } from "kayle";
@@ -48,9 +48,9 @@ If you need to run a full site-wide crawl import `autoKayle`.
 
 ```ts
 import { autoKayle } from "kayle";
-import { launch } from "puppeteer";
+import { chromium } from "playwright";
 
-const browser = await launch({ headless: "new" });
+const browser = await chromium.launch({ headless: true });
 const page = await browser.newPage();
 
 const results = await autoKayle({

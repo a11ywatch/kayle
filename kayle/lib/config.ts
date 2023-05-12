@@ -1,5 +1,3 @@
-type Standard = "WCAG2A" | "WCAG2AA" | "WCAG2AAA" | "SECTION508";
-
 type Permission =
   | "geolocation"
   | "midi"
@@ -92,6 +90,9 @@ type Page = {
   emulateCPUThrottling(factor: number | null): Promise<void>;
 };
 
+type Runner = "axe" | "htmlcs";
+type Standard = "WCAG2A" | "WCAG2AA" | "WCAG2AAA" | "SECTION508";
+
 // runner configuration
 export type RunnerConfig = {
   browser: Partial<Browser>;
@@ -103,11 +104,13 @@ export type RunnerConfig = {
   includeWarnings?: boolean;
   rootElement?: string;
   rules?: string;
-  runners?: string[];
+  runners?: Runner[];
   standard?: Standard;
   timeout?: number;
+  // the website url: include this even with static html to fetch assets correct.
   origin?: string;
+  // the langauge to use.
   language?: string;
-  // prevent auto intercept request to prevent fetching resources
+  // prevent auto intercept request to prevent fetching resources.
   noIntercept?: boolean;
 };

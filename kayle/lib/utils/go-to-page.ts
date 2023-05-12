@@ -7,6 +7,12 @@ type Request = {
   abort(): Promise<void>;
 };
 
+type NetworkResource = {
+  resourceType: string;
+  request: Request;
+  url: string;
+};
+
 /**
  * Block network based on resource type and url.
  * @param {Object} [req={}] - Intercept config for resourceType, request, and url.
@@ -14,15 +20,7 @@ type Request = {
  * @returns {Promise} Returns a promise void.
  */
 const blocknet = async (
-  {
-    resourceType,
-    request,
-    url,
-  }: {
-    resourceType: string;
-    request: Request;
-    url: string;
-  },
+  { resourceType, request, url }: NetworkResource,
   allowImage?: boolean
 ) => {
   // ignore intercepted request

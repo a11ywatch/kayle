@@ -1,6 +1,6 @@
 # kayle
 
-A high performance web accessibility auditor.
+A high performance web accessibility engine.
 
 If you want to use a browser make sure to have [playwright](https://github.com/microsoft/playwright) or [puppeteer](https://github.com/puppeteer/puppeteer) installed.
 
@@ -85,6 +85,15 @@ kayle supports multiple test runners which return different results. The built-i
 - `axe`: run tests using [axe-core](./lib/runners/axe.ts).
 - `htmlcs` (default): run tests using [HTML CodeSniffer](./lib/runners/htmlcs.ts)
 - `custom`: custom runners.
+
+## Benchmarks
+
+## playwright
+
+`Fast_htmlcs`: expect runs to finish between 10-40ms with static html and around 30-90ms without.
+`Fast_axecore`: expect runs to finish between 40-350ms with static html and around 30-90ms without. 
+
+We are working on making fast_axecore fast so it can run relatively near htmlcs.
 
 ## Utils
 

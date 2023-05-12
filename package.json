@@ -1,6 +1,6 @@
 {
   "name": "kayle_workspace",
-  "description": "Extremely fast accessibility evaluation for nodejs",
+  "description": "Extremely fast accessibility engine for nodejs",
   "workspaces": [
     "kayle",
     "fast_htmlcs",
