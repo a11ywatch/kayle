@@ -37,9 +37,9 @@ checksum = "3c6ed94e98ecff0c12dd1b04c15ec0d7d9458ca8fe806cea6f12954efe74c63b"
 
 [[package]]
 name = "case_insensitive_string"
-version = "0.1.0"
+version = "0.1.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "aca6800bfcd192a99bd5ec6893d49af169aabc61317640a46ed3ab54a62c4a3f"
+checksum = "5252d96f01ec50f29b85408fbc0e77d6707f72c80dbe21324610372a6811a031"
 
 [[package]]
 name = "cfg-if"
@@ -128,7 +128,7 @@ dependencies = [
 
 [[package]]
 name = "kayle_innate"
-version = "0.0.5"
+version = "0.0.6"
 dependencies = [
  "case_insensitive_string",
  "console_error_panic_hook",
@@ -382,9 +382,9 @@ dependencies = [
 
 [[package]]
 name = "serde"
-version = "1.0.162"
+version = "1.0.163"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "71b2f6e1ab5c2b98c05f0f35b236b22e8df7ead6ffbf51d7808da7f8817e7ab6"
+checksum = "2113ab51b87a539ae008b5c6c02dc020ffa39afd2d83cffcb3f4eb2722cebec2"
 
 [[package]]
 name = "siphasher"

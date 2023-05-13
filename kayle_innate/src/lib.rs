@@ -68,22 +68,29 @@ pub fn radiant_blast(res: &str, domain: &str) -> Box<[JsValue]> {
                                 let _ = abs.set_scheme(parent_host_scheme);
                             }
 
-                            let h = abs.as_str();
-                            let hlen = h.len();
+                            // full url path
+                            let resource_url = abs.clone();
 
-                            if hlen > 4 && !h.ends_with("/") {
-                                let hchars = &h[hlen - 5..hlen];
-                                if let Some(position) = hchars.find('.') {
-                                    let resource_ext = &hchars[position + 1..hchars.len()];
+                            // clean the resource to check if valid crawl asset
+                            abs.set_query(None);
 
-                                    if !ONLY_RESOURCES.contains(&resource_ext.into()) {
-                                        can_process = false;
-                                    }
+                            let clean_resource = abs.as_str();
+                            let hlen = clean_resource.len();
+                            // a possible resource extension
+                            let hchars = &clean_resource[hlen - 5..hlen];
+
+                            if let Some(position) = hchars.find('.') {
+                                let resource_ext = &hchars[position + 1..hchars.len()];
+
+                                if !ONLY_RESOURCES
+                                    .contains::<CaseInsensitiveString>(&resource_ext.into())
+                                {
+                                    can_process = false;
                                 }
                             }
 
                             if can_process {
-                                Some(JsValue::from_str(&h.to_string()))
+                                Some(JsValue::from_str(&resource_url.as_str()))
                             } else {
                                 None
                             }

@@ -128,17 +128,6 @@ type RunnerConfig = {
 - [`fast_axecore`](./fast_htmlcs/README.md): run tests using fork of [axe-core](./lib/runners/axe.ts).
 - [`fast_htmlcs`](./fast_htmlcs/README.md): run tests using fork of [HTML CodeSniffer](./lib/runners/htmlcs.ts).
 
-## API
-
-High performance extract all links for a web page using web assembly.
-
-```ts
-import { extractLinks } from "kayle/build/wasm";
-
-// pass in an active puppeteer page or use the page after `kayle` usage.
-const links = await extractLinks({ page, browser }); // list of links
-```
-
 ## Linting
 
 Straight forward linting. You can pass a url or valid html.
