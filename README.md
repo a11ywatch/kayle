@@ -2,20 +2,19 @@
 
 <img src="https://user-images.githubusercontent.com/8095978/236633334-f5234171-064e-4792-a21c-9e6c782ba9cc.jpg" height="50" align="right" padding="2px" />
 
-Incredibly fast and precise web accessibility engine.
+Incredibly fast and precise web accessibility engine with 0 dependencies.
 
 ```sh
 npm install kayle --save
 ```
 
-Playwright 🎭 or Puppeteer 🤖
-
 ```ts
 import { kayle } from "kayle";
 
+// Playwright 🎭 or Puppeteer 🤖
 const page = await browser.newPage();
 
-const results = await kayle({ page, browser, origin: "https://mywebsite.com" });
+const results = await kayle({ page, browser, origin: "https://a11ywatch.com" });
 ```
 
 If you need to run a full site-wide crawl import `autoKayle`.
@@ -36,9 +35,9 @@ const results = await autoKayle({
   runners: ["htmlcs", "axe"],
   includeWarnings: true,
   origin: "https://a11ywatch.com",
-  cb: function callback(result) { 
-    console.log(result)
-  }
+  cb: function callback(result) {
+    console.log(result);
+  },
   // store: `${process.cwd()}/_data/`, // _data folder must exist first
 });
 
@@ -159,11 +158,9 @@ the best aspects of testing without worrying about a `name`.
 1. zh-CN ("Chinese-Simplified")
 1. zh-TW ("Chinese-Traditional")
 
-## Performance
+## Features
 
-This project is the fastest web accessibility runner OSS. The `htmlcs` and `axe-core` handling of the runners runs faster due to bug fixes and improved optimizations. This library optimizes the scripts to take advtage of v8 and pre-compiles locales in separate scripts for blazing fast speeds.
-
-- Playwright runs 100% faster than puppeteer. Most of it is due to more fine grain control of events, ws connections, and timers.
+You can enable a high performance adblock detection by brave by installing `npm i adblock-rs` to the project. This module needs to be manually installed and the env variable `KAYLE_ADBLOCK` needs to be set to `true`.
 
 ## Testing
 
