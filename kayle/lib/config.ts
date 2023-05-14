@@ -114,3 +114,15 @@ export type RunnerConfig = {
   // prevent auto intercept request to prevent fetching resources.
   noIntercept?: boolean;
 };
+
+// log singleton
+export const _log = { enabled: false };
+
+/**
+ * Enable or disable logging.
+ * @param {Object} [enabled] enabled - Enable console logging.
+ * @returns {void} Returns void.
+ */
+export function setLogging(enabled?: boolean): void {
+  _log.enabled = enabled;
+}

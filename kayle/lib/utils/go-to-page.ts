@@ -1,4 +1,5 @@
 import { blockedResourceTypes, skippedResources } from "./resource-ignore";
+import { adEngine } from "./adblock";
 import type { RunnerConfig } from "../config";
 
 type Request = {
@@ -11,6 +12,7 @@ type NetworkResource = {
   resourceType: string;
   request: Request;
   url: string;
+  domain?: string;
 };
 
 /**
@@ -20,7 +22,7 @@ type NetworkResource = {
  * @returns {Promise} Returns a promise void.
  */
 const blocknet = async (
-  { resourceType, request, url }: NetworkResource,
+  { resourceType, request, url, domain }: NetworkResource,
   allowImage?: boolean
 ) => {
   // ignore intercepted request
@@ -49,6 +51,16 @@ const blocknet = async (
     if (skippedResources.hasOwnProperty(requestUrl)) {
       return await request.abort();
     }
+  }
+
+  if (
+    // if engine is loaded
+    adEngine &&
+    typeof adEngine.check === "function" &&
+    (url.startsWith("https://") || url.startsWith("http://")) &&
+    adEngine.check(url, new URL(url).origin, resourceType, true)
+  ) {
+    return await request.abort();
   }
 
   return await request.continue();

@@ -88,6 +88,8 @@ kayle supports multiple test runners which return different results. The built-i
 
 ## Benchmarks
 
+2x - 50x faster than default axe and 100x-150x faster than default htmlcodesniffer. Combines them both efficiently for the ultimate testing.
+
 ## playwright
 
 `Fast_htmlcs`: expect runs to finish between 10-40ms with static html and around 30-90ms without.

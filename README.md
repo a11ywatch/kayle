@@ -36,9 +36,9 @@ const results = await autoKayle({
   runners: ["htmlcs", "axe"],
   includeWarnings: true,
   origin: "https://a11ywatch.com",
-  cb: function callback(result) { 
-    console.log(result)
-  }
+  cb: function callback(result) {
+    console.log(result);
+  },
   // store: `${process.cwd()}/_data/`, // _data folder must exist first
 });
 
@@ -164,6 +164,10 @@ the best aspects of testing without worrying about a `name`.
 This project is the fastest web accessibility runner OSS. The `htmlcs` and `axe-core` handling of the runners runs faster due to bug fixes and improved optimizations. This library optimizes the scripts to take advtage of v8 and pre-compiles locales in separate scripts for blazing fast speeds.
 
 - Playwright runs 100% faster than puppeteer. Most of it is due to more fine grain control of events, ws connections, and timers.
+
+## Features
+
+You can enable a high performance adblock detection by brave by installing `npm i adblock-rs` to the project. This module needs to be manually installed and the env variable `KAYLE_ADBLOCK` needs to be set to `true`.
 
 ## Testing
 
