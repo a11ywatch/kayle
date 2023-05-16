@@ -27,6 +27,7 @@ pub fn kayle() {
     alert("Kayle!");
 }
 
+
 #[wasm_bindgen]
 /// setup a structure tree alg for parsing and find links in document. Allow user to perform hybrid audits realtime.
 pub fn radiant_blast(res: &str, domain: &str) -> Box<[JsValue]> {
@@ -68,16 +69,7 @@ pub fn radiant_blast(res: &str, domain: &str) -> Box<[JsValue]> {
                                 let _ = abs.set_scheme(parent_host_scheme);
                             }
 
-                            // full url path
-                            let resource_url = abs.clone();
-
-                            // clean the resource to check if valid crawl asset
-                            abs.set_query(None);
-
-                            let clean_resource = abs.as_str();
-                            let hlen = clean_resource.len();
-                            // a possible resource extension
-                            let hchars = &clean_resource[hlen - 5..hlen];
+                            let hchars = abs.path();
 
                             if let Some(position) = hchars.find('.') {
                                 let resource_ext = &hchars[position + 1..hchars.len()];
@@ -90,7 +82,7 @@ pub fn radiant_blast(res: &str, domain: &str) -> Box<[JsValue]> {
                             }
 
                             if can_process {
-                                Some(JsValue::from_str(&resource_url.as_str()))
+                                Some(JsValue::from_str(&abs.as_str()))
                             } else {
                                 None
                             }

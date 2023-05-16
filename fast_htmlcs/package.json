@@ -1,6 +1,6 @@
 {
   "name": "fast_htmlcs",
-  "version": "0.0.29",
+  "version": "0.0.31",
   "description": "A high performance fork of HTML_CodeSniffer.",
   "license": "BSD-3-Clause",
   "main": "index.js",
@@ -26,11 +26,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/squizlabs/HTML_CodeSniffer.git"
+    "url": "https://github.com/a11ywatch/kayle.git"
   },
   "author": "Squiz",
   "bugs": {
-    "url": "https://github.com/squizlabs/HTML_CodeSniffer/issues"
+    "url": "https://github.com/a11ywatch/kayle/issues"
   },
   "homepage": "http://squizlabs.github.io/HTML_CodeSniffer/",
   "devDependencies": {

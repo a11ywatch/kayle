@@ -1185,13 +1185,12 @@ _global.HTMLCS.util = {
                   const filteredExp = exp
                     .sort()
                     .filter(function (value, index) {
-                      return this.indexOf(value) === index;
+                      return value.indexOf(index);
                     });
 
                   cells.push({
                     cell: thisCell,
                     headers: ` ${filteredExp.join(" ")} `
-                      // @ts-ignore
                       .replace(/\s+/g, " ")
                       .replace(/(\w+\s)\1+/g, "$1")
                       .replace(/^\s*(.*?)\s*$/g, "$1"),

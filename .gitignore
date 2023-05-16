@@ -49,3 +49,9 @@ output.txt
 pkg
 
 test-results
+
+# native c++ bindings
+kayle_innate/index.d.ts
+kayle_innate/kayle_innate.node
+kayle_innate/package.json
+kayle_innate/dll

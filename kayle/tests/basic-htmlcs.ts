@@ -1,6 +1,6 @@
 import assert from "assert";
 import puppeteer from "puppeteer";
-import { kayle, setNetworkInterception } from "kayle";
+import { kayle } from "kayle";
 import { drakeMock } from "./mocks/html-mock";
 import { performance } from "perf_hooks";
 
@@ -9,9 +9,6 @@ import { performance } from "perf_hooks";
   const page = await browser.newPage();
   page.on("console", (msg) => console.log("PAGE LOG:", msg.text()));
 
-  await setNetworkInterception(page);
-  await page.setContent(drakeMock);
-
   const startTime = performance.now();
   const { issues, pageUrl, documentTitle, meta, automateable } = await kayle({
     page,
@@ -19,6 +16,7 @@ import { performance } from "perf_hooks";
     runners: ["htmlcs"],
     includeWarnings: true,
     origin: "https://www.drake.com",
+    html: drakeMock
   });
   const nextTime = performance.now() - startTime;
 
