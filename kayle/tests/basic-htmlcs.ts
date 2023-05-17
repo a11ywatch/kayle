@@ -16,7 +16,7 @@ import { performance } from "perf_hooks";
     runners: ["htmlcs"],
     includeWarnings: true,
     origin: "https://www.drake.com",
-    html: drakeMock
+    html: drakeMock,
   });
   const nextTime = performance.now() - startTime;
 
