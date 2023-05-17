@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es2015",
+    "target": "ESNext",
     "module": "ESNext",
-    "lib": ["dom", "es6", "es2021"],
+    "lib": ["dom", "ES2017", "es2021"],
     "sourceMap": true,
     "allowJs": true,
     "outDir": "dist/",

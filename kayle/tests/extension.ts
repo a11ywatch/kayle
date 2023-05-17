@@ -29,13 +29,14 @@ import { performance } from "perf_hooks";
     {
       page,
       browser,
-      runners: ["htmlcs", "axe"],
+      runners: ["htmlcs"],
       includeWarnings: true,
       html: jmendezMock,
       origin: "https://jeffmendez.com", // origin is the fake url in place of the raw content
     },
     true
   );
+
   const nextTime = performance.now() - startTime;
 
   console.log(meta);

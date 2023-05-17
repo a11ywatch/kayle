@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ESNext",
     "module": "commonjs",
-    "lib": ["dom", "es6", "es2021"],
+    "lib": ["dom", "es2017", "es2021"],
     "sourceMap": true,
     "allowJs": true,
     "outDir": "build/",

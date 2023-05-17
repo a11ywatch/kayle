@@ -1,6 +1,6 @@
 {
   "name": "kayle",
-  "version": "0.4.30",
+  "version": "0.4.31",
   "description": "Extremely fast accessibility evaluation for nodejs",
   "main": "./build/index.js",
   "keywords": [
@@ -16,10 +16,11 @@
   ],
   "scripts": {
     "prepare": "tsc",
-    "build": "tsc",
+    "build": "tsc && yarn swc:dist",
     "compile:test": "yarn build && tsc --project tsconfig.test.json",
     "lint": "eslint .",
     "fix": "prettier --write '**/*.{js,jsx,ts,tsx}'",
+    "swc:dist": "npx swc --copy-files --config-file .swcrc ./build -d ./build",
     "bench:playwright:htmlcs": "node _tests/bench/fast_htmlcs-playwright.js",
     "bench:playwright:axe": "node _tests/bench/fast_axecore-playwright.js",
     "test": "npm run compile:test && node _tests/tests/basic.js",
@@ -52,6 +53,9 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.32.3",
+    "@swc/cli": "^0.1.62",
+    "@swc/core": "^1.3.56",
+    "@swc/helpers": "^0.5.1",
     "@types/jsdom": "^20.0.1",
     "@types/node": "^18.11.9",
     "playwright": "^1.32.3",
