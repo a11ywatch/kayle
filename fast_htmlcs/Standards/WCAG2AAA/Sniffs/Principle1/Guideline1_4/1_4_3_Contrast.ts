@@ -13,10 +13,11 @@
 
 _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
   testContrastRatio: function (top, minContrast, minLargeContrast) {
-    var failures = [];
+    const failures = [];
+    let toProcess = [];
 
     if (!top.ownerDocument) {
-      var toProcess = [];
+      toProcess = [];
       var body = top.getElementsByTagName("body");
       if (body.length) {
         // SVG objects will not have a body element. Don't check them.
@@ -27,7 +28,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
     }
 
     while (toProcess.length > 0) {
-      var node = toProcess.shift();
+      const node = toProcess.shift();
 
       // This is an element.
       if (
@@ -36,7 +37,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
         HTMLCS.util.isVisuallyHidden(node) === false &&
         HTMLCS.util.isDisabled(node) === false
       ) {
-        var processNode = false;
+        let processNode = false;
+        let bgColour = null;
+
         for (var i = 0; i < node.childNodes.length; i++) {
           // Load up new nodes, but also only process this node when
           // there are direct text elements.
@@ -52,14 +55,14 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
           }
         }
 
-        if (processNode === true) {
-          var style = HTMLCS.util.style(node);
+        if (processNode) {
+          const style = HTMLCS.util.style(node);
 
           if (style) {
-            var bgColour = style.backgroundColor;
-            var foreColour = style.color;
-            var hasBgImg = false;
-            var isAbsolute = false;
+            bgColour = style.backgroundColor;
+            let foreColour = style.color;
+            let hasBgImg = false;
+            let isAbsolute = false;
 
             if (style.backgroundImage !== "none") {
               hasBgImg = true;
@@ -69,22 +72,23 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
               isAbsolute = true;
             }
 
-            var parent = node.parentNode;
+            let parent = node.parentNode;
 
             // Calculate font size. Note that CSS 2.1 fixes a reference pixel
             // as 96 dpi (hence "pixel ratio" workarounds for Hi-DPI devices)
             // so this calculation should be safe.
-            var fontSize = parseFloat(style.fontSize, 10) * (72 / 96);
-            var minLargeSize = 18;
+            const fontSize = parseFloat(style.fontSize) * (72 / 96);
+            let minLargeSize = 18;
 
             if (
               style.fontWeight === "bold" ||
               parseInt(style.fontWeight, 10) >= 600
             ) {
-              var minLargeSize = 14;
+              minLargeSize = 14;
             }
 
-            var reqRatio = minContrast;
+            let reqRatio = minContrast;
+
             if (fontSize >= minLargeSize) {
               reqRatio = minLargeContrast;
             }
@@ -98,8 +102,10 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                 break;
               }
 
-              var parentStyle = HTMLCS.util.style(parent);
-              var bgColour = parentStyle.backgroundColor;
+              const parentStyle = HTMLCS.util.style(parent);
+
+              bgColour = parentStyle.backgroundColor;
+
               if (parentStyle.backgroundImage !== "none") {
                 hasBgImg = true;
               }
@@ -109,7 +115,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
 
               // Search for the smooth scrolling willChange: 'transform' background hack
               // See http://fourkitchens.com/blog/article/fix-scrolling-performance-css-will-change-property
-              var beforeStyle = HTMLCS.util.style(parent, ":before");
+              const beforeStyle = HTMLCS.util.style(parent, ":before");
               if (
                 beforeStyle &&
                 beforeStyle.position == "fixed" &&
@@ -124,12 +130,11 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                 hasBgImg = true;
                 break;
               }
-
               parent = parent.parentNode;
-            } //end while
+            } 
 
-            var bgAlpha = HTMLCS.util.colourStrToRGB(bgColour).alpha;
-            var fgAlpha = HTMLCS.util.colourStrToRGB(foreColour).alpha;
+            const bgAlpha = HTMLCS.util.colourStrToRGB(bgColour).alpha;
+            const fgAlpha = HTMLCS.util.colourStrToRGB(foreColour).alpha;
 
             if (bgColour && bgAlpha < 1.0 && bgAlpha > 0) {
               // If we have a rgba background colour, skip the contrast ratio checks,
@@ -187,10 +192,10 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
               continue;
             }
 
-            var contrastRatio = HTMLCS.util.contrastRatio(bgColour, foreColour);
+            const contrastRatio = HTMLCS.util.contrastRatio(bgColour, foreColour);
 
             if (contrastRatio < reqRatio) {
-              var recommendation = this.recommendColour(
+              const recommendation = this.recommendColour(
                 bgColour,
                 foreColour,
                 reqRatio
@@ -202,53 +207,58 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                 bgColour: bgColour,
                 value: contrastRatio,
                 required: reqRatio,
-                recommendation: recommendation,
+                recommendation,
               });
-            } //end if
-          } //end if
-        } //end if
-      } //end if
+            } 
+          } 
+        } 
+      } 
     }
 
     return failures;
   },
 
-  recommendColour: function (back, fore, target) {
+  recommendColour: function (background, foreground, target) {
     // Canonicalise the colours.
-    var fore = HTMLCS.util.RGBtoColourStr(HTMLCS.util.colourStrToRGB(fore));
-    var back = HTMLCS.util.RGBtoColourStr(HTMLCS.util.colourStrToRGB(back));
+    const fore = HTMLCS.util.RGBtoColourStr(HTMLCS.util.colourStrToRGB(foreground));
+    const back = HTMLCS.util.RGBtoColourStr(HTMLCS.util.colourStrToRGB(background));
+    const foreDiff = Math.abs(HTMLCS.util.relativeLum(fore) - 0.5);
+    const backDiff = Math.abs(HTMLCS.util.relativeLum(back) - 0.5);
 
-    var cr = HTMLCS.util.contrastRatio(fore, back);
-    var foreDiff = Math.abs(HTMLCS.util.relativeLum(fore) - 0.5);
-    var backDiff = Math.abs(HTMLCS.util.relativeLum(back) - 0.5);
+    let recommendation = null;
+    let newCol = null;
+    let change = "";
+    let multiplier = 0;
 
-    var recommendation = null;
+    let cr = HTMLCS.util.contrastRatio(fore, back);
 
     if (cr < target) {
       // Work out which colour has more room to move.
       // If they are the same, prefer changing the foreground colour.
-      var multiplier = 1 + 1 / 400;
+      multiplier = 1 + 1 / 400;
+
       if (foreDiff <= backDiff) {
-        var change = "back";
-        var newCol = back;
+        change = "back";
+        newCol = back;
         if (HTMLCS.util.relativeLum(back) < 0.5) {
-          var multiplier = 1 / multiplier;
+          multiplier = 1 / multiplier;
         }
       } else {
-        var change = "fore";
-        var newCol = fore;
+        change = "fore";
+        newCol = fore;
         if (HTMLCS.util.relativeLum(fore) < 0.5) {
-          var multiplier = 1 / multiplier;
+          multiplier = 1 / multiplier;
         }
       }
 
-      var hsv = HTMLCS.util.sRGBtoHSV(newCol);
-      // var chroma  = hsv.saturation * hsv.value;
-      var newFore = fore;
-      var newBack = back;
-      var changed = false;
+      let hsv: ReturnType<typeof globalThis.HTMLCS.util.sRGBtoHSV> | string = HTMLCS.util.sRGBtoHSV(newCol);
 
-      var i = 0;
+      // var chroma  = hsv.saturation * hsv.value;
+      let newFore = fore;
+      let newBack = back;
+      let changed = false;
+
+      let i = 0;
 
       while (cr < target) {
         if (newCol === "#fff" || newCol === "#000") {
@@ -257,20 +267,20 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
             // We've already switched colours, so we have to start
             // winding back the other colour.
             if (change === "fore") {
-              var oldBack = newBack;
-              var j = 1;
+              const oldBack = newBack;
+              let j = 1;
               while (newBack === oldBack) {
-                var newBack = this.multiplyColour(
+                 newBack = this.multiplyColour(
                   newBack,
                   Math.pow(1 / multiplier, j)
                 );
                 j++;
               }
             } else {
-              var oldFore = newFore;
-              var j = 1;
+              const oldFore = newFore;
+              let j = 1;
               while (newFore === oldFore) {
-                var newFore = this.multiplyColour(
+                 newFore = this.multiplyColour(
                   newFore,
                   Math.pow(1 / multiplier, j)
                 );
@@ -281,12 +291,13 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
             newFore = fore;
             newBack = back;
             multiplier = 1 / multiplier;
+
             if (change === "fore") {
               change = "back";
-              var hsv = back;
+              hsv = back;
             } else {
               change = "fore";
-              var hsv = fore;
+              hsv = fore;
             }
 
             hsv = HTMLCS.util.sRGBtoHSV(hsv);
@@ -296,17 +307,17 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
         }
 
         i++;
-        var newCol = HTMLCS.util.HSVtosRGB(hsv);
-        var newCol = this.multiplyColour(newCol, Math.pow(multiplier, i));
+        newCol = HTMLCS.util.HSVtosRGB(hsv);
+        newCol = this.multiplyColour(newCol, Math.pow(multiplier, i));
 
         if (change === "fore") {
-          var newFore = newCol;
+          newFore = newCol;
         } else {
-          var newBack = newCol;
+          newBack = newCol;
         }
 
-        var cr = HTMLCS.util.contrastRatio(newFore, newBack);
-      } //end while
+        cr = HTMLCS.util.contrastRatio(newFore, newBack);
+      }
 
       recommendation = {
         fore: {
@@ -318,14 +329,14 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
           to: newBack,
         },
       };
-    } //end if
+    } 
 
     return recommendation;
   },
 
   multiplyColour: function (colour, multiplier) {
-    var hsvColour = HTMLCS.util.sRGBtoHSV(colour);
-    var chroma = hsvColour.saturation * hsvColour.value;
+    const hsvColour = HTMLCS.util.sRGBtoHSV(colour);
+    const chroma = hsvColour.saturation * hsvColour.value;
 
     // If we are starting from black, start it from #010101 instead.
     if (hsvColour.value === 0) {
@@ -342,9 +353,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
     hsvColour.value = Math.min(1, hsvColour.value);
     hsvColour.saturation = Math.min(1, hsvColour.saturation);
 
-    var newColour = HTMLCS.util.RGBtoColourStr(
+    return HTMLCS.util.RGBtoColourStr(
       HTMLCS.util.HSVtosRGB(hsvColour)
     );
-    return newColour;
   },
 };

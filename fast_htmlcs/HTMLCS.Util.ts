@@ -359,7 +359,7 @@ _global.HTMLCS.util = {
 
     while (parent && parent.ownerDocument) {
       parent = parent.parentNode;
-    } //end while
+    } 
 
     // If we didn't hit a document, the element must not be in there.
     if (parent === null) {
@@ -527,6 +527,7 @@ _global.HTMLCS.util = {
   relativeLum: function (color) {
     let colour = color;
 
+    // convert to rgb
     if (colour.charAt) {
       colour = this.colourStrToRGB(colour);
     }

@@ -1,6 +1,6 @@
 {
   "name": "fast_htmlcs",
-  "version": "0.0.36",
+  "version": "0.0.37",
   "description": "A high performance fork of HTML_CodeSniffer.",
   "license": "BSD-3-Clause",
   "main": "index.js",

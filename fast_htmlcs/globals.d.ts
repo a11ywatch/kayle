@@ -47,8 +47,8 @@ type HTMLCS = {
     hasValidAriaLabel(element: Element): boolean;
     style(
       element: Element & { currentStyle?: ElementCSSInlineStyle },
-      pseudo?: Element
-    ): boolean;
+      pseudo?: Element | string
+    ): CSSStyleDeclaration;
     isVisuallyHidden(element: Element): boolean;
     isAriaHidden(element: Element): boolean;
     isFocusable(element: Element): boolean;
@@ -60,7 +60,7 @@ type HTMLCS = {
     isLayoutTable(element: Element): boolean;
     colourStrToRGB(colour: string): RGB;
     relativeLum(colour: string): number;
-    contrastRatio(a: number, b: number): number;
+    contrastRatio(a: string, b: string): number;
     RGBtoColourStr(colour: RGB): string;
     sRGBtoHSV(colour: string | RGB): HSV;
     HSVtosRGB(colour: HSV): RGB;
@@ -108,9 +108,10 @@ type RuleSet = {
 // Guidelines to follow
 type GuideLine = {
   _labelNames?: string[];
-  // todo: move to getter
-  register(): string[];
-  process(element: Element, top?: Element): void;
+  //  primary entrys todo: move to getter
+  register?(): string[];
+  process?(element: Element, top?: Element): void;
+  // custom
   addNullAltTextResults?(top: Element): void;
   addMediaAlternativesResults?(element: Element): void;
   addProcessLinksMessages?(element: Element): void;
@@ -118,8 +119,10 @@ type GuideLine = {
   checkValidAttributes?(element: Element): void;
   checkNewWindowTarget?(element: Element): void;
   checkControlGroups?(element: Element): void;
+  multiplyColour?(colour: string, multiplier: number): string;
   isValidLanguageTag?(langTag?: string): void;
   testSemanticPresentationRole?(element: Element): void;
+  testContrastRatio?(element: Element, minContrast?: number, minLargeContrast?: number): void;
   testEmptyDupeLabelForAttrs?(
     top: Element & { getElementById?(id: string): HTMLElement }
   );
@@ -129,6 +132,7 @@ type GuideLine = {
     muteErrors?: boolean
   ): boolean;
   testNullAltText?(top: Element): void;
+  recommendColour?(back: string, fore: string, target: number): void;
   testMediaTextAlternatives?(element: Element): void;
   testPresentationMarkup?(element: Element): void;
   testNonSemanticHeading?(element: Element): void;
@@ -177,6 +181,7 @@ declare global {
       HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_6: GuideLine;
       HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_1: GuideLine;
       HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_2: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast: GuideLine;
       HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_1_2_1_1: GuideLine;
       HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_1_2_1_2: GuideLine;
       HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_1_2_1_4: GuideLine;

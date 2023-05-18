@@ -954,7 +954,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
           // Text node.
           thisItem.push(subel.nodeValue);
         }
-      } //end while
+      } 
 
       if (thisItem.length > 0) {
         items.push(thisItem.join(" ").replace(/^\s*(.*?)\s*$/g, "$1"));
