@@ -29,10 +29,11 @@ import { performance } from "perf_hooks";
     {
       page,
       browser,
-      runners: ["htmlcs"],
+      runners: ["htmlcs", "axe"],
       includeWarnings: true,
       html: jmendezMock,
       origin: "https://jeffmendez.com", // origin is the fake url in place of the raw content
+      _browserExtension: false, // enable the extension
     },
     true
   );
@@ -45,21 +46,6 @@ import { performance } from "perf_hooks";
 
   // valid list
   assert(Array.isArray(issues));
-
-  // chrome extension adds script to execute
-  const data = await page.evaluate(
-    (runOptions) => {
-      // @ts-ignore injected after navigate
-      return window.__kayle.random(runOptions);
-    },
-    {
-      origin: "https://jeffmendez.com",
-    }
-  );
-
-  console.log(data);
-
-  await page.screenshot({ path: "./screenshot.png" });
 
   await browser.close();
 })();

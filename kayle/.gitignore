@@ -9,5 +9,4 @@ _tests
 ./test-results
 _data
 
-tests/chrome-extension
 ./screenshot.png
