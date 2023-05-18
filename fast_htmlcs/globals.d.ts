@@ -256,6 +256,10 @@ declare global {
       HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_1: GuideLine;
       HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2: GuideLine;
       HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_3: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_10: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_11: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_12: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_13: GuideLine;
       HTMLCS_Section508_Sniffs_A: GuideLine;
       HTMLCS_Section508_Sniffs_B: GuideLine;
       HTMLCS_Section508_Sniffs_C: GuideLine;

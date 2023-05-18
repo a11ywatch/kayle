@@ -20,9 +20,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_10 = {
    *
    * @returns {Array} The list of elements.
    */
-  register: function () {
-    return ["_top", "pre", "meta"];
-  },
+  register: () => ["_top", "pre", "meta"],
 
   /**
    * Process the registered element.
@@ -41,9 +39,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_10 = {
         "C32,C31,C33,C38,SCR34,G206"
       );
 
-      var all = HTMLCS.util.getAllElements(top, "*");
-      for (var i = 0; i < all.length; i++) {
-        var x = all[i];
+
+      for (const x of HTMLCS.util.getAllElements(top, "*")) {
         if (
           window.getComputedStyle(x, null).getPropertyValue("position") ==
           "fixed"
@@ -59,10 +56,10 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_10 = {
         }
       }
     } else {
-      var nodeName = element.nodeName.toLowerCase();
+      const nodeName = element.nodeName;
 
       switch (nodeName) {
-        case "pre":
+        case "PRE":
           HTMLCS.addMessage(
             HTMLCS.WARNING,
             top,
@@ -72,9 +69,10 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_10 = {
             "C32,C31,C33,C38,SCR34,G206"
           );
           break;
-        case "meta":
-          var content = element.getAttribute("content");
-          var name = element.getAttribute("name");
+        case "META":
+          const content = element.getAttribute("content");
+          const name = element.getAttribute("name");
+
           if (
             name === "viewport" &&
             !!content &&
