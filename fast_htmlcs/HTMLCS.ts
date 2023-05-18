@@ -184,9 +184,9 @@ _global.HTMLCS = new (function () {
 
     if (typeof content === "string") {
       if (
-        content.startsWith("<html") ||
-        content.startsWith("<HTML") ||
-        content.startsWith("<!DOCTYPE html>")
+        ["<html", "<HTML", "<!DOCTYPE html>"].some((ht) =>
+          content.startsWith(ht)
+        )
       ) {
         fullDoc = true;
       } else if (
@@ -258,13 +258,8 @@ _global.HTMLCS = new (function () {
   const _run = (elements, topElement: Element, callback) => {
     while (elements.length > 0) {
       const element = elements.shift();
-      let tagName = "";
-
-      if (element === topElement) {
-        tagName = "_top";
-      } else {
-        tagName = element.tagName.toLowerCase();
-      }
+      const tagName =
+        element === topElement ? "_top" : element.tagName.toLowerCase();
 
       if (_tags.has(tagName)) {
         const tag = _tags.get(tagName);
@@ -378,7 +373,9 @@ _global.HTMLCS = new (function () {
     const parts = standard.split("/");
     // Get a copy of the ruleset object.
     const oldRuleSet = _global["HTMLCS_" + parts[parts.length - 2]];
-    const ruleSet = {};
+    const ruleSet = {
+      sniffs: undefined,
+    };
 
     for (const x in oldRuleSet) {
       if (typeof oldRuleSet[x] !== "undefined") {
@@ -396,12 +393,11 @@ _global.HTMLCS = new (function () {
         ruleSet.sniffs = options.include;
       } else if (options.exclude) {
         // Excluded sniffs.
-        for (let i = 0; i < options.exclude.length; i++) {
+        for (const exclude of options.exclude) {
           // @ts-ignore
-          const index = ruleSet.sniffs.find(options.exclude[i]);
+          const index = ruleSet.sniffs.find(exclude);
 
           if (index >= 0) {
-            // @ts-ignore
             ruleSet.sniffs.splice(index, 1);
           }
         }
@@ -427,16 +423,13 @@ _global.HTMLCS = new (function () {
    */
   const _registerSniffs = (standard, sniffs, callback, failCallback) => {
     if (sniffs.length === 0) {
-      callback.call(this);
-      return;
+      return callback.call(this);
     }
 
     // Include and register sniffs.
-    const sniff = sniffs.shift();
-
     _loadSniffFile(
       standard,
-      sniff,
+      sniffs.shift(),
       function () {
         _registerSniffs(standard, sniffs, callback, failCallback);
       },
@@ -501,12 +494,10 @@ _global.HTMLCS = new (function () {
     if (sniffObj.register) {
       const watchedTags = sniffObj.register();
 
-      for (var i = 0; i < watchedTags.length; i++) {
-        if (!_tags.has(watchedTags[i])) {
-          _tags.set(watchedTags[i], [sniffObj]);
-        } else {
-          _tags.get(watchedTags[i]).push(sniffObj);
-        }
+      for (const wtag of watchedTags) {
+        !_tags.has(wtag)
+          ? _tags.set(wtag, [sniffObj])
+          : _tags.get(wtag).push(sniffObj);
       }
     }
   };
@@ -532,9 +523,8 @@ _global.HTMLCS = new (function () {
    *
    * @returns {String} The path to the local standard.
    */
-  const _getStandardPath = (standard: string) => {
-    return "Standards/" + standard + "/ruleset.js";
-  };
+  const _getStandardPath = (standard: string) =>
+    "Standards/" + standard + "/ruleset.js";
 
   /**
    * Returns the sniff object.
@@ -608,10 +598,8 @@ _global.HTMLCS = new (function () {
 
     script.src = src;
 
-    if (document.head) {
-      document.head.appendChild(script);
-    } else {
-      document.getElementsByTagName("head")[0].appendChild(script);
-    }
+    document.head
+      ? document.head.appendChild(script)
+      : document.getElementsByTagName("head")[0].appendChild(script);
   };
 })();

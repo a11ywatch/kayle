@@ -29,6 +29,7 @@ setLogging(true);
 const browser = await chromium.launch({ headless: true });
 const page = await browser.newPage();
 
+// crawls are continued to the next page automatically fast!
 const results = await autoKayle({
   page,
   browser,
@@ -38,12 +39,7 @@ const results = await autoKayle({
   cb: function callback(result) {
     console.log(result);
   },
-  // store: `${process.cwd()}/_data/`, // _data folder must exist first
 });
-
-for (const result of results) {
-  console.log(result);
-}
 ```
 
 ```js
@@ -95,30 +91,6 @@ const results = {
 };
 ```
 
-## Configuration
-
-The `extraConfigs` object has the following:
-
-```ts
-type RunnerConfig = {
-  browser: Browser; // puppeteer or playwright Browser Object.
-  page: Page; // puppeteer or playwright Page Object.
-  actions?: string[]; // custom actions or actions from lib/actions
-  hideElements?: string; // hide elements from rendering like modals using css.
-  ignore?: string[]; // ignore certain rules from running.
-  includeNotices?: boolean; // include notices
-  includeWarnings?: boolean; // include warnings
-  rootElement?: string; // the entry point.
-  rules?: string; // what rules you want to include: default all.
-  runners?: string[]; // type of runner to use axe, htmlcs, or custom
-  standard?: Standard; // web accessibility standard WCAG2A, WCAG2AA, WCAG2AAA, or Section508
-  timeout?: number; // timeout for running the audit.
-  origin?: string; // the origin of the page.
-  language?: string; // the language to use for testing and getting localized data in.
-  noIntercept?: boolean; // skip setting up request interception.
-};
-```
-
 ## Runners
 
 `kayle` supports multiple test runners which return different results. The built-in test runners are:
@@ -158,6 +130,30 @@ the best aspects of testing without worrying about a `name`.
 1. zh-CN ("Chinese-Simplified")
 1. zh-TW ("Chinese-Traditional")
 
+## Configuration
+
+The `extraConfigs` object has the following:
+
+```ts
+type RunnerConfig = {
+  browser: Browser; // puppeteer or playwright Browser Object.
+  page: Page; // puppeteer or playwright Page Object.
+  actions?: string[]; // custom actions or actions from lib/actions
+  hideElements?: string; // hide elements from rendering like modals using css.
+  ignore?: string[]; // ignore certain rules from running.
+  includeNotices?: boolean; // include notices
+  includeWarnings?: boolean; // include warnings
+  rootElement?: string; // the entry point.
+  rules?: string; // what rules you want to include: default all.
+  runners?: string[]; // type of runner to use axe, htmlcs, or custom
+  standard?: Standard; // web accessibility standard WCAG2A, WCAG2AA, WCAG2AAA, or Section508
+  timeout?: number; // timeout for running the audit.
+  origin?: string; // the origin of the page.
+  language?: string; // the language to use for testing and getting localized data in.
+  noIntercept?: boolean; // skip setting up request interception.
+};
+```
+
 ## Features
 
 You can enable a high performance adblock detection by brave by installing `npm i adblock-rs` to the project. This module needs to be manually installed and the env variable `KAYLE_ADBLOCK` needs to be set to `true`.
@@ -193,6 +189,8 @@ Use the command `./build.sh` to compile all the scripts for each locale.
 
 Access score or `accessScore` is going to switch to a new algorithm that uses incompletion points. Depending on the incompletion a direct impact score will be negated starting from 100.
 
+Re-work coming soon!
+
 ## Fast crawls
 
 As we set the foundation to mark test cases that can pass and increase our target on automating accessibility we have a couple of layers that
@@ -200,7 +198,7 @@ can make a major difference to the project. The following will save drastic time
 
 1. Use a fast [crawler](https://github.com/a11ywatch/crawler) to gather all of the html to send to a web accessibility service that can perform audits like [pagemind](https://github.com/a11ywatch/pagemind) over CDP.
 
-2. Pre-compile the scripts to the browser so that you are not sending it over the wire per request and simply performing the audit as a side effect for navigating like a chrome extension.
+2. Use the pre-compiled browser extensions to avoid over the wire latency `yarn build:extension`.
 
 ## About
 
