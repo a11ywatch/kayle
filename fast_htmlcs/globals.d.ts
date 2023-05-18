@@ -285,7 +285,6 @@ declare global {
   var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast: Snif;
   var HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_1: Snif;
   var HTMLCS_WCAG2A: RuleSet;
-  var HTMLCS_WCAG2AA: RuleSet;
   var HTMLCS_WCAG2AAA: RuleSet;
 }
 

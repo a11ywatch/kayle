@@ -566,34 +566,25 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
    * @returns {String} The alt text.
    */
   _getLinkAltText: function (anc: Node) {
-    const anchor = anc.cloneNode(true);
-    const nodes = new Array(anchor.childNodes.length);
-
-    for (let i = 0; i < anchor.childNodes.length; i++) {
-      nodes[i] = anchor.childNodes[i];
-    }
-
-    nodes.length = anchor.childNodes.length;
-
+    // todo: allow checking empty alt to pre-shape to string
     let alt = null;
 
-    // todo: remove while loop node shift for Direct Node manipulation
-    while (nodes.length > 0) {
-      const node = nodes.shift();
-      // If it's an element, add any sub-nodes to the process list.
-      if (node.nodeType === 1 && node.nodeName === "IMG") {
-        if (node.hasAttribute("alt")) {
-          alt = node.getAttribute("alt");
+    for (const node of anc.childNodes) {
+      if (
+        node.nodeType === 1 &&
+        node.nodeName === "IMG" &&
+        (node as Element).hasAttribute("alt")
+      ) {
+        alt = (node as Element).getAttribute("alt");
 
-          if (!alt) {
-            alt = "";
-          } else {
-            // Trim the alt text.
-            alt = alt.replace(/^\s+|\s+$/g, "");
-          }
-
-          break;
+        if (!alt) {
+          alt = "";
+        } else {
+          // Trim the alt text.
+          alt = alt.replace(/^\s+|\s+$/g, "");
         }
+
+        break;
       }
     }
 
