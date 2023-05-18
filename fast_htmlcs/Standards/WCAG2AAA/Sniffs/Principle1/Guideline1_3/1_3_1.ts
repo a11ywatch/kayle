@@ -142,17 +142,18 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
    * @param {DOMNode} top The top element of the tested code.
    */
   testEmptyDupeLabelForAttrs: function (top) {
+    // todo: use set
     this._labelNames = {};
-    var refNode = null;
-    var labels = top.getElementsByTagName("label");
+    let refNode = null;
 
-    for (var i = 0; i < labels.length; i++) {
-      var labelFor = labels[i].getAttribute("for");
+    for (const lb of top.getElementsByTagName("label")) {
+      const labelFor = lb.getAttribute("for");
+
       if (labelFor !== null && labelFor !== "") {
         if (this._labelNames[labelFor] && this._labelNames[labelFor] !== null) {
           this._labelNames[labelFor] = null;
         } else {
-          this._labelNames[labelFor] = labels[i];
+          this._labelNames[labelFor] = lb;
 
           if (top.ownerDocument) {
             refNode = top.ownerDocument.getElementById(labelFor);
@@ -161,9 +162,10 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
           }
 
           if (refNode === null) {
-            var level = HTMLCS.ERROR;
-            var msg = _global.HTMLCS.getTranslation("1_3_1_H44.NonExistent");
-            var code = "H44.NonExistent";
+            let level = HTMLCS.ERROR;
+            let msg = _global.HTMLCS.getTranslation("1_3_1_H44.NonExistent");
+            let code = "H44.NonExistent";
+
             if (HTMLCS.isFullDoc(top) === true || top.nodeName === "BODY") {
               level = HTMLCS.WARNING;
               msg = _global.HTMLCS.getTranslation(
@@ -171,9 +173,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
               );
               code = "H44.NonExistentFragment";
             }
-            HTMLCS.addMessage(level, labels[i], msg, code);
+            HTMLCS.addMessage(level, lb, msg, code);
           } else {
-            var nodeName = refNode && refNode.nodeName;
+            const nodeName = refNode && refNode.nodeName;
             if (
               !(
                 nodeName === "INPUT" ||
@@ -188,7 +190,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             ) {
               HTMLCS.addMessage(
                 HTMLCS.WARNING,
-                labels[i],
+                lb,
                 _global.HTMLCS.getTranslation("1_3_1_H44.NotFormControl"),
                 "H44.NotFormControl"
               );
@@ -232,20 +234,20 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
    * @param {DOMNode} top     The top element of the tested code.
    */
   testLabelsOnInputs: function (element, _, muteErrors) {
-    var nodeName = element.nodeName.toLowerCase();
-    var inputType = nodeName;
+    let inputType = element.nodeName;
 
-    if (inputType === "input") {
-      if (element.hasAttribute("type") === true) {
+    if (inputType === "INPUT") {
+      if (element.hasAttribute("type")) {
+        // can return `hidden`
         inputType = element.getAttribute("type");
       } else {
-        inputType = "text";
+        inputType = "TEXT";
       }
     }
 
-    var hasLabel = undefined;
+    let hasLabel = undefined;
 
-    var addToLabelList = function (found) {
+    const addToLabelList = function (found) {
       if (!hasLabel) {
         hasLabel = {};
       }
@@ -253,13 +255,11 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
     };
 
     // Firstly, work out whether it needs a label.
-    var needsLabel = false;
-    var inputType = inputType.toLowerCase();
-    if (inputType === "select" || inputType === "textarea") {
+    let needsLabel = false;
+
+    if (inputType === "SELECT" || inputType === "TEXTAREA") {
       needsLabel = true;
-    } else if (
-      /^(radio|checkbox|text|file|password)$/.test(inputType) === true
-    ) {
+    } else if (/^(RADIO|CHECKBOX|TEXT|FILE|PASSWORD)$/.test(inputType)) {
       needsLabel = true;
     }
 
@@ -268,18 +268,20 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
     }
 
     // Find an explicit label.
-    var explicitLabel = element.ownerDocument.querySelector(
+    const explicitLabel = element.ownerDocument.querySelector(
       'label[for="' + element.id + '"]'
     );
+
     if (explicitLabel) {
       addToLabelList("explicit");
     }
 
     // Find an implicit label.
-    var foundImplicit = false as boolean;
+    let foundImplicit = false as boolean;
+
     if (element.parentNode) {
       HTMLCS.util.eachParentNode(element, function (parent) {
-        if (parent.nodeName.toLowerCase() === "label") {
+        if (parent.nodeName === "LABEL") {
           foundImplicit = true;
         }
       });
@@ -290,9 +292,10 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
     }
 
     // Find a title attribute.
-    var title = element.getAttribute("title");
+    const title = element.getAttribute("title");
+
     if (title !== null) {
-      if (/^\s*$/.test(title) === true && needsLabel === true) {
+      if (/^\s*$/.test(title) && needsLabel) {
         HTMLCS.addMessage(
           HTMLCS.WARNING,
           element,
@@ -319,8 +322,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
     }
 
     // Find an aria-labelledby attribute.
-    if (element.hasAttribute("aria-labelledby") === true) {
-      if (HTMLCS.util.hasValidAriaLabel(element) === false) {
+    if (element.hasAttribute("aria-labelledby")) {
+      if (!HTMLCS.util.hasValidAriaLabel(element)) {
         HTMLCS.addMessage(
           HTMLCS.WARNING,
           element,
@@ -387,8 +390,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
     // b, i, u, s, strike, tt, big, small, center, font
     // In HTML5, the following were repurposed as pseudo-semantic:
     // b, i, u, s, small
-    var _doc = HTMLCS.util.getElementWindow(top).document;
-    var doctype = HTMLCS.util.getDocumentType(_doc);
+    const doctype = HTMLCS.util.getDocumentType(
+      HTMLCS.util.getElementWindow(top).document
+    );
 
     if (doctype && (doctype === "html5" || doctype === "xhtml5")) {
       for (const tag of HTMLCS.util.getAllElements(
@@ -454,9 +458,11 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
     // Test for P|DIV > STRONG|EM|other inline styling, when said inline
     // styling tag is the only element in the tag. It could possibly a header
     // that should be using h1..h6 tags instead.
-    var tag = element.nodeName.toLowerCase();
-    if (tag === "p" || tag === "div") {
-      var children = element.childNodes;
+    const tag = element.nodeName;
+
+    if (tag === "P" || tag === "DIV") {
+      const children = element.childNodes;
+
       if (children.length === 1 && children[0].nodeType === 1) {
         if (/^(STRONG|EM|B|I|U)$/.test(children[0].nodeName) === true) {
           HTMLCS.addMessage(
@@ -492,8 +498,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
    * @return void
    */
   testTableHeaders: function (table) {
-    var headersAttr = HTMLCS.util.testTableHeaders(table);
-    var scopeAttr = this._testTableScopeAttrs(table);
+    const headersAttr = HTMLCS.util.testTableHeaders(table);
+    let scopeAttr = this._testTableScopeAttrs(table);
 
     // Invalid scope attribute - emit always if scope tested.
     for (const invalid of scopeAttr.invalid) {
@@ -544,13 +550,13 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
       );
     } else {
       // Incorrect usage of headers - error; emit always.
-      for (var i = 0; i < headersAttr.wrongHeaders.length; i++) {
+      for (const wrongHeader of headersAttr.wrongHeaders) {
         HTMLCS.addMessage(
           HTMLCS.ERROR,
-          headersAttr.wrongHeaders[i].element,
+          wrongHeader.element,
           _global.HTMLCS.getTranslation("1_3_1_H43.IncorrectAttr")
-            .replace(/\{\{expected\}\}/g, headersAttr.wrongHeaders[i].expected)
-            .replace(/\{\{actual\}\}/g, headersAttr.wrongHeaders[i].actual),
+            .replace(/\{\{expected\}\}/g, wrongHeader.expected)
+            .replace(/\{\{actual\}\}/g, wrongHeader.actual),
           "H43.IncorrectAttr"
         );
       }
@@ -671,7 +677,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
    * @return {Object} The above return value structure.
    */
   _testTableScopeAttrs: function (table) {
-    var elements = {
+    const elements = {
       th: table.getElementsByTagName("th"),
       td: table.getElementsByTagName("td"),
     };
@@ -680,7 +686,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
     // - missing:    Errors that a th does not contain a scope attribute.
     // - invalid:    Errors that the scope attribute is not a valid value.
     // - obsoleteTd: Warnings that scopes on tds are obsolete in HTML5.
-    var retval = {
+    const retval = {
       used: false,
       correct: true,
       missing: [],
@@ -688,10 +694,10 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
       obsoleteTd: [],
     };
 
-    for (var tagType in elements) {
-      for (var i = 0; i < elements[tagType].length; i++) {
-        var element = elements[tagType][i];
-        var scope = "";
+    // index key
+    for (const tagType in elements) {
+      for (const element of elements[tagType]) {
+        let scope = "";
 
         if (element.hasAttribute("scope") === true) {
           retval.used = true;
@@ -700,8 +706,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
           }
         }
 
-        if (element.nodeName.toLowerCase() === "th") {
-          if (/^\s*$/.test(scope) === true) {
+        if (element.nodeName === "TH") {
+          if (/^\s*$/.test(scope)) {
             // Scope empty or just whitespace.
             retval.correct = false;
             retval.missing.push(element);
@@ -735,16 +741,17 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
    * @param {DOMNode} table Table element to test upon.
    */
   testTableCaptionSummary: function (table) {
-    var summary = table.getAttribute("summary") || "";
-    var captionEl = table.getElementsByTagName("caption");
-    var caption = "";
+    const captionEl = table.getElementsByTagName("caption");
+    let summary = table.getAttribute("summary") || "";
+    let caption = "";
 
     if (captionEl.length > 0) {
       caption = captionEl[0].innerHTML.replace(/^\s*(.*?)\s*$/g, "$1");
     }
 
     // In HTML5, Summary no longer exists, so only run this for older versions.
-    var doctype = HTMLCS.util.getDocumentType(table.ownerDocument);
+    const doctype = HTMLCS.util.getDocumentType(table.ownerDocument);
+
     if (doctype && doctype.indexOf("html5") === -1) {
       summary = summary.replace(/^\s*(.*?)\s*$/g, "$1");
       if (summary !== "") {
@@ -860,29 +867,29 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
    * @returns void
    */
   testRequiredFieldsets: function (form) {
-    var optionInputs = form.querySelectorAll(
-      "input[type=radio], input[type=checkbox]"
-    );
-    var usedNames = {};
+    const usedNames = {};
 
-    for (var i = 0; i < optionInputs.length; i++) {
-      var option = optionInputs[i];
+    for (const option of form.querySelectorAll(
+      "input[type=radio], input[type=checkbox]"
+    )) {
+      let fieldset = null;
 
       if (option.hasAttribute("name") === true) {
         var optionName = option.getAttribute("name");
 
         // Now find if we are in a fieldset. Stop at the top of the DOM, or
         // at the form element.
-        var fieldset = option.parentNode;
+        fieldset = option.parentNode;
+
         while (
-          fieldset.nodeName.toLowerCase() !== "fieldset" &&
+          fieldset.nodeName !== "FIELDSET" &&
           fieldset !== null &&
           fieldset !== form
         ) {
           fieldset = fieldset.parentNode;
         }
 
-        if (fieldset.nodeName.toLowerCase() !== "fieldset") {
+        if (fieldset.nodeName !== "FIELDSET") {
           // Record that this name is used, but there is no fieldset.
           fieldset = null;
         }
@@ -911,22 +918,24 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
    * @param {DOMNode} element The element to test upon.
    */
   testListsWithBreaks: function (element) {
-    var firstBreak = element.querySelector("br");
-    var items = [];
+    const firstBreak = element.querySelector("br");
+    const items = [];
 
     // If there is a br tag, go break up the element and see what each line
     // starts with.
     if (firstBreak !== null) {
-      var nodes = [];
+      // todo: pre-allocate
+      const nodes = [];
 
-      // Convert child nodes NodeList into an array.
-      for (var i = 0; i < element.childNodes.length; i++) {
-        nodes.push(element.childNodes[i]);
+      // Convert child nodes NodeList into an array. todo: pre-allocate
+      for (const node of element.childNodes) {
+        nodes.push(node);
       }
 
-      var thisItem = [];
+      let thisItem = [];
+
       while (nodes.length > 0) {
-        var subel = nodes.shift();
+        const subel = nodes.shift();
 
         if (subel.nodeType === 1) {
           // Element node.
@@ -935,8 +944,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             items.push(thisItem.join(" ").replace(/^\s*(.*?)\s*$/g, "$1"));
             thisItem = [];
           } else {
+            // TODO: reverse shift to prevent logic
             // Shift the contents of the sub element in, but in reverse.
-            for (var i = subel.childNodes.length - 1; i >= 0; --i) {
+            for (let i = subel.childNodes.length - 1; i >= 0; --i) {
               nodes.unshift(subel.childNodes[i]);
             }
           }
@@ -950,8 +960,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         items.push(thisItem.join(" ").replace(/^\s*(.*?)\s*$/g, "$1"));
       }
 
-      for (var i = 0; i < items.length; i++) {
-        if (/^[-*]\s+/.test(items[0]) === true) {
+      for (const item of items) {
+        if (/^[-*]\s+/.test(item) === true) {
           // Test for "- " or "* " cases.
           HTMLCS.addMessage(
             HTMLCS.WARNING,
@@ -961,7 +971,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
           );
           break;
         }
-        if (/^\d+[:/\-.]?\s+/.test(items[0]) === true) {
+        if (/^\d+[:/\-.]?\s+/.test(item) === true) {
           // Test for "1 " cases (or "1. ", "1: ", "1- ").
           HTMLCS.addMessage(
             HTMLCS.WARNING,

@@ -37,22 +37,21 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_2_2_2_2 = {
         "SCR33,SCR22,G187,G152,G186,G191"
       );
 
-      var elements = HTMLCS.util.getAllElements(top, "*");
-      for (var i = 0; i < elements.length; i++) {
-        var computedStyle = HTMLCS.util.style(elements[i]);
+      for (const ele of HTMLCS.util.getAllElements(top, "*")) {
+        var computedStyle = HTMLCS.util.style(ele);
 
         if (computedStyle) {
           if (/blink/.test(computedStyle["text-decoration"]) === true) {
             HTMLCS.addMessage(
               HTMLCS.WARNING,
-              elements[i],
+              ele,
               _global.HTMLCS.getTranslation("2_2_2_F4"),
               "F4"
             );
           }
         }
       }
-    } else if (element.nodeName.toLowerCase() === "blink") {
+    } else if (element.nodeName === "BLINK") {
       HTMLCS.addMessage(
         HTMLCS.ERROR,
         element,

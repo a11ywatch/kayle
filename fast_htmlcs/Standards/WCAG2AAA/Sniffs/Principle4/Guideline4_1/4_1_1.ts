@@ -32,11 +32,11 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_1 = {
    */
   process: function (element, top) {
     if (element === top) {
-      var elsWithIds = HTMLCS.util.getAllElements(top, "*[id]");
-      var usedIds = {};
+      // todo: set
+      const usedIds = {};
 
-      for (var i = 0; i < elsWithIds.length; i++) {
-        var id = elsWithIds[i].getAttribute("id");
+      for (const elewithId of HTMLCS.util.getAllElements(top, "*[id]")) {
+        const id = elewithId.getAttribute("id");
 
         if (/^\s*$/.test(id) === true) {
           continue;
@@ -47,7 +47,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_1 = {
           // Appropriate technique in HTML is H93.
           HTMLCS.addMessage(
             HTMLCS.ERROR,
-            elsWithIds[i],
+            elewithId,
             _global.HTMLCS.getTranslation("4_1_1_F77").replace(
               /\{\{id\}\}/g,
               id

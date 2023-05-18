@@ -39,22 +39,24 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_2 = {
     );
 
     if (element == top) {
-      var allMousedown = HTMLCS.util.getAllElements(top, "*[onmousedown]");
-      for (var i = 0; i < allMousedown.length; i++) {
-        var x = allMousedown[i];
+      for (const mouseDown of HTMLCS.util.getAllElements(
+        top,
+        "*[onmousedown]"
+      )) {
         HTMLCS.addMessage(
           HTMLCS.NOTICE,
-          x,
+          mouseDown,
           _global.HTMLCS.getTranslation("2_5_2.Mousedown_Check"),
           ""
         );
       }
-      var allTouchstart = HTMLCS.util.getAllElements(top, "*[ontouchstart]");
-      for (var i = 0; i < allTouchstart.length; i++) {
-        var x = allTouchstart[i];
+      for (const touchStart of HTMLCS.util.getAllElements(
+        top,
+        "*[ontouchstart]"
+      )) {
         HTMLCS.addMessage(
           HTMLCS.NOTICE,
-          x,
+          touchStart,
           _global.HTMLCS.getTranslation("2_5_2.Touchstart_Check"),
           ""
         );

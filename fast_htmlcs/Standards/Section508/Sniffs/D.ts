@@ -72,11 +72,13 @@ _global.HTMLCS_Section508_Sniffs_D = {
   },
 
   testHeadingOrder: function (top) {
-    var lastHeading = 0;
-    var headings = HTMLCS.util.getAllElements(top, "h1, h2, h3, h4, h5, h6");
+    let lastHeading = 0;
 
-    for (var i = 0; i < headings.length; i++) {
-      var headingNum = parseInt(headings[i].nodeName.substr(1, 1));
+    for (const heading of HTMLCS.util.getAllElements(
+      top,
+      "h1, h2, h3, h4, h5, h6"
+    )) {
+      const headingNum = parseInt(heading.nodeName.substr(1, 1));
       if (headingNum - lastHeading > 1) {
         var exampleMsg =
           "should be an h" + (lastHeading + 1) + " to be properly nested";
@@ -89,7 +91,7 @@ _global.HTMLCS_Section508_Sniffs_D = {
 
         HTMLCS.addMessage(
           HTMLCS.ERROR,
-          headings[i],
+          heading,
           "The heading structure is not logically nested. This h" +
             headingNum +
             " element " +

@@ -122,11 +122,10 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
       noContent: [],
     };
 
-    var elements = HTMLCS.util.getAllElements(top, 'a:not([role="button"])');
-
-    for (var el = 0; el < elements.length; el++) {
-      var element = elements[el];
-
+    for (const element of HTMLCS.util.getAllElements(
+      top,
+      'a:not([role="button"])'
+    )) {
       var nameFound = false;
       var hrefFound = false;
       var content = HTMLCS.util.getElementTextContent(element);
@@ -198,10 +197,6 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
   },
 
   processFormControls: function (top) {
-    var elements = HTMLCS.util.getAllElements(
-      top,
-      'button, fieldset, input, select, textarea, [role="button"]'
-    );
     var errors = [];
     var warnings = [];
 
@@ -233,6 +228,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
       "range",
       "color",
     ];
+
     for (var i = 0, l = html5inputTypes.length; i < l; i++) {
       requiredNames["input_" + html5inputTypes[i]] = [
         "label",
@@ -246,8 +242,10 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
       select: "option_selected",
     };
 
-    for (var el = 0, ll = elements.length; el < ll; el++) {
-      var element = elements[el];
+    for (const element of HTMLCS.util.getAllElements(
+      top,
+      'button, fieldset, input, select, textarea, [role="button"]'
+    )) {
       var nodeName = element.nodeName.toLowerCase();
       var msgSubCode =
         element.nodeName.substr(0, 1).toUpperCase() +

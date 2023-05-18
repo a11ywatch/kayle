@@ -153,7 +153,7 @@ _global.HTMLCS.util = {
   hasValidAriaLabel: function (element) {
     let found = false;
 
-    if (element.hasAttribute("aria-labelledby") === true) {
+    if (element.hasAttribute("aria-labelledby")) {
       // Checking aria-labelled by where the label exists AND it has text available
       // to an accessibility API.
       const labelledByIds = element
@@ -168,7 +168,7 @@ _global.HTMLCS.util = {
           break;
         }
       }
-    } else if (element.hasAttribute("aria-label") === true) {
+    } else if (element.hasAttribute("aria-label")) {
       // todo: remove regx
       found = /^\s*$/.test(element.getAttribute("aria-label")) === false;
     }
@@ -214,23 +214,14 @@ _global.HTMLCS.util = {
 
     // Do not point to elem if its hidden. Use computed styles.
     let style = this.style(element);
-    let hidden = false;
 
-    if (style !== null) {
-      if (style.visibility === "hidden" || style.display === "none") {
-        hidden = true;
-      }
-
-      if (parseInt(style.left, 10) + parseInt(style.width, 10) < 0) {
-        hidden = true;
-      }
-
-      if (parseInt(style.top, 10) + parseInt(style.height, 10) < 0) {
-        hidden = true;
-      }
-    }
-
-    return hidden;
+    return !!(
+      style !== null &&
+      (style.visibility === "hidden" ||
+        style.display === "none" ||
+        parseInt(style.left, 10) + parseInt(style.width, 10) < 0 ||
+        parseInt(style.top, 10) + parseInt(style.height, 10) < 0)
+    );
   },
   /**
    * Returns true if the element is deliberately hidden from Accessibility APIs using ARIA hidden.
@@ -352,12 +343,8 @@ _global.HTMLCS.util = {
    *
    * @returns {Boolean}
    */
-  isDisabled: function (element) {
-    return (
-      element.disabled === true ||
-      element.getAttribute("aria-disabled") === "true"
-    );
-  },
+  isDisabled: (element) =>
+    element.disabled || element.getAttribute("aria-disabled") === "true",
   /**
    * Return true if an element is in a document.
    *
@@ -457,9 +444,7 @@ _global.HTMLCS.util = {
    *
    * @returns {Boolean}
    */
-  isLayoutTable: function (table) {
-    return table.querySelector("th") === null;
-  },
+  isLayoutTable: (table) => table.querySelector("th") === null,
   /**
    * Convert a colour string to a structure with red/green/blue/alpha elements.
    *
@@ -498,7 +483,7 @@ _global.HTMLCS.util = {
     } else {
       // Hex digit format.
       if (colour.charAt(0) === "#") {
-        colour = colour.substr(1);
+        colour = colour.substring(1);
       }
 
       if (colour.length === 3) {
@@ -716,38 +701,33 @@ _global.HTMLCS.util = {
       colour.green = hsvColour.value;
       colour.blue = hsvColour.value;
     } else {
-      var chroma = hsvColour.value * hsvColour.saturation;
-      var minColour = hsvColour.value - chroma;
-      var interHue = hsvColour.hue / 60.0;
-      var interHueMod = interHue - 2 * Math.floor(interHue / 2);
-      var interCol = chroma * (1 - Math.abs(interHueMod - 1));
+      const chroma = hsvColour.value * hsvColour.saturation;
+      const minColour = hsvColour.value - chroma;
+      const interHue = hsvColour.hue / 60.0;
+      const interHueMod = interHue - 2 * Math.floor(interHue / 2);
+      const interCol = chroma * (1 - Math.abs(interHueMod - 1));
 
       switch (Math.floor(interHue)) {
         case 0:
           colour.red = chroma;
           colour.green = interCol;
           break;
-
         case 1:
           colour.green = chroma;
           colour.red = interCol;
           break;
-
         case 2:
           colour.green = chroma;
           colour.blue = interCol;
           break;
-
         case 3:
           colour.blue = chroma;
           colour.green = interCol;
           break;
-
         case 4:
           colour.blue = chroma;
           colour.red = interCol;
           break;
-
         case 5:
           colour.red = chroma;
           colour.blue = interCol;
@@ -804,7 +784,7 @@ _global.HTMLCS.util = {
             nodeIndex++;
           }
         } else {
-          for (var i = 0; i < node.childNodes.length; i++) {
+          for (let i = 0; i < node.childNodes.length; i++) {
             nodes[i] = node.childNodes[i];
           }
           nodes.length = node.childNodes.length;
@@ -831,14 +811,14 @@ _global.HTMLCS.util = {
    * @return DOMNode|null
    */
   findParentNode: function (node, selector) {
-    if (node && node.matches && node.matches(selector)) {
+    if (node && node.matches(selector)) {
       return node;
     }
 
     while (node && node.parentNode) {
       node = node.parentNode as Element;
 
-      if (node && node.matches && node.matches(selector)) {
+      if (node && node.matches(selector)) {
         return node;
       }
     }
@@ -872,9 +852,9 @@ _global.HTMLCS.util = {
     let rowIndex = 0;
 
     // Filter out rows that don't belong to this table.
-    for (var i = 0, l = allRows.length; i < l; i++) {
-      if (this.findParentNode(allRows[i], "table") === table) {
-        rows[rowIndex] = allRows[i];
+    for (const row of allRows) {
+      if (this.findParentNode(row, "table") === table) {
+        rows[rowIndex] = row;
         rowIndex++;
       }
     }
@@ -931,11 +911,10 @@ _global.HTMLCS.util = {
     };
 
     for (var rownum = 0; rownum < rows.length; rownum++) {
-      var row = rows[rownum];
-      var colnum = 0;
+      const row = rows[rownum];
+      let colnum = 0;
 
-      for (var item = 0; item < row.childNodes.length; item++) {
-        var cell = row.childNodes[item];
+      for (const cell of row.childNodes) {
         if (cell.nodeType === 1) {
           // Skip columns that are skipped due to rowspan.
           if (skipCells[rownum]) {
@@ -945,13 +924,13 @@ _global.HTMLCS.util = {
             }
           }
 
-          var nodeName = cell.nodeName;
-          var rowspan = Number(cell.getAttribute("rowspan")) || 1;
-          var colspan = Number(cell.getAttribute("colspan")) || 1;
+          const nodeName = cell.nodeName;
+          const rowspan = Number(cell.getAttribute("rowspan")) || 1;
+          const colspan = Number(cell.getAttribute("colspan")) || 1;
 
           // If rowspanned, mark columns as skippable in the following
           // row(s).
-          if (rowspan > 1) {
+          if (rowspan) {
             for (var i = rownum + 1; i < rownum + rowspan; i++) {
               if (!skipCells[i]) {
                 skipCells[i] = [];
@@ -964,7 +943,7 @@ _global.HTMLCS.util = {
           }
 
           if (nodeName === "TH") {
-            var id = cell.getAttribute("id") || "";
+            const id = cell.getAttribute("id") || "";
 
             // Save the fact that we have a missing ID on the header.
             if (id === "") {
@@ -972,7 +951,7 @@ _global.HTMLCS.util = {
               retval.missingThId.push(cell);
             }
 
-            if (rowspan > 1 && colspan > 1) {
+            if (rowspan && colspan) {
               // Multi-column AND multi-row header. Abandon all hope,
               // As it must span across more than one row+column
               retval.allowScope = false;
@@ -1006,19 +985,19 @@ _global.HTMLCS.util = {
       }
     }
 
-    for (var i = 0; i < headerIds.rows.length; i++) {
-      if (headerIds.rows[i] > 1) {
+    for (const headerRow of headerIds.rows) {
+      if (headerRow) {
         multiHeaders.rows++;
       }
     }
 
-    for (var i = 0; i < headerIds.cols.length; i++) {
-      if (headerIds.cols[i] > 1) {
+    for (const headerCol of headerIds.cols) {
+      if (headerCol) {
         multiHeaders.cols++;
       }
     }
 
-    if (multiHeaders.rows > 1 || multiHeaders.cols > 1) {
+    if (multiHeaders.rows || multiHeaders.cols) {
       retval.allowScope = false;
       retval.isMultiLevelHeadersTable = true;
     } else if (
@@ -1031,17 +1010,15 @@ _global.HTMLCS.util = {
 
     // Calculate expected heading IDs. If they are not there or incorrect, flag
     // them.
-    const cells = this.getCellHeaders(element);
-
-    for (var i = 0; i < cells.length; i++) {
-      var cell = cells[i].cell;
-      var expected = cells[i].headers;
+    for (const cell of this.getCellHeaders(element)) {
+      const expected = cell.headers;
 
       if (cell.hasAttribute("headers") === false) {
         retval.correct = false;
         retval.missingTd.push(cell);
       } else {
-        var actual = (cell.getAttribute("headers") || "").split(/\s+/);
+        let actual = (cell.getAttribute("headers") || "").split(/\s+/);
+
         if (actual.length === 0) {
           retval.correct = false;
           retval.missingTd.push(cell);
@@ -1089,13 +1066,10 @@ _global.HTMLCS.util = {
    * @returns {Array}
    */
   getCellHeaders: function (table) {
-    if (typeof table !== "object") {
-      return null;
-    } else if (table.nodeName !== "TABLE") {
+    if (typeof table !== "object" || table.nodeName !== "TABLE") {
       return null;
     }
 
-    const rows = this.getChildrenForTable(table, "tr");
     const skipCells = [];
     const headingIds = {
       rows: {},
@@ -1106,20 +1080,19 @@ _global.HTMLCS.util = {
     // a "cell" object, and a normalised string of "headers".
     const cells = [];
 
+    const rows = this.getChildrenForTable(table, "tr");
+
     // Now determine the row and column headers for the table.
     // Go through once, first finding the th's to load up the header names,
     // then finding the td's to dump them off.
-    const targetNodeNames = ["TH", "TD"];
+    for (const targetNode of ["TH", "TD"]) {
+      for (let rownum = 0; rownum < rows.length; rownum++) {
+        const row = rows[rownum];
+        let colnum = 0;
 
-    // todo: remove array;
-    for (var k = 0; k < targetNodeNames.length; k++) {
-      var targetNode = targetNodeNames[k];
-      for (var rownum = 0; rownum < rows.length; rownum++) {
-        var row = rows[rownum];
-        var colnum = 0;
+        for (let item = 0; item < row.childNodes.length; item++) {
+          const thisCell = row.childNodes[item];
 
-        for (var item = 0; item < row.childNodes.length; item++) {
-          var thisCell = row.childNodes[item];
           if (thisCell.nodeType === 1) {
             // Skip columns that are skipped due to rowspan.
             if (skipCells[rownum]) {
@@ -1128,13 +1101,13 @@ _global.HTMLCS.util = {
               }
             }
 
-            var nodeName = thisCell.nodeName;
-            var rowspan = Number(thisCell.getAttribute("rowspan")) || 1;
-            var colspan = Number(thisCell.getAttribute("colspan")) || 1;
+            const nodeName = thisCell.nodeName;
+            const rowspan = Number(thisCell.getAttribute("rowspan")) || 1;
+            const colspan = Number(thisCell.getAttribute("colspan")) || 1;
 
             // If rowspanned, mark columns as skippable in the following
             // row(s).
-            if (rowspan > 1) {
+            if (rowspan) {
               for (var i = rownum + 1; i < rownum + rowspan; i++) {
                 if (!skipCells[i]) {
                   skipCells[i] = [];
@@ -1149,7 +1122,7 @@ _global.HTMLCS.util = {
             if (nodeName === targetNode) {
               if (nodeName === "TH") {
                 // Build up the cell headers.
-                var id = thisCell.getAttribute("id") || "";
+                const id = thisCell.getAttribute("id") || "";
 
                 for (var i = rownum; i < rownum + rowspan; i++) {
                   headingIds.rows[i] = headingIds.rows[i] || {
@@ -1335,9 +1308,7 @@ _global.HTMLCS.util = {
    *
    * @returns {String} The text content.
    */
-  getTextContent: function (element) {
-    return element.textContent || element.innerText;
-  },
+  getTextContent: (element) => element.textContent || element.innerText,
   /**
    * Get the accessible name.
    *

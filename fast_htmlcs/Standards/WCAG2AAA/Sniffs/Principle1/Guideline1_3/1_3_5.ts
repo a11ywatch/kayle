@@ -93,19 +93,20 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
       "work",
     ];
 
-    var valuesStr = element.getAttribute("autocomplete");
+    const valuesStr = element.getAttribute("autocomplete");
 
     if (typeof valuesStr !== "string") {
       return;
     }
 
-    var values = valuesStr.split(" ");
-
-    var hasFaultyValue = false;
+    
+    let hasFaultyValue = false;
+    const values = valuesStr.split(" ");
 
     for (var i = 0; i < values.length; i++) {
       values[i] = values[i].trim();
-      var x = values[i];
+      const x = values[i];
+
       if (valid_attributes.indexOf(x) === -1 && x.indexOf("section-") !== 0) {
         hasFaultyValue = true;
       }

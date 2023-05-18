@@ -40,7 +40,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_1_2_1_1 = {
         top,
         "*[onclick], *[onkeyup], *[onkeydown], *[onkeypress], *[onfocus], *[onblur]"
       )) {
-        if (HTMLCS.util.isKeyboardNavigable(elem) === false) {
+        if (!HTMLCS.util.isKeyboardNavigable(elem)) {
           HTMLCS.addMessage(
             HTMLCS.WARNING,
             elem,

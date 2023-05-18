@@ -148,11 +148,6 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
    * @returns {Object} A structured list of errors.
    */
   testNullAltText: function (top) {
-    const elements = HTMLCS.util.getAllElements(
-      top,
-      'img, area, input[type="image"]'
-    );
-
     const errors = {
       img: {
         generalAlt: [],
@@ -171,9 +166,10 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
       },
     };
 
-    for (var el = 0; el < elements.length; el++) {
-      const element = elements[el];
-
+    for (const element of HTMLCS.util.getAllElements(
+      top,
+      'img, area, input[type="image"]'
+    )) {
       let linkOnlyChild = false;
       let missingAlt = false;
       let nullAlt = false;
@@ -274,14 +270,13 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
    *
    * @returns void
    */
-  testLongdesc: function (element) {
+  testLongdesc: (element) =>
     HTMLCS.addMessage(
       HTMLCS.NOTICE,
       element,
       _global.HTMLCS.getTranslation("1_1_1_G73,G74"),
       "G73,G74"
-    );
-  },
+    ),
 
   /**
    * Test for link stutter with adjacent images and text (technique H2).
@@ -380,8 +375,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
         // Test against the following link, if any.
         if (
           nodes.next &&
-          nodes.next.href !== "" &&
-          nodes.next.href !== null &&
+          nodes.next.href &&
           nodes.anchor.href === nodes.next.href
         ) {
           if (nodes.next.text !== "" && nodes.anchor.alt === "") {
@@ -503,7 +497,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
     };
 
     for (const element of HTMLCS.util.getAllElements(top, "object")) {
-      var childObject = element.querySelector("object");
+      const childObject = element.querySelector("object");
 
       // If we have an object as our alternative, skip it. Pass the blame onto
       // the child.
@@ -590,7 +584,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
 
       // If it's an element, add any sub-nodes to the process list.
       if (node.nodeType === 1 && node.nodeName === "IMG") {
-        if (node.hasAttribute("alt") === true) {
+        if (node.hasAttribute("alt")) {
           alt = node.getAttribute("alt");
 
           if (!alt) {

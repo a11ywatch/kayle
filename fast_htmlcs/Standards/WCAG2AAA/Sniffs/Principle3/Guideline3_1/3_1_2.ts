@@ -48,15 +48,16 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_2 = {
     // top element.
     const langEls = HTMLCS.util.getAllElements(top, "*[lang]");
 
+    let langEl = null;
+
     for (var i = 0; i <= langEls.length; i++) {
       if (i === langEls.length) {
-        var langEl = top;
+        langEl = top;
       } else {
-        var langEl = langEls[i];
+        langEl = langEls[i];
       }
 
       // Skip html nodes, they are covered by 3.1.1.
-      // @ts-ignore Also skip if the top element is the document element.
       if (!langEl.documentElement && langEl.nodeName !== "HTML") {
         if (langEl.hasAttribute("lang") === true) {
           if (
