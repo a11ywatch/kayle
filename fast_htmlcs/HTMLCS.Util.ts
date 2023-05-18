@@ -359,7 +359,7 @@ _global.HTMLCS.util = {
 
     while (parent && parent.ownerDocument) {
       parent = parent.parentNode;
-    } 
+    }
 
     // If we didn't hit a document, the element must not be in there.
     if (parent === null) {

@@ -99,7 +99,6 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
       return;
     }
 
-    
     let hasFaultyValue = false;
     const values = valuesStr.split(" ");
 

@@ -11,7 +11,7 @@
  *
  */
 
-_global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_4 = {
+_global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_9 = {
   /**
    * Determines the elements to register for processing.
    *
@@ -20,9 +20,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_4 = {
    *
    * @returns {Array} The list of elements.
    */
-  register: function () {
-    return ["_top"];
-  },
+  register: () => ["_top"],
 
   /**
    * Process the registered element.
@@ -30,12 +28,14 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_4 = {
    * @param {DOMNode} element The element registered.
    * @param {DOMNode} top     The top element of the tested code.
    */
-  process: function (element, top) {
-    HTMLCS.addMessage(
-      HTMLCS.NOTICE,
-      top,
-      _global.HTMLCS.getTranslation("1_4_4_G142"),
-      "G142"
-    );
+  process: function (_, top) {
+    if (top.querySelector("img") !== null) {
+      HTMLCS.addMessage(
+        HTMLCS.NOTICE,
+        top,
+        _global.HTMLCS.getTranslation("1_4_9_G140,C22,C30.NoException"),
+        "G140,C22,C30.NoException"
+      );
+    }
   },
 };

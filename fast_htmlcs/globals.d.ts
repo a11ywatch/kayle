@@ -85,11 +85,29 @@ type HTMLCS = {
   };
 };
 
+type TestContrastRatio = (
+  element: Element,
+  minContrast?: number,
+  minLargeContrast?: number
+) => {
+  element: Element;
+  value: number;
+  required: number;
+  recommendation: {
+    fore: { to: number; from: number };
+    back: { to: number; from: number };
+  };
+  hasBgImage: boolean;
+  isAbsolute: boolean;
+  hasAlpha: boolean;
+}[];
+
 type Snif = null | {
   isValidLanguageTag?(element): boolean;
   testSemanticPresentationRole(element: Element): boolean;
   testHeadingOrder?(element: Element, typeCode: string): boolean;
   testLabelsOnInputs?(element: Element, top: Element, t: boolean): boolean;
+  testContrastRatio?: TestContrastRatio;
 };
 
 type Rule = {
@@ -122,10 +140,11 @@ type GuideLine = {
   multiplyColour?(colour: string, multiplier: number): string;
   isValidLanguageTag?(langTag?: string): void;
   testSemanticPresentationRole?(element: Element): void;
-  testContrastRatio?(element: Element, minContrast?: number, minLargeContrast?: number): void;
+  testContrastRatio?: TestContrastRatio;
   testEmptyDupeLabelForAttrs?(
     top: Element & { getElementById?(id: string): HTMLElement }
   );
+  testColourComboFail?(element: HTMLElement): void;
   testLabelsOnInputs?(
     element: Element,
     top?: Element,
@@ -182,6 +201,14 @@ declare global {
       HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_1: GuideLine;
       HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_2: GuideLine;
       HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_F24: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_7: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_8: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_9: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_4: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_5: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_6: GuideLine;
+      HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3: GuideLine;
       HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_1_2_1_1: GuideLine;
       HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_1_2_1_2: GuideLine;
       HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_1_2_1_4: GuideLine;
@@ -249,8 +276,9 @@ declare global {
       HTMLCS_Section508: RuleSet;
     },
     HTMLCS: HTMLCS;
-  var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1: Snif;
   var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1: any; // todo: remove any;
+  var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1: Snif;
+  var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast: Snif;
   var HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_1: Snif;
   var HTMLCS_WCAG2A: RuleSet;
   var HTMLCS_WCAG2AA: RuleSet;

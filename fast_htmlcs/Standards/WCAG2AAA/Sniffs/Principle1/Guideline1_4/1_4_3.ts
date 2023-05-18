@@ -11,7 +11,7 @@
  *
  */
 
-_global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_6 = {
+_global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3 = {
   /**
    * Determines the elements to register for processing.
    *
@@ -32,11 +32,11 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_6 = {
    */
   process: function (element, top) {
     if (element === top) {
-      var failures =
+      const failures =
         HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast.testContrastRatio(
           top,
-          7.0,
-          4.5
+          4.5,
+          3.0
         );
 
       for (var i = 0; i < failures.length; i++) {
@@ -49,6 +49,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_6 = {
         var recommend = failures[i].recommendation;
         var hasBgImg = failures[i].hasBgImage || false;
         var isAbsolute = failures[i].isAbsolute || false;
+        var hasAlpha = failures[i].hasAlpha || false;
         var code = "";
 
         // If the values would look identical, add decimals to the value.
@@ -61,33 +62,35 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_6 = {
 
         if (required === 4.5) {
           code = "G18";
-        } else if (required === 7.0) {
-          code = "G17";
+        } else if (required === 3.0) {
+          code = "G145";
         }
 
-        var recommendText = [];
+        var recommendText: string[] | string = [];
+
         if (recommend) {
           if (recommend.fore.from !== recommend.fore.to) {
             recommendText.push(
               _global.HTMLCS.getTranslation(
-                "1_4_6_G18_or_G17.Fail.Recomendation.Text"
-              ).replace(/\{\{value\}\}/g, recommend.fore.to)
+                "1_4_3_G18_or_G145.Fail.Recomendation.Text"
+              ).replace(/\{\{value\}\}/g, recommend.fore.to + "")
             );
           }
           if (recommend.back.from !== recommend.back.to) {
             recommendText.push(
               _global.HTMLCS.getTranslation(
-                "1_4_6_G18_or_G17.Fail.Recomendation.Background"
-              ).replace(/\{\{value\}\}/g, recommend.back.to)
+                "1_4_3_G18_or_G145.Fail.Recomendation.Background"
+              ).replace(/\{\{value\}\}/g, recommend.back.to + "")
             );
           }
-        } //end if
+        }
 
+        // todo: prevent re-assign
         if (recommendText.length > 0) {
           recommendText =
             " " +
             _global.HTMLCS.getTranslation(
-              "1_4_6_G18_or_G17.Fail.Recomendation"
+              "1_4_3_G18_or_G145.Fail.Recomendation"
             ) +
             " " +
             recommendText.join(", ") +
@@ -99,9 +102,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_6 = {
           HTMLCS.addMessage(
             HTMLCS.WARNING,
             element,
-            _global.HTMLCS.getTranslation("1_4_6_G18_or_G17.Abs").replace(
+            _global.HTMLCS.getTranslation("1_4_3_G18_or_G145.Abs").replace(
               /\{\{required\}\}/g,
-              required
+              required + ""
             ),
             code
           );
@@ -110,9 +113,20 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_6 = {
           HTMLCS.addMessage(
             HTMLCS.WARNING,
             element,
-            _global.HTMLCS.getTranslation("1_4_6_G18_or_G17.BgImage").replace(
+            _global.HTMLCS.getTranslation("1_4_3_G18_or_G145.BgImage").replace(
               /\{\{required\}\}/g,
-              required
+              required + ""
+            ),
+            code
+          );
+        } else if (hasAlpha === true) {
+          code += ".Alpha";
+          HTMLCS.addMessage(
+            HTMLCS.WARNING,
+            element,
+            _global.HTMLCS.getTranslation("1_4_3_G18_or_G145.Alpha").replace(
+              /\{\{required\}\}/g,
+              required + ""
             ),
             code
           );
@@ -121,13 +135,13 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_6 = {
           HTMLCS.addMessage(
             HTMLCS.ERROR,
             element,
-            _global.HTMLCS.getTranslation("1_4_6_G18_or_G17.Fail")
-              .replace(/\{\{required\}\}/g, required)
-              .replace(/\{\{value\}\}/g, value) + recommendText,
+            _global.HTMLCS.getTranslation("1_4_3_G18_or_G145.Fail")
+              .replace(/\{\{required\}\}/g, required + "")
+              .replace(/\{\{value\}\}/g, value + "") + recommendText,
             code
           );
-        } //end if
+        }
       }
-    } //end if
+    }
   },
 };

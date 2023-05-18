@@ -20,9 +20,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_F24 = {
    *
    * @returns {Array} The list of elements.
    */
-  register: function () {
-    return ["_top"];
-  },
+  register: () => ["_top"],
 
   /**
    * Process the registered element.
@@ -30,11 +28,10 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_F24 = {
    * @param {DOMNode} element The element registered.
    * @param {DOMNode} top     The top element of the tested code.
    */
-  process: function (element, top) {
+  process: function (_, top) {
     // Test for background/foreground stuff.
-    var elements = HTMLCS.util.getAllElements(top, "*");
-    for (var i = 0; i < elements.length; i++) {
-      this.testColourComboFail(elements[i]);
+    for (const element of HTMLCS.util.getAllElements(top, "*")) {
+      this.testColourComboFail(element);
     }
   },
 
@@ -60,27 +57,28 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_F24 = {
      * @param Node element The element to test.
      */
   testColourComboFail: function (element) {
-    var hasFg = element.hasAttribute("color");
-    hasFg = hasFg || element.hasAttribute("link");
-    hasFg = hasFg || element.hasAttribute("vlink");
-    hasFg = hasFg || element.hasAttribute("alink");
-    var hasBg = element.hasAttribute("bgcolor");
+    let hasFg =
+      element.hasAttribute("color") ||
+      element.hasAttribute("link") ||
+      element.hasAttribute("vlink") ||
+      element.hasAttribute("alink");
+    let hasBg = element.hasAttribute("bgcolor");
 
     if (element.style) {
-      var fgStyle = element.style.color;
-      var bgStyle = element.style.background;
+      const fgStyle = element.style.color;
+      const bgStyle = element.style.background;
 
-      if (fgStyle !== "" && fgStyle !== "auto") {
+      if (fgStyle && fgStyle !== "auto") {
         hasFg = true;
       }
 
-      if (bgStyle !== "" && bgStyle !== "auto") {
+      if (bgStyle && bgStyle !== "auto") {
         hasBg = true;
       }
-    } //end if
+    }
 
     if (hasBg !== hasFg) {
-      if (hasBg === true) {
+      if (hasBg) {
         HTMLCS.addMessage(
           HTMLCS.WARNING,
           element,

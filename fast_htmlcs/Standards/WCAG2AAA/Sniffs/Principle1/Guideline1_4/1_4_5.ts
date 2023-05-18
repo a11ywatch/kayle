@@ -11,7 +11,7 @@
  *
  */
 
-_global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_9 = {
+_global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_5 = {
   /**
    * Determines the elements to register for processing.
    *
@@ -30,15 +30,13 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_9 = {
    * @param {DOMNode} element The element registered.
    * @param {DOMNode} top     The top element of the tested code.
    */
-  process: function (element, top) {
-    var imgObj = top.querySelector("img");
-
-    if (imgObj !== null) {
+  process: function (_, top) {
+    if (top.querySelector("img") !== null) {
       HTMLCS.addMessage(
         HTMLCS.NOTICE,
         top,
-        _global.HTMLCS.getTranslation("1_4_9_G140,C22,C30.NoException"),
-        "G140,C22,C30.NoException"
+        _global.HTMLCS.getTranslation("1_4_5_G140,C22,C30.AALevel"),
+        "G140,C22,C30.AALevel"
       );
     }
   },

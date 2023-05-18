@@ -131,7 +131,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                 break;
               }
               parent = parent.parentNode;
-            } 
+            }
 
             const bgAlpha = HTMLCS.util.colourStrToRGB(bgColour).alpha;
             const fgAlpha = HTMLCS.util.colourStrToRGB(foreColour).alpha;
@@ -192,7 +192,10 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
               continue;
             }
 
-            const contrastRatio = HTMLCS.util.contrastRatio(bgColour, foreColour);
+            const contrastRatio = HTMLCS.util.contrastRatio(
+              bgColour,
+              foreColour
+            );
 
             if (contrastRatio < reqRatio) {
               const recommendation = this.recommendColour(
@@ -209,10 +212,10 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                 required: reqRatio,
                 recommendation,
               });
-            } 
-          } 
-        } 
-      } 
+            }
+          }
+        }
+      }
     }
 
     return failures;
@@ -220,8 +223,12 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
 
   recommendColour: function (background, foreground, target) {
     // Canonicalise the colours.
-    const fore = HTMLCS.util.RGBtoColourStr(HTMLCS.util.colourStrToRGB(foreground));
-    const back = HTMLCS.util.RGBtoColourStr(HTMLCS.util.colourStrToRGB(background));
+    const fore = HTMLCS.util.RGBtoColourStr(
+      HTMLCS.util.colourStrToRGB(foreground)
+    );
+    const back = HTMLCS.util.RGBtoColourStr(
+      HTMLCS.util.colourStrToRGB(background)
+    );
     const foreDiff = Math.abs(HTMLCS.util.relativeLum(fore) - 0.5);
     const backDiff = Math.abs(HTMLCS.util.relativeLum(back) - 0.5);
 
@@ -251,7 +258,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
         }
       }
 
-      let hsv: ReturnType<typeof globalThis.HTMLCS.util.sRGBtoHSV> | string = HTMLCS.util.sRGBtoHSV(newCol);
+      let hsv: ReturnType<typeof globalThis.HTMLCS.util.sRGBtoHSV> | string =
+        HTMLCS.util.sRGBtoHSV(newCol);
 
       // var chroma  = hsv.saturation * hsv.value;
       let newFore = fore;
@@ -270,7 +278,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
               const oldBack = newBack;
               let j = 1;
               while (newBack === oldBack) {
-                 newBack = this.multiplyColour(
+                newBack = this.multiplyColour(
                   newBack,
                   Math.pow(1 / multiplier, j)
                 );
@@ -280,7 +288,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
               const oldFore = newFore;
               let j = 1;
               while (newFore === oldFore) {
-                 newFore = this.multiplyColour(
+                newFore = this.multiplyColour(
                   newFore,
                   Math.pow(1 / multiplier, j)
                 );
@@ -329,7 +337,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
           to: newBack,
         },
       };
-    } 
+    }
 
     return recommendation;
   },
@@ -353,8 +361,6 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
     hsvColour.value = Math.min(1, hsvColour.value);
     hsvColour.saturation = Math.min(1, hsvColour.saturation);
 
-    return HTMLCS.util.RGBtoColourStr(
-      HTMLCS.util.HSVtosRGB(hsvColour)
-    );
+    return HTMLCS.util.RGBtoColourStr(HTMLCS.util.HSVtosRGB(hsvColour));
   },
 };
