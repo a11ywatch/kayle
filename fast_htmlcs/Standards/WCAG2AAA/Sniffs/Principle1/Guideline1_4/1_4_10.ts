@@ -39,7 +39,6 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_10 = {
         "C32,C31,C33,C38,SCR34,G206"
       );
 
-
       for (const x of HTMLCS.util.getAllElements(top, "*")) {
         if (
           window.getComputedStyle(x, null).getPropertyValue("position") ==

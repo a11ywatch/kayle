@@ -578,10 +578,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
     let alt = null;
 
     // todo: remove while loop node shift for Direct Node manipulation
-
     while (nodes.length > 0) {
       const node = nodes.shift();
-
       // If it's an element, add any sub-nodes to the process list.
       if (node.nodeType === 1 && node.nodeName === "IMG") {
         if (node.hasAttribute("alt")) {
