@@ -1,6 +1,6 @@
 {
   "name": "kayle",
-  "version": "0.4.31",
+  "version": "0.4.32",
   "description": "Extremely fast accessibility evaluation for nodejs",
   "main": "./build/index.js",
   "keywords": [
@@ -18,6 +18,8 @@
     "prepare": "tsc",
     "build": "tsc && yarn swc:dist",
     "compile:test": "yarn build && tsc --project tsconfig.test.json",
+    "compile:extension": "tsc build-extension.ts",
+    "build:extension": "yarn compile:extension && node build-extension.js",
     "lint": "eslint .",
     "fix": "prettier --write '**/*.{js,jsx,ts,tsx}'",
     "swc:dist": "npx swc --copy-files --config-file .swcrc ./build -d ./build",
@@ -34,7 +36,7 @@
     "test:playwright:axe": "npm run compile:test && npx playwright test ./tests/basic-axe-playwright.spec.ts",
     "test:puppeteer:wasm": "npm run compile:test && node _tests/tests/wasm.js",
     "test:puppeteer:automa": "npm run compile:test && node _tests/tests/automa.js",
-    "test:puppeteer:extension": "npm run compile:test && node _tests/tests/extension.js",
+    "test:puppeteer:extension": "npm run compile:test && yarn build:extension && node _tests/tests/extension.js",
     "test:lint": "node build/lint.js",
     "test:unit:unique-selector": "npm run compile:test && node _tests/tests/unit/unique-selector.js",
     "publish": "yarn prepare && yarn npm publish"

@@ -58,21 +58,26 @@ async function runActionsList(config: RunnerConfig) {
 
 // inject runners
 async function injectRunners(config: RunnerConfig) {
-  // load axe first to avoid conflictions axe indexed as first item in array when multiple items exist
-  return await Promise.all([
-    config.page.evaluate(runnersJavascript["kayle"]),
-    config.page.evaluate(getRunner(config.language, config.runners[0])),
-    config.runners.length === 2
-      ? config.page.evaluate(getRunner(config.language, config.runners[1]))
-      : undefined,
-  ]);
+  if (!config._browserExtension) {
+    return await Promise.all([
+      config.page.evaluate(runnersJavascript["kayle"]),
+      config.page.evaluate(getRunner(config.language, config.runners[0])),
+      config.runners.length === 2
+        ? config.page.evaluate(getRunner(config.language, config.runners[1]))
+        : undefined,
+    ]);
+  }
 }
 
 // perform audit
 async function audit(config: RunnerConfig): Promise<Audit> {
+  // perform audit as extension
+  if (config._browserExtension) {
+    return await auditExtension(config);
+  }
+
   return await config.page.evaluate(
     (runOptions) => {
-      // set top level app origin replicate
       if (runOptions.origin && window.origin === "null") {
         window.origin = runOptions.origin;
       }
@@ -92,6 +97,41 @@ async function audit(config: RunnerConfig): Promise<Audit> {
   );
 }
 
+// perform an audit using browser extension - only used if extension is configured on browser
+export async function auditExtension(config: RunnerConfig): Promise<Audit> {
+  return await config.page.evaluate(
+    (runOptions): Promise<Audit> => {
+      return new Promise((resolve) => {
+        if (runOptions.origin && window.origin === "null") {
+          window.origin = runOptions.origin;
+        }
+
+        window.addEventListener("kayle_receive", (event: CustomEvent) =>
+          resolve(event.detail.data)
+        );
+
+        window.dispatchEvent(
+          new CustomEvent("kayle_send", {
+            detail: {
+              name: "kayle",
+              options: runOptions,
+            },
+          })
+        );
+      });
+    },
+    {
+      hideElements: config.hideElements,
+      ignore: config.ignore || [],
+      rootElement: config.rootElement,
+      rules: config.rules || [],
+      runners: config.runners,
+      standard: config.standard,
+      origin: config.origin,
+      language: config.language,
+    }
+  );
+}
 /**
  * Run accessibility tests for page.
  * @param {Object} [config={}] config - Options to change the way tests run.

@@ -58,5 +58,8 @@ kayle_innate/package.json
 kayle_innate/dll
 kayle/screenshot.png
 
-# testing
+# custom built 
 chrome-extension
+
+# build custom extension
+build-extension.js

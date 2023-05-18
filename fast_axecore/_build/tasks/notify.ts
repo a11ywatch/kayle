@@ -1,7 +1,6 @@
 const { notify } = require('node-notifier');
 
-/*eslint-env node */
-('use strict');
+
 
 module.exports = function (grunt) {
   grunt.registerMultiTask(

@@ -1,5 +1,3 @@
-/*eslint-env node */
-'use strict';
 var clone = require('clone');
 var buildManual = require('../build-manual');
 

@@ -113,6 +113,8 @@ export type RunnerConfig = {
   language?: string;
   // prevent auto intercept request to prevent fetching resources.
   noIntercept?: boolean;
+  // extension only run if accesibility extensions loaded: Experimental.
+  _browserExtension?: boolean;
 };
 
 // log singleton

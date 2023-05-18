@@ -1,9 +1,13 @@
 // handle configuration for methods
 export function extractArgs(o) {
   const options = {
-    actions: o.actions || [],
     browser: o.browser,
     page: o.page,
+    timeout: o.timeout || 60000,
+    // private
+    _browserExtension: o._browserExtension,
+    // sent to browser
+    actions: o.actions || [],
     hideElements: o.hideElements,
     ignore: o.ignore || [],
     includeNotices: o.includeNotices,
@@ -12,7 +16,6 @@ export function extractArgs(o) {
     rules: o.rules || [],
     runners: o.runners || ["htmlcs"],
     standard: o.standard || "WCAG2AA",
-    timeout: o.timeout || 60000,
     origin: o.origin,
     language: o.language || "en",
   };
@@ -39,11 +42,6 @@ export function extractArgs(o) {
     options.runners.push("htmlcs");
   }
 
-  // swap axe position for conflictions on script eval order
-  if (options.runners.length === 2 && options.runners[1] === "axe") {
-    options.runners[1] = options.runners[0];
-    options.runners[0] = "axe";
-  }
   // todo: validate all options
   return options;
 }

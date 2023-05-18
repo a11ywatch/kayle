@@ -1,5 +1,4 @@
-/*eslint-env node */
-'use strict';
+
 
 var path = require('path');
 var templates = require('./templates');

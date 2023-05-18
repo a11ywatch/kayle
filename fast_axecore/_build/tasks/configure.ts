@@ -1,5 +1,3 @@
-/*eslint-env node */
-'use strict';
 var buildRules = require('../configure');
 var formatP = require('../shared/format');
 

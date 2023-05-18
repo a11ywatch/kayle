@@ -1,5 +1,4 @@
-/*eslint-env node */
-'use strict';
+
 
 var revalidator = require('revalidator').validate,
   fs = require('fs');

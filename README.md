@@ -210,9 +210,23 @@ One of the main goals was to have the audit run quickly since we noticed some of
 complete. The performance increases we made to the project were not only done at edge cases that would scale beyond
 make the ability of auditing at the MS level for almost any website. Right now, the project is moving forward based on performance and accuracy for ensuring minimal to no false positives.
 
-## Extension
+## Browser Extension
 
-We are packaging an extension that allows the script to be pre-loaded into the browser for the crawl.
+If you want to compile a chrome extension for preloading scripts without needing to worry about bandwidth cost use the following to generate a custom extension to use.
+
+First build the extension with the command:
+
+1. `yarn build:extension`
+
+Copy the contents into your directory to load using chromes `--load-extension` and enable the flag `--extensions-on-chrome-urls`.
+
+View the [extension-test](kayle/tests/extension.ts) for an example on how to setup chrome with the generated extension.
+
+Currently we only have english support for extension. We can add different locales for the generated scripts by manually adjusting the targets.
+
+If you want to test the extension use `yarn test:puppeteer:extension`. 
+
+The `kayle` function also expects a field called `_browserExtension` with the option set to `true`. Currently the extension handling is experimental reason for the name.
 
 ## Discord
 
