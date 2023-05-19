@@ -28,12 +28,11 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_1_2_1_4 = {
    * @param {DOMNode} element The element registered.
    * @param {DOMNode} top     The top element of the tested code.
    */
-  process: function (_, top) {
+  process: (_, top) =>
     HTMLCS.addMessage(
       HTMLCS.NOTICE,
       top,
       _global.HTMLCS.getTranslation("2_1_4.Check"),
       ""
-    );
-  },
+    ),
 };

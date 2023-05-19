@@ -991,7 +991,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
       top,
       "h1, h2, h3, h4, h5, h6"
     )) {
-      const headingNum = parseInt(heading.nodeName.substring(1, 2));
+      const headingNum = parseInt(heading.nodeName.substring(1));
+
       const headingNumStr = headingNum + "";
 
       if (headingNum - lastHeading > 1) {
@@ -1056,17 +1057,16 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
     for (const childNodes of element.childNodes) {
       if (childNodes.nodeType === 1 && childNodes.nodeName === "A") {
         linksLength++;
-        if (linksLength > 1) {
-          break;
-        }
+        break;
       }
     }
 
-    if (linksLength > 1) {
+    if (linksLength) {
       // Going to throw a warning here, mainly because we cannot easily tell
       // whether it is just a paragraph with multiple links, or a navigation
       // structure.
       let parent = element.parentNode;
+
       while (
         parent !== null &&
         parent.nodeName !== "UL" &&

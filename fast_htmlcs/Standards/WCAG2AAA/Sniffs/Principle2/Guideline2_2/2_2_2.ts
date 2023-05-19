@@ -38,10 +38,10 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_2_2_2_2 = {
       );
 
       for (const ele of HTMLCS.util.getAllElements(top, "*")) {
-        var computedStyle = HTMLCS.util.style(ele);
+        const computedStyle = HTMLCS.util.style(ele);
 
         if (computedStyle) {
-          if (/blink/.test(computedStyle["text-decoration"]) === true) {
+          if (/blink/.test(computedStyle["text-decoration"])) {
             HTMLCS.addMessage(
               HTMLCS.WARNING,
               ele,

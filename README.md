@@ -103,7 +103,7 @@ const results = {
 
 Straight forward linting. You can pass a url or valid html.
 
-Linting is handled on the same machine not sandboxed. You also need to install `jsdom` before hand.
+Linting is handled on the same machine not sandboxed. You also need to install `jsdom` before hand ex: `yarn add jsdom`.
 
 ```js
 import { kayleLint } from "kayle/build/lint";
@@ -113,8 +113,7 @@ await kayleLint("https://a11ywatch.com");
 
 ## Localization
 
-[Locales](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/i18n) supported by the runner using pre-compiled locales. In order to pre-compile the locales run `./build.sh`. Some locales are only available in certain runners. Our goal is to unify the languages and eventually unify the runners in a way that we can get
-the best aspects of testing without worrying about a `name`.
+[Locales](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/i18n) supported by the runner using pre-compiled locales. In order to pre-compile the locales run `./build.sh`. Some locales are only available in certain runners.
 
 1. da ("Danish")
 1. de ("German")

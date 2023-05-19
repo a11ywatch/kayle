@@ -33,17 +33,12 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_2_2_2_1 = {
     // NOTE: H76 only lists criterion 3.2.5, but F41 also covers refreshes to
     // same page (no URL content), which is covered by non-adjustable timeouts
     // in criterion 2.2.1.
-    if (element.hasAttribute("http-equiv") === true) {
+    if (element.hasAttribute("http-equiv")) {
       if (
         String(element.getAttribute("http-equiv")).toLowerCase() === "refresh"
       ) {
-        if (
-          /^[1-9]\d*/.test(element.getAttribute("content").toLowerCase()) ===
-          true
-        ) {
-          if (
-            /url=/.test(element.getAttribute("content").toLowerCase()) === true
-          ) {
+        if (/^[1-9]\d*/.test(element.getAttribute("content"))) {
+          if (/url=/.test(element.getAttribute("content").toLowerCase())) {
             // Redirect.
             HTMLCS.addMessage(
               HTMLCS.ERROR,
