@@ -37,7 +37,7 @@
       typeCode: issueCodeMap[issue.type] || 0,
       message: issue.message,
       runner: issue.runner || "kayle",
-      runnerExtras: issue.runnerExtras || {},
+      runnerExtras: issue.runnerExtras,
       recurrence: issue.recurrence || 0,
     };
   };
@@ -152,13 +152,13 @@
       let ic = 0;
 
       for (let i = 0; i < acc.length; i++) {
-        if (validateIssue(issues[i])) {
+        const issue = issues[i];
+        
+        if (validateIssue(issue)) {
           continue;
         }
 
-        if (issues[i].type === "error") {
-          const issue = issues[i];
-
+        if (issue.type === "error") {
           // missing alt capture index of array
           if (
             issue.code === "WCAG2AA.Principle1.Guideline1_1.1_1_1.H37" ||
@@ -174,15 +174,17 @@
         } else {
           // move to end
           queueMicrotask(() => {
-            const issue = issues[i];
+            acc[ic] = shapeIssue(issues[i]);
+            const issue = acc[ic];
 
             if (issue.type === "warning") {
               meta.warningCount += (issue.recurrence ?? 0) + 1;
             }
+
             if (issue.type === "notice") {
               meta.noticeCount += (issue.recurrence ?? 0) + 1;
             }
-            acc[ic] = shapeIssue(issue);
+
             ic++;
           });
         }
@@ -197,13 +199,13 @@
     const processIssuesMulti = (issues, acc, ic, meta, missingAltIndexs) => {
       // valid acc count
       for (let i = 0; i < issues.length; i++) {
-        if (validateIssue(issues[i])) {
+        const issue = issues[i];
+
+        if (validateIssue(issue)) {
           continue;
         }
 
-        if (issues[i].type === "error") {
-          const issue = issues[i];
-
+        if (issue.type === "error") {
           // missing alt capture index of array
           if (
             issue.code === "WCAG2AA.Principle1.Guideline1_1.1_1_1.H37" ||
@@ -218,15 +220,17 @@
         } else {
           // move to end
           queueMicrotask(() => {
-            const issue = issues[i];
+            acc[ic] = shapeIssue(issues[i]);
+            const issue = acc[ic];
 
             if (issue.type === "warning") {
               meta.warningCount += (issue.recurrence ?? 0) + 1;
             }
+
             if (issue.type === "notice") {
               meta.noticeCount += (issue.recurrence ?? 0) + 1;
             }
-            acc[ic] = shapeIssue(issue);
+
             ic++;
           });
         }
