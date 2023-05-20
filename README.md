@@ -221,7 +221,7 @@ View the [extension-test](kayle/tests/extension.ts) for an example on how to set
 
 Currently we only have english support for extension. We can add different locales for the generated scripts by manually adjusting the targets.
 
-If you want to test the extension use `yarn test:puppeteer:extension`. 
+If you want to test the extension use `yarn test:puppeteer:extension`.
 
 The `kayle` function also expects a field called `_browserExtension` with the option set to `true`. Currently the extension handling is experimental reason for the name.
 

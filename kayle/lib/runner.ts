@@ -1,11 +1,6 @@
 // THIS FILE IS INJECTED INTO THE BROWSER RUNTIME PURE JS REQUIRED
 // IIFE is here so we don't pollute the window
 ((exports) => {
-  const kayle = (exports.__a11y = {
-    run: runA11y,
-    runners: {},
-  });
-
   // issue names
   const issueCodeMap = {
     unknown: 0,
@@ -99,7 +94,7 @@
   };
 
   // runner to get accessibility issues
-  async function runA11y(options) {
+  const runA11y = async (options) => {
     // determine if valid issue
     const isIssueNotIgnored = (issue) => {
       return !options.ignore.some(
@@ -145,7 +140,7 @@
       !isIssueNotIgnored(issue);
 
     // handle issues from runner auto sort errors leading list
-    const processIssues = (issues, meta, missingAltIndexs) => {
+    const processIssues = (issues, meta, missingAltIndexs: number[]) => {
       // pre-allocate array
       const acc = new Array((issues && issues.length) || 0);
       // valid acc count
@@ -153,7 +148,7 @@
 
       for (let i = 0; i < acc.length; i++) {
         const issue = issues[i];
-        
+
         if (validateIssue(issue)) {
           continue;
         }
@@ -196,12 +191,18 @@
     };
 
     // get issues with acc builder return counter
-    const processIssuesMulti = (issues, acc, ic, meta, missingAltIndexs) => {
+    const processIssuesMulti = async (
+      issues,
+      acc,
+      ic: number,
+      meta,
+      missingAltIndexs: number[]
+    ) => {
       // valid acc count
       for (let i = 0; i < issues.length; i++) {
         const issue = issues[i];
 
-        if (validateIssue(issue)) {
+        if (await validateIssue(issue)) {
           continue;
         }
 
@@ -213,15 +214,14 @@
           ) {
             missingAltIndexs.push(ic);
           }
-          acc[ic] = shapeIssue(issue);
+          acc[ic] = await shapeIssue(issue);
           ic++;
           meta.errorCount += (issue.recurrence ?? 0) + 1;
           meta.accessScore -= 2;
         } else {
           // move to end
-          queueMicrotask(() => {
-            acc[ic] = shapeIssue(issues[i]);
-            const issue = acc[ic];
+          queueMicrotask(async () => {
+            const issue = await shapeIssue(issues[i]);
 
             if (issue.type === "warning") {
               meta.warningCount += (issue.recurrence ?? 0) + 1;
@@ -231,8 +231,12 @@
               meta.noticeCount += (issue.recurrence ?? 0) + 1;
             }
 
+            acc[ic] = issue;
+
             ic++;
           });
+
+          continue;
         }
       }
 
@@ -262,7 +266,6 @@
         pageUrl: window.location.href,
         issues: processIssues(runnerIssues[0], meta, missingAltIndexs),
         meta,
-        // automateable indexs to capture
         automateable: {
           missingAltIndexs,
         },
@@ -271,27 +274,35 @@
 
     // pre-allocate array if multi runners
     const issues = new Array(
-      runnerIssues.reduce((ac, cv) => ac + cv.length, 0)
+      runnerIssues.length === 2
+        ? runnerIssues[0].length + runnerIssues[1].length
+        : runnerIssues[0].length
     );
 
+    // init index for runner
     let ic = 0;
 
     for (const is of runnerIssues) {
-      // add runner issues pre-allocated
-      ic = processIssuesMulti(is, issues, ic, meta, missingAltIndexs);
+      ic = await processIssuesMulti(is, issues, ic, meta, missingAltIndexs);
     }
 
     issues.length = ic;
+    // wait for issue to complete from microTask
+    await issues;
 
     return {
       documentTitle: window.document.title,
       pageUrl: window.location.href,
       issues,
       meta,
-      // automateable indexs to capture
       automateable: {
         missingAltIndexs,
       },
     };
-  }
+  };
+
+  const kayle = (exports.__a11y = {
+    run: runA11y,
+    runners: {},
+  });
 })(this);

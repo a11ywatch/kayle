@@ -1,5 +1,3 @@
-
-
 var revalidator = require('revalidator').validate,
   fs = require('fs');
 

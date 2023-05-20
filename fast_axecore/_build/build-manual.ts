@@ -1,5 +1,3 @@
-
-
 var path = require('path');
 var templates = require('./templates');
 

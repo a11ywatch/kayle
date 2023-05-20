@@ -37,7 +37,7 @@ _global.HTMLCS_Section508_Sniffs_H = {
     for (const wrongHeaders of headersAttr.wrongHeaders) {
       HTMLCS.addMessage(
         HTMLCS.ERROR,
-          wrongHeaders.element,
+        wrongHeaders.element,
         'Incorrect headers attribute on this td element. Expected "' +
           wrongHeaders.expected +
           '" but found "' +

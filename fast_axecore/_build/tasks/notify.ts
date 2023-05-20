@@ -1,7 +1,5 @@
 const { notify } = require('node-notifier');
 
-
-
 module.exports = function (grunt) {
   grunt.registerMultiTask(
     'notify',

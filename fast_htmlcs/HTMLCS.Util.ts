@@ -973,7 +973,7 @@ _global.HTMLCS.util = {
             }
           } else if (nodeName === "TD") {
             if (
-             cell.hasAttribute("headers") &&
+              cell.hasAttribute("headers") &&
               /^\s*$/.test(cell.getAttribute("headers")) === false
             ) {
               retval.used = true;
@@ -1013,7 +1013,7 @@ _global.HTMLCS.util = {
     for (const cellHeaders of this.getCellHeaders(element)) {
       const expected = cellHeaders.headers;
       const cell = cellHeaders.cell;
-      
+
       if (cell.hasAttribute("headers")) {
         retval.correct = false;
         retval.missingTd.push(cell);
