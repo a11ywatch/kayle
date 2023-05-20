@@ -932,12 +932,11 @@ _global.HTMLCS.util = {
           // If rowspanned, mark columns as skippable in the following
           // row(s).
           if (rowspan) {
-            for (var i = rownum + 1; i < rownum + rowspan; i++) {
+            for (let i = rownum + 1; i < rownum + rowspan; i++) {
               if (!skipCells[i]) {
                 skipCells[i] = [];
               }
-
-              for (var j = colnum; j < colnum + colspan; j++) {
+              for (let j = colnum; j < colnum + colspan; j++) {
                 skipCells[i].push(j);
               }
             }
@@ -974,7 +973,7 @@ _global.HTMLCS.util = {
             }
           } else if (nodeName === "TD") {
             if (
-              cell.hasAttribute("headers") === true &&
+             cell.hasAttribute("headers") &&
               /^\s*$/.test(cell.getAttribute("headers")) === false
             ) {
               retval.used = true;
@@ -1011,10 +1010,11 @@ _global.HTMLCS.util = {
 
     // Calculate expected heading IDs. If they are not there or incorrect, flag
     // them.
-    for (const cell of this.getCellHeaders(element)) {
-      const expected = cell.headers;
-
-      if (cell.hasAttribute("headers") === false) {
+    for (const cellHeaders of this.getCellHeaders(element)) {
+      const expected = cellHeaders.headers;
+      const cell = cellHeaders.cell;
+      
+      if (cell.hasAttribute("headers")) {
         retval.correct = false;
         retval.missingTd.push(cell);
       } else {
@@ -1031,12 +1031,11 @@ _global.HTMLCS.util = {
             .replace(/^\s*(.*?)\s*$/g, "$1");
           if (expected !== actual) {
             retval.correct = false;
-            var val = {
+            retval.wrongHeaders.push({
               element: cell,
               expected: expected,
               actual: cell.getAttribute("headers") || "",
-            };
-            retval.wrongHeaders.push(val);
+            });
           }
         }
       }

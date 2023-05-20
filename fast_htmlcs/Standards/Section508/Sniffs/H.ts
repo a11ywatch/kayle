@@ -31,17 +31,17 @@ _global.HTMLCS_Section508_Sniffs_H = {
    * @param {DOMNode} top     The top element of the tested code.
    */
   process: function (table, _) {
-    var headersAttr = HTMLCS.util.testTableHeaders(table);
+    const headersAttr = HTMLCS.util.testTableHeaders(table);
 
     // Incorrect usage of headers - error; emit always.
-    for (var i = 0; i < headersAttr.wrongHeaders.length; i++) {
+    for (const wrongHeaders of headersAttr.wrongHeaders) {
       HTMLCS.addMessage(
         HTMLCS.ERROR,
-        headersAttr.wrongHeaders[i].element,
+          wrongHeaders.element,
         'Incorrect headers attribute on this td element. Expected "' +
-          headersAttr.wrongHeaders[i].expected +
+          wrongHeaders.expected +
           '" but found "' +
-          headersAttr.wrongHeaders[i].actual +
+          wrongHeaders.actual +
           '"',
         "IncorrectHeadersAttr"
       );

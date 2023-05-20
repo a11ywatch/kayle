@@ -308,7 +308,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
     }
 
     // Find an aria-label attribute.
-    if (element.hasAttribute("aria-label") === true) {
+    if (element.hasAttribute("aria-label")) {
       if (HTMLCS.util.hasValidAriaLabel(element) === false) {
         HTMLCS.addMessage(
           HTMLCS.WARNING,
@@ -513,10 +513,10 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 
     // TDs with scope attributes are obsolete in HTML5 - emit warnings if
     // scope tested, but not as errors as they are valid HTML4.
-    for (var i = 0; i < scopeAttr.obsoleteTd.length; i++) {
+    for (const obsoleteTd of scopeAttr.obsoleteTd) {
       HTMLCS.addMessage(
         HTMLCS.WARNING,
-        scopeAttr.obsoleteTd[i],
+        obsoleteTd,
         _global.HTMLCS.getTranslation("1_3_1_H63.2"),
         "H63.2"
       );
@@ -873,9 +873,10 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
       "input[type=radio], input[type=checkbox]"
     )) {
       let fieldset = null;
+      let optionName = null;
 
-      if (option.hasAttribute("name") === true) {
-        var optionName = option.getAttribute("name");
+      if (option.hasAttribute("name")) {
+        optionName = option.getAttribute("name");
 
         // Now find if we are in a fieldset. Stop at the top of the DOM, or
         // at the form element.
