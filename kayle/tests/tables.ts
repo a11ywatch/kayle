@@ -24,6 +24,7 @@ import { performance } from "perf_hooks";
   console.log(automateable);
   console.log("time took", nextTime);
   console.log(issues);
+  console.log("Issues:", issues.length);
 
   // valid list
   assert(meta.errorCount === 3);

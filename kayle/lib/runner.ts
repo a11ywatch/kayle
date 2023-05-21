@@ -143,7 +143,7 @@
     const processIssuesMulti = (
       issues,
       acc,
-      ic: number,
+      tracker,
       meta,
       missingAltIndexs: number[]
     ) => {
@@ -154,14 +154,13 @@
         }
 
         const issue = shapeIssue(is);
-
         if (issue.type === "error") {
           // missing alt capture index of array
           if (
             issue.code === "WCAG2AA.Principle1.Guideline1_1.1_1_1.H37" ||
             issue.code === "image-alt"
           ) {
-            missingAltIndexs.push(ic);
+            missingAltIndexs.push(tracker.ic);
           }
           meta.errorCount += (issue.recurrence ?? 0) + 1;
           meta.accessScore -= 2;
@@ -175,11 +174,34 @@
           meta.noticeCount += (issue.recurrence ?? 0) + 1;
         }
 
-        acc[ic] = issue;
-        ic++;
-      }
+        const errorType = issue.type === "error";
 
-      return ic;
+        // Pivot swap first error item to first slot
+        if (errorType && !tracker.errorPointer) {
+          acc[tracker.ic] = acc[0];
+          acc[0] = issue;
+        } else if (tracker.errorPointer) {
+          // get the item to the right of the last error
+          const right = acc[tracker.errorPointer];
+
+          // if the right hand is greater than the right we swap places
+          if (right && right.type === "warning" && errorType) {
+            acc[tracker.ic] = right;
+            acc[tracker.errorPointer] = issue;
+          } else {
+            acc[tracker.ic] = issue;
+          }
+        } else {
+          acc[tracker.ic] = issue;
+        }
+
+        // bump last point found
+        if (errorType) {
+          tracker.errorPointer++;
+        }
+
+        tracker.ic++;
+      }
     };
 
     // Execute all of the runners and process issues parallel
@@ -207,37 +229,32 @@
         : runnerIssues[0].length
     );
 
+    const tracker = {
+      errorPointer: 0,
+      ic: 0,
+    };
+
     // init index for runner
-    let ic = processIssuesMulti(
+    processIssuesMulti(
       runnerIssues[0],
       issues,
-      0, // init index
+      tracker, // init index
       meta,
       missingAltIndexs
     );
 
     // process second runner if found
     if (multiRunners) {
-      ic = processIssuesMulti(
+      processIssuesMulti(
         runnerIssues[1],
         issues,
-        ic,
+        tracker,
         meta,
         missingAltIndexs
       );
     }
 
-    issues.length = ic;
-
-    issues.sort((a, b) => {
-      if (a.type === "error") {
-        if (b.type === "warning") {
-          return -1;
-        }
-        return 0;
-      }
-      return 1;
-    });
+    issues.length = tracker.ic;
 
     return {
       documentTitle: window.document.title,
