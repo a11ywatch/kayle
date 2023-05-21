@@ -10,7 +10,7 @@ import { performance } from "perf_hooks";
   page.on("console", (msg) => console.log("PAGE LOG:", msg.text()));
 
   const startTime = performance.now();
-  const { meta, automateable } = await kayle({
+  const { meta, issues, automateable } = await kayle({
     page,
     browser,
     runners: ["htmlcs", "axe"],
@@ -23,6 +23,7 @@ import { performance } from "perf_hooks";
   console.log(meta);
   console.log(automateable);
   console.log("time took", nextTime);
+  console.log(issues);
 
   // valid list
   assert(meta.errorCount === 3);

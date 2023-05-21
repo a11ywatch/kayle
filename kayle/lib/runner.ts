@@ -139,59 +139,8 @@
       (options.hideElements && !isElementOutsideHiddenArea(issue.element)) ||
       !isIssueNotIgnored(issue);
 
-    // handle issues from runner auto sort errors leading list
-    const processIssues = (issues, meta, missingAltIndexs: number[]) => {
-      // pre-allocate array
-      const acc = new Array((issues && issues.length) || 0);
-      // valid acc count
-      let ic = 0;
-
-      for (let i = 0; i < acc.length; i++) {
-        const issue = issues[i];
-
-        if (validateIssue(issue)) {
-          continue;
-        }
-
-        if (issue.type === "error") {
-          // missing alt capture index of array
-          if (
-            issue.code === "WCAG2AA.Principle1.Guideline1_1.1_1_1.H37" ||
-            issue.code === "image-alt"
-          ) {
-            missingAltIndexs.push(ic);
-          }
-
-          acc[ic] = shapeIssue(issue);
-          ic++;
-          meta.errorCount += (issue.recurrence ?? 0) + 1;
-          meta.accessScore -= 2;
-        } else {
-          // move to end
-          queueMicrotask(() => {
-            acc[ic] = shapeIssue(issues[i]);
-            const issue = acc[ic];
-
-            if (issue.type === "warning") {
-              meta.warningCount += (issue.recurrence ?? 0) + 1;
-            }
-
-            if (issue.type === "notice") {
-              meta.noticeCount += (issue.recurrence ?? 0) + 1;
-            }
-
-            ic++;
-          });
-        }
-      }
-
-      acc.length = ic;
-
-      return acc;
-    };
-
     // get issues with acc builder return counter
-    const processIssuesMulti = async (
+    const processIssuesMulti = (
       issues,
       acc,
       ic: number,
@@ -199,12 +148,12 @@
       missingAltIndexs: number[]
     ) => {
       // valid acc count
-      for (let i = 0; i < issues.length; i++) {
-        const issue = issues[i];
-
-        if (await validateIssue(issue)) {
+      for (const is of issues) {
+        if (validateIssue(is)) {
           continue;
         }
+
+        const issue = shapeIssue(is);
 
         if (issue.type === "error") {
           // missing alt capture index of array
@@ -214,30 +163,20 @@
           ) {
             missingAltIndexs.push(ic);
           }
-          acc[ic] = await shapeIssue(issue);
-          ic++;
           meta.errorCount += (issue.recurrence ?? 0) + 1;
           meta.accessScore -= 2;
-        } else {
-          // move to end
-          queueMicrotask(async () => {
-            const issue = await shapeIssue(issues[i]);
-
-            if (issue.type === "warning") {
-              meta.warningCount += (issue.recurrence ?? 0) + 1;
-            }
-
-            if (issue.type === "notice") {
-              meta.noticeCount += (issue.recurrence ?? 0) + 1;
-            }
-
-            acc[ic] = issue;
-
-            ic++;
-          });
-
-          continue;
         }
+
+        if (issue.type === "warning") {
+          meta.warningCount += (issue.recurrence ?? 0) + 1;
+        }
+
+        if (issue.type === "notice") {
+          meta.noticeCount += (issue.recurrence ?? 0) + 1;
+        }
+
+        acc[ic] = issue;
+        ic++;
       }
 
       return ic;
@@ -258,37 +197,47 @@
 
     // alt elements that require fixing
     const missingAltIndexs = [];
-
-    // fast direct assign
-    if (runnerIssues.length === 1) {
-      return {
-        documentTitle: window.document.title,
-        pageUrl: window.location.href,
-        issues: processIssues(runnerIssues[0], meta, missingAltIndexs),
-        meta,
-        automateable: {
-          missingAltIndexs,
-        },
-      };
-    }
+    // multiple runners found
+    const multiRunners = runnerIssues.length === 2;
 
     // pre-allocate array if multi runners
     const issues = new Array(
-      runnerIssues.length === 2
+      multiRunners
         ? runnerIssues[0].length + runnerIssues[1].length
         : runnerIssues[0].length
     );
 
     // init index for runner
-    let ic = 0;
+    let ic = processIssuesMulti(
+      runnerIssues[0],
+      issues,
+      0, // init index
+      meta,
+      missingAltIndexs
+    );
 
-    for (const is of runnerIssues) {
-      ic = await processIssuesMulti(is, issues, ic, meta, missingAltIndexs);
+    // process second runner if found
+    if (multiRunners) {
+      ic = processIssuesMulti(
+        runnerIssues[1],
+        issues,
+        ic,
+        meta,
+        missingAltIndexs
+      );
     }
 
     issues.length = ic;
-    // wait for issue to complete from microTask
-    await issues;
+
+    issues.sort((a, b) => {
+      if (a.type === "error") {
+        if (b.type === "warning") {
+          return -1;
+        }
+        return 0;
+      }
+      return 1;
+    });
 
     return {
       documentTitle: window.document.title,

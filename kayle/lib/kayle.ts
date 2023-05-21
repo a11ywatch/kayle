@@ -77,12 +77,12 @@ async function audit(config: RunnerConfig): Promise<Audit> {
   }
 
   return await config.page.evaluate(
-    async (runOptions) => {
+    (runOptions) => {
       if (runOptions.origin && window.origin === "null") {
         window.origin = runOptions.origin;
       }
       // @ts-ignore
-      return await window.__a11y.run(runOptions);
+      return window.__a11y.run(runOptions);
     },
     {
       hideElements: config.hideElements,
