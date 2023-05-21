@@ -1014,7 +1014,7 @@ _global.HTMLCS.util = {
       const expected = cellHeaders.headers;
       const cell = cellHeaders.cell;
 
-      if (cell.hasAttribute("headers")) {
+      if (!cell.hasAttribute("headers")) {
         retval.correct = false;
         retval.missingTd.push(cell);
       } else {
@@ -1029,6 +1029,7 @@ _global.HTMLCS.util = {
             .replace(/\s+/g, " ")
             .replace(/(\w+\s)\1+/g, "$1")
             .replace(/^\s*(.*?)\s*$/g, "$1");
+
           if (expected !== actual) {
             retval.correct = false;
             retval.wrongHeaders.push({

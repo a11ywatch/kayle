@@ -2,9 +2,9 @@
 
 This fork of HTML_CodeSniffer for performance and accuracy.
 
-## What is HTML_CodeSniffer?
+## What is Fast_Htmlcs?
 
-HTML_CodeSniffer is a JavaScript application that checks a HTML document
+Fast_Htmlcs is a JavaScript application that checks a HTML document
 or source code, and detects violations of a defined presentation or accessibility
 standard, such as Section508 or WCAG2.1.
 
@@ -16,11 +16,11 @@ and the <abbr title="United States of America">U.S.</abbr> [Section 508](http://
 It also provides tools to write your own standards, which can be useful in situations
 where you wish to enforce consistency across a web site.
 
-## Using HTML_CodeSniffer
+## Using Fast_Htmlcs
 
-HTML_CodeSniffer can be called in multiple ways:
+Fast_Htmlcs can be called in multiple ways:
 
-- Called directly in JavaScript source, HTML_CodeSniffer will provide a list of known
+- Called directly in JavaScript source, Fast_Htmlcs will provide a list of known
   and potential violations to the calling script.
 - Using as a Node.js module, installed with npm: `npm i --save html_codesniffer`
 
@@ -28,7 +28,7 @@ HTML_CodeSniffer can be called in multiple ways:
 
 ### Building the auditor
 
-The HTML_CodeSniffer auditor can be built using [Node.js](https://nodejs.org/) and [Grunt
+The Fast_Htmlcs auditor can be built using [Node.js](https://nodejs.org/) and [Grunt
 task runner](http://gruntjs.com/). It has been tested with the recent version of Node.js
 (starting from version 6.0) and Grunt.
 
@@ -42,9 +42,6 @@ You should see two new directories: `node_modules` (containing the Node.js
 dependencies), and `build` (containing your auditor). You can then move
 (or symlink as appropriate) your `build` directory to a web-accessible
 location.
-
-Then grab or copy the JavaScript from the auditor bookmarklet from the [HTML_CodeSniffer site](https://squizlabs.github.io/HTML_CodeSniffer),
-replace the directory at the start (//squizlabs.github.io/HTML_CodeSniffer/build) with your local URL, and save as a new bookmarklet.
 
 ### Debug build
 
@@ -87,7 +84,7 @@ const executablePath =
   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 
 // Replace with the url you wish to test.
-const url = "https://www.squiz.net";
+const url = "https://a11ywatch.com";
 
 (async () => {
   const browser = await puppeteer.launch({
