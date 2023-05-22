@@ -14,8 +14,16 @@ import { kayle } from "kayle";
 // Playwright 🎭 or Puppeteer 🤖
 const page = await browser.newPage();
 
-const results = await kayle({ page, browser, origin: "https://a11ywatch.com" });
+// audit with a url or raw html
+const results = await kayle({
+  page,
+  browser,
+  origin: "https://a11ywatch.com",
+  // html: "<html>...</html>"
+});
 ```
+
+When passing raw `html` try to also include the `origin` or the url, this sets `window.origin` and helps scripts that rely on it work correctly.
 
 If you need to run a full site-wide crawl import `autoKayle`.
 
