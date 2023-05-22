@@ -896,9 +896,9 @@ _global.HTMLCS.util = {
       missingTd: [],
       wrongHeaders: [],
       isMultiLevelHeadersTable: false,
+      simpleTable: false
     };
 
-    const rows = this.getChildrenForTable(element, "tr");
     const skipCells = [];
 
     // Header IDs already used.
@@ -911,7 +911,11 @@ _global.HTMLCS.util = {
       cols: 0,
     };
 
-    for (var rownum = 0; rownum < rows.length; rownum++) {
+    const rows = this.getChildrenForTable(element, "tr");
+    
+    // TODO: check to see if column has scope defined to apply simple table
+
+    for (let rownum = 0; rownum < rows.length; rownum++) {
       const row = rows[rownum];
       let colnum = 0;
 
@@ -943,6 +947,12 @@ _global.HTMLCS.util = {
           }
 
           if (nodeName === "TH") {
+            if(!rownum && !retval.simpleTable) {
+              retval.simpleTable = true;
+            }
+            if(rownum && retval.simpleTable) {
+              retval.simpleTable = false;
+            }
             const id = cell.getAttribute("id") || "";
 
             // Save the fact that we have a missing ID on the header.
@@ -955,7 +965,7 @@ _global.HTMLCS.util = {
               // Multi-column AND multi-row header. Abandon all hope,
               // As it must span across more than one row+column
               retval.allowScope = false;
-            } else if (retval.allowScope === true) {
+            } else if (retval.allowScope) {
               // If we haven't had a th in this column (row) yet,
               // record it. if we find another th in this column (row),
               // record that has multi-ths. If we already have a column
@@ -985,6 +995,11 @@ _global.HTMLCS.util = {
       }
     }
 
+    if(retval.simpleTable) {
+      retval.required = false;
+    }
+
+    // TODO: remove repeat loops below and inc counters within main loop
     for (const headerRow of headerIds.rows) {
       if (headerRow) {
         multiHeaders.rows++;
@@ -1001,7 +1016,7 @@ _global.HTMLCS.util = {
       retval.allowScope = false;
       retval.isMultiLevelHeadersTable = true;
     } else if (
-      retval.allowScope === true &&
+      retval.allowScope &&
       (multiHeaders.rows === 0 || multiHeaders.cols === 0)
     ) {
       // If only one column OR one row header.

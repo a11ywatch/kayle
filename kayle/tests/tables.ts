@@ -27,7 +27,7 @@ import { performance } from "perf_hooks";
   console.log("Issues:", issues.length);
 
   // valid list
-  assert(meta.errorCount === 1);
+  assert(meta.errorCount === 0);
   assert(meta.warningCount === 7);
 
   await browser.close();

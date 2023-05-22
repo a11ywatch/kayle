@@ -36,6 +36,7 @@ _global.HTMLCS_Section508_Sniffs_H = {
     // Incorrect usage of headers - error; emit always.
     for (const wrongHeaders of headersAttr.wrongHeaders) {
       HTMLCS.addMessage(
+        // todo: translations
         HTMLCS.ERROR,
         wrongHeaders.element,
         'Incorrect headers attribute on this td element. Expected "' +
@@ -48,8 +49,8 @@ _global.HTMLCS_Section508_Sniffs_H = {
     }
 
     // Errors where headers are compulsory.
-    if (headersAttr.required === true && headersAttr.allowScope === false) {
-      if (headersAttr.used === false) {
+    if (headersAttr.required && !headersAttr.allowScope) {
+      if (!headersAttr.used) {
         // Headers not used at all, and they are mandatory.
         HTMLCS.addMessage(
           HTMLCS.ERROR,

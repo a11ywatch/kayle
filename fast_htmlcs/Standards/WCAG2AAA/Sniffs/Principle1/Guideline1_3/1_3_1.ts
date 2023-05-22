@@ -498,7 +498,6 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
    * @return void
    */
   testTableHeaders: function (table) {
-    const headersAttr = HTMLCS.util.testTableHeaders(table);
     let scopeAttr = this._testTableScopeAttrs(table);
 
     // Invalid scope attribute - emit always if scope tested.
@@ -522,7 +521,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
       );
     }
 
-    if (headersAttr.allowScope === true) {
+    const headersAttr = HTMLCS.util.testTableHeaders(table);
+
+    if (headersAttr.allowScope) {
       if (scopeAttr.missing.length === 0) {
         // If all scope attributes are set, let them be used, even if the
         // attributes are in error. If the scope attrs are fixed, the table
@@ -563,8 +564,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
     }
 
     // Errors where headers are compulsory.
-    if (headersAttr.required === true && headersAttr.allowScope === false) {
-      if (headersAttr.used === false) {
+    if (headersAttr.required && !headersAttr.allowScope) {
+      if (!headersAttr.used) {
         // Headers not used at all, and they are mandatory.
         HTMLCS.addMessage(
           HTMLCS.ERROR,
@@ -606,7 +607,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
       headersAttr.correct === false &&
       scopeAttr.correct === false
     ) {
-      if (scopeAttr.used === false && headersAttr.used === false) {
+      if (!scopeAttr.used && !headersAttr.used) {
         // Nothing used at all.
         HTMLCS.addMessage(
           HTMLCS.ERROR,
@@ -615,9 +616,10 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
           "H43,H63"
         );
       } else if (
-        scopeAttr.used === false &&
+        !scopeAttr.used &&
         (headersAttr.missingThId.length > 0 || headersAttr.missingTd.length > 0)
       ) {
+
         // Headers attribute is used, but not all th elements have ids.
         if (headersAttr.missingThId.length > 0) {
           HTMLCS.addMessage(
@@ -637,6 +639,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             "H43.MissingHeadersAttrs"
           );
         }
+      
       } else if (scopeAttr.missing.length > 0 && headersAttr.used === false) {
         // Scope is used rather than headers, but not all th elements have them.
         HTMLCS.addMessage(
