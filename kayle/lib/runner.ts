@@ -154,7 +154,10 @@
         }
 
         const issue = shapeIssue(is);
-        if (issue.type === "error") {
+
+        const errorType = issue.type === "error";
+
+        if (errorType) {
           // missing alt capture index of array
           if (
             issue.code === "WCAG2AA.Principle1.Guideline1_1.1_1_1.H37" ||
@@ -174,9 +177,7 @@
           meta.noticeCount += (issue.recurrence ?? 0) + 1;
         }
 
-        const errorType = issue.type === "error";
-
-        // Pivot swap first error item to first slot
+        // In-place hybrid insert sorting
         if (errorType && !tracker.errorPointer) {
           acc[tracker.ic] = acc[0];
           acc[0] = issue;
