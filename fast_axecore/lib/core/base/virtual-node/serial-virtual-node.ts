@@ -102,7 +102,8 @@ function normaliseProps(serialNode) {
   }
 
   delete props.attributes;
-  return Object.freeze(props);
+
+  return props;
 }
 
 /**

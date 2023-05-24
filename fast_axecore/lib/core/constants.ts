@@ -31,8 +31,8 @@ const constants = {
   results: [],
   resultGroups: [],
   resultGroupMap: {},
-  impact: Object.freeze(['minor', 'moderate', 'serious', 'critical']),
-  preload: Object.freeze({
+  impact: ['minor', 'moderate', 'serious', 'critical'],
+  preload: {
     /**
      * array of supported & preload(able) asset types.
      */
@@ -41,7 +41,7 @@ const constants = {
      * timeout value when resolving preload(able) assets
      */
     timeout: 10000
-  }),
+  },
   allOrigins: '<unsafe_all_origins>',
   sameOrigin: '<same_origin>',
   NA: undefined,
@@ -71,11 +71,5 @@ for (const definition of definitions) {
 
   constants.resultGroupMap[value] = group;
 }
-
-// Freeze everything
-Object.freeze(constants.results);
-Object.freeze(constants.resultGroups);
-Object.freeze(constants.resultGroupMap);
-Object.freeze(constants);
 
 export default constants;

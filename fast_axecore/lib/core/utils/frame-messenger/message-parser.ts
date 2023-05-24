@@ -1,11 +1,11 @@
-const errorTypes = Object.freeze([
+const errorTypes = [
   'EvalError',
   'RangeError',
   'ReferenceError',
   'SyntaxError',
   'TypeError',
   'URIError'
-]);
+];
 
 export function stringifyMessage({
   topic,
