@@ -619,7 +619,6 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         !scopeAttr.used &&
         (headersAttr.missingThId.length > 0 || headersAttr.missingTd.length > 0)
       ) {
-
         // Headers attribute is used, but not all th elements have ids.
         if (headersAttr.missingThId.length > 0) {
           HTMLCS.addMessage(
@@ -639,7 +638,6 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             "H43.MissingHeadersAttrs"
           );
         }
-      
       } else if (scopeAttr.missing.length > 0 && headersAttr.used === false) {
         // Scope is used rather than headers, but not all th elements have them.
         HTMLCS.addMessage(

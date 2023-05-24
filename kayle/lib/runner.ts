@@ -140,7 +140,7 @@
       !isIssueNotIgnored(issue);
 
     // get issues with acc builder return counter
-    const processIssuesMulti = (
+    const processIssues = (
       issues,
       acc,
       tracker,
@@ -157,24 +157,12 @@
 
         const errorType = issue.type === "error";
 
-        if (errorType) {
-          // missing alt capture index of array
-          if (
-            issue.code === "WCAG2AA.Principle1.Guideline1_1.1_1_1.H37" ||
-            issue.code === "image-alt"
-          ) {
-            missingAltIndexs.push(tracker.ic);
-          }
-          meta.errorCount += (issue.recurrence ?? 0) + 1;
-          meta.accessScore -= 2;
-        }
-
         if (issue.type === "warning") {
-          meta.warningCount += (issue.recurrence ?? 0) + 1;
+          meta.warningCount += issue.recurrence + 1;
         }
 
         if (issue.type === "notice") {
-          meta.noticeCount += (issue.recurrence ?? 0) + 1;
+          meta.noticeCount += issue.recurrence + 1;
         }
 
         // In-place hybrid insert sorting
@@ -189,6 +177,7 @@
           if (right && right.type === "warning" && errorType) {
             acc[tracker.ic] = right;
             acc[tracker.errorPointer] = issue;
+            // missing alt capture index of array
           } else {
             acc[tracker.ic] = issue;
           }
@@ -198,6 +187,14 @@
 
         // bump last point found
         if (errorType) {
+          meta.errorCount += issue.recurrence + 1;
+          meta.accessScore -= 2;
+          if (
+            issue.code === "WCAG2AA.Principle1.Guideline1_1.1_1_1.H37" ||
+            issue.code === "image-alt"
+          ) {
+            missingAltIndexs.push(tracker.errorPointer);
+          }
           tracker.errorPointer++;
         }
 
@@ -236,7 +233,7 @@
     };
 
     // init index for runner
-    processIssuesMulti(
+    processIssues(
       runnerIssues[0],
       issues,
       tracker, // init index
@@ -246,13 +243,7 @@
 
     // process second runner if found
     if (multiRunners) {
-      processIssuesMulti(
-        runnerIssues[1],
-        issues,
-        tracker,
-        meta,
-        missingAltIndexs
-      );
+      processIssues(runnerIssues[1], issues, tracker, meta, missingAltIndexs);
     }
 
     issues.length = tracker.ic;

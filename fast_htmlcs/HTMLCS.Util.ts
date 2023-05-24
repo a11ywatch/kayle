@@ -896,7 +896,7 @@ _global.HTMLCS.util = {
       missingTd: [],
       wrongHeaders: [],
       isMultiLevelHeadersTable: false,
-      simpleTable: false
+      simpleTable: false,
     };
 
     const skipCells = [];
@@ -912,7 +912,7 @@ _global.HTMLCS.util = {
     };
 
     const rows = this.getChildrenForTable(element, "tr");
-    
+
     // TODO: check to see if column has scope defined to apply simple table
 
     for (let rownum = 0; rownum < rows.length; rownum++) {
@@ -947,10 +947,10 @@ _global.HTMLCS.util = {
           }
 
           if (nodeName === "TH") {
-            if(!rownum && !retval.simpleTable) {
+            if (!rownum && !retval.simpleTable) {
               retval.simpleTable = true;
             }
-            if(rownum && retval.simpleTable) {
+            if (rownum && retval.simpleTable) {
               retval.simpleTable = false;
             }
             const id = cell.getAttribute("id") || "";
@@ -995,7 +995,7 @@ _global.HTMLCS.util = {
       }
     }
 
-    if(retval.simpleTable) {
+    if (retval.simpleTable) {
       retval.required = false;
     }
 

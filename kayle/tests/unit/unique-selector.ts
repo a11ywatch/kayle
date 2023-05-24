@@ -11,6 +11,7 @@ import { performance } from "perf_hooks";
   const startTime = performance.now();
   const { issues, meta, automateable } = await kayle({
     page,
+    includeWarnings: true,
     browser,
     runners: ["htmlcs"],
     html: htmlAltMock,
