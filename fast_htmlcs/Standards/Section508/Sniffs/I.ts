@@ -20,9 +20,7 @@ _global.HTMLCS_Section508_Sniffs_I = {
    *
    * @returns {Array} The list of elements.
    */
-  register: function () {
-    return ["frame", "iframe", "object"];
-  },
+  register: () => ["frame", "iframe", "object"],
 
   /**
    * Process the registered element.
@@ -31,13 +29,10 @@ _global.HTMLCS_Section508_Sniffs_I = {
    * @param {DOMNode} top     The top element of the tested code.
    */
   process: function (element, top) {
-    var nodeName = element.nodeName.toLowerCase();
-    var hasTitle = element.hasAttribute("title");
-    var titleEmpty = true;
-
-    if (hasTitle === true) {
-      titleEmpty = HTMLCS.util.isStringEmpty(element.getAttribute("title"));
-    }
+    const nodeName = element.nodeName.toLowerCase();
+    const titleEmpty =
+      element.hasAttribute("title") &&
+      HTMLCS.util.isStringEmpty(element.getAttribute("title"));
 
     if (titleEmpty === true) {
       HTMLCS.addMessage(

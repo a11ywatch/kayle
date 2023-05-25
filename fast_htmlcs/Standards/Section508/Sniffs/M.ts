@@ -20,9 +20,7 @@ _global.HTMLCS_Section508_Sniffs_M = {
    *
    * @returns {Array} The list of elements.
    */
-  register: function () {
-    return ["object", "applet", "bgsound", "embed", "audio", "video"];
-  },
+  register: () => ["object", "applet", "bgsound", "embed", "audio", "video"],
 
   /**
    * Process the registered element.
@@ -30,7 +28,7 @@ _global.HTMLCS_Section508_Sniffs_M = {
    * @param {DOMNode} element The element registered.
    * @param {DOMNode} top     The top element of the tested code.
    */
-  process: function (element, top) {
+  process: function (element, _) {
     HTMLCS.addMessage(
       HTMLCS.NOTICE,
       element,

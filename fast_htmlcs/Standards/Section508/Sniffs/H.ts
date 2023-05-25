@@ -20,9 +20,7 @@ _global.HTMLCS_Section508_Sniffs_H = {
    *
    * @returns {Array} The list of elements.
    */
-  register: function () {
-    return ["table"];
-  },
+  register: () => ["table"],
 
   /**
    * Process the registered element.

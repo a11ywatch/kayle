@@ -20,9 +20,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_7 = {
    *
    * @returns {Array} The list of elements.
    */
-  register: function () {
-    return ["object", "embed", "applet", "bgsound", "audio"];
-  },
+  register: () => ["object", "embed", "applet", "bgsound", "audio"],
 
   /**
    * Process the registered element.
@@ -30,7 +28,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_7 = {
    * @param {DOMNode} element The element registered.
    * @param {DOMNode} top     The top element of the tested code.
    */
-  process: function (element, top) {
+  process: function (element, _) {
     HTMLCS.addMessage(
       HTMLCS.NOTICE,
       element,

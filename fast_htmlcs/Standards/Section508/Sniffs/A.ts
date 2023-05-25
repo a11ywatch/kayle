@@ -20,9 +20,7 @@ _global.HTMLCS_Section508_Sniffs_A = {
    *
    * @returns {Array} The list of elements.
    */
-  register: function () {
-    return ["_top", "img", "object", "bgsound", "audio"];
-  },
+  register: () => ["_top", "img", "object", "bgsound", "audio"],
 
   /**
    * Process the registered element.
@@ -35,11 +33,12 @@ _global.HTMLCS_Section508_Sniffs_A = {
       this.addNullAltTextResults(top);
       this.addMediaAlternativesResults(top);
     } else {
-      var nodeName = element.nodeName.toLowerCase();
+      const nodeName = element.nodeName;
+
       if (
-        nodeName === "object" ||
-        nodeName === "bgsound" ||
-        nodeName === "audio"
+        nodeName === "OBJECT" ||
+        nodeName === "BGSOUND" ||
+        nodeName === "AUDIO"
       ) {
         // Audio transcript notice. Yes, this is in A rather than B, since
         // audio is not considered "multimedia" (roughly equivalent to a
@@ -90,9 +89,9 @@ _global.HTMLCS_Section508_Sniffs_A = {
       top,
       'img, area, input[type="image"]'
     )) {
-      var linkOnlyChild = false;
-      var missingAlt = false;
-      var nullAlt = false;
+      let linkOnlyChild = false;
+      let missingAlt = false;
+      let nullAlt = false;
 
       if (element.parentNode.nodeName === "A") {
         const prevNode = HTMLCS.util.getPreviousSiblingElement(element, null);
@@ -112,7 +111,7 @@ _global.HTMLCS_Section508_Sniffs_A = {
             linkOnlyChild = true;
           }
         }
-      } //end if
+      }
 
       if (element.hasAttribute("alt") === false) {
         missingAlt = true;
@@ -200,73 +199,73 @@ _global.HTMLCS_Section508_Sniffs_A = {
       );
     }
 
-    for (var i = 0; i < errors.img.nullAltWithTitle.length; i++) {
+    for (const nullAltWithTitle of errors.img.nullAltWithTitle) {
       HTMLCS.addMessage(
         HTMLCS.ERROR,
-        errors.img.nullAltWithTitle[i],
+        nullAltWithTitle,
         "Img element with empty alt text must have absent or empty title attribute.",
         "Img.NullAltWithTitle"
       );
     }
 
-    for (var i = 0; i < errors.img.ignored.length; i++) {
+    for (const ignored of errors.img.ignored) {
       HTMLCS.addMessage(
         HTMLCS.WARNING,
-        errors.img.ignored[i],
+        ignored,
         "Img element is marked so that it is ignored by Assistive Technology.",
         "Img.Ignored"
       );
     }
 
-    for (var i = 0; i < errors.img.missingAlt.length; i++) {
+    for (const missingAlt of errors.img.missingAlt) {
       HTMLCS.addMessage(
         HTMLCS.ERROR,
-        errors.img.missingAlt[i],
+        missingAlt,
         "Img element missing an alt attribute. Use the alt attribute to specify a short text alternative.",
         "Img.MissingAlt"
       );
     }
 
-    for (var i = 0; i < errors.img.generalAlt.length; i++) {
+    for (const generalAlt of errors.img.generalAlt) {
       HTMLCS.addMessage(
         HTMLCS.NOTICE,
-        errors.img.generalAlt[i],
+        generalAlt,
         "Ensure that the img element's alt text serves the same purpose and presents the same information as the image.",
         "Img.GeneralAlt"
       );
     }
 
-    for (var i = 0; i < errors.inputImage.missingAlt.length; i++) {
+    for (const missingAlt of errors.inputImage.missingAlt) {
       HTMLCS.addMessage(
         HTMLCS.ERROR,
-        errors.inputImage.missingAlt[i],
+        missingAlt,
         "Image submit button missing an alt attribute. Specify a text alternative that describes the button's function, using the alt attribute.",
         "InputImage.MissingAlt"
       );
     }
 
-    for (var i = 0; i < errors.inputImage.generalAlt.length; i++) {
+    for (const generalAlt of errors.inputImage.generalAlt) {
       HTMLCS.addMessage(
         HTMLCS.NOTICE,
-        errors.inputImage.generalAlt[i],
+        generalAlt,
         "Ensure that the image submit button's alt text identifies the purpose of the button.",
         "InputImage.GeneralAlt"
       );
     }
 
-    for (var i = 0; i < errors.area.missingAlt.length; i++) {
+    for (const missingAlt of errors.area.missingAlt) {
       HTMLCS.addMessage(
         HTMLCS.ERROR,
-        errors.area.missingAlt[i],
+        missingAlt,
         "Area element in an image map missing an alt attribute. Each area element must have a text alternative that describes the function of the image map area.",
         "Area.MissingAlt"
       );
     }
 
-    for (var i = 0; i < errors.area.generalAlt.length; i++) {
+    for (const generalAlt of errors.area.generalAlt) {
       HTMLCS.addMessage(
         HTMLCS.NOTICE,
-        errors.area.generalAlt[i],
+        generalAlt,
         "Ensure that the area element's text alternative serves the same purpose as the part of image map image it references.",
         "Area.GeneralAlt"
       );
@@ -287,47 +286,48 @@ _global.HTMLCS_Section508_Sniffs_A = {
     };
 
     for (const element of HTMLCS.util.getAllElements(top, "object")) {
-      var childObject = element.querySelector("object");
+      const childObject = element.querySelector("object");
 
       // If we have an object as our alternative, skip it. Pass the blame onto
       // the child.
       if (childObject === null) {
-        var textAlt = HTMLCS.util.getElementTextContent(element, true);
+        const textAlt = HTMLCS.util.getElementTextContent(element, true);
         if (textAlt === "") {
           errors.object.missingBody.push(element);
         } else {
           errors.object.generalAlt.push(element);
         }
-      } //end if
-    } //end if
+      }
+    }
 
     for (const element of HTMLCS.util.getAllElements(top, "applet")) {
       // Test firstly for whether we have an object alternative.
-      var childObject = element.querySelector("object");
-      var hasError = false;
+      const childObject = element.querySelector("object");
+      let hasError = false;
 
       // If we have an object as our alternative, skip it. Pass the blame onto
       // the child. (This is a special case: those that don't understand APPLET
       // may understand OBJECT, but APPLET shouldn't be nested.)
       if (childObject === null) {
-        var textAlt = HTMLCS.util.getElementTextContent(element, true);
+        const textAlt = HTMLCS.util.getElementTextContent(element, true);
         if (HTMLCS.util.isStringEmpty(textAlt) === true) {
           errors.applet.missingBody.push(element);
           hasError = true;
         }
-      } //end if
+      }
 
-      var altAttr = element.getAttribute("alt") || "";
-      if (HTMLCS.util.isStringEmpty(altAttr) === true) {
+      const altAttr = element.getAttribute("alt") || "";
+
+      if (HTMLCS.util.isStringEmpty(altAttr)) {
         errors.applet.missingAlt.push(element);
         hasError = true;
       }
 
-      if (hasError === false) {
+      if (!hasError) {
         // No error? Remind of obligations about equivalence of alternatives.
         errors.applet.generalAlt.push(element);
       }
-    } //end if
+    }
 
     return errors;
   },
@@ -347,46 +347,46 @@ _global.HTMLCS_Section508_Sniffs_A = {
         top
       );
 
-    for (var i = 0; i < errors.object.missingBody.length; i++) {
+    for (const missingBody of errors.object.missingBody) {
       HTMLCS.addMessage(
         HTMLCS.ERROR,
-        errors.object.missingBody[i],
+        missingBody,
         "Object elements must contain a text alternative after all other alternatives are exhausted.",
         "Object.MissingBody"
       );
     }
 
-    for (var i = 0; i < errors.object.generalAlt.length; i++) {
+    for (const generalAlt of errors.object.generalAlt) {
       HTMLCS.addMessage(
         HTMLCS.NOTICE,
-        errors.object.generalAlt[i],
+        generalAlt,
         "Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and present the same information.",
         "Object.GeneralAlt"
       );
     }
 
-    for (var i = 0; i < errors.applet.missingBody.length; i++) {
+    for (const missingBody of errors.applet.missingBody) {
       HTMLCS.addMessage(
         HTMLCS.ERROR,
-        errors.applet.missingBody[i],
+        missingBody,
         "Applet elements must contain a text alternative in the element's body, for browsers without support for the applet element.",
         "Applet.MissingBody"
       );
     }
 
-    for (var i = 0; i < errors.applet.missingAlt.length; i++) {
+    for (const missingAlt of errors.applet.missingAlt) {
       HTMLCS.addMessage(
         HTMLCS.ERROR,
-        errors.applet.missingAlt[i],
+        missingAlt,
         "Applet elements must contain an alt attribute, to provide a text alternative to browsers supporting the element but are unable to load the applet.",
         "Applet.MissingAlt"
       );
     }
 
-    for (var i = 0; i < errors.applet.generalAlt.length; i++) {
+    for (const generalAlt of errors.applet.generalAlt) {
       HTMLCS.addMessage(
         HTMLCS.NOTICE,
-        errors.applet.generalAlt[i],
+        generalAlt,
         "Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and present the same information.",
         "Applet.GeneralAlt"
       );

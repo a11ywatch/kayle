@@ -23,7 +23,7 @@ const results = await kayle({
 });
 ```
 
-When passing raw `html` try to also include the `origin` or the url, this sets `window.origin` and helps scripts that rely on it work correctly.
+When passing raw `html` try to also include the `origin` or the url, this sets `window.origin` and helps scripts that rely on it to work correctly.
 
 If you need to run a full site-wide crawl import `autoKayle`.
 
@@ -121,7 +121,7 @@ await kayleLint("https://a11ywatch.com");
 
 ## Localization
 
-[Locales](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/i18n) supported by the runner using pre-compiled locales. In order to pre-compile the locales run `./build.sh`. Some locales are only available in certain runners.
+[Locales](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/i18n) supported by the runner using pre-compilition. In order to pre-compile the locales run `./build.sh`. Some locales are only available in certain runners. All of the languages are split into individual scripts to scale.
 
 1. da ("Danish")
 1. de ("German")
@@ -198,12 +198,11 @@ Access score or `accessScore` is going to switch to a new algorithm that uses in
 
 Re-work coming soon!
 
-## Fast crawls
+## Performance
 
-As we set the foundation to mark test cases that can pass and increase our target on automating accessibility we have a couple of layers that
-can make a major difference to the project. The following will save drastic time and money if done.
+As we set the foundation to mark test cases that can pass and increase our target on automating accessibility we have a couple of layers that can make a major difference to the project. The following will save drastic time and money if done.
 
-1. Use a fast [crawler](https://github.com/a11ywatch/crawler) to gather all of the html to send to a web accessibility service that can perform audits like [pagemind](https://github.com/a11ywatch/pagemind) over CDP.
+1. Use a fast concurrent [crawler](https://github.com/a11ywatch/crawler) to gather all of the html to send to a web accessibility service that can perform audits like [pagemind](https://github.com/a11ywatch/pagemind) over CDP.
 
 2. Use the pre-compiled browser extensions to avoid over the wire latency `yarn build:extension`.
 
@@ -211,9 +210,7 @@ can make a major difference to the project. The following will save drastic time
 
 This project took Axecore and HTMLCS from versions that were complete and semi-stable.
 We patched and fixed a lot of bugs that increased the accuracy of tests passing and issues being found.
-One of the main goals was to have the audit run quickly since we noticed some of the tests would take several seconds to
-complete. The performance increases we made to the project were not only done at edge cases that would scale beyond
-make the ability of auditing at the MS level for almost any website. Right now, the project is moving forward based on performance and accuracy for ensuring minimal to no false positives.
+One of the main goals was to have the audit run quickly since we noticed some of the tests would take several seconds to complete. Right now, the project is moving forward based on performance and accuracy for ensuring minimal false positives.
 
 ## Browser Extension
 
@@ -227,7 +224,7 @@ Copy the contents into your directory to load using chromes `--load-extension` a
 
 View the [extension-test](kayle/tests/extension.ts) for an example on how to setup chrome with the generated extension.
 
-Currently we only have english support for extension. We can add different locales for the generated scripts by manually adjusting the targets.
+Currently we only have english support for extensions. We can add different locales for the generated scripts by manually adjusting the targets.
 
 If you want to test the extension use `yarn test:puppeteer:extension`.
 

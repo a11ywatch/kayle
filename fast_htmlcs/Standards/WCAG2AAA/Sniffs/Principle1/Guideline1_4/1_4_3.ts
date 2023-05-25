@@ -20,9 +20,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3 = {
    *
    * @returns {Array} The list of elements.
    */
-  register: function () {
-    return ["_top"];
-  },
+  register: () => ["_top"],
 
   /**
    * Process the registered element.
@@ -39,24 +37,25 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3 = {
           3.0
         );
 
-      for (var i = 0; i < failures.length; i++) {
-        var element = failures[i].element;
-        var decimals = 2;
-        var value =
-          Math.round(failures[i].value * Math.pow(10, decimals)) /
+      for (const failure of failures) {
+        const element = failure.element;
+        const required = failure.required;
+        const recommend = failure.recommendation;
+        const hasBgImg = failure.hasBgImage || false;
+        const isAbsolute = failure.isAbsolute || false;
+        const hasAlpha = failure.hasAlpha || false;
+
+        let decimals = 2;
+        let value =
+          Math.round(failure.value * Math.pow(10, decimals)) /
           Math.pow(10, decimals);
-        var required = failures[i].required;
-        var recommend = failures[i].recommendation;
-        var hasBgImg = failures[i].hasBgImage || false;
-        var isAbsolute = failures[i].isAbsolute || false;
-        var hasAlpha = failures[i].hasAlpha || false;
-        var code = "";
+        let code = "";
 
         // If the values would look identical, add decimals to the value.
         while (required === value) {
           decimals++;
           value =
-            Math.round(failures[i].value * Math.pow(10, decimals)) /
+            Math.round(failure.value * Math.pow(10, decimals)) /
             Math.pow(10, decimals);
         }
 
@@ -66,7 +65,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3 = {
           code = "G145";
         }
 
-        var recommendText: string[] | string = [];
+        let recommendText: string[] | string = [];
 
         if (recommend) {
           if (recommend.fore.from !== recommend.fore.to) {

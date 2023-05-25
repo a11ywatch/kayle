@@ -28,6 +28,12 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
    * @param {DOMNode} element The element registered.
    */
   checkValidAttributes: function (element) {
+    const valuesStr = element.getAttribute("autocomplete");
+
+    if (typeof valuesStr !== "string") {
+      return;
+    }
+
     const valid_attributes = [
       "additional-name",
       "address-level1",
@@ -93,25 +99,17 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
       "work",
     ];
 
-    const valuesStr = element.getAttribute("autocomplete");
-
-    if (typeof valuesStr !== "string") {
-      return;
-    }
-
     let hasFaultyValue = false;
-    const values = valuesStr.split(" ");
 
-    for (var i = 0; i < values.length; i++) {
-      values[i] = values[i].trim();
-      const x = values[i];
+    for (const value of valuesStr.split(" ")) {
+      const x = value.trim();
 
       if (valid_attributes.indexOf(x) === -1 && x.indexOf("section-") !== 0) {
         hasFaultyValue = true;
       }
     }
 
-    if (hasFaultyValue === true) {
+    if (hasFaultyValue) {
       HTMLCS.addMessage(
         HTMLCS.WARNING,
         element,
@@ -275,9 +273,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
 
     const values = element.getAttribute("autocomplete").split(" ");
 
-    for (var i = 0; i < values.length; i++) {
-      values[i] = values[i].trim();
-      var x = values[i];
+    for (const value of values) {
+      const x = value.trim();
+
       if (textFields.indexOf(x) > -1 && !isText) {
         HTMLCS.addMessage(
           HTMLCS.ERROR,

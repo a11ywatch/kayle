@@ -20,9 +20,7 @@ _global.HTMLCS_Section508_Sniffs_O = {
    *
    * @returns {Array} The list of elements.
    */
-  register: function () {
-    return ["_top", "a", "area"];
-  },
+  register: () => ["_top", "a", "area"],
 
   /**
    * Process the registered element.
@@ -40,10 +38,10 @@ _global.HTMLCS_Section508_Sniffs_O = {
       );
     } else {
       if (element.hasAttribute("href") === true) {
-        var href = element.getAttribute("href");
-        href = href.trim();
+        let href = element.getAttribute("href").trim();
+
         if (href.length > 1 && href.charAt(0) === "#") {
-          var id = href.substring(1);
+          const id = href.substring(1);
 
           try {
             let doc: (Element & { getElementById?(id: string) }) | Document =

@@ -20,9 +20,7 @@ _global.HTMLCS_Section508_Sniffs_G = {
    *
    * @returns {Array} The list of elements.
    */
-  register: function () {
-    return ["table"];
-  },
+  register: () => ["table"],
 
   /**
    * Process the registered element.
@@ -32,7 +30,7 @@ _global.HTMLCS_Section508_Sniffs_G = {
    */
   process: function (element, top) {
     // If no table headers, emit notice about the table.
-    if (HTMLCS.util.isLayoutTable(element) === true) {
+    if (HTMLCS.util.isLayoutTable(element)) {
       HTMLCS.addMessage(
         HTMLCS.NOTICE,
         element,

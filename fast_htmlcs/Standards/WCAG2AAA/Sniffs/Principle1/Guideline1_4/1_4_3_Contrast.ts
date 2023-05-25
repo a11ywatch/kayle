@@ -18,7 +18,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
 
     if (!top.ownerDocument) {
       toProcess = [];
-      var body = top.getElementsByTagName("body");
+      const body = top.getElementsByTagName("body");
       if (body.length) {
         // SVG objects will not have a body element. Don't check them.
         toProcess = [body[0]];

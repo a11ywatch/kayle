@@ -20,9 +20,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_2_3_2_1 = {
    *
    * @returns {Array} The list of elements.
    */
-  register: function () {
-    return ["input", "textarea", "button", "select"];
-  },
+  register: () => ["input", "textarea", "button", "select"],
 
   /**
    * Process the registered element.
