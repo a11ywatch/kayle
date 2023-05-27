@@ -167,7 +167,7 @@ You can enable a high performance adblock detection by brave by installing `npm 
 
 ## Testing
 
-The [test-results](./test-results/) are checked in to avoid hindering performance on updates. The comparison between using `fast_htmlcs`, `fast_axecore`, and the metrics for the 3rd party `@axe-core/playwright`.
+For the comparison between using `fast_htmlcs`, `fast_axecore`, and the metrics for the 3rd party `@axe-core/playwright`.
 
 1. `yarn build:test`
 
@@ -191,12 +191,6 @@ Run the following to install on ^node@16.10
 `corepack enable && corepack prepare yarn@stable --activate` and reload shell after.
 
 Use the command `./build.sh` to compile all the scripts for each locale.
-
-## AccessScore
-
-Access score or `accessScore` is going to switch to a new algorithm that uses incompletion points. Depending on the incompletion a direct impact score will be negated starting from 100.
-
-Re-work coming soon!
 
 ## Performance
 

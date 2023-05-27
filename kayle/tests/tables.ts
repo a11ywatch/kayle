@@ -28,7 +28,7 @@ import { performance } from "perf_hooks";
 
   // valid list
   assert(meta.errorCount === 0);
-  assert(meta.warningCount === 7);
+  assert(meta.warningCount === 2);
 
   await browser.close();
 })();

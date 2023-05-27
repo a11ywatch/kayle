@@ -42,35 +42,8 @@ export type Audit = {
 
 export type RunnerConf = Partial<RunnerConfig & { html?: string }>;
 
-// run accessibility audit
-async function auditPage(config: RunnerConfig) {
-  await Promise.all([runActionsList(config), injectRunners(config)]);
-
-  return await audit(config);
-}
-
-// run actions
-async function runActionsList(config: RunnerConfig) {
-  for (const action of config.actions) {
-    await runAction(config.browser, config.page, config, action);
-  }
-}
-
-// inject runners
-async function injectRunners(config: RunnerConfig) {
-  if (!config._browserExtension) {
-    return await Promise.all([
-      config.page.evaluate(runnersJavascript["kayle"]),
-      config.page.evaluate(getRunner(config.language, config.runners[0])),
-      config.runners.length === 2
-        ? config.page.evaluate(getRunner(config.language, config.runners[1]))
-        : undefined,
-    ]);
-  }
-}
-
 // perform audit
-async function audit(config: RunnerConfig): Promise<Audit> {
+const audit = async (config: RunnerConfig): Promise<Audit> => {
   // perform audit as extension
   if (config._browserExtension) {
     return await auditExtension(config);
@@ -95,10 +68,36 @@ async function audit(config: RunnerConfig): Promise<Audit> {
       language: config.language,
     }
   );
-}
+};
 
+// run accessibility audit
+const auditPage = async (config: RunnerConfig) => {
+  await Promise.all([runActionsList(config), injectRunners(config)]);
+
+  return await audit(config);
+};
+
+// run actions
+const runActionsList = async (config: RunnerConfig) => {
+  for (const action of config.actions) {
+    await runAction(config.browser, config.page, config, action);
+  }
+};
+
+// inject runners
+const injectRunners = async (config: RunnerConfig) => {
+  if (!config._browserExtension) {
+    return await Promise.all([
+      config.page.evaluate(runnersJavascript["kayle"]),
+      config.page.evaluate(getRunner(config.language, config.runners[0])),
+      config.runners.length === 2
+        ? config.page.evaluate(getRunner(config.language, config.runners[1]))
+        : undefined,
+    ]);
+  }
+};
 // perform an audit using browser extension - only used if extension is configured on browser
-export async function auditExtension(config: RunnerConfig): Promise<Audit> {
+export const auditExtension = async (config: RunnerConfig): Promise<Audit> => {
   return await config.page.evaluate(
     (runOptions): Promise<Audit> => {
       return new Promise((resolve) => {
@@ -131,19 +130,18 @@ export async function auditExtension(config: RunnerConfig): Promise<Audit> {
       language: config.language,
     }
   );
-}
+};
 /**
  * Run accessibility tests for page.
  * @param {Object} [config={}] config - Options to change the way tests run.
  * @param {Boolean} [preventClose=false] preventClose - Prevent page page from closing on finish.
  * @returns {Promise} Returns a promise which resolves with results.
  */
-export async function kayle(
+export const kayle = async (
   o: RunnerConf = {},
   preventClose?: boolean
-): Promise<Audit> {
+): Promise<Audit> => {
   const navigate =
-    typeof o.page.url === "function" &&
     o.page.url() === "about:blank" &&
     (o.origin || o.html);
 
@@ -171,4 +169,4 @@ export async function kayle(
   !preventClose && navigate && (await o.page.close());
 
   return results;
-}
+};

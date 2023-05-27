@@ -168,10 +168,6 @@ Read the [documentation on the architecture](./doc/developer-guide.md)
 
 Read the [documentation on contributing](CONTRIBUTING.md)
 
-## Todo
-
-Fix/add tests
-
 ## Acknowledgements
 
 Thanks to Marat Dulin for his [css-selector-parser](https://www.npmjs.com/package/css-selector-parser) implementation which is included for shadow DOM support.
