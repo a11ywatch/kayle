@@ -96,6 +96,7 @@ const injectRunners = async (config: RunnerConfig) => {
     ]);
   }
 };
+
 // perform an audit using browser extension - only used if extension is configured on browser
 export const auditExtension = async (config: RunnerConfig): Promise<Audit> => {
   return await config.page.evaluate(

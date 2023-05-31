@@ -1,7 +1,5 @@
 # ✨ kayle
 
-<img src="https://user-images.githubusercontent.com/8095978/236633334-f5234171-064e-4792-a21c-9e6c782ba9cc.jpg" height="50" align="right" padding="2px" />
-
 Incredibly fast and precise web accessibility engine with 0 dependencies.
 
 ```sh
@@ -231,4 +229,3 @@ If you want to chat about the project checkout our [Discord](https://discord.gg/
 ## LICENSE
 
 Check the license file in the root of each project.
-The logo artwork goes to Riot Games.

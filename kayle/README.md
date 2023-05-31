@@ -41,7 +41,7 @@ const results = {
       message:
         "Anchor element found with no link content and no name and/or ID attribute.",
       runner: "htmlcs",
-      runnerExtras: {},
+      runnerExtras: null,
       recurrence: 5, // issue found 5 times against the page
     },
     {
@@ -88,26 +88,11 @@ kayle supports multiple test runners which return different results. The built-i
 
 ## Playwright/Puppeteer
 
-`Fast_htmlcs`: expect runs to finish between 10-40ms with static html and around 30-90ms without.
-`Fast_axecore`: expect runs to finish between 40-350ms with static html and around 30-90ms without.
+`fast_htmlcs`: expect runs to finish between 8-40ms with static html and around 30-90ms without.
+`fast_axecore`: expect runs to finish between 40-350ms with static html and around 30-90ms without.
 
 We are working on making fast_axecore fast so it can run relatively near htmlcs.
 If you are using puppeteer expect around 2x slower results.
-
-## Utils
-
-You can use the [`goToPage`](./lib/utils/go-to-page.ts#L45) method to navigate to a remote url with high performance request interception or [`setNetworkInterception`](./lib/utils/go-to-page.ts#L34).
-
-```js
-import { kayle } from "kayle";
-
-const page = await browser.newPage();
-
-// your html code
-await page.setContent("<html><body><main></main></body></html>");
-
-const results = await kayle({ page, browser, ...extraConfigs });
-```
 
 ## Linting
 

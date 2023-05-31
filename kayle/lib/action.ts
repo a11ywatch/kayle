@@ -35,22 +35,28 @@ export const actions = [
         await page.evaluate(
           (targetSelector, desiredValue) => {
             const target = document.querySelector(targetSelector);
+
             if (!target) {
               return Promise.reject(new Error("No element found"));
             }
+
             const prototype = Object.getPrototypeOf(target);
+
             const { set: prototypeValueSetter } =
               Object.getOwnPropertyDescriptor(prototype, "value") || {};
+
             if (prototypeValueSetter) {
               prototypeValueSetter.call(target, desiredValue);
             } else {
               target.value = desiredValue;
             }
+
             target.dispatchEvent(
               new Event("input", {
                 bubbles: true,
               })
             );
+
             return Promise.resolve();
           },
           selector,
@@ -218,13 +224,16 @@ export const actions = [
     run: async (_, page, __, matches) => {
       const selector = matches[2];
       const eventType = matches[3];
+
       try {
         await page.evaluate(
           (targetSelector, desiredEvent) => {
             const target = document.querySelector(targetSelector);
+
             if (!target) {
               return Promise.reject(new Error("No element found"));
             }
+
             target.addEventListener(
               desiredEvent,
               () => {
@@ -239,6 +248,7 @@ export const actions = [
           selector,
           eventType
         );
+
         await page.waitForFunction(
           () => {
             // @ts-ignore
@@ -253,6 +263,7 @@ export const actions = [
             polling: 200,
           }
         );
+
       } catch (error) {
         throw new Error(`${failedActionElement} "${selector}"`);
       }
