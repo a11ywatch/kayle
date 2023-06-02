@@ -149,7 +149,7 @@ export const kayle = async (
   // navigate to a clean page
   if (navigate) {
     await goToPage(
-      { page: o.page, html: o.html, timeout: o.timeout },
+      { page: o.page, html: o.html, timeout: o.timeout, waitUntil: o.waitUntil },
       o.origin
     );
   } else if (!o.noIntercept) {
