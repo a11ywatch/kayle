@@ -8,8 +8,8 @@ import { drakeMock } from "./mocks/html-mock";
   const browser = await puppeteer.launch({ headless: "new" });
   const page = await browser.newPage();
   await page.setContent(drakeMock);
-  const links = await extractLinks({ page, browser });
   const startTime = performance.now();
+  const links = await extractLinks({ page, browser });
   const nextTime = performance.now() - startTime;
 
   console.log("time took", nextTime);

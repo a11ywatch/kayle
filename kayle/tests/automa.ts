@@ -17,7 +17,7 @@ setLogging(true);
     runners: ["htmlcs", "axe"],
     includeWarnings: true,
     origin: "https://a11ywatch.com", // origin is the fake url in place of the raw content
-    store: `${process.cwd()}/_data/`, // create _data folder first
+    // store: `${process.cwd()}/_data/`, // create _data folder first
   });
   const nextTime = performance.now() - startTime;
   console.log("time took", nextTime);
