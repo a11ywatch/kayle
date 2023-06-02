@@ -97,7 +97,6 @@ type Standard = "WCAG2A" | "WCAG2AA" | "WCAG2AAA" | "SECTION508";
 export type RunnerConfig = {
   browser: Partial<Browser>;
   page: Partial<Page>;
-  waitUntil?: LifeCycleEvent;
   // audit
   actions?: string[];
   hideElements?: string;
