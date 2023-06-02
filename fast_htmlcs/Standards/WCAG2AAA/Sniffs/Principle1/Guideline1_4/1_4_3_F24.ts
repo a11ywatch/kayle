@@ -68,11 +68,11 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_F24 = {
       const fgStyle = element.style.color;
       const bgStyle = element.style.background;
 
-      if (fgStyle && fgStyle !== "auto") {
+      if (fgStyle !== "" && fgStyle !== "auto") {
         hasFg = true;
       }
 
-      if (bgStyle && bgStyle !== "auto") {
+      if (bgStyle !== "" && bgStyle !== "auto") {
         hasBg = true;
       }
     }
