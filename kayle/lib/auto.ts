@@ -4,17 +4,17 @@ import { Audit, kayle, RunnerConf } from "./kayle";
 let write;
 let extractLinks;
 
-// on autoKayle link find callback
-declare function callback(audit: Audit): Audit;
-declare function callback(audit: Audit): Promise<Audit>;
-
 /**
  * Run accessibility tests for page auto running until all pages complete.
  * @param {Object} [config={}] config - Options to change the way tests run.
  * @returns {Promise} Returns a promise which resolves with array of results.
  */
 export async function autoKayle(
-  o: RunnerConf & { log?: boolean; store?: string; cb?: typeof callback } = {},
+  o: RunnerConf & {
+    log?: boolean;
+    store?: string;
+    cb?: ((result: Audit) => Promise<void>) | ((result: Audit) => void);
+  } = {},
   ignoreSet?: Set<String>,
   _results?: Audit[]
 ): Promise<Audit[]> {

@@ -142,9 +142,7 @@ export const kayle = async (
   o: RunnerConf = {},
   preventClose?: boolean
 ): Promise<Audit> => {
-  const navigate =
-    o.page.url() === "about:blank" &&
-    (o.origin || o.html);
+  const navigate = o.page.url() === "about:blank" && (o.origin || o.html);
 
   // navigate to a clean page
   if (navigate) {

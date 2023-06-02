@@ -263,7 +263,6 @@ export const actions = [
             polling: 200,
           }
         );
-
       } catch (error) {
         throw new Error(`${failedActionElement} "${selector}"`);
       }

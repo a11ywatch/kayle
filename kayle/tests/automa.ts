@@ -11,6 +11,10 @@ setLogging(true);
   const page = await browser.newPage();
 
   const startTime = performance.now();
+
+  let warnings = 0;
+  let errors = 0;
+
   const results = await autoKayle({
     page,
     browser,
@@ -18,26 +22,24 @@ setLogging(true);
     includeWarnings: true,
     origin: "https://a11ywatch.com", // origin is the fake url in place of the raw content
     // store: `${process.cwd()}/_data/`, // create _data folder first
+    cb: function callback(result) {
+      const { issues, pageUrl, documentTitle, meta } = result;
+      console.log([`URL: ${pageUrl}`, meta]);
+
+      assert(Array.isArray(issues));
+      assert(typeof pageUrl === "string");
+      assert(typeof documentTitle === "string");
+      errors += meta.errorCount;
+      warnings += meta.warningCount;
+    },
   });
+
   const nextTime = performance.now() - startTime;
   console.log("time took", nextTime);
 
-  let warnings = 0
-  let errors = 0
-
-  for (const result of results) {
-    const { issues, pageUrl, documentTitle, meta } = result;
-    console.log([`URL: ${pageUrl}`, meta]);
-    assert(Array.isArray(issues));
-    assert(typeof pageUrl === "string");
-    assert(typeof documentTitle === "string");
-    errors += meta.errorCount
-    warnings += meta.warningCount
-  }
-
   assert(results.length >= 48);
-  
-  console.log(`Errors: ${errors} - Warnings: ${warnings}`)
+
+  console.log(`Errors: ${errors} - Warnings: ${warnings}`);
 
   await browser.close();
 })();
