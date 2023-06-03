@@ -1,3 +1,5 @@
+import memoize from './memoize';
+
 /**
  * Get the scroll position of given element
  * @method getScroll
@@ -6,7 +8,7 @@
  * @param {buffer} (Optional) allowed negligence in overflow
  * @returns {Object | undefined}
  */
-export default function getScroll(elm, buffer = 0) {
+function getScroll(elm, buffer = 0) {
   const overflowX = elm.scrollWidth > elm.clientWidth + buffer;
   const overflowY = elm.scrollHeight > elm.clientHeight + buffer;
 
@@ -38,3 +40,5 @@ function isScrollable(style, prop) {
   const overflowProp = style.getPropertyValue(prop);
   return ['scroll', 'auto'].includes(overflowProp);
 }
+
+export default memoize(getScroll);

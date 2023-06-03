@@ -56,7 +56,7 @@ class VirtualNode extends AbstractVirtualNode {
       this._type = type;
     }
 
-    if (cache.get('nodeMap')) {
+    if (cache.has('nodeMap')) {
       cache.get('nodeMap').set(node, this);
     }
   }

@@ -13,9 +13,7 @@ import { matchesSelector } from '../../core/utils';
  * @return {HTMLElement|null} Either the matching HTMLElement or `null` if there was no match
  */
 function findUpVirtual(element, target) {
-  let parent;
-
-  parent = element.actualNode;
+  let parent = element.actualNode;
   // virtualNode will have a shadowId if the element lives inside a shadow DOM or is
   // slotted into a shadow DOM
   if (!element.shadowId && typeof element.actualNode.closest === 'function') {

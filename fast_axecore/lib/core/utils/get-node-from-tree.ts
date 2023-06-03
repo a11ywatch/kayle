@@ -12,7 +12,7 @@ function getNodeFromTree(
 ) {
   const el = node || vNode;
 
-  return cache.get('nodeMap') ? cache.get('nodeMap').get(el) : null;
+  return cache.has('nodeMap') ? cache.get('nodeMap').get(el) : null;
 }
 
 export default getNodeFromTree;

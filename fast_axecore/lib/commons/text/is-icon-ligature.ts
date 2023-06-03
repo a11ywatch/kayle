@@ -91,9 +91,10 @@ function isIconLigature(
 
   // keep track of each font encountered and the number of times it shows up
   // as a ligature.
-  if (!cache.get('fonts')) {
+  if (!cache.has('fonts')) {
     cache.set('fonts', {});
   }
+
   const fonts = cache.get('fonts');
 
   const style = window.getComputedStyle(textVNode.parent.actualNode);

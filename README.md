@@ -27,7 +27,8 @@ If you need to run a full site-wide crawl import `autoKayle`.
 
 ```ts
 import { autoKayle, setLogging } from "kayle";
-import { chromium } from "playwright";
+import { chromium } from "@playwright/test";
+// import { chromium } from "playwright";
 
 // enable kayle log output
 setLogging(true);

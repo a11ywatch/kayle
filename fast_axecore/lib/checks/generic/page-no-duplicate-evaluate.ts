@@ -11,7 +11,7 @@ function pageNoDuplicateEvaluate(node, options, virtualNode) {
 
   // only look at the first node and it's related nodes
   const key = 'page-no-duplicate;' + options.selector;
-  if (cache.get(key)) {
+  if (cache.has(key)) {
     this.data('ignored');
     return;
   }

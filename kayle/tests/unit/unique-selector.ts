@@ -1,5 +1,5 @@
 import assert from "assert";
-import { chromium } from "playwright";
+import { chromium } from "@playwright/test";
 import { kayle } from "kayle";
 import { htmlAltMock } from "../mocks/html-alt-mock";
 import { performance } from "perf_hooks";

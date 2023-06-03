@@ -29,9 +29,9 @@ function visuallyOverlaps(rect, parent) {
     return false;
   }
 
-  var style = window.getComputedStyle(parent);
-
+  
   if (rect.left > parentRect.right || rect.top > parentRect.bottom) {
+    const style = window.getComputedStyle(parent);
     return (
       style.overflow === 'scroll' ||
       style.overflow === 'auto' ||

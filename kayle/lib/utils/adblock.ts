@@ -56,13 +56,14 @@ const engine: unknown | AdCheck =
           const engine = new adblockRust.Engine(filterSet, true);
           const serializedArrayBuffer = engine.serializeRaw();
 
-          _log && console.log(
-            `Adblock Engine size: ${(
-              serializedArrayBuffer.byteLength /
-              1024 /
-              1024
-            ).toFixed(2)} MB`
-          );
+          _log &&
+            console.log(
+              `Adblock Engine size: ${(
+                serializedArrayBuffer.byteLength /
+                1024 /
+                1024
+              ).toFixed(2)} MB`
+            );
 
           return engine;
         } catch (_) {

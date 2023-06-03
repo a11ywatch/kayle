@@ -24,7 +24,7 @@ export default function createGrid(
   parentVNode?: Node
 ) {
   // Prevent multiple calls per run
-  if (cache.get('gridCreated') && !parentVNode) {
+  if (cache.has('gridCreated') && !parentVNode) {
     return constants.gridSize;
   }
   cache.set('gridCreated', true);

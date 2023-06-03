@@ -8,6 +8,14 @@ const cache = {
    */
   set: (key, value) => _cache.set(key, value),
   /**
+   * Check if item exist in catch.
+   * @param {String} key - Name of the key.
+   * @param {Boolean} boolean - If item in cache exist.
+   */
+  has: (key) =>{
+    return _cache.has(key)
+  },
+  /**
    * Retrieve an item from the cache.
    * @param {String} key - Name of the key the value was stored as.
    * @param {Function} [creator] - Default value to set if there is a cache miss. Functions are evaluated before caching. To override a value already saved, use `set()`.

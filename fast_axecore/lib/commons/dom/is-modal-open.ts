@@ -34,7 +34,7 @@ function isModalOpen(options?) {
   // in the viewport. since we aren't sure if it is or is not a modal this is
   // just our best guess of being one based on convention.
 
-  if (cache.get('isModalOpen')) {
+  if (cache.has('isModalOpen')) {
     return cache.get('isModalOpen');
   }
 

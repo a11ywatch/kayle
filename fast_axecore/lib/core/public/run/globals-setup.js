@@ -29,11 +29,11 @@ export function setupGlobals(context) {
 }
 
 export function resetGlobals() {
-  if (cache.get('globalDocumentSet')) {
+  if (cache.has('globalDocumentSet')) {
     cache.set('globalDocumentSet', false);
     document = null;
   }
-  if (cache.get('globalWindowSet')) {
+  if (cache.has('globalWindowSet')) {
     cache.set('globalWindowSet', false);
     window = null;
   }

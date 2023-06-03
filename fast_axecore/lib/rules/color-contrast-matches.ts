@@ -36,6 +36,7 @@ function colorContrastMatches(node, virtualNode) {
     'radio',
     'image'
   ];
+
   if (nodeName === 'input' && nonTextInput.includes(inputType)) {
     return false;
   }
@@ -48,6 +49,7 @@ function colorContrastMatches(node, virtualNode) {
   // the text indent has not been changed and moved the text away from the
   // control
   const formElements = ['input', 'select', 'textarea'];
+
   if (formElements.includes(nodeName)) {
     const style = window.getComputedStyle(node);
     const textIndent = parseInt(style.getPropertyValue('text-indent'), 10);
@@ -71,7 +73,9 @@ function colorContrastMatches(node, virtualNode) {
     // Match all form fields, regardless of if they have text
     return true;
   }
+
   const nodeParentLabel = findUpVirtual(virtualNode, 'label');
+
   if (nodeName === 'label' || nodeParentLabel) {
     const labelNode = nodeParentLabel || node;
     const labelVirtual = nodeParentLabel
@@ -108,6 +112,7 @@ function colorContrastMatches(node, virtualNode) {
 
   const ariaLabelledbyControls = [];
   let ancestorNode = virtualNode;
+
   while (ancestorNode) {
     // Find any ancestor (including itself) that is used with aria-labelledby
     if (ancestorNode.props.id) {
@@ -137,6 +142,7 @@ function colorContrastMatches(node, virtualNode) {
 
   const range = document.createRange();
   const childNodes = virtualNode.children;
+
   for (let index = 0; index < childNodes.length; index++) {
     const child = childNodes[index];
     if (
@@ -157,8 +163,6 @@ function colorContrastMatches(node, virtualNode) {
   return false;
 }
 
-export default colorContrastMatches;
-
 const removeUnicodeOptions = {
   emoji: true,
   nonBmp: false,
@@ -177,3 +181,5 @@ function hasRealTextChildren(virtualNode) {
     vChild => vChild.props.nodeName === '#text' && !isIconLigature(vChild)
   );
 }
+
+export default colorContrastMatches;

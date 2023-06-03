@@ -44,6 +44,7 @@ function getLevel(vNode) {
 
 function headingOrderEvaluate() {
   let headingOrder = cache.get('headingOrder');
+
   if (headingOrder) {
     return true;
   }
@@ -60,14 +61,15 @@ function headingOrderEvaluate() {
     isVisibleToScreenReaders
   );
 
-  headingOrder = vNodes.map(vNode => {
+
+  this.data({ headingOrder: vNodes.map(vNode => {
     // save the path so we can reconstruct the heading order
     return {
       ancestry: [getAncestry(vNode.actualNode)],
       level: getLevel(vNode)
     };
-  });
-  this.data({ headingOrder });
+  })});
+
   cache.set('headingOrder', vNodes);
   return true;
 }

@@ -61,9 +61,9 @@ export async function autoKayle(
   }
 
   await Promise.all(
-    links.map(async (link) => {
+    links.map( (link) => {
       if (ignoreSet.has(link)) {
-        return await Promise.resolve();
+        return Promise.resolve();
       }
 
       if (_log.enabled) {
@@ -71,19 +71,23 @@ export async function autoKayle(
       }
 
       ignoreSet.add(link);
-
-      return await autoKayle(
-        {
-          ...o,
-          page: await o.browser.newPage(),
-          html: null,
-          origin: link,
-        },
-        ignoreSet,
-        _results
-      ).catch((e) => {
-        console.error(e);
-      });
+      
+      return o.browser.newPage().then((page) => {
+        return autoKayle(
+          {
+            ...o,
+            page,
+            html: null,
+            origin: link,
+          },
+          ignoreSet,
+          _results
+        )
+      }).catch((e) => {
+        // remove link from the set page did not load
+        ignoreSet.delete(link)
+        console.error(e)
+      })
     })
   );
 
