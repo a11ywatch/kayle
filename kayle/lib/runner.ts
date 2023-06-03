@@ -204,7 +204,12 @@
 
     // Execute all of the runners and process issues parallel
     const runnerIssues = await Promise.all(
-      options.runners.map((runner) => kayle.runners[runner](options, kayle))
+      options.runners.map((runner) => {
+        return kayle.runners[runner](options, kayle).catch((e) => { 
+          console.error(`${runner} ${options.standard} failed: ${e ? e.message : e}`)
+          return []
+        })
+      })
     );
 
     // meta information keep records shaped to numbers

@@ -72,7 +72,7 @@ _global.HTMLCS = new (function () {
    */
   this.loadStandard = (standard, callback, failCallback) => {
     if (!standard) {
-      return false;
+      return false
     }
 
     _includeStandard(
@@ -338,9 +338,7 @@ _global.HTMLCS = new (function () {
     failCallback,
     options
   ) => {
-    if (standard.indexOf("http") !== 0) {
-      standard = _getStandardPath(standard);
-    }
+    standard = _getStandardPath(standard);
 
     // See if the ruleset object is already included (eg. if minified).
     const parts = standard.split("/");
@@ -382,7 +380,7 @@ _global.HTMLCS = new (function () {
         ruleSet[x] = oldRuleSet[x];
       }
     }
-
+    
     _standards.set(standard, ruleSet);
 
     // Process the options.
