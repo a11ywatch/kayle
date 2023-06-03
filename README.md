@@ -43,6 +43,7 @@ const results = await autoKayle({
   runners: ["htmlcs", "axe"],
   includeWarnings: true,
   origin: "https://a11ywatch.com",
+  waitUntil: "domcontentloaded",
   cb: function callback(result) {
     console.log(result);
   },

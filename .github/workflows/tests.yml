@@ -38,7 +38,7 @@ jobs:
         run: cd kayle_innate && wasm-pack build --target nodejs && cd ../
 
       - name: Install and build locales
-        run: npx playwright install && yarn --no-immutable && yarn build
+        run: npx playwright install --with-deps && yarn --no-immutable && yarn build
 
       - name: Run Playwright kayle.js
         run: cd ./kayle && yarn test:playwright && yarn test:playwright:axe
