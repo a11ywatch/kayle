@@ -72,7 +72,7 @@ _global.HTMLCS = new (function () {
    */
   this.loadStandard = (standard, callback, failCallback) => {
     if (!standard) {
-      return false
+      return;
     }
 
     _includeStandard(
@@ -325,6 +325,11 @@ _global.HTMLCS = new (function () {
     }
   };
 
+  // return the standard used
+  const _getRuleset = (part) =>
+    part === "SECTION508"
+      ? _global.HTMLCS_Section508
+      : _global[`HTMLCS_${part}`];
   /**
    * Includes the specified standard file.
    *
@@ -338,21 +343,23 @@ _global.HTMLCS = new (function () {
     failCallback,
     options
   ) => {
-    standard = _getStandardPath(standard);
+    const _standard = _getStandardPath(standard);
 
     // See if the ruleset object is already included (eg. if minified).
-    const parts = standard.split("/");
-    const ruleSet = _global["HTMLCS_" + parts[parts.length - 2]];
+    const parts = _standard.split("/");
+    const part = parts[parts.length - 2];
+    const ruleSet = _getRuleset(part);
 
     if (ruleSet) {
       // Already included.
-      _registerStandard(standard, callback, failCallback, options);
+      _registerStandard(_standard, part, callback, failCallback, options);
     } else {
+      // TODO: remove _include script callback standard always included
       _includeScript(
-        standard,
+        _standard,
         function () {
           // Script is included now register the standard.
-          _registerStandard(standard, callback, failCallback, options);
+          _registerStandard(_standard, part, callback, failCallback, options);
         },
         failCallback
       );
@@ -366,11 +373,16 @@ _global.HTMLCS = new (function () {
    * @param {Function} callback The function to call once the standard is registered.
    * @param {Object}   options  The options for the standard (e.g. exclude sniffs).
    */
-  const _registerStandard = (standard, callback, failCallback, options) => {
-    // Get the object name.
-    const parts = standard.split("/");
+  const _registerStandard = (
+    standard,
+    part,
+    callback,
+    failCallback,
+    options
+  ) => {
     // Get a copy of the ruleset object.
-    const oldRuleSet = _global["HTMLCS_" + parts[parts.length - 2]];
+    const oldRuleSet = _getRuleset(part);
+
     const ruleSet = {
       sniffs: undefined,
     };
@@ -380,7 +392,7 @@ _global.HTMLCS = new (function () {
         ruleSet[x] = oldRuleSet[x];
       }
     }
-    
+
     _standards.set(standard, ruleSet);
 
     // Process the options.

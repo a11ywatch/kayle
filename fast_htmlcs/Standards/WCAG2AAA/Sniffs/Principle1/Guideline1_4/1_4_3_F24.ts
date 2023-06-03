@@ -31,11 +31,11 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_F24 = {
   process: function (_, top) {
     // skip script, style, link, meta links
     const ignoreList = {
-      "SCRIPT": null,
-      "STYLE": null,
-      "LINK": null,
-      "META": null
-    }
+      SCRIPT: null,
+      STYLE: null,
+      LINK: null,
+      META: null,
+    };
     // Test for background/foreground stuff.
     for (const element of HTMLCS.util.getAllElements(top, "*")) {
       if (element.tagName in ignoreList) {
