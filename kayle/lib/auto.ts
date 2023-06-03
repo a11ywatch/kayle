@@ -41,7 +41,7 @@ export async function autoKayle(
   }
 
   if (!ignoreSet) {
-    ignoreSet = new Set();
+    ignoreSet = new Set([o.page.url()]);
   }
 
   const links: string[] = await extractLinks(o);
@@ -54,7 +54,11 @@ export async function autoKayle(
     );
   }
 
-  await o.page.close();
+  try {
+    await o.page.close();
+  } catch (e) {
+    console.error(e);
+  }
 
   await Promise.all(
     links.map(async (link) => {
@@ -63,7 +67,7 @@ export async function autoKayle(
       }
 
       if (_log.enabled) {
-        console.log(`Running: ${link}`);
+        console.log(`Processing: ${link}`);
       }
 
       ignoreSet.add(link);
@@ -77,7 +81,9 @@ export async function autoKayle(
         },
         ignoreSet,
         _results
-      );
+      ).catch((e) => {
+        console.error(e);
+      });
     })
   );
 

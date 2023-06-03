@@ -3,7 +3,7 @@ import { launch } from "puppeteer";
 import { autoKayle, setLogging } from "kayle";
 import { performance } from "perf_hooks";
 
-setLogging(true);
+setLogging(false);
 
 // this will crawl until all pages are finished.
 (async () => {

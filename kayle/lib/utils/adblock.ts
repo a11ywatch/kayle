@@ -1,3 +1,5 @@
+import { _log } from "../config";
+
 type AdCheck = {
   check(url: string, domain: string, resource: string, bool: boolean);
 };
@@ -54,7 +56,7 @@ const engine: unknown | AdCheck =
           const engine = new adblockRust.Engine(filterSet, true);
           const serializedArrayBuffer = engine.serializeRaw();
 
-          console.log(
+          _log && console.log(
             `Adblock Engine size: ${(
               serializedArrayBuffer.byteLength /
               1024 /

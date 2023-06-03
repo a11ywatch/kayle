@@ -1,23 +1,40 @@
 const run = async (options) => {
-  // map standards to window
-  if (
-    !(
-      !options.rules ||
-      (options.rules && !options.rules.length) ||
-      options.standard === "Section508"
-    )
-  ) {
-    for (const rule of options.rules) {
+  return new Promise((resolve, reject) => {
+    if (
       // @ts-ignore
-      if (window.HTMLCS_WCAG2AAA.sniffs.includes(rule)) {
-        window[`HTMLCS_${options.standard}`].sniffs[0].include.push(rule);
-      } else {
-        console.error(`${rule} is not a valid WCAG 2.1 rule`);
+      typeof window.define === "function" &&
+      // @ts-ignore
+      window.define.amd &&
+      typeof window.require === "function"
+    ) {
+      // @ts-ignore module load
+      window.require(["htmlcs"], (htmlcs) => {
+        Object.keys(htmlcs).forEach((key) => {
+          window[key] = htmlcs[key];
+        });
+        // @ts-ignore set the window runner
+        window.HTMLCS = htmlcs.HTMLCS;
+      });
+    }
+
+    // map standards to window
+    if (
+      !(
+        !options.rules ||
+        (options.rules && !options.rules.length) ||
+        options.standard === "Section508"
+      )
+    ) {
+      for (const rule of options.rules) {
+        // @ts-ignore
+        if (window.HTMLCS_WCAG2AAA.sniffs.includes(rule)) {
+          window[`HTMLCS_${options.standard}`].sniffs[0].include.push(rule);
+        } else {
+          console.error(`${rule} is not a valid WCAG 2.1 rule`);
+        }
       }
     }
-  }
 
-  return new Promise((resolve, reject) => {
     // @ts-ignore
     window.HTMLCS.process(
       options.standard,
@@ -28,7 +45,6 @@ const run = async (options) => {
         if (error) {
           return reject(error);
         }
-
         // @ts-ignore
         resolve(window.HTMLCS.getMessages());
       },

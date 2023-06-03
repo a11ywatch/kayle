@@ -147,16 +147,21 @@ export const kayle = async (
   // navigate to a clean page
   if (navigate) {
     await goToPage(
-      { page: o.page, html: o.html, timeout: o.timeout },
+      {
+        page: o.page,
+        html: o.html,
+        timeout: o.timeout,
+        waitUntil: o.waitUntil,
+      },
       o.origin
     );
   } else if (!o.noIntercept) {
     await setNetworkInterception(o.page);
   }
 
-  const config = extractArgs(o);
-
   const watcher = new Watcher();
+
+  const config = extractArgs(o);
 
   const results = await Promise.race([
     watcher.watch(config.timeout),
@@ -165,7 +170,13 @@ export const kayle = async (
 
   clearTimeout(watcher.timer);
 
-  !preventClose && navigate && (await o.page.close());
+  if (!preventClose && navigate) {
+    try {
+      await o.page.close();
+    } catch (e) {
+      console.error;
+    }
+  }
 
   return results;
 };

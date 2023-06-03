@@ -168,7 +168,7 @@ const setHtmlIntercept = async ({
  * @returns {Promise<Boolean>} Returns if the page was navigated to successfully.
  */
 export const goToPage = async (
-  { page, timeout, html }: Partial<RunnerConfig & { html?: string }>,
+  { page, timeout, html, waitUntil }: Partial<RunnerConfig & { html?: string }>,
   url: string
 ): Promise<boolean> => {
   if (html) {
@@ -179,20 +179,18 @@ export const goToPage = async (
 
   let valid = false;
 
-  return new Promise(async (resolve) => {
-    try {
-      // open blank page fallback for proxy intercept
-      const res = await page.goto(url ?? "http://localhost", {
-        timeout: timeout || 0,
-        waitUntil: "domcontentloaded",
-      });
-      if (res) {
-        valid = res.status() === 304 || res.ok();
-      }
-    } catch (e) {
-      // page does not exist
+  try {
+    // open blank page fallback for proxy intercept
+    const res = await page.goto(url ?? "http://localhost", {
+      timeout: timeout || 0,
+      waitUntil: waitUntil ?? "networkidle2",
+    });
+    if (res) {
+      valid = res.status() === 304 || res.ok();
     }
+  } catch (e) {
+    // page does not exist
+  }
 
-    resolve(valid);
-  });
+  return valid;
 };
