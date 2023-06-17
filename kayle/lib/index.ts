@@ -7,3 +7,4 @@ export {
   networkBlock,
 } from "./utils/go-to-page";
 export { setLogging } from "./config";
+export { extractLinks } from "./wasm"

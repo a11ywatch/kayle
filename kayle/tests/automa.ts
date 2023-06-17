@@ -18,11 +18,11 @@ setLogging(false);
   const results = await autoKayle({
     page,
     browser,
-    runners: ["htmlcs", "axe"],
+    runners: ["axe"],
     includeWarnings: true,
     origin: "https://a11ywatch.com", // origin is the fake url in place of the raw content
     // store: `${process.cwd()}/_data/`, // create _data folder first
-    cb: function callback(result) {
+    cb: async function callback(result) {
       const { issues, pageUrl, documentTitle, meta } = result;
       console.log([`URL: ${pageUrl}`, meta]);
 
@@ -31,6 +31,12 @@ setLogging(false);
       assert(typeof documentTitle === "string");
       errors += meta.errorCount;
       warnings += meta.warningCount;
+
+      if(pageUrl === "https://a11ywatch.com/?plan=l1") {
+        // console.log(await page.content())
+
+        console.log(issues)
+      }
     },
   });
 
