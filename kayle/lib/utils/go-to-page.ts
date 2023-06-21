@@ -183,7 +183,7 @@ export const goToPage = async (
     // open blank page fallback for proxy intercept
     const res = await page.goto(url ?? "http://localhost", {
       timeout: timeout || 0,
-      waitUntil: waitUntil ?? "networkidle2",
+      waitUntil: waitUntil ?? "domcontentloaded",
     });
     if (res) {
       valid = res.status() === 304 || res.ok();
