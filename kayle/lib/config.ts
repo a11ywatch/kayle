@@ -49,6 +49,11 @@ type Target = {};
 type LifeCycleEvent =
   | "load"
   | "domcontentloaded"
+  // playwright
+  | "commit"
+  // DISCOURAGED Do not use this method for testing, rely on web assertions instead.
+  | "networkidle"
+  // puppeteer
   | "networkidle0"
   | "networkidle2";
 
