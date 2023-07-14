@@ -4,7 +4,7 @@ The rust lib for accessibility things.
 
 ## Building
 
-`wasm-pack build`
+`wasm-pack build --target nodejs`
 
 ## Testing
 

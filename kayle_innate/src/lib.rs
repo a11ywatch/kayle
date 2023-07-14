@@ -15,18 +15,23 @@ use wasm_bindgen::prelude::*;
 #[global_allocator]
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
-#[wasm_bindgen]
-extern "C" {
-    fn alert(s: &str);
-}
+/// get the clean domain name
+pub fn domain_name(domain: &url::Url) -> &str {
+    match domain.host_str() {
+        Some(b) => {
+            let b = b.split('.').collect::<Vec<&str>>();
 
-#[wasm_bindgen]
-/// perform an audit based on tree rules using dom APIs at runtime with speed.
-pub fn kayle() {
-    set_panic_hook();
-    alert("Kayle!");
+            if b.len() > 2 {
+                b[1]
+            } else if b.len() == 2 {
+                b[0]
+            } else {
+                b[b.len() - 2]
+            }
+        }
+        _ => "",
+    }
 }
-
 
 #[wasm_bindgen]
 /// setup a structure tree alg for parsing and find links in document. Allow user to perform hybrid audits realtime.
@@ -51,6 +56,7 @@ pub fn radiant_blast(res: &str, domain: &str) -> Box<[JsValue]> {
     let links = match url::Url::parse(domain) {
         Ok(base) => {
             let base_url = convert_base_path(base);
+            let base_domain = domain_name(&base_url);
             let parent_host_scheme = base_url.scheme();
             let parent_host = base_url.host_str().unwrap_or_default();
 
@@ -81,7 +87,9 @@ pub fn radiant_blast(res: &str, domain: &str) -> Box<[JsValue]> {
                                 }
                             }
 
-                            if can_process {
+                            if can_process
+                                && (base_domain.is_empty() || base_domain == domain_name(&abs))
+                            {
                                 Some(JsValue::from_str(&abs.as_str()))
                             } else {
                                 None
@@ -111,17 +119,17 @@ pub fn radiant_blast(res: &str, domain: &str) -> Box<[JsValue]> {
 #[wasm_bindgen]
 /// try to fix all possible issues using a spec against the tree.
 pub fn celestial_blessing() {
-    alert("Celestial blessing from kayle!");
+    println!("Celestial blessing from kayle!");
 }
 
 #[wasm_bindgen]
 /// use gpu to accelerate layout rendering or workers.
 pub fn starfire_spellblade() {
-    alert("Starfire Spellblase from kayle!");
+    println!("Starfire Spellblase from kayle!");
 }
 
 #[wasm_bindgen]
 /// Perform the a judgement against a page to determine effort, access, and more.
 pub fn divine_judgement() {
-    alert("Divine judgement from kayle!");
+    println!("Divine judgement from kayle!");
 }

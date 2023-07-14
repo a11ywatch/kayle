@@ -32,10 +32,10 @@ setLogging(false);
       errors += meta.errorCount;
       warnings += meta.warningCount;
 
-      if(pageUrl === "https://a11ywatch.com/?plan=l1") {
+      if (pageUrl === "https://a11ywatch.com/?plan=l1") {
         // console.log(await page.content())
 
-        console.log(issues)
+        console.log(issues);
       }
     },
   });

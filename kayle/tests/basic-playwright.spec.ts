@@ -17,7 +17,7 @@ test("fast_htmlcs and fast_axecore audit drakeMock", async ({
     includeWarnings: true,
     html: drakeMock,
     origin: "https://www.drake.com",
-    waitUntil: "domcontentloaded"
+    waitUntil: "domcontentloaded",
   });
   const endTime = performance.now() - startTime;
 
