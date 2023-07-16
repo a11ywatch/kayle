@@ -163,7 +163,7 @@ type RunnerConfig = {
 
 ## Features
 
-You can enable a high performance adblock detection by brave by installing `npm i adblock-rs` to the project. This module needs to be manually installed and the env variable `KAYLE_ADBLOCK` needs to be set to `true`.
+You can enable Brave's adblock engine with [adblock-rs](https://github.com/brave/adblock-rust) by installing `npm i adblock-rs` to the project. This module needs to be manually installed and the env variable `KAYLE_ADBLOCK` needs to be set to `true`.
 
 ## Testing
 
