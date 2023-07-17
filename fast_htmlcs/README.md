@@ -4,13 +4,13 @@ This fork of HTML_CodeSniffer for performance and accuracy.
 
 ## What is Fast_Htmlcs?
 
-Fast_Htmlcs is a JavaScript application that checks a HTML document
+Fast_Htmlcs is the fork of Htmlcs a JavaScript application that checks a HTML document
 or source code, and detects violations of a defined presentation or accessibility
 standard, such as Section508 or WCAG2.1.
 
 ## Standards included
 
-By default, HTML_CodeSniffer comes with standards that cover the three conformance
+By default, Fast_Htmlcs comes with standards that cover the three conformance
 levels of the <abbr title="World Wide Web Consortium">W3C</abbr> [Web Content Accessibility Guidelines (WCAG) 2.1](https://www.w3.org/TR/WCAG21/),
 and the <abbr title="United States of America">U.S.</abbr> [Section 508](http://section508.gov/index.cfm?fuseAction=stdsdoc) legislation.
 It also provides tools to write your own standards, which can be useful in situations
@@ -22,7 +22,7 @@ Fast_Htmlcs can be called in multiple ways:
 
 - Called directly in JavaScript source, Fast_Htmlcs will provide a list of known
   and potential violations to the calling script.
-- Using as a Node.js module, installed with npm: `npm i --save html_codesniffer`
+- Using as a Node.js module, installed with npm: `npm i --save fast_htmlcs`
 
 ## Using the source code
 

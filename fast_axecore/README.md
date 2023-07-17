@@ -24,13 +24,13 @@ The complete list of rules, grouped WCAG level and best practice, can found in [
 First download the package:
 
 ```console
-npm install axe-core --save-dev
+npm install fast_axecore --save-dev
 ```
 
 Now include the javascript file in each of your iframes in your fixtures or test systems:
 
 ```html
-<script src="node_modules/axe-core/axe.min.js"></script>
+<script src="node_modules/fast_axecore/axe.min.js"></script>
 ```
 
 Now insert calls at each point in your tests where a new piece of UI becomes visible or exposed:
@@ -69,7 +69,7 @@ Axe was built to reflect how web development actually works. It works with all m
 
 ## Supported Browsers
 
-The [axe-core API](doc/API.md) fully supports the following browsers:
+The [fast_axecore API](doc/API.md) fully supports the following browsers:
 
 - Microsoft Edge v40 and above
 - Google Chrome v42 and above
@@ -85,7 +85,7 @@ We can only support environments where features are either natively supported or
 
 ## Contents of the API Package
 
-The [axe-core API](doc/API.md) package consists of:
+The [fast_axecore API](doc/API.md) package consists of:
 
 - `axe.js` - the JavaScript file that should be included in your web site under test (API)
 - `axe.min.js` - a minified version of the above file
