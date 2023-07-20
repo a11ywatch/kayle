@@ -2,8 +2,6 @@
 
 A high performance web accessibility engine.
 
-If you want to use a browser make sure to have [playwright](https://github.com/microsoft/playwright) or [puppeteer](https://github.com/puppeteer/puppeteer) installed.
-
 ```sh
 # install a browser automation lib first
 # npm install @playwright/core

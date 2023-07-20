@@ -36,21 +36,14 @@ function hasAccessibleName(vNode) {
   // firefox - if non-empty aria-labelledby, aria-label, or title
   // safari - if non-empty aria-lablledby or aria-label
   //
-  // we will go with safaris implantation as it is the least common
+  // we will go with safaris implementation as it is the least common
   // denominator
-  const ariaLabelledby = sanitize(arialabelledbyText(vNode));
-  const ariaLabel = sanitize(arialabelText(vNode));
-
-  return !!(ariaLabelledby || ariaLabel);
+  return !!(sanitize(arialabelledbyText(vNode)) || sanitize(arialabelText(vNode)));
 }
 
 const implicitHtmlRoles = {
-  a: vNode => {
-    return vNode.hasAttr('href') ? 'link' : null;
-  },
-  area: vNode => {
-    return vNode.hasAttr('href') ? 'link' : null;
-  },
+  a: vNode => vNode.hasAttr('href') ? 'link' : null,
+  area: vNode => vNode.hasAttr('href') ? 'link' : null,
   article: 'article',
   aside: 'complementary',
   body: 'document',
@@ -63,25 +56,15 @@ const implicitHtmlRoles = {
   dt: 'term',
   fieldset: 'group',
   figure: 'figure',
-  footer: vNode => {
-    const sectioningElement = closest(vNode, sectioningElementSelector);
-
-    return !sectioningElement ? 'contentinfo' : null;
-  },
-  form: vNode => {
-    return hasAccessibleName(vNode) ? 'form' : null;
-  },
+  footer: vNode => !closest(vNode, sectioningElementSelector) ? 'contentinfo' : null,
+  form: vNode => hasAccessibleName(vNode) ? 'form' : null,
   h1: 'heading',
   h2: 'heading',
   h3: 'heading',
   h4: 'heading',
   h5: 'heading',
   h6: 'heading',
-  header: vNode => {
-    const sectioningElement = closest(vNode, sectioningElementSelector);
-
-    return !sectioningElement ? 'banner' : null;
-  },
+  header: vNode => !closest(vNode, sectioningElementSelector) ? 'banner' : null,
   hr: 'separator',
   img: vNode => {
     // an images role is considered implicitly presentation if the
@@ -151,14 +134,10 @@ const implicitHtmlRoles = {
   option: 'option',
   output: 'status',
   progress: 'progressbar',
-  section: vNode => {
-    return hasAccessibleName(vNode) ? 'region' : null;
-  },
-  select: vNode => {
-    return vNode.hasAttr('multiple') || parseInt(vNode.attr('size')) > 1
-      ? 'listbox'
-      : 'combobox';
-  },
+  section: vNode => hasAccessibleName(vNode) ? 'region' : null,
+  select: vNode => vNode.hasAttr('multiple') || parseInt(vNode.attr('size')) > 1
+  ? 'listbox'
+  : 'combobox',
   summary: 'button',
   table: 'table',
   tbody: 'rowgroup',

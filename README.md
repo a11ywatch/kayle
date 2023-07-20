@@ -1,6 +1,10 @@
 # ✨ kayle
 
-Incredibly fast and precise web accessibility engine with 0 dependencies.
+Futuristic web accessibility engine.
+
+## Getting Started 
+
+Install your browser automation lib [playwright](https://github.com/microsoft/playwright) or [puppeteer](https://github.com/puppeteer/puppeteer).
 
 ```sh
 npm install kayle --save
@@ -27,8 +31,7 @@ If you need to run a full site-wide crawl import `autoKayle`.
 
 ```ts
 import { autoKayle, setLogging } from "kayle";
-import { chromium } from "@playwright/test";
-// import { chromium } from "playwright";
+import { chromium } from "playwright";
 
 // enable kayle log output
 setLogging(true);
@@ -50,55 +53,6 @@ const results = await autoKayle({
 });
 ```
 
-```js
-// sample of results for an audit.
-const results = {
-  documentTitle: "A11yWatch: the web accessibility automation tool.",
-  pageUrl: "https://a11ywatch.com",
-  issues: [
-    {
-      context: '<a class="expandMenu"><i></i><i></i><i></i></a>',
-      selector: "#hs_cos_wrapper_module_14725592865174 > a",
-      code: "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.A.EmptyNoId",
-      type: "error",
-      typeCode: 1,
-      message:
-        "Anchor element found with no link content and no name and/or ID attribute.",
-      runner: "htmlcs",
-      runnerExtras: {},
-      recurrence: 5, // issue found 5 times against the page
-    },
-    {
-      context: '<a href="https://a11ywatch.com/demo">Learn more</a>',
-      selector:
-        "#hs_cos_wrapper_module_1569856007055222 > div > div:nth-child(3) > a",
-      code: "color-contrast",
-      type: "error",
-      typeCode: 1,
-      message: "Elements must have sufficient color contrast",
-      recurrence: 0,
-      runner: "axe",
-      runnerExtras: {
-        description:
-          "Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds",
-        impact: "serious",
-        helpUrl:
-          "https://dequeuniversity.com/rules/axe/4.6/color-contrast?application=axeAPI",
-      },
-    },
-    /// ...more issues
-  ],
-  meta: {
-    errorCount: 11,
-    warningCount: 15,
-    noticeCount: 0,
-    accessScore: 78,
-    possibleIssuesFixedByCdn: 0,
-  },
-  automateable: { missingAltIndexs: [5, 22] },
-};
-```
-
 ## Runners
 
 `kayle` supports multiple test runners which return different results. The built-in test runners are:
@@ -109,33 +63,13 @@ const results = {
 
 ## Linting
 
-Straight forward linting. You can pass a url or valid html.
-
-Linting is handled on the same machine not sandboxed. You also need to install `jsdom` before hand ex: `yarn add jsdom`.
+Straight forward linting without a browser. You can pass a url or valid html. Linting is handled on the same machine not sandboxed. You also need to install `jsdom` before hand ex: `yarn add jsdom`.
 
 ```js
 import { kayleLint } from "kayle/build/lint";
 
 await kayleLint("https://a11ywatch.com");
 ```
-
-## Localization
-
-[Locales](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/i18n) supported by the runner using pre-compilition. In order to pre-compile the locales run `./build.sh`. Some locales are only available in certain runners. All of the languages are split into individual scripts to scale.
-
-1. da ("Danish")
-1. de ("German")
-1. es ("Spanish")
-1. ja ("Japanese")
-1. eu ("Basque")
-1. fr ("French")
-1. he ("Hebrew")
-1. nl ("Dutch")
-1. no_NB ("Norwegian")
-1. pl ("Polish Poland")
-1. pt_BR ("Portuguese Brazil")
-1. zh-CN ("Chinese-Simplified")
-1. zh-TW ("Chinese-Traditional")
 
 ## Configuration
 
@@ -161,9 +95,27 @@ type RunnerConfig = {
 };
 ```
 
-## Features
+### Features
 
 You can enable Brave's adblock engine with [adblock-rs](https://github.com/brave/adblock-rust) by installing `npm i adblock-rs` to the project. This module needs to be manually installed and the env variable `KAYLE_ADBLOCK` needs to be set to `true`.
+
+## Localization
+
+[Locales](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/i18n) supported by the runner using pre-compilition. In order to pre-compile the locales run `yarn build`. Some locales are only available in certain runners. All of the languages are split into individual scripts to scale.
+
+1. da ("Danish")
+1. de ("German")
+1. es ("Spanish")
+1. ja ("Japanese")
+1. eu ("Basque")
+1. fr ("French")
+1. he ("Hebrew")
+1. nl ("Dutch")
+1. no_NB ("Norwegian")
+1. pl ("Polish Poland")
+1. pt_BR ("Portuguese Brazil")
+1. zh-CN ("Chinese-Simplified")
+1. zh-TW ("Chinese-Traditional")
 
 ## Testing
 
@@ -176,35 +128,19 @@ Checkout the [playwright-example](./kayle/tests/basic-playwright.spec.ts) or [pu
 ## Benchmarks
 
 1. `fast_htmlcs` runs up to 110 times base faster than htmlcs or HTML codesniffer.
-1. `fast_axecore` runs up to 60%-100%+ base faster than the original axe by default and scales the larger the website.
+1. `fast_axecore` runs up to 200%-400% base faster than the original axe by default and scales the larger the website.
 
-Currently `fast_htmlcs` runs around 50x faster than axe-core and has several differences of handling the way issues are found. They both capture different cases and is best to used together which this library handles efficiently. We use [swc](https://swc.rs/) to minify the scripts for small bundle sizes under 142kb for HTMLCS compared to the original being 365kb.
+Currently `fast_htmlcs` runs around 50x faster than axe-core and has several differences of handling the way issues are found. They both capture different cases and is best to used together which this library handles efficiently.
 
 If you use [`@playwright/axe-core`](https://playwright.dev/docs/next/accessibility-testing) you can swap it out with the following [playwright-axe-example](./kayle/tests/basic-axe-playwright.spec.ts) and get an increase in issues found and major performance boost of at least 100%. You can also include multiple runners to extend the issues beyond the basics in folds.
 
-## Developing
-
-In order to develop you need yarn v2 installed for the workspace.
-
-Run the following to install on ^node@16.10
-
-`corepack enable && corepack prepare yarn@stable --activate` and reload shell after.
-
-Use the command `./build.sh` to compile all the scripts for each locale.
-
-## Performance
+## Performance Tips
 
 As we set the foundation to mark test cases that can pass and increase our target on automating accessibility we have a couple of layers that can make a major difference to the project. The following will save drastic time and money if done.
 
 1. Use a fast concurrent [crawler](https://github.com/a11ywatch/crawler) to gather all of the html to send to a web accessibility service that can perform audits like [pagemind](https://github.com/a11ywatch/pagemind) over CDP.
 
 2. Use the pre-compiled browser extensions to avoid over the wire latency `yarn build:extension`.
-
-## About
-
-This project took Axecore and HTMLCS from versions that were complete and semi-stable.
-We patched and fixed a lot of bugs that increased the accuracy of tests passing and issues being found.
-One of the main goals was to have the audit run quickly since we noticed some of the tests would take several seconds to complete. Right now, the project is moving forward based on performance and accuracy for ensuring minimal false positives.
 
 ## Browser Extension
 
@@ -224,9 +160,25 @@ If you want to test the extension use `yarn test:puppeteer:extension`.
 
 The `kayle` function also expects a field called `_browserExtension` with the option set to `true`. Currently the extension handling is experimental reason for the name.
 
+## Developing
+
+In order to develop you need yarn v2 installed for the workspace.
+
+Run the following to install on ^node@16.10
+
+`corepack enable && corepack prepare yarn@stable --activate` and reload shell after.
+
+Use the command `yarn build` to compile all the scripts for each locale.
+
 ## Discord
 
 If you want to chat about the project checkout our [Discord](https://discord.gg/ukmJcjQ5).
+
+## About
+
+This project took Axecore and HTMLCS from versions that were complete and semi-stable.
+We patched and fixed a lot of bugs that increased the accuracy of tests passing and issues being found.
+One of the main goals was to have the audit run quickly since we noticed some of the tests would take several seconds to complete. Right now, the project is moving forward based on performance and accuracy for ensuring minimal false positives.
 
 ## LICENSE
 

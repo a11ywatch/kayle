@@ -1,7 +1,5 @@
 import svgNamespaceMatches from './svg-namespace-matches';
 
-function htmlNamespaceMatches(node, virtualNode) {
-  return !svgNamespaceMatches(node, virtualNode);
-}
+const htmlNamespaceMatches = (node, virtualNode) => !svgNamespaceMatches(node, virtualNode)
 
 export default htmlNamespaceMatches;

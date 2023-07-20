@@ -6,9 +6,7 @@ import standards from '../../standards';
  * @return {String[]} List of all roles matching the type
  */
 function getAriaRolesByType(type) {
-  return Object.keys(standards.ariaRoles).filter(roleName => {
-    return standards.ariaRoles[roleName].type === type;
-  });
+  return Object.keys(standards.ariaRoles).filter(roleName => standards.ariaRoles[roleName].type === type);
 }
 
 export default getAriaRolesByType;

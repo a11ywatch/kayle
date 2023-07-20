@@ -8,7 +8,7 @@
     "kayle_innate/pkg"
   ],
   "scripts": {
-    "build": "./build.sh true",
+    "build": "((cd fast_axecore && npm run build) & (cd fast_htmlcs && npm run build)) && cd kayle && npm run prepare && npm run compile:test && cd ../",
     "build:fast_htmlcs": "cd fast_htmlcs && yarn build",
     "build:fast_axe": "cd fast_axecore && yarn build --lang=en,da,de,es,eu,pl,fr,he,ja,ko,nl,no_NB,pt_BR",
     "build:kayle": "cd kayle && yarn build",

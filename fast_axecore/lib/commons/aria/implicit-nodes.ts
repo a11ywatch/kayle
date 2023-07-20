@@ -11,8 +11,8 @@ import lookupTable from './lookup-table';
  * @return {Mixed} Either an Array of CSS selectors or `null` if there are none
  */
 function implicitNodes(role) {
-  let implicit = null;
   const roles = lookupTable.role[role];
+  let implicit = null;
 
   if (roles && roles.implicit) {
     implicit = clone(roles.implicit);

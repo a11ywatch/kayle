@@ -10,13 +10,7 @@ function landmarkUniqueMatches(node, virtualNode) {
    *
    * Info: https://www.w3.org/TR/wai-aria-practices-1.1/#aria_landmark
    */
-  const excludedParentsForHeaderFooterLandmarks = [
-    'article',
-    'aside',
-    'main',
-    'nav',
-    'section'
-  ].join(',');
+  const excludedParentsForHeaderFooterLandmarks = 'article,aside,main,nav,section';
 
   function isHeaderFooterLandmark(headerFooterElement) {
     return !closest(
@@ -34,14 +28,13 @@ function landmarkUniqueMatches(node, virtualNode) {
       return false;
     }
 
-    // todo: check what the output returns to avoid uppercase
-    const nodeName = actualNode.nodeName.toUpperCase();
+    const nodeName = actualNode.nodeName;
 
-    if (nodeName === 'HEADER' || nodeName === 'FOOTER') {
+    if (nodeName === 'header' || nodeName === 'footer') {
       return isHeaderFooterLandmark(virtualNode);
     }
 
-    if (nodeName === 'SECTION' || nodeName === 'FORM') {
+    if (nodeName === 'section' || nodeName === 'form') {
       return !!accessibleTextVirtual(virtualNode);
     }
 

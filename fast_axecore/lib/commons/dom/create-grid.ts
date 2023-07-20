@@ -312,8 +312,8 @@ function getStackingOrder(vNode, parentVNode) {
  * @return {VirtualNode|null}
  */
 function findScrollRegionParent(vNode, parentVNode) {
-  let scrollRegionParent = null;
   const checkedNodes = [vNode];
+  let scrollRegionParent = null;
 
   while (parentVNode) {
     if (getScroll(parentVNode.actualNode)) {
@@ -326,17 +326,14 @@ function findScrollRegionParent(vNode, parentVNode) {
       break;
     }
 
+    parentVNode._scrollRegionParent = scrollRegionParent;
     checkedNodes.push(parentVNode);
+
     parentVNode = getNodeFromTree(
       parentVNode.actualNode.parentElement || parentVNode.actualNode.parentNode
     );
   }
 
-  // cache result of parent scroll region so we don't have to look up the entire
-  // tree again for a child node
-  checkedNodes.forEach(
-    vNode => (vNode._scrollRegionParent = scrollRegionParent)
-  );
   return scrollRegionParent;
 }
 

@@ -1,15 +1,14 @@
 function labelMatches(_, virtualNode) {
   if (
     virtualNode.props.nodeName !== 'input' ||
-    virtualNode.hasAttr('type') === false
+    !virtualNode.hasAttr('type')
   ) {
     return true;
   }
 
-  const type = virtualNode.attr('type').toLowerCase();
 
   return (
-    ['hidden', 'image', 'button', 'submit', 'reset'].includes(type) === false
+    !['HIDDEN', 'IMAGE', 'BUTTON', 'SUBMIT', 'RESET'].includes(virtualNode.attr('type'))
   );
 }
 

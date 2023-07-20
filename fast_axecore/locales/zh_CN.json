@@ -258,24 +258,24 @@
       "help": "Document should not have more than one contentinfo landmark"
     },
     "landmark-no-duplicate-main": {
-      "description": "Ensures the document has at most one main landmark",
-      "help": "Document should not have more than one main landmark"
-    },
-    "landmark-one-main": {
-      "description": "Ensures the document has a main landmark",
-      "help": "Document should have one main landmark"
-    },
-    "landmark-unique": {
-      "help": "Ensures landmarks are unique",
-      "description": "Landmarks should have a unique role or role/label/title (i.e. accessible name) combination"
-    },
-    "link-in-text-block": {
-      "description": "Ensure links are distinguished from surrounding text in a way that does not rely on color",
-      "help": "Links must be distinguishable without relying on color"
-    },
-    "link-name": {
-      "description": "Ensures links have discernible text",
-      "help": "Links must have discernible text"
+      "description": "确保文档最多只有一个主要地标",
+      "help": "文档不应有多个主要地标"
+      },
+      "landmark-one-main": {
+      "description": "确保文档有一个主要地标",
+      "help": "文档应该有一个主要地标"
+      },
+      "landmark-unique": {
+      "description": "确保地标是唯一的",
+      "help": "地标应具有唯一的角色或角色/标签/标题（即可访问的名称）组合"
+      },
+      "link-in-text-block": {
+      "description": "确保链接与周围文本有所区别，不依赖颜色",
+      "help": "链接必须可以在不依赖颜色的情况下区分"
+      },
+      "link-name": {
+      "description": "确保链接具有可辨识的文本",
+      "help": "链接必须具有可辨识的文本"
     },
     "list": {
       "description": "Ensures that lists are structured correctly",
@@ -322,36 +322,36 @@
       "help": "Styled <p> elements must not be used as headings"
     },
     "page-has-heading-one": {
-      "description": "Ensure that the page, or at least one of its frames contains a level-one heading",
-      "help": "Page should contain a level-one heading"
-    },
-    "presentation-role-conflict": {
-      "description": "Elements marked as presentational should not have global ARIA or tabindex to ensure all screen readers ignore them",
-      "help": "Ensure elements marked as presentational are consistently ignored"
-    },
-    "region": {
-      "description": "Ensures all page content is contained by landmarks",
-      "help": "All page content should be contained by landmarks"
+      "description": "确保页面或其中的一个框架包含一级标题",
+      "help": "页面应包含一级标题"
+      },
+      "presentation-role-conflict": {
+      "description": "将被标记为表现性的元素不应该具有全局的ARIA或tabindex属性，以确保所有屏幕阅读器忽略它们",
+      "help": "确保被标记为表现性的元素始终被忽略"
+      },
+      "region": {
+      "description": "确保所有页面内容都包含在地标中",
+      "help": "所有页面内容应该包含在地标中"
     },
     "role-img-alt": {
       "description": "Ensures [role='img'] elements have alternate text",
       "help": "[role='img'] elements must have an alternative text"
     },
     "scope-attr-valid": {
-      "description": "Ensures the scope attribute is used correctly on tables",
-      "help": "scope attribute should be used correctly"
-    },
-    "scrollable-region-focusable": {
-      "description": "Ensure elements that have scrollable content are accessible by keyboard",
-      "help": "Scrollable region must have keyboard access"
-    },
-    "select-name": {
-      "description": "Ensures select element has an accessible name",
-      "help": "Select element must have an accessible name"
-    },
-    "server-side-image-map": {
-      "description": "Ensures that server-side image maps are not used",
-      "help": "Server-side image maps must not be used"
+      "description": "确保在表格上正确使用scope属性",
+      "help": "scope属性应该被正确使用"
+      },
+      "scrollable-region-focusable": {
+      "description": "确保具有可滚动内容的元素可以通过键盘访问",
+      "help": "可滚动区域必须具有键盘访问权限"
+      },
+      "select-name": {
+      "description": "确保select元素具有可访问的名称",
+      "help": "select元素必须具有可访问的名称"
+      },
+      "server-side-image-map": {
+      "description": "确保不使用服务器端图像映射",
+      "help": "不应使用服务器端图像映射"
     },
     "skip-link": {
       "description": "确保所有的跳转链接都有一个可聚焦的目标",

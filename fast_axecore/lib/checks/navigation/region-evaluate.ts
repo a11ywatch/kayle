@@ -5,9 +5,8 @@ import matches from '../../commons/matches';
 import cache from '../../core/base/cache';
 
 const landmarkRoles = standards.getAriaRolesByType('landmark');
-const implicitAriaLiveRoles = ['alert', 'log', 'status'];
 
-export default function regionEvaluate(node, options, virtualNode) {
+export default function regionEvaluate(_, options, virtualNode) {
   this.data({
     isIframe: ['iframe', 'frame'].includes(virtualNode.props.nodeName)
   });
@@ -24,6 +23,7 @@ function getRegionlessNodes(options) {
     // Find first parent marked as having region descendant (or body) and
     // return the node right before it as the "outer" element
     .map(vNode => {
+
       while (
         vNode.parent &&
         !vNode.parent._hasRegionDescendant &&
@@ -34,10 +34,9 @@ function getRegionlessNodes(options) {
 
       return vNode;
     })
-    // Remove duplicate containers
-    .filter((vNode, index, array) => {
-      return array.indexOf(vNode) === index;
-    });
+    // TOdo: remove double map Remove duplicate containers
+    .filter((vNode, index, array) => array.indexOf(vNode) === index);
+
   return regionlessNodes;
 }
 
@@ -96,7 +95,7 @@ function isRegion(virtualNode, options) {
   // Ignore content inside of aria-live
   if (
     ['assertive', 'polite'].includes(ariaLive) ||
-    implicitAriaLiveRoles.includes(role)
+    ['alert', 'log', 'status'].includes(role)
   ) {
     return true;
   }

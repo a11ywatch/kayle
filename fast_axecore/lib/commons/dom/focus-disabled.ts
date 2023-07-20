@@ -3,21 +3,19 @@ import { getNodeFromTree } from '../../core/utils';
 import isHiddenForEveryone from './is-hidden-for-everyone';
 import isInert from './is-inert';
 
-// Source: https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled
-const allowedDisabledNodeNames = [
-  'button',
-  'command',
-  'fieldset',
-  'keygen',
-  'optgroup',
-  'option',
-  'select',
-  'textarea',
-  'input'
-];
-
 function isDisabledAttrAllowed(nodeName) {
-  return allowedDisabledNodeNames.includes(nodeName);
+  // Source: https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled
+  return [
+    'button',
+    'command',
+    'fieldset',
+    'keygen',
+    'optgroup',
+    'option',
+    'select',
+    'textarea',
+    'input'
+  ].includes(nodeName);
 }
 
 /**
@@ -39,15 +37,16 @@ function focusDisabled(el) {
   // if a form element is in a legend, that element will not be disabled even if the fieldset is
   // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset
   let parentNode = vNode.parent;
-  const ancestors = [];
   let fieldsetDisabled = false;
+  const ancestors = [];
+
   while (
     parentNode &&
     parentNode.shadowId === vNode.shadowId &&
     !fieldsetDisabled
   ) {
-    ancestors.push(parentNode);
     if (parentNode.props.nodeName === 'legend') {
+      ancestors.push(parentNode);
       break;
     }
 
@@ -63,13 +62,12 @@ function focusDisabled(el) {
     ) {
       fieldsetDisabled = true;
     }
+
+    parentNode._inDisabledFieldset = fieldsetDisabled
+    ancestors.push(parentNode);
     parentNode = parentNode.parent;
   }
-
-  // cache whether each element turned out to be in a disabled fieldset so we only have to look at each element once
-  ancestors.forEach(
-    ancestor => (ancestor._inDisabledFieldset = fieldsetDisabled)
-  );
+  
   if (fieldsetDisabled) {
     return true;
   }
