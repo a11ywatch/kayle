@@ -61,14 +61,15 @@ function headingOrderEvaluate() {
     isVisibleToScreenReaders
   );
 
-
-  this.data({ headingOrder: vNodes.map(vNode => {
-    // save the path so we can reconstruct the heading order
-    return {
-      ancestry: [getAncestry(vNode.actualNode)],
-      level: getLevel(vNode)
-    };
-  })});
+  this.data({
+    headingOrder: vNodes.map(vNode => {
+      // save the path so we can reconstruct the heading order
+      return {
+        ancestry: [getAncestry(vNode.actualNode)],
+        level: getLevel(vNode)
+      };
+    })
+  });
 
   cache.set('headingOrder', vNodes);
   return true;

@@ -2,76 +2,76 @@
   "lang": "zh-CN",
   "rules": {
     "accesskeys": {
-      "description": "Ensures every accesskey attribute value is unique",
-      "help": "accesskey attribute value should be unique"
-    },
+      "description": "确保每个accesskey属性值是唯一的",
+      "help": "accesskey属性值应该是唯一的"
+      },
     "area-alt": {
-      "description": "Ensures <area> elements of image maps have alternate text",
-      "help": "Active <area> elements must have alternate text"
+    "description": "确保图像映射的<area>元素具有替代文本",
+    "help": "活动的<area>元素必须有替代文本"
     },
     "aria-allowed-attr": {
-      "description": "Ensures ARIA attributes are allowed for an element's role",
-      "help": "Elements must only use allowed ARIA attributes"
+    "description": "确保ARIA属性在元素的角色中允许使用",
+    "help": "元素只能使用允许的ARIA属性"
     },
     "aria-allowed-role": {
-      "description": "Ensures role attribute has an appropriate value for the element",
-      "help": "ARIA role should be appropriate for the element"
+    "description": "确保role属性对于元素来说具有适当的值",
+    "help": "ARIA角色应该适合该元素"
     },
     "aria-command-name": {
-      "description": "Ensures every ARIA button, link and menuitem has an accessible name",
-      "help": "ARIA commands must have an accessible name"
-    },
-    "aria-dialog-name": {
-      "description": "Ensures every ARIA dialog and alertdialog node has an accessible name",
-      "help": "ARIA dialog and alertdialog nodes should have an accessible name"
-    },
-    "aria-hidden-body": {
-      "description": "Ensures aria-hidden='true' is not present on the document body.",
-      "help": "aria-hidden='true' must not be present on the document body"
-    },
-    "aria-hidden-focus": {
-      "description": "Ensures aria-hidden elements are not focusable nor contain focusable elements",
-      "help": "ARIA hidden element must not be focusable or contain focusable elements"
+      "description": "确保每个ARIA按钮、链接和菜单项都有一个可访问的名称",
+      "help": "ARIA命令必须有一个可访问的名称"
+      },
+      "aria-dialog-name": {
+      "description": "确保每个ARIA dialog和alertdialog节点都有一个可访问的名称",
+      "help": "ARIA dialog和alertdialog节点应该有一个可访问的名称"
+      },
+      "aria-hidden-body": {
+      "description": "确保文档主体上不存在aria-hidden='true'属性",
+      "help": "文档主体上不能存在aria-hidden='true'属性"
+      },
+      "aria-hidden-focus": {
+      "description": "确保aria-hidden元素不可聚焦，也不包含可聚焦的元素",
+      "help": "ARIA隐藏元素不能可聚焦，也不能包含可聚焦的元素"
     },
     "aria-input-field-name": {
-      "description": "Ensures every ARIA input field has an accessible name",
-      "help": "ARIA input fields must have an accessible name"
-    },
-    "aria-meter-name": {
-      "description": "Ensures every ARIA meter node has an accessible name",
-      "help": "ARIA meter nodes must have an accessible name"
-    },
-    "aria-progressbar-name": {
-      "description": "Ensures every ARIA progressbar node has an accessible name",
-      "help": "ARIA progressbar nodes must have an accessible name"
-    },
-    "aria-required-attr": {
-      "description": "Ensures elements with ARIA roles have all required ARIA attributes",
-      "help": "Required ARIA attributes must be provided"
-    },
-    "aria-required-children": {
-      "description": "Ensures elements with an ARIA role that require child roles contain them",
-      "help": "Certain ARIA roles must contain particular children"
-    },
-    "aria-required-parent": {
-      "description": "Ensures elements with an ARIA role that require parent roles are contained by them",
-      "help": "Certain ARIA roles must be contained by particular parents"
+      "description": "确保每个ARIA输入字段都有一个可访问的名称",
+      "help": "ARIA输入字段必须有一个可访问的名称"
+      },
+      "aria-meter-name": {
+      "description": "确保每个ARIA meter节点都有一个可访问的名称",
+      "help": "ARIA meter节点必须有一个可访问的名称"
+      },
+      "aria-progressbar-name": {
+      "description": "确保每个ARIA progressbar节点都有一个可访问的名称",
+      "help": "ARIA progressbar节点必须有一个可访问的名称"
+      },
+      "aria-required-attr": {
+      "description": "确保具有ARIA角色的元素具有所有必需的ARIA属性",
+      "help": "必需的ARIA属性必须提供"
+      },
+      "aria-required-children": {
+      "description": "确保需要子角色的具有ARIA角色的元素包含它们",
+      "help": "某些ARIA角色必须包含特定的子角色"
+      },
+      "aria-required-parent": {
+      "description": "确保需要父角色的具有ARIA角色的元素被它们所包含",
+      "help": "某些ARIA角色必须被特定的父角色所包含"
     },
     "aria-roledescription": {
-      "description": "Ensure aria-roledescription is only used on elements with an implicit or explicit role",
-      "help": "aria-roledescription must be on elements with a semantic role"
-    },
-    "aria-roles": {
-      "description": "Ensures all elements with a role attribute use a valid value",
-      "help": "ARIA roles used must conform to valid values"
-    },
-    "aria-text": {
-      "description": "Ensures \"role=text\" is used on elements with no focusable descendants",
-      "help": "\"role=text\" should have no focusable descendants"
-    },
-    "aria-toggle-field-name": {
-      "description": "Ensures every ARIA toggle field has an accessible name",
-      "help": "ARIA toggle fields must have an accessible name"
+      "description": "确保aria-roledescription仅用于具有隐含或显式角色的元素",
+      "help": "aria-roledescription必须用于具有语义角色的元素"
+      },
+      "aria-roles": {
+      "description": "确保具有role属性的所有元素使用有效的值",
+      "help": "使用的ARIA角色必须符合有效值"
+      },
+      "aria-text": {
+        "description": "确保\"role=text\"仅用于没有可聚焦后代的元素",
+        "help": "\"role=text\"不应该有可聚焦的后代元素"
+      },
+      "aria-toggle-field-name": {
+      "description": "确保每个ARIA切换字段都有一个可访问的名称",
+      "help": "ARIA切换字段必须有一个可访问的名称"
     },
     "aria-tooltip-name": {
       "description": "Ensures every ARIA tooltip node has an accessible name",
@@ -106,24 +106,24 @@
       "help": "<blink> elements are deprecated and must not be used"
     },
     "button-name": {
-      "description": "Ensures buttons have discernible text",
-      "help": "Buttons must have discernible text"
+      "description": "确保按钮具有可辨识的文本",
+      "help": "按钮必须具有可辨识的文本"
     },
     "bypass": {
-      "description": "Ensures each page has at least one mechanism for a user to bypass navigation and jump straight to the content",
-      "help": "Page must have means to bypass repeated blocks"
-    },
+      "description": "确保每个页面至少有一种机制让用户跳过导航直接跳转到内容",
+      "help": "页面必须具有跳过重复块的手段"
+      },
     "color-contrast-enhanced": {
-      "description": "Ensures the contrast between foreground and background colors meets WCAG 2 AAA contrast ratio thresholds",
-      "help": "Elements must have sufficient color contrast"
-    },
+      "description": "确保前景色和背景色之间的对比度满足WCAG 2 AAA对比度比例阈值",
+      "help": "元素必须具有足够的色彩对比度"
+      },
     "color-contrast": {
-      "description": "Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds",
-      "help": "Elements must have sufficient color contrast"
-    },
+      "description": "确保前景色和背景色之间的对比度满足WCAG 2 AA对比度阈值",
+      "help": "元素必须具有足够的色彩对比度"
+      },
     "css-orientation-lock": {
-      "description": "Ensures content is not locked to any specific display orientation, and the content is operable in all display orientations",
-      "help": "CSS Media queries must not lock display orientation"
+      "description": "确保内容不锁定在任何特定的显示方向上，并且内容在所有显示方向上可操作",
+      "help": "CSS Media查询不能锁定显示方向"
     },
     "definition-list": {
       "description": "Ensures <dl> elements are structured correctly",
@@ -146,24 +146,24 @@
       "help": "IDs used in ARIA and labels must be unique"
     },
     "duplicate-id": {
-      "description": "Ensures every id attribute value is unique",
-      "help": "id attribute value must be unique"
-    },
-    "empty-heading": {
-      "description": "Ensures headings have discernible text",
-      "help": "Headings should not be empty"
-    },
-    "empty-table-header": {
-      "description": "Ensures table headers have discernible text",
-      "help": "Table header text should not be empty"
-    },
-    "focus-order-semantics": {
-      "description": "Ensures elements in the focus order have a role appropriate for interactive content",
-      "help": "Elements in the focus order should have an appropriate role"
-    },
-    "form-field-multiple-labels": {
-      "description": "Ensures form field does not have multiple label elements",
-      "help": "Form field must not have multiple label elements"
+      "description": "确保每个id属性值是唯一的",
+      "help": "id属性值必须是唯一的"
+      },
+      "empty-heading": {
+      "description": "确保标题具有可辨识的文本",
+      "help": "标题不应为空"
+      },
+      "empty-table-header": {
+      "description": "确保表头具有可辨识的文本",
+      "help": "表头文本不应为空"
+      },
+      "focus-order-semantics": {
+      "description": "确保焦点顺序中的元素具有适用于交互内容的角色",
+      "help": "焦点顺序中的元素应具有适当的角色"
+      },
+      "form-field-multiple-labels": {
+      "description": "确保表单字段没有多个label元素",
+      "help": "表单字段不应具有多个label元素"
     },
     "frame-focusable-content": {
       "description": "Ensures <frame> and <iframe> elements with focusable content do not have tabindex=-1",
@@ -182,12 +182,12 @@
       "help": "Frames must have an accessible name"
     },
     "heading-order": {
-      "description": "Ensures the order of headings is semantically correct",
-      "help": "Heading levels should only increase by one"
-    },
-    "hidden-content": {
-      "description": "Informs users about hidden content.",
-      "help": "Hidden content on the page should be analyzed"
+      "description": "确保标题的顺序在语义上是正确的",
+      "help": "标题级别应该只增加一个"
+      },
+      "hidden-content": {
+      "description": "通知用户有关隐藏内容的存在",
+      "help": "页面上的隐藏内容应该进行分析"
     },
     "html-has-lang": {
       "description": "Ensures every HTML document has a lang attribute",
@@ -354,49 +354,49 @@
       "help": "Server-side image maps must not be used"
     },
     "skip-link": {
-      "description": "Ensure all skip links have a focusable target",
-      "help": "The skip-link target should exist and be focusable"
-    },
-    "svg-img-alt": {
-      "description": "Ensures <svg> elements with an img, graphics-document or graphics-symbol role have an accessible text",
-      "help": "<svg> elements with an img role must have an alternative text"
-    },
-    "tabindex": {
-      "description": "Ensures tabindex attribute values are not greater than 0",
-      "help": "Elements should not have tabindex greater than zero"
-    },
-    "table-duplicate-name": {
-      "description": "Ensure the <caption> element does not contain the same text as the summary attribute",
-      "help": "tables should not have the same summary and caption"
-    },
-    "table-fake-caption": {
-      "description": "Ensure that tables with a caption use the <caption> element.",
-      "help": "Data or header cells must not be used to give caption to a data table."
-    },
-    "target-size": {
-      "description": "Ensure touch target have sufficient size and space",
-      "help": "All touch targets must be 24px large, or leave sufficient space"
+      "description": "确保所有的跳转链接都有一个可聚焦的目标",
+      "help": "跳转链接的目标应该存在并可聚焦"
+      },
+      "svg-img-alt": {
+      "description": "确保具有img、graphics-document或graphics-symbol角色的<svg>元素具有可访问文本",
+      "help": "具有img角色的<svg>元素必须有替代文本"
+      },
+      "tabindex": {
+      "description": "确保tabindex属性值不大于0",
+      "help": "元素的tabindex不应大于零"
+      },
+      "table-duplicate-name": {
+      "description": "确保<caption>元素不包含与summary属性相同的文本",
+      "help": "表格的summary和caption不应该相同"
+      },
+      "table-fake-caption": {
+      "description": "确保具有标题的表格使用<caption>元素",
+      "help": "数据表格不应使用数据或标题单元格来提供标题"
+      },
+      "target-size": {
+      "description": "确保触摸目标具有足够的大小和空间",
+      "help": "所有触摸目标必须是24px大，或者留有足够的空间"
     },
     "td-has-header": {
-      "description": "Ensure that each non-empty data cell in a <table> larger than 3 by 3  has one or more table headers",
-      "help": "Non-empty <td> elements in larger <table> must have an associated table header"
-    },
-    "td-headers-attr": {
-      "description": "Ensure that each cell in a table that uses the headers attribute refers only to other cells in that table",
-      "help": "Table cells that use the headers attribute must only refer to cells in the same table"
-    },
-    "th-has-data-cells": {
-      "description": "Ensure that <th> elements and elements with role=columnheader/rowheader have data cells they describe",
-      "help": "Table headers in a data table must refer to data cells"
-    },
-    "valid-lang": {
-      "description": "Ensures lang attributes have valid values",
-      "help": "lang attribute must have a valid value"
-    },
-    "video-caption": {
-      "description": "Ensures <video> elements have captions",
-      "help": "<video> elements must have captions"
-    }
+      "description": "确保<table>中每个大于3x3的非空数据单元格都有一个或多个表头",
+      "help": "在较大的<table>中，非空的<td>元素必须有一个关联的表头"
+      },
+      "td-headers-attr": {
+      "description": "确保使用headers属性的表格中的每个单元格只引用该表格中的其他单元格",
+      "help": "使用headers属性的表格单元格必须只引用同一表格中的单元格"
+      },
+      "th-has-data-cells": {
+      "description": "确保<th>元素和具有role=columnheader/rowheader的元素具有它们描述的数据单元格",
+      "help": "数据表中的表头必须关联数据单元格"
+      },
+      "valid-lang": {
+      "description": "确保lang属性具有有效的值",
+      "help": "lang属性必须具有有效的值"
+      },
+      "video-caption": {
+      "description": "确保<video>元素具有字幕",
+      "help": "<video>元素必须具有字幕"
+      }
   },
   "checks": {
     "abstractrole": {

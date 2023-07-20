@@ -29,7 +29,6 @@ function visuallyOverlaps(rect, parent) {
     return false;
   }
 
-  
   if (rect.left > parentRect.right || rect.top > parentRect.bottom) {
     const style = window.getComputedStyle(parent);
     return (

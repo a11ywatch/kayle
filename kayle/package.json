@@ -21,7 +21,7 @@
     "compile:extension": "tsc build-extension.ts",
     "build:extension": "yarn compile:extension && node build-extension.js",
     "lint": "eslint .",
-    "fix": "prettier --write '**/*.{js,jsx,ts,tsx}'",
+    "fix": "prettier --write '**/*.{js,jsx,ts,tsx, json}'",
     "swc:dist": "npx swc --copy-files --config-file .swcrc ./build -d ./build",
     "bench:playwright:htmlcs": "node _tests/bench/fast_htmlcs-playwright.js",
     "bench:playwright:axe": "node _tests/bench/fast_axecore-playwright.js",
