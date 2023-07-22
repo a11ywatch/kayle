@@ -1,8 +1,7 @@
 import { requiredOwned, getExplicitRole } from '../commons/aria';
 
 function ariaRequiredChildrenMatches(_, virtualNode) {
-  const role = getExplicitRole(virtualNode, { dpub: true });
-  return !!requiredOwned(role);
+  return !!requiredOwned(getExplicitRole(virtualNode, { dpub: true }));
 }
 
 export default ariaRequiredChildrenMatches;

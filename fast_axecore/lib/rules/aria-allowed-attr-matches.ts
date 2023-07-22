@@ -3,11 +3,7 @@ function ariaAllowedAttrMatches(_, virtualNode) {
   const attrs = virtualNode.attrNames;
 
   if (attrs.length) {
-    for (let i = 0, l = attrs.length; i < l; i++) {
-      if (aria.test(attrs[i])) {
-        return true;
-      }
-    }
+    return attrs.some(attr => aria.test(attr));
   }
 
   return false;

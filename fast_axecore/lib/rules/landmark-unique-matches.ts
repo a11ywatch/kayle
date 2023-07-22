@@ -10,7 +10,8 @@ function landmarkUniqueMatches(node, virtualNode) {
    *
    * Info: https://www.w3.org/TR/wai-aria-practices-1.1/#aria_landmark
    */
-  const excludedParentsForHeaderFooterLandmarks = 'article,aside,main,nav,section';
+  const excludedParentsForHeaderFooterLandmarks =
+    'article,aside,main,nav,section';
 
   function isHeaderFooterLandmark(headerFooterElement) {
     return !closest(

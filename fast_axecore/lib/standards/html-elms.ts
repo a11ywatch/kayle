@@ -357,6 +357,7 @@ const htmlElms = {
           'menuitem',
           'menuitemcheckbox',
           'menuitemradio',
+          'meter',
           'option',
           'progressbar',
           'radio',

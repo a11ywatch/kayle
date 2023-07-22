@@ -63,11 +63,11 @@ function focusDisabled(el) {
       fieldsetDisabled = true;
     }
 
-    parentNode._inDisabledFieldset = fieldsetDisabled
+    parentNode._inDisabledFieldset = fieldsetDisabled;
     ancestors.push(parentNode);
     parentNode = parentNode.parent;
   }
-  
+
   if (fieldsetDisabled) {
     return true;
   }

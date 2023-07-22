@@ -10,7 +10,8 @@ function autocompleteMatches(_, virtualNode) {
   }
 
   const nodeName = virtualNode.props.nodeName;
-
+  
+  // nodeName is lowercase for virtualNode
   if (['textarea', 'input', 'select'].includes(nodeName) === false) {
     return false;
   }
@@ -30,7 +31,7 @@ function autocompleteMatches(_, virtualNode) {
 
   if (
     virtualNode.hasAttr('disabled') ||
-    ariaDisabled.toLowerCase() === 'true'
+    ariaDisabled === 'true'
   ) {
     return false;
   }

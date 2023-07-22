@@ -2,7 +2,7 @@
 
 Futuristic web accessibility engine.
 
-## Getting Started 
+## Getting Started
 
 Install your browser automation lib [playwright](https://github.com/microsoft/playwright) or [puppeteer](https://github.com/puppeteer/puppeteer).
 

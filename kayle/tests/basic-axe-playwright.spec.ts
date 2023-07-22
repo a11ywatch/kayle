@@ -6,7 +6,9 @@ import { performance } from "perf_hooks";
 import { test } from "@playwright/test";
 
 test("fast_axecore audit drakeMock", async ({ page, browser }, testInfo) => {
-  // page.on("console", (msg) => console.log("PAGE LOG:", msg.text()));
+  if (process.env.LOG_ENABLED) {
+    page.on("console", (msg) => console.log("PAGE LOG:", msg.text()));
+  }
   const startTime = performance.now();
   const results = await kayle({
     page,

@@ -4,18 +4,14 @@ import * as standards from '../../commons/standards';
 import matches from '../../commons/matches';
 import cache from '../../core/base/cache';
 
-const landmarkRoles = standards.getAriaRolesByType('landmark');
-
 export default function regionEvaluate(_, options, virtualNode) {
   this.data({
     isIframe: ['iframe', 'frame'].includes(virtualNode.props.nodeName)
   });
 
-  const regionlessNodes = cache.get('regionlessNodes', () =>
-    getRegionlessNodes(options)
-  );
-
-  return !regionlessNodes.includes(virtualNode);
+  return !cache
+    .get('regionlessNodes', () => getRegionlessNodes(options))
+    .includes(virtualNode);
 }
 
 function getRegionlessNodes(options) {
@@ -23,7 +19,6 @@ function getRegionlessNodes(options) {
     // Find first parent marked as having region descendant (or body) and
     // return the node right before it as the "outer" element
     .map(vNode => {
-
       while (
         vNode.parent &&
         !vNode.parent._hasRegionDescendant &&
@@ -34,7 +29,7 @@ function getRegionlessNodes(options) {
 
       return vNode;
     })
-    // TOdo: remove double map Remove duplicate containers
+    // TODO: remove double map Remove duplicate containers
     .filter((vNode, index, array) => array.indexOf(vNode) === index);
 
   return regionlessNodes;
@@ -101,7 +96,7 @@ function isRegion(virtualNode, options) {
   }
 
   // Check if the node matches a landmark role
-  if (landmarkRoles.includes(role)) {
+  if (standards.getAriaRolesByType('landmark').includes(role)) {
     return true;
   }
 
