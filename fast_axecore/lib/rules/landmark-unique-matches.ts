@@ -4,7 +4,7 @@ import { getRole } from '../commons/aria';
 import { getAriaRolesByType } from '../commons/standards';
 import { accessibleTextVirtual } from '../commons/text';
 
-function landmarkUniqueMatches(node, virtualNode) {
+const landmarkUniqueMatches = (node, virtualNode) => {
   /*
    * Since this is a best-practice rule, we are filtering elements as dictated by ARIA 1.1 Practices regardless of treatment by browser/AT combinations.
    *
@@ -13,36 +13,27 @@ function landmarkUniqueMatches(node, virtualNode) {
   const excludedParentsForHeaderFooterLandmarks =
     'article,aside,main,nav,section';
 
-  function isHeaderFooterLandmark(headerFooterElement) {
-    return !closest(
-      headerFooterElement,
+  let isLandmarkVirtual = false;
+
+  const { actualNode } = virtualNode;
+  const nodeName = actualNode.nodeName;
+  const role = getRole(actualNode);
+
+  if (!role) {
+    isLandmarkVirtual = false;
+  } else if (nodeName === 'header' || nodeName === 'footer') {
+    isLandmarkVirtual = !closest(
+      virtualNode,
       excludedParentsForHeaderFooterLandmarks
     );
+  } else if (nodeName === 'section' || nodeName === 'form') {
+    isLandmarkVirtual = !!accessibleTextVirtual(virtualNode);
+  } else {
+    isLandmarkVirtual =
+      getAriaRolesByType('landmark').indexOf(role) >= 0 || role === 'region';
   }
 
-  function isLandmarkVirtual(virtualNode) {
-    const { actualNode } = virtualNode;
-    const landmarkRoles = getAriaRolesByType('landmark');
-    const role = getRole(actualNode);
-
-    if (!role) {
-      return false;
-    }
-
-    const nodeName = actualNode.nodeName;
-
-    if (nodeName === 'header' || nodeName === 'footer') {
-      return isHeaderFooterLandmark(virtualNode);
-    }
-
-    if (nodeName === 'section' || nodeName === 'form') {
-      return !!accessibleTextVirtual(virtualNode);
-    }
-
-    return landmarkRoles.indexOf(role) >= 0 || role === 'region';
-  }
-
-  return isLandmarkVirtual(virtualNode) && isVisibleToScreenReaders(node);
+  return isLandmarkVirtual && isVisibleToScreenReaders(node);
 }
 
 export default landmarkUniqueMatches;

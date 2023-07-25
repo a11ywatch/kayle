@@ -10,7 +10,7 @@ function autocompleteMatches(_, virtualNode) {
   }
 
   const nodeName = virtualNode.props.nodeName;
-  
+
   // nodeName is lowercase for virtualNode
   if (['textarea', 'input', 'select'].includes(nodeName) === false) {
     return false;
@@ -29,10 +29,7 @@ function autocompleteMatches(_, virtualNode) {
   // The element has a `disabled` or `aria-disabled="true"` attribute
   const ariaDisabled = virtualNode.attr('aria-disabled') || 'false';
 
-  if (
-    virtualNode.hasAttr('disabled') ||
-    ariaDisabled === 'true'
-  ) {
+  if (virtualNode.hasAttr('disabled') || ariaDisabled === 'true') {
     return false;
   }
 

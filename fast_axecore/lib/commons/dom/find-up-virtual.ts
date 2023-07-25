@@ -12,18 +12,16 @@ import { matchesSelector } from '../../core/utils';
  * @param {String} target The selector for the HTMLElement
  * @return {HTMLElement|null} Either the matching HTMLElement or `null` if there was no match
  */
-function findUpVirtual(element, target) {
+const findUpVirtual = (element, target) => {
   let parent = element.actualNode;
   // virtualNode will have a shadowId if the element lives inside a shadow DOM or is
   // slotted into a shadow DOM
   if (!element.shadowId && typeof element.actualNode.closest === 'function') {
     // non-shadow DOM elements
-    const match = element.actualNode.closest(target);
-    if (match) {
-      return match;
-    }
-    return null;
+    return element.actualNode.closest(target);
   }
+
+  // TODO: remove method to find-up-virtual through walk
   // handle shadow DOM elements and older browsers
   do {
     // recursively walk up the DOM, checking each parent node
@@ -37,13 +35,10 @@ function findUpVirtual(element, target) {
     parent !== document.documentElement
   );
 
-  if (!parent) {
+  if (!parent || !matchesSelector(parent, target)) {
     return null;
   }
 
-  if (!matchesSelector(parent, target)) {
-    return null;
-  }
   return parent;
 }
 

@@ -1,4 +1,4 @@
-function isInitiatorMatches(node, virtualNode, context) {
+function isInitiatorMatches(_, __, context) {
   return context.initiator;
 }
 

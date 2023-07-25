@@ -12,9 +12,7 @@ const cache = {
    * @param {String} key - Name of the key.
    * @param {Boolean} boolean - If item in cache exist.
    */
-  has: key => {
-    return _cache.has(key);
-  },
+  has: key => _cache.has(key),
   /**
    * Retrieve an item from the cache.
    * @param {String} key - Name of the key the value was stored as.

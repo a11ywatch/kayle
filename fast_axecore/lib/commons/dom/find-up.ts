@@ -13,8 +13,6 @@ import { getNodeFromTree } from '../../core/utils';
  * @param {String} target The selector for the HTMLElement
  * @return {HTMLElement|null} Either the matching HTMLElement or `null` if there was no match
  */
-function findUp(element, target) {
-  return findUpVirtual(getNodeFromTree(element), target);
-}
+const findUp = (element, target) => findUpVirtual(getNodeFromTree(element), target)
 
 export default findUp;
