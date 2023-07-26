@@ -1,5 +1,6 @@
 import { _log } from "./config";
-import { Audit, kayle, RunnerConf } from "./kayle";
+import { kayle } from "./kayle";
+import { Audit, RunnerConf } from "./common";
 
 let write;
 let extractLinks;

@@ -12,7 +12,7 @@
     "build:fast_htmlcs": "cd fast_htmlcs && yarn build",
     "build:fast_axe": "cd fast_axecore && yarn build",
     "build:kayle": "cd kayle && yarn build",
-    "build:test": "yarn build && npx playwright test --workers=1",
+    "build:test": "yarn build && npx playwright test --workers=1 && yarn test:puppeteer",
     "build:test:fast_htmlcs": "yarn build:fast_htmlcs && yarn test:playwright",
     "build:test:axe": "yarn build:fast_axecore && yarn test:axe",
     "build:test:playwright:axe": "yarn build:fast_axecore && yarn test:playwright:axe",

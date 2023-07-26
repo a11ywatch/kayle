@@ -1,12 +1,16 @@
+import type { Watcher } from "./watcher";
+
 // handle configuration for methods
-export function extractArgs(o) {
+export function extractArgs(o, watcher?: Watcher) {
   const options = {
     browser: o.browser,
     page: o.page,
     cdpSession: o.cdpSession,
     timeout: o.timeout || 60000,
+    noIntercept: o.noIntercept,
     // private
     _browserExtension: o._browserExtension,
+    _watcher: watcher,
     // sent to browser
     actions: o.actions || [],
     hideElements: o.hideElements,

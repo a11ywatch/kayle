@@ -28,6 +28,7 @@ export const skippedResources = {
   "widget.intercom.io": null,
 };
 
+// used for puppeteer playwright all interceptions
 export const blockedResourceTypes = {
   media: null,
   font: null,
@@ -42,3 +43,24 @@ export const blockedResourceTypes = {
   imageset: null,
   ping: null,
 };
+
+// link of resources [https://chromedevtools.github.io/devtools-protocol/tot/Network/#type-ResourceType]
+export const blockedResourceTypesCDP = new Set<string>([
+  "Media",
+  "Font",
+  "CSPViolationReport",
+  "XHR",
+  "Image",
+  "Fetch",
+  "Ping",
+  "Other",
+  "Script",
+  "Stylesheet",
+]);
+
+export const blockedResourcePatterns = Array.from(blockedResourceTypesCDP).map(
+  (resource) => ({
+    resourceType: resource,
+    requestStage: "Request",
+  })
+);

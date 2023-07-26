@@ -1,3 +1,5 @@
+import { Watcher } from "./watcher";
+
 type Permission =
   | "geolocation"
   | "midi"
@@ -100,7 +102,8 @@ type Page = {
   ): Promise<Awaited<ReturnType<Func>>>;
   on(eventName: any, handler: (event: any, next?: any) => any): void;
   once(eventName: any, handler: (event: any) => void): void;
-  off(eventName: any, handler: (event: any) => void): void;
+  off(eventName: any, handler: (event: any, _?: any) => void): void;
+  unroute?(eventName: any, handler: (event: any, _?: any) => void): void;
   url(): string;
   title(): Promise<string>;
   content(): Promise<string>;
@@ -140,6 +143,8 @@ export type RunnerConfig = {
   noIntercept?: boolean;
   // extension only run if accesibility extensions loaded: Experimental.
   _browserExtension?: boolean;
+  // watch config
+  _watcher?: Watcher;
 };
 
 // enable CDP blocking of request to prevent fetching resources [use this in conjunction with noIntercept=true] Default enabled.

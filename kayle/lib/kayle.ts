@@ -4,41 +4,7 @@ import { RunnerConfig, _log } from "./config";
 import { runnersJavascript, getRunner } from "./runner-js";
 import { goToPage, setNetworkInterception } from "./utils/go-to-page";
 import { Watcher } from "./watcher";
-
-export type MetaInfo = {
-  errorCount: number;
-  warningCount: number;
-  noticeCount: number;
-  accessScore: number;
-};
-
-// exact issue information for page
-export type Issue = {
-  context: string;
-  code: string;
-  message: string;
-  type: "error" | "warning" | "notice";
-  typeCode: number;
-  runner: "htmlcs" | "axe" | "a11ywatch";
-  runnerExtras: Record<string, unknown>;
-  recurrence: number;
-  selector: string;
-};
-// indexs of automatable issues
-export type Automatable = {
-  // indexs of all missing alt tags.
-  missingAltIndexs: number[];
-};
-// the main audit for a url
-export type Audit = {
-  automateable: Automatable;
-  documentTitle: string;
-  issues: Issue[];
-  meta: MetaInfo;
-  pageUrl: string;
-};
-// configs that change how the audit behaves
-export type RunnerConf = Partial<RunnerConfig & { html?: string }>;
+import { Audit, RunnerConf } from "./common";
 
 // perform audit
 const audit = async (config: RunnerConfig): Promise<Audit> => {
@@ -140,16 +106,15 @@ export const kayle = async (
   o: RunnerConf = {},
   preventClose?: boolean
 ): Promise<Audit> => {
+  const watcher = new Watcher();
   const navigate = o.page.url() === "about:blank" && (o.origin || o.html);
+  const config = extractArgs(o, watcher);
 
   if (navigate) {
     await goToPage(o);
   } else if (!o.noIntercept) {
     await setNetworkInterception(o);
   }
-
-  const watcher = new Watcher();
-  const config = extractArgs(o);
 
   const results = await Promise.race([
     watcher.watch(config.timeout),
@@ -160,7 +125,7 @@ export const kayle = async (
 
   if (!preventClose && navigate) {
     try {
-      await o.page.close();
+      await config.page.close();
     } catch (e) {
       console.error;
     }

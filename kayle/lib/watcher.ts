@@ -1,6 +1,11 @@
-import { Audit } from "./kayle";
+import { Audit } from "./common";
 
 // watcher cycle timeout
+declare class Watcher {
+  timer: null | NodeJS.Timer;
+  watch?(timer: number): Promise<Audit>;
+};
+
 function Watcher() {
   this.timer = null;
 }

@@ -9,6 +9,9 @@ test("fast_htmlcs and fast_axecore audit drakeMock", async ({
   page,
   browser,
 }, testInfo) => {
+  if (process.env.LOG_ENABLED) {
+    page.on("console", (msg) => console.log("PAGE LOG:", msg.text()));
+  }
   const startTime = performance.now();
   const results = await kayle({
     page,
@@ -19,6 +22,7 @@ test("fast_htmlcs and fast_axecore audit drakeMock", async ({
     origin: "https://www.drake.com",
     waitUntil: "domcontentloaded",
   });
+
   const endTime = performance.now() - startTime;
 
   const { issues, pageUrl, documentTitle, meta, automateable } = results;

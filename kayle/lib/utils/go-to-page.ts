@@ -45,7 +45,6 @@ const blocknet = async (
   }
 
   if (
-    !KAYLE_PERFORMANCE_MODE &&
     url &&
     resourceType === "script" &&
     (url.startsWith("https://") || url.startsWith("http://"))
@@ -102,14 +101,15 @@ export const setCDPIntercept = async (o: Partial<RunnerConfig>) => {
       o.cdpSession = await o.page.context().newCDPSession(o.page);
     }
 
-    await sendCDPPageConfigurationEnable(cdpSession);
+    await sendCDPPageConfigurationEnable(o.cdpSession ?? cdpSession, o);
   }
 };
+
 // block expensive resources
 export const setNetworkInterception = async (
   o: Partial<RunnerConfig>
 ): Promise<boolean | void> => {
-  await setCDPIntercept(o);
+  // await setCDPIntercept(o);
 
   const { page } = o;
 
@@ -145,7 +145,7 @@ const isAllRoute = (route) => route.url === "**/*";
 const setHtmlIntercept = async (
   o: Partial<RunnerConfig> & { html?: string }
 ) => {
-  const { page, html, noIntercept } = o;
+  const { page, html } = o;
   let firstRequest = false;
 
   const blockNetwork = async (request, res) => {
@@ -157,22 +157,16 @@ const setHtmlIntercept = async (
         contentType: "text/html",
         body: html,
       };
+
       if (request.respond) {
         return await request.respond(data);
-      } else {
-        return await request.fulfill(data);
       }
+
+      return await request.fulfill(data);
     } else {
       return await networkBlock(request, res);
     }
   };
-
-  if (noIntercept) {
-    return;
-  }
-
-  // set intercept after first fetch
-  await setCDPIntercept(o);
 
   try {
     if (isPlaywright(page)) {
@@ -208,7 +202,14 @@ export const goToPage = async ({
   origin,
 }: Partial<RunnerConfig & { html?: string }>): Promise<boolean> => {
   if (html) {
-    await setHtmlIntercept({ page, html, timeout, noIntercept, cdpSession });
+    await setHtmlIntercept({
+      page,
+      html,
+      timeout,
+      noIntercept,
+      cdpSession,
+      origin,
+    });
   } else if (!noIntercept) {
     await setNetworkInterception({
       page,

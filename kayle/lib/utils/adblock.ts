@@ -69,7 +69,7 @@ const engine: unknown | AdCheck =
         } catch (_) {
           // error for now without exiting since feature is opt in
           console.error(
-            "Error: adblock-rs installation missing! Run `npm i adblock-rs` or `yarn add adblock-rs` to start the adblock engine."
+            "Error: adblock-rs installation missing! Run `npm i adblock-rs` or `yarn add adblock-rs` to start with the adblock engine."
           );
         }
       })()
