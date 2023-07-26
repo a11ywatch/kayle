@@ -1,3 +1,4 @@
+// list of domains that we ignore scripts from loading
 export const skippedResources = {
   quantserve: null,
   adzerk: null,

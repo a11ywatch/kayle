@@ -5,9 +5,9 @@ import { drakeMock } from "./mocks/html-mock";
 import { performance } from "perf_hooks";
 
 (async () => {
-  const browser = await puppeteer.launch({ headless: "new" });
+  const browser = await puppeteer.launch();
   const page = await browser.newPage();
-  // page.on("console", (msg) => console.log("PAGE LOG:", msg.text()));
+  page.on("console", (msg) => console.log("PAGE LOG:", msg.text()));
 
   const startTime = performance.now();
   const { issues, pageUrl, documentTitle, meta, automateable } = await kayle({

@@ -27,18 +27,26 @@ type EvaluateFunc<T extends unknown[]> = (
   ...params: InnerParams<T>
 ) => Awaitable<unknown>;
 
+type Frame = {
+  [x: string]: any;
+};
+
 type BrowserContext = {
-  browser(): Browser;
+  browser?(): Browser | null;
   close(): Promise<void>;
-  pages(): Promise<Page[]>;
-  targets(): Target[];
-  overridePermissions(origin: string, permissions: Permission[]): Promise<void>;
+  pages?(): Partial<Page>[];
+  targets?(): Target[];
+  newCDPSession?(page: Partial<Page> | Frame): Partial<CDPSession>;
+  overridePermissions?(
+    origin: string,
+    permissions: Permission[]
+  ): Promise<void>;
 };
 
 // a type that impls the puppeteer/playwright browser
 type Browser = {
   newPage(): Promise<any>; // todo: exact Page type split
-  wsEndpoint(): string;
+  wsEndpoint?(): string;
   createIncognitoBrowserContext?(): Promise<BrowserContext | any>;
 };
 
@@ -69,16 +77,20 @@ type Page = {
   goto(url: string, options?: WaitForOptions): Promise<any | null>;
   setContent(html: string, options?: WaitForOptions): Promise<void>;
   close(o?: { runBeforeUnload?: boolean }): Promise<void>;
-  browser(): Browser;
+  browser?(): Browser;
+  context?(): BrowserContext | null;
   target(): Target;
+  // puppeteer
+  _client?(): Partial<CDPSession>;
   // playwright
   _route?: string;
   _routes?: { url: string }[];
   route(
     path: string,
-    intercept: (config: any, next: any) => Promise<boolean>
+    intercept: (config: any, next: any) => Promise<void> | Promise<boolean>
   ): Promise<void>;
   setRequestInterception?(enable?: boolean): Promise<void>;
+  listenerCount?(name: string): number;
   evaluate<
     Params extends unknown[],
     Func extends EvaluateFunc<Params> = EvaluateFunc<Params>
@@ -95,6 +107,10 @@ type Page = {
   emulateCPUThrottling(factor: number | null): Promise<void>;
 };
 
+export interface CDPSession {
+  [x: string]: any;
+}
+
 type Runner = "axe" | "htmlcs";
 type Standard = "WCAG2A" | "WCAG2AA" | "WCAG2AAA" | "SECTION508";
 
@@ -102,6 +118,7 @@ type Standard = "WCAG2A" | "WCAG2AA" | "WCAG2AAA" | "SECTION508";
 export type RunnerConfig = {
   browser: Partial<Browser>;
   page: Partial<Page>;
+  cdpSession?: Partial<CDPSession>; // CDP session playwright in order to re-use and enable blocking urls and other features.
   // configure if you know how the page will operate headless
   waitUntil?: LifeCycleEvent;
   // audit
@@ -124,6 +141,10 @@ export type RunnerConfig = {
   // extension only run if accesibility extensions loaded: Experimental.
   _browserExtension?: boolean;
 };
+
+// enable CDP blocking of request to prevent fetching resources [use this in conjunction with noIntercept=true] Default enabled.
+export const KAYLE_PERFORMANCE_MODE =
+  process.env.KAYLE_PERFORMANCE_MODE === "false" ? false : true;
 
 // log singleton
 export const _log = { enabled: false };

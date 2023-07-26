@@ -3,6 +3,7 @@ export function extractArgs(o) {
   const options = {
     browser: o.browser,
     page: o.page,
+    cdpSession: o.cdpSession,
     timeout: o.timeout || 60000,
     // private
     _browserExtension: o._browserExtension,

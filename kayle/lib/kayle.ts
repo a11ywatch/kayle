@@ -24,13 +24,11 @@ export type Issue = {
   recurrence: number;
   selector: string;
 };
-
 // indexs of automatable issues
 export type Automatable = {
   // indexs of all missing alt tags.
   missingAltIndexs: number[];
 };
-
 // the main audit for a url
 export type Audit = {
   automateable: Automatable;
@@ -39,7 +37,7 @@ export type Audit = {
   meta: MetaInfo;
   pageUrl: string;
 };
-
+// configs that change how the audit behaves
 export type RunnerConf = Partial<RunnerConfig & { html?: string }>;
 
 // perform audit
@@ -144,24 +142,13 @@ export const kayle = async (
 ): Promise<Audit> => {
   const navigate = o.page.url() === "about:blank" && (o.origin || o.html);
 
-  // navigate to a clean page
   if (navigate) {
-    await goToPage(
-      {
-        page: o.page,
-        html: o.html,
-        timeout: o.timeout,
-        waitUntil: o.waitUntil,
-        noIntercept: o.noIntercept
-      },
-      o.origin
-    );
+    await goToPage(o);
   } else if (!o.noIntercept) {
-    await setNetworkInterception(o.page);
+    await setNetworkInterception(o);
   }
 
   const watcher = new Watcher();
-
   const config = extractArgs(o);
 
   const results = await Promise.race([

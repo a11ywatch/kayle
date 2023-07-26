@@ -1,6 +1,8 @@
 import { blockedResourceTypes, skippedResources } from "./resource-ignore";
 import { adEngine } from "./adblock";
-import type { RunnerConfig } from "../config";
+import { RunnerConfig, KAYLE_PERFORMANCE_MODE } from "../config";
+import { isPlaywright } from "./automation";
+import { sendCDPPageConfigurationEnable } from "./cdp-blocking";
 
 type Request = {
   isInterceptResolutionHandled?(): boolean;
@@ -22,12 +24,11 @@ type NetworkResource = {
  * @returns {Promise} Returns a promise void.
  */
 const blocknet = async (
-  { resourceType, request, url, domain }: NetworkResource,
+  { resourceType, request, url }: NetworkResource,
   allowImage?: boolean
 ) => {
   // ignore intercepted request
   if (
-    request.isInterceptResolutionHandled &&
     typeof request.isInterceptResolutionHandled === "function" &&
     request.isInterceptResolutionHandled()
   ) {
@@ -43,18 +44,18 @@ const blocknet = async (
     return await request.abort();
   }
 
-  if (url && resourceType === "script") {
-    const urlBase = url.split("?");
-    const splitBase = urlBase.length ? urlBase[0].split("#") : [];
-    const requestUrl = splitBase.length ? splitBase[0] : "";
-
-    if (skippedResources.hasOwnProperty(requestUrl)) {
+  if (
+    !KAYLE_PERFORMANCE_MODE &&
+    url &&
+    resourceType === "script" &&
+    (url.startsWith("https://") || url.startsWith("http://"))
+  ) {
+    if (skippedResources.hasOwnProperty(new URL(url).hostname)) {
       return await request.abort();
     }
   }
 
   if (
-    // if engine is loaded
     adEngine &&
     typeof adEngine.check === "function" &&
     (url.startsWith("https://") || url.startsWith("http://")) &&
@@ -89,10 +90,31 @@ export const networkBlock = async (
   return await blocknet({ resourceType, request, url }, allowImage);
 };
 
+export const setCDPIntercept = async (o: Partial<RunnerConfig>) => {
+  if (KAYLE_PERFORMANCE_MODE) {
+    const cdpSession = o.cdpSession
+      ? o.cdpSession
+      : o?.page?._client &&
+        typeof o.page._client === "function" &&
+        o.page._client();
+
+    if (!cdpSession) {
+      o.cdpSession = await o.page.context().newCDPSession(o.page);
+    }
+
+    await sendCDPPageConfigurationEnable(cdpSession);
+  }
+};
 // block expensive resources
-export const setNetworkInterception = async (page): Promise<boolean> => {
+export const setNetworkInterception = async (
+  o: Partial<RunnerConfig>
+): Promise<boolean | void> => {
+  await setCDPIntercept(o);
+
+  const { page } = o;
+
   // playwright
-  if (!page.setRequestInterception) {
+  if (isPlaywright(page)) {
     if (
       !page._route ||
       (page._route &&
@@ -101,8 +123,10 @@ export const setNetworkInterception = async (page): Promise<boolean> => {
     ) {
       return await page.route("**/*", networkBlock);
     }
+    // interception is disabled
     return;
   }
+
   // if request listeners are not set add interception
   if (!page.listenerCount("request")) {
     try {
@@ -118,11 +142,10 @@ export const setNetworkInterception = async (page): Promise<boolean> => {
 const isAllRoute = (route) => route.url === "**/*";
 
 // set RAW HTML CONTENT
-const setHtmlIntercept = async ({
-  page,
-  html,
-  noIntercept
-}: Partial<RunnerConfig> & { html?: string }) => {
+const setHtmlIntercept = async (
+  o: Partial<RunnerConfig> & { html?: string }
+) => {
+  const { page, html, noIntercept } = o;
   let firstRequest = false;
 
   const blockNetwork = async (request, res) => {
@@ -144,12 +167,15 @@ const setHtmlIntercept = async ({
     }
   };
 
-  if(noIntercept) {
-    return
+  if (noIntercept) {
+    return;
   }
 
+  // set intercept after first fetch
+  await setCDPIntercept(o);
+
   try {
-    if (!page.setRequestInterception) {
+    if (isPlaywright(page)) {
       if (
         !page._route ||
         (page._route &&
@@ -172,22 +198,33 @@ const setHtmlIntercept = async ({
  * @param {String} [url=""] - The website url.
  * @returns {Promise<Boolean>} Returns if the page was navigated to successfully.
  */
-export const goToPage = async (
-  { page, timeout, html, waitUntil, noIntercept }: Partial<RunnerConfig & { html?: string }>,
-  url: string
-): Promise<boolean> => {
-
+export const goToPage = async ({
+  page,
+  timeout,
+  html,
+  waitUntil,
+  noIntercept,
+  cdpSession,
+  origin,
+}: Partial<RunnerConfig & { html?: string }>): Promise<boolean> => {
   if (html) {
-    await setHtmlIntercept({ page, html, timeout, noIntercept });
-  } else if(!noIntercept){
-    await setNetworkInterception(page);
+    await setHtmlIntercept({ page, html, timeout, noIntercept, cdpSession });
+  } else if (!noIntercept) {
+    await setNetworkInterception({
+      page,
+      timeout,
+      waitUntil,
+      noIntercept,
+      cdpSession,
+      origin,
+    });
   }
 
   let valid = false;
 
   try {
     // open blank page fallback for proxy intercept
-    const res = await page.goto(url ?? "http://localhost", {
+    const res = await page.goto(origin ?? "http://localhost", {
       timeout: timeout || 0,
       waitUntil: waitUntil ?? "domcontentloaded",
     });
