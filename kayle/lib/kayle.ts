@@ -152,6 +152,7 @@ export const kayle = async (
         html: o.html,
         timeout: o.timeout,
         waitUntil: o.waitUntil,
+        noIntercept: o.noIntercept
       },
       o.origin
     );

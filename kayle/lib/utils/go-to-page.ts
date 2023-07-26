@@ -121,6 +121,7 @@ const isAllRoute = (route) => route.url === "**/*";
 const setHtmlIntercept = async ({
   page,
   html,
+  noIntercept
 }: Partial<RunnerConfig> & { html?: string }) => {
   let firstRequest = false;
 
@@ -142,6 +143,10 @@ const setHtmlIntercept = async ({
       return await networkBlock(request, res);
     }
   };
+
+  if(noIntercept) {
+    return
+  }
 
   try {
     if (!page.setRequestInterception) {
@@ -168,12 +173,13 @@ const setHtmlIntercept = async ({
  * @returns {Promise<Boolean>} Returns if the page was navigated to successfully.
  */
 export const goToPage = async (
-  { page, timeout, html, waitUntil }: Partial<RunnerConfig & { html?: string }>,
+  { page, timeout, html, waitUntil, noIntercept }: Partial<RunnerConfig & { html?: string }>,
   url: string
 ): Promise<boolean> => {
+
   if (html) {
-    await setHtmlIntercept({ page, html, timeout });
-  } else {
+    await setHtmlIntercept({ page, html, timeout, noIntercept });
+  } else if(!noIntercept){
     await setNetworkInterception(page);
   }
 
