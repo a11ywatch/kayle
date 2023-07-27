@@ -4,7 +4,7 @@ import { Audit } from "./common";
 declare class Watcher {
   timer: null | NodeJS.Timer;
   watch?(timer: number): Promise<Audit>;
-};
+}
 
 function Watcher() {
   this.timer = null;

@@ -1,7 +1,7 @@
 {
   "name": "kayle",
-  "version": "0.5.6",
-  "description": "Extremely fast accessibility evaluation for nodejs",
+  "version": "0.5.7",
+  "description": "Extremely fast and accurate accessibility testing using CDP",
   "main": "./build/index.js",
   "keywords": [
     "accessibility"
@@ -23,12 +23,13 @@
     "lint": "eslint .",
     "fix": "prettier --write '**/*.{js,jsx,ts,tsx, json}'",
     "swc:dist": "npx swc --copy-files --config-file .swcrc ./build -d ./build",
+    "bench": "yarn bench:playwright:htmlcs && yarn bench:playwright:axe",
     "bench:playwright:htmlcs": "node _tests/bench/fast_htmlcs-playwright.js",
     "bench:playwright:axe": "node _tests/bench/fast_axecore-playwright.js",
     "test": "npm run compile:test && node _tests/tests/basic.js",
     "test:i18n": "npm run compile:test && node _tests/tests/i18n.js",
-    "test:htmlcs": "npm run compile:test && node _tests/tests/base-htmlcs.js",
-    "test:axe": "npm run compile:test && node _tests/tests/base-axe.js",
+    "test:htmlcs": "npm run compile:test && node _tests/tests/basic-htmlcs.js",
+    "test:axe": "npm run compile:test && node _tests/tests/basic-axe.js",
     "test:puppeteer": "npm run compile:test && node _tests/tests/basic.js",
     "test:puppeteer:axe": "npm run compile:test && node _tests/tests/basic-axe.js",
     "test:puppeteer:htmlcs": "npm run compile:test && node _tests/tests/basic-htmlcs.js",

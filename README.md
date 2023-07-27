@@ -98,7 +98,6 @@ type RunnerConfig = {
 ### Features
 
 1. adblock - You can enable Brave's adblock engine with [adblock-rs](https://github.com/brave/adblock-rust) by installing `npm i adblock-rs` to the project. This module needs to be manually installed and the env variable `KAYLE_ADBLOCK` needs to be set to `true`.
-2. CDP blocking analytics - Set the env variable `KAYLE_PERFORMANCE_MODE` to true in order to enable CDP blocking urls from running and more optimizations.
 
 ## Localization
 

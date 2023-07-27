@@ -11,7 +11,6 @@ import { performance } from "perf_hooks";
   const ext = join(cwd(), "chrome-extension");
 
   const browser = await puppeteer.launch({
-    headless: "new",
     dumpio: true,
     ignoreDefaultArgs: ["--disable-extensions"],
     args: [

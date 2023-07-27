@@ -1,3 +1,5 @@
+import { adblock } from "../data/list";
+
 // list of domains that we ignore scripts from loading
 export const skippedResources = {
   quantserve: null,
@@ -26,41 +28,26 @@ export const skippedResources = {
   "adservice.google.com": null,
   "client.crisp.chat": null,
   "widget.intercom.io": null,
-};
-
-// used for puppeteer playwright all interceptions
-export const blockedResourceTypes = {
-  media: null,
-  font: null,
-  texttrack: null,
-  object: null,
-  beacon: null,
-  csp_report: null,
-  websocket: null,
-  // script: null,
-  preflight: null,
-  image: null,
-  imageset: null,
-  ping: null,
+  hubspot: null,
 };
 
 // link of resources [https://chromedevtools.github.io/devtools-protocol/tot/Network/#type-ResourceType]
-export const blockedResourceTypesCDP = new Set<string>([
-  "Media",
-  "Font",
-  "CSPViolationReport",
-  "XHR",
+const blockedResourceTypesCDP = new Set<string>([
   "Image",
-  "Fetch",
-  "Ping",
-  "Other",
-  "Script",
-  "Stylesheet",
+  "Document",
 ]);
 
-export const blockedResourcePatterns = Array.from(blockedResourceTypesCDP).map(
+// we only need to block scripts if adblock is enabled.
+if (adblock) {
+  blockedResourceTypesCDP.add("Script");
+}
+
+// request interception setup CDP
+const blockedResourcePatterns = Array.from(blockedResourceTypesCDP).map(
   (resource) => ({
     resourceType: resource,
     requestStage: "Request",
   })
 );
+
+export { blockedResourceTypesCDP, blockedResourcePatterns };

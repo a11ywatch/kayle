@@ -28,7 +28,7 @@ async function launchBench() {
 
     duration += performance.now() - startTime;
 
-    await page.close();
+    await page.close({ runBeforeUnload: true });
   };
 
   const benchMethod = async (cb: () => Promise<void>, i = 0) => {

@@ -44,16 +44,27 @@ jobs:
       - name: Run Bench fast_htmlcs
         run: cd ./kayle && yarn bench:playwright:htmlcs > output.json
 
+      - name: Run Bench fast_axe
+        run: cd ./kayle && yarn bench:playwright:axe > output-axe.json
+
       - name: Download previous benchmark data
         uses: actions/cache@v3
         with:
           path: ./cache
           key: ${{ runner.os }}-benchmark
 
-      - name: Store benchmark result
+      - name: Store benchmark result Fast_Htmlcs
         uses: benchmark-action/github-action-benchmark@v1
         with:
           tool: 'customSmallerIsBetter'
           output-file-path: kayle/output.json
           external-data-json-path: ./cache/benchmark-data.json
+          fail-on-alert: true
+
+      - name: Store benchmark result Fast_Axe
+        uses: benchmark-action/github-action-benchmark@v1
+        with:
+          tool: 'customSmallerIsBetter'
+          output-file-path: kayle/output-axe.json
+          external-data-json-path: ./cache/benchmark-data-axe.json
           fail-on-alert: true
