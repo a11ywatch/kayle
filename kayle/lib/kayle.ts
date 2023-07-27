@@ -96,6 +96,7 @@ export const auditExtension = async (config: RunnerConfig): Promise<Audit> => {
     }
   );
 };
+
 /**
  * Run accessibility tests for page.
  * @param {Object} [config={}] config - Options to change the way tests run.
@@ -127,7 +128,7 @@ export const kayle = async (
     try {
       await config.page.close();
     } catch (e) {
-      console.error;
+      _log.enabled && console.error;
     }
   }
 

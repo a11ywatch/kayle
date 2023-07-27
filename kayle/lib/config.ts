@@ -93,6 +93,22 @@ type Page = {
   ): Promise<void>;
   setRequestInterception?(enable?: boolean): Promise<void>;
   listenerCount?(name: string): number;
+  exposeFunction?(
+    name: string,
+    pptrFunction:
+      | Function
+      | {
+          default: Function;
+        }
+  ): Promise<void>;
+  addInitScript?(script: { content?: string }): Promise<void>;
+  evaluateOnNewDocument?<
+    Params extends unknown[],
+    Func extends (...args: Params) => unknown = (...args: Params) => unknown
+  >(
+    pageFunction: Func | string,
+    ...args: Params
+  ): Promise<{ identifier: string }>;
   evaluate<
     Params extends unknown[],
     Func extends EvaluateFunc<Params> = EvaluateFunc<Params>
@@ -100,8 +116,9 @@ type Page = {
     pageFunction: Func | string,
     ...args: Params
   ): Promise<Awaited<ReturnType<Func>>>;
+
   on(eventName: any, handler: (event: any, next?: any) => any): void;
-  once(eventName: any, handler: (event: any) => void): void;
+  once(eventName: any, handler: (event: any, _?: any) => void): void;
   off(eventName: any, handler: (event: any, _?: any) => void): void;
   unroute?(eventName: any, handler: (event: any, _?: any) => void): void;
   url(): string;
@@ -131,10 +148,12 @@ export type RunnerConfig = {
   includeNotices?: boolean;
   includeWarnings?: boolean;
   rootElement?: string;
-  rules?: string;
+  rules?: string[];
   runners?: Runner[];
   standard?: Standard;
   timeout?: number;
+  // allow images to render.
+  allowImages?: boolean;
   // the website url: include this even with static html to fetch assets correct.
   origin?: string;
   // the langauge to use.
@@ -145,11 +164,9 @@ export type RunnerConfig = {
   _browserExtension?: boolean;
   // watch config
   _watcher?: Watcher;
+  // initial fake request ran to enable Js
+  _initRequest?: boolean;
 };
-
-// enable CDP blocking of request to prevent fetching resources [use this in conjunction with noIntercept=true] Default enabled.
-export const KAYLE_PERFORMANCE_MODE =
-  process.env.KAYLE_PERFORMANCE_MODE === "false" ? false : true;
 
 // log singleton
 export const _log = { enabled: false };

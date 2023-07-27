@@ -77,28 +77,44 @@ The `extraConfigs` object has the following:
 
 ```ts
 type RunnerConfig = {
-  browser: Browser; // puppeteer or playwright Browser Object.
-  page: Page; // puppeteer or playwright Page Object.
-  actions?: string[]; // custom actions or actions from lib/actions
-  hideElements?: string; // hide elements from rendering like modals using css.
-  ignore?: string[]; // ignore certain rules from running.
-  includeNotices?: boolean; // include notices
-  includeWarnings?: boolean; // include warnings
-  rootElement?: string; // the entry point.
-  rules?: string; // what rules you want to include: default all.
-  runners?: string[]; // type of runner to use axe, htmlcs, or custom
-  standard?: Standard; // web accessibility standard WCAG2A, WCAG2AA, WCAG2AAA, or Section508
-  timeout?: number; // timeout for running the audit.
-  origin?: string; // the origin of the page.
-  language?: string; // the language to use for testing and getting localized data in.
-  noIntercept?: boolean; // skip setting up request interception.
+  browser: Partial<Browser>;
+  page: Partial<Page>;
+  // a custom cdp session. Useful for playwright persisting sessions.
+  cdpSession?: Partial<CDPSession>;
+  // configure if you know how the page will operate headless.
+  waitUntil?: LifeCycleEvent;
+  // actions to perform.
+  actions?: string[];
+  // ignore list of elements using css selectors.
+  hideElements?: string;
+  // ignore test cases WCAG.
+  ignore?: string[];
+  // include notices in results.
+  includeNotices?: boolean;
+  // include warnings in results.
+  includeWarnings?: boolean;
+  // the root element to test.
+  rootElement?: string;
+  // only allow WCAG RULES.
+  rules?: string[];
+  // axe or htmlcs - the forks.
+  runners?: Runner[];
+  // the accessibility standard.
+  standard?: Standard;
+  // stop test that go beyond time.
+  timeout?: number;
+  // allow images to render.
+  allowImages?: boolean;
+  // the website url: include this even with static html to fetch assets correct.
+  origin?: string;
+  // the langauge to use.
+  language?: string;
 };
 ```
 
 ### Features
 
 1. adblock - You can enable Brave's adblock engine with [adblock-rs](https://github.com/brave/adblock-rust) by installing `npm i adblock-rs` to the project. This module needs to be manually installed and the env variable `KAYLE_ADBLOCK` needs to be set to `true`.
-2. CDP blocking analytics - Set the env variable `KAYLE_PERFORMANCE_MODE` to true in order to enable CDP blocking urls from running and more optimizations.
 
 ## Localization
 
