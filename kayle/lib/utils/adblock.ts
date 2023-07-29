@@ -46,6 +46,7 @@ const engine: unknown | AdCheck =
               }
               return;
             }
+
             const adFilter = await promises.readFile(file, {
               encoding: "utf-8",
             });

@@ -1,4 +1,4 @@
-import { adblock } from "../data/list";
+import { adEngine } from "./adblock";
 
 // list of domains that we ignore scripts from loading
 export const skippedResources = {
@@ -38,7 +38,7 @@ const blockedResourceTypesCDP = new Set<string>([
 ]);
 
 // we only need to block scripts if adblock is enabled.
-if (adblock) {
+if (adEngine) {
   blockedResourceTypesCDP.add("Script");
 }
 
