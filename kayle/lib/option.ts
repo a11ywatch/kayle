@@ -9,7 +9,7 @@ export function extractArgs(o, watcher?: Watcher) {
     timeout: o.timeout || 60000,
     noIntercept: o.noIntercept,
     // private
-    _browserExtension: o._browserExtension,
+    browserExtension: o.browserExtension,
     _watcher: watcher,
     // sent to browser
     actions: o.actions || [],
@@ -21,7 +21,7 @@ export function extractArgs(o, watcher?: Watcher) {
     rules: o.rules || [],
     runners: o.runners || ["htmlcs"],
     standard: o.standard || "WCAG2AA",
-    origin: o.origin,
+    origin: o.origin || o.html && "http://localhost" || "",
     language: o.language || "en",
   };
 

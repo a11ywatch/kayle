@@ -25,7 +25,7 @@ const results = await kayle({
 });
 ```
 
-When passing raw `html` try to also include the `origin` or the url, this sets `window.origin` and helps scripts that rely on it to work correctly.
+When passing raw `html` try to also include the `origin` or the url, this sets `window.origin` and helps scripts that rely on it to work correctly or else relatives scripts will not work since the relative path does not exist on the locale machine.
 
 If you need to run a full site-wide crawl import `autoKayle`.
 
@@ -175,7 +175,7 @@ Currently we only have english support for extensions. We can add different loca
 
 If you want to test the extension use `yarn test:puppeteer:extension`.
 
-The `kayle` function also expects a field called `_browserExtension` with the option set to `true`. Currently the extension handling is experimental reason for the name.
+The `kayle` function also expects a field called `browserExtension` with the option set to `true`. Currently the extension handling is experimental reason for the name.
 
 ## Developing
 

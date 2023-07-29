@@ -32,7 +32,7 @@ import { performance } from "perf_hooks";
       includeWarnings: true,
       html: jmendezMock,
       origin: "https://jeffmendez.com", // origin is the fake url in place of the raw content
-      _browserExtension: true, // enable the extension
+      browserExtension: true, // enable the extension
     },
     true
   );

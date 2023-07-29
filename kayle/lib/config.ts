@@ -160,8 +160,8 @@ export type RunnerConfig = {
   language?: string;
   // prevent auto intercept request to prevent fetching resources.
   noIntercept?: boolean;
-  // extension only run if accesibility extensions loaded: Experimental.
-  _browserExtension?: boolean;
+  // run as accesibility extension: Experimental. Must setup extensions with the browser before hand.
+  browserExtension?: boolean;
   // watch config
   _watcher?: Watcher;
   // initial fake request ran to enable Js

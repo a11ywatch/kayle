@@ -40,7 +40,7 @@ export const goToPage = async (
 
   try {
     // open blank page fallback for proxy intercept
-    const res = await page.goto(origin ?? "http://localhost", {
+    const res = await page.goto(origin || "http://localhost", {
       timeout: timeout || 0,
       waitUntil: waitUntil ?? "domcontentloaded",
     });

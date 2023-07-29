@@ -9,7 +9,7 @@ import { Audit, RunnerConf } from "./common";
 // perform audit
 const audit = async (config: RunnerConfig): Promise<Audit> => {
   // perform audit as extension
-  if (config._browserExtension) {
+  if (config.browserExtension) {
     return await auditExtension(config);
   }
 
@@ -50,7 +50,7 @@ const runActionsList = async (config: RunnerConfig) => {
 
 // inject runners
 const injectRunners = async (config: RunnerConfig) => {
-  if (!config._browserExtension) {
+  if (!config.browserExtension) {
     return await Promise.all([
       config.page.evaluate(runnersJavascript["kayle"]),
       config.page.evaluate(getRunner(config.language, config.runners[0])),
