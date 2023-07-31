@@ -9,7 +9,7 @@ const blockedResourceUrls = Object.keys(skippedResources);
 export const blockFilter = async (
   e: any,
   client: CDPSession,
-  o: Partial<RunnerConf>,
+  o: Partial<RunnerConf>
 ) => {
   const resourceType = e.resourceType;
 
@@ -120,7 +120,9 @@ export const sendCDPPageConfigurationReset = async (
         client.send("Preload.enable"),
         client.send("Fetch.disable"),
         client.send("ServiceWorker.enable"),
-        !_log.enabled ? client.send("Runtime.discardConsoleEntries") : undefined,
+        !_log.enabled
+          ? client.send("Runtime.discardConsoleEntries")
+          : undefined,
       ]);
     } catch (e) {
       console.error(e);

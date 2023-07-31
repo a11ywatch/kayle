@@ -1,6 +1,6 @@
 {
   "name": "kayle",
-  "version": "0.5.11",
+  "version": "0.5.13",
   "description": "Extremely fast and accurate accessibility testing using CDP",
   "main": "./build/index.js",
   "keywords": [

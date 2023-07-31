@@ -21,7 +21,7 @@ export function extractArgs(o, watcher?: Watcher) {
     rules: o.rules || [],
     runners: o.runners || ["htmlcs"],
     standard: o.standard || "WCAG2AA",
-    origin: o.origin || o.html && "http://localhost" || "",
+    origin: o.origin || (o.html && "http://localhost") || "",
     language: o.language || "en",
   };
 

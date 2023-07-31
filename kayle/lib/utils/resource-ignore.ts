@@ -32,10 +32,7 @@ export const skippedResources = {
 };
 
 // link of resources [https://chromedevtools.github.io/devtools-protocol/tot/Network/#type-ResourceType]
-const blockedResourceTypesCDP = new Set<string>([
-  "Image",
-  "Document",
-]);
+const blockedResourceTypesCDP = new Set<string>(["Image", "Document"]);
 
 // we only need to block scripts if adblock is enabled.
 if (adEngine) {

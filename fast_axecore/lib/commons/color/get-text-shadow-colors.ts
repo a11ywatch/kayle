@@ -1,5 +1,4 @@
 import Color from './color';
-import assert from '../../core/utils/assert';
 
 /**
  * Get text-shadow colors that can impact the color contrast of the text
@@ -21,10 +20,10 @@ function getTextShadowColors(
 
   const fontSizeStr = style.getPropertyValue('font-size');
   const fontSize = parseInt(fontSizeStr);
-  assert(
-    isNaN(fontSize) === false,
-    `Unable to determine font-size value ${fontSizeStr}`
-  );
+    
+  if(isNaN(fontSize)) {
+    return []
+  }
 
   const shadows = parseTextShadows(textShadow);
   const shadowColors = new Array(shadows.length);
@@ -59,9 +58,10 @@ function getTextShadowColors(
  * Parse text-shadow property value. Required for IE, which can return the color
  * either at the start or the end, and either in rgb(a) or as a named color
  */
-function parseTextShadows(textShadow) {
+const parseTextShadows = (textShadow: string) => {
   let current = { pixels: [], colorStr: undefined };
   let str = textShadow.trim();
+
   const shadows = [current];
 
   if (!str) {
@@ -69,24 +69,19 @@ function parseTextShadows(textShadow) {
   }
 
   while (str) {
-    const colorMatch =
-      str.match(/^rgba?\([0-9,.\s]+\)/i) ||
-      str.match(/^[a-z]+/i) ||
-      str.match(/^#[0-9a-f]+/i);
+    const colorMatch = str.match(/^#[0-9a-f]+/i) || str.match(/^[a-z]+(\([^)]+\))?/i);
     const pixelMatch = str.match(/^([0-9.-]+)px/i) || str.match(/^(0)/);
 
     if (colorMatch) {
-      assert(
-        !current.colorStr,
-        `Multiple colors identified in text-shadow: ${textShadow}`
-      );
+     if(!current.colorStr){
+      return [];
+     }
       str = str.replace(colorMatch[0], '').trim();
       current.colorStr = colorMatch[0];
     } else if (pixelMatch) {
-      assert(
-        current.pixels.length < 3,
-        `Too many pixel units in text-shadow: ${textShadow}`
-      );
+      if(current.pixels.length < 3) {
+        return [];
+      }
       str = str.replace(pixelMatch[0], '').trim();
       const pixelUnit = parseFloat(
         (pixelMatch[1][0] === '.' ? '0' : '') + pixelMatch[1]
@@ -94,15 +89,14 @@ function parseTextShadows(textShadow) {
       current.pixels.push(pixelUnit);
     } else if (str[0] === ',') {
       // multiple text-shadows in a single string (e.g. `text-shadow: 1px 1px 1px #000, 3px 3px 5px blue;`
-      assert(
-        current.pixels.length >= 2,
-        `Missing pixel value in text-shadow: ${textShadow}`
-      );
+      if(current.pixels.length >= 2) {
+        return []
+      }
       current = { pixels: [], colorStr: undefined };
       shadows.push(current);
-      str = str.substr(1).trim();
+      str = str.substring(1).trim();
     } else {
-      throw new Error(`Unable to process text-shadows: ${textShadow}`);
+      return []
     }
   }
 

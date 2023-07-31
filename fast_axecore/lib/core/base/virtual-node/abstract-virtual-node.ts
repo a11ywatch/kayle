@@ -37,9 +37,8 @@ class AbstractVirtualNode {
       return false;
     }
 
-    const selector = ' ' + className + ' ';
     return (
-      (' ' + classAttr + ' ').replace(whitespaceRegex, ' ').indexOf(selector) >=
+      (' ' + classAttr + ' ').replace(whitespaceRegex, ' ').indexOf(' ' + className + ' ') >=
       0
     );
   }

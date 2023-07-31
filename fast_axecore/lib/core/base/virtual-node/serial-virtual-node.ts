@@ -55,9 +55,10 @@ const nodeNamesToTypes = {
 };
 const nodeTypeToName = {};
 const nodeNames = Object.keys(nodeNamesToTypes);
-nodeNames.forEach(nodeName => {
+
+for (const nodeName of nodeNames) {
   nodeTypeToName[nodeNamesToTypes[nodeName]] = nodeName;
-});
+}
 
 /**
  * Convert between serialised props and DOM-like properties
@@ -92,18 +93,13 @@ function normaliseProps(serialNode) {
     }
   }
 
-  const props = {
+  return {
+    attributes: undefined,
     ...serialNode,
+    type,
     nodeType,
     nodeName
   };
-  if (type) {
-    props.type = type;
-  }
-
-  delete props.attributes;
-
-  return props;
 }
 
 /**
@@ -125,7 +121,7 @@ function normaliseAttrs({ attributes = {} }) {
     );
 
     if (value !== undefined) {
-      const mappedName = attrMap[attrName] || attrName;
+      const mappedName = attrName in attrMap ? attrMap[attrName] : attrName;
       attrs[mappedName] = value !== null ? String(value) : null;
     }
     return attrs;

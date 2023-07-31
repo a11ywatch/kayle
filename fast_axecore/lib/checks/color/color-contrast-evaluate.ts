@@ -16,6 +16,7 @@ import {
 } from '../../commons/color';
 import memoize from '../../core/utils/memoize';
 
+// TODO: re-evaulute method - performance flakes between high cpu runs
 export default function colorContrastEvaluate(node, options, virtualNode) {
   const {
     ignoreUnicode,
@@ -83,6 +84,7 @@ export default function colorContrastEvaluate(node, options, virtualNode) {
   let contrast = null;
   let contrastContributor = null;
   let shadowColor = null;
+
   if (shadowColors.length === 0) {
     contrast = getContrast(bgColor, fgColor);
   } else if (fgColor && bgColor) {
@@ -92,6 +94,7 @@ export default function colorContrastEvaluate(node, options, virtualNode) {
     const bgShContrast = getContrast(bgColor, shadowColor);
     const fgShContrast = getContrast(shadowColor, fgColor);
     contrast = Math.max(fgBgContrast, bgShContrast, fgShContrast);
+  
     if (contrast !== fgBgContrast) {
       contrastContributor =
         bgShContrast > fgShContrast ? 'shadowOnBgColor' : 'fgOnShadowColor';
@@ -125,6 +128,7 @@ export default function colorContrastEvaluate(node, options, virtualNode) {
 
   const equalRatio = truncatedResult === 1;
   const shortTextContent = visibleText.length === 1;
+
   if (equalRatio) {
     missing = incompleteData.set('bgColor', 'equalRatio');
   } else if (!isValid && shortTextContent && !ignoreLength) {

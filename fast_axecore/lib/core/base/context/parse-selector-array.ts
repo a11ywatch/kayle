@@ -8,19 +8,30 @@ import { getNodeFromTree, shadowSelectAll } from '../../utils';
  * @param  {String} type     The "type" of thing to parse, "include" or "exclude"
  * @return {Array}           Parsed array of matching elements
  */
-export function parseSelectorArray(context, type) {
-  const result = [];
+export const parseSelectorArray = (context, type) => {
+  const contextLength = context[type].length;
+  const result = new Array(contextLength);
 
-  for (let i = 0, l = context[type].length; i < l; i++) {
+  let j = 0;
+
+  for (let i = 0; i < contextLength; i++) {
     const item = context[type][i];
     // Handle nodes
     if (item instanceof window.Node) {
       // @ts-ignore
       if (item.documentElement instanceof window.Node) {
-        result.push(context.flatTree[0]);
+        if(context.flatTree[0]) {
+          result[j] = context.flatTree[0];
+          j++;
+        }
       } else {
         // @ts-ignore
-        result.push(getNodeFromTree(item));
+        const nd = getNodeFromTree(item);
+
+        if(nd) {
+          result[j] = nd;
+          j++;
+        }
       }
 
       // Handle Iframe selection
@@ -28,15 +39,22 @@ export function parseSelectorArray(context, type) {
       if (item.length > 1) {
         pushUniqueFrameSelector(context, type, item);
       } else {
-        const nodeList = shadowSelectAll(item[0]);
-        // @ts-ignore
-        result.push(...nodeList.map(node => getNodeFromTree(node)));
+        for (const nodeItem of shadowSelectAll(item[0])) {
+          const nn =  getNodeFromTree(nodeItem);
+
+          if(nn) {
+            result[j] = nn;
+            j++
+          }
+        }
+
       }
     }
   }
 
-  // filter nulls
-  return result.filter(r => r);
+  result.length = j
+
+  return result;
 }
 
 /**
