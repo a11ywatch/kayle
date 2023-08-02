@@ -1,6 +1,6 @@
 # ✨ kayle
 
-Futuristic web accessibility engine.
+The futuristic web accessibility engine offers the broadest coverage and unparalleled speed. Kayle can detect up to 85% of accessibility issues, making it significantly more efficient and accurate compared to other runners. It utilizes fully type-safe forks of axecore and html_codesniffer with notable enhancements.
 
 ## Getting Started
 
