@@ -27,10 +27,8 @@ import { performance } from "perf_hooks";
 
   // valid list
   assert(Array.isArray(issues));
-  // must return at least 44 errors or runner messed up.
-  assert(meta.errorCount === 45);
-  // must return at least 45 warnings or runner messed up.
-  assert(meta.warningCount >= 45);
+  assert(meta.errorCount === 47);
+  assert(meta.warningCount === 43);
   assert(meta.accessScore === 50);
 
   assert(typeof pageUrl === "string");

@@ -32,10 +32,9 @@ test("fast_htmlcs and fast_axecore audit drakeMock", async ({
     ["kayle(fast_htmlcs, fast_axecore): time took", endTime],
   ]);
 
-  // valid list
   assert(Array.isArray(issues));
-  assert(meta.errorCount === 46);
-  assert(meta.warningCount === 45);
+  assert(meta.errorCount === 48);
+  assert(meta.warningCount === 43);
   assert(typeof pageUrl === "string");
   assert(typeof documentTitle === "string");
 

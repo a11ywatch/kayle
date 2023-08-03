@@ -21,7 +21,7 @@
   const A_5 = "link-name";
   const H_5 = "WCAG2AA.Principle4.Guideline41.412.H91.A.EmptyNoId";
   const A_6 = "heading-order";
-  const H_6 = "WCAG2AA.Principle1.Guideline13.131A.G141";
+  const H_6 = "WCAG2AA.Principle1.Guideline13.131A.G141"; // HeadingOrder map
 
   // oneshot map
   const scoreMap = {
@@ -195,9 +195,9 @@
         }
 
         if (issue.code in scoreMap) {
-          const score = scoreMap[issue.code];          
-          meta.accessScore -= score[0];
-          delete scoreMap[score[1]];
+          const [accessScore, ref] = scoreMap[issue.code];          
+          meta.accessScore -= accessScore;
+          delete scoreMap[ref];
           delete scoreMap[issue.code];
         }
 
@@ -241,9 +241,9 @@
     const runnerIssues = await Promise.all(
       options.runners.map((runner) => {
         return kayle.runners[runner](options, kayle).catch((e) => {
-          console.error(
-            `${runner} ${options.standard} failed: ${e ? e.message : e}`
-          );
+          if(e instanceof Error) {
+            console.error(e)
+          }
           return [];
         });
       })

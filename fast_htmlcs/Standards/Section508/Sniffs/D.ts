@@ -77,9 +77,11 @@ _global.HTMLCS_Section508_Sniffs_D = {
       "h1, h2, h3, h4, h5, h6"
     )) {
       const headingNum = parseInt(heading.nodeName.substr(1, 1));
+
       if (headingNum - lastHeading > 1) {
-        var exampleMsg =
+        let exampleMsg =
           "should be an h" + (lastHeading + 1) + " to be properly nested";
+
         if (lastHeading === 0) {
           // If last heading is empty, we are at document top and we are
           // expecting a H1, generally speaking.
