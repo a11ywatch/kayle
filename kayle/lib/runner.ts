@@ -9,60 +9,35 @@
     notice: 3,
   };
 
-  // map to score deduction
-  const scoreMap = {
-    color: {
-      rules: {
-        ["color-contrast"]: null,
-        ["WCAG2AA.Principle1.Guideline14.143.G18.Fail"]: null,
-      },
-      points: 20,
-    },
-    duplicateID: {
-      rules: {
-        ["duplicate-id"]: null,
-        ["WCAG2AA.Principle4.Guideline41.411.F77"]: null,
-      },
-      points: 10,
-    },
-    emptyHeading: {
-      rules: {
-        ["empty-heading"]: null,
-        ["WCAG2AA.Principle1.Guideline13.131.H42.2"]: null,
-      },
-      points: 20,
-    },
-    frameTitle: {
-      rules: {
-        ["frame-title"]: null,
-        ["WCAG2AA.Principle2.Guideline24.241.H64.1"]: null,
-      },
-      points: 10,
-    },
-    levelOneHeading: {
-      rules: {
-        ["page-has-heading-one"]: null,
-        ["WCAG2AA.Principle1.Guideline13.131A.G141"]: null,
-      },
-      points: 10,
-    },
-    emptyLink: {
-      rules: {
-        ["link-name"]: null,
-        ["WCAG2AA.Principle4.Guideline41.412.H91.A.EmptyNoId"]: null,
-      },
-      points: 20,
-    },
-    headingOrder: {
-      rules: {
-        ["heading-order"]: null,
-        ["WCAG2AA.Principle1.Guideline13.131A.G141"]: null,
-      },
-      points: 10,
-    },
-  };
+  // start of code score maps todo: use enums
+  const A_1 = "color-contrast";
+  const H_1 = "WCAG2AA.Principle1.Guideline14.143.G18.Fail";
+  const A_2 = "duplicate-id";
+  const H_2 = "WCAG2AA.Principle4.Guideline41.411.F77";
+  const A_3 = "empty-heading";
+  const H_3 = "WCAG2AA.Principle1.Guideline13.131.H42.2";
+  const A_4 = "frame-title";
+  const H_4 = "WCAG2AA.Principle2.Guideline24.241.H64.1";
+  const A_5 = "link-name";
+  const H_5 = "WCAG2AA.Principle4.Guideline41.412.H91.A.EmptyNoId";
+  const A_6 = "heading-order";
+  const H_6 = "WCAG2AA.Principle1.Guideline13.131A.G141";
 
-  let scoreMapKeys = Object.keys(scoreMap);
+  // oneshot map
+  const scoreMap = {
+    [A_1]: [20, H_1],
+    [H_1]: [20, A_1],
+    [A_2]: [20, H_2],
+    [H_2]: [20, A_2],
+    [A_3]: [20, H_3],
+    [H_3]: [20, A_3],
+    [A_4]: [10, H_4],
+    [H_4]: [10, A_4],
+    [A_5]: [20, H_5],
+    [H_5]: [20, A_5],
+    [A_6]: [10, H_6],
+    [H_6]: [10, A_6],
+  };
 
   // root html element
   let rootElement = null;
@@ -219,13 +194,11 @@
           meta.noticeCount += issue.recurrence + 1;
         }
 
-        for (const key of scoreMapKeys) {
-          const score = scoreMap[key];
-          if (issue.code in score.rules) {
-            meta.accessScore -= score.points;
-            scoreMapKeys = scoreMapKeys.filter((v) => v !== key);
-            break;
-          }
+        if (issue.code in scoreMap) {
+          const score = scoreMap[issue.code];          
+          meta.accessScore -= score[0];
+          delete scoreMap[score[1]];
+          delete scoreMap[issue.code];
         }
 
         // In-place hybrid insert sorting
