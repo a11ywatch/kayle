@@ -1,6 +1,7 @@
 import memoize from './memoize';
 
-const isScrollable = (style, prop) => ['scroll', 'auto'].includes(style.getPropertyValue(prop))
+const isScrollable = (style, prop) =>
+  ['scroll', 'auto'].includes(style.getPropertyValue(prop));
 
 /**
  * Get the scroll position of given element
@@ -36,6 +37,6 @@ const getScroll = (elm, buffer = 0) => {
       left: elm.scrollLeft
     };
   }
-}
+};
 
 export default memoize(getScroll);

@@ -94,7 +94,7 @@ export default function colorContrastEvaluate(node, options, virtualNode) {
     const bgShContrast = getContrast(bgColor, shadowColor);
     const fgShContrast = getContrast(shadowColor, fgColor);
     contrast = Math.max(fgBgContrast, bgShContrast, fgShContrast);
-  
+
     if (contrast !== fgBgContrast) {
       contrastContributor =
         bgShContrast > fgShContrast ? 'shadowOnBgColor' : 'fgOnShadowColor';

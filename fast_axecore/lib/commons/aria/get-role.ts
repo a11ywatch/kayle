@@ -202,7 +202,9 @@ function getRole(
 ): string {
   const role = resolveRole(node, options);
 
-  return noPresentational && ['presentation', 'none'].includes(role) ? null : role;
+  return noPresentational && ['presentation', 'none'].includes(role)
+    ? null
+    : role;
 }
 
 export default getRole;

@@ -9,6 +9,61 @@
     notice: 3,
   };
 
+  // map to score deduction
+  const scoreMap = {
+    color: {
+      rules: {
+        ["color-contrast"]: null,
+        ["WCAG2AA.Principle1.Guideline14.143.G18.Fail"]: null,
+      },
+      points: 20,
+    },
+    duplicateID: {
+      rules: {
+        ["duplicate-id"]: null,
+        ["WCAG2AA.Principle4.Guideline41.411.F77"]: null,
+      },
+      points: 10,
+    },
+    emptyHeading: {
+      rules: {
+        ["empty-heading"]: null,
+        ["WCAG2AA.Principle1.Guideline13.131.H42.2"]: null,
+      },
+      points: 20,
+    },
+    frameTitle: {
+      rules: {
+        ["frame-title"]: null,
+        ["WCAG2AA.Principle2.Guideline24.241.H64.1"]: null,
+      },
+      points: 10,
+    },
+    levelOneHeading: {
+      rules: {
+        ["page-has-heading-one"]: null,
+        ["WCAG2AA.Principle1.Guideline13.131A.G141"]: null,
+      },
+      points: 10,
+    },
+    emptyLink: {
+      rules: {
+        ["link-name"]: null,
+        ["WCAG2AA.Principle4.Guideline41.412.H91.A.EmptyNoId"]: null,
+      },
+      points: 20,
+    },
+    headingOrder: {
+      rules: {
+        ["heading-order"]: null,
+        ["WCAG2AA.Principle1.Guideline13.131A.G141"]: null,
+      },
+      points: 10,
+    },
+  };
+
+  let scoreMapKeys = Object.keys(scoreMap);
+
   // root html element
   let rootElement = null;
   // hidden elements
@@ -147,7 +202,6 @@
       meta,
       missingAltIndexs: number[]
     ) => {
-      // valid acc count
       for (const is of issues) {
         if (validateIssue(is)) {
           continue;
@@ -163,6 +217,15 @@
 
         if (issue.type === "notice") {
           meta.noticeCount += issue.recurrence + 1;
+        }
+
+        for (const key of scoreMapKeys) {
+          const score = scoreMap[key];
+          if (issue.code in score.rules) {
+            meta.accessScore -= score.points;
+            scoreMapKeys = scoreMapKeys.filter((v) => v !== key);
+            break;
+          }
         }
 
         // In-place hybrid insert sorting
@@ -188,7 +251,6 @@
         // bump last point found
         if (errorType) {
           meta.errorCount += issue.recurrence + 1;
-          meta.accessScore -= 2;
           if (
             issue.code === "WCAG2AA.Principle1.Guideline1_1.1_1_1.H37" ||
             issue.code === "image-alt"

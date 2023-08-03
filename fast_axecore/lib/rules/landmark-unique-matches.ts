@@ -34,6 +34,6 @@ const landmarkUniqueMatches = (node, virtualNode) => {
   }
 
   return isLandmarkVirtual && isVisibleToScreenReaders(node);
-}
+};
 
 export default landmarkUniqueMatches;

@@ -20,9 +20,9 @@ function getTextShadowColors(
 
   const fontSizeStr = style.getPropertyValue('font-size');
   const fontSize = parseInt(fontSizeStr);
-    
-  if(isNaN(fontSize)) {
-    return []
+
+  if (isNaN(fontSize)) {
+    return [];
   }
 
   const shadows = parseTextShadows(textShadow);
@@ -69,17 +69,18 @@ const parseTextShadows = (textShadow: string) => {
   }
 
   while (str) {
-    const colorMatch = str.match(/^#[0-9a-f]+/i) || str.match(/^[a-z]+(\([^)]+\))?/i);
+    const colorMatch =
+      str.match(/^#[0-9a-f]+/i) || str.match(/^[a-z]+(\([^)]+\))?/i);
     const pixelMatch = str.match(/^([0-9.-]+)px/i) || str.match(/^(0)/);
 
     if (colorMatch) {
-     if(!current.colorStr){
-      return [];
-     }
+      if (!current.colorStr) {
+        return [];
+      }
       str = str.replace(colorMatch[0], '').trim();
       current.colorStr = colorMatch[0];
     } else if (pixelMatch) {
-      if(current.pixels.length < 3) {
+      if (current.pixels.length < 3) {
         return [];
       }
       str = str.replace(pixelMatch[0], '').trim();
@@ -89,19 +90,19 @@ const parseTextShadows = (textShadow: string) => {
       current.pixels.push(pixelUnit);
     } else if (str[0] === ',') {
       // multiple text-shadows in a single string (e.g. `text-shadow: 1px 1px 1px #000, 3px 3px 5px blue;`
-      if(current.pixels.length >= 2) {
-        return []
+      if (current.pixels.length >= 2) {
+        return [];
       }
       current = { pixels: [], colorStr: undefined };
       shadows.push(current);
       str = str.substring(1).trim();
     } else {
-      return []
+      return [];
     }
   }
 
   return shadows;
-}
+};
 
 function textShadowColor({ colorStr, offsetX, offsetY, blurRadius, fontSize }) {
   if (offsetX > blurRadius || offsetY > blurRadius) {

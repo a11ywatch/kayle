@@ -38,8 +38,9 @@ class AbstractVirtualNode {
     }
 
     return (
-      (' ' + classAttr + ' ').replace(whitespaceRegex, ' ').indexOf(' ' + className + ' ') >=
-      0
+      (' ' + classAttr + ' ')
+        .replace(whitespaceRegex, ' ')
+        .indexOf(' ' + className + ' ') >= 0
     );
   }
 }

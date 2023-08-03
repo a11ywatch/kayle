@@ -20,7 +20,7 @@ export const parseSelectorArray = (context, type) => {
     if (item instanceof window.Node) {
       // @ts-ignore
       if (item.documentElement instanceof window.Node) {
-        if(context.flatTree[0]) {
+        if (context.flatTree[0]) {
           result[j] = context.flatTree[0];
           j++;
         }
@@ -28,7 +28,7 @@ export const parseSelectorArray = (context, type) => {
         // @ts-ignore
         const nd = getNodeFromTree(item);
 
-        if(nd) {
+        if (nd) {
           result[j] = nd;
           j++;
         }
@@ -40,22 +40,21 @@ export const parseSelectorArray = (context, type) => {
         pushUniqueFrameSelector(context, type, item);
       } else {
         for (const nodeItem of shadowSelectAll(item[0])) {
-          const nn =  getNodeFromTree(nodeItem);
+          const nn = getNodeFromTree(nodeItem);
 
-          if(nn) {
+          if (nn) {
             result[j] = nn;
-            j++
+            j++;
           }
         }
-
       }
     }
   }
 
-  result.length = j
+  result.length = j;
 
   return result;
-}
+};
 
 /**
  * Unshift selectors of matching iframes

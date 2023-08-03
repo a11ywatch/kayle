@@ -40,6 +40,6 @@ const findUpVirtual = (element, target) => {
   }
 
   return parent;
-}
+};
 
 export default findUpVirtual;
