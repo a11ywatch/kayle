@@ -35,6 +35,7 @@ export const kayleLint = async (
     DOM = JSDOM;
     Console = VirtualConsole;
   }
+
   let vConsole = undefined;
 
   return new Promise(async (resolve) => {

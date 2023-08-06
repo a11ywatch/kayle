@@ -1,12 +1,13 @@
 # ✨ kayle
 
-The futuristic web accessibility engine offers the broadest coverage and unparalleled speed. Kayle can detect up to 85% of accessibility issues, making it significantly more efficient and accurate compared to other runners. It utilizes fully type-safe forks of axecore and html_codesniffer with notable enhancements.
+The futuristic web accessibility engine.
 
 ## Getting Started
 
 Install your browser automation lib [playwright](https://github.com/microsoft/playwright) or [puppeteer](https://github.com/puppeteer/puppeteer).
 
 ```sh
+# yarn add puppeteer or yarn add playwright
 npm install kayle --save
 ```
 
@@ -57,7 +58,6 @@ const results = await autoKayle({
 
 `kayle` supports multiple test runners which return different results. The built-in test runners are:
 
-- [`kayle`](./kayle/README.md) core.
 - [`fast_axecore`](./fast_htmlcs/README.md): run tests using fork of [axe-core](./lib/runners/axe.ts).
 - [`fast_htmlcs`](./fast_htmlcs/README.md): run tests using fork of [HTML CodeSniffer](./lib/runners/htmlcs.ts).
 
@@ -98,7 +98,7 @@ type RunnerConfig = {
   // only allow WCAG RULES.
   rules?: string[];
   // axe or htmlcs - the forks.
-  runners?: Runner[];
+  runners?: ("axe" | "htmlcs")[];
   // the accessibility standard.
   standard?: Standard;
   // stop test that go beyond time.

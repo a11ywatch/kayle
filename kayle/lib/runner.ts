@@ -8,7 +8,6 @@
     warning: 2,
     notice: 3,
   };
-
   // start of code score maps todo: use enums
   const A_1 = "color-contrast";
   const H_1 = "WCAG2AA.Principle1.Guideline14.143.G18.Fail";
@@ -195,7 +194,7 @@
         }
 
         if (issue.code in scoreMap) {
-          const [accessScore, ref] = scoreMap[issue.code];          
+          const [accessScore, ref] = scoreMap[issue.code];
           meta.accessScore -= accessScore;
           delete scoreMap[ref];
           delete scoreMap[issue.code];
@@ -241,8 +240,8 @@
     const runnerIssues = await Promise.all(
       options.runners.map((runner) => {
         return kayle.runners[runner](options, kayle).catch((e) => {
-          if(e instanceof Error) {
-            console.error(e)
+          if (e instanceof Error) {
+            console.error(e);
           }
           return [];
         });

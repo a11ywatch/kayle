@@ -90,7 +90,9 @@ export async function autoKayle(
         .catch((e) => {
           // remove link from the set page did not load
           ignoreSet.delete(link);
-          console.error(e);
+          if (_log.enabled) {
+            console.error(e);
+          }
         });
     })
   );

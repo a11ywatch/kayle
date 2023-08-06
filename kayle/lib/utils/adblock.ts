@@ -30,7 +30,7 @@ const engine: unknown | AdCheck =
 
             const fileExists = !!(await promises
               .stat(file)
-              .catch((e) => false));
+              .catch((_) => false));
 
             if (!fileExists) {
               try {

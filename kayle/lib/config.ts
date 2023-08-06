@@ -75,7 +75,6 @@ type WaitForOptions = {
 
 // a type that impls the puppeteer/playwright page
 type Page = {
-  // todo: use httpclase
   goto(url: string, options?: WaitForOptions): Promise<any | null>;
   setContent(html: string, options?: WaitForOptions): Promise<void>;
   close(o?: { runBeforeUnload?: boolean }): Promise<void>;

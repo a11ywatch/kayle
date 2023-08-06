@@ -20,13 +20,13 @@ const loadRunnerScript = (runner, langauge) => {
   let bundle = "";
 
   for (const runnerScript of mods.scripts) {
-    bundle += `${readFileSync(runnerScript, "utf-8")}`;
+    bundle += readFileSync(runnerScript, "utf-8");
   }
 
   return `${bundle};window.__a11y.runners['${runner}'] = ${mods.run.toString()};`;
 };
 
-// top level runners handle all scripts at runtime - 10mbs
+// top level runners handle all scripts at runtime
 const runnersJavascript = {
   kayle: readFileSync(`${__dirname}/runner.js`, "utf-8"),
   // htmlcs scripts in all locales
@@ -37,7 +37,7 @@ const runnersJavascript = {
   htmlcs_it: loadRunnerScript("htmlcs", "it"),
   htmlcs_nl: loadRunnerScript("htmlcs", "nl"),
   htmlcs_pl: loadRunnerScript("htmlcs", "pl"),
-  // htmlcs_zh_CN: loadRunnerScript("htmlcs", "zh-CN"),
+  htmlcs_zh_CN: loadRunnerScript("htmlcs", "zh-CN"),
   // htmlcs_zh_TN: loadRunnerScript("htmlcs", "zh-TN"),
   // axe scripts in all locales
   axe: loadRunnerScript("axe", "en"),
