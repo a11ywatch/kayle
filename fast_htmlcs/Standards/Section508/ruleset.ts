@@ -16,8 +16,5 @@ _global.HTMLCS_Section508 = {
     "N",
     "O",
     "P",
-  ],
-  getMsgInfo: (code) => [
-    ["Section", "1194.22 (" + code.split(".", 3)[1].toLowerCase() + ")"],
-  ],
+  ]
 };

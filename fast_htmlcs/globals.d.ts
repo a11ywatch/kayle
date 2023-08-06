@@ -120,7 +120,8 @@ type RuleSet = {
   name: string;
   description: string;
   sniffs: Rule[] | string[];
-  getMsgInfo(code: string): string | string[][];
+  // removed for now until full standards mapped.
+  getMsgInfo?(code: string): string | string[][];
 };
 
 // Guidelines to follow

@@ -219,9 +219,6 @@ _global.HTMLCS = new (function () {
     const ccode = _getMessageCode(code);
     const textId = ccode + element.outerHTML;
 
-    // get techniques that could be used on links
-    // const runnerExtras = HTMLCS_WCAG2AAA.getMsgInfo(ccode)
-
     if (!_duplicates.has(textId)) {
       // track the position to use to update the prior message on duplicates.
       _duplicates.set(textId, _messages.length);

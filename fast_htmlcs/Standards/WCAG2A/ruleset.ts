@@ -39,5 +39,4 @@ _global.HTMLCS_WCAG2A = {
       ],
     },
   ],
-  getMsgInfo: (code) => HTMLCS_WCAG2AAA.getMsgInfo(code),
 };
