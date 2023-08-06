@@ -131,7 +131,6 @@ export interface CDPSession {
 }
 
 type Runner = "axe" | "htmlcs";
-type Standard = "WCAG2A" | "WCAG2AA" | "WCAG2AAA" | "SECTION508";
 
 // runner configuration
 export type RunnerConfig = {
@@ -149,7 +148,7 @@ export type RunnerConfig = {
   rootElement?: string;
   rules?: string[];
   runners?: Runner[];
-  standard?: Standard;
+  standard?: keyof typeof Standard | Standard;
   timeout?: number;
   // allow images to render.
   allowImages?: boolean;
@@ -177,4 +176,11 @@ export const _log = { enabled: false };
  */
 export function setLogging(enabled?: boolean): void {
   _log.enabled = enabled;
+}
+
+export enum Standard {
+  WCAG2A = "WCAG2A",
+  WCAG2AA = "WCAG2AA",
+  WCAG2AAA = "WCAG2AAA",
+  SECTION508 = "SECTION508",
 }

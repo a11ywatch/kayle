@@ -30,7 +30,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_3_3_3_3 = {
    * @param {DOMNode} element The element registered.
    * @param {DOMNode} top     The top element of the tested code.
    */
-  process: function (element, top) {
+  process: (element, _) => {
     // Only G177 (about providing suggestions) is flagged as a technique.
     // The techniques in 3.3.1 are also listed in this Success Criterion.
     HTMLCS.addMessage(

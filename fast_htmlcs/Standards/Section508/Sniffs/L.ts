@@ -36,29 +36,30 @@ _global.HTMLCS_Section508_Sniffs_L = {
   },
 
   addProcessLinksMessages: function (top) {
-    var errors = this.processLinks(top);
-    for (var i = 0; i < errors.emptyNoId.length; i++) {
+    const errors = this.processLinks(top);
+
+    for (const emptyNoId of errors.emptyNoId) {
       HTMLCS.addMessage(
         HTMLCS.ERROR,
-        errors.emptyNoId[i],
+        emptyNoId,
         "Anchor element found with no link content and no name and/or ID attribute.",
         "EmptyAnchorNoId"
       );
     }
 
-    for (var i = 0; i < errors.placeholder.length; i++) {
+    for (const placeholder of errors.placeholder) {
       HTMLCS.addMessage(
         HTMLCS.WARNING,
-        errors.placeholder[i],
+        placeholder,
         "Anchor element found with link content, but no href, ID, or name attribute has been supplied.",
         "PlaceholderAnchor"
       );
     }
 
-    for (var i = 0; i < errors.noContent.length; i++) {
+    for (const noContent of errors.noContent) {
       HTMLCS.addMessage(
         HTMLCS.ERROR,
-        errors.noContent[i],
+        noContent,
         "Anchor element found with a valid href attribute, but no link content has been supplied.",
         "NoContentAnchor"
       );
@@ -76,17 +77,8 @@ _global.HTMLCS_Section508_Sniffs_L = {
     };
 
     for (const element of HTMLCS.util.getAllElements(top, "a")) {
-      var hrefFound = false;
-      var content = HTMLCS.util.getElementTextContent(element);
-
-      /*
-            var nameFound = false;
-            if ((element.hasAttribute('title') === true) && (/^\s*$/.test(element.getAttribute('title')) === false)) {
-                nameFound = true;
-            } else if (/^\s*$/.test(content) === false) {
-                nameFound = true;
-            }
-            */
+      const content = HTMLCS.util.getElementTextContent(element);
+      let hrefFound = false;
 
       if (
         element.hasAttribute("href") === true &&
@@ -103,9 +95,9 @@ _global.HTMLCS_Section508_Sniffs_L = {
         // essentially misusing them. Place an ID on a parent element instead.
         if (/^\s*$/.test(content) === true) {
           // Also no content. (eg. <a id=""></a> or <a name=""></a>)
-          if (element.hasAttribute("id") === true) {
+          if (element.hasAttribute("id")) {
             errors.empty.push(element);
-          } else if (element.hasAttribute("name") === true) {
+          } else if (element.hasAttribute("name")) {
             errors.emptyWithName.push(element);
           } else {
             errors.emptyNoId.push(element);
@@ -114,10 +106,7 @@ _global.HTMLCS_Section508_Sniffs_L = {
           // Giving a benefit of the doubt here - if a link has text and also
           // an ID, but no href, it might be because it is being manipulated by
           // a script.
-          if (
-            element.hasAttribute("id") === true ||
-            element.hasAttribute("name") === true
-          ) {
+          if (element.hasAttribute("id") || element.hasAttribute("name")) {
             errors.noHref.push(element);
           } else {
             // HTML5 allows A elements with text but no href, "for where a
@@ -125,7 +114,7 @@ _global.HTMLCS_Section508_Sniffs_L = {
             // Hence, thrown as a warning, not an error.
             errors.placeholder.push(element);
           }
-        } //end if
+        }
       } else {
         if (/^\s*$/.test(content) === true) {
           // Href provided, but no content.
@@ -135,8 +124,8 @@ _global.HTMLCS_Section508_Sniffs_L = {
           if (element.querySelectorAll("img").length === 0) {
             errors.noContent.push(element);
           }
-        } //end if
-      } //end if
+        }
+      }
     }
 
     return errors;

@@ -28,13 +28,11 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_7 = {
    * @param {DOMNode} element The element registered.
    * @param {DOMNode} top     The top element of the tested code.
    */
-  process: function (element, top) {
+  process: (_, top) => {
     // Fire this notice if there appears to be an input field or link on the page
     // (which will be just about anything). Links are important because they can
     // still be tabbed to.
-    var inputField = top.querySelector("input, textarea, button, select, a");
-
-    if (inputField !== null) {
+    if (top.querySelector("input, textarea, button, select, a") !== null) {
       HTMLCS.addMessage(
         HTMLCS.NOTICE,
         top,

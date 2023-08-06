@@ -28,7 +28,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_4 = {
    * @param {DOMNode} element The element registered.
    * @param {DOMNode} top     The top element of the tested code.
    */
-  process: function (element, top) {
+  process: (_, top) => {
     HTMLCS.addMessage(
       HTMLCS.NOTICE,
       top,

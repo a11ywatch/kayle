@@ -20,9 +20,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_8 = {
    *
    * @returns {Array} The list of elements.
    */
-  register: function () {
-    return ["link"];
-  },
+  register: () => ["link"],
 
   /**
    * Process the registered element.
@@ -30,13 +28,11 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_8 = {
    * @param {DOMNode} element The element registered.
    * @param {DOMNode} top     The top element of the tested code.
    */
-  process: function (element, top) {
-    var linkParentName = element.parentNode.nodeName.toLowerCase();
-
+  process: (element, _) => {
     // Check for the correct location. HTML4 states "it may only appear in the
     // HEAD element". HTML5 states it appears "wherever metadata content is
     // expected", which only includes the head element.
-    if (linkParentName !== "head") {
+    if (element.parentNode.nodeName !== "HEAD") {
       HTMLCS.addMessage(
         HTMLCS.ERROR,
         element,
@@ -47,7 +43,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_8 = {
 
     // Check for mandatory elements.
     if (
-      element.hasAttribute("rel") === false ||
+      !element.hasAttribute("rel") ||
       !element.getAttribute("rel") ||
       /^\s*$/.test(element.getAttribute("rel")) === true
     ) {
@@ -60,7 +56,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_8 = {
     }
 
     if (
-      element.hasAttribute("href") === false ||
+      !element.hasAttribute("href") ||
       !element.getAttribute("href") ||
       /^\s*$/.test(element.getAttribute("href")) === true
     ) {

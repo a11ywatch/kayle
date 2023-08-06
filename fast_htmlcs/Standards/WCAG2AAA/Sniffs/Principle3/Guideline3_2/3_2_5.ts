@@ -20,9 +20,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_2_3_2_5 = {
    *
    * @returns {Array} The list of elements.
    */
-  register: function () {
-    return ["a"];
-  },
+  register: () => ["a"],
 
   /**
    * Process the registered element.
@@ -30,7 +28,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_2_3_2_5 = {
    * @param {DOMNode} element The element registered.
    * @param {DOMNode} top     The top element of the tested code.
    */
-  process: function (element, top) {
+  process: function (element, _) {
     var nodeName = element.nodeName.toLowerCase();
 
     if (nodeName === "a") {

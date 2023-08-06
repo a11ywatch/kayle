@@ -28,7 +28,7 @@ _global.HTMLCS_Section508_Sniffs_G = {
    * @param {DOMNode} element The element registered.
    * @param {DOMNode} top     The top element of the tested code.
    */
-  process: function (element, top) {
+  process: (element, _) => {
     // If no table headers, emit notice about the table.
     if (HTMLCS.util.isLayoutTable(element)) {
       HTMLCS.addMessage(

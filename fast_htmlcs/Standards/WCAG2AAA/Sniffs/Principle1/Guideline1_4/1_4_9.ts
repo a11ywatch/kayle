@@ -28,7 +28,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_9 = {
    * @param {DOMNode} element The element registered.
    * @param {DOMNode} top     The top element of the tested code.
    */
-  process: function (_, top) {
+  process: (_, top) => {
     if (top.querySelector("img") !== null) {
       HTMLCS.addMessage(
         HTMLCS.NOTICE,

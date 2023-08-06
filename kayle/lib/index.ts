@@ -11,5 +11,5 @@ export {
   sendCDPPageConfigurationEnable,
   sendCDPPageConfigurationReset,
 } from "./utils/cdp-blocking";
-export { setLogging } from "./config";
+export { setLogging, Standard, RunnerConfig } from "./config";
 export { extractLinks } from "./wasm";

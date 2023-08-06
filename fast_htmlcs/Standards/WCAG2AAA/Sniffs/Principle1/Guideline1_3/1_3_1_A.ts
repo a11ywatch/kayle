@@ -22,7 +22,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1_A = {
    * @param {DOMNode} element The element registered.
    * @param {DOMNode} top     The top element of the tested code.
    */
-  process: function (element, top) {
+  process: (element, top) => {
     if (element === top) {
       HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1.testHeadingOrder(
         top,

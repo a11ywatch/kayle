@@ -28,7 +28,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_1_2_1_1 = {
    * @param {DOMNode} element The element registered.
    * @param {DOMNode} top     The top element of the tested code.
    */
-  process: function (element, top) {
+  process: (element, top) => {
     // Testing for elements that have explicit attributes for mouse-specific
     // events. Note: onclick is considered keyboard accessible, as it is actually
     // tied to the default action of a link or button - not merely a click.

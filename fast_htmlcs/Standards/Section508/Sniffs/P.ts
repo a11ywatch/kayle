@@ -28,7 +28,7 @@ _global.HTMLCS_Section508_Sniffs_P = {
    * @param {DOMNode} element The element registered.
    * @param {DOMNode} top     The top element of the tested code.
    */
-  process: function (element, top) {
+  process: (element, top) => {
     if (element === top) {
       HTMLCS.addMessage(
         HTMLCS.NOTICE,

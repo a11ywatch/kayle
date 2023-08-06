@@ -28,7 +28,7 @@ _global.HTMLCS_Section508_Sniffs_J = {
    * @param {DOMNode} element The element registered.
    * @param {DOMNode} top     The top element of the tested code.
    */
-  process: function (_, top) {
+  process: (_, top) => {
     // The term in Sec. 508 is "flicker" rather than flash.
     HTMLCS.addMessage(
       HTMLCS.NOTICE,

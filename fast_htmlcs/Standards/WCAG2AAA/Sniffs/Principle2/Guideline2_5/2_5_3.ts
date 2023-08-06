@@ -20,9 +20,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_3 = {
    *
    * @returns {Array} The list of elements.
    */
-  register: function () {
-    return ["_top", "a", "button", "label", "input"];
-  },
+  register: () => ["_top", "a", "button", "label", "input"],
 
   /**
    * Process the registered element.
@@ -30,7 +28,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_3 = {
    * @param {DOMNode} element The element registered.
    * @param {DOMNode} top     The top element of the tested code.
    */
-  process: function (element, top: Element & { getElementById?(id: string) }) {
+  process: (element, top: Element & { getElementById?(id: string) }) => {
     if (element == top) {
       HTMLCS.addMessage(
         HTMLCS.NOTICE,

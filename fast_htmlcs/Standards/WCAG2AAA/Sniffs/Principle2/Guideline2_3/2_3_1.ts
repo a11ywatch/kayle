@@ -28,7 +28,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_3_2_3_1 = {
    * @param {DOMNode} element The element registered.
    * @param {DOMNode} top     The top element of the tested code.
    */
-  process: function (_, top) {
+  process: (_, top) => {
     // The "small" flashing area is deliberately vague - users should see
     // technique G176 for more details, as the threshold depends on both the
     // size and resolution of a screen.
