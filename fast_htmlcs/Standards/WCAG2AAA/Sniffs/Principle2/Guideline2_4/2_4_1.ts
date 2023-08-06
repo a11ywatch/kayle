@@ -1,16 +1,3 @@
-/**
- * +--------------------------------------------------------------------+
- * | This HTML_CodeSniffer file is Copyright (c)                        |
- * | Squiz Pty Ltd (ABN 77 084 670 600)                                 |
- * +--------------------------------------------------------------------+
- * | IMPORTANT: Your use of this Software is subject to the terms of    |
- * | the Licence provided in the file licence.txt. If you cannot find   |
- * | this file please contact Squiz (www.squiz.com.au) so we may        |
- * | provide you a copy.                                                |
- * +--------------------------------------------------------------------+
- *
- */
-
 _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_1 = {
   /**
    * Determines the elements to register for processing.
@@ -36,7 +23,6 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_1 = {
         case "IFRAME":
           this.testIframeTitle(element);
           break;
-
         case "A":
         case "AREA":
           this.testSameDocFragmentLinks(element, top);
@@ -90,7 +76,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_1 = {
    *
    * @returns void
    */
-  testGenericBypassMsg: function (top) {
+  testGenericBypassMsg: (top) => {
     HTMLCS.addMessage(
       HTMLCS.NOTICE,
       top,

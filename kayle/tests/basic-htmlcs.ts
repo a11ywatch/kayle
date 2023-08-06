@@ -16,12 +16,12 @@ import { performance } from "perf_hooks";
     browser,
     runners: ["htmlcs"],
     includeWarnings: true,
+    standard: "WCAG2AAA",
     origin: "https://www.drake.com",
     html: drakeMock,
   });
   const nextTime = performance.now() - startTime;
 
-  console.log(issues);
   console.log(`Issue count ${issues.length}`);
   console.log(meta);
   console.log(automateable);

@@ -140,12 +140,12 @@ For the comparison between using `fast_htmlcs`, `fast_axecore`, and the metrics 
 
 1. `yarn build:test`
 
-Checkout the [playwright-example](./kayle/tests/basic-playwright.spec.ts) or [puppeteer](./kayle/tests/basic.ts) for more information.
+Checkout the [playwright-example](./kayle/tests/basic-playwright.spec.ts) or [puppeteer-example](./kayle/tests/basic.ts) for more information.
 
 ## Benchmarks
 
-1. `fast_htmlcs` runs up to 110 times base faster than htmlcs or HTML codesniffer.
-1. `fast_axecore` runs up to 200%-400% base faster than the original axe by default and scales the larger the website.
+1. `fast_htmlcs` runs up to 110x base faster than HTML_CodeSniffer.
+1. `fast_axecore` runs up to 250%-500% base faster than the original axe by default and scales the larger the website.
 
 Currently `fast_htmlcs` runs around 50x faster than axe-core and has several differences of handling the way issues are found. They both capture different cases and is best to used together which this library handles efficiently.
 

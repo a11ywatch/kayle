@@ -1,16 +1,3 @@
-/**
- * +--------------------------------------------------------------------+
- * | This HTML_CodeSniffer file is Copyright (c)                        |
- * | Squiz Pty Ltd (ABN 77 084 670 600)                                 |
- * +--------------------------------------------------------------------+
- * | IMPORTANT: Your use of this Software is subject to the terms of    |
- * | the Licence provided in the file licence.txt. If you cannot find   |
- * | this file please contact Squiz (www.squiz.com.au) so we may        |
- * | provide you a copy.                                                |
- * +--------------------------------------------------------------------+
- *
- */
-
 _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_3_3_3_2 = {
   /**
    * Determines the elements to register for processing.
@@ -20,9 +7,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_3_3_3_2 = {
    *
    * @returns {Array} The list of elements.
    */
-  register: function () {
-    return ["form"];
-  },
+  register: () => ["form"],
 
   /**
    * Process the registered element.
@@ -30,7 +15,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_3_3_3_2 = {
    * @param {DOMNode} element The element registered.
    * @param {DOMNode} top     The top element of the tested code.
    */
-  process: function (element, _) {
+  process: (element, _) => {
     // Only the generic message will be displayed here. If there were problems
     // with input boxes not having labels, it will be pulled up as errors in
     // other Success Criteria (eg. 1.3.1, 4.1.2).

@@ -1,16 +1,3 @@
-/**
- * +--------------------------------------------------------------------+
- * | This HTML_CodeSniffer file is Copyright (c)                        |
- * | Squiz Pty Ltd (ABN 77 084 670 600)                                 |
- * +--------------------------------------------------------------------+
- * | IMPORTANT: Your use of this Software is subject to the terms of    |
- * | the Licence provided in the file licence.txt. If you cannot find   |
- * | this file please contact Squiz (www.squiz.com.au) so we may        |
- * | provide you a copy.                                                |
- * +--------------------------------------------------------------------+
- *
- */
-
 _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
   /**
    * Determines the elements to register for processing.
@@ -30,22 +17,23 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
    */
   process: function (element, top) {
     if (element === top) {
-      var messages = this.processFormControls(top);
-      for (var i = 0; i < messages.errors.length; i++) {
+      const messages = this.processFormControls(top);
+
+      for (const errors of messages.errors) {
         HTMLCS.addMessage(
           HTMLCS.ERROR,
-          messages.errors[i].element,
-          messages.errors[i].msg,
-          "H91." + messages.errors[i].subcode
+          errors.element,
+          errors.msg,
+          "H91." + errors.subcode
         );
       }
 
-      for (var i = 0; i < messages.warnings.length; i++) {
+      for (const warnings of messages.warnings) {
         HTMLCS.addMessage(
           HTMLCS.WARNING,
-          messages.warnings[i].element,
-          messages.warnings[i].msg,
-          "H91." + messages.warnings[i].subcode
+          warnings.element,
+          warnings.msg,
+          "H91." + warnings.subcode
         );
       }
 
@@ -54,20 +42,21 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
   },
 
   addProcessLinksMessages: function (top) {
-    var errors = this.processLinks(top);
-    for (var i = 0; i < errors.empty.length; i++) {
+    const errors = this.processLinks(top);
+
+    for (const empty of errors.empty) {
       HTMLCS.addMessage(
         HTMLCS.WARNING,
-        errors.empty[i],
+        empty,
         _global.HTMLCS.getTranslation("4_1_2_H91.A.Empty"),
         "H91.A.Empty"
       );
     }
 
-    for (var i = 0; i < errors.emptyWithName.length; i++) {
+    for (const emptyWithName of errors.emptyWithName) {
       HTMLCS.addMessage(
         HTMLCS.WARNING,
-        errors.emptyWithName[i],
+        emptyWithName,
         _global.HTMLCS.getTranslation("4_1_2_H91.A.EmptyWithName"),
         "H91.A.EmptyWithName"
       );
@@ -111,7 +100,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
   },
 
   processLinks: function (top) {
-    var errors = {
+    const errors = {
       empty: [],
       emptyWithName: [],
       emptyNoId: [],
@@ -124,9 +113,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
       top,
       'a:not([role="button"])'
     )) {
-      var nameFound = false;
-      var hrefFound = false;
-      var content = HTMLCS.util.getElementTextContent(element);
+      let nameFound = false;
+      let hrefFound = false;
+      let content = HTMLCS.util.getElementTextContent(element);
 
       if (
         element.hasAttribute("title") === true &&
@@ -195,8 +184,22 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
   },
 
   processFormControls: function (top) {
-    var errors = [];
-    var warnings = [];
+    const errors = [];
+    const warnings = [];
+    const html5inputTypes = [
+      "email",
+      "search",
+      "date",
+      "datetime-local",
+      "month",
+      "number",
+      "tel",
+      "time",
+      "url",
+      "week",
+      "range",
+      "color",
+    ];
 
     const requiredNames = {
       button: ["@title", "_content", "@aria-label", "@aria-labelledby"],
@@ -212,23 +215,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
       textarea: ["label", "@title", "@aria-label", "@aria-labelledby"],
     };
 
-    var html5inputTypes = [
-      "email",
-      "search",
-      "date",
-      "datetime-local",
-      "month",
-      "number",
-      "tel",
-      "time",
-      "url",
-      "week",
-      "range",
-      "color",
-    ];
-
-    for (var i = 0, l = html5inputTypes.length; i < l; i++) {
-      requiredNames["input_" + html5inputTypes[i]] = [
+    // todo: remove loop for static
+    for (const inputType of html5inputTypes) {
+      requiredNames["input_" + inputType] = [
         "label",
         "@title",
         "@aria-label",
@@ -236,7 +225,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
       ];
     }
 
-    var requiredValues = {
+    const requiredValues = {
       select: "option_selected",
     };
 
@@ -245,7 +234,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
       'button, fieldset, input, select, textarea, [role="button"]'
     )) {
       var nodeName = element.nodeName.toLowerCase();
-      var msgSubCode =
+      let msgSubCode =
         element.nodeName.substr(0, 1).toUpperCase() +
         element.nodeName.substr(1).toLowerCase();
       if (nodeName === "input") {
@@ -262,14 +251,14 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
         }
 
         // Get a format like "InputText".
-        var msgSubCode =
+        msgSubCode =
           "Input" +
           nodeName.substr(6, 1).toUpperCase() +
           nodeName.substr(7).toLowerCase();
       }
 
-      var matchingRequiredNames = requiredNames[nodeName];
-      var requiredValue = requiredValues[nodeName];
+      let matchingRequiredNames = requiredNames[nodeName];
+      let requiredValue = requiredValues[nodeName];
 
       // Any element that doesn't have specific handling must have content or aria labels.
       if (!matchingRequiredNames && nodeName !== "input_hidden") {
@@ -282,20 +271,21 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
           var requiredName = matchingRequiredNames[i];
           if (requiredName === "_content") {
             // Work with content.
-            var content = HTMLCS.util.getElementTextContent(element);
-            if (/^\s*$/.test(content) === false) {
+            if (
+              /^\s*$/.test(HTMLCS.util.getElementTextContent(element)) === false
+            ) {
               break;
             }
           } else if (requiredName === "label") {
             // Label element. Re-use the label associating
             // functions in SC 1.3.1.
-            var hasLabel =
+            if (
               HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1.testLabelsOnInputs(
                 element,
                 top,
                 true
-              );
-            if (hasLabel !== false) {
+              ) !== false
+            ) {
               break;
             }
           } else if (requiredName.charAt(0) === "@") {
@@ -317,10 +307,11 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
             }
           } else {
             // Sub-element contents.
-            var subEl = element.querySelector(requiredName);
+            const subEl = element.querySelector(requiredName);
             if (subEl !== null) {
-              var content = HTMLCS.util.getElementTextContent(subEl);
-              if (/^\s*$/.test(content) === false) {
+              if (
+                /^\s*$/.test(HTMLCS.util.getElementTextContent(subEl)) === false
+              ) {
                 break;
               }
             }

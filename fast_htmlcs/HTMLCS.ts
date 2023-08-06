@@ -219,6 +219,9 @@ _global.HTMLCS = new (function () {
     const ccode = _getMessageCode(code);
     const textId = ccode + element.outerHTML;
 
+    // get techniques that could be used on links
+    // const runnerExtras = HTMLCS_WCAG2AAA.getMsgInfo(ccode)
+
     if (!_duplicates.has(textId)) {
       // track the position to use to update the prior message on duplicates.
       _duplicates.set(textId, _messages.length);
@@ -271,16 +274,14 @@ _global.HTMLCS = new (function () {
       }
     }
 
+    _currentSniff = HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1;
+
     // Due to filtering of presentation roles for general sniffing these need to be handled
     // separately. The 1.3.1 sniff needs to run to detect any incorrect usage of the presentation
     // role.
-    const presentationElems = topElement.querySelectorAll(
+    for (const element of topElement.querySelectorAll(
       '[role="presentation"]'
-    );
-
-    _currentSniff = HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1;
-
-    for (const element of presentationElems) {
+    )) {
       _currentSniff.testSemanticPresentationRole(element);
     }
 

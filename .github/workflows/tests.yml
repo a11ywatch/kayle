@@ -14,9 +14,9 @@ jobs:
     strategy:
       matrix:
         include:
-          # - node-version: 14.x
           - node-version: 16.x
-          - node-version: 19.x
+          - node-version: 18.x
+          - node-version: latest
 
     steps:
       - name: Checkout code from ${{ github.repository }}

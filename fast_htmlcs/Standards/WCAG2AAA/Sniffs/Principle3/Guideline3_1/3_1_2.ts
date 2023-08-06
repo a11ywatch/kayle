@@ -1,16 +1,3 @@
-/**
- * +--------------------------------------------------------------------+
- * | This HTML_CodeSniffer file is Copyright (c)                        |
- * | Squiz Pty Ltd (ABN 77 084 670 600)                                 |
- * +--------------------------------------------------------------------+
- * | IMPORTANT: Your use of this Software is subject to the terms of    |
- * | the Licence provided in the file licence.txt. If you cannot find   |
- * | this file please contact Squiz (www.squiz.com.au) so we may        |
- * | provide you a copy.                                                |
- * +--------------------------------------------------------------------+
- *
- */
-
 _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_2 = {
   /**
    * Determines the elements to register for processing.
@@ -38,7 +25,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_2 = {
     );
 
     // Alias the SC 3.1.1 object, which contains our "valid language tag" test.
-    var sc3_1_1 = HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_1;
+    const sc3_1_1 = HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_1;
 
     // Note, going one element beyond the end, so we can test the top element
     // (which doesn't get picked up by the above query). Instead of going off the

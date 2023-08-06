@@ -6,7 +6,7 @@ This fork of HTML_CodeSniffer for performance and accuracy.
 
 Fast_Htmlcs is the fork of Htmlcs a JavaScript application that checks a HTML document
 or source code, and detects violations of a defined presentation or accessibility
-standard, such as Section508 or WCAG2.1.
+standard, such as Section508 or WCAG2.1. This library is being re-written to be the main accessibility default runner for kayle. Upon full re-write the library will change names to be complete.
 
 ## Standards included
 
@@ -23,31 +23,6 @@ Fast_Htmlcs can be called in multiple ways:
 - Called directly in JavaScript source, Fast_Htmlcs will provide a list of known
   and potential violations to the calling script.
 - Using as a Node.js module, installed with npm: `npm i --save fast_htmlcs`
-
-## Using the source code
-
-### Building the auditor
-
-The Fast_Htmlcs auditor can be built using [Node.js](https://nodejs.org/) and [Grunt
-task runner](http://gruntjs.com/). It has been tested with the recent version of Node.js
-(starting from version 6.0) and Grunt.
-
-- Install Node.js with your package manager of choice, for example `sudo apt-get install nodejs`
-- You may need to update the Node.js package manager (npm) itself: `npm install -g npm`
-- Install the Grunt CLI helper if you haven't already done so: `npm install -g grunt-cli`
-- Get Node.js to install the dependencies Grunt needs: `npm install`
-- Run Grunt to build the auditor: `grunt build`
-
-You should see two new directories: `node_modules` (containing the Node.js
-dependencies), and `build` (containing your auditor). You can then move
-(or symlink as appropriate) your `build` directory to a web-accessible
-location.
-
-### Debug build
-
-If you are developing using HTML_CodeSniffer and require the code not minified for
-debugging purposes, follow the above steps, but run `grunt build-debug`
-(instead of just build). This will combine the files as normal, but not minify them.
 
 ## Command-Line processing
 
@@ -158,36 +133,6 @@ HTMLCSAuditor.run("WCAG2AA", null, {
 If other language support is required a custom version can be built by adding more translations in `Translations/*.js` and using the grunt build process described above.
 
 Traditional Chinese support is WIP. We have translations for simplified.
-
-## Contributing and reporting issues
-
-To report any issues with using HTML_CodeSniffer, please use the
-[HTML_CodeSniffer Issue Tracker](http://github.com/squizlabs/HTML_CodeSniffer/issues).
-
-Contributions to the HTML_CodeSniffer code base are also welcome: please create a
-fork of the main repository, then submit your modified code through a
-[Pull Request](http://help.github.com/send-pull-requests/) for review. A Pull Request
-also automatically creates an issue in the Issue Tracker, so if you have code to
-contribute, you do not need to do both.
-
-## More Information
-
-More information on HTML_CodeSniffer can be found on its GitHub site,
-[http://squizlabs.github.io/HTML_CodeSniffer/](http://squizlabs.github.io/HTML_CodeSniffer/). This site provides:
-
-- Information on the tests performed (and messages emitted) by HTML_CodeSniffer's standards, organised by conformance level and Success Criterion;
-- A source test area that allows you to try out HTML_CodeSniffer with your own HTML source code; and
-- A link to the HTML_CodeSniffer bookmarklet, letting you check other pages using the pop-up auditor interface.
-
-## Translation Contributors
-
-Special thanks to:
-
-- [nsulzycki](https://github.com/nsulzycki) (Polish Translation)
-- [dmassiani](https://github.com/dmassiani) (French Translation)
-- [jamadam](https://github.com/jamadam) (Japanese Translation)
-- [tassoman](https://github.com/tassoman) (Italian Translation)
-- [bdeclerc](https://github.com/bdeclerc) (Dutch Translation)
 
 ## License
 

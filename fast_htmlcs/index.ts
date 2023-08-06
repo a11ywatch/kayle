@@ -2,7 +2,7 @@ import { existsSync } from "fs";
 
 const scriptPath = __dirname + "/build/HTMLCS.js";
 
-if (existsSync(scriptPath) === true) {
+if (existsSync(scriptPath)) {
   module.exports = require(scriptPath);
 } else {
   throw new Error(
