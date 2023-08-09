@@ -66,7 +66,7 @@ type HTMLCS = {
     HSVtosRGB(colour: HSV): RGB;
     getElementTextContent(element: Element, hasAlt?: boolean): string;
     findParentNode(node: Element, selector: string): Node;
-    eachParentNode(node: Element, cb: (node: Element) => void): void;
+    eachParentNode(node: Element, cb: (node: Element) => boolean): void;
     getChildrenForTable(table: Element, childNodeName: string): Element[];
     testTableHeaders(table: Element): RetVal;
     getCellHeaders(tableCell: Element): Element[];

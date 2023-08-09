@@ -221,9 +221,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
    * @param {DOMNode} top     The top element of the tested code.
    */
   testLabelsOnInputs: function (element, _, muteErrors) {
-    let inputType = element.nodeName.toLowerCase();
+    let inputType = element.nodeName;
 
-    if (inputType === "input") {
+    if (inputType === "INPUT") {
       if (element.hasAttribute("type")) {
         inputType = element.getAttribute("type").toLowerCase();
       } else {
@@ -233,7 +233,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 
     let hasLabel: boolean | Record<string, any> = false;
 
-    let addToLabelList = function (found) {
+    // this isnt really needed as an object
+    const addToLabelList = function (found) {
       if (!hasLabel) {
         hasLabel = {};
       }
@@ -256,33 +257,31 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
     }
 
     // Find an explicit label.
-    let explicitLabel = element.ownerDocument.querySelector(
-      'label[for="' + element.id + '"]'
-    );
-    if (explicitLabel) {
+    if (
+      element.ownerDocument.querySelector('label[for="' + element.id + '"]')
+    ) {
       addToLabelList("explicit");
     }
 
     // Find an implicit label.
     let foundImplicit = false;
+
     if (element.parentNode) {
       HTMLCS.util.eachParentNode(element, function (parent) {
-        if (parent.nodeName.toLowerCase() === "label") {
+        if (parent.nodeName === "LABEL") {
           foundImplicit = true;
         }
+        return foundImplicit;
       });
     }
 
-    // @ts-ignore
-    if (foundImplicit === true) {
+    if (foundImplicit) {
       addToLabelList("implicit");
     }
 
     // Find a title attribute.
-    let title = element.getAttribute("title");
-
-    if (title !== null) {
-      if (/^\s*$/.test(title) === true && needsLabel === true) {
+    if (element.hasAttribute("title")) {
+      if (/^\s*$/.test(element.getAttribute("title")) === true && needsLabel) {
         HTMLCS.addMessage(
           HTMLCS.WARNING,
           element,
@@ -295,8 +294,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
     }
 
     // Find an aria-label attribute.
-    if (element.hasAttribute("aria-label") === true) {
-      if (HTMLCS.util.hasValidAriaLabel(element) === false) {
+    if (element.hasAttribute("aria-label")) {
+      if (!HTMLCS.util.hasValidAriaLabel(element)) {
         HTMLCS.addMessage(
           HTMLCS.WARNING,
           element,
@@ -309,8 +308,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
     }
 
     // Find an aria-labelledby attribute.
-    if (element.hasAttribute("aria-labelledby") === true) {
-      if (HTMLCS.util.hasValidAriaLabel(element) === false) {
+    if (element.hasAttribute("aria-labelledby")) {
+      if (!HTMLCS.util.hasValidAriaLabel(element)) {
         HTMLCS.addMessage(
           HTMLCS.WARNING,
           element,
@@ -326,7 +325,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
     }
 
     if (!(muteErrors === true)) {
-      if (hasLabel !== false && needsLabel === false) {
+      if (hasLabel !== false && !needsLabel) {
         // Note that it is okay for buttons to have aria-labelledby or
         // aria-label, or title. The former two override the button text,
         // while title is a lower priority than either: the button text,
@@ -348,7 +347,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             "F68.HiddenAttr"
           );
         }
-      } else if (hasLabel === false && needsLabel === true) {
+      } else if (hasLabel === false && needsLabel) {
         // Needs label.
         HTMLCS.addMessage(
           HTMLCS.ERROR,

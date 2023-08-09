@@ -814,10 +814,13 @@ _global.HTMLCS.util = {
    *
    * @return void
    */
-  eachParentNode: function (node, cb) {
+  eachParentNode: function (node, cb: (node: Element) => boolean) {
     while (node && node.parentNode) {
-      cb(node);
+      const c = cb(node);
       node = node.parentNode as Element;
+      if (c) {
+        break;
+      }
     }
   },
 
