@@ -73,5 +73,5 @@ _global.HTMLCS_WCAG2AAA = {
     "Principle4.Guideline4_1.4_1_1",
     "Principle4.Guideline4_1.4_1_2",
     "Principle4.Guideline4_1.4_1_3",
-  ]
+  ],
 };

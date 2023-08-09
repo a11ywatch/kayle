@@ -8,108 +8,36 @@
     warning: 2,
     notice: 3,
   };
+
   // start of code score maps todo: use enums
-  // const A_1 = "color-contrast";
-  // const H_1 = "WCAG2AA.Principle1.Guideline14.143.G18.Fail";
-  // const A_2 = "duplicate-id";
-  // const H_2 = "WCAG2AA.Principle4.Guideline41.411.F77";
-  // const A_3 = "empty-heading";
-  // const H_3 = "WCAG2AA.Principle1.Guideline13.131.H42.2";
-  // const A_4 = "frame-title";
-  // const H_4 = "WCAG2AA.Principle2.Guideline24.241.H64.1";
-  // const A_5 = "link-name";
-  // const H_5 = "WCAG2AA.Principle4.Guideline41.412.H91.A.EmptyNoId";
-  // const A_6 = "heading-order";
-  // const H_6 = "WCAG2AA.Principle1.Guideline13.131A.G141"; // HeadingOrder map
+  const A_1 = "color-contrast";
+  const H_1 = "WCAG2AA.Principle1.Guideline14.143.G18.Fail";
+  const A_2 = "duplicate-id";
+  const H_2 = "WCAG2AA.Principle4.Guideline41.411.F77";
+  const A_3 = "empty-heading";
+  const H_3 = "WCAG2AA.Principle1.Guideline13.131.H42.2";
+  const A_4 = "frame-title";
+  const H_4 = "WCAG2AA.Principle2.Guideline24.241.H64.1";
+  const A_5 = "link-name";
+  const H_5 = "WCAG2AA.Principle4.Guideline41.412.H91.A.EmptyNoId";
+  const A_6 = "heading-order";
+  const H_6 = "WCAG2AA.Principle1.Guideline13.131A.G141"; // HeadingOrder map
 
   // oneshot map
-  const scoreMap = new Map([
-    [
-        "color-contrast",
-        [
-            20,
-            "WCAG2AA.Principle1.Guideline14.143.G18.Fail"
-        ]
-    ],
-    [
-        "WCAG2AA.Principle1.Guideline14.143.G18.Fail",
-        [
-            20,
-            "color-contrast"
-        ]
-    ],
-    [
-        "duplicate-id",
-        [
-            20,
-            "WCAG2AA.Principle4.Guideline41.411.F77"
-        ]
-    ],
-    [
-        "WCAG2AA.Principle4.Guideline41.411.F77",
-        [
-            20,
-            "duplicate-id"
-        ]
-    ],
-    [
-        "empty-heading",
-        [
-            20,
-            "WCAG2AA.Principle1.Guideline13.131.H42.2"
-        ]
-    ],
-    [
-        "WCAG2AA.Principle1.Guideline13.131.H42.2",
-        [
-            20,
-            "empty-heading"
-        ]
-    ],
-    [
-        "frame-title",
-        [
-            10,
-            "WCAG2AA.Principle2.Guideline24.241.H64.1"
-        ]
-    ],
-    [
-        "WCAG2AA.Principle2.Guideline24.241.H64.1",
-        [
-            10,
-            "frame-title"
-        ]
-    ],
-    [
-        "link-name",
-        [
-            20,
-            "WCAG2AA.Principle4.Guideline41.412.H91.A.EmptyNoId"
-        ]
-    ],
-    [
-        "WCAG2AA.Principle4.Guideline41.412.H91.A.EmptyNoId",
-        [
-            20,
-            "link-name"
-        ]
-    ],
-    [
-        "heading-order",
-        [
-            10,
-            "WCAG2AA.Principle1.Guideline13.131A.G141"
-        ]
-    ],
-    [
-        "WCAG2AA.Principle1.Guideline13.131A.G141",
-        [
-            10,
-            "heading-order"
-        ]
-    ]
-]);
-
+  const scoreMap = new Map<string, [number, string]>([
+    [A_1, [20, H_1]],
+    [H_1, [20, A_1]],
+    [A_2, [20, H_2]],
+    [H_2, [20, A_2]],
+    [A_3, [20, H_3]],
+    [H_3, [20, A_3]],
+    [A_4, [10, H_4]],
+    [H_4, [10, A_4]],
+    [A_5, [20, H_5]],
+    [H_5, [20, A_5]],
+    [A_6, [10, H_6]],
+    [H_6, [10, A_6]],
+  ]);
 
   // root html element
   let rootElement = null;
@@ -267,7 +195,7 @@
         }
 
         if (scoreMap.has(issue.code)) {
-          const [accessScore, ref] = scoreMap.get(issue.code) as [number, string];
+          const [accessScore, ref] = scoreMap.get(issue.code);
           meta.accessScore -= accessScore;
           scoreMap.delete(ref);
           scoreMap.delete(issue.code);

@@ -16,5 +16,5 @@ _global.HTMLCS_Section508 = {
     "N",
     "O",
     "P",
-  ]
+  ],
 };
