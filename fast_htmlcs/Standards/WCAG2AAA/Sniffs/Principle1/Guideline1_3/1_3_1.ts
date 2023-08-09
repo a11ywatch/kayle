@@ -221,20 +221,19 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
    * @param {DOMNode} top     The top element of the tested code.
    */
   testLabelsOnInputs: function (element, _, muteErrors) {
-    let inputType = element.nodeName;
+    let inputType = element.nodeName.toLowerCase();
 
-    if (inputType === "INPUT") {
+    if (inputType === "input") {
       if (element.hasAttribute("type")) {
-        // can return `hidden`
-        inputType = element.getAttribute("type");
+        inputType = element.getAttribute("type").toLowerCase();
       } else {
-        inputType = "TEXT";
+        inputType = "text";
       }
     }
 
-    let hasLabel = undefined;
+    let hasLabel: boolean | Record<string, any> = false;
 
-    const addToLabelList = function (found) {
+    let addToLabelList = function (found) {
       if (!hasLabel) {
         hasLabel = {};
       }
@@ -244,9 +243,11 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
     // Firstly, work out whether it needs a label.
     let needsLabel = false;
 
-    if (inputType === "SELECT" || inputType === "TEXTAREA") {
+    if (inputType === "select" || inputType === "textarea") {
       needsLabel = true;
-    } else if (/^(RADIO|CHECKBOX|TEXT|FILE|PASSWORD)$/.test(inputType)) {
+    } else if (
+      /^(radio|checkbox|text|file|password)$/.test(inputType) === true
+    ) {
       needsLabel = true;
     }
 
@@ -255,34 +256,33 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
     }
 
     // Find an explicit label.
-    const explicitLabel = element.ownerDocument.querySelector(
+    let explicitLabel = element.ownerDocument.querySelector(
       'label[for="' + element.id + '"]'
     );
-
     if (explicitLabel) {
       addToLabelList("explicit");
     }
 
     // Find an implicit label.
-    let foundImplicit = false as boolean;
-
+    let foundImplicit = false;
     if (element.parentNode) {
       HTMLCS.util.eachParentNode(element, function (parent) {
-        if (parent.nodeName === "LABEL") {
+        if (parent.nodeName.toLowerCase() === "label") {
           foundImplicit = true;
         }
       });
     }
 
-    if (foundImplicit) {
+    // @ts-ignore
+    if (foundImplicit === true) {
       addToLabelList("implicit");
     }
 
     // Find a title attribute.
-    const title = element.getAttribute("title");
+    let title = element.getAttribute("title");
 
     if (title !== null) {
-      if (/^\s*$/.test(title) && needsLabel) {
+      if (/^\s*$/.test(title) === true && needsLabel === true) {
         HTMLCS.addMessage(
           HTMLCS.WARNING,
           element,
@@ -295,7 +295,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
     }
 
     // Find an aria-label attribute.
-    if (element.hasAttribute("aria-label")) {
+    if (element.hasAttribute("aria-label") === true) {
       if (HTMLCS.util.hasValidAriaLabel(element) === false) {
         HTMLCS.addMessage(
           HTMLCS.WARNING,
@@ -309,8 +309,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
     }
 
     // Find an aria-labelledby attribute.
-    if (element.hasAttribute("aria-labelledby")) {
-      if (!HTMLCS.util.hasValidAriaLabel(element)) {
+    if (element.hasAttribute("aria-labelledby") === true) {
+      if (HTMLCS.util.hasValidAriaLabel(element) === false) {
         HTMLCS.addMessage(
           HTMLCS.WARNING,
           element,

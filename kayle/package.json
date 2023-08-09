@@ -1,6 +1,6 @@
 {
   "name": "kayle",
-  "version": "0.5.28",
+  "version": "0.5.30",
   "description": "Extremely fast and accurate accessibility testing using CDP",
   "main": "./build/index.js",
   "keywords": [
@@ -35,6 +35,7 @@
     "test:puppeteer": "npm run compile:test && node _tests/tests/basic.js",
     "test:puppeteer:axe": "npm run compile:test && node _tests/tests/basic-axe.js",
     "test:puppeteer:htmlcs": "npm run compile:test && node _tests/tests/basic-htmlcs.js",
+    "test:missing": "npm run compile:test && node _tests/tests/missing.js",
     "test:playwright": "npm run compile:test && npx playwright test ./tests/basic-playwright.spec.ts",
     "test:playwright:axe": "npm run compile:test && npx playwright test ./tests/basic-axe-playwright.spec.ts",
     "test:playwright:htmlcs": "npm run compile:test && npx playwright test ./tests/basic-htmlcs-playwright.spec",

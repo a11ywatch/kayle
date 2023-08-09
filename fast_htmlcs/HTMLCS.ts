@@ -37,7 +37,7 @@ _global.HTMLCS = new (function () {
     _standards.size && _standards.clear();
     _tags.size && _tags.clear();
     _duplicates.size && _duplicates.clear();
-    
+
     this.messages = [];
 
     if (typeof _global.translation[language] !== "undefined") {
@@ -98,7 +98,7 @@ _global.HTMLCS = new (function () {
   this.run = function (callback, content) {
     let element = null;
     let loadingFrame = false;
-    
+
     // todo: remove iframe handling
     if (typeof content === "string") {
       loadingFrame = true;
@@ -162,7 +162,7 @@ _global.HTMLCS = new (function () {
       // Get all the elements in the parent element.
       // Add the parent element too, which will trigger "_top" element codes.
       const elements = HTMLCS.util.getAllElements(element);
-  
+
       elements.unshift(element);
       _run(elements, element, callback || function () {});
     }
@@ -233,7 +233,6 @@ _global.HTMLCS = new (function () {
       });
     } else {
       const pos = _duplicates.get(textId);
-      // increment the recurrence counter.
       this.messages[pos].recurrence = this.messages[pos].recurrence + 1;
     }
   };
@@ -302,7 +301,7 @@ _global.HTMLCS = new (function () {
 
       _currentSniff = sniff;
 
-      if (sniff.useCallback === true) {
+      if (sniff.useCallback) {
         // If the useCallback property is set:
         // - Process the sniff.
         // - Recurse into ourselves with remaining sniffs, with no callback.
@@ -318,7 +317,7 @@ _global.HTMLCS = new (function () {
       }
     }
 
-    if (callback instanceof Function === true) {
+    if (callback instanceof Function) {
       callback.call(this);
     }
   };

@@ -62,37 +62,37 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
       );
     }
 
-    for (var i = 0; i < errors.emptyNoId.length; i++) {
+    for (const emptyNoId of errors.emptyNoId) {
       HTMLCS.addMessage(
         HTMLCS.ERROR,
-        errors.emptyNoId[i],
+        emptyNoId,
         _global.HTMLCS.getTranslation("4_1_2_H91.A.EmptyNoId"),
         "H91.A.EmptyNoId"
       );
     }
 
-    for (var i = 0; i < errors.noHref.length; i++) {
+    for (const noHref of errors.noHref) {
       HTMLCS.addMessage(
         HTMLCS.WARNING,
-        errors.noHref[i],
+        noHref,
         _global.HTMLCS.getTranslation("4_1_2_H91.A.NoHref"),
         "H91.A.NoHref"
       );
     }
 
-    for (var i = 0; i < errors.placeholder.length; i++) {
+    for (const placeholder of errors.placeholder) {
       HTMLCS.addMessage(
         HTMLCS.WARNING,
-        errors.placeholder[i],
+        placeholder,
         _global.HTMLCS.getTranslation("4_1_2_H91.A.Placeholder"),
         "H91.A.Placeholder"
       );
     }
 
-    for (var i = 0; i < errors.noContent.length; i++) {
+    for (const noContent of errors.noContent) {
       HTMLCS.addMessage(
         HTMLCS.ERROR,
-        errors.noContent[i],
+        noContent,
         _global.HTMLCS.getTranslation("4_1_2_H91.A.NoContent"),
         "H91.A.NoContent"
       );
@@ -133,7 +133,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
         hrefFound = true;
       }
 
-      if (hrefFound === false) {
+      if (!hrefFound) {
         // No href. We don't want these because, although they are commonly used
         // to create targets, they can be picked up by screen readers and
         // displayed to the user as empty links. A elements are defined by H91 as
@@ -152,10 +152,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
           // Giving a benefit of the doubt here - if a link has text and also
           // an ID, but no href, it might be because it is being manipulated by
           // a script.
-          if (
-            element.hasAttribute("id") === true ||
-            element.hasAttribute("name") === true
-          ) {
+          if (element.hasAttribute("id") || element.hasAttribute("name")) {
             errors.noHref.push(element);
           } else {
             // HTML5 allows A elements with text but no href, "for where a
@@ -171,8 +168,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
           // A link around an image with no alt text is already covered in SC
           // 1.1.1 (test H30).
           if (
-            element.querySelectorAll("img").length === 0 &&
-            HTMLCS.util.hasValidAriaLabel(element) === false
+            !element.querySelectorAll("img").length &&
+            !HTMLCS.util.hasValidAriaLabel(element)
           ) {
             errors.noContent.push(element);
           }
@@ -233,12 +230,13 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
       top,
       'button, fieldset, input, select, textarea, [role="button"]'
     )) {
-      var nodeName = element.nodeName.toLowerCase();
+      let nodeName = element.nodeName.toLowerCase();
       let msgSubCode =
         element.nodeName.substring(0, 1).toUpperCase() +
         element.nodeName.substring(1).toLowerCase();
+
       if (nodeName === "input") {
-        if (element.hasAttribute("type") === false) {
+        if (!element.hasAttribute("type")) {
           // If no type attribute, default to text.
           nodeName += "_text";
         } else {
@@ -267,8 +265,11 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
 
       // Check all possible combinations of names to ensure that one exists.
       if (matchingRequiredNames) {
-        for (var i = 0; i < matchingRequiredNames.length; i++) {
+        let i = 0;
+
+        for (; i < matchingRequiredNames.length; i++) {
           let requiredName = matchingRequiredNames[i];
+
           if (requiredName === "_content") {
             // Work with content.
             if (
@@ -318,6 +319,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
           }
         }
 
+        // all items processed
         if (i === matchingRequiredNames.length) {
           let msgNodeType =
             nodeName + " " + _global.HTMLCS.getTranslation("4_1_2_element");
@@ -331,6 +333,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
             0,
             matchingRequiredNames.length
           );
+
           for (let a = 0; a < builtAttrs.length; a++) {
             if (builtAttrs[a] === "_content") {
               builtAttrs[a] = _global.HTMLCS.getTranslation(
@@ -352,6 +355,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
           let msg = _global.HTMLCS.getTranslation("4_1_2_msg_pattern")
             .replace(/\{\{msgNodeType\}\}/g, msgNodeType)
             .replace(/\{\{builtAttrs\}\}/g, builtAttrs.join(", "));
+
           if (
             element.hasAttribute("role") &&
             element.getAttribute("role") === "button"
@@ -360,6 +364,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
               "4_1_2_msg_pattern_role_of_button"
             ).replace(/\{\{builtAttrs\}\}/g, builtAttrs.join(", "));
           }
+
           errors.push({
             element: element,
             msg: msg,
@@ -381,8 +386,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
         }
       } else if (requiredValue === "option_selected") {
         // Select lists are recommended to have a selected Option element.
-        if (element.hasAttribute("multiple") === false) {
-          var selected = element.querySelector("option[selected]");
+        if (!element.hasAttribute("multiple")) {
+          const selected = element.querySelector("option[selected]");
+
           if (selected !== null) {
             valueFound = true;
           }

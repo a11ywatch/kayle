@@ -482,7 +482,8 @@ _global.HTMLCS.util = {
         red: parseInt(colour.substring(0, 2), 16) / 255,
         green: parseInt(colour.substring(2, 4), 16) / 255,
         blue: parseInt(colour.substring(4, 6), 16) / 255,
-        alpha: colour.length === 8 ? parseInt(colour.substring(6, 8), 16) / 255 : 1,
+        alpha:
+          colour.length === 8 ? parseInt(colour.substring(6, 8), 16) / 255 : 1,
       };
     }
 
