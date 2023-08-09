@@ -159,6 +159,7 @@ function isIconLigature(
   canvasContext.textAlign = 'left';
   canvasContext.textBaseline = 'top';
   canvasContext.fillText(firstChar, 0, 0);
+
   const compareData = new Uint32Array(
     canvasContext.getImageData(0, 0, width, fontSize).data.buffer
   );

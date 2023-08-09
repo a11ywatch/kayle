@@ -63,7 +63,7 @@ _global.HTMLCS_Section508_Sniffs_D = {
       top,
       "h1, h2, h3, h4, h5, h6"
     )) {
-      const headingNum = parseInt(heading.nodeName.substr(1, 1));
+      const headingNum = parseInt(heading.nodeName.substring(1, 2));
 
       if (headingNum - lastHeading > 1) {
         let exampleMsg =

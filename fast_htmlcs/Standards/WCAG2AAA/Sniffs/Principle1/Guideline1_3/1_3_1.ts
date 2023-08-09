@@ -391,8 +391,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
           tag,
           _global.HTMLCS.getTranslation("1_3_1_H49."),
           "H49." +
-            tag.nodeName.substr(0, 1).toUpperCase() +
-            tag.nodeName.substr(1).toLowerCase()
+            tag.nodeName.substring(0, 1).toUpperCase() +
+            tag.nodeName.substring(1).toLowerCase()
         );
       }
 
@@ -415,8 +415,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
           tag,
           _global.HTMLCS.getTranslation("1_3_1_H49.Semantic"),
           "H49." +
-            tag.nodeName.substr(0, 1).toUpperCase() +
-            tag.nodeName.substr(1).toLowerCase()
+            tag.nodeName.substring(0, 1).toUpperCase() +
+            tag.nodeName.substring(1).toLowerCase()
         );
       }
 

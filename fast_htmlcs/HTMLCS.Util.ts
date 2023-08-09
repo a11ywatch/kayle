@@ -144,21 +144,17 @@ _global.HTMLCS.util = {
     if (element.hasAttribute("aria-labelledby")) {
       // Checking aria-labelled by where the label exists AND it has text available
       // to an accessibility API.
-      const labelledByIds = element
-        .getAttribute("aria-labelledby")
-        .split(/\s+/);
-
-      for (const id of labelledByIds) {
+      for (const id of element.getAttribute("aria-labelledby").split(/\s+/)) {
         const elem = document.getElementById(id);
 
-        if (elem && /^\s*$/.test(this.getElementTextContent(elem)) === false) {
+        if (elem && !/^\s*$/.test(this.getElementTextContent(elem))) {
           found = true;
           break;
         }
       }
     } else if (element.hasAttribute("aria-label")) {
       // todo: remove regx
-      found = /^\s*$/.test(element.getAttribute("aria-label")) === false;
+      found = !/^\s*$/.test(element.getAttribute("aria-label"));
     }
 
     return found;
@@ -443,7 +439,7 @@ _global.HTMLCS.util = {
    *
    * @returns {Object}
    */
-  colourStrToRGB: function (color) {
+  colourStrToRGB: (color) => {
     let colour:
       | string
       | { red: number; blue: number; green: number; alpha?: number } =
@@ -482,17 +478,11 @@ _global.HTMLCS.util = {
         colour = colour.replace(/^(.)(.)(.)(.)$/, "$1$1$2$2$3$3$4$4");
       }
 
-      var alpha = 1; // Default if alpha is not specified
-
-      if (colour.length === 8) {
-        alpha = parseInt(colour.substr(6, 2), 16) / 255;
-      }
-
       colour = {
-        red: parseInt(colour.substr(0, 2), 16) / 255,
-        green: parseInt(colour.substr(2, 2), 16) / 255,
-        blue: parseInt(colour.substr(4, 2), 16) / 255,
-        alpha,
+        red: parseInt(colour.substring(0, 2), 16) / 255,
+        green: parseInt(colour.substring(2, 4), 16) / 255,
+        blue: parseInt(colour.substring(4, 6), 16) / 255,
+        alpha: colour.length === 8 ? parseInt(colour.substring(6, 8), 16) / 255 : 1,
       };
     }
 
@@ -576,7 +566,7 @@ _global.HTMLCS.util = {
    *
    * @returns {String}
    */
-  RGBtoColourStr: function (colour) {
+  RGBtoColourStr: (colour) => {
     let colourStr = "#";
 
     colour.red = Math.round(colour.red * 255);

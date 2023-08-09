@@ -235,8 +235,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
     )) {
       var nodeName = element.nodeName.toLowerCase();
       let msgSubCode =
-        element.nodeName.substr(0, 1).toUpperCase() +
-        element.nodeName.substr(1).toLowerCase();
+        element.nodeName.substring(0, 1).toUpperCase() +
+        element.nodeName.substring(1).toLowerCase();
       if (nodeName === "input") {
         if (element.hasAttribute("type") === false) {
           // If no type attribute, default to text.
@@ -253,8 +253,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
         // Get a format like "InputText".
         msgSubCode =
           "Input" +
-          nodeName.substr(6, 1).toUpperCase() +
-          nodeName.substr(7).toLowerCase();
+          nodeName.substring(6, 7).toUpperCase() +
+          nodeName.substring(7).toLowerCase();
       }
 
       let matchingRequiredNames = requiredNames[nodeName];
@@ -268,7 +268,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
       // Check all possible combinations of names to ensure that one exists.
       if (matchingRequiredNames) {
         for (var i = 0; i < matchingRequiredNames.length; i++) {
-          var requiredName = matchingRequiredNames[i];
+          let requiredName = matchingRequiredNames[i];
           if (requiredName === "_content") {
             // Work with content.
             if (
@@ -319,26 +319,26 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
         }
 
         if (i === matchingRequiredNames.length) {
-          var msgNodeType =
+          let msgNodeType =
             nodeName + " " + _global.HTMLCS.getTranslation("4_1_2_element");
-          if (nodeName.substr(0, 6) === "input_") {
+          if (nodeName.substring(0, 6) === "input_") {
             msgNodeType =
-              nodeName.substr(6) +
+              nodeName.substring(6) +
               _global.HTMLCS.getTranslation("4_1_2_input_element");
           }
 
-          var builtAttrs = matchingRequiredNames.slice(
+          let builtAttrs = matchingRequiredNames.slice(
             0,
             matchingRequiredNames.length
           );
-          for (var a = 0; a < builtAttrs.length; a++) {
+          for (let a = 0; a < builtAttrs.length; a++) {
             if (builtAttrs[a] === "_content") {
               builtAttrs[a] = _global.HTMLCS.getTranslation(
                 "4_1_2_element_content"
               );
             } else if (builtAttrs[a].charAt(0) === "@") {
               builtAttrs[a] =
-                builtAttrs[a].substr(1) +
+                builtAttrs[a].substring(1) +
                 " " +
                 _global.HTMLCS.getTranslation("4_1_2_attribute");
             } else {
@@ -349,7 +349,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
             }
           }
 
-          var msg = _global.HTMLCS.getTranslation("4_1_2_msg_pattern")
+          let msg = _global.HTMLCS.getTranslation("4_1_2_msg_pattern")
             .replace(/\{\{msgNodeType\}\}/g, msgNodeType)
             .replace(/\{\{builtAttrs\}\}/g, builtAttrs.join(", "));
           if (
@@ -368,14 +368,14 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
         }
       }
 
-      var valueFound = false;
+      let valueFound = false;
 
       if (requiredValue === undefined) {
         // Nothing required of us.
         valueFound = true;
       } else if (requiredValue === "_content") {
         // Work with content.
-        var content = HTMLCS.util.getElementTextContent(element);
+        let content = HTMLCS.util.getElementTextContent(element);
         if (/^\s*$/.test(content) === false) {
           valueFound = true;
         }
@@ -405,21 +405,21 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
       }
 
       if (valueFound === false) {
-        var msgNodeType =
+        let msgNodeType =
           nodeName + " " + _global.HTMLCS.getTranslation("4_1_2_element");
-        if (nodeName.substr(0, 6) === "input_") {
+        if (nodeName.substring(0, 6) === "input_") {
           msgNodeType =
-            nodeName.substr(6) +
+            nodeName.substring(6) +
             _global.HTMLCS.getTranslation("4_1_2_input_element");
         }
 
-        var msg = _global.HTMLCS.getTranslation("4_1_2_msg_pattern2").replace(
+        let msg = _global.HTMLCS.getTranslation("4_1_2_msg_pattern2").replace(
           /\{\{msgNodeType\}\}/g,
           msgNodeType
         );
 
-        var builtAttr = "";
-        var warning = false;
+        let builtAttr = "";
+        let warning = false;
         if (requiredValue === "_content") {
           builtAttr = " " + _global.HTMLCS.getTranslation("4_1_2_msg_add_one");
         } else if (requiredValue === "option_selected") {

@@ -95,7 +95,7 @@ _global.HTMLCS = new (function () {
   this.run = function (callback, content) {
     let element = null;
     let loadingFrame = false;
-
+    
     // todo: remove iframe handling
     if (typeof content === "string") {
       loadingFrame = true;
@@ -154,17 +154,14 @@ _global.HTMLCS = new (function () {
       return callback.call(this);
     }
 
-    callback = callback || function () {};
-
-    // Get all the elements in the parent element.
-    // Add the parent element too, which will trigger "_top" element codes.
-    const elements = HTMLCS.util.getAllElements(element);
-
-    elements.unshift(element);
-
     // Run the sniffs.
-    if (loadingFrame === false) {
-      _run(elements, element, callback);
+    if (!loadingFrame) {
+      // Get all the elements in the parent element.
+      // Add the parent element too, which will trigger "_top" element codes.
+      const elements = HTMLCS.util.getAllElements(element);
+  
+      elements.unshift(element);
+      _run(elements, element, callback || function () {});
     }
   };
 
