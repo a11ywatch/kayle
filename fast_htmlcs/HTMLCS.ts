@@ -2,7 +2,6 @@ _global.HTMLCS = new (function () {
   const _standards = new Map();
   const _tags = new Map();
   const _duplicates = new Map();
-  const _messages = [];
 
   let _standard = "";
   let _currentSniff = null;
@@ -12,8 +11,9 @@ _global.HTMLCS = new (function () {
   this.ERROR = "error";
   this.WARNING = "warning";
   this.NOTICE = "notice";
-  // The current language to use.
   this.lang = "en";
+  // results
+  this.messages = [];
 
   /**
    * Loads the specified standard and run the sniffs.
@@ -38,6 +38,8 @@ _global.HTMLCS = new (function () {
     _tags.size && _tags.clear();
     _duplicates.size && _duplicates.clear();
     
+    this.messages = [];
+
     if (typeof _global.translation[language] !== "undefined") {
       this.lang = language;
     }
@@ -219,8 +221,8 @@ _global.HTMLCS = new (function () {
 
     if (!_duplicates.has(textId)) {
       // track the position to use to update the prior message on duplicates.
-      _duplicates.set(textId, _messages.length);
-      _messages.push({
+      _duplicates.set(textId, this.messages.length);
+      this.messages.push({
         type: type,
         element: element,
         message: msg,
@@ -232,7 +234,7 @@ _global.HTMLCS = new (function () {
     } else {
       const pos = _duplicates.get(textId);
       // increment the recurrence counter.
-      _messages[pos].recurrence = _messages[pos].recurrence + 1;
+      this.messages[pos].recurrence = this.messages[pos].recurrence + 1;
     }
   };
 
@@ -244,7 +246,7 @@ _global.HTMLCS = new (function () {
    *
    * @returns {Array} Array of message objects.
    */
-  this.getMessages = () => _messages;
+  this.getMessages = () => this.messages;
 
   /**
    * Runs the sniffs in the loaded standard for the specified element.
