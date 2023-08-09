@@ -36,7 +36,8 @@ _global.HTMLCS = new (function () {
     }
     _standards.size && _standards.clear();
     _tags.size && _tags.clear();
-
+    _duplicates.size && _duplicates.clear();
+    
     if (typeof _global.translation[language] !== "undefined") {
       this.lang = language;
     }
