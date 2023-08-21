@@ -104,6 +104,16 @@ import { kayleLint } from "kayle/lint";
 await kayleLint("https://a11ywatch.com");
 ```
 
+## WASM
+
+Extract all links from a web page fast:
+
+```ts
+import { extractLinks } from "kayle/wasm";
+
+const links = await extractLinks({ page, browser }, "https://www.drake.com");
+```
+
 ## Testing
 
 In order to run full e2e test first run `npm install puppeteer` or `npm install @playwright/test` to install chromium locally.

@@ -1,7 +1,7 @@
 {
   "name": "kayle",
-  "version": "0.5.31",
-  "description": "Extremely fast and accurate accessibility testing using CDP",
+  "version": "0.5.32",
+  "description": "Extremely fast and accurate accessibility engine built for any headless tool like playwright or puppeteer.",
   "main": "./build/index.js",
   "keywords": [
     "accessibility"
