@@ -44,6 +44,7 @@
     "test:puppeteer:automa": "npm run compile:test && node _tests/tests/automa.js",
     "test:puppeteer:extension": "npm run compile:test && yarn build:extension && node _tests/tests/extension.js",
     "test:puppeteer:tables": "npm run compile:test && node _tests/tests/tables.js",
+    "test:puppeteer:clips": "npm run compile:test && node _tests/tests/clips.js",
     "test:lint": "node build/lint.js",
     "test:unit:unique-selector": "npm run compile:test && node _tests/tests/unit/unique-selector.js",
     "publish": "yarn prepare && yarn npm publish"
@@ -68,7 +69,7 @@
     "@types/jsdom": "^20.0.1",
     "@types/node": "^18.11.9",
     "prettier": "^2.8.0",
-    "puppeteer": "^20.9.0",
+    "puppeteer": "^21.2.1",
     "typescript": "^4.9.3"
   },
   "jest": {

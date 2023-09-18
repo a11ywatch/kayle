@@ -57,6 +57,7 @@ const results = await autoKayle({
 ## Clips
 
 You can include base64 images with the audits to get a visual of the exact location of the issue.
+Currently this is only supported with playwright with default chrome launch args.
 
 ```ts
 const results = await kayle({
