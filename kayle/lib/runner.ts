@@ -45,7 +45,7 @@
   let hiddenElements = null;
 
   // shape the issue
-  const shapeIssue = (issue, cliped?: boolean) => {
+  const shapeIssue = (issue, cliped) => {
     let context = "";
     let selector = "";
     let clip;

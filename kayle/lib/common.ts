@@ -18,12 +18,7 @@ export type Issue = {
   recurrence: number;
   selector: string;
   // the position on the dom to use for screenshots, targets, and etc.
-  clip?: {
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-  };
+  clip?: DOMRect;
   // base64 image to display in browser.
   clipBase64?: string;
 };
