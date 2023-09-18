@@ -63,3 +63,6 @@ chrome-extension
 
 # build custom extension
 build-extension.js
+
+# data dir
+_data

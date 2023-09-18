@@ -45,13 +45,17 @@
   let hiddenElements = null;
 
   // shape the issue
-  const shapeIssue = (issue) => {
+  const shapeIssue = (issue, cliped?: boolean) => {
     let context = "";
     let selector = "";
+    let clip;
 
     if (issue.element) {
       context = getElementContext(issue.element);
       selector = getElementSelector(issue.element);
+      if (cliped) {
+        clip = issue.element.getBoundingClientRect();
+      }
     }
 
     return {
@@ -64,6 +68,7 @@
       runner: issue.runner || "kayle",
       runnerExtras: issue.runnerExtras,
       recurrence: issue.recurrence || 0,
+      clip,
     };
   };
 
@@ -182,7 +187,7 @@
           continue;
         }
 
-        const issue = shapeIssue(is);
+        const issue = shapeIssue(is, options.clip);
 
         const errorType = issue.type === "error";
 

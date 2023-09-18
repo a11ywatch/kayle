@@ -30,6 +30,7 @@ const audit = async (config: RunnerConfig): Promise<Audit> => {
       standard: config.standard,
       origin: config.origin,
       language: config.language,
+      clip: config.clip,
     }
   );
 };
@@ -93,6 +94,7 @@ export const auditExtension = async (config: RunnerConfig): Promise<Audit> => {
       standard: config.standard,
       origin: config.origin,
       language: config.language,
+      clip: config.clip,
     }
   );
 };
@@ -123,6 +125,41 @@ export const kayle = async (
   ]);
 
   clearTimeout(watcher.timer);
+
+  if (o.clip && results && Array.isArray(results.issues)) {
+    results.issues = await Promise.all(
+      results.issues.map(async (item) => {
+        const { clip, selector } = item;
+
+        try {
+          const buffer = await o.page.screenshot({
+            path: o.clipDir
+              ? `${o.clipDir}${
+                  o.clipDir.endsWith("/") ? "" : "/"
+                }${selector.trim()}.png`
+              : undefined,
+            clip: {
+              x: clip.x,
+              y: clip.y,
+              width: clip.width,
+              height: clip.height,
+            },
+          });
+
+          // use a dynamic property to inject - todo: set the config initially before this iteration to keep shape aligned.
+          if (o.clip2Base64) {
+            item.clipBase64 = buffer.toString("base64");
+          }
+        } catch (_) {
+          // most likely not in the viewport
+          // console.error(e);
+          item.clipBase64 = "";
+        }
+
+        return item;
+      })
+    );
+  }
 
   if (!preventClose && navigate) {
     try {

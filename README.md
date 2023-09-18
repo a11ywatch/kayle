@@ -54,6 +54,27 @@ const results = await autoKayle({
 });
 ```
 
+## Clips
+
+You can include base64 images with the audits to get a visual of the exact location of the issue.
+
+```ts
+const results = await kayle({
+  page,
+  browser,
+  runners: ["axe"],
+  includeWarnings: true,
+  origin: "https://www.drake.com",
+  waitUntil: "domcontentloaded",
+  allowImages: true,
+  clip: true, // get the clip cords to display in browser. Use clipDir or clip2Base64 to convert to image.
+  clipDir: "./_data/drake.com", // optional: directory to store the clip as an image.
+  clip2Base64: true, // optional: attach a base64 property of the clip
+});
+```
+
+![Video of clips being stored of the issue to get visual feedback](https://user-images.githubusercontent.com/8095978/268726837-f362a490-b611-4acf-8cb6-104f58a0a6c7.gif)
+
 ## Runners
 
 `kayle` supports multiple test runners which return different results. The built-in test runners are:
@@ -103,6 +124,12 @@ type RunnerConfig = {
   standard?: Standard;
   // stop test that go beyond time.
   timeout?: number;
+  // allow capturing the image visually to base64
+  clip?: boolean;
+  // store clips to a directory must have allowImages set or CDP reset of intercepts
+  clipDir?: string;
+  // store a clip to base64 on the issue
+  clip2Base64?: boolean;
   // allow images to render.
   allowImages?: boolean;
   // the website url: include this even with static html to fetch assets correct.
@@ -112,7 +139,7 @@ type RunnerConfig = {
 };
 ```
 
-### Features
+### Optional Features
 
 1. adblock - You can enable Brave's adblock engine with [adblock-rs](https://github.com/brave/adblock-rust) by installing `npm i adblock-rs` to the project. This module needs to be manually installed and the env variable `KAYLE_ADBLOCK` needs to be set to `true`.
 
@@ -133,6 +160,8 @@ type RunnerConfig = {
 1. pt_BR ("Portuguese Brazil")
 1. zh-CN ("Chinese-Simplified")
 1. zh-TW ("Chinese-Traditional")
+
+![Video of clips being stored of the issue to get visual feedback](https://user-images.githubusercontent.com/8095978/268726837-f362a490-b611-4acf-8cb6-104f58a0a6c7.gif)
 
 ## Testing
 

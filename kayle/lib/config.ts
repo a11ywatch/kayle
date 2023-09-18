@@ -124,6 +124,15 @@ type Page = {
   title(): Promise<string>;
   content(): Promise<string>;
   emulateCPUThrottling(factor: number | null): Promise<void>;
+  screenshot(s: {
+    path?: string;
+    clip?: {
+      x: number;
+      y: number;
+      width: number;
+      height: number;
+    };
+  });
 };
 
 export interface CDPSession {
@@ -150,6 +159,12 @@ export type RunnerConfig = {
   runners?: Runner[];
   standard?: keyof typeof Standard | Standard;
   timeout?: number;
+  // allow capturing the image visually to base64
+  clip?: boolean;
+  // store clips to a directory must have allowImages set or CDP reset of intercepts
+  clipDir?: string;
+  // store a clip to base64 on the issue
+  clip2Base64?: boolean;
   // allow images to render.
   allowImages?: boolean;
   // the website url: include this even with static html to fetch assets correct.

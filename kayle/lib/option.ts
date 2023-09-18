@@ -23,6 +23,8 @@ export function extractArgs(o, watcher?: Watcher) {
     standard: o.standard || "WCAG2AA",
     origin: o.origin || (o.html && "http://localhost") || "",
     language: o.language || "en",
+    // store clip tracking element position
+    clip: o.clip,
   };
 
   // parse hidden elements into string

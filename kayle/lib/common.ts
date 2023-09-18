@@ -17,6 +17,15 @@ export type Issue = {
   runnerExtras: Record<string, unknown>;
   recurrence: number;
   selector: string;
+  // the position on the dom to use for screenshots, targets, and etc.
+  clip?: {
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+  };
+  // base64 image to display in browser.
+  clipBase64?: string;
 };
 // indexs of automatable issues
 export type Automatable = {
