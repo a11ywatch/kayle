@@ -138,12 +138,7 @@ export const kayle = async (
                   o.clipDir.endsWith("/") ? "" : "/"
                 }${selector.trim()}.png`
               : undefined,
-            clip: {
-              x: clip.x,
-              y: clip.y,
-              width: clip.width,
-              height: clip.height,
-            },
+            clip,
           });
 
           // use a dynamic property to inject - todo: set the config initially before this iteration to keep shape aligned.

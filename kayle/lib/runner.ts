@@ -54,7 +54,14 @@
       context = getElementContext(issue.element);
       selector = getElementSelector(issue.element);
       if (cliped) {
-        clip = issue.element.getBoundingClientRect();
+        const { x, y, width, height } = issue.element.getBoundingClientRect();
+
+        clip = {
+          x,
+          y,
+          width,
+          height,
+        };
       }
     }
 

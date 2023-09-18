@@ -26,7 +26,7 @@ import { performance } from "perf_hooks";
   });
   const nextTime = performance.now() - startTime;
 
-  console.log(issues)
+  console.log(issues);
 
   console.log(`Issue count ${issues.length}`);
   console.log(meta);
