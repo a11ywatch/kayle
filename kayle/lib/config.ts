@@ -126,13 +126,8 @@ type Page = {
   emulateCPUThrottling(factor: number | null): Promise<void>;
   screenshot(s: {
     path?: string;
-    clip?: {
-      x: number;
-      y: number;
-      width: number;
-      height: number;
-    };
-  });
+    clip?: DOMRect;
+  }): Promise<string | Buffer>;
 };
 
 export interface CDPSession {
