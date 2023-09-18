@@ -73,7 +73,7 @@ const results = await kayle({
 });
 ```
 
-![Video of clips being stored of the issue to get visual feedback](https://user-images.githubusercontent.com/8095978/268726837-f362a490-b611-4acf-8cb6-104f58a0a6c7.gif)
+![Images of issues being stored of the to get visual feedback.](https://user-images.githubusercontent.com/8095978/268726837-f362a490-b611-4acf-8cb6-104f58a0a6c7.gif)
 
 ## Runners
 
@@ -160,8 +160,6 @@ type RunnerConfig = {
 1. pt_BR ("Portuguese Brazil")
 1. zh-CN ("Chinese-Simplified")
 1. zh-TW ("Chinese-Traditional")
-
-![Video of clips being stored of the issue to get visual feedback](https://user-images.githubusercontent.com/8095978/268726837-f362a490-b611-4acf-8cb6-104f58a0a6c7.gif)
 
 ## Testing
 
