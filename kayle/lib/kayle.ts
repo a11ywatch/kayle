@@ -126,10 +126,18 @@ export const kayle = async (
 
   clearTimeout(watcher.timer);
 
-  if (o.clip && results && Array.isArray(results.issues)) {
+  if (results && o.clip && Array.isArray(results.issues)) {
     results.issues = await Promise.all(
       results.issues.map(async (item) => {
         const { clip, selector } = item;
+
+        // prevent screenshots
+        if(typeof o.clipMax === 'number') {
+          if(!o.clipMax) {
+            return item
+          }
+          o.clipMax--
+        }
 
         try {
           const buffer = await o.page.screenshot({

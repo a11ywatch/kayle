@@ -126,7 +126,7 @@ type Page = {
   emulateCPUThrottling(factor: number | null): Promise<void>;
   screenshot(s: {
     path?: string;
-    clip?: DOMRect;
+    clip?: Pick<DOMRect, "x" | "y" | "width" | "height">;
   }): Promise<string | Buffer>;
 };
 
@@ -158,8 +158,10 @@ export type RunnerConfig = {
   clip?: boolean;
   // store clips to a directory must have allowImages set or CDP reset of intercepts
   clipDir?: string;
-  // store a clip to base64 on the issue
+  // store a clip to base64 on the issue.
   clip2Base64?: boolean;
+  // max amount of images to render.
+  clipMax?: number;
   // allow images to render.
   allowImages?: boolean;
   // the website url: include this even with static html to fetch assets correct.
