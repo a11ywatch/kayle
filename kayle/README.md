@@ -1,6 +1,6 @@
 # kayle
 
-A high performance web accessibility engine.
+A high performance web accessibility engine used at A11yWatch.
 
 ```sh
 # install a browser automation lib first
@@ -71,6 +71,13 @@ const results = {
     possibleIssuesFixedByCdn: 0,
   },
   automateable: { missingAltIndexs: [5, 22] },
+  clip: {
+    x: 20,
+    y: 100,
+    width: 300,
+    height: 200
+  },
+  clipBase64: "iVBORw0KGgoAAAANSUhEUgAAAJYAAABxCAYAAAA3QFrYAAAAA" // use in img element like data:image/png;base64, + clipBase64
 };
 ```
 
