@@ -7,6 +7,17 @@
     error: 1,
     warning: 2,
     notice: 3,
+    // ibm
+    VIOLATION: 1,
+    RECOMMENDATION: 2,
+    INFORMATION: 3,
+  };
+
+  const issueCodeReverseMap = {
+    0: "unknown",
+    1: "error",
+    2: "warning",
+    3: "notice",
   };
 
   // start of code score maps todo: use enums
@@ -65,17 +76,34 @@
       }
     }
 
+    const typeCode =
+      issueCodeMap[
+        issue.type ||
+          (issue.value &&
+            Array.isArray(issue.value) &&
+            issue.value.length &&
+            issue.value[0])
+      ];
+
     return {
-      context: context,
-      selector: selector,
-      code: issue.code,
-      type: issue.type,
-      typeCode: issueCodeMap[issue.type] || 0,
+      context: context || issue.snippet,
+      selector: selector || (issue.path && issue.path.dom),
+      code: issue.code || issue.ruleId,
+      type: issue.type || issueCodeReverseMap[typeCode],
+      typeCode: typeCode || 0,
       message: issue.message,
-      runner: issue.runner || "kayle",
+      runner: issue.runner || issue.bounds ? "ace" : "kayle",
       runnerExtras: issue.runnerExtras,
       recurrence: issue.recurrence || 0,
-      clip,
+      clip:
+        clip || issue.bounds
+          ? {
+              x: issue.bounds.left,
+              y: issue.bounds.top,
+              height: issue.bounds.height,
+              width: issue.bounds.width,
+            }
+          : undefined,
     };
   };
 
@@ -141,7 +169,7 @@
     const isIssueNotIgnored = (issue) => {
       return !options.ignore.some(
         (element) =>
-          element === issue.type || element === issue.code.toLowerCase()
+          element === issue.type || element === issue.code?.toLowerCase()
       );
     };
 
@@ -179,7 +207,12 @@
     const validateIssue = (issue) =>
       (options.rootElement && !isElementInTestArea(issue.element)) ||
       (options.hideElements && !isElementOutsideHiddenArea(issue.element)) ||
-      !isIssueNotIgnored(issue);
+      !isIssueNotIgnored(issue) ||
+      // IBM exclude errors - this check is quick but, we may want to look into conditional logic
+      (issue.value &&
+        Array.isArray(issue.value) &&
+        issue.value.length >= 2 &&
+        issue.value[1] === "PASS");
 
     // get issues with acc builder return counter
     const processIssues = (
@@ -270,33 +303,17 @@
 
     // alt elements that require fixing
     const missingAltIndexs = [];
-    // multiple runners found
-    const multiRunners = runnerIssues.length === 2;
 
     // pre-allocate array if multi runners
-    const issues = new Array(
-      multiRunners
-        ? runnerIssues[0].length + runnerIssues[1].length
-        : runnerIssues[0].length
-    );
+    const issues = new Array(runnerIssues.reduce((r, x) => r + x.length, 0));
 
     const tracker = {
       errorPointer: 0,
       ic: 0,
     };
 
-    // init index for runner
-    processIssues(
-      runnerIssues[0],
-      issues,
-      tracker, // init index
-      meta,
-      missingAltIndexs
-    );
-
-    // process second runner if found
-    if (multiRunners) {
-      processIssues(runnerIssues[1], issues, tracker, meta, missingAltIndexs);
+    for (const runnerIssue of runnerIssues) {
+      processIssues(runnerIssue, issues, tracker, meta, missingAltIndexs);
     }
 
     issues.length = tracker.ic;

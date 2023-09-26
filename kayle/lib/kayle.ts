@@ -54,10 +54,9 @@ const injectRunners = async (config: RunnerConfig) => {
   if (!config.browserExtension) {
     return await Promise.all([
       config.page.evaluate(runnersJavascript["kayle"]),
-      config.page.evaluate(getRunner(config.language, config.runners[0])),
-      config.runners.length === 2
-        ? config.page.evaluate(getRunner(config.language, config.runners[1]))
-        : undefined,
+      ...config.runners.map((r) =>
+        config.page.evaluate(getRunner(config.language, r))
+      ),
     ]);
   }
 };

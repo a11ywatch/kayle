@@ -2100,6 +2100,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"accessibility-checker-engine@npm:3.1.61":
+  version: 3.1.61
+  resolution: "accessibility-checker-engine@npm:3.1.61"
+  checksum: 08d5f4138c242e74a4516aee56c9b6550589d91ebce58873e38fb9272674e7fbb132c3bbbe69a71fc9b4fb445773e2dd57154e6a21b78574f0f19a10caf0c94a
+  languageName: node
+  linkType: hard
+
 "acorn-jsx@npm:^5.0.0, acorn-jsx@npm:^5.3.2":
   version: 5.3.2
   resolution: "acorn-jsx@npm:5.3.2"
@@ -6104,6 +6111,7 @@ __metadata:
     "@swc/helpers": ^0.5.1
     "@types/jsdom": ^20.0.1
     "@types/node": ^18.11.9
+    accessibility-checker-engine: 3.1.61
     fast_axecore: "workspace:*"
     fast_htmlcs: "workspace:*"
     kayle_innate: "workspace:*"

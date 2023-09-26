@@ -1,6 +1,7 @@
 import { readFileSync } from "fs";
 import { axeRunner } from "./runners/axe";
 import { htmlcsRunner } from "./runners/htmlcs";
+import { aceRunner } from "./runners/ace";
 
 const loadRunnerFile = (run, langauge) => {
   if (run === "htmlcs") {
@@ -9,6 +10,10 @@ const loadRunnerFile = (run, langauge) => {
 
   if (run === "axe") {
     return axeRunner[langauge || "en"];
+  }
+
+  if (run === "ace") {
+    return aceRunner[langauge || "en"];
   }
 
   return require(run);
@@ -52,6 +57,9 @@ const runnersJavascript = {
   axe_ko: loadRunnerScript("axe", "ko"),
   // axe_no_NB: loadRunnerScript("axe", "no-NB"),
   // axe_pt_BR: loadRunnerScript("axe", "pt-BR"),
+  // expiremental
+  // ace by IBM
+  ace: loadRunnerScript("ace", ""),
 };
 
 // inject a new runner for testing
@@ -71,20 +79,10 @@ const getRunner = (
 ) => {
   // if langauge exist get the runner type
   if (language) {
-    if (runner === "axe") {
-      const script = `axe_${language}`;
+    const script = `${runner}_${language}`;
 
-      if (typeof runnersJavascript[script] !== "undefined") {
-        return runnersJavascript[script];
-      }
-    }
-
-    if (runner === "htmlcs") {
-      const script = `htmlcs_${language}`;
-
-      if (typeof runnersJavascript[script] !== "undefined") {
-        return runnersJavascript[script];
-      }
+    if (typeof runnersJavascript[script] !== "undefined") {
+      return runnersJavascript[script];
     }
   }
 
