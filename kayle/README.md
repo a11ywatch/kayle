@@ -75,9 +75,9 @@ const results = {
     x: 20,
     y: 100,
     width: 300,
-    height: 200
+    height: 200,
   },
-  clipBase64: "iVBORw0KGgoAAAANSUhEUgAAAJYAAABxCAYAAAA3QFrYAAAAA" // use in img element like data:image/png;base64, + clipBase64
+  clipBase64: "iVBORw0KGgoAAAANSUhEUgAAAJYAAABxCAYAAAA3QFrYAAAAA", // use in img element like data:image/png;base64, + clipBase64
 };
 ```
 
@@ -89,7 +89,7 @@ kayle supports multiple test runners which return different results. The built-i
 
 - `axe`: run tests using [axe-core](./lib/runners/axe.ts).
 - `htmlcs` (default): run tests using [HTML CodeSniffer](./lib/runners/htmlcs.ts)
-- `custom`: custom runners.
+- `custom`: custom runners using `injectRunner` util.
 
 ## Playwright/Puppeteer
 

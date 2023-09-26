@@ -208,7 +208,7 @@ The `kayle` function also expects a field called `browserExtension` with the opt
 
 In order to develop you need yarn v2 installed for the workspace.
 
-Run the following to install on ^node@16.10
+Run the following to install on ^node@18
 
 `corepack enable && corepack prepare yarn@stable --activate` and reload shell after.
 

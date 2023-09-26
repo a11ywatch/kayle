@@ -1,4 +1,5 @@
 import { Watcher } from "./watcher";
+import type { Runner } from "./runner-js";
 
 type Permission =
   | "geolocation"
@@ -134,8 +135,6 @@ export interface CDPSession {
   [x: string]: any;
 }
 
-type Runner = "axe" | "htmlcs";
-
 // runner configuration
 export type RunnerConfig = {
   browser: Partial<Browser>;
@@ -196,3 +195,5 @@ export enum Standard {
   WCAG2AAA = "WCAG2AAA",
   SECTION508 = "SECTION508",
 }
+
+export { Runner };

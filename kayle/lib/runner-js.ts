@@ -54,13 +54,21 @@ const runnersJavascript = {
   // axe_pt_BR: loadRunnerScript("axe", "pt-BR"),
 };
 
+// inject a new runner for testing
+const injectRunner = (runner: string, path: string, lang: string) => {
+  runnersJavascript[runner] = loadRunnerScript(path, lang ?? "");
+};
+
 /**
  * Get the runner for the page.
  * @param {String} [language="en"] - The language.
  * @param {String} [runner=""] - The runner type.
  * @returns {String} Returns the runner javascript by locale.
  */
-const getRunner = (language: string, runner: string) => {
+const getRunner = (
+  language: string,
+  runner: keyof typeof runnersJavascript
+) => {
   // if langauge exist get the runner type
   if (language) {
     if (runner === "axe") {
@@ -83,4 +91,25 @@ const getRunner = (language: string, runner: string) => {
   return runnersJavascript[runner];
 };
 
-export { runnersJavascript, getRunner };
+export type Runner = Exclude<
+  keyof typeof runnersJavascript,
+  | "kayle"
+  | "htmlcs_es"
+  | "htmlcs_ja"
+  | "htmlcs_fr"
+  | "htmlcs_it"
+  | "htmlcs_nl"
+  | "htmlcs_pl"
+  | "htmlcs_zh_CN"
+  | "axe_es"
+  | "axe_ja"
+  | "axe_fr"
+  | "axe_da"
+  | "axe_de"
+  | "axe_he"
+  | "axe_nl"
+  | "axe_pl"
+  | "axe_ko"
+>;
+
+export { runnersJavascript, getRunner, injectRunner };

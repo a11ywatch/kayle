@@ -132,11 +132,11 @@ export const kayle = async (
         const { clip, selector } = item;
 
         // prevent screenshots
-        if(typeof o.clipMax === 'number') {
-          if(!o.clipMax) {
-            return item
+        if (typeof o.clipMax === "number") {
+          if (!o.clipMax) {
+            return item;
           }
-          o.clipMax--
+          o.clipMax--;
         }
 
         try {
