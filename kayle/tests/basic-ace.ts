@@ -1,6 +1,6 @@
 import assert from "assert";
 import puppeteer from "puppeteer";
-import { kayle } from "kayle";
+import { Standard, kayle } from "kayle";
 import { drakeMock } from "./mocks/html-mock";
 import { performance } from "perf_hooks";
 
@@ -16,7 +16,7 @@ import { performance } from "perf_hooks";
     browser,
     runners: ["ace"],
     includeWarnings: true,
-    standard: "WCAG2AA",
+    standard: Standard.WCAG2AA,
     html: drakeMock,
     origin: "https://www.drake.com", // origin is the fake url in place of the raw content
   });
@@ -31,7 +31,7 @@ import { performance } from "perf_hooks";
   assert(Array.isArray(issues));
   assert(meta.errorCount >= 55);
   assert(meta.warningCount === 42);
-  assert(meta.accessScore >= 40);
+  assert(meta.accessScore >= 30);
 
   assert(typeof pageUrl === "string");
   assert(typeof documentTitle === "string");

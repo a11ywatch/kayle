@@ -39,7 +39,7 @@
   const IA_5 = "Principle4.Guideline4_1.4_1_2.H91.A.EmptyNoId";
   const A_6 = "heading-order";
   const H_6 = "Principle1.Guideline13.131A.G141"; // HeadingOrder map
-  const IA_6 = "Principle4.Guideline1_3.1_3_1_A.G141";
+  const IA_6 = "Principle1.Guideline1_3.1_3_1_A.G141";
 
   // oneshot map
   const scoreMap = new Map<string, [number, string, string]>([
