@@ -1,10 +1,16 @@
 {
   "name": "kayle",
-  "version": "0.7.6",
+  "version": "0.7.7",
   "description": "Extremely fast and accurate accessibility engine built for any headless tool like playwright or puppeteer.",
   "main": "./build/index.js",
   "keywords": [
-    "accessibility"
+    "accessibility",
+    "web-accessibility",
+    "a11ywatch",
+    "web-accessibility-automation",
+    "axe",
+    "htmlcs",
+    "ace"
   ],
   "author": "Jeff Mendez",
   "contributors": [

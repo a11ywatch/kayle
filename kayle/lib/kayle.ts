@@ -123,7 +123,7 @@ export const kayle = async (
     auditPage(config),
   ]);
 
-  clearTimeout(watcher.timer);
+  clearTimeout(watcher.timer as number);
 
   if (results && o.clip && Array.isArray(results.issues)) {
     results.issues = await Promise.all(

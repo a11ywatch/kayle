@@ -2,7 +2,7 @@ import { Audit } from "./common";
 
 // watcher cycle timeout
 declare class Watcher {
-  timer: null | NodeJS.Timer;
+  timer: null | NodeJS.Timer | number;
   watch?(timer: number): Promise<Audit>;
 }
 

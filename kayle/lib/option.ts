@@ -42,9 +42,10 @@ export function extractArgs(o, watcher?: Watcher) {
       options.ignore.push("warning");
     }
   }
+
   // default to a runner
   if (
-    !options.runners.some((runner) => runner === "axe" || runner === "htmlcs")
+    !options.runners.some((runner) => runner === "axe" || runner === "htmlcs" || runner === "ace")
   ) {
     options.runners.push("htmlcs");
   }

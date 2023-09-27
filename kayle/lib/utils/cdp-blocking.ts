@@ -83,7 +83,7 @@ export const sendCDPPageConfigurationEnable = async (
       // clear test - script may contain infinite re-navigation if cleared and executed
       // we should instead track the url and set to block the transition.
       if (o._watcher && o._watcher.timer) {
-        return clearTimeout(o._watcher.timer);
+        return clearTimeout(o._watcher.timer as number);
       }
     }
   });
