@@ -30,8 +30,7 @@ import { performance } from "perf_hooks";
   assert(Array.isArray(issues));
   assert(meta.errorCount === 55);
   assert(meta.warningCount === 42);
-  // TODO: IBM ACE accessibility error handling
-  // assert(meta.accessScore === 50);
+  assert(meta.accessScore === 40);
 
   assert(typeof pageUrl === "string");
   assert(typeof documentTitle === "string");
