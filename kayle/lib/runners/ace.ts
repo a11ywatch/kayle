@@ -25,7 +25,7 @@ const run = async (options) => {
         (options.rootElement &&
           window.document.querySelector(options.rootElement)) ||
           window.document,
-        ["IBM_Accessibility"]
+        ["IBM_Accessibility", options.standard]
       )
       .then((report) => {
         resolve(report.results);

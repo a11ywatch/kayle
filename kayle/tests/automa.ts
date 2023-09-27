@@ -1,6 +1,6 @@
 import assert from "assert";
 import { launch } from "puppeteer";
-import { autoKayle, setLogging } from "kayle";
+import { Standard, autoKayle, setLogging } from "kayle";
 import { performance } from "perf_hooks";
 
 setLogging(false);
@@ -21,6 +21,7 @@ setLogging(false);
     runners: ["axe"],
     includeWarnings: true,
     origin: "https://a11ywatch.com", // origin is the fake url in place of the raw content
+    standard: Standard.WCAG2AAA,
     // store: `${process.cwd()}/_data/`, // create _data folder first
     cb: async function callback(result) {
       const { issues, pageUrl, documentTitle, meta } = result;

@@ -145,7 +145,7 @@ type RunnerConfig = {
 
 ## Localization
 
-[Locales](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/i18n) supported by the runner using pre-compilition. In order to pre-compile the locales run `yarn build`. Some locales are only available in certain runners. All of the languages are split into individual scripts to scale. `Ace` runner currently only supports english.
+[Locales](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/i18n) supported by the runner using pre-compilition. In order to pre-compile the locales run `yarn build`. Some locales are only available in certain runners.
 
 1. da ("Danish")
 1. de ("German")

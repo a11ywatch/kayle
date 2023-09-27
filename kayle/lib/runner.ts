@@ -22,23 +22,24 @@
 
   // start of code score maps todo: use enums A = Axe, H = Htmlcs, IA = IBM Ace
   const A_1 = "color-contrast";
-  const H_1 = "WCAG2AA.Principle1.Guideline14.143.G18.Fail";
-  const IA_1 = "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail";
+  const H_1 = "Principle1.Guideline14.143.G18.Fail";
+  const IA_1 = "Principle1.Guideline1_4.1_4_3.G18.Fail";
   const A_2 = "duplicate-id";
-  const H_2 = "WCAG2AA.Principle4.Guideline41.411.F77";
-  const IA_2 = "WCAG2AA.Principle4.Guideline4_1.4_1_1.F77";
+  const H_2 = "Principle4.Guideline41.411.F77";
+  const IA_2 = "Principle4.Guideline4_1.4_1_1.F77";
+  // element_id_unique todo: add optional 3rd ref to track combo for ace runner
   const A_3 = "empty-heading";
-  const H_3 = "WCAG2AA.Principle1.Guideline13.131.H42.2";
-  const IA_3 = "WCAG2AA.Principle1.Guideline1_3.1_3_1.H42.2";
+  const H_3 = "Principle1.Guideline13.131.H42.2";
+  const IA_3 = "Principle1.Guideline1_3.1_3_1.H42.2";
   const A_4 = "frame-title";
-  const H_4 = "WCAG2AA.Principle2.Guideline24.241.H64.1";
-  const IA_4 = "WCAG2AA.Principle2.Guideline2_4.2_4_1.H64.1";
+  const H_4 = "Principle2.Guideline24.241.H64.1";
+  const IA_4 = "Principle2.Guideline2_4.2_4_1.H64.1";
   const A_5 = "link-name";
-  const H_5 = "WCAG2AA.Principle4.Guideline41.412.H91.A.EmptyNoId";
-  const IA_5 = "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.A.EmptyNoId";
+  const H_5 = "Principle4.Guideline41.412.H91.A.EmptyNoId";
+  const IA_5 = "Principle4.Guideline4_1.4_1_2.H91.A.EmptyNoId";
   const A_6 = "heading-order";
-  const H_6 = "WCAG2AA.Principle1.Guideline13.131A.G141"; // HeadingOrder map
-  const IA_6 = "WCAG2AA.Principle4.Guideline1_3.1_3_1_A.G141";
+  const H_6 = "Principle1.Guideline13.131A.G141"; // HeadingOrder map
+  const IA_6 = "Principle4.Guideline1_3.1_3_1_A.G141";
 
   // oneshot map
   const scoreMap = new Map<string, [number, string, string]>([
@@ -251,12 +252,18 @@
           meta.noticeCount += issue.recurrence + 1;
         }
 
-        if (scoreMap.has(issue.code)) {
-          const [accessScore, ref, ref2] = scoreMap.get(issue.code);
+        // replace WCAG from code
+        const code =
+          issue.code[0] === "W"
+            ? issue.code.substring(issue.code.indexOf(".") + 1)
+            : issue.code;
+
+        if (scoreMap.has(code)) {
+          const [accessScore, ref, ref2] = scoreMap.get(code);
           meta.accessScore -= accessScore;
           scoreMap.delete(ref);
           scoreMap.delete(ref2);
-          scoreMap.delete(issue.code);
+          scoreMap.delete(code);
         }
 
         // In-place hybrid insert sorting
@@ -282,7 +289,7 @@
         if (errorType) {
           meta.errorCount += issue.recurrence + 1;
           if (
-            issue.code === "WCAG2AA.Principle1.Guideline1_1.1_1_1.H37" ||
+            issue.code === "Principle1.Guideline1_1.1_1_1.H37" ||
             issue.code === "image-alt"
           ) {
             missingAltIndexs.push(tracker.errorPointer);

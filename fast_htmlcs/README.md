@@ -128,8 +128,6 @@ HTMLCSAuditor.run("WCAG2AA", null, {
 });
 ```
 
-**Note:** HTML_CodeSniffer only has English (default), French, and Polish languages.
-
 If other language support is required a custom version can be built by adding more translations in `Translations/*.js` and using the grunt build process described above.
 
 Traditional Chinese support is WIP. We have translations for simplified.

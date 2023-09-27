@@ -1,6 +1,6 @@
 import assert from "assert";
 import puppeteer from "puppeteer";
-import { kayle } from "kayle";
+import { Standard, kayle } from "kayle";
 import { drakeMock } from "./mocks/html-mock";
 import { performance } from "perf_hooks";
 
@@ -17,6 +17,7 @@ import { performance } from "perf_hooks";
     runners: ["htmlcs", "axe"],
     includeWarnings: true,
     html: drakeMock,
+    standard: Standard.WCAG2AA,
     origin: "https://www.drake.com", // origin is the fake url in place of the raw content
   });
   const nextTime = performance.now() - startTime;

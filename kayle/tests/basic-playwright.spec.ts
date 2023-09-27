@@ -1,6 +1,6 @@
 import { writeFileSync } from "fs";
 import assert from "assert";
-import { kayle } from "kayle";
+import { Standard, kayle } from "kayle";
 import { drakeMock } from "./mocks/html-mock";
 import { performance } from "perf_hooks";
 import { test } from "@playwright/test";
@@ -19,6 +19,7 @@ test("fast_htmlcs and fast_axecore audit drakeMock", async ({
     runners: ["htmlcs", "axe"],
     includeWarnings: true,
     html: drakeMock,
+    standard: Standard.WCAG2AA,
     origin: "https://www.drake.com",
     waitUntil: "domcontentloaded",
   });

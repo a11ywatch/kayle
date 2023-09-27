@@ -37,7 +37,7 @@ const run = async (options) => {
 
     // @ts-ignore
     window.HTMLCS.process(
-      options.standard,
+      options.standard || "WCAG2AA",
       (options.rootElement &&
         window.document.querySelector(options.rootElement)) ||
         window.document,

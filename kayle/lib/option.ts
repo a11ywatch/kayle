@@ -20,7 +20,7 @@ export function extractArgs(o, watcher?: Watcher) {
     rootElement: o.rootElement,
     rules: o.rules || [],
     runners: o.runners || ["htmlcs"],
-    standard: o.standard || "WCAG2AA",
+    standard: o.standard,
     origin: o.origin || (o.html && "http://localhost") || "",
     language: o.language || "en",
     // store clip tracking element position

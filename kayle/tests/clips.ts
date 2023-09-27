@@ -1,6 +1,6 @@
 import assert from "assert";
 import puppeteer from "puppeteer";
-import { kayle } from "kayle";
+import { Standard, kayle } from "kayle";
 import { drakeMock } from "./mocks/html-mock";
 import { performance } from "perf_hooks";
 
@@ -15,6 +15,7 @@ import { performance } from "perf_hooks";
     page,
     browser,
     runners: ["axe"],
+    standard: Standard.WCAG2AA,
     includeWarnings: true,
     origin: "https://www.drake.com",
     html: drakeMock,
