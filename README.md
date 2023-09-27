@@ -145,7 +145,7 @@ type RunnerConfig = {
 
 ## Localization
 
-[Locales](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/i18n) supported by the runner using pre-compilition. In order to pre-compile the locales run `yarn build`. Some locales are only available in certain runners. All of the languages are split into individual scripts to scale.
+[Locales](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/i18n) supported by the runner using pre-compilition. In order to pre-compile the locales run `yarn build`. Some locales are only available in certain runners. All of the languages are split into individual scripts to scale. `Ace` runner currently only supports english.
 
 1. da ("Danish")
 1. de ("German")
@@ -177,6 +177,8 @@ Checkout the [playwright-example](./kayle/tests/basic-playwright.spec.ts) or [pu
 Currently `fast_htmlcs` runs around 50x faster than axe-core and has several differences of handling the way issues are found. They both capture different cases and is best to used together which this library handles efficiently.
 
 If you use [`@playwright/axe-core`](https://playwright.dev/docs/next/accessibility-testing) you can swap it out with the following [playwright-axe-example](./kayle/tests/basic-axe-playwright.spec.ts) and get an increase in issues found and major performance boost of at least 100%. You can also include multiple runners to extend the issues beyond the basics in folds.
+
+We have not tested IBM Ace for performance thoroughly yet but, from the surface the performance is about 40% slower than axe, if the runner seems to have issues we may fork it and add it to the `fast_` prefix.
 
 ## Performance Tips
 
