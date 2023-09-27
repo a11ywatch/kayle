@@ -108,15 +108,14 @@
       runner: issue.runner || issue.bounds ? "ace" : "kayle",
       runnerExtras: issue.runnerExtras,
       recurrence: issue.recurrence || 0,
-      clip:
-        clip || issue.bounds
-          ? {
-              x: issue.bounds.left,
-              y: issue.bounds.top,
-              height: issue.bounds.height,
-              width: issue.bounds.width,
-            }
-          : undefined,
+      clip: issue.bounds
+        ? {
+            x: issue.bounds.left || 0,
+            y: issue.bounds.top || 0,
+            height: issue.bounds.height || 0,
+            width: issue.bounds.width || 0,
+          }
+        : clip,
     };
   };
 

@@ -52,7 +52,7 @@ const runActionsList = async (config: RunnerConfig) => {
 // inject runners
 const injectRunners = async (config: RunnerConfig) => {
   if (!config.browserExtension) {
-    return await Promise.all([
+    return await Promise.allSettled([
       config.page.evaluate(runnersJavascript["kayle"]),
       ...config.runners.map((r) =>
         config.page.evaluate(getRunner(config.language, r))
