@@ -13,7 +13,7 @@ export type Issue = {
   message: string;
   type: "error" | "warning" | "notice";
   typeCode: number;
-  runner: "htmlcs" | "axe" | "a11ywatch";
+  runner: "htmlcs" | "axe" | "ace";
   runnerExtras: Record<string, unknown>;
   recurrence: number;
   selector: string;
