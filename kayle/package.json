@@ -46,6 +46,7 @@
     "test:puppeteer:extension": "npm run compile:test && yarn build:extension && node _tests/tests/extension.js",
     "test:puppeteer:tables": "npm run compile:test && node _tests/tests/tables.js",
     "test:puppeteer:clips": "npm run compile:test && node _tests/tests/clips.js",
+    "test:full": "npm run compile:test && node _tests/tests/full.js",
     "test:lint": "node build/lint.js",
     "test:unit:unique-selector": "npm run compile:test && node _tests/tests/unit/unique-selector.js",
     "publish": "yarn prepare && yarn npm publish"
