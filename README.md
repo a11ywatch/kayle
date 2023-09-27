@@ -81,6 +81,8 @@ const results = await kayle({
 
 - [`fast_axecore`](./fast_htmlcs/README.md): run tests using fork of [axe-core](./lib/runners/axe.ts).
 - [`fast_htmlcs`](./fast_htmlcs/README.md): run tests using fork of [HTML CodeSniffer](./lib/runners/htmlcs.ts).
+- `ace`: run tests using [IBM ACE](https://github.com/IBMa/equal-access/blob/master/accessibility-checker-engine/README.md)
+- `custom`: custom runners using `injectRunner` util.
 
 ## Linting
 
@@ -119,7 +121,7 @@ type RunnerConfig = {
   // only allow WCAG RULES.
   rules?: string[];
   // axe or htmlcs - the forks.
-  runners?: ("axe" | "htmlcs")[];
+  runners?: ("axe" | "htmlcs" | "ace")[];
   // the accessibility standard.
   standard?: Standard;
   // stop test that go beyond time.
@@ -178,7 +180,7 @@ Currently `fast_htmlcs` runs around 50x faster than axe-core and has several dif
 
 If you use [`@playwright/axe-core`](https://playwright.dev/docs/next/accessibility-testing) you can swap it out with the following [playwright-axe-example](./kayle/tests/basic-axe-playwright.spec.ts) and get an increase in issues found and major performance boost of at least 100%. You can also include multiple runners to extend the issues beyond the basics in folds.
 
-We have not tested IBM Ace for performance thoroughly yet but, from the surface the performance is about 40% slower than axe, if the runner seems to have issues we may fork it and add it to the `fast_` prefix.
+We have not tested IBM Ace for performance thoroughly yet but, from the surface the performance is about 40% slower than axe, if the runner seems to have issues we may fork it and add it to the `fast_` prefix. The perf drawbacks may be from the lib handling all locales in one script.
 
 ## Performance Tips
 
