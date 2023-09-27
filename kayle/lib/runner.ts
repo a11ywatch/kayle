@@ -105,7 +105,7 @@
       type: issue.type || issueCodeReverseMap[typeCode],
       typeCode: typeCode || 0,
       message: issue.message,
-      runner: issue.runner || issue.bounds ? "ace" : "kayle",
+      runner: issue.runner ? issue.runner : issue.bounds ? "ace" : "kayle",
       runnerExtras: issue.runnerExtras,
       recurrence: issue.recurrence || 0,
       clip: issue.bounds
