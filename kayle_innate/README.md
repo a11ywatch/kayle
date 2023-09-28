@@ -10,6 +10,10 @@ The rust lib for accessibility things.
 
 1. `wasm-pack test --node --firefox --chrome --headless`
 
+In order to test the accessibility parser in Rust run.
+
+`RUST_LOG=info wasm-pack test --firefox --headless --features accessibility --release`.
+
 ## Debugging
 
 1. `wasm-pack test --node --firefox --chrome`.

@@ -3,7 +3,7 @@
 #![cfg(target_arch = "wasm32")]
 extern crate wasm_bindgen_test;
 
-use kayle_innate::get_document_links;
+use kayle_innate::{get_document_links, parse_accessibility_tree};
 use wasm_bindgen_test::*;
 
 wasm_bindgen_test_configure!(run_in_browser);
@@ -60,4 +60,45 @@ fn _get_document_links() {
     )));
 
     assert_eq!(links, found.into_boxed_slice());
+}
+
+#[wasm_bindgen_test]
+fn _parse_accessibility_tree() {
+    parse_accessibility_tree(
+        r#"<!DOCTYPE html>
+        <html>
+            <head>
+                <title>My website</title>
+                <meta name="description" content="Test for parsing tree">
+                <link href="main.css" rel="stylesheet">
+                <style>
+                    html {
+                        background: black;
+                        font-size: 16px;
+                    }
+                    input {
+                        color: black;
+                    }
+                </style>
+            </head>
+            <body>
+                <header>
+                    <nav>
+                        <a href="/";>Home</a>
+                        <a href="/about";>About</a>
+                    </nav>
+                </header>
+                <main>
+                    <h1>Some nice content</h1>
+                    <p>Content ipsum</p>
+                    <input type="text" placeholder="Phone number"></input>
+                </main>
+                <footer>
+                    <ul style="background: green;">
+                        <li>Access</li>
+                    </ul>
+                </footer>
+            </body>
+        </html>"#
+    );
 }

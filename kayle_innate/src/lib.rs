@@ -57,6 +57,7 @@ pub fn get_document_links(res: &str, domain: &str) -> Box<[JsValue]> {
             let parent_host_scheme = base_url.scheme();
             let parent_host = base_url.host_str().unwrap_or_default();
 
+            // todo: move to scraper for x2 performance flat
             Document::from(res)
                 .find(Name("a"))
                 .filter_map(|n| match n.attr("href") {
@@ -114,11 +115,79 @@ pub fn get_document_links(res: &str, domain: &str) -> Box<[JsValue]> {
 }
 
 #[wasm_bindgen]
+// RUST_LOG=info wasm-pack test --firefox --headless --features accessibility --release
+#[cfg(feature = "accessibility")]
 /// try to fix all possible issues using a spec against the tree.
-pub fn parse_accessibility_tree(_html: &str) {
+pub fn parse_accessibility_tree(html: &str) {
     set_panic_hook();
-    // mark nodes that should be checked.
-    todo!("Parsing an accessibility tree from rust soon.")
+
+    #[wasm_bindgen]
+    extern "C" {
+        #[wasm_bindgen(js_namespace = console)]
+        fn log(s: &str);
+        #[wasm_bindgen(js_namespace = console, js_name = log)]
+        fn log_u32(a: u32);
+        #[wasm_bindgen(js_namespace = console, js_name = log)]
+        fn log_many(a: &str, b: &str);
+        #[wasm_bindgen(js_namespace = Date)]
+        fn now() -> u32;
+    }
+
+    macro_rules! console_log {
+        ($($t:tt)*) => (log(&format_args!($($t)*).to_string()))
+    }
+
+    console_log!("Starting accessibility tree parsing. This is incomplete and should not be used in production.");
+
+    // STAPLE get the following for selecting
+    // Element name.
+    // Element siblings.
+    // Element descendant.
+    // Element props.
+
+    let mut n = 0;
+    let t = now();
+
+    // measure select parsing doc 1:1 around 34ms - gets slower when using methods possibly due to clones
+    while let Some(node) = Document::from(html).nth(n) {
+        let element_name = node.name();
+        console_log!("{:?}", element_name);
+        n += 1;
+    }
+    console_log!("Select Parser duration {:?}ms", now() - t);
+
+    let t = now();
+
+    let h = scraper::Html::parse_fragment(html);
+    let mut hh = h.tree.into_iter();
+
+        // measure select parsing doc 1:1 around 10ms
+    while let Some(node) = hh.next() {
+        if let Some(element) = node.as_element() {
+            let element_name = element.name();
+            console_log!("{:?}", element_name);
+        }
+    }
+
+    // "body"
+    // "html"
+    // "title"
+    // "meta"
+    // "link"
+    // "style"
+    // "header"
+    // "nav"
+    // "a"
+    // "a"
+    // "main"
+    // "h1"
+    // "p"
+    // "input"
+    // "footer"
+    // "ul"
+    // "li"
+
+    console_log!("Scraper Parser: duration {:?}ms", now() - t);
 }
 
 #[wasm_bindgen]
