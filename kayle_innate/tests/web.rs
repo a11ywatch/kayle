@@ -3,14 +3,14 @@
 #![cfg(target_arch = "wasm32")]
 extern crate wasm_bindgen_test;
 
-use kayle_innate::radiant_blast;
+use kayle_innate::get_document_links;
 use wasm_bindgen_test::*;
 
 wasm_bindgen_test_configure!(run_in_browser);
 
 #[wasm_bindgen_test]
-fn _radiant_blast() {
-    let links = radiant_blast(
+fn _get_document_links() {
+    let links = get_document_links(
         r#"
         <html>
             <body>
@@ -33,7 +33,7 @@ fn _radiant_blast() {
 
     let base_domain = "https://a11ywatch.com";
 
-    let links = radiant_blast(
+    let links = get_document_links(
         r#"
         <html>
             <body>

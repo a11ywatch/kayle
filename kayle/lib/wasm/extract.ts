@@ -1,4 +1,4 @@
-import { radiant_blast } from "kayle_innate";
+import { get_document_links } from "kayle_innate";
 import type { RunnerConfig } from "../config";
 
 /**
@@ -10,5 +10,5 @@ import type { RunnerConfig } from "../config";
 export async function extractLinks(config: RunnerConfig, target?: string) {
   const htmlContent = await config.page.content();
   const domain = typeof target === "string" ? target : config.page.url();
-  return radiant_blast(htmlContent, domain !== "about:blank" ? domain : "");
+  return get_document_links(htmlContent, domain !== "about:blank" ? domain : "");
 }

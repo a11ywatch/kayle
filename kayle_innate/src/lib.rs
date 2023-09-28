@@ -1,5 +1,3 @@
-// all API conventions base mapped from https://www.leagueoflegends.com/en-pl/champions/kayle/
-
 #[macro_use]
 extern crate lazy_static;
 
@@ -34,7 +32,7 @@ pub fn domain_name(domain: &url::Url) -> &str {
 
 #[wasm_bindgen]
 /// setup a structure tree alg for parsing and find links in document. Allow user to perform hybrid audits realtime.
-pub fn radiant_blast(res: &str, domain: &str) -> Box<[JsValue]> {
+pub fn get_document_links(res: &str, domain: &str) -> Box<[JsValue]> {
     set_panic_hook();
 
     lazy_static! {
@@ -117,18 +115,20 @@ pub fn radiant_blast(res: &str, domain: &str) -> Box<[JsValue]> {
 
 #[wasm_bindgen]
 /// try to fix all possible issues using a spec against the tree.
-pub fn celestial_blessing() {
-    println!("Celestial blessing from kayle!");
+pub fn parse_accessibility_tree(_html: &str) {
+    set_panic_hook();
+    // mark nodes that should be checked.
+    todo!("Parsing an accessibility tree from rust soon.")
 }
 
 #[wasm_bindgen]
 /// use gpu to accelerate layout rendering or workers.
-pub fn starfire_spellblade() {
-    println!("Starfire Spellblase from kayle!");
+pub fn validate_node() {
+    todo!("It will validate a node whether accessibility checks should arise.")
 }
 
 #[wasm_bindgen]
 /// Perform the a judgement against a page to determine effort, access, and more.
-pub fn divine_judgement() {
-    println!("Divine judgement from kayle!");
+pub fn judge() {
+    todo!("Determine the score of the website after the tree was built.")
 }
