@@ -43,7 +43,7 @@ const auditPage = async (config: RunnerConfig) => {
 };
 
 // run actions
-const runActionsList = async (config: RunnerConfig) => {
+export const runActionsList = async (config: RunnerConfig) => {
   for (const action of config.actions) {
     await runAction(config.browser, config.page, config, action);
   }

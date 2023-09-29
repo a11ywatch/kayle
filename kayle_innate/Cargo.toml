@@ -1,6 +1,6 @@
 [package]
 name = "kayle_innate"
-version = "0.0.18"
+version = "0.0.19"
 authors = ["j-mendez"]
 edition = "2018"
 license = "MIT"
@@ -11,7 +11,7 @@ repository = "https://github.com/a11ywatch/kayle"
 crate-type = ["cdylib", "rlib"]
 
 [features]
-default = ["console_error_panic_hook"]
+default = ["console_error_panic_hook", "accessibility"]
 accessibility = ["select"]
 
 [dependencies]

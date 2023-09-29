@@ -1,6 +1,6 @@
 # ✨ kayle
 
-The futuristic web accessibility engine.
+The blazing fast and accurate web accessibility engine.
 
 ## Getting Started
 
@@ -217,6 +217,10 @@ Run the following to install on ^node@18
 `corepack enable && corepack prepare yarn@stable --activate` and reload shell after.
 
 Use the command `yarn build` to compile all the scripts for each locale.
+
+## Rust Runner
+
+We are building a rust based runner called [kayle_innate](./kayle_innate/) that can port to wasm that will take the audits into the nanoseconds - low milliseconds zone.
 
 ## Discord
 

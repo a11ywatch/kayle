@@ -3,6 +3,8 @@
 #![cfg(target_arch = "wasm32")]
 extern crate wasm_bindgen_test;
 
+mod mock;
+
 use kayle_innate::get_document_links;
 use wasm_bindgen_test::*;
 
@@ -15,8 +17,8 @@ fn _get_document_links() {
         <html>
             <body>
                 <main>
-                    <a href="/";>Home</a>
-                    <a href="/about";>About</a>
+                    <a href="/">Home</a>
+                    <a href="/about">About</a>
                 </main>
             </body>
         </html>
@@ -38,10 +40,10 @@ fn _get_document_links() {
         <html>
             <body>
                 <main>
-                    <a href="/";>Home</a>
-                    <a href="/about";>About</a>
-                    <a href="/magic/";>Magic</a>
-                    <a href="https://www.meta.com";>Meta</a>
+                    <a href="/">Home</a>
+                    <a href="/about">About</a>
+                    <a href="/magic/">Magic</a>
+                    <a href="https://www.meta.com">Meta</a>
                 </main>
             </body>
         </html>
@@ -65,41 +67,5 @@ fn _get_document_links() {
 #[wasm_bindgen_test]
 #[cfg(feature = "accessibility")]
 fn _parse_accessibility_tree() {
-    kayle_innate::parse_accessibility_tree(
-        r#"<!DOCTYPE html>
-        <html>
-            <head>
-                <title>My website</title>
-                <meta name="description" content="Test for parsing tree">
-                <link href="main.css" rel="stylesheet">
-                <style>
-                    html {
-                        background: black;
-                        font-size: 16px;
-                    }
-                    input {
-                        color: black;
-                    }
-                </style>
-            </head>
-            <body>
-                <header>
-                    <nav>
-                        <a href="/";>Home</a>
-                        <a href="/about";>About</a>
-                    </nav>
-                </header>
-                <main>
-                    <h1>Some nice content</h1>
-                    <p>Content ipsum</p>
-                    <input type="text" placeholder="Phone number"></input>
-                </main>
-                <footer>
-                    <ul style="background: green;">
-                        <li>Access</li>
-                    </ul>
-                </footer>
-            </body>
-        </html>"#,
-    );
+    kayle_innate::parse_accessibility_tree(mock::MOCK_WEBSITE_HTML);
 }

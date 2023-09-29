@@ -1,3 +1,5 @@
+import { RunnerConfig } from "./config";
+
 const failedActionElement = "Failed action: no element matching selector";
 
 export const actions = [
@@ -290,3 +292,10 @@ export async function runAction(browser, page, options, act, customActions?) {
 
   await action.run(browser, page, options, act.match(action.match));
 }
+
+// run actions
+export const runActionsList = async (config: RunnerConfig) => {
+  for (const action of config.actions) {
+    await runAction(config.browser, config.page, config, action);
+  }
+};

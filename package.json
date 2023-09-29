@@ -19,6 +19,7 @@
     "pub:fast_htmlcs": "yarn build:fast_htmlcs && yarn npm publish",
     "pub:fast_axecore": "yarn build:fast_axecore && yarn npm publish",
     "pub:kayle": "yarn build:kayle && yarn npm publish",
-    "fix": "npx prettier --write '**/*.{ts,tsx,md}'"
+    "fix": "npx prettier --write '**/*.{ts,tsx,md}'",
+    "test:innate": "cd kayle_innate && RUST_LOG=info wasm-pack test --node --firefox --headless --release"
   }
 }

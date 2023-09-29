@@ -12,4 +12,4 @@ export {
   sendCDPPageConfigurationReset,
 } from "./utils/cdp-blocking";
 export { setLogging, Standard, RunnerConfig, Runner } from "./config";
-export { extractLinks } from "./wasm";
+export { extractLinks, innateBuilder } from "./wasm";

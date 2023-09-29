@@ -31,3 +31,4 @@ In order to test the accessibility parser in Rust run.
 
 1. Port expensive functions to wasm with preloading capabilities injection into browsers.
 1. Reborn the accessibility testing in rust.
+1. Write a web accessibility engine in Rust/Wasm.

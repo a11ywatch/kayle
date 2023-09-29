@@ -46,7 +46,11 @@ export function extractArgs(o, watcher?: Watcher) {
   // default to a runner
   if (
     !options.runners.some(
-      (runner) => runner === "axe" || runner === "htmlcs" || runner === "ace"
+      (runner) =>
+        runner === "axe" ||
+        runner === "htmlcs" ||
+        runner === "ace" ||
+        runner === "kayle"
     )
   ) {
     options.runners.push("htmlcs");

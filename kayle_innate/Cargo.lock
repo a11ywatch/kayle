@@ -233,7 +233,7 @@ dependencies = [
 
 [[package]]
 name = "kayle_innate"
-version = "0.0.18"
+version = "0.0.19"
 dependencies = [
  "case_insensitive_string",
  "console_error_panic_hook",

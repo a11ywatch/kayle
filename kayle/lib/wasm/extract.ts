@@ -10,5 +10,8 @@ import type { RunnerConfig } from "../config";
 export async function extractLinks(config: RunnerConfig, target?: string) {
   const htmlContent = await config.page.content();
   const domain = typeof target === "string" ? target : config.page.url();
-  return get_document_links(htmlContent, domain !== "about:blank" ? domain : "");
+  return get_document_links(
+    htmlContent,
+    domain !== "about:blank" ? domain : ""
+  );
 }

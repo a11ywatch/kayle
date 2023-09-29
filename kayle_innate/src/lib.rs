@@ -4,7 +4,7 @@ extern crate lazy_static;
 mod utils;
 use case_insensitive_string::CaseInsensitiveString;
 use std::collections::HashSet;
-use utils::{convert_abs_path, convert_base_path, set_panic_hook, domain_name};
+use utils::{convert_abs_path, convert_base_path, domain_name, set_panic_hook};
 use wasm_bindgen::prelude::*;
 
 #[cfg(feature = "wee_alloc")]
@@ -124,12 +124,14 @@ pub fn get_document_links(res: &str, domain: &str) -> Box<[JsValue]> {
     links.into_boxed_slice()
 }
 
-#[wasm_bindgen]
 // RUST_LOG=info wasm-pack test --firefox --headless --features accessibility --release
 #[cfg(feature = "accessibility")]
 /// try to fix all possible issues using a spec against the tree.
-pub fn parse_accessibility_tree(html: &str) {
+pub fn parse_accessibility_tree(
+    html: &str,
+) -> std::collections::BTreeMap<String, Vec<scraper::node::Element>> {
     set_panic_hook();
+    use std::collections::BTreeMap;
 
     #[wasm_bindgen]
     extern "C" {
@@ -158,60 +160,39 @@ pub fn parse_accessibility_tree(html: &str) {
     // The chrome browser we can set to ignore all assets and fetch them here but, it would be re-doing the wheel.
     // If we can send the Stylesheets from node to rust this could leverage the sheets attached since we just need the node references.
 
-    let mut n = 0;
     let t = now();
-
-    // measure select parsing doc 1:1 around 34ms - gets slower when using methods possibly due to clones
-    while let Some(node) = select::document::Document::from(html).nth(n) {
-        let element_name = node.name();
-        console_log!("{:?}", element_name);
-        n += 1;
-    }
-    console_log!("Select Parser duration {:?}ms", now() - t);
-
-    let t = now();
-
     // parse doc will start from html downwards
     let h = scraper::Html::parse_document(html);
+    // accessibility tree for ordered element mappings
+    let mut accessibility_tree: BTreeMap<String, Vec<_>> = BTreeMap::new();
     let mut hh = h.tree.nodes();
 
     // measure select parsing doc 1:1 around 10ms
     while let Some(node) = hh.next() {
         if let Some(element) = node.value().as_element() {
             let element_name = element.name();
-            console_log!("{:?}", element_name);
+            // console_log!("{:?}", element_name);
+            accessibility_tree
+                .entry(element_name.to_string())
+                .and_modify(|n| n.push(element.to_owned()))
+                .or_insert(Vec::from([element.to_owned()]));
         }
     }
-    // "html"
-    // "head"
-    // "title"
-    // "meta"
-    // "link"
-    // "style"
-    // "body"
-    // "header"
-    // "nav"
-    // "a"
-    // "a"
-    // "main"
-    // "h1"
-    // "p"
-    // "input"
-    // "footer"
-    // "ul"
-    // "li"
 
     console_log!("Scraper Parser: duration {:?}ms", now() - t);
+    console_log!("Getting tree links {:?}", accessibility_tree.get("a"));
+    // console_log!("Tree {:?}", accessibility_tree);
+
+    accessibility_tree
 }
 
 #[wasm_bindgen]
-/// use gpu to accelerate layout rendering or workers.
-pub fn validate_node() {
-    todo!("It will validate a node whether accessibility checks should arise.")
+/// audit a web page passing the html and css rules.
+pub fn audit(html: &str, _css_rules: &str) {
+    let _tree = parse_accessibility_tree(&html);
 }
 
-#[wasm_bindgen]
-/// Perform the a judgement against a page to determine effort, access, and more.
-pub fn judge() {
-    todo!("Determine the score of the website after the tree was built.")
+/// parse css tree to maps
+pub fn parse_css(_css: &str) {
+    // parse the css to a list of nodes capable of o1 getting results
 }

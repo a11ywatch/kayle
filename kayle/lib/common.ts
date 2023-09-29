@@ -35,5 +35,6 @@ export type Audit = {
   meta: MetaInfo;
   pageUrl: string;
 };
+
 // configs that change how the audit behaves
 export type RunnerConf = Partial<RunnerConfig & { html?: string }>;
