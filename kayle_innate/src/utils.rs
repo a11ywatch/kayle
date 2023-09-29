@@ -5,6 +5,23 @@ pub fn set_panic_hook() {
     console_error_panic_hook::set_once();
 }
 
+/// get the clean domain name
+pub fn domain_name(domain: &url::Url) -> &str {
+    match domain.host_str() {
+        Some(b) => {
+            let b = b.split('.').collect::<Vec<&str>>();
+            let bsize = b.len();
+
+            if bsize > 0 {
+                b[bsize - 1]
+            } else {
+                ""
+            }
+        }
+        _ => "",
+    }
+}
+
 /// convert to absolute path
 #[inline]
 pub fn convert_base_path(mut base: Url) -> Url {

@@ -4,6 +4,8 @@ The rust lib for accessibility things.
 
 ## Building
 
+Target the platform that you need like nodejs or browsers etc.
+
 `wasm-pack build --target nodejs`
 
 ## Testing

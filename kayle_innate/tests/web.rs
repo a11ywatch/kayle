@@ -3,7 +3,7 @@
 #![cfg(target_arch = "wasm32")]
 extern crate wasm_bindgen_test;
 
-use kayle_innate::{get_document_links, parse_accessibility_tree};
+use kayle_innate::get_document_links;
 use wasm_bindgen_test::*;
 
 wasm_bindgen_test_configure!(run_in_browser);
@@ -63,8 +63,9 @@ fn _get_document_links() {
 }
 
 #[wasm_bindgen_test]
+#[cfg(feature = "accessibility")]
 fn _parse_accessibility_tree() {
-    parse_accessibility_tree(
+    kayle_innate::parse_accessibility_tree(
         r#"<!DOCTYPE html>
         <html>
             <head>
@@ -99,6 +100,6 @@ fn _parse_accessibility_tree() {
                     </ul>
                 </footer>
             </body>
-        </html>"#
+        </html>"#,
     );
 }

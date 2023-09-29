@@ -3,32 +3,13 @@ extern crate lazy_static;
 
 mod utils;
 use case_insensitive_string::CaseInsensitiveString;
-use select::document::Document;
-use select::predicate::Name;
 use std::collections::HashSet;
-use utils::{convert_abs_path, convert_base_path, set_panic_hook};
+use utils::{convert_abs_path, convert_base_path, set_panic_hook, domain_name};
 use wasm_bindgen::prelude::*;
 
 #[cfg(feature = "wee_alloc")]
 #[global_allocator]
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
-
-/// get the clean domain name
-pub fn domain_name(domain: &url::Url) -> &str {
-    match domain.host_str() {
-        Some(b) => {
-            let b = b.split('.').collect::<Vec<&str>>();
-            let bsize = b.len();
-
-            if bsize > 0 {
-                b[bsize - 1]
-            }  else {
-                ""
-            }
-        }
-        _ => "",
-    }
-}
 
 #[wasm_bindgen]
 /// setup a structure tree alg for parsing and find links in document. Allow user to perform hybrid audits realtime.
@@ -57,58 +38,87 @@ pub fn get_document_links(res: &str, domain: &str) -> Box<[JsValue]> {
             let parent_host_scheme = base_url.scheme();
             let parent_host = base_url.host_str().unwrap_or_default();
 
-            // todo: move to scraper for x2 performance flat
-            Document::from(res)
-                .find(Name("a"))
-                .filter_map(|n| match n.attr("href") {
-                    Some(link) => {
-                        let mut abs = convert_abs_path(&base_url, link);
-                        let mut can_process = match abs.host_str() {
-                            Some(host) => parent_host.ends_with(host),
-                            _ => false,
-                        };
+            let h = scraper::Html::parse_fragment(res);
 
-                        let process = if can_process {
-                            if abs.scheme() != parent_host_scheme {
-                                let _ = abs.set_scheme(parent_host_scheme);
-                            }
+            h.tree
+                .into_iter()
+                .filter_map(|node| {
+                    if let Some(element) = node.as_element() {
+                        if element.name() == "a" {
+                            match element.attr("href") {
+                                Some(link) => {
+                                    let mut abs = convert_abs_path(&base_url, link);
+                                    let mut can_process = match abs.host_str() {
+                                        Some(host) => parent_host.ends_with(host),
+                                        _ => false,
+                                    };
 
-                            let hchars = abs.path();
+                                    let process = if can_process {
+                                        if abs.scheme() != parent_host_scheme {
+                                            let _ = abs.set_scheme(parent_host_scheme);
+                                        }
 
-                            if let Some(position) = hchars.find('.') {
-                                let resource_ext = &hchars[position + 1..hchars.len()];
+                                        let hchars = abs.path();
 
-                                if !ONLY_RESOURCES
-                                    .contains::<CaseInsensitiveString>(&resource_ext.into())
-                                {
-                                    can_process = false;
+                                        if let Some(position) = hchars.find('.') {
+                                            let resource_ext = &hchars[position + 1..hchars.len()];
+
+                                            if !ONLY_RESOURCES.contains::<CaseInsensitiveString>(
+                                                &resource_ext.into(),
+                                            ) {
+                                                can_process = false;
+                                            }
+                                        }
+
+                                        if can_process
+                                            && (base_domain.is_empty()
+                                                || base_domain == domain_name(&abs))
+                                        {
+                                            Some(JsValue::from_str(&abs.as_str()))
+                                        } else {
+                                            None
+                                        }
+                                    } else {
+                                        None
+                                    };
+
+                                    process
                                 }
-                            }
-
-                            if can_process
-                                && (base_domain.is_empty() || base_domain == domain_name(&abs))
-                            {
-                                Some(JsValue::from_str(&abs.as_str()))
-                            } else {
-                                None
+                                _ => None,
                             }
                         } else {
                             None
-                        };
-
-                        process
+                        }
+                    } else {
+                        None
                     }
-                    _ => None,
                 })
                 .collect::<Vec<_>>()
         }
-        _ => Document::from(res)
-            .find(Name("a"))
-            .filter_map(|n| match n.attr("href") {
-                Some(link) => Some(JsValue::from_str(link)),
-                _ => None,
-            })
-            .collect::<Vec<_>>(),
+        _ => {
+            let h = scraper::Html::parse_fragment(res);
+
+            h.tree
+                .into_iter()
+                .filter_map(|node| {
+                    if let Some(element) = node.as_element() {
+                        if element.name() == "a" {
+                            match element.attr("href") {
+                                Some(link) => {
+                                    // TODO: validate only web links
+                                    Some(JsValue::from_str(&link))
+                                }
+                                _ => None,
+                            }
+                        } else {
+                            None
+                        }
+                    } else {
+                        None
+                    }
+                })
+                .collect::<Vec<_>>()
+        }
     };
 
     links.into_boxed_slice()
@@ -144,12 +154,15 @@ pub fn parse_accessibility_tree(html: &str) {
     // Element siblings.
     // Element descendant.
     // Element props.
+    // Challenges in binding css to nodes arise from external sheets.
+    // The chrome browser we can set to ignore all assets and fetch them here but, it would be re-doing the wheel.
+    // If we can send the Stylesheets from node to rust this could leverage the sheets attached since we just need the node references.
 
     let mut n = 0;
     let t = now();
 
     // measure select parsing doc 1:1 around 34ms - gets slower when using methods possibly due to clones
-    while let Some(node) = Document::from(html).nth(n) {
+    while let Some(node) = select::document::Document::from(html).nth(n) {
         let element_name = node.name();
         console_log!("{:?}", element_name);
         n += 1;
@@ -158,23 +171,24 @@ pub fn parse_accessibility_tree(html: &str) {
 
     let t = now();
 
-    let h = scraper::Html::parse_fragment(html);
-    let mut hh = h.tree.into_iter();
+    // parse doc will start from html downwards
+    let h = scraper::Html::parse_document(html);
+    let mut hh = h.tree.nodes();
 
-        // measure select parsing doc 1:1 around 10ms
+    // measure select parsing doc 1:1 around 10ms
     while let Some(node) = hh.next() {
-        if let Some(element) = node.as_element() {
+        if let Some(element) = node.value().as_element() {
             let element_name = element.name();
             console_log!("{:?}", element_name);
         }
     }
-
-    // "body"
     // "html"
+    // "head"
     // "title"
     // "meta"
     // "link"
     // "style"
+    // "body"
     // "header"
     // "nav"
     // "a"
