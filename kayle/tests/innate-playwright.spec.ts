@@ -1,13 +1,13 @@
-import puppeteer from "puppeteer";
 import { innateBuilder, kayle } from "kayle";
 import { drakeMock } from "./mocks/html-mock";
 import { performance } from "perf_hooks";
+import { test } from "@playwright/test";
 import { _audit_not_ready } from "kayle_innate";
 
-// setup test for rust wasm auditing
-(async () => {
-  const browser = await puppeteer.launch({ headless: "new" });
-  const page = await browser.newPage();
+test("kayle_innate, fast_htmlcs, fast_axecore, and ace audit drakeMock profiling compare", async ({
+  page,
+  browser,
+}, testInfo) => {
   if (process.env.LOG_ENABLED) {
     page.on("console", (msg) => console.log("PAGE LOG:", msg.text()));
   }
@@ -63,6 +63,4 @@ import { _audit_not_ready } from "kayle_innate";
   });
   const an = performance.now() - a;
   console.log("ACE TIME", an);
-
-  await browser.close();
-})();
+});

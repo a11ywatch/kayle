@@ -2,6 +2,8 @@
 extern crate lazy_static;
 
 mod utils;
+// mod engine;
+
 use case_insensitive_string::CaseInsensitiveString;
 use std::collections::HashSet;
 use utils::{convert_abs_path, convert_base_path, domain_name, set_panic_hook};
@@ -151,15 +153,6 @@ pub fn parse_accessibility_tree(
 
     console_log!("Starting accessibility tree parsing. This is incomplete and should not be used in production.");
 
-    // STAPLE get the following for selecting
-    // Element name.
-    // Element siblings.
-    // Element descendant.
-    // Element props.
-    // Challenges in binding css to nodes arise from external sheets.
-    // The chrome browser we can set to ignore all assets and fetch them here but, it would be re-doing the wheel.
-    // If we can send the Stylesheets from node to rust this could leverage the sheets attached since we just need the node references.
-
     let t = now();
     // parse doc will start from html downwards
     let h = scraper::Html::parse_document(html);
@@ -188,8 +181,10 @@ pub fn parse_accessibility_tree(
 
 #[wasm_bindgen]
 /// audit a web page passing the html and css rules.
-pub fn audit(html: &str, _css_rules: &str) {
+pub fn _audit_not_ready(html: &str, _css_rules: &str) {
     let _tree = parse_accessibility_tree(&html);
+    let _css_nodes = parse_css(_css_rules);
+    // reference the css model when in the tree to get style information
 }
 
 /// parse css tree to maps

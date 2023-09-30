@@ -7,7 +7,7 @@ The blazing fast and accurate web accessibility engine.
 Install your browser automation lib [playwright](https://github.com/microsoft/playwright) or [puppeteer](https://github.com/puppeteer/puppeteer).
 
 ```sh
-# yarn add puppeteer or yarn add playwright
+# npm i puppeteer or npm i playwright
 npm install kayle --save
 ```
 
@@ -21,10 +21,14 @@ const page = await browser.newPage();
 const results = await kayle({
   page,
   browser,
+  runners: ["htmlcs"] // options are  "htmlcs", "axe", and "ace". The order is from fastest to slowest. Defaults to htmlcs.
   origin: "https://a11ywatch.com",
   // html: "<html>...</html>"
 });
 ```
+
+It is recommended to use `htmlcs` as the runner or simply not declare a runner for the default. 
+We did a massive rewrite on htmlcs and it is extremely fast and stable.
 
 When passing raw `html` try to also include the `origin` or the url, this sets `window.origin` and helps scripts that rely on it to work correctly or else relatives scripts will not work since the relative path does not exist on the locale machine.
 
@@ -44,7 +48,6 @@ const page = await browser.newPage();
 const results = await autoKayle({
   page,
   browser,
-  runners: ["htmlcs", "axe"],
   includeWarnings: true,
   origin: "https://a11ywatch.com",
   waitUntil: "domcontentloaded",
@@ -52,6 +55,23 @@ const results = await autoKayle({
     console.log(result);
   },
 });
+```
+
+```sh
+# Output of time between runners with a realistic run - Rust/WASM is in the making and not yet ready.
+# Measurement is only calculated from the runner and not the extra latency to get the page initially. View the `innate` test to see more detals.
+
+# puppeteer - speed is stable across most versions
+# Rust/WASM 18.43487498164177
+# FAST_HTMLCS 29.915208011865616
+# FAST_AXE 162.87204200029373
+# ACE 512.5237080156803
+
+# playwright - the speed depends on the version
+# Rust/WASM TIME  17.60895800590515
+# FAST_HTMLCS TIME 33.50962498784065
+# FAST_AXE TIME 203.2565419971943
+# ACE TIME 905.6748749911785
 ```
 
 ## Clips
@@ -62,7 +82,6 @@ You can include base64 images with the audits to get a visual of the exact locat
 const results = await kayle({
   page,
   browser,
-  runners: ["axe"],
   includeWarnings: true,
   origin: "https://www.drake.com",
   waitUntil: "domcontentloaded",
