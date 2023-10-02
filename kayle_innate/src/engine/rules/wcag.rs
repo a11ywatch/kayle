@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use std::collections::{HashMap, BTreeMap};
 
 use crate::{console_log, engine::issue::Issue};
 
@@ -47,7 +47,7 @@ impl Rule {
 
 lazy_static! {
     /// a list of rules that should be applied for WCAG1
-    static ref RULES_A: HashMap<&'static str, Vec<Rule>> =
+    static ref RULES_A: BTreeMap<&'static str, Vec<Rule>> =
         vec![("title", Vec::from([Rule::new(RuleID::F25, Criteria::Error, |_rule, elements, _css_parser| {
             !elements.is_empty()
         })]))]

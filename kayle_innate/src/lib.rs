@@ -152,53 +152,50 @@ pub fn parse_accessibility_tree(
     html: &str,
     // todo: return the nodes with a tuple of the layout node and the element node
 ) -> std::collections::BTreeMap<String, Vec<scraper::node::Element>> {
-    use taffy::prelude::*;
-
     console_log!("Starting accessibility tree parsing. This is incomplete and should not be used in production.");
+    // use taffy::prelude::*;
+    // // todo: use optional variable for clips or layout creation
+    // let mut taffy = Taffy::new();
 
-    // todo: use optional variable for clips or layout creation
-    let mut taffy = Taffy::new();
+    // let header_node = taffy
+    //     .new_leaf(Style {
+    //         size: Size {
+    //             width: points(800.0),
+    //             height: points(100.0),
+    //         },
+    //         ..Default::default()
+    //     })
+    //     .unwrap();
 
-    let header_node = taffy
-        .new_leaf(Style {
-            size: Size {
-                width: points(800.0),
-                height: points(100.0),
-            },
-            ..Default::default()
-        })
-        .unwrap();
+    // let body_node = taffy
+    //     .new_leaf(Style {
+    //         size: Size {
+    //             width: points(800.0),
+    //             height: auto(),
+    //         },
+    //         flex_grow: 1.0,
+    //         ..Default::default()
+    //     })
+    //     .unwrap();
 
-    let body_node = taffy
-        .new_leaf(Style {
-            size: Size {
-                width: points(800.0),
-                height: auto(),
-            },
-            flex_grow: 1.0,
-            ..Default::default()
-        })
-        .unwrap();
+    // let root_node = taffy
+    //     .new_with_children(
+    //         Style {
+    //             flex_direction: FlexDirection::Column,
+    //             size: Size {
+    //                 width: points(800.0),
+    //                 height: points(600.0),
+    //             },
+    //             ..Default::default()
+    //         },
+    //         &[header_node, body_node],
+    //     )
+    //     .unwrap();
 
-    let root_node = taffy
-        .new_with_children(
-            Style {
-                flex_direction: FlexDirection::Column,
-                size: Size {
-                    width: points(800.0),
-                    height: points(600.0),
-                },
-                ..Default::default()
-            },
-            &[header_node, body_node],
-        )
-        .unwrap();
-
-    // Call compute_layout on the root of your tree to run the layout algorithm
-    taffy.compute_layout(root_node, Size::MAX_CONTENT).unwrap();
-
+    // // Call compute_layout on the root of your tree to run the layout algorithm
+    // taffy.compute_layout(root_node, Size::MAX_CONTENT).unwrap();
+    // console_log!("Header Layout {:?}", taffy.layout(header_node).unwrap());
     // We can get the x,y, and height, width of the element on proper tree insert
-    console_log!("Header Layout {:?}", taffy.layout(header_node).unwrap());
 
     let t = now();
     // parse doc will start from html downwards
@@ -229,8 +226,10 @@ pub fn parse_accessibility_tree(
 /// audit a web page passing the html and css rules.
 pub fn _audit_not_ready(html: &str, _css_rules: &str) {
     set_panic_hook();
+    // TODO: if the css rules are empty extract the css from the HTML
     let css_rules = &mut cssparser::ParserInput::new(&_css_rules);
-    let _css_nodes = cssparser::Parser::new(css_rules);
+    // TODO: build the rules to css blocks that selectors can be used to find the element of the style.
+    let mut _css_parser = cssparser::Parser::new(css_rules);
     let _tree = parse_accessibility_tree(&html);
-    let _audit = engine::rules::wcag::WCAG3AA::audit(_tree, _css_nodes);
+    let _audit = engine::rules::wcag::WCAG3AA::audit(_tree, _css_parser);
 }

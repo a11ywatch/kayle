@@ -49,8 +49,10 @@ export function extractArgs(o, watcher?: Watcher) {
       (runner) =>
         runner === "axe" ||
         runner === "htmlcs" ||
-        runner === "ace" ||
-        runner === "kayle"
+        runner === "ace" 
+        // ||
+        // // wasm build when released 
+        // runner === "kayle"
     )
   ) {
     options.runners.push("htmlcs");
