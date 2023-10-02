@@ -63,9 +63,16 @@ pub struct WCAG3AA {}
 impl WCAG3AA {
     /// init the rules
     pub fn audit(
-        tree: std::collections::BTreeMap<String, Vec<scraper::node::Element>>,
+        // allow tree mutation until threads or setup the tree with initial elements.
+        mut tree: std::collections::BTreeMap<String, Vec<scraper::node::Element>>,
         _css: cssparser::Parser<'_, '_>,
     ) -> Vec<Issue> {
+
+        // pre populate must have keys
+        if !tree.contains_key("title") {
+            tree.insert("title".into(), Default::default());
+        }
+
         // go through nodes and map to validation rules
         for node in tree {
             if RULES_A.contains_key(&*node.0) {
