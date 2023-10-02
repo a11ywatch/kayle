@@ -3,15 +3,33 @@ extern crate lazy_static;
 
 mod utils;
 // mod engine;
-
 use case_insensitive_string::CaseInsensitiveString;
 use std::collections::HashSet;
 use utils::{convert_abs_path, convert_base_path, domain_name, set_panic_hook};
 use wasm_bindgen::prelude::*;
-
 #[cfg(feature = "wee_alloc")]
 #[global_allocator]
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
+#[cfg(feature = "accessibility")]
+use std::collections::BTreeMap;
+
+#[cfg(feature = "accessibility")]
+#[wasm_bindgen]
+extern "C" {
+    #[wasm_bindgen(js_namespace = console)]
+    fn log(s: &str);
+    #[wasm_bindgen(js_namespace = console, js_name = log)]
+    fn log_u32(a: u32);
+    #[wasm_bindgen(js_namespace = console, js_name = log)]
+    fn log_many(a: &str, b: &str);
+    #[wasm_bindgen(js_namespace = Date)]
+    fn now() -> u32;
+}
+
+#[cfg(feature = "accessibility")]
+macro_rules! console_log {
+    ($($t:tt)*) => (log(&format_args!($($t)*).to_string()))
+}
 
 #[wasm_bindgen]
 /// setup a structure tree alg for parsing and find links in document. Allow user to perform hybrid audits realtime.
@@ -132,25 +150,6 @@ pub fn get_document_links(res: &str, domain: &str) -> Box<[JsValue]> {
 pub fn parse_accessibility_tree(
     html: &str,
 ) -> std::collections::BTreeMap<String, Vec<scraper::node::Element>> {
-    set_panic_hook();
-    use std::collections::BTreeMap;
-
-    #[wasm_bindgen]
-    extern "C" {
-        #[wasm_bindgen(js_namespace = console)]
-        fn log(s: &str);
-        #[wasm_bindgen(js_namespace = console, js_name = log)]
-        fn log_u32(a: u32);
-        #[wasm_bindgen(js_namespace = console, js_name = log)]
-        fn log_many(a: &str, b: &str);
-        #[wasm_bindgen(js_namespace = Date)]
-        fn now() -> u32;
-    }
-
-    macro_rules! console_log {
-        ($($t:tt)*) => (log(&format_args!($($t)*).to_string()))
-    }
-
     console_log!("Starting accessibility tree parsing. This is incomplete and should not be used in production.");
 
     let t = now();
@@ -160,11 +159,9 @@ pub fn parse_accessibility_tree(
     let mut accessibility_tree: BTreeMap<String, Vec<_>> = BTreeMap::new();
     let mut hh = h.tree.nodes();
 
-    // measure select parsing doc 1:1 around 10ms
     while let Some(node) = hh.next() {
         if let Some(element) = node.value().as_element() {
             let element_name = element.name();
-            // console_log!("{:?}", element_name);
             accessibility_tree
                 .entry(element_name.to_string())
                 .and_modify(|n| n.push(element.to_owned()))
@@ -179,15 +176,15 @@ pub fn parse_accessibility_tree(
     accessibility_tree
 }
 
+
 #[wasm_bindgen]
+#[cfg(feature = "accessibility")]
 /// audit a web page passing the html and css rules.
 pub fn _audit_not_ready(html: &str, _css_rules: &str) {
+    set_panic_hook();
+    // parse css first
+    let _css_nodes = cssparser::Parser::new(&mut cssparser::ParserInput::new(&_css_rules));
+    // build tree
     let _tree = parse_accessibility_tree(&html);
-    let _css_nodes = parse_css(_css_rules);
-    // reference the css model when in the tree to get style information
-}
-
-/// parse css tree to maps
-pub fn parse_css(_css: &str) {
-    // parse the css to a list of nodes capable of o1 getting results
+    // send tree with css parser to parse conditions fast.
 }

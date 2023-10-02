@@ -62,13 +62,13 @@ const results = await autoKayle({
 # Measurement is only calculated from the runner and not the extra latency to get the page initially. View the `innate` test to see more detals.
 
 # puppeteer - speed is stable across most versions
-# Rust/WASM 18.43487498164177
+# Rust/WASM 10.863582968711853
 # FAST_HTMLCS 29.915208011865616
 # FAST_AXE 162.87204200029373
 # ACE 512.5237080156803
 
 # playwright - the speed depends on the version
-# Rust/WASM TIME  17.60895800590515
+# Rust/WASM TIME  10.163457989692688
 # FAST_HTMLCS TIME 33.50962498784065
 # FAST_AXE TIME 203.2565419971943
 # ACE TIME 905.6748749911785
@@ -91,8 +91,6 @@ const results = await kayle({
   clip2Base64: true, // optional: attach a base64 property of the clip
 });
 ```
-
-![Images of issues being stored of the to get visual feedback.](https://user-images.githubusercontent.com/8095978/268726837-f362a490-b611-4acf-8cb6-104f58a0a6c7.gif)
 
 ## Runners
 
