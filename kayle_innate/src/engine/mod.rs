@@ -1,4 +1,4 @@
 /// issue handling and formats
-mod issue;
+pub mod issue;
 /// rules like WCAG
-mod rules;
+pub mod rules;

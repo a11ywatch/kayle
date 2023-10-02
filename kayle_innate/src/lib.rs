@@ -1,8 +1,8 @@
 #[macro_use]
 extern crate lazy_static;
 
+mod engine;
 mod utils;
-// mod engine;
 use case_insensitive_string::CaseInsensitiveString;
 use std::collections::HashSet;
 use utils::{convert_abs_path, convert_base_path, domain_name, set_panic_hook};
@@ -27,8 +27,9 @@ extern "C" {
 }
 
 #[cfg(feature = "accessibility")]
+#[macro_export]
 macro_rules! console_log {
-    ($($t:tt)*) => (log(&format_args!($($t)*).to_string()))
+    ($($t:tt)*) => (crate::log(&format_args!($($t)*).to_string()))
 }
 
 #[wasm_bindgen]
@@ -170,21 +171,19 @@ pub fn parse_accessibility_tree(
     }
 
     console_log!("Scraper Parser: duration {:?}ms", now() - t);
-    console_log!("Getting tree links {:?}", accessibility_tree.get("a"));
+    // console_log!("Getting tree links {:?}", accessibility_tree.get("a"));
     // console_log!("Tree {:?}", accessibility_tree);
 
     accessibility_tree
 }
-
 
 #[wasm_bindgen]
 #[cfg(feature = "accessibility")]
 /// audit a web page passing the html and css rules.
 pub fn _audit_not_ready(html: &str, _css_rules: &str) {
     set_panic_hook();
-    // parse css first
-    let _css_nodes = cssparser::Parser::new(&mut cssparser::ParserInput::new(&_css_rules));
-    // build tree
+    let css_rules = &mut cssparser::ParserInput::new(&_css_rules);
+    let _css_nodes = cssparser::Parser::new(css_rules);
     let _tree = parse_accessibility_tree(&html);
-    // send tree with css parser to parse conditions fast.
+    let _audit = engine::rules::wcag::WCAG3AA::audit(_tree, _css_nodes);
 }

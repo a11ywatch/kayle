@@ -1,13 +1,13 @@
 /// clip bounding box
 pub struct Clip {
     /// the x coords
-    x: u32,
+    pub x: u32,
     /// the y coords
-    y: u32,
+    pub y: u32,
     /// the element height
-    height: u32,
+    pub height: u32,
     /// the element width
-    width: u32,
+    pub width: u32,
 }
 
 /// issue details
