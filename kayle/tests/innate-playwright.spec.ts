@@ -11,14 +11,15 @@ test("kayle_innate, fast_htmlcs, fast_axecore, and ace audit drakeMock profiling
   if (process.env.LOG_ENABLED) {
     page.on("console", (msg) => console.log("PAGE LOG:", msg.text()));
   }
+  
   const { html, css } = await innateBuilder({
     page,
     browser,
-    runners: ["htmlcs"],
     includeWarnings: true,
     origin: "https://www.drake.com",
     html: drakeMock,
   });
+
   const startTime = performance.now();
   // 8 - after building end engine optimized most likely will be at 12 ms
   await _audit_not_ready(html, css);

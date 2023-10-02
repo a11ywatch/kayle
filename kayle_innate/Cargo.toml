@@ -12,7 +12,7 @@ crate-type = ["cdylib", "rlib"]
 
 [features]
 default = ["console_error_panic_hook", "accessibility"]
-accessibility = ["cssparser"]
+accessibility = ["cssparser", "taffy"]
 
 [dependencies]
 wasm-bindgen = "0.2.63"
@@ -24,6 +24,7 @@ case_insensitive_string = "0.1.0"
 scraper = { version = "0.17.1" }
 getrandom = { version = "0.2", features = ["js"] }
 cssparser = { version = "0.33.0", optional = true }
+taffy = { version = "0.3.13", optional = true }
 
 [dev-dependencies]
 wasm-bindgen-test = "0.3.37"

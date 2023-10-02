@@ -66,8 +66,8 @@ impl WCAG3AA {
         // allow tree mutation until threads or setup the tree with initial elements.
         mut tree: std::collections::BTreeMap<String, Vec<scraper::node::Element>>,
         _css: cssparser::Parser<'_, '_>,
+        // todo: get configs like viewport
     ) -> Vec<Issue> {
-
         // pre populate must have keys
         if !tree.contains_key("title") {
             tree.insert("title".into(), Default::default());

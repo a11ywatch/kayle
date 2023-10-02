@@ -150,8 +150,55 @@ pub fn get_document_links(res: &str, domain: &str) -> Box<[JsValue]> {
 /// try to fix all possible issues using a spec against the tree.
 pub fn parse_accessibility_tree(
     html: &str,
+    // todo: return the nodes with a tuple of the layout node and the element node
 ) -> std::collections::BTreeMap<String, Vec<scraper::node::Element>> {
+    use taffy::prelude::*;
+
     console_log!("Starting accessibility tree parsing. This is incomplete and should not be used in production.");
+
+    // todo: use optional variable for clips or layout creation
+    let mut taffy = Taffy::new();
+
+    let header_node = taffy
+        .new_leaf(Style {
+            size: Size {
+                width: points(800.0),
+                height: points(100.0),
+            },
+            ..Default::default()
+        })
+        .unwrap();
+
+    let body_node = taffy
+        .new_leaf(Style {
+            size: Size {
+                width: points(800.0),
+                height: auto(),
+            },
+            flex_grow: 1.0,
+            ..Default::default()
+        })
+        .unwrap();
+
+    let root_node = taffy
+        .new_with_children(
+            Style {
+                flex_direction: FlexDirection::Column,
+                size: Size {
+                    width: points(800.0),
+                    height: points(600.0),
+                },
+                ..Default::default()
+            },
+            &[header_node, body_node],
+        )
+        .unwrap();
+
+    // Call compute_layout on the root of your tree to run the layout algorithm
+    taffy.compute_layout(root_node, Size::MAX_CONTENT).unwrap();
+
+    // We can get the x,y, and height, width of the element on proper tree insert
+    console_log!("Header Layout {:?}", taffy.layout(header_node).unwrap());
 
     let t = now();
     // parse doc will start from html downwards

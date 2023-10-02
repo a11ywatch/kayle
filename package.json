@@ -16,6 +16,7 @@
     "build:test:fast_htmlcs": "yarn build:fast_htmlcs && yarn test:playwright:htmlcs",
     "build:test:axe": "yarn build:fast_axecore && yarn test:axe",
     "build:test:playwright:axe": "yarn build:fast_axecore && yarn test:playwright:axe",
+    "build:innate": "cd kayle_innate && wasm-pack build --target nodejs",
     "pub:fast_htmlcs": "yarn build:fast_htmlcs && yarn npm publish",
     "pub:fast_axecore": "yarn build:fast_axecore && yarn npm publish",
     "pub:kayle": "yarn build:kayle && yarn npm publish",
