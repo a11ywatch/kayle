@@ -1,4 +1,5 @@
 /// clip bounding box
+#[derive(Default, Debug)]
 pub struct Clip {
     /// the x coords
     pub x: u32,
@@ -11,25 +12,36 @@ pub struct Clip {
 }
 
 /// issue details
+#[derive(Default, Debug)]
 pub struct Issue {
     /// the context of the issue or raw html
-    pub context: String,
+    pub context: &'static str,
     /// the selector to identify the issue with css, xpath, or raw path
-    pub selector: String,
+    pub selector: &'static str,
     /// the type of code for the issue
-    pub code: String,
+    pub code: &'static str,
     /// the type of issue
-    pub issue_type: String,
+    pub issue_type: &'static str,
     /// the typecode of the issue 0,1,2
     pub type_code: u8,
     /// the message of the issue
-    pub message: String,
+    pub message: &'static str,
     /// the type of runner
-    pub runner: String,
+    pub runner: &'static str,
     /// extra details for the runner
     pub runner_extras: std::collections::HashMap<String, String>,
     /// the amount of times the issue appeared
     pub recurrence: u32,
     /// the visual position of the element
     pub clip: Option<Clip>,
+}
+
+impl Issue {
+    /// create a new issue
+    pub fn new(message: &'static str) -> Issue {
+        Issue {
+            message,
+            ..Default::default()
+        }
+    }
 }

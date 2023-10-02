@@ -1,12 +1,7 @@
-use std::collections::{HashMap, BTreeMap};
-
+use crate::engine::rules::ids::RuleID;
+use crate::i18n::locales::{get_message, Langs};
 use crate::{console_log, engine::issue::Issue};
-
-#[derive(std::cmp::Eq, PartialEq, Hash, Debug)]
-enum RuleID {
-    /// no empty titles
-    F25,
-}
+use std::collections::BTreeMap;
 
 /// the success criteria to use
 #[derive(Debug)]
@@ -73,6 +68,8 @@ impl WCAG3AA {
             tree.insert("title".into(), Default::default());
         }
 
+        let mut issues: Vec<Issue> = Vec::new();
+
         // go through nodes and map to validation rules
         for node in tree {
             if RULES_A.contains_key(&*node.0) {
@@ -81,6 +78,14 @@ impl WCAG3AA {
                     Some(rules) => {
                         for rule in rules {
                             let valid = (rule.validate)(&node.0, &node.1, &_css);
+
+                            if !valid {
+                                // get locales prior or from document
+                                let message = get_message(&rule.rule_id, &Langs::En.as_str());
+                                // todo: add rest of properties
+                                let issue = Issue::new(message);
+                                issues.push(issue);
+                            }
                             console_log!(
                                 "RULE {:?} {:?} Valid: {:?}",
                                 rule.rule_id,
@@ -94,6 +99,6 @@ impl WCAG3AA {
             }
         }
 
-        Default::default()
+        issues
     }
 }

@@ -2,7 +2,9 @@
 extern crate lazy_static;
 
 mod engine;
+mod i18n;
 mod utils;
+
 use case_insensitive_string::CaseInsensitiveString;
 use std::collections::HashSet;
 use utils::{convert_abs_path, convert_base_path, domain_name, set_panic_hook};

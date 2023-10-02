@@ -1,1 +1,2 @@
-
+/// localization
+pub mod locales;
