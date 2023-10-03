@@ -229,7 +229,7 @@ pub fn parse_accessibility_tree(
 #[cfg(feature = "accessibility")]
 /// audit a web page passing the html and css rules.
 pub fn _audit_not_ready(html: &str, _css_rules: &str) -> Result<JsValue, JsValue> {
-    set_panic_hook();
+    // set_panic_hook();
     let html = Box::new(scraper::Html::parse_document(html));
     // TODO: if the css rules are empty extract the css from the HTML
     let css_rules = &mut cssparser::ParserInput::new(&_css_rules);
