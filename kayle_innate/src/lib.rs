@@ -1,3 +1,7 @@
+#[cfg(feature = "wee_alloc")]
+#[global_allocator]
+static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
+
 #[macro_use]
 extern crate lazy_static;
 
@@ -9,9 +13,6 @@ use case_insensitive_string::CaseInsensitiveString;
 use std::collections::HashSet;
 use utils::{convert_abs_path, convert_base_path, domain_name, set_panic_hook};
 use wasm_bindgen::prelude::*;
-#[cfg(feature = "wee_alloc")]
-#[global_allocator]
-static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 #[cfg(feature = "accessibility")]
 use scraper::ElementRef;
 #[cfg(feature = "accessibility")]
