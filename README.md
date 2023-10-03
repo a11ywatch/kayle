@@ -27,7 +27,7 @@ const results = await kayle({
 });
 ```
 
-It is recommended to use `htmlcs` as the runner or simply not declare a runner for the default. 
+It is recommended to use `htmlcs` as the runner or simply not declare a runner for the default.
 We did a massive rewrite on htmlcs and it is extremely fast and stable.
 
 When passing raw `html` try to also include the `origin` or the url, this sets `window.origin` and helps scripts that rely on it to work correctly or else relatives scripts will not work since the relative path does not exist on the locale machine.

@@ -1,6 +1,6 @@
 {
   "name": "kayle",
-  "version": "0.7.11",
+  "version": "0.7.12",
   "description": "Extremely fast and accurate accessibility engine built for any headless tool like playwright or puppeteer.",
   "main": "./build/index.js",
   "keywords": [
@@ -43,6 +43,7 @@
     "test:puppeteer:htmlcs": "npm run compile:test && node _tests/tests/basic-htmlcs.js",
     "test:puppeteer:ace": "npm run compile:test && node _tests/tests/basic-ace.js",
     "test:missing": "npm run compile:test && node _tests/tests/missing.js",
+    "test:selectors": "npm run compile:test && node _tests/tests/selectors.js",
     "test:playwright": "npm run compile:test && npx playwright test ./tests/basic-playwright.spec.ts",
     "test:playwright:axe": "npm run compile:test && npx playwright test ./tests/basic-axe-playwright.spec.ts",
     "test:playwright:htmlcs": "npm run compile:test && npx playwright test ./tests/basic-htmlcs-playwright.spec",

@@ -100,7 +100,8 @@
 
     return {
       context: context || issue.snippet,
-      selector: selector || (issue.path && issue.path.dom),
+      selector:
+        selector || (issue.path && issue.path.dom ? issue.path.dom : ""),
       code: issue.code || issue.ruleId,
       type: issue.type || issueCodeReverseMap[typeCode],
       typeCode: typeCode || 0,
@@ -157,7 +158,7 @@
 
   // get css selelector todo: shortest path https://patents.google.com/patent/CN105094940A/en
   const getElementSelector = (element: HTMLElement) => {
-    if (!element) {
+    if (!element || element.nodeName == "HTML") {
       return "";
     }
 

@@ -12,7 +12,7 @@ export const innateBuilder = async (o: RunnerConf) => {
   console.log("NOT READY YET. Do not use.");
   const watcher = new Watcher();
   const config = extractArgs(o, watcher);
-  
+
   const navigate =
     config.page.url() === "about:blank" && (config.origin || o.html);
 
