@@ -66,7 +66,7 @@ struct Rule {
     /// validate a test
     pub validate: fn(
         &String,
-        &Vec<scraper::node::Element>,
+        &Vec<scraper::node::Node>,
         css: &cssparser::Parser<'_, '_>,
     ) -> (bool, &'static str),
     /// the principle type
@@ -84,7 +84,7 @@ impl Rule {
         guideline: Guideline,
         validate: fn(
             &String,
-            &Vec<scraper::node::Element>,
+            &Vec<scraper::node::Node>,
             &cssparser::Parser<'_, '_>,
         ) -> (bool, &'static str),
     ) -> Rule {
@@ -101,13 +101,14 @@ impl Rule {
 lazy_static! {
     /// a list of rules that should be applied for WCAG1
     static ref RULES_A: BTreeMap<&'static str, Vec<Rule>> =
+        // empty titles
         vec![("title", Vec::from([
              Rule::new(RuleID::H25, Criteria::Error, Principle::Operable, Guideline::Navigable, |_rule, elements, _css_parser| {
                 (!elements.is_empty(), "1.NoTitleEl")
              }),
-            //  Rule::new(RuleID::H25, Criteria::Error, Principle::Operable, Guideline::Navigable, |_rule, elements, _css_parser| {
-            //     (!elements.is_empty(), "1.EmptyTitle")
-            // }),
+             Rule::new(RuleID::H25, Criteria::Error, Principle::Operable, Guideline::Navigable, |_rule, elements, _css_parser| {
+                (elements.is_empty() || elements[0].as_text().unwrap_or(&scraper::node::Text { text: "".into() }).text.is_empty(), "1.EmptyTitle")
+            }),
         ]))]
             .into_iter()
             .collect();
@@ -122,7 +123,7 @@ impl WCAG3AA {
     /// init the rules
     pub fn audit(
         // allow tree mutation until threads or setup the tree with initial elements.
-        mut tree: std::collections::BTreeMap<String, Vec<scraper::node::Element>>,
+        mut tree: std::collections::BTreeMap<String, Vec<scraper::node::Node>>,
         _css: cssparser::Parser<'_, '_>,
         // todo: get configs like viewport
     ) -> Vec<Issue> {
@@ -161,11 +162,12 @@ impl WCAG3AA {
                                 );
                                 issues.push(issue);
                             }
-
+                            
                             console_log!(
-                                "RULE {:?} {:?} Valid: {:?}",
+                                "RULE {:?} {:?} {:?} Valid: {:?}",
                                 rule.rule_id,
                                 rule.criteria,
+                                section,
                                 valid
                             );
                         }

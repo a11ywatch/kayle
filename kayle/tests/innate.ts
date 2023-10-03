@@ -20,7 +20,6 @@ import { _audit_not_ready } from "kayle_innate";
   });
   const mock = html.replace("<title>Drake Industries | Custom, Durable, High-Quality Labels, Asset Tags and Custom Server Bezels</title>", "")
   const startTime = performance.now();
-  // 8 - after building end engine optimized most likely will be at 12 ms
   const audit = await _audit_not_ready(mock, css);
   const nextTime = performance.now() - startTime;
   console.log("Rust/WASM TIME ", nextTime);
