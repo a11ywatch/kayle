@@ -14,6 +14,18 @@ enum Criteria {
     Notice,
 }
 
+impl Criteria {
+    /// get rule id to string
+    pub fn as_str(&self) -> &'static str {
+        match self {
+            Criteria::Error => "error",
+            Criteria::Warning => "warning",
+            Criteria::Notice => "notice",
+        }
+    }
+}
+
+
 /// the rule validation method that should be performed.
 struct Rule {
     /// the message id of the rule to point to the locale
@@ -83,9 +95,15 @@ impl WCAG3AA {
                                 // get locales prior or from document
                                 let message = get_message(&rule.rule_id, &Langs::En.as_str());
                                 // todo: add rest of properties
-                                let issue = Issue::new(message);
+                                let issue = Issue::new(
+                                    message,
+                                    &node.0,
+                                    &["WCAGAA", rule.rule_id.as_str()].join("_"),
+                                    rule.criteria.as_str()
+                                );
                                 issues.push(issue);
                             }
+
                             console_log!(
                                 "RULE {:?} {:?} Valid: {:?}",
                                 rule.rule_id,

@@ -1,5 +1,7 @@
+use serde::{Deserialize, Serialize};
+
 /// clip bounding box
-#[derive(Default, Debug)]
+#[derive(Default, Debug, Serialize, Deserialize)]
 pub struct Clip {
     /// the x coords
     pub x: u32,
@@ -12,14 +14,14 @@ pub struct Clip {
 }
 
 /// issue details
-#[derive(Default, Debug)]
+#[derive(Default, Debug, Serialize, Deserialize)]
 pub struct Issue {
     /// the context of the issue or raw html
-    pub context: &'static str,
+    pub context: String,
     /// the selector to identify the issue with css, xpath, or raw path
     pub selector: &'static str,
     /// the type of code for the issue
-    pub code: &'static str,
+    pub code: String,
     /// the type of issue
     pub issue_type: &'static str,
     /// the typecode of the issue 0,1,2
@@ -38,9 +40,13 @@ pub struct Issue {
 
 impl Issue {
     /// create a new issue
-    pub fn new(message: &'static str) -> Issue {
+    pub fn new(message: &'static str, context: &str, code: &str, issue_type: &'static str) -> Issue {
         Issue {
             message,
+            context: context.into(),
+            runner: "kayle",
+            code: code.into(),
+            issue_type,
             ..Default::default()
         }
     }

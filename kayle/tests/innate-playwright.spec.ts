@@ -19,13 +19,13 @@ test("kayle_innate, fast_htmlcs, fast_axecore, and ace audit drakeMock profiling
     origin: "https://www.drake.com",
     html: drakeMock,
   });
-  
+  const mock = html.replace("<title>Drake Industries | Custom, Durable, High-Quality Labels, Asset Tags and Custom Server Bezels</title>", "")
   const startTime = performance.now();
   // 8 - after building end engine optimized most likely will be at 12 ms
-  await _audit_not_ready(html, css);
+  const audit = await _audit_not_ready(mock, css);
   const nextTime = performance.now() - startTime;
   console.log("Rust/WASM TIME ", nextTime);
-
+  
   const st = performance.now();
   await kayle({
     page,
@@ -64,4 +64,5 @@ test("kayle_innate, fast_htmlcs, fast_axecore, and ace audit drakeMock profiling
   });
   const an = performance.now() - a;
   console.log("ACE TIME", an);
+  console.log(`Rust Audit: `, audit)
 });

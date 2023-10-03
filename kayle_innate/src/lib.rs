@@ -226,7 +226,7 @@ pub fn parse_accessibility_tree(
 #[wasm_bindgen]
 #[cfg(feature = "accessibility")]
 /// audit a web page passing the html and css rules.
-pub fn _audit_not_ready(html: &str, _css_rules: &str) {
+pub fn _audit_not_ready(html: &str, _css_rules: &str) -> Result<JsValue, JsValue> {
     set_panic_hook();
     // TODO: if the css rules are empty extract the css from the HTML
     let css_rules = &mut cssparser::ParserInput::new(&_css_rules);
@@ -234,4 +234,7 @@ pub fn _audit_not_ready(html: &str, _css_rules: &str) {
     let mut _css_parser = cssparser::Parser::new(css_rules);
     let _tree = parse_accessibility_tree(&html);
     let _audit = engine::rules::wcag::WCAG3AA::audit(_tree, _css_parser);
+
+    // todo: map to JsValues instead of serde
+    Ok(serde_wasm_bindgen::to_value(&_audit)?)
 }
