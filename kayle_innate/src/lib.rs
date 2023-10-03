@@ -155,8 +155,7 @@ pub fn get_document_links(res: &str, domain: &str) -> Box<[JsValue]> {
 pub fn parse_accessibility_tree(
     html: &scraper::Html,
     // todo: return the nodes with a tuple of the layout node and the element node
-) -> std::collections::BTreeMap<String, Vec<ElementRef<'_>>> {
-    console_log!("Starting accessibility tree parsing. This is incomplete and should not be used in production.");
+) -> std::collections::BTreeMap<&str, Vec<ElementRef<'_>>> {
     // use taffy::prelude::*;
     // // todo: use optional variable for clips or layout creation
     // let mut taffy = Taffy::new();
@@ -204,16 +203,14 @@ pub fn parse_accessibility_tree(
     let t = now();
     // parse doc will start from html downwards
     // accessibility tree for ordered element mappings
-    let mut accessibility_tree: BTreeMap<String, Vec<ElementRef<'_>>> =
+    let mut accessibility_tree: BTreeMap<&str, Vec<ElementRef<'_>>> =
         BTreeMap::from([("title".into(), Default::default())]);
 
     for node in html.tree.nodes() {
         match scraper::element_ref::ElementRef::wrap(node) {
             Some(element) => {
-                let element_name = element.value().name();
-
                 accessibility_tree
-                    .entry(element_name.to_string())
+                    .entry(element.value().name())
                     .and_modify(|n| n.push(element))
                     .or_insert(Vec::from([element]));
             }

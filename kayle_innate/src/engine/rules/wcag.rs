@@ -12,7 +12,7 @@ impl WCAG3AA {
     /// init the rules
     pub fn audit(
         // allow tree mutation until threads or setup the tree with initial elements.
-        tree: std::collections::BTreeMap<String, Vec<ElementRef<'_>>>,
+        tree: std::collections::BTreeMap<&str, Vec<ElementRef<'_>>>,
         _css: cssparser::Parser<'_, '_>,
         // todo: get configs like viewport
     ) -> Vec<Issue> {

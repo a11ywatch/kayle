@@ -10,7 +10,7 @@ pub struct Rule {
     pub criteria: Criteria,
     /// validate a test returns (valid, rule, selectors)
     pub validate: fn(
-        &String,
+        &str,
         &Vec<ElementRef<'_>>,
         css: &cssparser::Parser<'_, '_>,
     ) -> (bool, &'static str, Vec<&'static str>),
@@ -28,7 +28,7 @@ impl Rule {
         principle: Principle,
         guideline: Guideline,
         validate: fn(
-            &String,
+            &str,
             &Vec<ElementRef<'_>>,
             &cssparser::Parser<'_, '_>,
         ) -> (bool, &'static str, Vec<&'static str>),
