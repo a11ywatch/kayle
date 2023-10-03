@@ -40,13 +40,23 @@ pub struct Issue {
 
 impl Issue {
     /// create a new issue
-    pub fn new(message: &'static str, context: &str, code: &str, issue_type: &'static str) -> Issue {
+    pub fn new(
+        message: &'static str,
+        context: &str,
+        code: &str,
+        issue_type: &'static str,
+    ) -> Issue {
         Issue {
             message,
             context: context.into(),
             runner: "kayle",
             code: code.into(),
             issue_type,
+            type_code: match issue_type {
+                "error" => 0,
+                "warning" => 1,
+                _ => 2,
+            },
             ..Default::default()
         }
     }

@@ -81,8 +81,9 @@ impl Messages {
 }
 
 /// parse
-pub fn get_message(rule_id: &RuleID, lang: &str) -> &'static str {
-    let message = LOCALES.get(&rule_id);
+pub fn get_message(rule_id: &RuleID, section: &str, lang: &str) -> &'static str {
+    let k = &[rule_id.as_str(), section].join(".");
+    let message = LOCALES.get(&k.as_str());
 
     match message {
         Some(m) => match lang {
@@ -96,10 +97,11 @@ pub fn get_message(rule_id: &RuleID, lang: &str) -> &'static str {
 
 lazy_static! {
     /// message for an issue
-    pub static ref LOCALES: BTreeMap<RuleID, Messages> = {
+    pub static ref LOCALES: BTreeMap<&'static str, Messages> = {
         BTreeMap::from([
             // empty titles
-            (RuleID::F25, Messages::new(&"Failure of Success Criterion 2.4.2 due to the title of a Web page not identifying the contents", "", ""))
+            (RuleID::H25.pairs()[0], Messages::new(&"A title should be provided for the document, using a non-empty title element in the head section.", "", "")),
+            (RuleID::H25.pairs()[1], Messages::new(&"The title element in the head section should be non-empty.", "", ""))
         ])
     };
 }

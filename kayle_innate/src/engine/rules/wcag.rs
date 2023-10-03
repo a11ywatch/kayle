@@ -25,6 +25,37 @@ impl Criteria {
     }
 }
 
+/// wcag principle to follow
+enum Principle {
+    Perceivable,
+    Operable,
+    Understandable,
+    Robust,
+}
+
+impl Principle {
+    pub fn as_str(&self) -> &'static str {
+        match self {
+            Principle::Perceivable => "Principle1",
+            Principle::Operable => "Principle2",
+            Principle::Understandable => "Principle3",
+            Principle::Robust => "Principle4",
+        }
+    }
+}
+
+/// wcag principle to follow
+enum Guideline {
+    Navigable,
+}
+
+impl Guideline {
+    pub fn as_str(&self) -> &'static str {
+        match self {
+            Guideline::Navigable => "Guideline2_4",
+        }
+    }
+}
 
 /// the rule validation method that should be performed.
 struct Rule {
@@ -33,8 +64,15 @@ struct Rule {
     /// the type of rule
     pub criteria: Criteria,
     /// validate a test
-    pub validate:
-        fn(&String, &Vec<scraper::node::Element>, css: &cssparser::Parser<'_, '_>) -> bool,
+    pub validate: fn(
+        &String,
+        &Vec<scraper::node::Element>,
+        css: &cssparser::Parser<'_, '_>,
+    ) -> (bool, &'static str),
+    /// the principle type
+    pub principle: Principle,
+    /// the guideline to follow
+    pub guideline: Guideline,
 }
 
 impl Rule {
@@ -42,11 +80,19 @@ impl Rule {
     pub fn new(
         rule_id: RuleID,
         criteria: Criteria,
-        validate: fn(&String, &Vec<scraper::node::Element>, &cssparser::Parser<'_, '_>) -> bool,
+        principle: Principle,
+        guideline: Guideline,
+        validate: fn(
+            &String,
+            &Vec<scraper::node::Element>,
+            &cssparser::Parser<'_, '_>,
+        ) -> (bool, &'static str),
     ) -> Rule {
         Rule {
             rule_id,
             criteria,
+            guideline,
+            principle,
             validate,
         }
     }
@@ -55,9 +101,14 @@ impl Rule {
 lazy_static! {
     /// a list of rules that should be applied for WCAG1
     static ref RULES_A: BTreeMap<&'static str, Vec<Rule>> =
-        vec![("title", Vec::from([Rule::new(RuleID::F25, Criteria::Error, |_rule, elements, _css_parser| {
-            !elements.is_empty()
-        })]))]
+        vec![("title", Vec::from([
+             Rule::new(RuleID::H25, Criteria::Error, Principle::Operable, Guideline::Navigable, |_rule, elements, _css_parser| {
+                (!elements.is_empty(), "1.NoTitleEl")
+             }),
+            //  Rule::new(RuleID::H25, Criteria::Error, Principle::Operable, Guideline::Navigable, |_rule, elements, _css_parser| {
+            //     (!elements.is_empty(), "1.EmptyTitle")
+            // }),
+        ]))]
             .into_iter()
             .collect();
 }
@@ -89,17 +140,24 @@ impl WCAG3AA {
                 match rules {
                     Some(rules) => {
                         for rule in rules {
-                            let valid = (rule.validate)(&node.0, &node.1, &_css);
+                            let (valid, section) = (rule.validate)(&node.0, &node.1, &_css);
 
                             if !valid {
                                 // get locales prior or from document
-                                let message = get_message(&rule.rule_id, &Langs::En.as_str());
+                                let message =
+                                    get_message(&rule.rule_id, &section, &Langs::En.as_str());
                                 // todo: add rest of properties
                                 let issue = Issue::new(
                                     message,
                                     &node.0,
-                                    &["WCAGAA", rule.rule_id.as_str()].join("_"),
-                                    rule.criteria.as_str()
+                                    &[
+                                        "WCAGAAA",
+                                        rule.principle.as_str(),
+                                        rule.guideline.as_str(),
+                                        rule.rule_id.as_str(),
+                                    ]
+                                    .join("."),
+                                    rule.criteria.as_str(),
                                 );
                                 issues.push(issue);
                             }
