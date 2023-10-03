@@ -204,12 +204,11 @@ pub fn parse_accessibility_tree(
     let t = now();
     // parse doc will start from html downwards
     // accessibility tree for ordered element mappings
-    let mut accessibility_tree: BTreeMap<String, Vec<ElementRef<'_>>> = BTreeMap::new();
+    let mut accessibility_tree: BTreeMap<String, Vec<ElementRef<'_>>> =
+        BTreeMap::from([("title".into(), Default::default())]);
 
     for node in html.tree.nodes() {
-        let h = scraper::element_ref::ElementRef::wrap(node);
-
-        match h {
+        match scraper::element_ref::ElementRef::wrap(node) {
             Some(element) => {
                 let element_name = element.value().name();
 
@@ -234,13 +233,12 @@ pub fn parse_accessibility_tree(
 /// audit a web page passing the html and css rules.
 pub fn _audit_not_ready(html: &str, _css_rules: &str) -> Result<JsValue, JsValue> {
     set_panic_hook();
-    // parse document and get lifetimes for nodes
-    let h = Box::new(scraper::Html::parse_document(html));
+    let html = Box::new(scraper::Html::parse_document(html));
     // TODO: if the css rules are empty extract the css from the HTML
     let css_rules = &mut cssparser::ParserInput::new(&_css_rules);
     // TODO: build the rules to css blocks that selectors can be used to find the element of the style.
     let mut _css_parser = cssparser::Parser::new(css_rules);
-    let _tree = parse_accessibility_tree(&h);
+    let _tree = parse_accessibility_tree(&html);
     let _audit = engine::rules::wcag::WCAG3AA::audit(_tree, _css_parser);
 
     // todo: map to JsValues instead of serde
