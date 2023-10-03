@@ -21,7 +21,11 @@ import { _audit_not_ready } from "kayle_innate";
   const mock = html.replace(
     "<title>Drake Industries | Custom, Durable, High-Quality Labels, Asset Tags and Custom Server Bezels</title>",
     ""
-  );
+  ).replace(`<body class="   hs-content-id-8839032963 hs-site-page page " style="">`, `<body class="   hs-content-id-8839032963 hs-site-page page " style=""><form action="/something" method="post">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name">
+  </form>`);
+
   const startTime = performance.now();
   const audit = await _audit_not_ready(mock, css);
   const nextTime = performance.now() - startTime;

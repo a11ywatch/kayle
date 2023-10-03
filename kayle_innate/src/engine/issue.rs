@@ -19,7 +19,7 @@ pub struct Issue {
     /// the context of the issue or raw html
     pub context: String,
     /// the selector to identify the issue with css, xpath, or raw path
-    pub selector: &'static str,
+    pub selectors: Vec<&'static str>,
     /// the type of code for the issue
     pub code: String,
     /// the type of issue
@@ -45,6 +45,7 @@ impl Issue {
         context: &str,
         code: &str,
         issue_type: &'static str,
+        selectors: Vec<&'static str>,
     ) -> Issue {
         Issue {
             message,
@@ -57,6 +58,7 @@ impl Issue {
                 "warning" => 1,
                 _ => 2,
             },
+            selectors,
             ..Default::default()
         }
     }

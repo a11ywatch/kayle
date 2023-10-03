@@ -13,6 +13,8 @@ use wasm_bindgen::prelude::*;
 #[global_allocator]
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 #[cfg(feature = "accessibility")]
+use scraper::ElementRef;
+#[cfg(feature = "accessibility")]
 use std::collections::BTreeMap;
 
 #[cfg(feature = "accessibility")]
@@ -151,11 +153,9 @@ pub fn get_document_links(res: &str, domain: &str) -> Box<[JsValue]> {
 #[cfg(feature = "accessibility")]
 /// try to fix all possible issues using a spec against the tree.
 pub fn parse_accessibility_tree(
-    html: &str,
+    html: &scraper::Html,
     // todo: return the nodes with a tuple of the layout node and the element node
-) -> std::collections::BTreeMap<String, Vec<scraper::node::Node>> {
-    use scraper::Node;
-
+) -> std::collections::BTreeMap<String, Vec<ElementRef<'_>>> {
     console_log!("Starting accessibility tree parsing. This is incomplete and should not be used in production.");
     // use taffy::prelude::*;
     // // todo: use optional variable for clips or layout creation
@@ -203,19 +203,23 @@ pub fn parse_accessibility_tree(
 
     let t = now();
     // parse doc will start from html downwards
-    let h = scraper::Html::parse_document(html);
     // accessibility tree for ordered element mappings
-    let mut accessibility_tree: BTreeMap<String, Vec<Node>> = BTreeMap::new();
-    let nodes = h.tree.into_iter();
+    let mut accessibility_tree: BTreeMap<String, Vec<ElementRef<'_>>> = BTreeMap::new();
 
-    for node in nodes {
-        if let Some(element) = node.as_element() {
-            let element_name = element.name();
-            accessibility_tree
-                .entry(element_name.to_string())
-                .and_modify(|n| n.push(node.clone()))
-                .or_insert(Vec::from([node]));
-        }
+    for node in html.tree.nodes() {
+        let h = scraper::element_ref::ElementRef::wrap(node);
+
+        match h {
+            Some(element) => {
+                let element_name = element.value().name();
+
+                accessibility_tree
+                    .entry(element_name.to_string())
+                    .and_modify(|n| n.push(element))
+                    .or_insert(Vec::from([element]));
+            }
+            _ => (),
+        };
     }
 
     console_log!("Scraper Parser: duration {:?}ms", now() - t);
@@ -230,11 +234,13 @@ pub fn parse_accessibility_tree(
 /// audit a web page passing the html and css rules.
 pub fn _audit_not_ready(html: &str, _css_rules: &str) -> Result<JsValue, JsValue> {
     set_panic_hook();
+    // parse document and get lifetimes for nodes
+    let h = Box::new(scraper::Html::parse_document(html));
     // TODO: if the css rules are empty extract the css from the HTML
     let css_rules = &mut cssparser::ParserInput::new(&_css_rules);
     // TODO: build the rules to css blocks that selectors can be used to find the element of the style.
     let mut _css_parser = cssparser::Parser::new(css_rules);
-    let _tree = parse_accessibility_tree(&html);
+    let _tree = parse_accessibility_tree(&h);
     let _audit = engine::rules::wcag::WCAG3AA::audit(_tree, _css_parser);
 
     // todo: map to JsValues instead of serde
