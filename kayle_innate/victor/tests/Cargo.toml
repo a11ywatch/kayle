@@ -1,0 +1,21 @@
+[package]
+name = "victor-tests"
+version = "0.0.1"
+authors = ["Simon Sapin <simon.sapin@exyr.org>"]
+description = "Tests for Victor, using Lester"
+repository = "https://github.com/SimonSapin/victor"
+license = "MIT OR Apache-2.0"
+edition = "2018"
+
+[lib]
+path = "lib.rs"
+doctest = false
+
+[dependencies]
+lester = {path = "../lester"}
+victor = {path = "../victor"}
+
+[[test]]
+name = "reftests"
+path = "reftests.rs"
+harness = false

@@ -12,9 +12,8 @@ impl WCAG3AA {
     /// init the rules
     pub fn audit(
         // allow tree mutation until threads or setup the tree with initial elements.
-        tree: std::collections::BTreeMap<&str, Vec<ElementRef<'_>>>,
-        _css: cssparser::Parser<'_, '_>,
-        // todo: get configs like viewport
+        tree: std::collections::BTreeMap<&str, Vec<&victor::dom::Node>>,
+        document: &victor::dom::Document, // todo: get configs like viewport
     ) -> Vec<Issue> {
         let mut issues: Vec<Issue> = Vec::new();
 
@@ -26,7 +25,7 @@ impl WCAG3AA {
                     Some(rules) => {
                         for rule in rules {
                             let (valid, section, selector) =
-                                (rule.validate)(&node.0, &node.1, &_css);
+                                (rule.validate)(&node.0, &node.1, document);
 
                             if !valid {
                                 // get locales prior or from document

@@ -24,6 +24,7 @@ import { _audit_not_ready } from "kayle_innate";
   ).replace(`<body class="   hs-content-id-8839032963 hs-site-page page " style="">`, `<body class="   hs-content-id-8839032963 hs-site-page page " style=""><form action="/something" method="post">
   <label for="name">Name:</label>
   <input type="text" id="name" name="name">
+  <button type="submit">Submit</button>
   </form>`);
 
   const startTime = performance.now();

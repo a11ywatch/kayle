@@ -154,9 +154,10 @@ pub fn get_document_links(res: &str, domain: &str) -> Box<[JsValue]> {
 #[cfg(feature = "accessibility")]
 /// try to fix all possible issues using a spec against the tree.
 pub fn parse_accessibility_tree(
-    html: &scraper::Html,
+    html: &victor::dom::Document,
+    _author: victor::style::StyleSet,
     // todo: return the nodes with a tuple of the layout node and the element node
-) -> std::collections::BTreeMap<&str, Vec<ElementRef<'_>>> {
+) -> std::collections::BTreeMap<&str, Vec<&victor::dom::Node>> {
     // use taffy::prelude::*;
     // // todo: use optional variable for clips or layout creation
     // let mut taffy = Taffy::new();
@@ -204,19 +205,61 @@ pub fn parse_accessibility_tree(
     let t = now();
     // parse doc will start from html downwards
     // accessibility tree for ordered element mappings
-    let mut accessibility_tree: BTreeMap<&str, Vec<ElementRef<'_>>> =
+    let mut accessibility_tree: BTreeMap<&str, Vec<&victor::dom::Node>> =
         BTreeMap::from([("title".into(), Default::default())]);
 
-    for node in html.tree.nodes() {
-        match scraper::element_ref::ElementRef::wrap(node) {
-            Some(element) => {
+    for node in &html.nodes {
+        // get the parent styles
+        // match node.as_element() {
+
+        //     Some(e) => {
+        //         let name = e.name.expanded().local;
+
+        //         if !name.is_empty() {
+        //             let parent_style = match node.parent {
+        //                 Some(parent) =>  Some(victor::style::style_for_element(&author, &html, parent, Default::default())),
+        //                 _ => None
+        //             };
+
+        //             match node.first_child {
+        //                 Some(c) => {
+        //                     let s = victor::style::style_for_element(&author, html, c, parent_style.as_deref());
+        //                     console_log!("computed style height {:?} - width {:?}", s.box_.height, s.box_.width);
+        //                 }
+        //                 _ => ()
+        //             }
+        //         }
+        //     }
+        //     _ => ()
+        // };
+
+        match node.as_element() {
+            Some(e) => {
+                let name = e.name.expanded().local;
                 accessibility_tree
-                    .entry(element.value().name())
-                    .and_modify(|n| n.push(element))
-                    .or_insert(Vec::from([element]));
+                    .entry(name)
+                    .and_modify(|n| n.push(node))
+                    .or_insert(Vec::from([node]));
             }
             _ => (),
         };
+
+        // Some(element) => {
+        //     accessibility_tree
+        //         .entry(element.value().name())
+        //         .and_modify(|n| n.push(element))
+        //         .or_insert(Vec::from([element]));
+        // }
+
+        // match scraper::element_ref::ElementRef::wrap(node) {
+        //     Some(element) => {
+        //         accessibility_tree
+        //             .entry(element.value().name())
+        //             .and_modify(|n| n.push(element))
+        //             .or_insert(Vec::from([element]));
+        //     }
+        //     _ => (),
+        // };
     }
 
     console_log!("Scraper Parser: duration {:?}ms", now() - t);
@@ -230,15 +273,18 @@ pub fn parse_accessibility_tree(
 #[cfg(feature = "accessibility")]
 /// audit a web page passing the html and css rules.
 pub fn _audit_not_ready(html: &str, _css_rules: &str) -> Result<JsValue, JsValue> {
-    // majority of time is spent on initial parse_document.
-    let html = scraper::Html::parse_document(html);
-    let _tree = parse_accessibility_tree(&html);
-    // TODO: if the css rules are empty extract the css from the HTML
-    let css_rules = &mut cssparser::ParserInput::new(&_css_rules);
-    // TODO: build the rules to css blocks that selectors can be used to find the element of the style.
-    let mut _css_parser = cssparser::Parser::new(css_rules);
-    let _audit = engine::audit::wcag::WCAG3AA::audit(_tree, _css_parser);
+    let html = victor::dom::Document::parse_html(html.as_bytes());
+    let author = if !_css_rules.is_empty() {
+        let mut author = victor::style::StyleSetBuilder::new();
+        author.add_stylesheet(_css_rules);
+        author.finish()
+    } else {
+        html.parse_stylesheets()
+    };
 
-    // todo: map to JsValues instead of serde
+    let _tree = parse_accessibility_tree(&html, author);
+    let _audit = engine::audit::wcag::WCAG3AA::audit(_tree, &html);
+
+    // // todo: map to JsValues instead of serde
     Ok(serde_wasm_bindgen::to_value(&_audit)?)
 }
