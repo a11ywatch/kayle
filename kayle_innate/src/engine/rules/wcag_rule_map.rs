@@ -23,10 +23,9 @@ lazy_static! {
                 Rule::new(Techniques::H32, Criteria::Error, Principle::Operable, Guideline::Predictable, |_rule, nodes, _css_parser| {
                     // check the first element for now
                     let mut valid = false;
+                    let selector = unsafe { Selector::parse("button[type=submit]").unwrap_unchecked() };
 
                     for ele in nodes {
-                        // todo: static selectors
-                        let selector = unsafe { Selector::parse("button[type=submit]").unwrap_unchecked() };
                         valid = match ele.select(&selector).next() {
                             Some(_) => true,
                             _ => false

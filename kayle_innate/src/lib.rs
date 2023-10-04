@@ -237,7 +237,6 @@ pub fn _audit_not_ready(html: &str, _css_rules: &str) -> Result<JsValue, JsValue
     let css_rules = &mut cssparser::ParserInput::new(&_css_rules);
     // TODO: build the rules to css blocks that selectors can be used to find the element of the style.
     let mut _css_parser = cssparser::Parser::new(css_rules);
-
     let css_rules_parser = cssparser::RuleListParser::new_for_stylesheet(
         &mut _css_parser,
         crate::engine::styles::rules::RulesParser,
