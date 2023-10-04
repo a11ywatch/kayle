@@ -237,6 +237,28 @@ pub fn _audit_not_ready(html: &str, _css_rules: &str) -> Result<JsValue, JsValue
     let css_rules = &mut cssparser::ParserInput::new(&_css_rules);
     // TODO: build the rules to css blocks that selectors can be used to find the element of the style.
     let mut _css_parser = cssparser::Parser::new(css_rules);
+
+    let css_rules_parser = cssparser::RuleListParser::new_for_stylesheet(
+        &mut _css_parser,
+        crate::engine::styles::rules::RulesParser,
+    );
+
+    let mut rules = Vec::new();
+
+    // todo: parse the rules out correctly to nodes and add declarations 
+    for result in css_rules_parser {
+        match result {
+            Ok(crate::engine::styles::rules::CssRule::StyleRule { selectors, block }) => {
+                for selector in selectors.0 {
+                    rules.push((selector, block.clone()));
+                }
+            }
+            _ => ()
+        };
+    }
+
+    console_log!("CSS RULES: {:?}", rules);
+
     let _audit = engine::audit::wcag::WCAG3AA::audit(_tree, _css_parser);
 
     // todo: map to JsValues instead of serde

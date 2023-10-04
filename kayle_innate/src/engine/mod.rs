@@ -4,3 +4,5 @@ pub mod audit;
 pub mod issue;
 /// rules to follow
 pub mod rules;
+/// styles
+pub mod styles;

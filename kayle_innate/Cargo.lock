@@ -80,28 +80,18 @@ dependencies = [
 
 [[package]]
 name = "cssparser"
-version = "0.31.2"
+version = "0.31.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5b3df4f93e5fbbe73ec01ec8d3f68bba73107993a5b1e7519273c32db9b0d5be"
+checksum = "c18bf42b9ab91d1d7ce0192f5b432c9ab6a5728206f25ab6cb0eb61fea25bccc"
 dependencies = [
  "cssparser-macros",
  "dtoa-short",
  "itoa",
  "phf 0.11.2",
+ "proc-macro2",
+ "quote",
  "smallvec",
-]
-
-[[package]]
-name = "cssparser"
-version = "0.33.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9be934d936a0fbed5bcdc01042b770de1398bf79d0e192f49fa7faea0e99281e"
-dependencies = [
- "cssparser-macros",
- "dtoa-short",
- "itoa",
- "phf 0.11.2",
- "smallvec",
+ "syn 1.0.109",
 ]
 
 [[package]]
@@ -247,13 +237,15 @@ version = "0.0.22"
 dependencies = [
  "case_insensitive_string",
  "console_error_panic_hook",
- "cssparser 0.33.0",
+ "cssparser",
  "getrandom",
  "js-sys",
  "lazy_static",
  "scraper",
+ "selectors",
  "serde",
  "serde-wasm-bindgen",
+ "smallvec",
  "taffy",
  "url",
  "wasm-bindgen",
@@ -539,7 +531,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c95a930e03325234c18c7071fd2b60118307e025d6fff3e12745ffbf63a3d29c"
 dependencies = [
  "ahash",
- "cssparser 0.31.2",
+ "cssparser",
  "ego-tree",
  "getopts",
  "html5ever",
@@ -556,7 +548,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4eb30575f3638fc8f6815f448d50cb1a2e255b0897985c8c59f4d37b72a07b06"
 dependencies = [
  "bitflags 2.4.0",
- "cssparser 0.31.2",
+ "cssparser",
  "derive_more",
  "fxhash",
  "log",
