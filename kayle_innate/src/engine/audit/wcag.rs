@@ -1,4 +1,4 @@
-use super::wcag_rule_map::RULES_A;
+use crate::engine::rules::wcag_rule_map::RULES_A;
 use crate::i18n::locales::{get_message, Langs};
 use crate::{console_log, engine::issue::Issue};
 use scraper::ElementRef;

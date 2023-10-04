@@ -1,6 +1,7 @@
 #[cfg(feature = "wee_alloc")]
 #[global_allocator]
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
+use wasm_bindgen::prelude::*;
 
 #[macro_use]
 extern crate lazy_static;
@@ -10,13 +11,12 @@ mod i18n;
 mod utils;
 
 use case_insensitive_string::CaseInsensitiveString;
-use std::collections::HashSet;
-use utils::{convert_abs_path, convert_base_path, domain_name, set_panic_hook};
-use wasm_bindgen::prelude::*;
 #[cfg(feature = "accessibility")]
 use scraper::ElementRef;
 #[cfg(feature = "accessibility")]
 use std::collections::BTreeMap;
+use std::collections::HashSet;
+use utils::{convert_abs_path, convert_base_path, domain_name, set_panic_hook};
 
 #[cfg(feature = "accessibility")]
 #[wasm_bindgen]
@@ -230,14 +230,14 @@ pub fn parse_accessibility_tree(
 #[cfg(feature = "accessibility")]
 /// audit a web page passing the html and css rules.
 pub fn _audit_not_ready(html: &str, _css_rules: &str) -> Result<JsValue, JsValue> {
-    // set_panic_hook();
-    let html = Box::new(scraper::Html::parse_document(html));
+    // majority of time is spent on initial parse_document.
+    let html = scraper::Html::parse_document(html);
+    let _tree = parse_accessibility_tree(&html);
     // TODO: if the css rules are empty extract the css from the HTML
     let css_rules = &mut cssparser::ParserInput::new(&_css_rules);
     // TODO: build the rules to css blocks that selectors can be used to find the element of the style.
     let mut _css_parser = cssparser::Parser::new(css_rules);
-    let _tree = parse_accessibility_tree(&html);
-    let _audit = engine::rules::wcag::WCAG3AA::audit(_tree, _css_parser);
+    let _audit = engine::audit::wcag::WCAG3AA::audit(_tree, _css_parser);
 
     // todo: map to JsValues instead of serde
     Ok(serde_wasm_bindgen::to_value(&_audit)?)

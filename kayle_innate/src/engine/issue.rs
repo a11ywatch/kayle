@@ -15,6 +15,13 @@ pub struct Clip {
 
 /// issue details
 #[derive(Default, Debug, Serialize, Deserialize)]
+pub struct RunnerExtras {
+    /// the url to get more information on the issue
+    pub help_url: &'static str,
+}
+
+/// issue details
+#[derive(Default, Debug, Serialize, Deserialize)]
 pub struct Issue {
     /// the context of the issue or raw html
     pub context: String,
@@ -31,7 +38,7 @@ pub struct Issue {
     /// the type of runner
     pub runner: &'static str,
     /// extra details for the runner
-    pub runner_extras: std::collections::HashMap<String, String>,
+    pub runner_extras: RunnerExtras,
     /// the amount of times the issue appeared
     pub recurrence: u32,
     /// the visual position of the element

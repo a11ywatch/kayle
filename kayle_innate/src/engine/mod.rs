@@ -1,4 +1,6 @@
+/// audits
+pub mod audit;
 /// issue handling and formats
 pub mod issue;
-/// rules like WCAG
+/// rules to follow
 pub mod rules;
