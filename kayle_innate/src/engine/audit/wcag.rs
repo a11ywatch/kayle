@@ -11,8 +11,8 @@ impl WCAG3AA {
     /// init the rules
     pub fn audit(
         // allow tree mutation until threads or setup the tree with initial elements.
-        tree: std::collections::BTreeMap<&str, Vec<&victor::dom::Node>>,
-        document: &victor::dom::Document, // todo: get configs like viewport
+        tree: std::collections::BTreeMap<&str, Vec<&victor_tree::dom::Node>>,
+        document: &victor_tree::dom::Document, // todo: get configs like viewport
     ) -> Vec<Issue> {
         let mut issues: Vec<Issue> = Vec::new();
 

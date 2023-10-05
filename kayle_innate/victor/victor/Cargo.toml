@@ -1,5 +1,5 @@
 [package]
-name = "victor"
+name = "victor_tree"
 version = "0.0.1"
 authors = ["Simon Sapin <simon.sapin@exyr.org>"]
 license = "MIT OR Apache-2.0"
@@ -26,6 +26,6 @@ rayon_croissant = "0.1.1"
 selectors = "0.21"
 smallbitvec = "2.4"
 smallvec = "0.6"
-victor-internal-proc-macros = {path = "../proc-macros"}
+victor-tree-internal-proc-macros = {path = "../proc-macros", version = "0.0.1"}
 xi-unicode = "0.1"
 xml-rs = {package = "xml-rs", version = "0.8"}

@@ -154,10 +154,10 @@ pub fn get_document_links(res: &str, domain: &str) -> Box<[JsValue]> {
 #[cfg(feature = "accessibility")]
 /// try to fix all possible issues using a spec against the tree.
 pub fn parse_accessibility_tree(
-    html: &victor::dom::Document,
-    _author: victor::style::StyleSet,
+    html: &victor_tree::dom::Document,
+    _author: victor_tree::style::StyleSet,
     // todo: return the nodes with a tuple of the layout node and the element node
-) -> std::collections::BTreeMap<&str, Vec<&victor::dom::Node>> {
+) -> std::collections::BTreeMap<&str, Vec<&victor_tree::dom::Node>> {
     // use taffy::prelude::*;
     // // todo: use optional variable for clips or layout creation
     // let mut taffy = Taffy::new();
@@ -205,7 +205,7 @@ pub fn parse_accessibility_tree(
     let t = now();
     // parse doc will start from html downwards
     // accessibility tree for ordered element mappings
-    let mut accessibility_tree: BTreeMap<&str, Vec<&victor::dom::Node>> =
+    let mut accessibility_tree: BTreeMap<&str, Vec<&victor_tree::dom::Node>> =
         BTreeMap::from([("title".into(), Default::default())]);
 
     for node in &html.nodes {
@@ -271,9 +271,9 @@ pub fn parse_accessibility_tree(
 #[cfg(feature = "accessibility")]
 /// audit a web page passing the html and css rules.
 pub fn _audit_not_ready(html: &str, _css_rules: &str) -> Result<JsValue, JsValue> {
-    let mut html = victor::dom::Document::parse_html(html.as_bytes());
+    let mut html = victor_tree::dom::Document::parse_html(html.as_bytes());
     let author = if !_css_rules.is_empty() {
-        let mut author = victor::style::StyleSetBuilder::new();
+        let mut author = victor_tree::style::StyleSetBuilder::new();
         author.add_stylesheet(_css_rules);
         author.finish()
     } else {

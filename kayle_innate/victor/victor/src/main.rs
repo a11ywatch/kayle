@@ -5,7 +5,7 @@ fn main() -> Result<(), Box<std::error::Error>> {
     let input = next()?;
     let output = next()?;
     let bytes = std::fs::read(&input)?;
-    let doc = victor::dom::Document::parse_html(&bytes);
+    let doc = victor_tree::dom::Document::parse_html(&bytes);
     let pdf = doc.to_pdf_bytes();
     std::fs::write(&output, &pdf)?;
     Ok(())

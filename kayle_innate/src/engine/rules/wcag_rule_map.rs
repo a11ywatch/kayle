@@ -52,7 +52,7 @@ lazy_static! {
 
                         match ele.as_element() {
                             Some(_) => {
-                                match victor::style::selectors::Selector::parse(&victor::style::selectors::Parser, &mut cssparser::Parser::new(&mut ParserInput::new("button[type=submit]"))) {
+                                match victor_tree::style::selectors::Selector::parse(&victor_tree::style::selectors::Parser, &mut cssparser::Parser::new(&mut ParserInput::new("button[type=submit]"))) {
                                     Ok(list) => {
                                         valid = match ele.node_id {
                                             Some(f) => {

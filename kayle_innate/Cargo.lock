@@ -378,7 +378,7 @@ dependencies = [
  "serde-wasm-bindgen",
  "taffy",
  "url",
- "victor",
+ "victor_tree",
  "wasm-bindgen",
  "wasm-bindgen-test",
  "wee_alloc",
@@ -1304,7 +1304,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "49874b5167b65d7193b8aba1567f5c7d93d001cafc34600cee003eda787e483f"
 
 [[package]]
-name = "victor"
+name = "victor-tree-internal-proc-macros"
+version = "0.0.1"
+dependencies = [
+ "proc-macro2 0.4.30",
+ "quote 0.6.13",
+ "syn 0.15.44",
+]
+
+[[package]]
+name = "victor_tree"
 version = "0.0.1"
 dependencies = [
  "atomic_refcell",
@@ -1322,18 +1331,9 @@ dependencies = [
  "selectors 0.21.0",
  "smallbitvec",
  "smallvec 0.6.14",
- "victor-internal-proc-macros",
+ "victor-tree-internal-proc-macros",
  "xi-unicode",
  "xml-rs",
-]
-
-[[package]]
-name = "victor-internal-proc-macros"
-version = "0.0.1"
-dependencies = [
- "proc-macro2 0.4.30",
- "quote 0.6.13",
- "syn 0.15.44",
 ]
 
 [[package]]

@@ -11,8 +11,8 @@ pub struct Rule {
     /// validate a test returns (valid, rule, selectors)
     pub validate: fn(
         &str,
-        &Vec<&victor::dom::Node>,
-        &victor::dom::Document,
+        &Vec<&victor_tree::dom::Node>,
+        &victor_tree::dom::Document,
     ) -> (bool, &'static str, Vec<&'static str>),
     /// the principle type
     pub principle: Principle,
@@ -29,8 +29,8 @@ impl Rule {
         guideline: Guideline,
         validate: fn(
             &str,
-            &Vec<&victor::dom::Node>,
-            &victor::dom::Document,
+            &Vec<&victor_tree::dom::Node>,
+            &victor_tree::dom::Document,
         ) -> (bool, &'static str, Vec<&'static str>),
     ) -> Rule {
         Rule {

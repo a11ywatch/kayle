@@ -21,7 +21,7 @@ extern crate cssparser;
 extern crate html5ever;
 
 #[macro_use]
-extern crate victor_internal_proc_macros;
+extern crate victor_tree_internal_proc_macros;
 
 /*
 
