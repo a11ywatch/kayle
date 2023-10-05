@@ -333,11 +333,12 @@ dependencies = [
  "getrandom",
  "js-sys",
  "lazy_static",
+ "markup5ever",
  "scraper_forky",
  "selectors",
  "serde",
  "serde-wasm-bindgen",
- "smallvec 1.11.1",
+ "smallvec 0.6.14",
  "taffy",
  "url",
  "victor_tree",
@@ -1208,9 +1209,9 @@ dependencies = [
 
 [[package]]
 name = "victor_tree"
-version = "0.0.3"
+version = "0.0.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1302120b3215b68c101da8bd8be4c03014b15c00feb24260884bec494d44c581"
+checksum = "054bfc272757f38a0e8ef28447f2525e1a96dfbc2e2a21c3fafda9f77640108e"
 dependencies = [
  "atomic_refcell",
  "cssparser",

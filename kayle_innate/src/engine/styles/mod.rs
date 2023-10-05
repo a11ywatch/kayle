@@ -2,61 +2,83 @@ pub mod errors;
 pub mod rules;
 use std::sync::Arc;
 use scraper_forky::{Html, ElementRef};
+use victor_tree::style::cascade::USER_AGENT_STYLESHEET;
+use victor_tree::style::values::{WritingMode, Direction};
 use victor_tree::style::{StyleSet, ComputedValues};
+use cssparser::{Parser, ParserInput};
+use scraper_forky::selector::Simple;
+use markup5ever::ns;
+use markup5ever::local_name;
+use markup5ever::namespace_url;
+use selectors::matching::MatchingContext;
+use crate::console_log;
+use victor_tree::style::declaration_block::DeclarationBlock;
 
 /// get the style for an element
 pub fn style_for_element<'a>(
     author: &StyleSet,
-    document: &Html,
+    _document: &Html,
     node: ElementRef<'a>,
     parent_style: Option<&ComputedValues>,
+    match_context: &mut MatchingContext<'_, Simple>
 ) -> Arc<ComputedValues> {
-    // use smallvec::SmallVec;
-    // let style_attr_block;
-    // let mut matching = MatchingDeclarations {
-    //     ua: SmallVec::new(),
-    //     author: SmallVec::new(),
-    // };
+    use smallvec::SmallVec;
+    let style_attr_block;
+    let mut matching = victor_tree::style::cascade::MatchingDeclarations {
+        ua: SmallVec::new(),
+        author: SmallVec::new(),
+    };
 
-    for &(ref selector, ref block) in &author.rules {
-        // if selectors::matches(selector, document, node) {
-        //     into.push(block)
-        // }
+    // let mut nth_index_cache = selectors::NthIndexCache::from(Default::default());
+    // let mut match_context = selectors::matching::MatchingContext::new(
+    //     selectors::matching::MatchingMode::Normal,
+    //     None,
+    //     Some(&mut nth_index_cache),
+    //     selectors::matching::QuirksMode::NoQuirks,
+    //     // selectors::matching::NeedsSelectorFlags::No,
+    //     // selectors::matching::IgnoreNthChildForInvalidation::No,
+    // );
+
+
+    for &(ref selector, ref block) in &USER_AGENT_STYLESHEET.rules {
+        if selectors::matching::matches_selector(
+            selector,
+            0,
+            None,
+            &node,
+            match_context,
+            &mut |_, _| {},
+        ) {
+            matching.ua.push(block)
+        }
     }
 
-    ComputedValues::new(None, None)
-    // USER_AGENT_STYLESHEET.push_matching(document, node, &mut matching.ua);
-    // author.push_matching(document, node, &mut matching.author);
-    // if let ns!(html) | ns!(svg) | ns!(mathml) = element.name.ns {
-    //     if let Some(style_attr) = element.get_attr(&local_name!("style")) {
-    //         let mut input = ParserInput::new(style_attr);
-    //         let mut parser = Parser::new(&mut input);
-    //         style_attr_block = DeclarationBlock::parse(&mut parser);
-    //         matching.author.push(&style_attr_block);
-    //     }
-    // }
-    // ComputedValues::new(parent_style, Some(&matching))
+    // push author style sheet
+    for &(ref selector, ref block) in &author.rules {
+        if selectors::matching::matches_selector(
+            selector,
+            0,
+            None,
+            &node,
+            match_context,
+            &mut |_, _| {},
+        ) {
+            matching.author.push(block)
+        }
+    }
 
+    if let ns!(html) | ns!(svg) | ns!(mathml) = node.value().name.ns {
+        if let Some(style_attr) = node.value().attr(&local_name!("style")) {
+            let mut input = ParserInput::new(style_attr);
+            let mut parser = Parser::new(&mut input);
+            style_attr_block = DeclarationBlock::parse(&mut parser);
+            matching.author.push(&style_attr_block);
+        }
+    }
 
-    // match node.as_element() {
-    //     Some(element) => {
-            // let style_attr_block;
-            // let mut matching = MatchingDeclarations {
-            //     ua: SmallVec::new(),
-            //     author: SmallVec::new(),
-            // };
-            // // USER_AGENT_STYLESHEET.push_matching(document, node, &mut matching.ua);
-            // author.push_matching(document, node, &mut matching.author);
-            // if let ns!(html) | ns!(svg) | ns!(mathml) = element.name.ns {
-            //     if let Some(style_attr) = element.get_attr(&local_name!("style")) {
-            //         let mut input = ParserInput::new(style_attr);
-            //         let mut parser = Parser::new(&mut input);
-            //         style_attr_block = DeclarationBlock::parse(&mut parser);
-            //         matching.author.push(&style_attr_block);
-            //     }
-            // }
-            // ComputedValues::new(parent_style, Some(&matching))
-        // }
-        // _ => ComputedValues::new(None, None),
-    // }
+    let styles = ComputedValues::new(parent_style, Some(&matching));
+
+    console_log!("{:?}", styles.box_size().size_to_physical((WritingMode::SidewaysLr, Direction::Ltr)));
+
+    styles
 }

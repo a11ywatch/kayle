@@ -267,23 +267,19 @@ pub fn _audit_not_ready(html: &str, _css_rules: &str) -> Result<JsValue, JsValue
 
     for item in _tree {
         for node in item.1 {
-            let id = node.id();
-            // todo: use the css block style to get computations
-            for &(ref selector, ref _block) in &_author.rules {
-                if selectors::matching::matches_selector(
-                    selector,
-                    0,
-                    None,
-                    &node,
-                    &mut match_context,
-                    &mut |_, _| {},
-                ) {
-                    // build all the styles for the element based on the match
-                    // into.push(_block)
-                    let _style = crate::engine::styles::style_for_element(&_author, &html, node, None);
-                    console_log!("Style Match {:?} - Style {:?}", id, _style);
+            let parent_styles = match node.parent() {
+                Some(n) => {
+                    match scraper_forky::element_ref::ElementRef::wrap(n) {
+                        Some(element) => {
+                            let _parent_styles = crate::engine::styles::style_for_element(&_author, &html, element, None, &mut match_context);
+                            Some(_parent_styles)
+                        }
+                        _ => None,
+                    }
                 }
-            }
+                _ => None
+            };
+            let _style = crate::engine::styles::style_for_element(&_author, &html, node, parent_styles.as_deref(), &mut match_context);
         }
     }
 
