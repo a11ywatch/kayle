@@ -1,7 +1,7 @@
 use crate::engine::rules::ids::Techniques;
 use crate::engine::rules::rule::Rule;
 use crate::engine::rules::wcag_base::{Criteria, Guideline, Principle};
-use scraper::Selector;
+use scraper_forky::Selector;
 use std::collections::BTreeMap;
 
 // todo: validate each element and add a shape that can prevent repitiion

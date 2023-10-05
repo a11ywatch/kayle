@@ -12,7 +12,7 @@ mod utils;
 
 use case_insensitive_string::CaseInsensitiveString;
 #[cfg(feature = "accessibility")]
-use scraper::ElementRef;
+use scraper_forky::ElementRef;
 #[cfg(feature = "accessibility")]
 use std::collections::BTreeMap;
 use std::collections::HashSet;
@@ -64,7 +64,7 @@ pub fn get_document_links(res: &str, domain: &str) -> Box<[JsValue]> {
             let parent_host_scheme = base_url.scheme();
             let parent_host = base_url.host_str().unwrap_or_default();
 
-            let h = scraper::Html::parse_fragment(res);
+            let h = scraper_forky::Html::parse_fragment(res);
 
             h.tree
                 .into_iter()
@@ -122,7 +122,7 @@ pub fn get_document_links(res: &str, domain: &str) -> Box<[JsValue]> {
                 .collect::<Vec<_>>()
         }
         _ => {
-            let h = scraper::Html::parse_fragment(res);
+            let h = scraper_forky::Html::parse_fragment(res);
 
             h.tree
                 .into_iter()
@@ -154,7 +154,7 @@ pub fn get_document_links(res: &str, domain: &str) -> Box<[JsValue]> {
 #[cfg(feature = "accessibility")]
 /// try to fix all possible issues using a spec against the tree.
 pub fn parse_accessibility_tree(
-    html: &scraper::Html,
+    html: &scraper_forky::Html,
     // todo: return the nodes with a tuple of the layout node and the element node
 ) -> std::collections::BTreeMap<&str, Vec<ElementRef<'_>>> {
     // use taffy::prelude::*;
@@ -208,7 +208,7 @@ pub fn parse_accessibility_tree(
         BTreeMap::from([("title".into(), Default::default())]);
 
     for node in html.tree.nodes() {
-        match scraper::element_ref::ElementRef::wrap(node) {
+        match scraper_forky::element_ref::ElementRef::wrap(node) {
             Some(element) => {
                 accessibility_tree
                     .entry(element.value().name())
@@ -230,9 +230,9 @@ pub fn parse_accessibility_tree(
 #[cfg(feature = "accessibility")]
 /// audit a web page passing the html and css rules.
 pub fn _audit_not_ready(html: &str, _css_rules: &str) -> Result<JsValue, JsValue> {
-    // use selectors::matching::{MatchingContext, MatchingMode, QuirksMode};
+    use selectors::matching::{MatchingContext, MatchingMode, QuirksMode};
 
-    let html = scraper::Html::parse_document(html);
+    let html = scraper_forky::Html::parse_document(html);
     let _tree = parse_accessibility_tree(&html);
     // TODO: if the css rules are empty extract the css from the HTML
     let css_rules = &mut cssparser::ParserInput::new(&_css_rules);
@@ -243,55 +243,53 @@ pub fn _audit_not_ready(html: &str, _css_rules: &str) -> Result<JsValue, JsValue
         crate::engine::styles::rules::RulesParser,
     );
 
-    let mut rules = Vec::new();
+    let author = if !_css_rules.is_empty() {
+        let mut author = victor_tree::style::StyleSetBuilder::new();
+        author.add_stylesheet(_css_rules);
+        author.finish()
+    } else {
+        let mut author = victor_tree::style::StyleSetBuilder::new();
+        author.add_stylesheet("");
+        author.finish()
+    };   
 
-    // todo: parse the rules out correctly to nodes and add declarations
-    for result in css_rules_parser {
-        match result {
-            Ok(crate::engine::styles::rules::CssRule::StyleRule { selectors, block }) => {
-                for selector in selectors.0 {
-                    rules.push((selector, block.clone()));
-                }
-            }
-            _ => (),
-        };
-    }
-
-    console_log!("CSS RULES: {:?}", rules);
+    console_log!("CSS RULES: {:?}", author);
 
     let _audit = engine::audit::wcag::WCAG3AA::audit(&_tree, _css_parser);
 
     // TODO: build struct that can keep lifetimes
-    // let mut nth_index_cache = selectors::NthIndexCache::from(Default::default());
-    // let mut match_context = MatchingContext::new(
-    //     MatchingMode::Normal,
-    //     None,
-    //     &mut nth_index_cache,
-    //     QuirksMode::NoQuirks,
-    //     selectors::matching::NeedsSelectorFlags::No,
-    //     selectors::matching::IgnoreNthChildForInvalidation::No,
-    // );
+    let mut nth_index_cache = selectors::NthIndexCache::from(Default::default());
+    let mut match_context = MatchingContext::new(
+        MatchingMode::Normal,
+        None,
+        Some(&mut nth_index_cache),
+        QuirksMode::NoQuirks,
+        // selectors::matching::NeedsSelectorFlags::No,
+        // selectors::matching::IgnoreNthChildForInvalidation::No,
+    );
 
-    // for item in _tree {
-    //     for node in item.1 {
-    //         let id = node.id();
+    for item in _tree {
+        for node in item.1 {
+            let id = node.id();
 
-    //         // todo: use the css block style to get computations
-    //         for &(ref selector, ref _block) in &rules {
-    //             if selectors::matching::matches_selector(
-    //                 selector,
-    //                 0,
-    //                 None,
-    //                 &node,
-    //                 &mut match_context,
-    //             ) {
-    //                 console_log!("Style Match {:?}", id);
-    //                 // build all the styles for the element based on the match
-    //                 // into.push(_block)
-    //             }
-    //         }
-    //     }
-    // }
+            // todo: use the css block style to get computations
+            for &(ref selector, ref _block) in &author.rules {
+                if selectors::matching::matches_selector(
+                    selector,
+                    0,
+                    None,
+                    &node,
+                    &mut match_context,
+                    &mut |_, _| {},
+
+                ) {
+                    console_log!("Style Match {:?}", id);
+                    // build all the styles for the element based on the match
+                    // into.push(_block)
+                }
+            }
+        }
+    }
 
     // todo: map to JsValues instead of serde
     Ok(serde_wasm_bindgen::to_value(&_audit)?)
