@@ -4,11 +4,6 @@ use scraper::selector::Simple;
 use selectors::parser::ParseRelative;
 use std::sync::Arc;
 
-impl<'i> selectors::parser::Parser<'i> for Parser {
-    type Impl = Simple;
-    type Error = RuleParseErrorKind<'i>;
-}
-
 #[derive(Debug)]
 pub enum CssRule {
     StyleRule {
@@ -18,6 +13,11 @@ pub enum CssRule {
 }
 
 pub struct Parser;
+
+impl<'i> selectors::parser::Parser<'i> for Parser {
+    type Impl = Simple;
+    type Error = RuleParseErrorKind<'i>;
+}
 
 pub type SelectorList = selectors::SelectorList<Simple>;
 // pub type Selector = selectors::parser::Selector<Simple>;

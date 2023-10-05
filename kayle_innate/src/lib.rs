@@ -230,7 +230,8 @@ pub fn parse_accessibility_tree(
 #[cfg(feature = "accessibility")]
 /// audit a web page passing the html and css rules.
 pub fn _audit_not_ready(html: &str, _css_rules: &str) -> Result<JsValue, JsValue> {
-    // majority of time is spent on initial parse_document.
+    // use selectors::matching::{MatchingContext, MatchingMode, QuirksMode};
+
     let html = scraper::Html::parse_document(html);
     let _tree = parse_accessibility_tree(&html);
     // TODO: if the css rules are empty extract the css from the HTML
@@ -244,7 +245,7 @@ pub fn _audit_not_ready(html: &str, _css_rules: &str) -> Result<JsValue, JsValue
 
     let mut rules = Vec::new();
 
-    // todo: parse the rules out correctly to nodes and add declarations 
+    // todo: parse the rules out correctly to nodes and add declarations
     for result in css_rules_parser {
         match result {
             Ok(crate::engine::styles::rules::CssRule::StyleRule { selectors, block }) => {
@@ -252,13 +253,45 @@ pub fn _audit_not_ready(html: &str, _css_rules: &str) -> Result<JsValue, JsValue
                     rules.push((selector, block.clone()));
                 }
             }
-            _ => ()
+            _ => (),
         };
     }
 
     console_log!("CSS RULES: {:?}", rules);
 
-    let _audit = engine::audit::wcag::WCAG3AA::audit(_tree, _css_parser);
+    let _audit = engine::audit::wcag::WCAG3AA::audit(&_tree, _css_parser);
+
+    // TODO: build struct that can keep lifetimes
+    // let mut nth_index_cache = selectors::NthIndexCache::from(Default::default());
+    // let mut match_context = MatchingContext::new(
+    //     MatchingMode::Normal,
+    //     None,
+    //     &mut nth_index_cache,
+    //     QuirksMode::NoQuirks,
+    //     selectors::matching::NeedsSelectorFlags::No,
+    //     selectors::matching::IgnoreNthChildForInvalidation::No,
+    // );
+
+    // for item in _tree {
+    //     for node in item.1 {
+    //         let id = node.id();
+
+    //         // todo: use the css block style to get computations
+    //         for &(ref selector, ref _block) in &rules {
+    //             if selectors::matching::matches_selector(
+    //                 selector,
+    //                 0,
+    //                 None,
+    //                 &node,
+    //                 &mut match_context,
+    //             ) {
+    //                 console_log!("Style Match {:?}", id);
+    //                 // build all the styles for the element based on the match
+    //                 // into.push(_block)
+    //             }
+    //         }
+    //     }
+    // }
 
     // todo: map to JsValues instead of serde
     Ok(serde_wasm_bindgen::to_value(&_audit)?)
