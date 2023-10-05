@@ -30,7 +30,7 @@ js-sys = "0.3.64"
 selectors = "=0.21.0"
 smallvec = "1.11.1"
 ego-tree = "0.6.2"
-victor_tree = { version = "0.0.2" }
+victor_tree = { version = "0.0.3" }
 
 [dependencies.cssparser]
 version = "^0.25.0"

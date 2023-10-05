@@ -230,20 +230,17 @@ pub fn parse_accessibility_tree(
 #[cfg(feature = "accessibility")]
 /// audit a web page passing the html and css rules.
 pub fn _audit_not_ready(html: &str, _css_rules: &str) -> Result<JsValue, JsValue> {
-    use selectors::matching::{MatchingContext, MatchingMode, QuirksMode};
-
     let html = scraper_forky::Html::parse_document(html);
     let _tree = parse_accessibility_tree(&html);
     // TODO: if the css rules are empty extract the css from the HTML
-    let css_rules = &mut cssparser::ParserInput::new(&_css_rules);
+    // let css_rules = &mut cssparser::ParserInput::new(&_css_rules);
     // TODO: build the rules to css blocks that selectors can be used to find the element of the style.
-    let mut _css_parser = cssparser::Parser::new(css_rules);
-    let css_rules_parser = cssparser::RuleListParser::new_for_stylesheet(
-        &mut _css_parser,
-        crate::engine::styles::rules::RulesParser,
-    );
-
-    let author = if !_css_rules.is_empty() {
+    // let mut _css_parser = cssparser::Parser::new(css_rules);
+    // let css_rules_parser = cssparser::RuleListParser::new_for_stylesheet(
+    //     &mut _css_parser,
+    //     crate::engine::styles::rules::RulesParser,
+    // );
+    let _author = if !_css_rules.is_empty() {
         let mut author = victor_tree::style::StyleSetBuilder::new();
         author.add_stylesheet(_css_rules);
         author.finish()
@@ -253,17 +250,17 @@ pub fn _audit_not_ready(html: &str, _css_rules: &str) -> Result<JsValue, JsValue
         author.finish()
     };   
 
-    console_log!("CSS RULES: {:?}", author);
+    // console_log!("CSS RULES: {:?}", author);
 
-    let _audit = engine::audit::wcag::WCAG3AA::audit(&_tree, _css_parser);
+    let _audit = engine::audit::wcag::WCAG3AA::audit(&_tree);
 
-    // TODO: build struct that can keep lifetimes
+    // // TODO: build struct that can keep lifetimes
     let mut nth_index_cache = selectors::NthIndexCache::from(Default::default());
-    let mut match_context = MatchingContext::new(
-        MatchingMode::Normal,
+    let mut match_context = selectors::matching::MatchingContext::new(
+        selectors::matching::MatchingMode::Normal,
         None,
         Some(&mut nth_index_cache),
-        QuirksMode::NoQuirks,
+        selectors::matching::QuirksMode::NoQuirks,
         // selectors::matching::NeedsSelectorFlags::No,
         // selectors::matching::IgnoreNthChildForInvalidation::No,
     );
@@ -271,9 +268,8 @@ pub fn _audit_not_ready(html: &str, _css_rules: &str) -> Result<JsValue, JsValue
     for item in _tree {
         for node in item.1 {
             let id = node.id();
-
             // todo: use the css block style to get computations
-            for &(ref selector, ref _block) in &author.rules {
+            for &(ref selector, ref _block) in &_author.rules {
                 if selectors::matching::matches_selector(
                     selector,
                     0,
@@ -281,11 +277,11 @@ pub fn _audit_not_ready(html: &str, _css_rules: &str) -> Result<JsValue, JsValue
                     &node,
                     &mut match_context,
                     &mut |_, _| {},
-
                 ) {
-                    console_log!("Style Match {:?}", id);
                     // build all the styles for the element based on the match
                     // into.push(_block)
+                    let _style = crate::engine::styles::style_for_element(&_author, &html, node, None);
+                    console_log!("Style Match {:?} - Style {:?}", id, _style);
                 }
             }
         }

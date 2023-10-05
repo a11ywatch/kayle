@@ -1208,9 +1208,9 @@ dependencies = [
 
 [[package]]
 name = "victor_tree"
-version = "0.0.2"
+version = "0.0.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "04250009f9f5aab53cdeafbd3829c6f77032c7bd497c9b7e32cafc1baa47ea4d"
+checksum = "1302120b3215b68c101da8bd8be4c03014b15c00feb24260884bec494d44c581"
 dependencies = [
  "atomic_refcell",
  "cssparser",
@@ -1224,6 +1224,7 @@ dependencies = [
  "parking_lot 0.6.4",
  "rayon",
  "rayon_croissant",
+ "scraper_forky",
  "selectors",
  "smallbitvec",
  "smallvec 0.6.14",

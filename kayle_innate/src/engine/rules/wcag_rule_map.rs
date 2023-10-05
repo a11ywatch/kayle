@@ -11,20 +11,20 @@ lazy_static! {
         vec![
             // empty titles
             ("title", Vec::from([
-                Rule::new(Techniques::H25, Criteria::Error, Principle::Operable, Guideline::Navigable, |_rule, nodes, _css_parser| {
+                Rule::new(Techniques::H25, Criteria::Error, Principle::Operable, Guideline::Navigable, |_rule, nodes| {
                     (!nodes.is_empty(), "1.NoTitleEl", Default::default())
                 }),
-                Rule::new(Techniques::H25, Criteria::Error, Principle::Understandable, Guideline::Predictable, |_rule, nodes, _css_parser| {
+                Rule::new(Techniques::H25, Criteria::Error, Principle::Understandable, Guideline::Predictable, |_rule, nodes| {
                     (nodes.is_empty() || nodes[0].html().is_empty(), "2", Default::default())
                 }),
             ])),
             // missing label
             ("form", Vec::from([
-                Rule::new(Techniques::H32, Criteria::Error, Principle::Operable, Guideline::Predictable, |_rule, nodes, _css_parser| {
+                Rule::new(Techniques::H32, Criteria::Error, Principle::Operable, Guideline::Predictable, |_rule, nodes| {
                     // check the first element for now
                     let mut valid = false;
                     let selector = unsafe { Selector::parse("button[type=submit]").unwrap_unchecked() };
-
+                    
                     for ele in nodes {
                         valid = match ele.select(&selector).next() {
                             Some(_) => true,
