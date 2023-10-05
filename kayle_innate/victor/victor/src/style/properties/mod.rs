@@ -115,7 +115,7 @@ impl Phase for CascadeContext<'_> {
     }
 }
 
-#[derive(Default, Copy, Clone)]
+#[derive(Default, Copy, Clone, Debug)]
 pub(super) struct PerPhase<T> {
     pub early: T,
     pub late: T,

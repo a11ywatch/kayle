@@ -14,6 +14,7 @@ pub use self::xml::XmlError;
 pub struct Document {
     pub nodes: Vec<Node>,
     pub style_elements: Vec<NodeId>,
+    pub style_set: Option<StyleSet>,
 }
 
 pub struct Node {
@@ -23,6 +24,7 @@ pub struct Node {
     pub first_child: Option<NodeId>,
     pub last_child: Option<NodeId>,
     pub data: NodeData,
+    pub node_id: Option<NodeId>,
 }
 
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]
@@ -37,6 +39,7 @@ impl Document {
         Document {
             nodes: vec![dummy, document_node],
             style_elements: Vec::new(),
+            style_set: None,
         }
     }
 
@@ -99,10 +102,13 @@ impl Document {
         root.unwrap()
     }
 
-    fn push_node(&mut self, node: Node) -> NodeId {
+    fn push_node(&mut self, mut node: Node) -> NodeId {
         let next_index = self.nodes.len();
+        let id = NodeId(std::num::NonZeroUsize::new(next_index).unwrap());
+        let _ = node.node_id.insert(id);
         self.nodes.push(node);
-        NodeId(std::num::NonZeroUsize::new(next_index).unwrap())
+
+        id
     }
 
     fn detach(&mut self, node: NodeId) {
@@ -281,7 +287,6 @@ impl Node {
     }
 
     pub fn html(&self) -> Option<&String> {
-        println!("{:?}", self);
         None
     }
 
@@ -309,6 +314,7 @@ impl Node {
             first_child: None,
             last_child: None,
             data: data,
+            node_id: None,
         }
     }
 }

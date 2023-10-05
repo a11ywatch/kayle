@@ -24,7 +24,10 @@ struct Sink {
 
 impl Sink {
     fn new_node(&mut self, data: NodeData) -> NodeId {
-        self.document.push_node(Node::new(data))
+        let node = Node::new(data);
+        let new_node = self.document.push_node(node);
+
+        new_node
     }
 
     fn append_common<P, A>(&mut self, child: NodeOrText<NodeId>, previous: P, append: A)

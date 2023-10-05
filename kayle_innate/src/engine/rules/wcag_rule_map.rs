@@ -26,18 +26,37 @@ lazy_static! {
                     let mut valid = false;
 
                     for ele in nodes {
+                        // valid styles for node
+                        // match ele.as_element() {
+                        //     Some(e) => {
+                        //         let name = e.name.expanded().local;
+
+                        //         if !name.is_empty() {
+                        //             let parent_style = match ele.parent {
+                        //                 Some(parent) =>  Some(victor::style::style_for_element(&document.style_set.as_ref().unwrap(), &document, parent, Default::default())),
+                        //                 _ => None
+                        //             };
+                        //             match ele.node_id {
+                        //                 Some(c) => {
+                        //                     let s = victor::style::style_for_element(&document.style_set.as_ref().unwrap(), document, c, parent_style.as_deref());
+                        //                     console_log!("computed style height {:?} - width {:?}", s.box_.height, s.box_.width);
+                        //                 }
+                        //                 _ => ()
+                        //             }
+                        //         }
+                        //     }
+                        //     _ => ()
+                        // };
+
+                        // todo: impl scraper select for elements or custom find.
 
                         match ele.as_element() {
                             Some(_) => {
                                 match victor::style::selectors::Selector::parse(&victor::style::selectors::Parser, &mut cssparser::Parser::new(&mut ParserInput::new("button[type=submit]"))) {
                                     Ok(list) => {
-                                        valid = match ele.parent {
+                                        valid = match ele.node_id {
                                             Some(f) => {
-                                                if !document.child_text_content(f).is_empty() {
-                                                    ele.matches(&list, &document, f)
-                                                } else {
-                                                    false
-                                                }
+                                                ele.matches(&list, &document, f)
                                             }
                                             _ => false
                                         }

@@ -211,19 +211,17 @@ pub fn parse_accessibility_tree(
     for node in &html.nodes {
         // get the parent styles
         // match node.as_element() {
-
         //     Some(e) => {
         //         let name = e.name.expanded().local;
 
         //         if !name.is_empty() {
         //             let parent_style = match node.parent {
-        //                 Some(parent) =>  Some(victor::style::style_for_element(&author, &html, parent, Default::default())),
+        //                 Some(parent) =>  Some(victor::style::style_for_element(&_author, &html, parent, Default::default())),
         //                 _ => None
         //             };
-
-        //             match node.first_child {
+        //             match node.node_id {
         //                 Some(c) => {
-        //                     let s = victor::style::style_for_element(&author, html, c, parent_style.as_deref());
+        //                     let s = victor::style::style_for_element(&_author, html, c, parent_style.as_deref());
         //                     console_log!("computed style height {:?} - width {:?}", s.box_.height, s.box_.width);
         //                 }
         //                 _ => ()
@@ -273,15 +271,15 @@ pub fn parse_accessibility_tree(
 #[cfg(feature = "accessibility")]
 /// audit a web page passing the html and css rules.
 pub fn _audit_not_ready(html: &str, _css_rules: &str) -> Result<JsValue, JsValue> {
-    let html = victor::dom::Document::parse_html(html.as_bytes());
+    let mut html = victor::dom::Document::parse_html(html.as_bytes());
     let author = if !_css_rules.is_empty() {
         let mut author = victor::style::StyleSetBuilder::new();
         author.add_stylesheet(_css_rules);
         author.finish()
     } else {
         html.parse_stylesheets()
-    };
-
+    };    
+    let _ = html.style_set.insert(author.clone());
     let _tree = parse_accessibility_tree(&html, author);
     let _audit = engine::audit::wcag::WCAG3AA::audit(_tree, &html);
 

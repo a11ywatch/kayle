@@ -9,6 +9,7 @@ use std::sync::Arc;
 
 pub struct StyleSetBuilder(StyleSet);
 
+#[derive(Clone, Debug)]
 pub struct StyleSet {
     rules: Vec<(Selector, Arc<DeclarationBlock>)>,
 }

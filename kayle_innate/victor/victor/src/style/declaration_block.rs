@@ -5,7 +5,13 @@ use cssparser::{AtRuleParser, ParseError, Parser};
 use cssparser::{CowRcStr, DeclarationListParser, DeclarationParser};
 use std::iter::repeat;
 
-#[derive(Default)]
+impl std::fmt::Debug for LonghandDeclaration {
+    fn fmt(&self, _: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> { 
+        Ok(())
+     }
+}
+
+#[derive(Default, Debug)]
 pub(super) struct DeclarationBlock {
     declarations: Vec<LonghandDeclaration>,
     important: smallbitvec::SmallBitVec,
