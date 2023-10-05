@@ -1,7 +1,7 @@
 use crate::style::errors::PropertyParseError;
 use cssparser::{Color, Parser};
 
-pub(in crate::style) struct Background {
+pub struct Background {
     pub color: Option<Color>,
 }
 

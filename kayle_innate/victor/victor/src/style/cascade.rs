@@ -11,7 +11,7 @@ pub struct StyleSetBuilder(StyleSet);
 
 #[derive(Clone, Debug)]
 pub struct StyleSet {
-    rules: Vec<(Selector, Arc<DeclarationBlock>)>,
+    pub rules: Vec<(Selector, Arc<DeclarationBlock>)>,
 }
 
 lazy_static::lazy_static! {
@@ -68,7 +68,7 @@ impl StyleSet {
     }
 }
 
-pub(super) struct MatchingDeclarations<'a> {
+pub struct MatchingDeclarations<'a> {
     ua: SmallVec<[&'a DeclarationBlock; 8]>,
     author: SmallVec<[&'a DeclarationBlock; 32]>,
 }

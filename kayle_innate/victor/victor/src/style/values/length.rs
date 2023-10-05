@@ -19,13 +19,13 @@ pub struct Percentage {
 
 /// <https://drafts.csswg.org/css-values/#lengths>
 #[derive(Clone, FromVariants)]
-pub(in crate::style) enum SpecifiedLength {
+pub enum SpecifiedLength {
     Absolute(Length),
     Em(f32),
 }
 
 #[derive(Clone, Parse, FromVariants)]
-pub(in crate::style) enum SpecifiedLengthOrPercentage {
+pub enum SpecifiedLengthOrPercentage {
     Length(SpecifiedLength),
     Percentage(Percentage),
 }
@@ -37,7 +37,7 @@ pub enum LengthOrPercentage {
 }
 
 #[derive(Clone, Parse, FromVariants)]
-pub(in crate::style) enum SpecifiedLengthOrPercentageOrAuto {
+pub enum SpecifiedLengthOrPercentageOrAuto {
     Length(SpecifiedLength),
     Percentage(Percentage),
     Auto,

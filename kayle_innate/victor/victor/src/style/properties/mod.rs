@@ -1,7 +1,7 @@
 pub use self::definitions::ComputedValues;
 use self::definitions::LonghandId;
-pub(super) use self::definitions::{property_data_by_name, LonghandDeclaration};
-pub(super) use self::definitions::{ComputedValuesForEarlyCascade, ComputedValuesForLateCascade};
+pub use self::definitions::{property_data_by_name, LonghandDeclaration};
+pub use self::definitions::{ComputedValuesForEarlyCascade, ComputedValuesForLateCascade};
 use crate::geom::{flow_relative, physical};
 use crate::style::errors::PropertyParseError;
 use crate::style::values::{self, CssWideKeyword, Direction, Display, WritingMode};
@@ -19,7 +19,7 @@ impl ComputedValues {
         Self::new(parent_style, None)
     }
 
-    pub(super) fn post_cascade_fixups(&mut self) {
+    pub fn post_cascade_fixups(&mut self) {
         let b = Arc::make_mut(&mut self.border);
         b.border_top_width.fixup(b.border_top_style);
         b.border_left_width.fixup(b.border_left_style);
@@ -90,7 +90,7 @@ impl ComputedValues {
     }
 }
 
-pub(super) trait Phase {
+pub trait Phase {
     fn select(&self, p: PerPhase<bool>) -> bool;
     fn cascade(&mut self, declaration: &LonghandDeclaration);
 }
@@ -116,7 +116,7 @@ impl Phase for CascadeContext<'_> {
 }
 
 #[derive(Default, Copy, Clone, Debug)]
-pub(super) struct PerPhase<T> {
+pub struct PerPhase<T> {
     pub early: T,
     pub late: T,
 }
@@ -127,8 +127,8 @@ type FnParseProperty = for<'i, 't> fn(
 ) -> Result<PerPhase<bool>, PropertyParseError<'i>>;
 
 pub struct PropertyData {
-    pub(in crate::style) longhands: &'static [LonghandId],
-    pub(in crate::style) parse: FnParseProperty,
+    pub longhands: &'static [LonghandId],
+    pub parse: FnParseProperty,
 }
 
 trait ValueOrInitial<T> {

@@ -2,7 +2,7 @@ use super::*;
 use crate::dom::NodeId;
 
 #[derive(Debug)]
-pub(super) enum ReplacedContent {
+pub enum ReplacedContent {
     // Not implemented yet
 }
 

@@ -9,24 +9,24 @@ mod float;
 mod inline;
 mod root;
 
-pub(super) use construct::*;
-pub(super) use float::*;
-pub(super) use inline::*;
+pub use construct::*;
+pub use float::*;
+pub use inline::*;
 
 #[derive(Debug)]
-pub(super) struct BlockFormattingContext {
+pub struct BlockFormattingContext {
     pub contents: BlockContainer,
     pub contains_floats: bool,
 }
 
 #[derive(Debug)]
-pub(super) enum BlockContainer {
+pub enum BlockContainer {
     BlockLevelBoxes(Vec<Arc<BlockLevelBox>>),
     InlineFormattingContext(InlineFormattingContext),
 }
 
 #[derive(Debug)]
-pub(super) enum BlockLevelBox {
+pub enum BlockLevelBox {
     SameFormattingContextBlock {
         style: Arc<ComputedValues>,
         contents: BlockContainer,
@@ -39,7 +39,7 @@ pub(super) enum BlockLevelBox {
     },
 }
 
-pub(super) struct FlowChildren {
+pub struct FlowChildren {
     pub fragments: Vec<Fragment>,
     pub block_size: Length,
     pub collapsible_margins_in_children: CollapsedBlockMargins,
@@ -49,7 +49,7 @@ pub(super) struct FlowChildren {
 struct CollapsibleWithParentStartMargin(bool);
 
 impl BlockFormattingContext {
-    pub(super) fn layout<'a>(
+    pub fn layout<'a>(
         &'a self,
         containing_block: &ContainingBlock,
         tree_rank: usize,

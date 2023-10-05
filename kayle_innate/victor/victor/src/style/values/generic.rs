@@ -2,7 +2,7 @@ use crate::style::errors::PropertyParseError;
 use crate::style::values::Parse;
 use cssparser::Parser;
 
-pub(in crate::style) struct FourSides<T> {
+pub struct FourSides<T> {
     pub top: T,
     pub left: T,
     pub bottom: T,

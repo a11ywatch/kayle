@@ -23,7 +23,7 @@ pub use fragments::*;
 
 /// https://drafts.csswg.org/css-display/#independent-formatting-context
 #[derive(Debug)]
-enum IndependentFormattingContext {
+pub enum IndependentFormattingContext {
     Flow(BlockFormattingContext),
 
     // Not called FC in specs, but behaves close enough
@@ -91,13 +91,13 @@ impl<'a> NonReplacedIFC<'a> {
     }
 }
 
-struct ContainingBlock {
+pub struct ContainingBlock {
     inline_size: Length,
     block_size: LengthOrAuto,
     mode: (WritingMode, Direction),
 }
 
-struct DefiniteContainingBlock {
+pub struct DefiniteContainingBlock {
     size: Vec2<Length>,
     mode: (WritingMode, Direction),
 }

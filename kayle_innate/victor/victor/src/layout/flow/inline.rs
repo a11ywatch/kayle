@@ -3,12 +3,12 @@ use crate::fonts::BITSTREAM_VERA_SANS;
 use crate::text::ShapedSegment;
 
 #[derive(Debug, Default)]
-pub(in crate::layout) struct InlineFormattingContext {
-    pub(super) inline_level_boxes: Vec<Arc<InlineLevelBox>>,
+pub struct InlineFormattingContext {
+    pub inline_level_boxes: Vec<Arc<InlineLevelBox>>,
 }
 
 #[derive(Debug)]
-pub(in crate::layout) enum InlineLevelBox {
+pub enum InlineLevelBox {
     InlineBox(InlineBox),
     TextRun(TextRun),
     OutOfFlowAbsolutelyPositionedBox(AbsolutelyPositionedBox),
@@ -21,7 +21,7 @@ pub(in crate::layout) enum InlineLevelBox {
 }
 
 #[derive(Debug)]
-pub(in crate::layout) struct InlineBox {
+pub struct InlineBox {
     pub style: Arc<ComputedValues>,
     pub first_fragment: bool,
     pub last_fragment: bool,
@@ -30,7 +30,7 @@ pub(in crate::layout) struct InlineBox {
 
 /// https://www.w3.org/TR/css-display-3/#css-text-run
 #[derive(Debug)]
-pub(in crate::layout) struct TextRun {
+pub struct TextRun {
     pub parent_style: Arc<ComputedValues>,
     pub text: String,
 }
@@ -66,7 +66,7 @@ struct LinesBoxes {
 }
 
 impl InlineFormattingContext {
-    pub(super) fn layout<'a>(
+    pub fn layout<'a>(
         &'a self,
         containing_block: &ContainingBlock,
         tree_rank: usize,

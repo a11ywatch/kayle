@@ -605,7 +605,7 @@ impl IntermediateBlockContainer {
 }
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
-pub(in crate::layout) enum ContainsFloats {
+pub enum ContainsFloats {
     No,
     Yes,
 }

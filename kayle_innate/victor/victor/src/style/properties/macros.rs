@@ -28,13 +28,13 @@ macro_rules! properties {
             #[repr($DiscriminantType)]
             #[derive(Copy, Clone)]
             #[allow(non_camel_case_types)]
-            pub(in crate::style) enum LonghandId {
+            pub enum LonghandId {
                 $($(
                     $ident,
                 )+)+
             }
 
-            fn cascade_css_wide_keyword_into(
+            pub fn cascade_css_wide_keyword_into(
                 &self,
                 keyword: crate::style::values::CssWideKeyword,
                 computed: &mut ComputedValues,
@@ -71,7 +71,7 @@ macro_rules! properties {
         }
 
         impl LonghandId {
-            pub(in crate::style) fn is_early(self) -> bool {
+            pub fn is_early(self) -> bool {
                 [
                     $($(
                         is_early!($( $early )?),
@@ -93,14 +93,14 @@ macro_rules! properties {
         tagged_union_with_jump_tables! {
             #[repr($DiscriminantType)]
             #[allow(non_camel_case_types)]
-            pub(in crate::style) enum LonghandDeclaration {
+            pub enum LonghandDeclaration {
                 $($(
                     $ident(<$ValueType as crate::style::values::SpecifiedValue>::SpecifiedValue),
                 )+)+
                 CssWide(LonghandId, crate::style::values::CssWideKeyword)
             }
 
-            pub(in crate::style) fn if_early_cascade_into(
+            pub fn if_early_cascade_into(
                 &self,
                 context: &mut crate::style::values::EarlyCascadeContext,
             ) {
@@ -130,7 +130,7 @@ macro_rules! properties {
                 }
             }
 
-            pub(in crate::style) fn if_late_cascade_into(
+            pub fn if_late_cascade_into(
                 &self,
                 context: &mut crate::style::values::CascadeContext,
             ) {
@@ -189,7 +189,7 @@ macro_rules! properties {
         }
 
         impl ComputedValues {
-            pub(in crate::style) fn new(
+            pub fn new(
                 inherited: Option<&Self>,
                 matching: Option<&crate::style::cascade::MatchingDeclarations>,
             ) -> Arc<Self> {
@@ -233,8 +233,8 @@ macro_rules! properties {
             }
         }
 
-        pub(in crate::style) struct ComputedValuesForEarlyCascade<'a>(&'a mut ComputedValues);
-        pub(in crate::style) struct ComputedValuesForLateCascade<'a>(&'a mut ComputedValues);
+        pub struct ComputedValuesForEarlyCascade<'a>(&'a mut ComputedValues);
+        pub struct ComputedValuesForLateCascade<'a>(&'a mut ComputedValues);
 
         macro_rules! if_early {
             (early $then: item) => { $then };

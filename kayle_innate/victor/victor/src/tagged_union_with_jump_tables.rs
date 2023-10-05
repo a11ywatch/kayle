@@ -30,7 +30,7 @@ macro_rules! tagged_union_with_jump_tables {
         tagged_union_with_jump_tables!(@assert_ident_is_int $discriminant_type);
         #[repr($discriminant_type)]
         $( #[$attr] )*
-        $visibility enum $EnumName {
+        pub enum $EnumName {
             $(
                 $Variant $( ($($variant_field_type),*) )*,
             )*
@@ -50,7 +50,7 @@ macro_rules! tagged_union_with_jump_tables {
         $discriminant_type: ident
         $EnumName: ident { $( $Variant: ident ($( $variant_field_type: ty )*) )* }
 
-        $visibility: vis fn $method: ident(
+        pub $visibility: vis fn $method: ident(
             &self
             $( , $arg: ident: $arg_type: ty)*
             $(,)?
@@ -67,7 +67,7 @@ macro_rules! tagged_union_with_jump_tables {
 
         $($tail: tt)*
     ) => {
-        $visibility fn $method(&self $(, $arg: $arg_type)*) $( -> $ret )? {
+        pub fn $method(&self $(, $arg: $arg_type)*) $( -> $ret )? {
             // The layout of an enum with #[repr($Int)] always starts
             // with the discriminant, an integer tag of type $Int
             #[repr(C)]

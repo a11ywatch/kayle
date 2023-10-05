@@ -3,18 +3,18 @@ use crate::dom::{Document, NodeData, NodeId};
 use crate::style::StyleSet;
 use atomic_refcell::AtomicRefMut;
 
-pub(super) struct Context<'a> {
+pub struct Context<'a> {
     pub document: &'a Document,
     pub author_styles: &'a StyleSet,
 }
 
 #[derive(Copy, Clone)]
-pub(super) enum WhichPseudoElement {
+pub enum WhichPseudoElement {
     Before,
     After,
 }
 
-pub(super) enum Contents {
+pub enum Contents {
     /// Refers to a DOM subtree, plus `::before` and `::after` pseudo-elements.
     OfElement(NodeId),
 
@@ -27,17 +27,17 @@ pub(super) enum Contents {
     OfPseudoElement(Vec<PseudoElementContentItem>),
 }
 
-pub(super) enum NonReplacedContents {
+pub enum NonReplacedContents {
     OfElement(NodeId),
     OfPseudoElement(Vec<PseudoElementContentItem>),
 }
 
-pub(super) enum PseudoElementContentItem {
+pub enum PseudoElementContentItem {
     Text(String),
     Replaced(ReplacedContent),
 }
 
-pub(super) trait TraversalHandler<'dom> {
+pub trait TraversalHandler<'dom> {
     fn handle_text(&mut self, text: &str, parent_style: &Arc<ComputedValues>);
 
     /// Or pseudo-element
@@ -242,7 +242,7 @@ fn generate_pseudo_element_content(
     unimplemented!()
 }
 
-pub(super) struct BoxSlot<'dom> {
+pub struct BoxSlot<'dom> {
     slot: Option<AtomicRefMut<'dom, Option<LayoutBox>>>,
 }
 

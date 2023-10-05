@@ -4,7 +4,7 @@ use crate::style::selectors::{self, SelectorList};
 use cssparser::{AtRuleParser, ParseError, Parser, QualifiedRuleParser, SourceLocation};
 use std::sync::Arc;
 
-pub(super) enum CssRule {
+pub enum CssRule {
     StyleRule {
         selectors: SelectorList,
 
@@ -17,7 +17,7 @@ pub(super) enum CssRule {
     },
 }
 
-pub(super) struct RulesParser;
+pub struct RulesParser;
 
 impl<'i> QualifiedRuleParser<'i> for RulesParser {
     type Prelude = SelectorList;

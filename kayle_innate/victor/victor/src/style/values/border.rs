@@ -18,16 +18,16 @@ enum ParsedLineWidth {
 }
 
 #[derive(Clone)]
-pub(in crate::style) struct SpecifiedLineWidth(pub SpecifiedLengthOrPercentage);
+pub struct SpecifiedLineWidth(pub SpecifiedLengthOrPercentage);
 
 #[derive(Copy, Clone, FromSpecified)]
 pub struct LineWidth(pub LengthOrPercentage);
 
 impl LineWidth {
-    pub(in crate::style) const MEDIUM: Self =
+    pub const MEDIUM: Self =
         LineWidth(LengthOrPercentage::Length(Length { px: 3. }));
 
-    pub(in crate::style) fn fixup(&mut self, style: LineStyle) {
+    pub fn fixup(&mut self, style: LineStyle) {
         if let LineStyle::None = style {
             self.0 = LengthOrPercentage::Length(Length::zero())
         }
@@ -85,7 +85,7 @@ parse_one_or_more!(BorderSide {
 });
 
 #[derive(Default)]
-pub(in crate::style) struct BorderSide {
+pub struct BorderSide {
     pub style: Option<LineStyle>,
     pub color: Option<Color>,
     pub width: Option<SpecifiedLineWidth>,

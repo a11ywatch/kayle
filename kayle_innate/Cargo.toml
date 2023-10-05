@@ -28,7 +28,7 @@ serde = { version = "1.0", features = ["derive"] }
 serde-wasm-bindgen = "0.4"
 js-sys = "0.3.64"
 selectors = "0.25.0"
-victor_tree = { path = "./victor/victor", version = "0.0.1" }
+victor_tree = { path = "./victor/victor", version = "0.0.2" }
 
 [dependencies.cssparser]
 version = "0.25.0"

@@ -2,29 +2,29 @@ use super::*;
 use rayon::prelude::*;
 
 #[derive(Debug)]
-pub(super) struct AbsolutelyPositionedBox {
+pub struct AbsolutelyPositionedBox {
     pub style: Arc<ComputedValues>,
     pub contents: IndependentFormattingContext,
 }
 
 #[derive(Debug)]
-pub(super) struct AbsolutelyPositionedFragment<'box_> {
+pub struct AbsolutelyPositionedFragment<'box_> {
     absolutely_positioned_box: &'box_ AbsolutelyPositionedBox,
 
     /// The rank of the child from which this absolutely positioned fragment
     /// came from, when doing the layout of a block container. Used to compute
     /// static positions when going up the tree.
-    pub(super) tree_rank: usize,
+    pub tree_rank: usize,
 
-    pub(super) inline_start: AbsoluteBoxOffsets<LengthOrPercentage>,
+    pub inline_start: AbsoluteBoxOffsets<LengthOrPercentage>,
     inline_size: LengthOrPercentageOrAuto,
 
-    pub(super) block_start: AbsoluteBoxOffsets<LengthOrPercentage>,
+    pub block_start: AbsoluteBoxOffsets<LengthOrPercentage>,
     block_size: LengthOrPercentageOrAuto,
 }
 
 #[derive(Clone, Copy, Debug)]
-pub(super) enum AbsoluteBoxOffsets<NonStatic> {
+pub enum AbsoluteBoxOffsets<NonStatic> {
     StaticStart { start: Length },
     Start { start: NonStatic },
     End { end: NonStatic },
@@ -32,7 +32,7 @@ pub(super) enum AbsoluteBoxOffsets<NonStatic> {
 }
 
 impl AbsolutelyPositionedBox {
-    pub(super) fn layout<'a>(
+    pub fn layout<'a>(
         &'a self,
         initial_start_corner: Vec2<Length>,
         tree_rank: usize,
@@ -82,7 +82,7 @@ impl AbsolutelyPositionedBox {
 }
 
 impl<'a> AbsolutelyPositionedFragment<'a> {
-    pub(super) fn in_positioned_containing_block(
+    pub fn in_positioned_containing_block(
         absolute: &[Self],
         fragments: &mut Vec<Fragment>,
         content_rect_size: &Vec2<Length>,
@@ -112,7 +112,7 @@ impl<'a> AbsolutelyPositionedFragment<'a> {
         }))
     }
 
-    pub(super) fn layout(&self, containing_block: &DefiniteContainingBlock) -> Fragment {
+    pub fn layout(&self, containing_block: &DefiniteContainingBlock) -> Fragment {
         let style = &self.absolutely_positioned_box.style;
         let cbis = containing_block.size.inline;
         let cbbs = containing_block.size.block;
@@ -303,7 +303,7 @@ impl<'a> AbsolutelyPositionedFragment<'a> {
     }
 }
 
-pub(super) fn adjust_static_positions(
+pub fn adjust_static_positions(
     absolutely_positioned_fragments: &mut [AbsolutelyPositionedFragment],
     child_fragments: &mut [Fragment],
     tree_rank_in_parent: usize,

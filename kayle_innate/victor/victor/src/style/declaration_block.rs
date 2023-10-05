@@ -12,7 +12,7 @@ impl std::fmt::Debug for LonghandDeclaration {
 }
 
 #[derive(Default, Debug)]
-pub(super) struct DeclarationBlock {
+pub struct DeclarationBlock {
     declarations: Vec<LonghandDeclaration>,
     important: smallbitvec::SmallBitVec,
     any_important: PerPhase<bool>,
