@@ -6,9 +6,11 @@ use selectors::attr::{AttrSelectorOperation, CaseSensitivity, NamespaceConstrain
 use selectors::context::{MatchingContext, MatchingMode, QuirksMode};
 use selectors::matching::{matches_selector, ElementSelectorFlags};
 use std::fmt;
+use scraper_forky::selector::Simple;
+use scraper_forky::selector::CssLocalName;
 
-pub type SelectorList = selectors::SelectorList<Impl>;
-pub type Selector = selectors::parser::Selector<Impl>;
+pub type SelectorList = selectors::SelectorList<Simple>;
+pub type Selector = selectors::parser::Selector<Simple>;
 
 pub fn matches(selector: &Selector, document: &Document, element: NodeId) -> bool {
     matches_selector(
@@ -24,9 +26,6 @@ pub fn matches(selector: &Selector, document: &Document, element: NodeId) -> boo
     )
 }
 
-#[derive(Clone, Debug)]
-pub struct Impl;
-
 pub struct Parser;
 
 #[derive(Clone, PartialEq, Eq)]
@@ -36,33 +35,19 @@ pub enum PseudoElement {}
 pub enum PseudoClass {}
 
 impl selectors::parser::NonTSPseudoClass for PseudoClass {
-    type Impl = Impl;
+    type Impl = Simple;
     fn is_active_or_hover(&self) -> bool {
         match *self {}
     }
 }
 
-impl selectors::parser::SelectorImpl for Impl {
-    type ExtraMatchingData = ();
-    type AttrValue = String;
-    type Identifier = String;
-    type ClassName = String;
-    type LocalName = LocalName;
-    type NamespaceUrl = Namespace;
-    type NamespacePrefix = Prefix;
-    type BorrowedNamespaceUrl = Namespace;
-    type BorrowedLocalName = LocalName;
-    type NonTSPseudoClass = PseudoClass;
-    type PseudoElement = PseudoElement;
-}
-
 impl<'i> selectors::parser::Parser<'i> for Parser {
-    type Impl = Impl;
+    type Impl = Simple;
     type Error = RuleParseErrorKind<'i>;
 }
 
 impl selectors::parser::PseudoElement for PseudoElement {
-    type Impl = Impl;
+    type Impl = Simple;
 }
 
 impl ToCss for PseudoElement {
@@ -119,7 +104,7 @@ where
 }
 
 impl<'a> selectors::Element for NodeRef<'a> {
-    type Impl = Impl;
+    type Impl = Simple;
 
     fn opaque(&self) -> selectors::OpaqueElement {
         selectors::OpaqueElement::new::<Node>(self.node())
@@ -150,8 +135,8 @@ impl<'a> selectors::Element for NodeRef<'a> {
         self.node().as_element().unwrap().name.ns == ns!(html) && self.node().in_html_document()
     }
 
-    fn local_name(&self) -> &LocalName {
-        &self.node().as_element().unwrap().name.local
+    fn local_name(&self) -> &scraper_forky::selector::CssLocalName {
+        &self.node().as_element().unwrap().css_local_name
     }
 
     fn namespace(&self) -> &Namespace {
@@ -173,11 +158,11 @@ impl<'a> selectors::Element for NodeRef<'a> {
     fn attr_matches(
         &self,
         ns: &NamespaceConstraint<&Namespace>,
-        local_name: &LocalName,
-        operation: &AttrSelectorOperation<&String>,
+        local_name: &CssLocalName,
+        operation: &AttrSelectorOperation<&scraper_forky::selector::CssString>,
     ) -> bool {
         self.node().as_element().unwrap().attrs.iter().any(|attr| {
-            attr.name.local == *local_name
+            attr.name.local == *local_name.0
                 && match *ns {
                     NamespaceConstraint::Any => true,
                     NamespaceConstraint::Specific(ns) => attr.name.ns == *ns,
@@ -188,7 +173,7 @@ impl<'a> selectors::Element for NodeRef<'a> {
 
     fn match_non_ts_pseudo_class<F>(
         &self,
-        pseudo_class: &PseudoClass,
+        pseudo_class: &scraper_forky::selector::NonTSPseudoClass,
         _context: &mut MatchingContext<Self::Impl>,
         _flags_setter: &mut F,
     ) -> bool
@@ -200,7 +185,7 @@ impl<'a> selectors::Element for NodeRef<'a> {
 
     fn match_pseudo_element(
         &self,
-        pseudo_element: &PseudoElement,
+        pseudo_element: &scraper_forky::selector::PseudoElement,
         _context: &mut MatchingContext<Self::Impl>,
     ) -> bool {
         match *pseudo_element {}
@@ -216,23 +201,23 @@ impl<'a> selectors::Element for NodeRef<'a> {
             && element.get_attr(&local_name!("href")).is_some()
     }
 
-    fn has_id(&self, id: &String, case_sensitivity: CaseSensitivity) -> bool {
+    fn has_id(&self, id: &CssLocalName, case_sensitivity: CaseSensitivity) -> bool {
         self.node()
             .as_element()
             .unwrap()
             .get_attr(&local_name!("id"))
             .map_or(false, |attr| {
-                case_sensitivity.eq(id.as_bytes(), attr.as_bytes())
+                case_sensitivity.eq(id.0.as_bytes(), attr.as_bytes())
             })
     }
 
-    fn has_class(&self, class: &String, case_sensitivity: CaseSensitivity) -> bool {
+    fn has_class(&self, class: &CssLocalName, case_sensitivity: CaseSensitivity) -> bool {
         self.node()
             .as_element()
             .unwrap()
             .get_attr(&local_name!("class"))
             .map_or(false, |attr| {
-                case_sensitivity.eq(class.as_bytes(), attr.as_bytes())
+                case_sensitivity.eq(class.0.as_bytes(), attr.as_bytes())
             })
     }
 

@@ -5,6 +5,7 @@ mod xml;
 
 use crate::style::{StyleSet, StyleSetBuilder};
 use html5ever::{LocalName, QualName};
+use scraper_forky::selector::CssLocalName;
 use std::borrow::Cow;
 use std::fmt;
 use std::iter::successors;
@@ -245,6 +246,7 @@ pub struct ElementData {
     pub attrs: Vec<Attribute>,
     pub mathml_annotation_xml_integration_point: bool,
     pub layout_data: atomic_refcell::AtomicRefCell<crate::layout::LayoutDataForElement>,
+    pub css_local_name: CssLocalName
 }
 
 #[derive(Debug)]

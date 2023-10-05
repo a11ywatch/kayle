@@ -983,6 +983,23 @@ dependencies = [
 ]
 
 [[package]]
+name = "scraper_forky"
+version = "0.17.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6e58d69e133ec7908d0fe31de81e1e40f36bf5c33c8bd8e41a4a157d3a795bad"
+dependencies = [
+ "ahash",
+ "cssparser 0.25.9",
+ "ego-tree",
+ "getopts",
+ "html5ever",
+ "once_cell",
+ "selectors 0.21.0",
+ "smallvec 0.6.14",
+ "tendril",
+]
+
+[[package]]
 name = "selectors"
 version = "0.21.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1328,6 +1345,7 @@ dependencies = [
  "parking_lot 0.6.4",
  "rayon",
  "rayon_croissant",
+ "scraper_forky",
  "selectors 0.21.0",
  "smallbitvec",
  "smallvec 0.6.14",

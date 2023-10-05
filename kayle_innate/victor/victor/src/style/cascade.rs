@@ -15,7 +15,7 @@ pub struct StyleSet {
 }
 
 lazy_static::lazy_static! {
-    static ref USER_AGENT_STYLESHEET: StyleSet = {
+    pub static ref USER_AGENT_STYLESHEET: StyleSet = {
         let mut builder = StyleSetBuilder::new();
         builder.add_stylesheet(include_str!("user_agent.css"));
         builder.finish()
@@ -54,7 +54,7 @@ impl StyleSetBuilder {
 }
 
 impl StyleSet {
-    fn push_matching<'a>(
+    pub fn push_matching<'a>(
         &'a self,
         document: &dom::Document,
         node: dom::NodeId,
@@ -69,8 +69,8 @@ impl StyleSet {
 }
 
 pub struct MatchingDeclarations<'a> {
-    ua: SmallVec<[&'a DeclarationBlock; 8]>,
-    author: SmallVec<[&'a DeclarationBlock; 32]>,
+    pub ua: SmallVec<[&'a DeclarationBlock; 8]>,
+    pub author: SmallVec<[&'a DeclarationBlock; 32]>,
 }
 
 impl MatchingDeclarations<'_> {

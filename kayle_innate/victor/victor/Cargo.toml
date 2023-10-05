@@ -1,6 +1,6 @@
 [package]
 name = "victor_tree"
-version = "0.0.2"
+version = "0.0.5"
 authors = ["Simon Sapin <simon.sapin@exyr.org>"]
 license = "MIT OR Apache-2.0"
 description = "Victor makes vectors"
@@ -23,6 +23,7 @@ num-traits = "0.2"
 parking_lot = "0.6"
 rayon = "1"
 rayon_croissant = "0.1.1"
+scraper_forky = { version = "0.17.1", features = ["main"], default-features = false }
 selectors = "0.21"
 smallbitvec = "2.4"
 smallvec = "0.6"

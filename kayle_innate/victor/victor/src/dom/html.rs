@@ -111,10 +111,11 @@ impl TreeSink for Sink {
     ) -> NodeId {
         let is_style = name.expanded() == expanded_name!(html "style");
         let element = self.new_node(NodeData::Element(ElementData {
-            name,
+            name: name.clone(),
             attrs: attrs.into_iter().map(Attribute::from).collect(),
             mathml_annotation_xml_integration_point,
             layout_data: Default::default(),
+            css_local_name: scraper_forky::selector::CssLocalName(name.local)
         }));
         if is_style {
             self.document.style_elements.push(element)

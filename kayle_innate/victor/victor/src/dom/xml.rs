@@ -11,8 +11,10 @@ impl Document {
                 XmlEvent::StartElement {
                     name, attributes, ..
                 } => {
+                    let n = convert_name(name);
+
                     let id = document.push_node(Node::new(NodeData::Element(ElementData {
-                        name: convert_name(name),
+                        name: n.clone(),
                         attrs: attributes
                             .into_iter()
                             .map(
@@ -24,6 +26,7 @@ impl Document {
                             .collect(),
                         mathml_annotation_xml_integration_point: false,
                         layout_data: Default::default(),
+                        css_local_name: scraper_forky::selector::CssLocalName(n.local)
                     })));
                     document.append(current, id);
                     ancestors.push(current);
