@@ -49,8 +49,8 @@ impl<'i> QualifiedRuleParser<'i> for RulesParser {
 }
 
 impl<'i> AtRuleParser<'i> for RulesParser {
-    type PreludeBlock  = ();
-    type PreludeNoBlock   = ();
+    type PreludeBlock = ();
+    type PreludeNoBlock = ();
 
     type AtRule = CssRule;
     type Error = RuleParseErrorKind<'i>;

@@ -25,8 +25,7 @@ impl WCAG3AA {
                 match rules {
                     Some(rules) => {
                         for rule in rules {
-                            let (valid, section, selector) =
-                                (rule.validate)(&node.0, &node.1);
+                            let (valid, section, selector) = (rule.validate)(&node.0, &node.1);
 
                             if !valid {
                                 // get locales prior or from document

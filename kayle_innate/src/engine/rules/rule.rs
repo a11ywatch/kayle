@@ -9,10 +9,7 @@ pub struct Rule {
     /// the type of rule
     pub criteria: Criteria,
     /// validate a test returns (valid, rule, selectors)
-    pub validate: fn(
-        &str,
-        &Vec<ElementRef<'_>>
-    ) -> (bool, &'static str, Vec<&'static str>),
+    pub validate: fn(&str, &Vec<ElementRef<'_>>) -> (bool, &'static str, Vec<&'static str>),
     /// the principle type
     pub principle: Principle,
     /// the guideline to follow
@@ -26,10 +23,7 @@ impl Rule {
         criteria: Criteria,
         principle: Principle,
         guideline: Guideline,
-        validate: fn(
-            &str,
-            &Vec<ElementRef<'_>>
-        ) -> (bool, &'static str, Vec<&'static str>),
+        validate: fn(&str, &Vec<ElementRef<'_>>) -> (bool, &'static str, Vec<&'static str>),
     ) -> Rule {
         Rule {
             rule_id,

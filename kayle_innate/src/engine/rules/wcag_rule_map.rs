@@ -24,7 +24,7 @@ lazy_static! {
                     // check the first element for now
                     let mut valid = false;
                     let selector = unsafe { Selector::parse("button[type=submit]").unwrap_unchecked() };
-                    
+
                     for ele in nodes {
                         valid = match ele.select(&selector).next() {
                             Some(_) => true,

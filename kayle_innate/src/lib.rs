@@ -230,28 +230,31 @@ pub fn parse_accessibility_tree(
 #[cfg(feature = "accessibility")]
 /// audit a web page passing the html and css rules.
 pub fn _audit_not_ready(html: &str, _css_rules: &str) -> Result<JsValue, JsValue> {
-    let html = scraper_forky::Html::parse_document(html);
-    let _tree = parse_accessibility_tree(&html);
-    // TODO: if the css rules are empty extract the css from the HTML
-    // let css_rules = &mut cssparser::ParserInput::new(&_css_rules);
-    // TODO: build the rules to css blocks that selectors can be used to find the element of the style.
-    // let mut _css_parser = cssparser::Parser::new(css_rules);
-    // let css_rules_parser = cssparser::RuleListParser::new_for_stylesheet(
-    //     &mut _css_parser,
-    //     crate::engine::styles::rules::RulesParser,
-    // );
-    let _author = if !_css_rules.is_empty() {
+    let document = scraper_forky::Html::parse_document(html);
+    let _tree = parse_accessibility_tree(&document);
+    let _author = {
         let mut author = victor_tree::style::StyleSetBuilder::new();
-        author.add_stylesheet(_css_rules);
+        if !_css_rules.is_empty() {
+            author.add_stylesheet(_css_rules);
+        } else {
+            use markup5ever::local_name;
+            match _tree.get("style") {
+                Some(styles) => {
+                    for node in styles {
+                        // https://html.spec.whatwg.org/multipage/semantics.html#update-a-style-block
+                        if let Some(type_attr) = node.attr(&local_name!("type")) {
+                            if !type_attr.eq_ignore_ascii_case("text/css") {
+                                continue;
+                            }
+                            author.add_stylesheet(&node.inner_html())
+                        }
+                    }
+                }
+                _ => (),
+            }
+        }
         author.finish()
-    } else {
-        let mut author = victor_tree::style::StyleSetBuilder::new();
-        author.add_stylesheet("");
-        author.finish()
-    };   
-
-    // console_log!("CSS RULES: {:?}", author);
-
+    };
     let _audit = engine::audit::wcag::WCAG3AA::audit(&_tree);
 
     // // TODO: build struct that can keep lifetimes
@@ -268,18 +271,28 @@ pub fn _audit_not_ready(html: &str, _css_rules: &str) -> Result<JsValue, JsValue
     for item in _tree {
         for node in item.1 {
             let parent_styles = match node.parent() {
-                Some(n) => {
-                    match scraper_forky::element_ref::ElementRef::wrap(n) {
-                        Some(element) => {
-                            let _parent_styles = crate::engine::styles::style_for_element(&_author, &html, element, None, &mut match_context);
-                            Some(_parent_styles)
-                        }
-                        _ => None,
+                Some(n) => match scraper_forky::element_ref::ElementRef::wrap(n) {
+                    Some(element) => {
+                        let _parent_styles = crate::engine::styles::style_for_element(
+                            &_author,
+                            &document,
+                            element,
+                            None,
+                            &mut match_context,
+                        );
+                        Some(_parent_styles)
                     }
-                }
-                _ => None
+                    _ => None,
+                },
+                _ => None,
             };
-            let _style = crate::engine::styles::style_for_element(&_author, &html, node, parent_styles.as_deref(), &mut match_context);
+            let _style = crate::engine::styles::style_for_element(
+                &_author,
+                &document,
+                node,
+                parent_styles.as_deref(),
+                &mut match_context,
+            );
         }
     }
 
