@@ -6,15 +6,15 @@ The rust lib for accessibility things.
 
 Target the platform that you need like nodejs or browsers etc.
 
-`wasm-pack build --target nodejs`
+` wasm-pack build --target nodejs --release kayle_innate`
 
 ## Testing
 
-1. `wasm-pack test --node --firefox --chrome --headless`
+1. `wasm-pack test --node --firefox --chrome --headless kayle_innate`
 
 In order to test the accessibility parser in Rust run.
 
-`RUST_LOG=info wasm-pack test --firefox --headless --features accessibility --release`.
+`RUST_LOG=info wasm-pack test --firefox --headless --features accessibility --release kayle_innate`.
 
 ## Debugging
 
@@ -30,5 +30,5 @@ In order to make a better accessibility runner from the ground up we are adding 
 
 ## Publishing
 
-1. `wasm-pack build`
-1. `wasm-pack publish`
+1. `wasm-pack build kayle_innate`
+1. `wasm-pack publish kayle_innate`

@@ -34,7 +34,7 @@ jobs:
         run: corepack enable && corepack prepare yarn@stable --activate
 
       - name: Wasm pack build modules
-        run: cd kayle_innate && wasm-pack build --target nodejs && cd ../
+        run: cd kayle_innate && wasm-pack build --release --target nodejs kayle_innate && cd ../
 
       - name: Install and build locales
         run: yarn --no-immutable && yarn build && npx playwright install --with-deps chromium

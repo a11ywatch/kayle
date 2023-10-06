@@ -195,6 +195,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a26ae43d7bcc3b814de94796a5e736d4029efb0ee900c12e2d54c993ad1a1e07"
 
 [[package]]
+name = "equivalent"
+version = "1.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5443807d6dff69373d433ab9ef5378ad8df50ca6298caf15de6e52e24aaf54d5"
+
+[[package]]
 name = "euclid"
 version = "0.19.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -278,6 +284,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "eec1c01eb1de97451ee0d60de7d81cf1e72aabefb021616027f3d1c3ec1c723c"
 
 [[package]]
+name = "hashbrown"
+version = "0.14.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7dfda62a12f55daeae5015f81b0baea145391cb4520f86c248fc615d72640d12"
+
+[[package]]
 name = "html5ever"
 version = "0.26.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -299,6 +311,16 @@ checksum = "7d20d6b07bfbc108882d88ed8e37d39636dcc260e15e30c45e6ba089610b917c"
 dependencies = [
  "unicode-bidi",
  "unicode-normalization",
+]
+
+[[package]]
+name = "indexmap"
+version = "2.0.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8adf3ddd720272c6ea8bf59463c04e0f93d0bbf7c5439b691bca2987e0270897"
+dependencies = [
+ "equivalent",
+ "hashbrown",
 ]
 
 [[package]]
@@ -338,7 +360,7 @@ dependencies = [
  "selectors",
  "serde",
  "serde-wasm-bindgen",
- "smallvec 0.6.14",
+ "smallvec 1.11.1",
  "taffy",
  "url",
  "victor_tree",
@@ -889,14 +911,13 @@ checksum = "94143f37725109f92c262ed2cf5e59bce7498c01bcc1502d7b9afe439a4e9f49"
 [[package]]
 name = "scraper_forky"
 version = "0.17.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6e58d69e133ec7908d0fe31de81e1e40f36bf5c33c8bd8e41a4a157d3a795bad"
 dependencies = [
  "ahash",
  "cssparser",
  "ego-tree",
  "getopts",
  "html5ever",
+ "indexmap",
  "once_cell",
  "selectors",
  "smallvec 0.6.14",
@@ -1199,8 +1220,6 @@ checksum = "49874b5167b65d7193b8aba1567f5c7d93d001cafc34600cee003eda787e483f"
 [[package]]
 name = "victor-tree-internal-proc-macros"
 version = "0.0.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1fb9a26b1452763752832db93fa95e9949fe7e4f5d44001a8712537897f2bb37"
 dependencies = [
  "proc-macro2 0.4.30",
  "quote 0.6.13",
@@ -1210,8 +1229,6 @@ dependencies = [
 [[package]]
 name = "victor_tree"
 version = "0.0.7"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6b47ffd0cf2b7c91d117709862b6a8092c31e971d1e6af406876b7ccc3daafaf"
 dependencies = [
  "atomic_refcell",
  "cssparser",
@@ -1228,7 +1245,7 @@ dependencies = [
  "scraper_forky",
  "selectors",
  "smallbitvec",
- "smallvec 0.6.14",
+ "smallvec 1.11.1",
  "victor-tree-internal-proc-macros",
  "xi-unicode",
  "xml-rs",

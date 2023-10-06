@@ -1,0 +1,18 @@
+[package]
+name = "victor-tree-internal-proc-macros"
+version = "0.0.1"
+authors = ["Simon Sapin <simon.sapin@exyr.org>"]
+license = "MIT OR Apache-2.0"
+description = "Custom #[derive] for use inside Victor"
+repository = "https://github.com/SimonSapin/victor"
+edition = "2018"
+
+[lib]
+proc-macro = true
+test = false
+doctest = false
+
+[dependencies]
+proc-macro2 = "0.4"
+syn = "0.15"
+quote = "0.6"

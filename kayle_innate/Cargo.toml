@@ -1,5 +1,10 @@
 [workspace]
 resolver = "2"
 members = [
-  "kayle_innate"
+  "kayle_innate",
+  "kayle_victor/victor",
+  "kayle_scraper"
 ]
+
+[workspace.dependencies]
+smallvec = "1"

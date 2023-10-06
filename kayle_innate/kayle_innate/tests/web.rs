@@ -66,6 +66,6 @@ fn _get_document_links() {
 
 #[wasm_bindgen_test]
 #[cfg(feature = "accessibility")]
-fn _parse_accessibility_tree() {
+fn _audit() {
     let _ = kayle_innate::_audit_not_ready(mock::MOCK_WEBSITE_HTML, &mock::MOCK_CSS_RULES);
 }
