@@ -56,19 +56,19 @@ pub fn _audit_not_ready(html: &str, css_rules: &str) -> Result<JsValue, JsValue>
     let _audit = engine::audit::wcag::WCAG3AA::audit(&auditor);
     console_log!("Audit Time {:?}", now() - ttt);
     
-    // let mut _match_context = auditor.match_context;
+    let mut _match_context = auditor.match_context;
 
-    // for item in auditor.tree {
-    //     for node in item.1 {
-    //         let _style = victor_tree::style::cascade::style_for_element_ref(
-    //             &node,
-    //             &auditor.author,
-    //             &document,
-    //             &mut _match_context,
-    //         );
-    //         console_log!("{:?}", _style.as_ref().box_size())
-    //     }
-    // }
+    for item in auditor.tree {
+        for node in item.1 {
+            let _style = victor_tree::style::cascade::style_for_element_ref(
+                &node,
+                &auditor.author,
+                &document,
+                &mut _match_context,
+            );
+            console_log!("{:?}", _style.as_ref().box_size())
+        }
+    }
 
     // todo: map to JsValues instead of serde
     Ok(serde_wasm_bindgen::to_value(&_audit)?)

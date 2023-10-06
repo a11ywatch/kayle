@@ -5,7 +5,7 @@
     "kayle",
     "fast_htmlcs",
     "fast_axecore",
-    "kayle_innate/pkg"
+    "kayle_innate/kayle_innate/pkg"
   ],
   "scripts": {
     "build": "((cd fast_axecore && npm run build) & (cd fast_htmlcs && npm run build)) && cd kayle && npm run prepare && npm run compile:test && cd ../",

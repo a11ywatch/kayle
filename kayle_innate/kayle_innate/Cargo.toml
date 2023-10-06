@@ -1,0 +1,44 @@
+[package]
+name = "kayle_innate"
+version = "0.0.22"
+authors = ["j-mendez"]
+edition = "2018"
+license = "MIT"
+description = "Incredibly fast and precise universal web accessibility evaluator for puppeteer or playwright."
+repository = "https://github.com/a11ywatch/kayle"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[features]
+default = ["console_error_panic_hook", "accessibility"]
+accessibility = ["taffy"]
+
+[dependencies]
+wasm-bindgen = { version = "0.2.87", features = ["serde-serialize"] }
+console_error_panic_hook = { version = "0.1.6", optional = true }
+wee_alloc = { version = "0.4.5", optional = true }
+url = "2.4.0"
+lazy_static = "1.4.0"
+case_insensitive_string = "0.1.0"
+scraper_forky = { version = "0.17.1", features = ["main"], default-features = false }
+getrandom = { version = "0.2", features = ["js"] }
+taffy = { version = "0.3.13", optional = true }
+serde = { version = "1.0", features = ["derive"] }
+serde-wasm-bindgen = "0.4"
+js-sys = "0.3.64"
+selectors = "=0.21.0"
+smallvec = "0.6"
+ego-tree = "0.6.2"
+victor_tree = { version = "0.0.7" }
+markup5ever = "0.11.0"
+
+[dependencies.cssparser]
+version = "^0.25.0"
+
+[dev-dependencies]
+wasm-bindgen-test = "0.3.37"
+
+[profile.release]
+opt-level = "s"
+lto = true

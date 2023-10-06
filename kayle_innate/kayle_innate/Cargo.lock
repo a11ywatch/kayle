@@ -55,9 +55,9 @@ checksum = "7f30e7476521f6f8af1a1c4c0b8cc94f0bee37d91763d0ca2665f299b6cd8aec"
 
 [[package]]
 name = "byteorder"
-version = "1.5.0"
+version = "1.4.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1fd0f2584146f6f2ef48085050886acf353beff7305ebd1ae69500e27c67f64b"
+checksum = "14c189c53d098945499cdfa7ecc63567cf3886b3332b312a5b4585d8d3a6a610"
 
 [[package]]
 name = "case_insensitive_string"
@@ -141,7 +141,7 @@ dependencies = [
  "itoa 0.4.8",
  "matches",
  "phf 0.7.24",
- "proc-macro2 1.0.68",
+ "proc-macro2 1.0.67",
  "procedural-masquerade",
  "quote 1.0.33",
  "smallvec 0.6.14",
@@ -155,7 +155,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5bb1c84e87c717666564ec056105052331431803d606bd45529b28547b611eef"
 dependencies = [
  "phf_codegen 0.7.24",
- "proc-macro2 1.0.68",
+ "proc-macro2 1.0.67",
  "procedural-masquerade",
  "quote 1.0.33",
  "syn 1.0.109",
@@ -286,7 +286,7 @@ dependencies = [
  "log",
  "mac",
  "markup5ever",
- "proc-macro2 1.0.68",
+ "proc-macro2 1.0.67",
  "quote 1.0.33",
  "syn 1.0.109",
 ]
@@ -625,9 +625,9 @@ dependencies = [
 
 [[package]]
 name = "proc-macro2"
-version = "1.0.68"
+version = "1.0.67"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5b1106fec09662ec6dd98ccac0f81cef56984d0b49f75c92d8cbad76e20c005c"
+checksum = "3d433d9f1a3e8c1263d9456598b16fec66f4acc9a74dacffd35c7bb09b3a1328"
 dependencies = [
  "unicode-ident",
 ]
@@ -653,7 +653,7 @@ version = "1.0.33"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5267fca4496028628a95160fc423a33e8b2e6af8a5302579e322e4b520293cae"
 dependencies = [
- "proc-macro2 1.0.68",
+ "proc-macro2 1.0.67",
 ]
 
 [[package]]
@@ -963,9 +963,9 @@ version = "1.0.188"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4eca7ac642d82aa35b60049a6eccb4be6be75e599bd2e9adb5f875a737654af2"
 dependencies = [
- "proc-macro2 1.0.68",
+ "proc-macro2 1.0.67",
  "quote 1.0.33",
- "syn 2.0.38",
+ "syn 2.0.37",
 ]
 
 [[package]]
@@ -1059,7 +1059,7 @@ checksum = "6bb30289b722be4ff74a408c3cc27edeaad656e06cb1fe8fa9231fa59c728988"
 dependencies = [
  "phf_generator 0.10.0",
  "phf_shared 0.10.0",
- "proc-macro2 1.0.68",
+ "proc-macro2 1.0.67",
  "quote 1.0.33",
 ]
 
@@ -1080,27 +1080,27 @@ version = "1.0.109"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "72b64191b275b66ffe2469e8af2c1cfe3bafa67b529ead792a6d0160888b4237"
 dependencies = [
- "proc-macro2 1.0.68",
+ "proc-macro2 1.0.67",
  "quote 1.0.33",
  "unicode-ident",
 ]
 
 [[package]]
 name = "syn"
-version = "2.0.38"
+version = "2.0.37"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e96b79aaa137db8f61e26363a0c9b47d8b4ec75da28b7d1d614c2303e232408b"
+checksum = "7303ef2c05cd654186cb250d29049a24840ca25d2747c25c0381c8d9e2f582e8"
 dependencies = [
- "proc-macro2 1.0.68",
+ "proc-macro2 1.0.67",
  "quote 1.0.33",
  "unicode-ident",
 ]
 
 [[package]]
 name = "taffy"
-version = "0.3.15"
+version = "0.3.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "798053135b826949571726ab5e30bf9509a65b3bae6425d2e2b2dd391c50a101"
+checksum = "96ffc872aa6d5b1037b0daf795d7c16defaf2715f1f297475362ad9d30aefb7a"
 dependencies = [
  "arrayvec",
  "grid",
@@ -1261,9 +1261,9 @@ dependencies = [
  "bumpalo",
  "log",
  "once_cell",
- "proc-macro2 1.0.68",
+ "proc-macro2 1.0.67",
  "quote 1.0.33",
- "syn 2.0.38",
+ "syn 2.0.37",
  "wasm-bindgen-shared",
 ]
 
@@ -1295,9 +1295,9 @@ version = "0.2.87"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "54681b18a46765f095758388f2d0cf16eb8d4169b639ab575a8f5693af210c7b"
 dependencies = [
- "proc-macro2 1.0.68",
+ "proc-macro2 1.0.67",
  "quote 1.0.33",
- "syn 2.0.38",
+ "syn 2.0.37",
  "wasm-bindgen-backend",
  "wasm-bindgen-shared",
 ]
@@ -1328,7 +1328,7 @@ version = "0.3.37"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ecb993dd8c836930ed130e020e77d9b2e65dd0fbab1b67c790b0f5d80b11a575"
 dependencies = [
- "proc-macro2 1.0.68",
+ "proc-macro2 1.0.67",
  "quote 1.0.33",
 ]
 
