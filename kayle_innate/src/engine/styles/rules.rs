@@ -1,7 +1,6 @@
 use crate::engine::styles::errors::RuleParseErrorKind;
 use cssparser::{AtRuleParser, ParseError, QualifiedRuleParser};
-use scraper::selector::Simple;
-use selectors::parser::ParseRelative;
+use scraper_forky::selector::Simple;
 use std::sync::Arc;
 
 #[derive(Debug)]
@@ -33,13 +32,13 @@ impl<'i> QualifiedRuleParser<'i> for RulesParser {
         &mut self,
         parser: &mut cssparser::Parser<'i, 't>,
     ) -> Result<Self::Prelude, ParseError<'i, Self::Error>> {
-        SelectorList::parse(&Parser, parser, ParseRelative::No)
+        SelectorList::parse(&Parser, parser)
     }
 
     fn parse_block<'t>(
         &mut self,
         prelude: Self::Prelude,
-        _location: &cssparser::ParserState,
+        _location: cssparser::SourceLocation,
         _parser: &mut cssparser::Parser<'i, 't>,
     ) -> Result<Self::QualifiedRule, ParseError<'i, Self::Error>> {
         Ok(CssRule::StyleRule {
@@ -50,7 +49,9 @@ impl<'i> QualifiedRuleParser<'i> for RulesParser {
 }
 
 impl<'i> AtRuleParser<'i> for RulesParser {
-    type Prelude = ();
+    type PreludeBlock = ();
+    type PreludeNoBlock = ();
+
     type AtRule = CssRule;
     type Error = RuleParseErrorKind<'i>;
 }

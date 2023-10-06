@@ -21,18 +21,20 @@ wee_alloc = { version = "0.4.5", optional = true }
 url = "2.4.0"
 lazy_static = "1.4.0"
 case_insensitive_string = "0.1.0"
-scraper = { version = "0.17.1", features = ["main"], default-features = false }
+scraper_forky = { version = "0.17.1", features = ["main"], default-features = false }
 getrandom = { version = "0.2", features = ["js"] }
 taffy = { version = "0.3.13", optional = true }
 serde = { version = "1.0", features = ["derive"] }
 serde-wasm-bindgen = "0.4"
 js-sys = "0.3.64"
-selectors = "0.25.0"
-smallvec = "1.11.1"
+selectors = "=0.21.0"
+smallvec = "0.6"
 ego-tree = "0.6.2"
+victor_tree = { version = "0.0.7" }
+markup5ever = "0.11.0"
 
 [dependencies.cssparser]
-version = "^0.31.0"
+version = "^0.25.0"
 
 [dev-dependencies]
 wasm-bindgen-test = "0.3.37"
