@@ -8,7 +8,7 @@ use std::fmt;
 use std::ops::Deref;
 use std::slice::Iter as SliceIter;
 
-use crate::{selectors::attr::CaseSensitivity, StrTendril, selector::CssLocalName};
+use crate::{selector::CssLocalName, selectors::attr::CaseSensitivity, StrTendril};
 use html5ever::{Attribute, LocalName, QualName};
 use once_cell::unsync::OnceCell;
 
@@ -235,7 +235,7 @@ pub struct Element {
     classes: OnceCell<Vec<LocalName>>,
 
     /// locale name
-    pub local_name: CssLocalName
+    pub local_name: CssLocalName,
 }
 
 impl Element {

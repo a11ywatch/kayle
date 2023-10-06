@@ -56,7 +56,7 @@ impl Selector {
         context.scope_element = scope.map(|x| selectors::Element::opaque(&x));
         self.selectors
             .iter()
-            .any(|s| matching::matches_selector(s, 0, None, element, &mut context, &mut |_, _| {}            ))
+            .any(|s| matching::matches_selector(s, 0, None, element, &mut context, &mut |_, _| {}))
     }
 }
 
@@ -118,13 +118,16 @@ impl cssparser::ToCss for CssString {
 pub struct CssLocalName(pub LocalName);
 
 impl std::fmt::Display for CssString {
-    fn fmt(&self, _: &mut core::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {  Ok(()) }
+    fn fmt(&self, _: &mut core::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        Ok(())
+    }
 }
 
 impl std::fmt::Display for CssLocalName {
-    fn fmt(&self, _: &mut core::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> { Ok(()) }
+    fn fmt(&self, _: &mut core::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        Ok(())
+    }
 }
-
 
 impl<'a> From<&'a str> for CssLocalName {
     fn from(val: &'a str) -> Self {

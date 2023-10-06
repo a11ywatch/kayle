@@ -55,7 +55,7 @@ pub fn _audit_not_ready(html: &str, css_rules: &str) -> Result<JsValue, JsValue>
     let ttt = now();
     let _audit = engine::audit::wcag::WCAG3AA::audit(&auditor);
     console_log!("Audit Time {:?}", now() - ttt);
-    
+
     // let mut _match_context = auditor.match_context;
 
     // for item in auditor.tree {

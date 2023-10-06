@@ -2,7 +2,7 @@ use super::length::*;
 use crate::style::errors::PropertyParseError;
 use cssparser::{Color, Parser};
 
-/// https://drafts.csswg.org/css-backgrounds/#typedef-line-style
+/// <https://drafts.csswg.org/css-backgrounds/#typedef-line-style>
 #[derive(Copy, Clone, Parse, SpecifiedAsComputed)]
 pub enum LineStyle {
     None,

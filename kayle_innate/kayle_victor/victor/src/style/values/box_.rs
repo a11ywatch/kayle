@@ -3,7 +3,7 @@ use crate::style::properties::ComputedValues;
 use cssparser::Parser;
 use std::sync::Arc;
 
-/// https://drafts.csswg.org/css-display-3/#the-display-properties
+/// <https://drafts.csswg.org/css-display-3/#the-display-properties>
 #[derive(Copy, Clone, Eq, PartialEq, SpecifiedAsComputed)]
 pub enum Display {
     None,
@@ -24,17 +24,17 @@ pub enum DisplayGeneratingBox {
         // list_item: bool,
     },
     // Layout-internal display types go here:
-    // https://drafts.csswg.org/css-display-3/#layout-specific-display
+    // <https://drafts.csswg.org/css-display-3/#layout-specific-display>
 }
 
-/// https://drafts.csswg.org/css-display-3/#outer-role
+/// <https://drafts.csswg.org/css-display-3/#outer-role>
 #[derive(Copy, Clone, Eq, PartialEq)]
 pub enum DisplayOutside {
     Inline,
     Block,
 }
 
-/// https://drafts.csswg.org/css-display-3/#inner-model
+/// <https://drafts.csswg.org/css-display-3/#inner-model>
 #[derive(Copy, Clone, Eq, PartialEq)]
 pub enum DisplayInside {
     Flow,
@@ -47,7 +47,7 @@ impl Display {
         inside: DisplayInside::Flow,
     });
 
-    /// https://drafts.csswg.org/css-display-3/#blockify
+    /// <https://drafts.csswg.org/css-display-3/#blockify>
     pub fn blockify(&self) -> Self {
         match *self {
             Display::GeneratingBox(value) => Display::GeneratingBox(match value {
@@ -62,7 +62,7 @@ impl Display {
         }
     }
 
-    /// https://drafts.csswg.org/css2/visuren.html#dis-pos-flo
+    /// <https://drafts.csswg.org/css2/visuren.html#dis-pos-flo>
     pub fn fixup(style: &mut ComputedValues) {
         style.specified_display = style.box_.display;
         if style.box_.position.is_absolutely_positioned() || style.box_.float.is_floating() {
@@ -106,7 +106,7 @@ impl super::Parse for Display {
     }
 }
 
-/// https://drafts.csswg.org/css2/visuren.html#propdef-float
+/// <https://drafts.csswg.org/css2/visuren.html#propdef-float>
 #[derive(Copy, Clone, Eq, Parse, PartialEq, SpecifiedAsComputed)]
 pub enum Float {
     None,
@@ -123,7 +123,7 @@ impl Float {
     }
 }
 
-/// https://drafts.csswg.org/css-position-3/#position-property
+/// <https://drafts.csswg.org/css-position-3/#position-property>
 #[derive(Copy, Clone, Eq, Parse, PartialEq, SpecifiedAsComputed)]
 pub enum Position {
     Static,

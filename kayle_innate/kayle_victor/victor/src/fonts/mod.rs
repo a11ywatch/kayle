@@ -213,7 +213,7 @@ fn read_postscript_name(
                 }
             })
             .collect::<String>()
-    };
+    }
 
     let naming_table_header = table_directory.find_table::<NamingTableHeader>(bytes)?;
     let name_records = Slice::new(

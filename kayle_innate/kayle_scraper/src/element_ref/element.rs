@@ -17,7 +17,6 @@ impl<'a> Element for ElementRef<'a> {
 
     fn namespace(&self) -> &Namespace {
         &self.value().name.ns
-
     }
 
     fn opaque(&self) -> OpaqueElement {

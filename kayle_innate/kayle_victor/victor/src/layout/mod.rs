@@ -21,7 +21,7 @@ use replaced::*;
 pub use element_data::*;
 pub use fragments::*;
 
-/// https://drafts.csswg.org/css-display/#independent-formatting-context
+/// <https://drafts.csswg.org/css-display/#independent-formatting-context>
 #[derive(Debug)]
 pub enum IndependentFormattingContext {
     Flow(BlockFormattingContext),

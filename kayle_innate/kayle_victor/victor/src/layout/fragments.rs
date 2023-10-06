@@ -13,7 +13,7 @@ pub struct BoxFragment {
 
     /// From the containing block’s start corner…?
     /// This might be broken when the containing block is in a different writing mode:
-    /// https://drafts.csswg.org/css-writing-modes/#orthogonal-flows
+    /// <https://drafts.csswg.org/css-writing-modes/#orthogonal-flows>
     pub content_rect: Rect<Length>,
 
     pub padding: Sides<Length>,

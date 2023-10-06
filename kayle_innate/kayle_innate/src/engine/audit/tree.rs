@@ -1,9 +1,10 @@
-use scraper_forky::ElementRef;
+use scraper_forky::{ElementRef, Selector};
 use std::collections::BTreeMap;
 
 /// try to fix all possible issues using a spec against the tree.
 pub fn parse_accessibility_tree(
     html: &scraper_forky::Html,
+    // css_rules: &str,
     // todo: return the nodes with a tuple of the layout node and the element node
 ) -> std::collections::BTreeMap<&str, Vec<ElementRef<'_>>> {
     // use taffy::prelude::*;
