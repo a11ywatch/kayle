@@ -1209,9 +1209,9 @@ dependencies = [
 
 [[package]]
 name = "victor_tree"
-version = "0.0.5"
+version = "0.0.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "054bfc272757f38a0e8ef28447f2525e1a96dfbc2e2a21c3fafda9f77640108e"
+checksum = "6b47ffd0cf2b7c91d117709862b6a8092c31e971d1e6af406876b7ccc3daafaf"
 dependencies = [
  "atomic_refcell",
  "cssparser",

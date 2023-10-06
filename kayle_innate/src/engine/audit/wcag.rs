@@ -1,7 +1,7 @@
 use crate::engine::rules::wcag_rule_map::RULES_A;
 use crate::i18n::locales::{get_message, Langs};
+use crate::Auditor;
 use crate::{console_log, engine::issue::Issue};
-use scraper_forky::ElementRef;
 
 /// baseline for all rules
 #[derive(Default)]
@@ -12,14 +12,13 @@ impl WCAG3AA {
     /// init the rules
     pub fn audit(
         // allow tree mutation until threads or setup the tree with initial elements.
-        tree: &std::collections::BTreeMap<&str, Vec<ElementRef<'_>>>,
-        // _css: cssparser::Parser<'_, '_>,
+        auditor: &Auditor<'_>,
         // todo: get configs like viewport
     ) -> Vec<Issue> {
         let mut issues: Vec<Issue> = Vec::new();
 
         // go through nodes and map to validation rules
-        for node in tree {
+        for node in &auditor.tree {
             if RULES_A.contains_key(&*node.0) {
                 let rules = RULES_A.get(&*node.0);
                 match rules {
