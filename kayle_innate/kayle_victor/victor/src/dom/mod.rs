@@ -1,7 +1,6 @@
 //! This is *a* Document Object Model, but is not necessarily compatible with *the* DOM.
 
 mod html;
-mod xml;
 
 use crate::style::{StyleSet, StyleSetBuilder};
 use html5ever::{LocalName, QualName};
@@ -9,8 +8,6 @@ use scraper_forky::selector::CssLocalName;
 use std::borrow::Cow;
 use std::fmt;
 use std::iter::successors;
-
-pub use self::xml::XmlError;
 
 pub struct Document {
     pub nodes: Vec<Node>,

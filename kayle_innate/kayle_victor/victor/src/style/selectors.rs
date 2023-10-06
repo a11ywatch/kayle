@@ -1,7 +1,7 @@
 use crate::dom::{Document, Node, NodeId};
 use crate::style::errors::RuleParseErrorKind;
 use cssparser::ToCss;
-use html5ever::{LocalName, Namespace, Prefix};
+use html5ever::Namespace;
 use scraper_forky::selector::CssLocalName;
 use scraper_forky::selector::Simple;
 use selectors::attr::{AttrSelectorOperation, CaseSensitivity, NamespaceConstraint};

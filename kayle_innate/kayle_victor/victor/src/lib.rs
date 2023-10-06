@@ -1,25 +1,19 @@
 pub use euclid;
-
 pub mod dom;
 pub mod fonts;
-pub mod pdf;
 pub mod primitives;
 pub mod text;
-pub mod text_plain;
 
 #[macro_use]
 mod tagged_union_with_jump_tables;
 mod geom;
 pub mod layout;
-mod paint;
 pub mod style;
 
 #[macro_use]
 extern crate cssparser;
-
 #[macro_use]
 extern crate html5ever;
-
 #[macro_use]
 extern crate victor_tree_internal_proc_macros;
 
