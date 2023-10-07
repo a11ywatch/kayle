@@ -1,12 +1,14 @@
-use scraper_forky::{ElementRef, Selector};
+use scraper_forky::ElementRef;
+use victor_tree::style::StyleSet;
+use scraper_forky::Html;
 use std::collections::BTreeMap;
 
 /// try to fix all possible issues using a spec against the tree.
-pub fn parse_accessibility_tree(
-    html: &scraper_forky::Html,
-    // css_rules: &str,
+pub fn parse_accessibility_tree<'a, 'b>(
+    html: &'a Html,
+    _author: &StyleSet,
     // todo: return the nodes with a tuple of the layout node and the element node
-) -> std::collections::BTreeMap<&str, Vec<ElementRef<'_>>> {
+) -> std::collections::BTreeMap<&'a str, Vec<ElementRef<'a>>> {
     // use taffy::prelude::*;
     // // todo: use optional variable for clips or layout creation
     // let mut taffy = Taffy::new();

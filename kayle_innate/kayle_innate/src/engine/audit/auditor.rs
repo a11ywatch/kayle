@@ -51,7 +51,7 @@ impl<'a> Auditor<'a> {
         console_log!("StyleSheets Build Time {:?}", now() - tt);
 
         let t = now();
-        let tree = parse_accessibility_tree(&document);
+        let tree = parse_accessibility_tree(&document, &author);
         console_log!("Tree Build Time {:?}", now() - t);
 
         Auditor {
