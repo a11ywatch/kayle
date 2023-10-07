@@ -2,6 +2,8 @@ pub use crate::style::values::Length;
 use crate::style::values::{LengthOrAuto, LengthOrPercentage, LengthOrPercentageOrAuto};
 
 pub mod physical {
+    use crate::style::values::LengthOrPercentage;
+
     #[derive(Debug, Clone)]
     pub struct Vec2<T> {
         pub x: T,
@@ -20,6 +22,24 @@ pub mod physical {
         pub left: T,
         pub bottom: T,
         pub right: T,
+    }
+
+    impl Sides<LengthOrPercentage> {
+        pub fn inner_px(&self) -> f32 {
+            let b = Self::get_px::<LengthOrPercentage>(self.bottom);
+            let t = Self::get_px::<LengthOrPercentage>(self.top);
+            let l = Self::get_px::<LengthOrPercentage>(self.left);
+            let r = Self::get_px::<LengthOrPercentage>(self.left);
+
+            b + t + l + r
+        }
+
+        pub fn get_px<T>(v: LengthOrPercentage) -> f32 {
+            match v {
+                LengthOrPercentage::Length(l) => l.px,
+                LengthOrPercentage::Percentage(l) => l.unit_value,
+            }
+        }
     }
 }
 
@@ -42,6 +62,30 @@ pub mod flow_relative {
         pub inline_end: T,
         pub block_start: T,
         pub block_end: T,
+    }
+
+    impl Sides<crate::style::values::LengthOrPercentage> {
+        /// inner pxs added up
+        pub fn inner_px(&self) -> f32 {
+            let is = self.inline_start.inner_px();
+            let ie = self.inline_end.inner_px();
+            let bs = self.block_start.inner_px();
+            let be = self.block_end.inner_px();
+
+            is + ie + bs + be
+        }
+    }
+
+    impl Sides<crate::style::values::LengthOrPercentageOrAuto> {
+        /// inner pxs added up
+        pub fn inner_px(&self) -> f32 {
+            let is = self.inline_start.inner_px();
+            let ie = self.inline_end.inner_px();
+            let bs = self.block_start.inner_px();
+            let be = self.block_end.inner_px();
+
+            is + ie + bs + be
+        }
     }
 }
 

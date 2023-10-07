@@ -14,7 +14,7 @@ pub struct Length {
 #[repr(transparent)]
 #[derive(Copy, Clone, SpecifiedAsComputed)]
 pub struct Percentage {
-    unit_value: f32,
+    pub unit_value: f32,
 }
 
 /// <https://drafts.csswg.org/css-values/#lengths>
@@ -235,6 +235,14 @@ impl From<LengthOrPercentage> for LengthOrPercentageOrAuto {
 }
 
 impl LengthOrPercentageOrAuto {
+    pub fn inner_px(&self) -> f32 {
+        match self {
+            LengthOrPercentageOrAuto::Length(l) => l.px,
+            LengthOrPercentageOrAuto::Percentage(l) => l.unit_value,
+            LengthOrPercentageOrAuto::Auto => 0.0,
+        }
+    }
+
     pub fn non_auto(&self) -> Option<LengthOrPercentage> {
         match *self {
             LengthOrPercentageOrAuto::Length(l) => Some(LengthOrPercentage::Length(l)),
