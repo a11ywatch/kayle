@@ -360,6 +360,7 @@ dependencies = [
  "selectors",
  "serde",
  "serde-wasm-bindgen",
+ "slotmap",
  "smallvec 1.11.1",
  "taffy",
  "url",

@@ -15,7 +15,7 @@ lazy_static! {
                     (!nodes.is_empty(), "1.NoTitleEl", Default::default())
                 }),
                 Rule::new(Techniques::H25, Criteria::Error, Principle::Understandable, Guideline::Predictable, |_rule, nodes| {
-                    (nodes.is_empty() || nodes[0].html().is_empty(), "2", Default::default())
+                    (nodes.is_empty() || nodes[0].0.html().is_empty(), "2", Default::default())
                 }),
             ])),
             // missing label
@@ -26,6 +26,7 @@ lazy_static! {
                     let selector = unsafe { Selector::parse("button[type=submit]").unwrap_unchecked() };
 
                     for ele in nodes {
+                        let ele = ele.0;
                         valid = match ele.select(&selector).next() {
                             Some(_) => true,
                             _ => false

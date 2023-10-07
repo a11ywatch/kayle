@@ -36,6 +36,16 @@ pub enum LengthOrPercentage {
     Percentage(Percentage),
 }
 
+impl LengthOrPercentage {
+    /// get the px values as a float
+    pub fn inner_px(&self) -> f32 {
+        match self {
+            LengthOrPercentage::Length(l) => l.px,
+            LengthOrPercentage::Percentage(l) => l.unit_value,
+        }
+    }
+}
+
 #[derive(Clone, Parse, FromVariants)]
 pub enum SpecifiedLengthOrPercentageOrAuto {
     Length(SpecifiedLength),

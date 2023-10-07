@@ -33,6 +33,7 @@ ego-tree = { workspace = true }
 victor_tree = { version = "0.0.7", path = "../kayle_victor/victor" }
 markup5ever = "0.11.0"
 cssparser = { workspace = true }
+slotmap = "1.0.6"
 
 [dev-dependencies]
 wasm-bindgen-test = "0.3.37"
