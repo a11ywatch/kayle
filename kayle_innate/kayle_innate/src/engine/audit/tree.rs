@@ -29,15 +29,51 @@ pub fn length_dimensions(v: &LengthOrPercentageOrAuto) -> Dimension {
 }
 
 /// layout style
-pub fn node_layout_style(style: Arc<ComputedValues>) -> Style {
+pub fn node_layout_style(style: Arc<ComputedValues>, element: &ElementRef) -> Style {
     let physical_size = style.box_size().size_to_physical(style.writing_mode());
+    let mut size = Size {
+        width: length_dimensions(&physical_size.x),
+        height: length_dimensions(&physical_size.y),
+    };
+
+    // get the img raw height/width
+    if element.value().name() == "img" {
+        let width = element.attr("width");
+        let height = element.attr("height");
+        if physical_size.x.inner_px() == 0.0 {
+            match width {
+                Some(w) => {
+                    let w = w.parse::<f32>();
+                    match w {
+                        Ok(w) => {
+                            size.width = points(w);
+                        }
+                        _ => (),
+                    }
+                }
+                _ => (),
+            }
+        }
+        if physical_size.y.inner_px() == 0.0 {
+            match height {
+                Some(h) => {
+                    let h = h.parse::<f32>();
+
+                    match h {
+                        Ok(h) => {
+                            size.height = points(h);
+                        }
+                        _ => (),
+                    }
+                }
+                _ => (),
+            }
+        }
+    }
+
     // todo: determine if all children at the top level have floats set to use flex-row
     Style {
-        // compute the default layout from CDP
-        size: Size {
-            width: length_dimensions(&physical_size.x),
-            height: length_dimensions(&physical_size.y),
-        },
+        size,
         border: points(style.border_width().inner_px()),
         padding: points(style.padding().inner_px()),
         margin: points(style.margin().inner_px()),
@@ -65,10 +101,14 @@ pub fn push_leaf<'a, 'b, 'c>(
                     &document,
                     &mut matching_context,
                 );
-                let leaf = taffy.new_leaf(node_layout_style(style));
+
+                // TOOD: Only push leaf empty without children
+
+                let leaf = taffy.new_leaf(node_layout_style(style, &element));
 
                 l_leafs.push(leaf.unwrap());
 
+                // TODO: If node has children push leaf with children
                 // push leaf until children finished
                 if node.has_children() {
                     let children = node.children();
@@ -120,7 +160,7 @@ pub fn leaf<'a, 'b, 'c>(
         &mut matching_context,
     );
 
-    let leaf_style = node_layout_style(style);
+    let leaf_style = node_layout_style(style, &element);
 
     // build leaf with children
     if l_leafs.len() > 0 {
