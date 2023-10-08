@@ -1,4 +1,5 @@
 use crate::console_log;
+use ego_tree::NodeRef;
 use scraper_forky::selector::Simple;
 use scraper_forky::ElementRef;
 use scraper_forky::Html;
@@ -44,6 +45,52 @@ pub fn node_layout_style(style: Arc<ComputedValues>) -> Style {
     }
 }
 
+/// push leaf
+pub fn push_leaf<'a, 'b, 'c>(
+    node: &NodeRef<'_, scraper_forky::Node>,
+    author: &StyleSet,
+    document: &'a Html,
+    mut matching_context: &mut MatchingContext<'c, Simple>,
+    taffy: &mut Taffy,
+    mut l_leafs: &mut Vec<Node>,
+) {
+    match ElementRef::wrap(*node) {
+        Some(element) => {
+            let name = element.value().name();
+            if !NODE_IGNORE.contains(name) {
+                console_log!("LEAFY {:?}", name);
+                let style = victor_tree::style::cascade::style_for_element_ref(
+                    &element,
+                    &author,
+                    &document,
+                    &mut matching_context,
+                );
+                let leaf = taffy.new_leaf(node_layout_style(style));
+
+                l_leafs.push(leaf.unwrap());
+
+                // push leaf until children finished
+                if node.has_children() {
+                    let children = node.children();
+
+                    // iterate all children
+                    for child in children {
+                        push_leaf(
+                            &child,
+                            author,
+                            document,
+                            matching_context,
+                            taffy,
+                            &mut l_leafs,
+                        );
+                    }
+                }
+            }
+        }
+        _ => (),
+    }
+}
+
 /// get a layout leaf a new leaf
 pub fn leaf<'a, 'b, 'c>(
     element: &ElementRef,
@@ -53,26 +100,17 @@ pub fn leaf<'a, 'b, 'c>(
     taffy: &mut Taffy,
 ) -> DefaultKey {
     let mut l_leafs: Vec<Node> = vec![];
+    let mut children = element.children();
 
-    for child in element.children() {
-        match ElementRef::wrap(child) {
-            Some(element) => {
-                let name = element.value().name();
-
-                if !NODE_IGNORE.contains(name) {
-                    let style = victor_tree::style::cascade::style_for_element_ref(
-                        &element,
-                        &author,
-                        &document,
-                        &mut matching_context,
-                    );
-                    let leaf = taffy.new_leaf(node_layout_style(style));
-
-                    l_leafs.push(leaf.unwrap())
-                }
-            }
-            _ => (),
-        }
+    while let Some(child) = children.next() {
+        push_leaf(
+            &child,
+            author,
+            document,
+            matching_context,
+            taffy,
+            &mut l_leafs,
+        );
     }
 
     let style = victor_tree::style::cascade::style_for_element_ref(
@@ -121,7 +159,6 @@ pub fn parse_accessibility_tree<'a, 'b, 'c>(
                         taffy.new_leaf(Default::default()).unwrap()
                     } else {
                         // all leafs created must be put into the body node at the end
-                        console_log!("{name}");
                         leaf(
                             &element,
                             &author,
@@ -132,7 +169,7 @@ pub fn parse_accessibility_tree<'a, 'b, 'c>(
                     }
                 };
 
-                layout_leafs.push(layout_leaf.clone());
+                // layout_leafs.push(layout_leaf.clone());
 
                 accessibility_tree
                     .entry(name)
@@ -142,6 +179,34 @@ pub fn parse_accessibility_tree<'a, 'b, 'c>(
             _ => (),
         };
     }
+
+    match accessibility_tree.get("body") {
+        Some(node) => {
+            for child in node[0].0.children() {
+                match ElementRef::wrap(child) {
+                    Some(element) => {
+                        let name = element.value().name();
+
+                        if !NODE_IGNORE.contains(name) {
+                            console_log!("BODY {:?}", name);
+
+                            let leaf = leaf(
+                                &element,
+                                &author,
+                                document,
+                                &mut matching_context,
+                                &mut taffy,
+                            );
+
+                            layout_leafs.push(leaf)
+                        }
+                    }
+                    _ => (),
+                }
+            }
+        }
+        _ => (),
+    };
 
     let root_node = taffy
         .new_with_children(
