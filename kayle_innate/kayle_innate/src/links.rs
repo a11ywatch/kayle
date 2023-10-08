@@ -32,7 +32,7 @@ pub fn get_document_links(res: &str, domain: &str) -> Box<[JsValue]> {
             let parent_host_scheme = base_url.scheme();
             let parent_host = base_url.host_str().unwrap_or_default();
 
-            let h = scraper_forky::Html::parse_fragment(res);
+            let h = scraper::Html::parse_fragment(res);
 
             h.tree
                 .into_iter()
@@ -90,7 +90,7 @@ pub fn get_document_links(res: &str, domain: &str) -> Box<[JsValue]> {
                 .collect::<Vec<_>>()
         }
         _ => {
-            let h = scraper_forky::Html::parse_fragment(res);
+            let h = scraper::Html::parse_fragment(res);
 
             h.tree
                 .into_iter()

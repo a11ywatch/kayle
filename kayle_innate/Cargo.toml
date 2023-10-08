@@ -1,9 +1,7 @@
 [workspace]
 resolver = "2"
 members = [
-  "kayle_innate",
-  "kayle_victor/victor",
-  "kayle_scraper"
+  "kayle_innate"
 ]
 
 [workspace.dependencies]

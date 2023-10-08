@@ -3,6 +3,70 @@
 version = 3
 
 [[package]]
+name = "accessibility-rs"
+version = "0.0.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "88c84ca66d8c679da4ace0fe875be7504903c7b0e644cb2d3a2263bd45d9d03f"
+dependencies = [
+ "accessibility-scraper",
+ "accessibility-tree",
+ "cssparser 0.25.9",
+ "ego-tree",
+ "getrandom",
+ "lazy_static",
+ "markup5ever",
+ "selectors 0.21.0",
+ "serde",
+ "slotmap",
+ "smallvec 1.11.1",
+ "taffy",
+ "url",
+]
+
+[[package]]
+name = "accessibility-scraper"
+version = "0.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "81990c4b7b08138e9a5a0901f50cda6ec0d70de0e05f594692e3feb8c174cbb7"
+dependencies = [
+ "ahash",
+ "cssparser 0.25.9",
+ "ego-tree",
+ "getopts",
+ "html5ever",
+ "once_cell",
+ "selectors 0.21.0",
+ "smallvec 0.6.14",
+ "tendril",
+]
+
+[[package]]
+name = "accessibility-tree"
+version = "0.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "54561d0499b9ec59fa5d09b76a2ff98aff00ab336e2eda1a7f4fe0b2d21f8249"
+dependencies = [
+ "accessibility-scraper",
+ "atomic_refcell",
+ "cssparser 0.25.9",
+ "dtoa 0.4.8",
+ "euclid",
+ "html5ever",
+ "itoa 0.4.8",
+ "lazy_static",
+ "lock_api 0.1.5",
+ "num-traits",
+ "rayon",
+ "rayon_croissant",
+ "selectors 0.21.0",
+ "smallbitvec",
+ "smallvec 1.11.1",
+ "victor-tree-internal-proc-macros",
+ "xi-unicode",
+ "xml-rs",
+]
+
+[[package]]
 name = "ahash"
 version = "0.8.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -48,6 +112,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "bef38d45163c2f1dde094a7dfd33ccf595c92905c8f8f4fdc18d06fb1037718a"
 
 [[package]]
+name = "bitflags"
+version = "2.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b4682ae6287fcf752ecaabbfcc7b6f9b72aa33933dc23a554d853aea8eea8635"
+
+[[package]]
 name = "bumpalo"
 version = "3.14.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -83,7 +153,7 @@ version = "0.0.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ddfc5b9aa5d4507acaf872de71051dfd0e309860e88966e1051e462a077aac4f"
 dependencies = [
- "bitflags",
+ "bitflags 1.3.2",
 ]
 
 [[package]]
@@ -136,7 +206,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "fbe18ca4efb9ba3716c6da66cc3d7e673bf59fa576353011f48c4cfddbdd740e"
 dependencies = [
  "autocfg 0.1.8",
- "cssparser-macros",
+ "cssparser-macros 0.3.6",
  "dtoa-short",
  "itoa 0.4.8",
  "matches",
@@ -149,6 +219,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "cssparser"
+version = "0.31.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5b3df4f93e5fbbe73ec01ec8d3f68bba73107993a5b1e7519273c32db9b0d5be"
+dependencies = [
+ "cssparser-macros 0.6.1",
+ "dtoa-short",
+ "itoa 1.0.9",
+ "phf 0.10.1",
+ "smallvec 1.11.1",
+]
+
+[[package]]
 name = "cssparser-macros"
 version = "0.3.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -157,6 +240,27 @@ dependencies = [
  "phf_codegen 0.7.24",
  "proc-macro2 1.0.68",
  "procedural-masquerade",
+ "quote 1.0.33",
+ "syn 1.0.109",
+]
+
+[[package]]
+name = "cssparser-macros"
+version = "0.6.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "13b588ba4ac1a99f7f2964d24b3d896ddc6bf847ee3855dbd4366f058cfcd331"
+dependencies = [
+ "quote 1.0.33",
+ "syn 2.0.38",
+]
+
+[[package]]
+name = "derive_more"
+version = "0.99.17"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4fb810d30a7c1953f91334de7244731fc3f3c10d7fe163338a35b9f640960321"
+dependencies = [
+ "proc-macro2 1.0.68",
  "quote 1.0.33",
  "syn 1.0.109",
 ]
@@ -193,12 +297,6 @@ name = "either"
 version = "1.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a26ae43d7bcc3b814de94796a5e736d4029efb0ee900c12e2d54c993ad1a1e07"
-
-[[package]]
-name = "equivalent"
-version = "1.0.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5443807d6dff69373d433ab9ef5378ad8df50ca6298caf15de6e52e24aaf54d5"
 
 [[package]]
 name = "euclid"
@@ -284,12 +382,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "eec1c01eb1de97451ee0d60de7d81cf1e72aabefb021616027f3d1c3ec1c723c"
 
 [[package]]
-name = "hashbrown"
-version = "0.14.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7dfda62a12f55daeae5015f81b0baea145391cb4520f86c248fc615d72640d12"
-
-[[package]]
 name = "html5ever"
 version = "0.26.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -311,16 +403,6 @@ checksum = "7d20d6b07bfbc108882d88ed8e37d39636dcc260e15e30c45e6ba089610b917c"
 dependencies = [
  "unicode-bidi",
  "unicode-normalization",
-]
-
-[[package]]
-name = "indexmap"
-version = "2.0.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8adf3ddd720272c6ea8bf59463c04e0f93d0bbf7c5439b691bca2987e0270897"
-dependencies = [
- "equivalent",
- "hashbrown",
 ]
 
 [[package]]
@@ -348,23 +430,23 @@ dependencies = [
 name = "kayle_innate"
 version = "0.0.22"
 dependencies = [
+ "accessibility-rs",
  "case_insensitive_string",
  "console_error_panic_hook",
- "cssparser",
+ "cssparser 0.25.9",
  "ego-tree",
  "getrandom",
  "js-sys",
  "lazy_static",
  "markup5ever",
- "scraper_forky",
- "selectors",
+ "scraper",
+ "selectors 0.21.0",
  "serde",
  "serde-wasm-bindgen",
  "slotmap",
  "smallvec 1.11.1",
  "taffy",
  "url",
- "victor_tree",
  "wasm-bindgen",
  "wasm-bindgen-test",
  "wee_alloc",
@@ -531,7 +613,9 @@ version = "0.10.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "fabbf1ead8a5bcbc20f5f8b939ee3f5b0f6f281b6ad3468b84656b658b455259"
 dependencies = [
+ "phf_macros",
  "phf_shared 0.10.0",
+ "proc-macro-hack",
 ]
 
 [[package]]
@@ -575,6 +659,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "phf_macros"
+version = "0.10.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "58fdf3184dd560f160dd73922bea2d5cd6e8f064bf4b13110abd81b03697b4e0"
+dependencies = [
+ "phf_generator 0.10.0",
+ "phf_shared 0.10.0",
+ "proc-macro-hack",
+ "proc-macro2 1.0.68",
+ "quote 1.0.33",
+ "syn 1.0.109",
+]
+
+[[package]]
 name = "phf_shared"
 version = "0.7.24"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -603,6 +701,12 @@ name = "precomputed-hash"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "925383efa346730478fb4838dbe9137d2a47675ad789c546d150a6e1dd4ab31c"
+
+[[package]]
+name = "proc-macro-hack"
+version = "0.5.20+deprecated"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "dc375e1527247fe1a97d8b7156678dfe7c1af2fc075c9a4db3690ecd2a148068"
 
 [[package]]
 name = "proc-macro2"
@@ -827,7 +931,7 @@ version = "0.3.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "567664f262709473930a4bf9e51bf2ebf3348f2e748ccc50dea20646858f8f29"
 dependencies = [
- "bitflags",
+ "bitflags 1.3.2",
 ]
 
 [[package]]
@@ -855,18 +959,19 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "94143f37725109f92c262ed2cf5e59bce7498c01bcc1502d7b9afe439a4e9f49"
 
 [[package]]
-name = "scraper_forky"
+name = "scraper"
 version = "0.17.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c95a930e03325234c18c7071fd2b60118307e025d6fff3e12745ffbf63a3d29c"
 dependencies = [
  "ahash",
- "cssparser",
+ "cssparser 0.31.2",
  "ego-tree",
  "getopts",
  "html5ever",
- "indexmap",
  "once_cell",
- "selectors",
- "smallvec 0.6.14",
+ "selectors 0.25.0",
+ "smallvec 1.11.1",
  "tendril",
 ]
 
@@ -876,17 +981,36 @@ version = "0.21.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1b86b100bede4f651059740afc3b6cb83458d7401cb7c1ad96d8a11e91742c86"
 dependencies = [
- "bitflags",
- "cssparser",
+ "bitflags 1.3.2",
+ "cssparser 0.25.9",
  "fxhash",
  "log",
  "matches",
  "phf 0.7.24",
  "phf_codegen 0.7.24",
  "precomputed-hash",
- "servo_arc",
+ "servo_arc 0.1.1",
  "smallvec 0.6.14",
  "thin-slice",
+]
+
+[[package]]
+name = "selectors"
+version = "0.25.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4eb30575f3638fc8f6815f448d50cb1a2e255b0897985c8c59f4d37b72a07b06"
+dependencies = [
+ "bitflags 2.4.0",
+ "cssparser 0.31.2",
+ "derive_more",
+ "fxhash",
+ "log",
+ "new_debug_unreachable",
+ "phf 0.10.1",
+ "phf_codegen 0.10.0",
+ "precomputed-hash",
+ "servo_arc 0.3.0",
+ "smallvec 1.11.1",
 ]
 
 [[package]]
@@ -938,6 +1062,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d98238b800e0d1576d8b6e3de32827c2d74bee68bb97748dcf5071fb53965432"
 dependencies = [
  "nodrop",
+ "stable_deref_trait",
+]
+
+[[package]]
+name = "servo_arc"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d036d71a959e00c77a63538b90a6c2390969f9772b096ea837205c6bd0491a44"
+dependencies = [
  "stable_deref_trait",
 ]
 
@@ -1151,34 +1284,12 @@ checksum = "49874b5167b65d7193b8aba1567f5c7d93d001cafc34600cee003eda787e483f"
 [[package]]
 name = "victor-tree-internal-proc-macros"
 version = "0.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1fb9a26b1452763752832db93fa95e9949fe7e4f5d44001a8712537897f2bb37"
 dependencies = [
  "proc-macro2 0.4.30",
  "quote 0.6.13",
  "syn 0.15.44",
-]
-
-[[package]]
-name = "victor_tree"
-version = "0.0.7"
-dependencies = [
- "atomic_refcell",
- "cssparser",
- "dtoa 0.4.8",
- "euclid",
- "html5ever",
- "itoa 0.4.8",
- "lazy_static",
- "lock_api 0.1.5",
- "num-traits",
- "rayon",
- "rayon_croissant",
- "scraper_forky",
- "selectors",
- "smallbitvec",
- "smallvec 1.11.1",
- "victor-tree-internal-proc-macros",
- "xi-unicode",
- "xml-rs",
 ]
 
 [[package]]

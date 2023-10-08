@@ -6,6 +6,7 @@ edition = "2018"
 license = "MIT"
 description = "Incredibly fast and precise universal web accessibility evaluator for puppeteer or playwright."
 repository = "https://github.com/a11ywatch/kayle"
+categories = ["accessibility"]
 
 [lib]
 crate-type = ["cdylib", "rlib"]
@@ -21,7 +22,7 @@ wee_alloc = { version = "0.4.5", optional = true }
 url = "2.4.0"
 lazy_static = { workspace = true }
 case_insensitive_string = "0.1.0"
-scraper_forky = { version = "0.17.1", features = ["main"], default-features = false, path = "../kayle_scraper" }
+scraper = { version = "0.17.1", features = ["main"], default-features = false }
 getrandom = { version = "0.2", features = ["js"] }
 taffy = { version = "0.3.13", optional = true }
 serde = { version = "1.0", features = ["derive"] }
@@ -30,10 +31,10 @@ js-sys = "0.3.64"
 selectors = { workspace = true }
 smallvec = { workspace = true }
 ego-tree = { workspace = true }
-victor_tree = { version = "0.0.7", path = "../kayle_victor/victor" }
 markup5ever = "0.11.0"
 cssparser = { workspace = true }
 slotmap = "1.0.6"
+accessibility-rs = "0.0.4"
 
 [dev-dependencies]
 wasm-bindgen-test = "0.3.37"
