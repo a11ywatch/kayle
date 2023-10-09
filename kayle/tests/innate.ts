@@ -28,7 +28,7 @@ import { _audit_not_ready } from "kayle_innate";
   </form>`);
 
   const startTime = performance.now();
-  const audit = await _audit_not_ready(mock, css);
+  const audit = await _audit_not_ready(mock, css, false);
   const nextTime = performance.now() - startTime;
   console.log("Rust/WASM TIME ", nextTime);
 

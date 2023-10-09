@@ -33,8 +33,8 @@ macro_rules! console_log {
 #[wasm_bindgen]
 #[cfg(feature = "accessibility")]
 /// audit a web page passing the html and css rules.
-pub fn _audit_not_ready(html: &str, css_rules: &str) -> Result<JsValue, JsValue> {
-    let audit = accessibility_rs::audit(&html, &css_rules);
+pub fn _audit_not_ready(html: &str, css_rules: &str, clip: bool) -> Result<JsValue, JsValue> {
+    let audit = accessibility_rs::audit(&html, &css_rules, clip);
 
     // todo: map to JsValues instead of serde
     Ok(serde_wasm_bindgen::to_value(&audit)?)
