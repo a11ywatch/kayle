@@ -4,9 +4,9 @@ version = 3
 
 [[package]]
 name = "accessibility-rs"
-version = "0.0.12"
+version = "0.0.16"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c8f563f45742a3b0e366ed5c3915136695fbd8de8e0769b518cebc9661bcbe52"
+checksum = "8445979c51da3e678f649fe6506ea1b9246c4d4a83ec2894909e9883e39290a5"
 dependencies = [
  "accessibility-scraper",
  "accessibility-tree",

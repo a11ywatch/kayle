@@ -1,6 +1,17 @@
-# ✨ kayle
+# kayle
 
-The blazing fast and accurate web accessibility engine.
+[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
+[![CI](https://github.com/a11ywatch/kayle/actions/workflows/CI.yml/badge.svg)](https://github.com/a11ywatch/kayle/actions?query=workflow%3ABuild)
+[![Discord chat][discord-badge]][discord-url]
+
+A **fast** and **accurate** web accessibility engine.
+
+- Leading in performance
+- Asynchronous design
+- Tested and **correct**
+- Extensive production use
+- Jampacked with features for accessibility testing
+- Works with headless browsers like ([playwright](https://github.com/microsoft/playwright) and [puppeteer](https://github.com/puppeteer/puppeteer)) or raw markup
 
 ## Getting Started
 
@@ -252,3 +263,6 @@ One of the main goals was to have the audit run quickly since we noticed some of
 ## LICENSE
 
 Check the license file in the root of each project.
+
+[discord-badge]: https://img.shields.io/discord/860982761137111040.svg?logo=discord
+[discord-url]: https://discord.gg/ukmJcjQ5
