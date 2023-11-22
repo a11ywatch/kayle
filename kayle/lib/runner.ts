@@ -157,7 +157,7 @@
   };
 
   // get css selelector todo: shortest path https://patents.google.com/patent/CN105094940A/en
-  const getElementSelector = (element: HTMLElement) => {
+  const getElementSelector = (element: HTMLElement, initial?: boolean) => {
     if (!element || element.nodeName == "HTML") {
       return "";
     }
@@ -171,9 +171,14 @@
       return "body";
     }
 
-    return `${getElementSelector(
-      element.parentNode as HTMLElement
-    )}>:nth-child(${siblingPosition(element)})`;
+    const elementSelector = getElementSelector(
+      element.parentNode as HTMLElement,
+      true
+    );
+
+    return `${
+      !elementSelector && initial ? "html" : elementSelector
+    }>:nth-child(${siblingPosition(element)})`;
   };
 
   // runner to get accessibility issues
