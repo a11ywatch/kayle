@@ -89,7 +89,6 @@ kayle supports multiple test runners which return different results. The built-i
 
 - `axe`: run tests using [axe-core](./lib/runners/axe.ts).
 - `htmlcs` (default): run tests using [HTML CodeSniffer](./lib/runners/htmlcs.ts)
-- `ace`: run tests using [IBM ACE](https://github.com/IBMa/equal-access/blob/master/accessibility-checker-engine/README.md)
 - `custom`: custom runners using `injectRunner` util.
 
 ## Playwright/Puppeteer

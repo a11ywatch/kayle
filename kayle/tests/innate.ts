@@ -33,7 +33,7 @@ import { _audit_not_ready } from "kayle_innate";
     );
 
   const startTime = performance.now();
-  const audit = await _audit_not_ready(mock, css, false);
+  await _audit_not_ready(mock, css, false);
   const nextTime = performance.now() - startTime;
   console.log("Rust/WASM TIME ", nextTime);
 
@@ -62,20 +62,6 @@ import { _audit_not_ready } from "kayle_innate";
   });
   const n = performance.now() - s;
   console.log("FAST_AXE TIME", n);
-
-  const a = performance.now();
-  await kayle({
-    page,
-    browser,
-    runners: ["ace"],
-    includeWarnings: true,
-    origin: "https://www.drake.com",
-    html: drakeMock,
-    noIntercept: true,
-  });
-  const an = performance.now() - a;
-  console.log("ACE TIME", an);
-  console.log(`Rust Audit: `, audit);
 
   await browser.close();
 })();

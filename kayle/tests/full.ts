@@ -1,4 +1,4 @@
-// run fast_axe, fast_htmlcs, and ace
+// run fast_axe and fast_htmlcs
 import assert from "assert";
 import puppeteer from "puppeteer";
 import { Standard, kayle } from "kayle";
@@ -15,7 +15,7 @@ import { performance } from "perf_hooks";
   const { issues, pageUrl, documentTitle, meta, automateable } = await kayle({
     page,
     browser,
-    runners: ["htmlcs", "axe", "ace"],
+    runners: ["htmlcs", "axe"],
     includeWarnings: true,
     html: drakeMock,
     standard: Standard.WCAG2AA,

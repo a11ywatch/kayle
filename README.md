@@ -32,7 +32,7 @@ const page = await browser.newPage();
 const results = await kayle({
   page,
   browser,
-  runners: ["htmlcs"] // options are  "htmlcs", "axe", and "ace". The order is from fastest to slowest. Defaults to htmlcs.
+  runners: ["htmlcs"] // options are  "htmlcs" and "axe". The order is from fastest to slowest. Defaults to htmlcs.
   origin: "https://a11ywatch.com",
   // html: "<html>...</html>"
 });
@@ -76,13 +76,11 @@ const results = await autoKayle({
 # Rust/WASM 10.863582968711853
 # FAST_HTMLCS 29.915208011865616
 # FAST_AXE 162.87204200029373
-# ACE 512.5237080156803
 
 # playwright - the speed depends on the version
 # Rust/WASM TIME  10.163457989692688
 # FAST_HTMLCS TIME 33.50962498784065
 # FAST_AXE TIME 203.2565419971943
-# ACE TIME 905.6748749911785
 ```
 
 ## Clips
@@ -109,7 +107,6 @@ const results = await kayle({
 
 - [`fast_axecore`](./fast_htmlcs/README.md): run tests using fork of [axe-core](./lib/runners/axe.ts).
 - [`fast_htmlcs`](./fast_htmlcs/README.md): run tests using fork of [HTML CodeSniffer](./lib/runners/htmlcs.ts).
-- `ace`: run tests using [IBM ACE](https://github.com/IBMa/equal-access/blob/master/accessibility-checker-engine/README.md)
 - `custom`: custom runners using `injectRunner` util.
 
 ## Linting
@@ -149,7 +146,7 @@ type RunnerConfig = {
   // only allow WCAG RULES.
   rules?: string[];
   // axe or htmlcs - the forks.
-  runners?: ("axe" | "htmlcs" | "ace")[];
+  runners?: ("axe" | "htmlcs")[];
   // the accessibility standard.
   standard?: Standard;
   // stop test that go beyond time.

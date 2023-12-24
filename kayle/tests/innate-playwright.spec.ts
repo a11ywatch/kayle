@@ -4,7 +4,7 @@ import { performance } from "perf_hooks";
 import { test } from "@playwright/test";
 import { _audit_not_ready } from "kayle_innate";
 
-test("kayle_innate, fast_htmlcs, fast_axecore, and ace audit drakeMock profiling compare", async ({
+test("kayle_innate, fast_htmlcs and fast_axecore audit drakeMock profiling compare", async ({
   page,
   browser,
 }, _) => {
@@ -24,7 +24,7 @@ test("kayle_innate, fast_htmlcs, fast_axecore, and ace audit drakeMock profiling
     ""
   );
   const startTime = performance.now();
-  const audit = await _audit_not_ready(mock, css, false);
+  await _audit_not_ready(mock, css, false);
   const nextTime = performance.now() - startTime;
   console.log("Rust/WASM TIME ", nextTime);
 
@@ -53,18 +53,4 @@ test("kayle_innate, fast_htmlcs, fast_axecore, and ace audit drakeMock profiling
   });
   const n = performance.now() - s;
   console.log("FAST_AXE TIME", n);
-
-  const a = performance.now();
-  await kayle({
-    page,
-    browser,
-    runners: ["ace"],
-    includeWarnings: true,
-    origin: "https://www.drake.com",
-    html: drakeMock,
-    noIntercept: true,
-  });
-  const an = performance.now() - a;
-  console.log("ACE TIME", an);
-  console.log(`Rust Audit: `, audit);
 });
