@@ -236,6 +236,9 @@ _global.translation["fr"] = {
     "Cet élément est absolument positionné et la couleur de fond ne peut pas être déterminée. Assurez-vous que le rapport de contraste entre le texte et toutes les parties couvertes de l'arrière-plan est d'au moins {{nécessaire}}:1.",
   "1_4_3_G18_or_G145.BgImage":
     "Le texte de cet élément est placé sur une image de fond. Assurez-vous que le rapport de contraste entre le texte et toutes les parties couvertes de l'image est d'au moins {{nécessaire}}:1.",
+  "1_4_3_G18_or_G145.BgGradient":
+    "Le texte de cet élément est placé sur une pente de fond. Assurez-vous que le rapport de contraste entre le texte et toutes les parties couvertes de l'pente est d'au moins {{nécessaire}}:1.",
+
   "1_4_3_G18_or_G145.Alpha":
     "Le texte ou l'arrière-plan de cet élément contient de la transparence. Assurez-vous que le rapport de contraste entre le texte et l'arrière-plan est d'au moins {{nécessaire}}:1.",
   "1_4_3_G18_or_G145.Fail":
@@ -259,6 +262,8 @@ _global.translation["fr"] = {
     "Cet élément est absolument positionné et la couleur de fond ne peut pas être déterminée. Assurez-vous que le rapport de contraste entre le texte et toutes les parties couvertes de l'arrière-plan est d'au moins {{nécessaire}}:1.",
   "1_4_6_G18_or_G17.BgImage":
     "Le texte de cet élément est placé sur une image de fond. Assurez-vous que le rapport de contraste entre le texte et toutes les parties couvertes de l'image est d'au moins {{nécessaire}}:1.",
+  "1_4_6_G18_or_G145.BgGradient":
+    "Le texte de cet élément est placé sur une pente de fond. Assurez-vous que le rapport de contraste entre le texte et toutes les parties couvertes de l'pente est d'au moins {{nécessaire}}:1.",
   "1_4_6_G18_or_G17.Fail":
     "Cet élément a un contraste insuffisant à ce niveau de conformité. On s'attendait à un rapport de contraste d'au moins {{required}}:1, mais le texte dans cet élément a un rapport de contraste de {{value}}:1.",
   "1_4_6_G18_or_G17.Fail.Recomendation": "Recommandation : ",

@@ -1,6 +1,6 @@
 {
   "name": "kayle",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "Extremely fast and accurate accessibility engine built for any headless tool like playwright or puppeteer.",
   "main": "./build/index.js",
   "keywords": [
@@ -66,7 +66,6 @@
   "bugs": "https://github.com/a11ywatch/kayle/issues",
   "license": "MIT",
   "dependencies": {
-    "accessibility-checker-engine": "3.1.61",
     "fast_axecore": "workspace:*",
     "fast_htmlcs": "workspace:*",
     "kayle_innate": "workspace:*"

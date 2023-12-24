@@ -98,6 +98,7 @@ type TestContrastRatio = (
     back: { to: number; from: number };
   };
   hasBgImage: boolean;
+  hasBgGradient?: boolean;
   isAbsolute: boolean;
   hasAlpha: boolean;
 }[];

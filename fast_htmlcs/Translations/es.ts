@@ -196,6 +196,8 @@ _global.translation["es"] = {
     "Este elemento está posicionado absolutamente y no se puede determinar el color de fondo. Asegúrate de que la relación de contraste entre el texto y todas las partes cubiertas del fondo sea al menos de {{required}}:1.",
   "1_4_3_G18_or_G145.BgImage":
     "El texto de este elemento se coloca sobre una imagen de fondo. Asegúrate de que la relación de contraste entre el texto y todas las partes cubiertas de la imagen sea al menos de {{required}}:1.",
+  "1_4_3_G18_or_G17.BgGradient":
+    "El texto de este elemento se coloca sobre una gradiente de fondo. Asegúrate de que la relación de contraste entre el texto y todas las partes cubiertas de el gradiente sea al menos de {{required}}:1.",
   "1_4_3_G18_or_G145.Alpha":
     "El texto o el fondo de este elemento contienen transparencia. Asegúrate de que la relación de contraste entre el texto y el fondo sea de al menos de {{required}}:1.",
 
@@ -215,9 +217,10 @@ _global.translation["es"] = {
     "Este elemento está posicionado absolutamente y no se puede determinar el color de fondo. Asegúrate de que la relación de contraste entre el texto y todas las partes cubiertas del fondo sea al menos de {{required}}:1.",
   "1_4_6_G18_or_G17.BgImage":
     "El texto de este elemento se coloca sobre una imagen de fondo. Asegúrate de que la relación de contraste entre el texto y todas las partes cubiertas de la imagen sea al menos de {{required}}:1.",
+  "1_4_6_G18_or_G17.BgGradient":
+    "El texto de este elemento se coloca sobre una gradiente de fondo. Asegúrate de que la relación de contraste entre el texto y todas las partes cubiertas de el gradiente sea al menos de {{required}}:1.",
   "1_4_6_G18_or_G17.Fail":
     "Este elemento tiene un contraste insuficiente en este nivel de conformidad. Se espera una relación de contraste de al menos {{required}}:1, pero el texto de este elemento tiene una relación de contraste de {{value}}:1.",
-
   "1_4_6_G18_or_G17.Fail.Recomendation": "Recomendación: ",
   "1_4_6_G18_or_G17.Fail.Recomendation.Text":
     "cambiar el color del texto a {{value}}",

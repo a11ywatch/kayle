@@ -1,17 +1,17 @@
+// This logic needs refactoring.
 _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
   testContrastRatio: function (top, minContrast, minLargeContrast) {
     const failures = [];
-    let toProcess = [];
+    const toProcess = [];
 
     if (!top.ownerDocument) {
-      toProcess = [];
       const body = top.getElementsByTagName("body");
       if (body.length) {
         // SVG objects will not have a body element. Don't check them.
-        toProcess = [body[0]];
+        toProcess.push(body[0]);
       }
     } else {
-      toProcess = [top];
+      toProcess.push(top);
     }
 
     while (toProcess.length > 0) {
@@ -50,9 +50,15 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
             let foreColour = style.color;
             let hasBgImg = false;
             let isAbsolute = false;
+            let hasBgGradient = false;
 
             if (style.backgroundImage !== "none") {
               hasBgImg = true;
+            }
+
+            if (style.background && style.background.includes("gradient(")) {
+              hasBgGradient = true;
+              break;
             }
 
             if (style.position == "absolute") {
@@ -93,6 +99,10 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
 
               bgColour = parentStyle.backgroundColor;
 
+              if (parentStyle.background && parentStyle.background.includes("gradient(")) {
+                hasBgGradient = true;
+                break;
+              }
               if (parentStyle.backgroundImage !== "none") {
                 hasBgImg = true;
               }
@@ -103,6 +113,12 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
               // Search for the smooth scrolling willChange: 'transform' background hack
               // See http://fourkitchens.com/blog/article/fix-scrolling-performance-css-will-change-property
               const beforeStyle = HTMLCS.util.style(parent, ":before");
+
+              if (beforeStyle.background.includes("gradient(")) {
+                hasBgGradient = true;
+                break;
+              }
+
               if (
                 beforeStyle &&
                 beforeStyle.position == "fixed" &&
@@ -110,10 +126,10 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                 //Make sure it is trying to cover the entire content area
                 beforeStyle.width == parentStyle.width &&
                 parseInt(beforeStyle.height, 10) <=
-                  parseInt(parentStyle.height, 10) &&
-                //And finally it needs a background image
-                beforeStyle.backgroundImage !== "none"
+                  parseInt(parentStyle.height, 10) && 
+                  beforeStyle.backgroundImage !== "none"
               ) {
+                //And finally it needs a background image
                 hasBgImg = true;
                 break;
               }
@@ -123,7 +139,18 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
             const bgAlpha = HTMLCS.util.colourStrToRGB(bgColour).alpha;
             const fgAlpha = HTMLCS.util.colourStrToRGB(foreColour).alpha;
 
-            if (bgColour && bgAlpha < 1.0 && bgAlpha > 0) {
+            if (hasBgGradient) {
+              failures.push({
+                element: node,
+                colour: foreColour,
+                bgColour: bgColour,
+                value: undefined,
+                required: reqRatio,
+                hasAlpha: false,
+                hasBgGradient: true
+              });
+              continue;
+            } else if (bgColour && bgAlpha < 1.0 && bgAlpha > 0) {
               // If we have a rgba background colour, skip the contrast ratio checks,
               // and push a warning instead.
               failures.push({

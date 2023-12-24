@@ -29,7 +29,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_6 = {
         const recommend = failure.recommendation;
         const hasBgImg = failure.hasBgImage || false;
         const isAbsolute = failure.isAbsolute || false;
+        const hasBgGradient = failure.hasBgGradient || false;
         const element = failure.element;
+
         let code = "";
         let decimals = 2;
         let value =
@@ -80,7 +82,18 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_6 = {
             ".";
         }
 
-        if (isAbsolute === true) {
+        if (hasBgGradient === true) {
+          code += ".BgGradient";
+          HTMLCS.addMessage(
+            HTMLCS.WARNING,
+            element,
+            _global.HTMLCS.getTranslation("1_4_6_G18_or_G145.BgGradient").replace(
+              /\{\{required\}\}/g,
+              required + ""
+            ),
+            code
+          );
+        }  else if (isAbsolute === true) {
           code += ".Abs";
           HTMLCS.addMessage(
             HTMLCS.WARNING,

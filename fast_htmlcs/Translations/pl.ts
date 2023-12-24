@@ -234,8 +234,10 @@ _global.translation["pl"] = {
   //1_4_3.js
   "1_4_3_G18_or_G145.Abs":
     "Ten element jest pozycjonowany absolutnie i nie jest możliwe zweryfikowanie jego kontrastu. Sprawdź, czy kontrast jest na wystarczającym poziomie: {{required}}:1.",
-  "1_4_3_G18_or_G145.BgImage":
+    "1_4_3_G18_or_G145.BgImage":
     "Tekst elementu wyświetlany jest na obrazku. Należy upewnić się, że stosunek kontrastu tekstu do tła wynosi co najmniej {{required}}:1.",
+  "1_4_3_G18_or_G145.BgGradient":
+      "Tekst tego elementu jest umieszczony na gradiencie. Upewnij się, że współczynnik kontrastu między tekstem a wszystkimi zakrytymi częściami gradientu wynosi co najmniej {{required}}:1.",
   "1_4_3_G18_or_G145.Alpha":
     "Tekst lub tło tego elementu jest przezroczyste. Upewnij się, że współczynnik kontrastu między tekstem a tłem wynosi co najmniej {{required}}:1.",
   "1_4_3_G18_or_G145.Fail":
@@ -259,6 +261,9 @@ _global.translation["pl"] = {
     "Ten element jest pozycjonowany absolutnie i nie jest możliwe zweryfikowanie jego kontrastu. Sprawdź samodzielnie czy kontrast jest na wystarczającym poziomie: {{required}}:1.",
   "1_4_6_G18_or_G17.BgImage":
     "Tekst elementu wyświetlany jest na obrazku. Należy upewnić się, że stosunek kontrastu tekstu do tła wynosi conajmniej {{required}}:1.",
+  "1_4_6_G18_or_G145.BgGradient":
+    "Tekst tego elementu jest umieszczony na gradiencie. Upewnij się, że współczynnik kontrastu między tekstem a wszystkimi zakrytymi częściami gradientu wynosi co najmniej {{required}}:1.",
+
   "1_4_6_G18_or_G17.Fail":
     "Ten element ma niewystarczający stosunek kontrastu tekstu do tła. Powinien wynosić co najmniej {{required}}:1, a tekst umieszczony w tym elemencie posiada stosunek {{value}}:1.",
   "1_4_6_G18_or_G17.Fail.Recomendation": "Zalecenie: ",

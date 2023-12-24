@@ -27,7 +27,7 @@
   const A_2 = "duplicate-id";
   const H_2 = "Principle4.Guideline41.411.F77";
   const IA_2 = "Principle4.Guideline4_1.4_1_1.F77";
-  // element_id_unique 
+  // element_id_unique
   const A_3 = "empty-heading";
   const H_3 = "Principle1.Guideline13.131.H42.2";
   const IA_3 = "Principle1.Guideline1_3.1_3_1.H42.2";
