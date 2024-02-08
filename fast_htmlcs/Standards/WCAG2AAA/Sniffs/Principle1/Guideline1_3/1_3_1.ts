@@ -1,26 +1,24 @@
 _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
   _labelNames: null,
 
-  register: function () {
-    return [
-      "_top",
-      "p",
-      "div",
-      "input",
-      "select",
-      "textarea",
-      "button",
-      "table",
-      "fieldset",
-      "form",
-      "h1",
-      "h2",
-      "h3",
-      "h4",
-      "h5",
-      "h6",
-    ];
-  },
+  register: () => [
+    "_top",
+    "p",
+    "div",
+    "input",
+    "select",
+    "textarea",
+    "button",
+    "table",
+    "fieldset",
+    "form",
+    "h1",
+    "h2",
+    "h3",
+    "h4",
+    "h5",
+    "h6",
+  ],
 
   /**
    * Process the registered element.

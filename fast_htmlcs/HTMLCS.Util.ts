@@ -731,16 +731,11 @@ _global.HTMLCS.util = {
    * @returns {String} The text contents.
    */
   getElementTextContent: function (element, hasAlt) {
-    let includeAlt = hasAlt;
-
-    if (includeAlt === undefined) {
-      includeAlt = true;
-    }
-
-    const nodeSize = element.childNodes.length;
+    const includeAlt = hasAlt === undefined ? true : hasAlt;
+    const nodeSize = element ? element.childNodes.length : 0;
     const nodes = new Array(nodeSize);
 
-    for (var i = 0; i < nodeSize; i++) {
+    for (let i = 0; i < nodeSize; i++) {
       nodes[i] = element.childNodes[i];
     }
 
@@ -753,7 +748,7 @@ _global.HTMLCS.util = {
     let nodeIndex = 1;
 
     while (nodes.length > 0) {
-      var node = nodes.shift();
+      let node = nodes.shift();
 
       // If it's an element, add any sub-nodes to the process list.
       if (node.nodeType === 1) {

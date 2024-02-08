@@ -20,47 +20,35 @@
     3: "notice",
   };
 
-  // start of code score maps todo: use enums A = Axe, H = Htmlcs, IA = IBM Ace
+  // start of code score maps todo: use enums A = Axe, H = Htmlcs
   const A_1 = "color-contrast";
   const H_1 = "Principle1.Guideline14.143.G18.Fail";
-  const IA_1 = "Principle1.Guideline1_4.1_4_3.G18.Fail";
   const A_2 = "duplicate-id";
   const H_2 = "Principle4.Guideline41.411.F77";
-  const IA_2 = "Principle4.Guideline4_1.4_1_1.F77";
   // element_id_unique
   const A_3 = "empty-heading";
   const H_3 = "Principle1.Guideline13.131.H42.2";
-  const IA_3 = "Principle1.Guideline1_3.1_3_1.H42.2";
   const A_4 = "frame-title";
   const H_4 = "Principle2.Guideline24.241.H64.1";
-  const IA_4 = "Principle2.Guideline2_4.2_4_1.H64.1";
   const A_5 = "link-name";
   const H_5 = "Principle4.Guideline41.412.H91.A.EmptyNoId";
-  const IA_5 = "Principle4.Guideline4_1.4_1_2.H91.A.EmptyNoId";
   const A_6 = "heading-order";
   const H_6 = "Principle1.Guideline13.131A.G141"; // HeadingOrder map
-  const IA_6 = "Principle1.Guideline1_3.1_3_1_A.G141";
 
   // oneshot map
-  const scoreMap = new Map<string, [number, string, string]>([
-    [A_1, [20, H_1, IA_1]],
-    [H_1, [20, A_1, IA_1]],
-    [IA_1, [20, A_1, H_1]],
-    [A_2, [20, H_2, IA_2]],
-    [H_2, [20, A_2, IA_2]],
-    [IA_2, [20, A_2, H_2]],
-    [A_3, [20, H_3, IA_3]],
-    [H_3, [20, A_3, IA_3]],
-    [IA_3, [20, A_3, H_3]],
-    [A_4, [10, H_4, IA_4]],
-    [H_4, [10, A_4, IA_4]],
-    [IA_4, [10, A_4, H_4]],
-    [A_5, [20, H_5, IA_5]],
-    [H_5, [20, A_5, IA_5]],
-    [IA_5, [20, A_5, H_5]],
-    [A_6, [10, H_6, IA_6]],
-    [H_6, [10, A_6, IA_6]],
-    [IA_6, [10, A_6, H_6]],
+  const scoreMap = new Map<string, [number, string]>([
+    [A_1, [20, H_1]],
+    [H_1, [20, A_1]],
+    [A_2, [20, H_2]],
+    [H_2, [20, A_2]],
+    [A_3, [20, H_3]],
+    [H_3, [20, A_3]],
+    [A_4, [10, H_4]],
+    [H_4, [10, A_4]],
+    [A_5, [20, H_5]],
+    [H_5, [20, A_5]],
+    [A_6, [10, H_6]],
+    [H_6, [10, A_6]]
   ]);
 
   // root html element
@@ -264,10 +252,9 @@
             : issue.code;
 
         if (scoreMap.has(code)) {
-          const [accessScore, ref, ref2] = scoreMap.get(code);
+          const [accessScore, ref] = scoreMap.get(code);
           meta.accessScore -= accessScore;
           scoreMap.delete(ref);
-          scoreMap.delete(ref2);
           scoreMap.delete(code);
         }
 

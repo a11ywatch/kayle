@@ -255,7 +255,7 @@ _global.HTMLCS = new (function () {
    * @param {Function} [callback] The function to call once all tests are run.
    */
   const _run = (elements, topElement: Element, callback) => {
-    while (elements.length > 0) {
+    while (elements && elements.length > 0) {
       const element = elements.shift();
       const tagName =
         element === topElement ? "_top" : element.tagName.toLowerCase();
@@ -296,7 +296,7 @@ _global.HTMLCS = new (function () {
    */
   const _processSniffs = (element, sniffs, topElement, callback) => {
     // todo: look into remove array for direct assign
-    while (sniffs.length > 0) {
+    while (sniffs && sniffs.length > 0) {
       const sniff = sniffs.shift();
 
       _currentSniff = sniff;
