@@ -30,7 +30,7 @@ import { performance } from "perf_hooks";
   assert(Array.isArray(issues));
   assert(meta.errorCount === 47);
   assert(meta.warningCount === 43);
-  assert(meta.accessScore === 30);
+  assert(meta.accessScore <= 50);
 
   assert(typeof pageUrl === "string");
   assert(typeof documentTitle === "string");

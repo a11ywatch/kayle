@@ -35,7 +35,9 @@ export const goToPage = async (
   o: Partial<RunnerConfig & { html?: string }>
 ): Promise<boolean> => {
   await setCDPIntercept(o);
+
   const { page, timeout, waitUntil, origin } = o;
+
   let valid = false;
 
   try {

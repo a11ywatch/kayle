@@ -57,7 +57,7 @@ type Browser = {
 type Target = {};
 
 // dom lifecycles
-type LifeCycleEvent =
+export type LifeCycleEvent =
   | "load"
   | "domcontentloaded"
   // playwright
@@ -69,7 +69,7 @@ type LifeCycleEvent =
   | "networkidle2";
 
 // wait for options
-type WaitForOptions = {
+export type WaitForOptions = {
   timeout?: number;
   waitUntil?: LifeCycleEvent | LifeCycleEvent[] | string;
 };
