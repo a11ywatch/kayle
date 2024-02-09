@@ -247,7 +247,7 @@ We are building a rust based runner called [kayle_innate](./kayle_innate/) that 
 
 ## Discord
 
-If you want to chat about the project checkout our [Discord](https://discord.gg/ukmJcjQ5).
+If you want to chat about the project checkout our [Discord][discord-url].
 
 ## About
 
@@ -260,4 +260,4 @@ One of the main goals was to have the audit run quickly since we noticed some of
 Check the license file in the root of each project.
 
 [discord-badge]: https://img.shields.io/discord/860982761137111040.svg?logo=discord
-[discord-url]: https://discord.gg/ukmJcjQ5
+[discord-url]: https://discord.gg/H82vceTBNu

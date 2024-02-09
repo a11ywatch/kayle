@@ -345,8 +345,22 @@ _global.HTMLCS = new (function () {
     // See if the ruleset object is already included (eg. if minified).
     const parts = _standard.split("/");
     const part = parts[parts.length - 2];
+    const ruleSet = _getRuleset(part);
 
-    _registerStandard(_standard, part, callback, failCallback, options);
+    if (ruleSet) {
+      // Already included.
+      _registerStandard(_standard, part, callback, failCallback, options);
+    } else {
+      // TODO: remove _include script callback standard always included
+      _includeScript(
+        _standard,
+        function () {
+          // Script is included now register the standard.
+          _registerStandard(_standard, part, callback, failCallback, options);
+        },
+        failCallback
+      );
+    }
   };
 
   /**
@@ -450,6 +464,9 @@ _global.HTMLCS = new (function () {
       // Already loaded.
       if (sniffObj) {
         cb();
+      } else {
+        // for browser usage at runtime non node.js
+        _includeScript(_getSniffPath(standard, sniff), cb, failCallback);
       }
     } else {
       // Including a whole other standard.
@@ -494,6 +511,20 @@ _global.HTMLCS = new (function () {
   };
 
   /**
+   * Returns the path to the sniff file.
+   *
+   * @param {String} standard The name of the standard.
+   * @param {String} sniff    The name of the sniff.
+   *
+   * @returns {String} The path to the JS file of the sniff.
+   */
+  const _getSniffPath = (standard, sniff) => {
+    const parts = standard.split("/");
+    parts.pop();
+    return parts.join("/") + "/Sniffs/" + sniff.replace(/\./g, "/") + ".js";
+  };
+
+  /**
    * Returns the path to a local standard.
    *
    * @param {String} standard The name of the standard.
@@ -515,10 +546,8 @@ _global.HTMLCS = new (function () {
     const cstandard = _standards.has(standard) && _standards.get(standard); // standard should always exist
     let name = "HTMLCS_";
 
-    name +=
-      ((cstandard && cstandard.name) || "") +
-      "_Sniffs_" +
-      sniff.split(".").join("_");
+    name += ((cstandard && cstandard.name) || "") + "_Sniffs_";
+    name += sniff.split(".").join("_");
 
     if (!_global[name]) {
       return null;
@@ -539,4 +568,46 @@ _global.HTMLCS = new (function () {
    */
   const _getMessageCode = (code) =>
     _standard + "." + _currentSniff._name + "." + code;
+
+  /**
+   * Includes the specified JS file.
+   *
+   * @param {String}   src      The URL to the JS file.
+   * @param {Function} callback The function to call once the script is loaded.
+   */
+  const _includeScript = (src, callback, failCallback) => {
+    const script = document.createElement("script");
+
+    script.onload = function () {
+      script.onload = null;
+      // @ts-ignore
+      script.onreadystatechange = null;
+      callback.call(this);
+    };
+
+    script.onerror = function () {
+      script.onload = null;
+      // @ts-ignore
+      script.onreadystatechange = null;
+      if (failCallback) {
+        failCallback.call(this);
+      }
+    };
+
+    // @ts-ignore
+    script.onreadystatechange = function () {
+      if (/^(complete|loaded)$/.test(this.readyState) === true) {
+        // @ts-ignore
+        script.onreadystatechange = null;
+        // @ts-ignore
+        script.onload();
+      }
+    };
+
+    script.src = src;
+
+    document.head
+      ? document.head.appendChild(script)
+      : document.getElementsByTagName("head")[0].appendChild(script);
+  };
 })();
