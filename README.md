@@ -205,8 +205,6 @@ Currently `fast_htmlcs` runs around 50x faster than axe-core and has several dif
 
 If you use [`@playwright/axe-core`](https://playwright.dev/docs/next/accessibility-testing) you can swap it out with the following [playwright-axe-example](./kayle/tests/basic-axe-playwright.spec.ts) and get an increase in issues found and major performance boost of at least 100%. You can also include multiple runners to extend the issues beyond the basics in folds.
 
-We have not tested IBM Ace for performance thoroughly yet but, from the surface the performance is about 40% slower than axe, if the runner seems to have issues we may fork it and add it to the `fast_` prefix. The perf drawbacks may be from the lib handling all locales in one script.
-
 ## Performance Tips
 
 As we set the foundation to mark test cases that can pass and increase our target on automating accessibility we have a couple of layers that can make a major difference to the project. The following will save drastic time and money if done.
