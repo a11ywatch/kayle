@@ -233,7 +233,7 @@ _global.translation["nl"] = {
   //1_4_3.js
   "1_4_3_G18_or_G145.Abs":
     "Dit element is absoluut gepositioneerd en de achtergrondkleur kan niet bepaald worden. Zorg ervoor dat de contrastverhouding tussen de tekst en alle bedekte delen van de achtergond minstens {{required}}:1 is.",
-    "1_4_3_G18_or_G145.BgImage":
+  "1_4_3_G18_or_G145.BgImage":
     "De tekst van dit element werd geplaatst op een achtergrondafbeelding. Zorg ervoor dat de contrastverhouding tussen de tekst en alle bedekte delen van de achtergrondafbeelding minstens {{required}}:1 is.",
   "1_4_3_G18_or_G145.BgGradient":
     "De tekst van dit element is op een achtergrondverloop geplaatst. Zorg ervoor dat de contrastverhouding tussen de tekst en alle bedekte delen van het achtergrondverloop minimaal {{vereist}}:1 is.",

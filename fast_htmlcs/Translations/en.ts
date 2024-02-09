@@ -183,7 +183,7 @@ _global.translation["en"] = {
     "This element is absolutely positioned and the background color can not be determined. Ensure the contrast ratio between the text and all covered parts of the background are at least {{required}}:1.",
   "1_4_3_G18_or_G145.BgImage":
     "This element's text is placed on a background image. Ensure the contrast ratio between the text and all covered parts of the image are at least {{required}}:1.",
-    "1_4_3_G18_or_G145.BgGradient":
+  "1_4_3_G18_or_G145.BgGradient":
     "This element's text is placed on a gradient. Ensure the contrast ratio between the text and all covered parts of the gradient are at least {{required}}:1.",
   "1_4_3_G18_or_G145.Alpha":
     "This element's text or background contains transparency. Ensure the contrast ratio between the text and background are at least {{required}}:1.",

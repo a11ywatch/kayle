@@ -82,18 +82,17 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_6 = {
             ".";
         }
 
-        if (hasBgGradient === true) {
+        if (hasBgGradient) {
           code += ".BgGradient";
           HTMLCS.addMessage(
             HTMLCS.WARNING,
             element,
-            _global.HTMLCS.getTranslation("1_4_6_G18_or_G145.BgGradient").replace(
-              /\{\{required\}\}/g,
-              required + ""
-            ),
+            _global.HTMLCS.getTranslation(
+              "1_4_6_G18_or_G145.BgGradient"
+            ).replace(/\{\{required\}\}/g, required + ""),
             code
           );
-        }  else if (isAbsolute === true) {
+        } else if (isAbsolute) {
           code += ".Abs";
           HTMLCS.addMessage(
             HTMLCS.WARNING,
@@ -104,7 +103,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_6 = {
             ),
             code
           );
-        } else if (hasBgImg === true) {
+        } else if (hasBgImg) {
           code += ".BgImage";
           HTMLCS.addMessage(
             HTMLCS.WARNING,

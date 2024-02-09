@@ -99,7 +99,10 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
 
               bgColour = parentStyle.backgroundColor;
 
-              if (parentStyle.background && parentStyle.background.includes("gradient(")) {
+              if (
+                parentStyle.background &&
+                parentStyle.background.includes("gradient(")
+              ) {
                 hasBgGradient = true;
                 break;
               }
@@ -126,8 +129,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                 //Make sure it is trying to cover the entire content area
                 beforeStyle.width == parentStyle.width &&
                 parseInt(beforeStyle.height, 10) <=
-                  parseInt(parentStyle.height, 10) && 
-                  beforeStyle.backgroundImage !== "none"
+                  parseInt(parentStyle.height, 10) &&
+                beforeStyle.backgroundImage !== "none"
               ) {
                 //And finally it needs a background image
                 hasBgImg = true;
@@ -147,7 +150,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                 value: undefined,
                 required: reqRatio,
                 hasAlpha: false,
-                hasBgGradient: true
+                hasBgGradient: true,
               });
               continue;
             } else if (bgColour && bgAlpha < 1.0 && bgAlpha > 0) {

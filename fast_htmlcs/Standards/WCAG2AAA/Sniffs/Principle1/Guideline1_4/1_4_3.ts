@@ -29,7 +29,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3 = {
         const required = failure.required;
         const recommend = failure.recommendation;
         const hasBgImg = failure.hasBgImage || false;
-        const hasBgGradient = failure.hasBgGradient || false;        
+        const hasBgGradient = failure.hasBgGradient || false;
         const isAbsolute = failure.isAbsolute || false;
         const hasAlpha = failure.hasAlpha || false;
 
@@ -46,7 +46,6 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3 = {
             Math.round(failure.value * Math.pow(10, decimals)) /
             Math.pow(10, decimals);
         }
-
 
         if (required === 4.5) {
           code = "G18";
@@ -90,10 +89,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3 = {
           HTMLCS.addMessage(
             HTMLCS.WARNING,
             element,
-            _global.HTMLCS.getTranslation("1_4_3_G18_or_G145.BgGradient").replace(
-              /\{\{required\}\}/g,
-              required + ""
-            ),
+            _global.HTMLCS.getTranslation(
+              "1_4_3_G18_or_G145.BgGradient"
+            ).replace(/\{\{required\}\}/g, required + ""),
             code
           );
         } else if (isAbsolute === true) {
