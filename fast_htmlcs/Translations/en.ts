@@ -427,7 +427,6 @@ _global.translation["en"] = {
     "Check that context-sensitive help is available for this form, at a Web-page and/or control level.",
   "3_3_6_G98,G99,G155,G164,G168.AllForms":
     "Check that submissions to this form are either reversible, checked for input errors, and/or confirmed by the user.",
-  "4_1_1_F77": 'Duplicate id attribute value "{{id}}" found on the web page.',
   "4_1_2_H91.A.Empty":
     "Anchor element found with an ID but without a href or link text. Consider moving its ID to a parent or nearby element.",
   "4_1_2_H91.A.EmptyWithName":

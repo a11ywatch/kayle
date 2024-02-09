@@ -137,18 +137,6 @@
       "description": "各HTMLドキュメントに空ではない<title>要素が含まれていることを確認します",
       "help": "ドキュメントにはナビゲーションを補助するために<title>要素がなければなりません"
     },
-    "duplicate-id-active": {
-      "description": "活性要素のid属性値が一意であることを確認します",
-      "help": "活性要素のIDは一意でなければなりません"
-    },
-    "duplicate-id-aria": {
-      "description": "ARIAおよびラベルに使用されているすべてのid属性値が一意であることを確認します",
-      "help": "ARIAおよびラベルに使用されているIDは一意でなければなりません"
-    },
-    "duplicate-id": {
-      "description": "すべてのid属性値が一意であることを確認します",
-      "help": "id属性値は一意でなければなりません"
-    },
     "empty-heading": {
       "description": "見出しに認識可能なテキストが存在することを確認します",
       "help": "見出しは空にしてはなりません"
@@ -827,18 +815,6 @@
     "unique-frame-title": {
       "pass": "要素のtitle属性が一意です",
       "fail": "要素のtitle属性が一意ではありません"
-    },
-    "duplicate-id-active": {
-      "pass": "ドキュメントに同じid属性を持つ有効な要素はありません",
-      "fail": "ドキュメントに同じid属性を持つ有効な要素があります: ${data}"
-    },
-    "duplicate-id-aria": {
-      "pass": "ドキュメントに同じid属性を持つARIAまたはラベルに参照された要素はありません",
-      "fail": "ドキュメントに同じid属性を持つARIAに参照された複数の要素があります: ${data}"
-    },
-    "duplicate-id": {
-      "pass": "ドキュメントに同じid属性を共有する静的な要素はありません",
-      "fail": "ドキュメントに同じid属性を共有する静的な要素が複数存在します"
     },
     "aria-label": {
       "pass": "aria-label属性が存在し、空ではありません",

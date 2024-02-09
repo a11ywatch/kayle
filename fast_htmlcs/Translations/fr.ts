@@ -587,10 +587,6 @@ _global.translation["fr"] = {
   "3_3_6_G98,G99,G155,G164,G168.AllForms":
     "Vérifier que les soumissions à ce formulaire sont soit réversibles, soit vérifiées pour les erreurs de saisie, et/ou confirmées par l'utilisateur.",
 
-  //4_1_1.js
-  "4_1_1_F77":
-    'Dupliquer la valeur de l\'attribut id "{{id}}" trouvée sur la page web.',
-
   //4_1_2.js
   "4_1_2_H91.A.Empty":
     "L'élément d'ancrage trouvé avec un ID mais sans href ou texte de lien. Envisager de déplacer son ID vers un élément parent ou un élément voisin.",

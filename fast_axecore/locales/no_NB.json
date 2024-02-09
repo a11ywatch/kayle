@@ -109,18 +109,6 @@
       "description": "",
       "help": "Dokumenter skal ha et <title> element med en verdi som ikke er tom"
     },
-    "duplicate-id-active": {
-      "description": "",
-      "help": "'id'-attributtet for aktive elementer skal være unik"
-    },
-    "duplicate-id-aria": {
-      "description": "",
-      "help": "'id'-attributtet brukt på ARIA-elementer og -labels skal være unikt"
-    },
-    "duplicate-id": {
-      "description": "",
-      "help": "Verdien for 'id'-attributtet skal være unik"
-    },
     "empty-heading": {
       "description": "",
       "help": "Overskrifter skal ikke være tomme"
@@ -671,18 +659,6 @@
     "unique-frame-title": {
       "pass": "Elementets 'title'-attributt er unik",
       "fail": "Elementets 'title'-attributt er ikke unik"
-    },
-    "duplicate-id-active": {
-      "pass": "Dokumentet har ingen aktive elementer som deler den samme 'id'-attributt",
-      "fail": "Dokumentet har aktive elementer som deler den samme 'id'-attributten: ${data}"
-    },
-    "duplicate-id-aria": {
-      "pass": "Dokumentet har ingen elementer referert med ARIA eller labels, som deler den samme 'id'-attributten",
-      "fail": "Dokumentet har flere elementer referert med ARIA med den samme 'id'-attributten: ${data}"
-    },
-    "duplicate-id": {
-      "pass": "Dokumentet har ingen statiske elementer som deler den samme 'id'-attributtet",
-      "fail": "Dokumentet har flere statiske elementer med den samme 'id'-attributtet"
     },
     "aria-label": {
       "pass": "'aria-label'-attributt er til stede og er ikke tomt",

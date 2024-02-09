@@ -105,18 +105,6 @@
       "description": "Garantiza que cada documento HTML tiene un elemento <title> no vacío",
       "help": "Los documentos deben tener elementos <title> para ayudar en la navegación"
     },
-    "duplicate-id-active": {
-      "description": "Garantiza que cada valor para el atributo id de elementos activos es único",
-      "help": "Los 'IDs' de elementos activos deben ser únicos"
-    },
-    "duplicate-id-aria": {
-      "description": "Garantiza que cada valor del atributo id usado en ARIA y en 'labels' es único",
-      "help": "Los 'IDs' usados en ARIA y en 'labels' deben ser únicos"
-    },
-    "duplicate-id": {
-      "description": "Garantiza que cada valor para el atributo id es único",
-      "help": "El valor del atributo id debe ser único"
-    },
     "empty-heading": {
       "description": "Garantiza que los encabezados tienen texto discernible",
       "help": "Los encabezados no deben estar vacíos"
@@ -662,18 +650,6 @@
     "unique-frame-title": {
       "pass": "El atributo title del elemento es único",
       "fail": "El atributo title del elemento no es único"
-    },
-    "duplicate-id-active": {
-      "pass": "El documento no tiene elementos activos que compartan el mismo atributo id",
-      "fail": "El documento tiene elementos activos con el mismo atributo id: ${data}"
-    },
-    "duplicate-id-aria": {
-      "pass": "El documento no tiene elementos referidos con ARIA o etiquetas que compartan el mismo atributo id",
-      "fail": "El documento tiene múltiples elementos referidos con ARIA con el mismo atributo id: ${data}"
-    },
-    "duplicate-id": {
-      "pass": "El documento no tiene elementos estáticos que compartan el mismo atributo id",
-      "fail": "El documento tiene múltiples elementos estáticos con el mismo atributo id"
     },
     "aria-label": {
       "pass": "El atributo aria-label existe y no está vacío",

@@ -1,6 +1,6 @@
 import { writeFileSync } from "fs";
 import assert from "assert";
-import { kayle } from "kayle";
+import { Standard, kayle } from "kayle";
 import { drakeMock } from "./mocks/html-mock";
 import { performance } from "perf_hooks";
 import { test } from "@playwright/test";
@@ -17,7 +17,7 @@ test("fast_htmlcs audit drakeMock", async ({ page, browser }, testInfo) => {
     includeWarnings: true,
     html: drakeMock,
     origin: "https://www.drake.com",
-    waitUntil: "domcontentloaded",
+    standard: Standard.WCAG2AA
   });
   const endTime = performance.now() - startTime;
 

@@ -31,7 +31,7 @@ test("fast_axecore audit drakeMock", async ({ page, browser }, testInfo) => {
   assert(typeof pageUrl === "string");
   assert(typeof documentTitle === "string");
   assert(meta.warningCount === 9);
-  assert(meta.errorCount === 34);
+  assert(meta.errorCount === 31);
 
   writeFileSync(
     testInfo.outputPath("axe-core.json"),

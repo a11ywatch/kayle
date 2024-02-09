@@ -7,10 +7,6 @@
     error: 1,
     warning: 2,
     notice: 3,
-    // ibm
-    VIOLATION: 1,
-    RECOMMENDATION: 2,
-    INFORMATION: 3,
   };
 
   const issueCodeReverseMap = {
@@ -23,9 +19,8 @@
   // start of code score maps todo: use enums A = Axe, H = Htmlcs
   const A_1 = "color-contrast";
   const H_1 = "Principle1.Guideline14.143.G18.Fail";
-  const A_2 = "duplicate-id";
-  const H_2 = "Principle4.Guideline41.411.F77";
-  // element_id_unique
+  const A_2 = "has-alt";
+  const H_2 = "Principle1.Guideline1_1.1_1_1.H37";
   const A_3 = "empty-heading";
   const H_3 = "Principle1.Guideline13.131.H42.2";
   const A_4 = "frame-title";

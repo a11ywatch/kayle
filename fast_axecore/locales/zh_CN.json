@@ -74,36 +74,36 @@
       "help": "ARIA切换字段必须有一个可访问的名称"
     },
     "aria-tooltip-name": {
-      "description": "Ensures every ARIA tooltip node has an accessible name",
-      "help": "ARIA tooltip nodes must have an accessible name"
+      "description": "确保每个ARIA工具提示节点都有一个可访问的名称",
+      "help": "ARIA工具提示节点必须有一个可访问的名称"
     },
     "aria-treeitem-name": {
-      "description": "Ensures every ARIA treeitem node has an accessible name",
-      "help": "ARIA treeitem nodes should have an accessible name"
+      "description": "确保每个ARIA树项节点都有一个可访问的名称",
+      "help": "ARIA树项节点应该有一个可访问的名称"
     },
     "aria-valid-attr-value": {
-      "description": "Ensures all ARIA attributes have valid values",
-      "help": "ARIA attributes must conform to valid values"
+      "description": "确保所有ARIA属性都有有效的值",
+      "help": "ARIA属性必须符合有效值"
     },
     "aria-valid-attr": {
-      "description": "Ensures attributes that begin with aria- are valid ARIA attributes",
-      "help": "ARIA attributes must conform to valid names"
+      "description": "确保以aria-开头的属性是有效的ARIA属性",
+      "help": "ARIA属性必须符合有效的名称"
     },
     "audio-caption": {
-      "description": "Ensures <audio> elements have captions",
-      "help": "<audio> elements must have a captions track"
+      "description": "确保<audio>元素有字幕",
+      "help": "<audio>元素必须有字幕轨道"
     },
     "autocomplete-valid": {
-      "description": "Ensure the autocomplete attribute is correct and suitable for the form field",
-      "help": "autocomplete attribute must be used correctly"
+      "description": "确保自动完成属性对表单字段正确且适用",
+      "help": "autocomplete属性必须正确使用"
     },
     "avoid-inline-spacing": {
-      "description": "Ensure that text spacing set through style attributes can be adjusted with custom stylesheets",
-      "help": "Inline text spacing must be adjustable with custom stylesheets"
+      "description": "确保通过样式属性设置的文本间距可以通过自定义样式表调整",
+      "help": "内联文本间距必须能够通过自定义样式表调整"
     },
     "blink": {
-      "description": "Ensures <blink> elements are not used",
-      "help": "<blink> elements are deprecated and must not be used"
+      "description": "确保不使用<blink>元素",
+      "help": "<blink>元素已被弃用，不得使用"
     },
     "button-name": {
       "description": "确保按钮具有可辨识的文本",
@@ -137,18 +137,6 @@
       "description": "Ensures each HTML document contains a non-empty <title> element",
       "help": "Documents must have <title> element to aid in navigation"
     },
-    "duplicate-id-active": {
-      "description": "Ensures every id attribute value of active elements is unique",
-      "help": "IDs of active elements must be unique"
-    },
-    "duplicate-id-aria": {
-      "description": "Ensures every id attribute value used in ARIA and in labels is unique",
-      "help": "IDs used in ARIA and labels must be unique"
-    },
-    "duplicate-id": {
-      "description": "确保每个id属性值是唯一的",
-      "help": "id属性值必须是唯一的"
-      },
       "empty-heading": {
       "description": "确保标题具有可辨识的文本",
       "help": "标题不应为空"
@@ -190,36 +178,36 @@
       "help": "页面上的隐藏内容应该进行分析"
     },
     "html-has-lang": {
-      "description": "Ensures every HTML document has a lang attribute",
-      "help": "<html> element must have a lang attribute"
+      "description": "确保每个HTML文档都有一个lang属性",
+      "help": "<html>元素必须有一个lang属性"
     },
     "html-lang-valid": {
-      "description": "Ensures the lang attribute of the <html> element has a valid value",
-      "help": "<html> element must have a valid value for the lang attribute"
+      "description": "确保<html>元素的lang属性有一个有效值",
+      "help": "<html>元素的lang属性必须有一个有效值"
     },
     "html-xml-lang-mismatch": {
-      "description": "Ensure that HTML elements with both valid lang and xml:lang attributes agree on the base language of the page",
-      "help": "HTML elements with lang and xml:lang must have the same base language"
+      "description": "确保具有有效lang和xml:lang属性的HTML元素在页面的基本语言上达成一致",
+      "help": "带有lang和xml:lang属性的HTML元素必须具有相同的基础语言"
     },
     "identical-links-same-purpose": {
-      "description": "Ensure that links with the same accessible name serve a similar purpose",
-      "help": "Links with the same name must have a similar purpose"
+      "description": "确保具有相同可访问名称的链接具有相似的目的",
+      "help": "具有相同名称的链接必须具有相似的目的"
     },
     "image-alt": {
-      "description": "Ensures <img> elements have alternate text or a role of none or presentation",
-      "help": "Images must have alternate text"
+      "description": "确保<img>元素具有替代文本或 role 属性为 none 或 presentation",
+      "help": "图像必须有替代文本"
     },
     "image-redundant-alt": {
-      "description": "Ensure image alternative is not repeated as text",
-      "help": "Alternative text of images should not be repeated as text"
+      "description": "确保图像的替代文本不会作为文本重复",
+      "help": "图像的替代文本不应该作为文本重复出现"
     },
     "input-button-name": {
-      "description": "Ensures input buttons have discernible text",
-      "help": "Input buttons must have discernible text"
+      "description": "确保输入按钮有可辨识的文本",
+      "help": "输入按钮必须有可辨识的文本"
     },
     "input-image-alt": {
-      "description": "Ensures <input type=\"image\"> elements have alternate text",
-      "help": "Image buttons must have alternate text"
+      "description": "确保<input type=\"image\">元素有替代文本",
+      "help": "图像按钮必须有替代文本"
     },
     "label-content-name-mismatch": {
       "description": "Ensures that elements labelled through their content must have their visible text as part of their accessible name",
@@ -890,18 +878,6 @@
     "unique-frame-title": {
       "pass": "Element's title attribute is unique",
       "fail": "Element's title attribute is not unique"
-    },
-    "duplicate-id-active": {
-      "pass": "Document has no active elements that share the same id attribute",
-      "fail": "Document has active elements with the same id attribute: ${data}"
-    },
-    "duplicate-id-aria": {
-      "pass": "Document has no elements referenced with ARIA or labels that share the same id attribute",
-      "fail": "Document has multiple elements referenced with ARIA with the same id attribute: ${data}"
-    },
-    "duplicate-id": {
-      "pass": "Document has no static elements that share the same id attribute",
-      "fail": "Document has multiple static elements with the same id attribute: ${data}"
     },
     "aria-label": {
       "pass": "aria-label attribute exists and is not empty",

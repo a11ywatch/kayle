@@ -137,18 +137,6 @@
       "description": "Vérifier que chaque document HTML contient un élément <title> non vide",
       "help": "Chaque document doit avoir un élément <title> pour aider à la navigation"
     },
-    "duplicate-id-active": {
-      "description": "Vérifier que la valeur d’attribut id de chaque élément actif est unique",
-      "help": "Les IDs des éléments actifs doivent être uniques"
-    },
-    "duplicate-id-aria": {
-      "description": "Vérifier que chaque valeur d’attribut id utilisée avec ARIA et dans les étiquettes est unique",
-      "help": "Les IDs utilisés avec ARIA et dans les étiquettes doivent être uniques"
-    },
-    "duplicate-id": {
-      "description": "Vérifier que la valeur de chaque attribut id est unique",
-      "help": "La valeur de l’attribut id doit être unique"
-    },
     "empty-heading": {
       "description": "Vérifier que les niveaux de titre ont un texte perceptible",
       "help": "Les niveaux de titre ne doivent pas être vides"
@@ -821,18 +809,6 @@
     "unique-frame-title": {
       "pass": "L’attribut title de l’élément est unique",
       "fail": "L’attribut title de l’élément n’est pas unique"
-    },
-    "duplicate-id-active": {
-      "pass": "Le document ne comporte aucun élément actif partageant la même valeur d’attribut id",
-      "fail": "Le document comporte ou un plusieurs éléments actifs partageant la même valeur d’attribut id : ${data}"
-    },
-    "duplicate-id-aria": {
-      "pass": "Le document ne comporte aucun élément référencé par ARIA ou étiquettes partageant la même valeur d’attribut id",
-      "fail": "Le document comporte un ou plusieurs éléments référencés par ARIA partageant la même valeur d’attribut id : ${data}"
-    },
-    "duplicate-id": {
-      "pass": "Le document n’a pas d’éléments qui partagent le même attribut id",
-      "fail": "Le document a plusieurs éléments avec le même attribut id : ${data}"
     },
     "aria-label": {
       "pass": "L’attribut aria-label existe et n’est pas vide",

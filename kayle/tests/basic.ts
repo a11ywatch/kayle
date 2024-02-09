@@ -28,9 +28,9 @@ import { performance } from "perf_hooks";
 
   // valid list
   assert(Array.isArray(issues));
-  assert(meta.errorCount === 47);
+  assert(meta.errorCount === 41);
   assert(meta.warningCount === 43);
-  assert(meta.accessScore <= 50);
+  assert(meta.accessScore <= 70);
 
   assert(typeof pageUrl === "string");
   assert(typeof documentTitle === "string");

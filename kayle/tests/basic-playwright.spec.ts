@@ -34,7 +34,7 @@ test("fast_htmlcs and fast_axecore audit drakeMock", async ({
   ]);
 
   assert(Array.isArray(issues));
-  assert(meta.errorCount === 48);
+  assert(meta.errorCount === 42);
   assert(meta.warningCount === 43);
   assert(typeof pageUrl === "string");
   assert(typeof documentTitle === "string");

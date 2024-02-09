@@ -105,18 +105,6 @@
       "description": "HTML dokumentu bakoitzak <title> hutsik ez duen elementu bat duela bermatzen du",
       "help": "Dokumentuek <title> elementuak izan behar dituzte nabigazioan laguntzeko"
     },
-    "duplicate-id-active": {
-      "description": "Elementu aktiboen id atributurako balio bakoitza bakarra dela bermatzen du",
-      "help": "Elementu aktiboen 'ID'ak bakarrak izan behar dira"
-    },
-    "duplicate-id-aria": {
-      "description": "ARIAn eta 'label'etan erabilitako id atributuaren balio bakoitza bakarra dela bermatzen du",
-      "help": "ARIA eta labelet-an erabiltzen diren 'ID'ak bakarrak izan behar dira"
-    },
-    "duplicate-id": {
-      "description": "id atributurako balio bakoitza bakarra dela bermatzen du",
-      "help": "id atributuaren balioak bakarra izan behar du"
-    },
     "empty-heading": {
       "description": "Goiburuek testu bereizgarria dutela bermatzen du",
       "help": "Goiburuak ez dira hutsik egon behar"
@@ -662,18 +650,6 @@
     "unique-frame-title": {
       "pass": "Elementuaren title atributua bakarra da",
       "fail": "Elementuaren title atributua ez da bakarra"
-    },
-    "duplicate-id-active": {
-      "pass": "Dokumentuak ez dauka id atributu bera partekatzen duen elementu aktiborik",
-      "fail": "Dokumentuak elementu aktiboak ditu, id atributu berarekin: ${data}"
-    },
-    "duplicate-id-aria": {
-      "pass": "Dokumentuak ez dauka id atributu bera partekatzen duen Aari edo etiketekin lotutako elementurik",
-      "fail": "Dokumentuak hainbat elementu ditu, id atributu bereko aria batekin lotuta: ${data}"
-    },
-    "duplicate-id": {
-      "pass": "Dokumentuak ez dauka id atributu bera partekatzen duen elementu estatikorik",
-      "fail": "Dokumentuak hainbat elementu estatiko ditu, id atributu berarekin"
     },
     "aria-label": {
       "pass": "aria-label atributua existitzen da eta ez dago hutsik",

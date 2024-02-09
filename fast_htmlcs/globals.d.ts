@@ -255,7 +255,6 @@ declare global {
     HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_3_3_3_4: GuideLine;
     HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_3_3_3_5: GuideLine;
     HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_3_3_3_6: GuideLine;
-    HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_1: GuideLine;
     HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2: GuideLine;
     HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_3: GuideLine;
     HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_10: GuideLine;

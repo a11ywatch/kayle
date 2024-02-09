@@ -137,18 +137,6 @@
       "description": "각 HTML 문서가 비어 있지 않은 <title> 엘리먼트를 포함하고 있는지 확인하세요.",
       "help": "탐색에 도움이 되도록 문서에는 반드시 <title>이 있어야 합니다."
     },
-    "duplicate-id-active": {
-      "description": "활성 엘리먼트의 모든 id 어트리뷰트 값이 고유한지 확인하세요.",
-      "help": "활성 엘리먼트의 ID는 반드시 고유해야 합니다."
-    },
-    "duplicate-id-aria": {
-      "description": "ARIA 및 label에 사용된 모든 id 어트리뷰트 값이 고유한지 확인하세요.",
-      "help": "ARIA 및 label에 사용된 ID는 반드시 고유해야 합니다."
-    },
-    "duplicate-id": {
-      "description": "모든 id 어트리뷰트 값이 고유한지 확인하세요.",
-      "help": "id 어트리뷰트 값은 반드시 고유해야 합니다."
-    },
     "empty-heading": {
       "description": "제목이 인식 가능한 텍스트를 가지고 있는지 확인하세요.",
       "help": "제목은 비어있지 않아야 합니다."
@@ -838,18 +826,6 @@
     "unique-frame-title": {
       "pass": "엘리먼트의 title 어트리뷰트가 고유합니다.",
       "fail": "엘리먼트의 title 어트리뷰트가 고유하지 않습니다."
-    },
-    "duplicate-id-active": {
-      "pass": "문서에 동일한 id 어트리뷰트를 공유하는 활성 엘리먼트가 없습니다.",
-      "fail": "문서에 동일한 id 어트리뷰트를 가진 활성 엘리먼트가 있습니다: ${data}"
-    },
-    "duplicate-id-aria": {
-      "pass": "문서에 동일한 id 어트리뷰트를 공유하는 ARIA로 참조된 엘리먼트 및 레이블이 없습니다.",
-      "fail": "문서에 동일한 id 어트리뷰트를 가진 ARIA로 참조된 여러 엘리먼트가 있습니다: ${data}"
-    },
-    "duplicate-id": {
-      "pass": "문서에 동일한 id 어트리뷰트를 공유하는 정적 엘리먼트가 없습니다.",
-      "fail": "문서에 동일한 id 어트리뷰트를 공유하는 여러 정적 엘리먼트가 있습니다: ${data}"
     },
     "aria-label": {
       "pass": "aria-label 어트리뷰트가 존재하고 비어있지 않습니다.",

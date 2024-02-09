@@ -171,13 +171,13 @@ The following variables are defined for `Check#evaluate`:
 - `options` - `Mixed` Any options specific to this Check that may be necessary. If not specified by the user at run-time or configure-time; it will use `options` as defined by the Check's JSON file.
 - `virtualNode` – `Object` The virtualNode object for use with Shadow DOM. See [virtualNode documentation](#virtual-nodes).
 - `this.data()` - `Function` Free-form data that either the Check message requires or is presented as `data` in the CheckResult object. Subsequent calls to `this.data()` will overwrite previous. See [aria-valid-attr](../lib/checks/aria/aria-valid-attr-value-evaluate.js) for example usage.
-- `this.relatedNodes()` - `Function` Array or NodeList of elements that are related to this Check. For example the [duplicate-id](../lib/checks/parsing/duplicate-id-evaluate.js) Check will add all Elements which share the same ID.
+- `this.relatedNodes()` - `Function` Array or NodeList of elements that are related to this Check. Check will add all Elements which share the same ID.
 
 #### Check `after`
 
 You can use the `after` function to evaluate nodes that might be in other frames or to filter the number of violations or passes produced. The `after` function runs once for each Rule in the top-most (or originating) frame. Due to this, you should not perform DOM operations in after functions, but instead operate on `data` defined by the Check.
 
-For example, the [duplicate-id](../lib/checks/parsing/duplicate-id.json) Check include an [after function](../lib/checks/parsing/duplicate-id-after.js) which reduces the number of violations so that only one violation per instance of a duplicate ID is found.
+For example, the [heading-order](../lib/checks/navigation/heading-order.json) Check include an [after function](../lib/checks/navigation/heading-order-after.js) which reduces the number of violations so that only one violation per instance of a invalid heading order.
 
 The following variables are defined for `Check#after`:
 

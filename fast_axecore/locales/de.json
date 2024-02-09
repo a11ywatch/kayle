@@ -133,18 +133,6 @@
       "description": "Stellt sicher, dass jedes HTML-Dokument ein nichtleeres <title>-Element besitzt.",
       "help": "Dokumente müssen ein <title>-Element besitzen, um die Navigation zu erleichtern."
     },
-    "duplicate-id-active": {
-      "description": "Stellt sicher, dass jeder Wert des ID-Attributes von aktiven Elemente einzigartig ist.",
-      "help": "IDs von aktiven Elementen müssen einzigartig sein."
-    },
-    "duplicate-id-aria": {
-      "description": "Stellt sicher, dass jeder Wert des ID-Attributes, welcher in ARIA und labels genutzt wird einzigartig ist.",
-      "help": "IDs, welche in ARIA und Lables genutzt werden, müssen einzigartig sein."
-    },
-    "duplicate-id": {
-      "description": "Stellt sicher, dass der Wert eines id-Attributes einzigartig ist.",
-      "help": "Der Wert des id-Attributes muss einzigartig sein."
-    },
     "empty-heading": {
       "description": "Stellt sicher, dass Überschriften einen wahrnehmbaren Text beinhalten.",
       "help": "Überschriften dürfen nichtleer sein."
@@ -771,18 +759,6 @@
     "unique-frame-title": {
       "pass": "Das title-Attribut des Elements ist einzigartig.",
       "fail": "Das title-Attribut des Elementes ist nicht einmalig."
-    },
-    "duplicate-id-active": {
-      "pass": "Dokument hat keine aktiven Elemente mit denselben ID-Attributen.",
-      "fail": "Dokument hat aktiven Elemente mit denselben ID-Attributen: ${data}."
-    },
-    "duplicate-id-aria": {
-      "pass": "Dokument besitzt keine Elemente, welche mit ARIA oder Labels referenziert werden, welche die gleiche ID besitzen.",
-      "fail": "Dokument besitzt Elemente, welche mit ARIA oder Labels referenziert werden, welche folgende gleiche ID besitzen: ${data}"
-    },
-    "duplicate-id": {
-      "pass": "Das Dokument besitzt eine einzigartige ID.",
-      "fail": "Das Dokument besitzt mehrere Elemente mit demselben id-Attributwert: ${data}."
     },
     "aria-label": {
       "pass": "Das aria-label-Attribut existiert und ist nichtleer.",

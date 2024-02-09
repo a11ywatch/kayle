@@ -592,10 +592,6 @@ _global.translation["pl"] = {
   "3_3_6_G98,G99,G155,G164,G168.AllForms":
     "Sprawdź, czy użytkownik może sprawdzić i zmienić informacje wprowadzone w formularzu, zanim ostatecznie potwierdzi jego wysłanie.",
 
-  //4_1_1.js
-  "4_1_1_F77":
-    'Na stronie znaleziono powtórzoną wartość ID: "{{id}}". Dopuszczalne jest jedno wystąpienie wartości identyfikatora.',
-
   //4_1_2.js
   "4_1_2_H91.A.Empty":
     'Link ma atrybut "id", nie ma jednak ani adresu w atrybucie "href" ani treści. Rozważ przeniesienie identyfikatora do elementu nadrzędnego.',

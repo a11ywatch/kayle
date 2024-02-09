@@ -137,18 +137,6 @@
       "description": "Ensures each HTML document contains a non-empty <title> element",
       "help": "Documents must have <title> element to aid in navigation"
     },
-    "duplicate-id-active": {
-      "description": "Ensures every id attribute value of active elements is unique",
-      "help": "IDs of active elements must be unique"
-    },
-    "duplicate-id-aria": {
-      "description": "Ensures every id attribute value used in ARIA and in labels is unique",
-      "help": "IDs used in ARIA and labels must be unique"
-    },
-    "duplicate-id": {
-      "description": "Ensures every id attribute value is unique",
-      "help": "id attribute value must be unique"
-    },
     "empty-heading": {
       "description": "Ensures headings have discernible text",
       "help": "Headings should not be empty"
@@ -890,18 +878,6 @@
     "unique-frame-title": {
       "pass": "Element's title attribute is unique",
       "fail": "Element's title attribute is not unique"
-    },
-    "duplicate-id-active": {
-      "pass": "Document has no active elements that share the same id attribute",
-      "fail": "Document has active elements with the same id attribute: ${data}"
-    },
-    "duplicate-id-aria": {
-      "pass": "Document has no elements referenced with ARIA or labels that share the same id attribute",
-      "fail": "Document has multiple elements referenced with ARIA with the same id attribute: ${data}"
-    },
-    "duplicate-id": {
-      "pass": "Document has no static elements that share the same id attribute",
-      "fail": "Document has multiple static elements with the same id attribute: ${data}"
     },
     "aria-label": {
       "pass": "aria-label attribute exists and is not empty",

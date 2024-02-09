@@ -448,8 +448,6 @@ _global.translation["es"] = {
     "Verifica que la ayuda contextual esté disponible para este formulario, a nivel de página web y/o control.",
   "3_3_6_G98,G99,G155,G164,G168.AllForms":
     "Verifica que las presentaciones en este formulario sean reversibles, verifiquen errores de entrada y/o sean confirmadas por el usuario.",
-  "4_1_1_F77":
-    'Se encontró un valor de atributo id duplicado "{{id}}" en la página web.',
   "4_1_2_H91.A.Empty":
     "Se encontró un elemento de anclaje con un ID pero sin un href o texto de enlace. Considera mover su ID a un elemento padre o cercano.",
 

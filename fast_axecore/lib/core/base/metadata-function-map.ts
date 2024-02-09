@@ -87,8 +87,6 @@ import regionEvaluate from '../../checks/navigation/region-evaluate.js';
 import skipLinkEvaluate from '../../checks/navigation/skip-link-evaluate.js';
 import uniqueFrameTitleAfter from '../../checks/navigation/unique-frame-title-after.js';
 import uniqueFrameTitleEvaluate from '../../checks/navigation/unique-frame-title-evaluate.js';
-import duplicateIdAfter from '../../checks/parsing/duplicate-id-after.js';
-import duplicateIdEvaluate from '../../checks/parsing/duplicate-id-evaluate.js';
 import ariaLabelEvaluate from '../../checks/shared/aria-label-evaluate.js';
 import ariaLabelledbyEvaluate from '../../checks/shared/aria-labelledby-evaluate.js';
 import avoidInlineSpacingEvaluate from '../../checks/shared/avoid-inline-spacing-evaluate.js';
@@ -119,9 +117,6 @@ import bypassMatches from '../../rules/bypass-matches.js';
 import colorContrastMatches from '../../rules/color-contrast-matches.js';
 import dataTableLargeMatches from '../../rules/data-table-large-matches.js';
 import dataTableMatches from '../../rules/data-table-matches.js';
-import duplicateIdActiveMatches from '../../rules/duplicate-id-active-matches.js';
-import duplicateIdAriaMatches from '../../rules/duplicate-id-aria-matches.js';
-import duplicateIdMiscMatches from '../../rules/duplicate-id-misc-matches.js';
 import frameFocusableContentMatches from '../../rules/frame-focusable-content-matches.js';
 import frameTitleHasTextMatches from '../../rules/frame-title-has-text-matches.js';
 import hasImplicitChromiumRoleMatches from '../../rules/has-implicit-chromium-role-matches.js';
@@ -200,11 +195,6 @@ const metadataFunctionMap = {
   'deprecatedrole-evaluate': deprecatedroleEvaluate,
   'dlitem-evaluate': dlitemEvaluate,
   'doc-has-title-evaluate': docHasTitleEvaluate,
-  'duplicate-id-active-matches': duplicateIdActiveMatches,
-  'duplicate-id-after': duplicateIdAfter,
-  'duplicate-id-aria-matches': duplicateIdAriaMatches,
-  'duplicate-id-evaluate': duplicateIdEvaluate,
-  'duplicate-id-misc-matches': duplicateIdMiscMatches,
   'duplicate-img-label-evaluate': duplicateImgLabelEvaluate,
   'exists-evaluate': existsEvaluate,
   'explicit-evaluate': explicitEvaluate,

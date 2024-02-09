@@ -34,7 +34,6 @@ _global.HTMLCS_WCAG2A = {
         "Principle3.Guideline3_2.3_2_2",
         "Principle3.Guideline3_3.3_3_1",
         "Principle3.Guideline3_3.3_3_2",
-        "Principle4.Guideline4_1.4_1_1",
         "Principle4.Guideline4_1.4_1_2",
       ],
     },

@@ -137,18 +137,6 @@
       "description": "Certifique-se de que cada documento HTML contenha um elemento <title> não vazio",
       "help": "Documentos devem ter um elemento <title> para ajudar na navegação"
     },
-    "duplicate-id-active": {
-      "description": "Certifique-se de que cada valor do atributo 'id' de elementos ativos seja único",
-      "help": "IDs de elementos ativos devem ser únicos"
-    },
-    "duplicate-id-aria": {
-      "description": "Certifique-se de que cada valor do atributo 'id' usado no ARIA e em rótulos seja único",
-      "help": "IDs usados no ARIA e em 'labels' devem ser únicos"
-    },
-    "duplicate-id": {
-      "description": "Certifique-se de que cada valor do atributo 'id' seja único",
-      "help": "O valor do atributo 'id' deve ser único"
-    },
     "empty-heading": {
       "description": "Certifique-se de que os títulos tenham texto discernível",
       "help": "Os títulos não devem ser vazios"
@@ -805,18 +793,6 @@
     "unique-frame-title": {
       "pass": "O atributo 'title' do elemento é único",
       "fail": "O atributo 'title' do elemento não é único"
-    },
-    "duplicate-id-active": {
-      "pass": "O documento não tem elementos ativos que compartilham o mesmo atributo 'id'",
-      "fail": "O documento tem elementos ativos com o mesmo atributo 'id': ${data}"
-    },
-    "duplicate-id-aria": {
-      "pass": "O documento não tem elementos referenciados com ARIA ou rótulos que compartilham o mesmo atributo 'id'",
-      "fail": "O documento tem múltiplos elementos referenciados com ARIA com o mesmo atributo 'id': ${data}"
-    },
-    "duplicate-id": {
-      "pass": "O documento não tem elementos estáticos que compartilham o mesmo atributo 'id'",
-      "fail": "O documento tem múltiplos elementos estáticos com o mesmo atributo 'id'"
     },
     "aria-label": {
       "pass": "O atributo 'aria-label' existe e não está vazio",

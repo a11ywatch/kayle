@@ -545,9 +545,6 @@ _global.translation["nl"] = {
   "3_3_6_G98,G99,G155,G164,G168.AllForms":
     "Controleer of indieningen voor dit formulier ofwel omkeerbaar zijn, gecontroleerd worden op invoerfouten en/of bevestigd worden door de gebruiker.",
 
-  //4_1_1.js
-  "4_1_1_F77": 'Duplicate id attribuutwaaarde "{{id}}" gevonden op de pagina.',
-
   //4_1_2.js
   "4_1_2_H91.A.Empty":
     "Anker element gevonden met een ID maar zonder een href of link tekst. Overweeg om de ID naar het bovenliggend of een nabijgelegen element te verhuizen.",
