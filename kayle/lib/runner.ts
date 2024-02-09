@@ -48,7 +48,7 @@
     [A_5, [20, H_5]],
     [H_5, [20, A_5]],
     [A_6, [10, H_6]],
-    [H_6, [10, A_6]]
+    [H_6, [10, A_6]],
   ]);
 
   // root html element
@@ -65,7 +65,10 @@
     if (issue.element) {
       context = getElementContext(issue.element);
       selector = getElementSelector(issue.element);
-      if (cliped) {
+      if (
+        cliped &&
+        typeof issue.element.getBoundingClientRect === "function"
+      ) {
         const { x, y, width, height } = issue.element.getBoundingClientRect();
 
         clip = {

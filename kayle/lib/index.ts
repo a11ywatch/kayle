@@ -11,5 +11,12 @@ export {
   sendCDPPageConfigurationEnable,
   sendCDPPageConfigurationReset,
 } from "./utils/cdp-blocking";
-export { setLogging, Standard, type RunnerConfig, type Runner, type LifeCycleEvent, type WaitForOptions } from "./config";
+export {
+  setLogging,
+  Standard,
+  type RunnerConfig,
+  type Runner,
+  type LifeCycleEvent,
+  type WaitForOptions,
+} from "./config";
 export { extractLinks, innateBuilder } from "./wasm";
