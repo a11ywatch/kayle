@@ -9,7 +9,6 @@ import { runActionsList } from "../action";
 
 // get the configs required for a rust based audit
 export const innateBuilder = async (o: RunnerConf) => {
-  console.log("NOT READY YET. Do not use.");
   const watcher = new Watcher();
   const config = extractArgs(o, watcher);
 

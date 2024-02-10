@@ -2,6 +2,7 @@
 
 #![cfg(target_arch = "wasm32")]
 extern crate wasm_bindgen_test;
+extern crate kayle_innate;
 
 mod mock;
 
@@ -42,7 +43,7 @@ fn _get_document_links() {
                 <main>
                     <a href="/">Home</a>
                     <a href="/about">About</a>
-                    <a href="/magic/">Magic</a>
+                    <a href="/red/">Red</a>
                     <a href="https://www.meta.com">Meta</a>
                 </main>
             </body>
@@ -58,14 +59,13 @@ fn _get_document_links() {
         "{base_domain}/about"
     )));
     found.push(wasm_bindgen::JsValue::from_str(&format!(
-        "{base_domain}/magic/"
+        "{base_domain}/red/"
     )));
 
     assert_eq!(links, found.into_boxed_slice());
 }
 
 #[wasm_bindgen_test]
-#[cfg(feature = "accessibility")]
 fn _audit() {
-    let _ = kayle_innate::_audit_not_ready(mock::MOCK_WEBSITE_HTML, &mock::MOCK_CSS_RULES, false);
+    let _ = kayle_innate::audit(mock::MOCK_WEBSITE_HTML, &mock::MOCK_CSS_RULES, false);
 }

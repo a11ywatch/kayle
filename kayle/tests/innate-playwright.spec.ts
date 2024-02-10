@@ -2,7 +2,7 @@ import { innateBuilder, kayle } from "kayle";
 import { drakeMock } from "./mocks/html-mock";
 import { performance } from "perf_hooks";
 import { test } from "@playwright/test";
-import { _audit_not_ready } from "kayle_innate";
+import { audit } from "kayle_innate";
 
 test("kayle_innate, fast_htmlcs and fast_axecore audit drakeMock profiling compare", async ({
   page,
@@ -24,7 +24,7 @@ test("kayle_innate, fast_htmlcs and fast_axecore audit drakeMock profiling compa
     ""
   );
   const startTime = performance.now();
-  await _audit_not_ready(mock, css, false);
+  await audit(mock, css, false);
   const nextTime = performance.now() - startTime;
   console.log("Rust/WASM TIME ", nextTime);
 

@@ -5893,9 +5893,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"kayle_innate@workspace:*, kayle_innate@workspace:kayle_innate/kayle_innate/pkg":
+"kayle_innate@workspace:*, kayle_innate@workspace:kayle_innate/pkg":
   version: 0.0.0-use.local
-  resolution: "kayle_innate@workspace:kayle_innate/kayle_innate/pkg"
+  resolution: "kayle_innate@workspace:kayle_innate/pkg"
   languageName: unknown
   linkType: soft
 

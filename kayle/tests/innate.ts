@@ -1,8 +1,8 @@
+import { audit } from "kayle_innate";
 import puppeteer from "puppeteer";
 import { innateBuilder, kayle } from "kayle";
 import { drakeMock } from "./mocks/html-mock";
 import { performance } from "perf_hooks";
-import { _audit_not_ready } from "kayle_innate";
 
 // setup test for rust wasm auditing
 (async () => {
@@ -33,7 +33,7 @@ import { _audit_not_ready } from "kayle_innate";
     );
 
   const startTime = performance.now();
-  await _audit_not_ready(mock, css, false);
+  await audit(mock, css, false);
   const nextTime = performance.now() - startTime;
   console.log("Rust/WASM TIME ", nextTime);
 
