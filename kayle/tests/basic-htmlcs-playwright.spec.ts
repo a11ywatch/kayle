@@ -17,7 +17,7 @@ test("fast_htmlcs audit drakeMock", async ({ page, browser }, testInfo) => {
     includeWarnings: true,
     html: drakeMock,
     origin: "https://www.drake.com",
-    standard: Standard.WCAG2AA
+    standard: Standard.WCAG2AA,
   });
   const endTime = performance.now() - startTime;
 

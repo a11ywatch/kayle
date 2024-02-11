@@ -35,7 +35,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_2 = {
 
     let langEl = null;
 
-    for (var i = 0; i <= langEls.length; i++) {
+    for (let i = 0; i <= langEls.length; i++) {
       if (i === langEls.length) {
         langEl = top;
       } else {

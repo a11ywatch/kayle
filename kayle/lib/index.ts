@@ -1,7 +1,12 @@
 export { kayle } from "./kayle";
 export type { Issue, Audit, MetaInfo, Automatable } from "./common";
 export { autoKayle } from "./auto";
-export { runnersJavascript, getRunner, injectRunner } from "./runner-js";
+export {
+  runnersJavascript,
+  getRunner,
+  injectRunner,
+  extendRunner,
+} from "./runner-js";
 export {
   goToPage,
   setNetworkInterception,
@@ -14,6 +19,7 @@ export {
 export {
   setLogging,
   Standard,
+  MainRunner,
   type RunnerConfig,
   type Runner,
   type LifeCycleEvent,

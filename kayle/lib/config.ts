@@ -197,3 +197,8 @@ export enum Standard {
 }
 
 export { Runner };
+
+export const enum MainRunner {
+  htmlcs = "htmlcs",
+  axe = "axe",
+}

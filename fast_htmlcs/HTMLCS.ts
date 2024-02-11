@@ -340,23 +340,22 @@ _global.HTMLCS = new (function () {
     failCallback,
     options
   ) => {
-    const _standard = _getStandardPath(standard);
-
+    const localStandard = _getStandardPath(standard);
     // See if the ruleset object is already included (eg. if minified).
-    const parts = _standard.split("/");
+    const parts = localStandard.split("/");
     const part = parts[parts.length - 2];
     const ruleSet = _getRuleset(part);
 
     if (ruleSet) {
       // Already included.
-      _registerStandard(_standard, part, callback, failCallback, options);
+      this.registerStandard(standard, part, callback, failCallback, options);
     } else {
       // TODO: remove _include script callback standard always included
       _includeScript(
         _standard,
         function () {
           // Script is included now register the standard.
-          _registerStandard(_standard, part, callback, failCallback, options);
+          this.registerStandard(_standard, part, callback, failCallback, options);
         },
         failCallback
       );
@@ -370,7 +369,7 @@ _global.HTMLCS = new (function () {
    * @param {Function} callback The function to call once the standard is registered.
    * @param {Object}   options  The options for the standard (e.g. exclude sniffs).
    */
-  const _registerStandard = (
+  this.registerStandard = (
     standard,
     part,
     callback,
@@ -390,6 +389,7 @@ _global.HTMLCS = new (function () {
       }
     }
 
+    // include the new rules for the standard
     _standards.set(standard, ruleSet);
 
     // Process the options.
@@ -456,8 +456,8 @@ _global.HTMLCS = new (function () {
     if (typeof sniff === "string") {
       const sniffObj = _getSniff(standard, sniff);
 
-      const cb = function () {
-        _registerSniff(standard, sniff);
+      const cb = () => {
+        this.registerSniff(standard, sniff);
         callback.call(this);
       };
 
@@ -490,7 +490,7 @@ _global.HTMLCS = new (function () {
    * @param {String} standard The name of the standard.
    * @param {String} sniff    The name of the sniff.
    */
-  const _registerSniff = (standard, sniff) => {
+  this.registerSniff = (standard: string, sniff: string) => {
     // Get the sniff object.
     const sniffObj = _getSniff(standard, sniff);
 
@@ -542,20 +542,17 @@ _global.HTMLCS = new (function () {
    *
    * @returns {Object} The sniff object.
    */
-  const _getSniff = (standard, sniff) => {
-    const cstandard = _standards.has(standard) && _standards.get(standard); // standard should always exist
-    let name = "HTMLCS_";
+  const _getSniff = (standard, sniff: string) => {
+    const name = `HTMLCS_${standard}_Sniffs_${sniff.split(".").join("_")}`;
+    const sniffSet = _global[name] || window[name];
 
-    name += ((cstandard && cstandard.name) || "") + "_Sniffs_";
-    name += sniff.split(".").join("_");
-
-    if (!_global[name]) {
+    if (!sniffSet) {
       return null;
     }
+    
+    sniffSet._name = sniff;
 
-    _global[name]._name = sniff;
-
-    return _global[name];
+    return sniffSet;
   };
 
   /**

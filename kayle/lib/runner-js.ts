@@ -54,7 +54,13 @@ const runnersJavascript = {
   // axe_pt_BR: loadRunnerScript("axe", "pt-BR"),
 };
 
-// inject a new runner for testing
+/**
+ * Inject a new runner for testing
+ * @param {String} [runner="custom_name"] - The custom runner name.
+ * @param {String} [path=""] - The path of the file for the runner script.
+ * @param {String} [lang=""] - The language of the runner script.
+ * @returns {void}
+ */
 const injectRunner = (runner: string, path: string, lang: string) => {
   runnersJavascript[runner] = loadRunnerScript(path, lang ?? "");
 };
@@ -102,4 +108,18 @@ export type Runner = Exclude<
   | "axe_ko"
 >;
 
-export { runnersJavascript, getRunner, injectRunner };
+/**
+ * Extend the base of a runner with custom code.
+ * @param {String} [runner=""] - The custom runner to extend.
+ * @param {String} [script=""] - The custom javascript.
+ * @param {String} [lang=""] - The target langauge for the script.
+ * @returns {void}
+ */
+const extendRunner = (runner: Runner, script: string, lang?: string) => {
+  const runnerType = `${runner}${lang ? `_${lang}` : ""}`;
+  const runnerCode = runnersJavascript[runnerType];
+
+  runnersJavascript[runnerType] = `${runnerCode}${script};`;
+};
+
+export { runnersJavascript, getRunner, injectRunner, extendRunner };

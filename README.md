@@ -107,7 +107,7 @@ const results = await kayle({
 
 - [`fast_axecore`](./fast_htmlcs/README.md): run tests using fork of [axe-core](./lib/runners/axe.ts).
 - [`fast_htmlcs`](./fast_htmlcs/README.md): run tests using fork of [HTML CodeSniffer](./lib/runners/htmlcs.ts).
-- `custom`: custom runners using `injectRunner` util.
+- `custom`: custom runners using [`injectRunner`](./kayle/lib/runner-js.ts#l=57) util - library authors.
 
 ## Linting
 
@@ -231,6 +231,89 @@ If you want to test the extension use `yarn test:puppeteer:extension`.
 
 The `kayle` function also expects a field called `browserExtension` with the option set to `true`. Currently the extension handling is experimental reason for the name.
 
+## Rust Runner
+
+We are building a rust based runner called [kayle_innate](./kayle_innate/) that can port to wasm that will take the audits into the nanoseconds - low milliseconds zone.
+
+## Extend Runner
+
+Extending a runner can be done with the following.
+
+```ts
+import { extendRunner, kayle } from "kayle"
+
+// pure javascript required. No typescript!
+  extendRunner(
+    MainRunner.htmlcs,
+    `
+  // use console.log(JSON.stringify(Object.keys(window))) to see all of the objects to extend.
+  // set the function HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_2.process to a variable to re-use the logic prior in the call.
+
+  // store the prior sniff in a variable to re-use the logic
+  const prevHeadSniffCase = HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_2.process;
+
+  HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_2.process = (element, _) => {
+    // re-run the logic for the case
+    prevHeadSniffCase(element, _);
+    // log something to test if output ran
+    console.log("Running extended head element case");
+    // we can write a test here that should pass some logic. For now we just add a new error
+    HTMLCS.addMessage(
+        HTMLCS.ERROR,
+        element,
+        HTMLCS.getTranslation("2_4_2_H25.1.NoHeadEl"),
+        "H25.1.NoHeadEl"
+    );
+  }
+  
+  // Add a new rule example - 4_1_4_1_4
+
+  window["HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_4"] = {
+    register: () => ["html"],
+    process: (element, _) => {
+        console.log("NEW Rule run!");
+        HTMLCS.addMessage(
+            HTMLCS.ERROR,
+            element,
+            "This is some new rule for something.",
+            "H55.1.NoItem"
+        );
+    },
+  };
+  
+  // push the new sniff to the list
+  HTMLCS_WCAG2AAA.sniffs.push("Principle4.Guideline4_1.4_1_4");
+  // register the new sniff rule to run
+  HTMLCS.registerSniff("WCAG2AAA", "Principle4.Guideline4_1.4_1_4");
+  `.trimStart()
+  );
+
+const results = await kayle({
+  page,
+  browser,
+  runners: ["htmlcs", "htmlcs_extended"]
+  origin: "https://a11ywatch.com",
+});
+```
+
+## Custom Runner (library authors)
+
+Below is an example on adding a new custom runner. Take a look at [HTMLCS](fast_htmlcs/HTMLCS.ts) and [HTMLCS_Runner](kayle/lib/runners/htmlcs.ts) setup for an example of how to setup the scripts, it could take a bit of time to get familiar. You can also overwride the base runners by taking the `runnersJavascript` object and appending to the script.
+
+```ts
+import { injectRunner, kayle } from "kayle"
+
+// example of the custom script
+injectRunner("htmlcs_extended", "./custom_htmlcs_script", "en")
+
+const results = await kayle({
+  page,
+  browser,
+  runners: ["htmlcs", "htmlcs_extended"]
+  origin: "https://a11ywatch.com",
+});
+```
+
 ## Developing
 
 In order to develop you need yarn v2 installed for the workspace.
@@ -240,10 +323,6 @@ Run the following to install on ^node@18
 `corepack enable && corepack prepare yarn@stable --activate` and reload shell after.
 
 Use the command `yarn build` to compile all the scripts for each locale.
-
-## Rust Runner
-
-We are building a rust based runner called [kayle_innate](./kayle_innate/) that can port to wasm that will take the audits into the nanoseconds - low milliseconds zone.
 
 ## Discord
 

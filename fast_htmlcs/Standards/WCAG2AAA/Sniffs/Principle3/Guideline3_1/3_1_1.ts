@@ -29,28 +29,28 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_1 = {
         "H57.2"
       );
     } else {
-      if (element.hasAttribute("lang") === true) {
-        var lang = element.getAttribute("lang");
-        if (this.isValidLanguageTag(lang) === false) {
-          HTMLCS.addMessage(
-            HTMLCS.ERROR,
-            top,
-            _global.HTMLCS.getTranslation("3_1_1_H57.3.Lang"),
-            "H57.3.Lang"
-          );
-        }
+      if (
+        element.hasAttribute("lang") &&
+        !this.isValidLanguageTag(element.getAttribute("lang"))
+      ) {
+        HTMLCS.addMessage(
+          HTMLCS.ERROR,
+          top,
+          _global.HTMLCS.getTranslation("3_1_1_H57.3.Lang"),
+          "H57.3.Lang"
+        );
       }
 
-      if (element.hasAttribute("xml:lang") === true) {
-        var lang = element.getAttribute("xml:lang");
-        if (this.isValidLanguageTag(lang) === false) {
-          HTMLCS.addMessage(
-            HTMLCS.ERROR,
-            top,
-            _global.HTMLCS.getTranslation("3_1_1_H57.3.XmlLang"),
-            "H57.3.XmlLang"
-          );
-        }
+      if (
+        element.hasAttribute("xml:lang") &&
+        !this.isValidLanguageTag(element.getAttribute("xml:lang"))
+      ) {
+        HTMLCS.addMessage(
+          HTMLCS.ERROR,
+          top,
+          _global.HTMLCS.getTranslation("3_1_1_H57.3.XmlLang"),
+          "H57.3.XmlLang"
+        );
       }
     }
   },
@@ -97,16 +97,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_1 = {
     regexStr += "(-x(-[a-z0-9]{1,8})+)?$";
 
     // Make a regex out of it, and make it all case-insensitive.
-    var regex = new RegExp(regexStr, "i");
-
     // Throw the correct lang code depending on whether this is a document
     // element or not.
-    var valid = true;
-
-    if (regex.test(langTag) === false) {
-      valid = false;
-    }
-
-    return valid;
+    return new RegExp(regexStr, "i").test(langTag);
   },
 };
