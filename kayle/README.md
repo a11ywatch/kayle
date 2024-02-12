@@ -89,6 +89,7 @@ kayle supports multiple test runners which return different results. The built-i
 
 - `axe`: run tests using [axe-core](./lib/runners/axe.ts).
 - `htmlcs` (default): run tests using [HTML CodeSniffer](./lib/runners/htmlcs.ts)
+- `kayle` (experimental): run tests using with [Rust Kayle_Innate or accessibility-rs](https://github.com/a11ywatch/accessibility-rs).
 - `custom`: custom runners using `injectRunner` util.
 
 ## Playwright/Puppeteer
@@ -103,7 +104,8 @@ If you are using puppeteer expect around 2x slower results.
 
 Straight forward linting. You can pass a url or valid html.
 
-Linting is handled on the same machine not sandboxed.
+Linting is handled on the same machine not sandboxed. You can also use the `kayleInnateBuilder` to 
+get the wasm kayle setup to lint pages.
 
 ```js
 import { kayleLint } from "kayle/lint";

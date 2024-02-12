@@ -89,7 +89,6 @@ const getRunner = (
 
 export type Runner = Exclude<
   keyof typeof runnersJavascript,
-  | "kayle"
   | "htmlcs_es"
   | "htmlcs_ja"
   | "htmlcs_fr"

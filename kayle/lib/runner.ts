@@ -60,7 +60,11 @@
     if (issue.element) {
       context = getElementContext(issue.element);
       selector = getElementSelector(issue.element);
-      if (cliped && typeof issue.element.getBoundingClientRect === "function") {
+      if (
+        cliped &&
+        !issue.bounds &&
+        typeof issue.element.getBoundingClientRect === "function"
+      ) {
         const { x, y, width, height } = issue.element.getBoundingClientRect();
 
         clip = {

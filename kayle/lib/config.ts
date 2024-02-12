@@ -175,6 +175,10 @@ export type RunnerConfig = {
   _watcher?: Watcher;
   // initial fake request ran to enable Js
   _initRequest?: boolean;
+  // the incomplete kayle wasm runner
+  _kayleRunner?: boolean;
+  // contains a base runner htmlcs or axe
+  _includesBaseRunner?: boolean;
 };
 
 // log singleton

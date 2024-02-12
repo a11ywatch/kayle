@@ -4,7 +4,8 @@ import { RunnerConfig, _log } from "./config";
 import { runnersJavascript, getRunner } from "./runner-js";
 import { goToPage, setNetworkInterception } from "./utils/go-to-page";
 import { Watcher } from "./watcher";
-import { Audit, RunnerConf } from "./common";
+import { Audit, type InnateIssue, RunnerConf } from "./common";
+import { getAllCss } from "./wasm";
 
 // perform audit
 const audit = async (config: RunnerConfig): Promise<Audit> => {
@@ -98,6 +99,65 @@ export const auditExtension = async (config: RunnerConfig): Promise<Audit> => {
   );
 };
 
+// lazy load kayle innate
+let kayle_innate;
+
+// run the rust wasm audit.
+// we do not need timers here since almost all audits perform under 25ms.
+// we still need to add the score map and apply the score based on what is found.
+// the thing is we need the old map to make sure we do not repeat values.
+const auditPageInnate = async (
+  config: ReturnType<typeof extractArgs>,
+  results: Audit
+) => {
+  if (!config._includesBaseRunner) {
+    await runActionsList(config as RunnerConfig);
+  }
+
+  const html = await config.page.content();
+  const css = await getAllCss(config as RunnerConfig);
+
+  if (!kayle_innate) {
+    kayle_innate = await import("kayle_innate");
+  }
+
+  const innateAudit: InnateIssue[] = await kayle_innate.audit(
+    html,
+    css,
+    config.clip
+  );
+
+  for (const innateIssue of innateAudit) {
+    if (innateIssue.issue_type === "error") {
+      results.meta.errorCount += innateIssue.recurrence || 1;
+    }
+    if (innateIssue.issue_type === "warning") {
+      results.meta.warningCount += innateIssue.recurrence || 1;
+    }
+    if (innateIssue.issue_type === "notice") {
+      results.meta.noticeCount += innateIssue.recurrence || 1;
+    }
+
+    results.issues.push({
+      code: innateIssue.code,
+      type: innateIssue.issue_type,
+      typeCode: innateIssue.type_code,
+      message: innateIssue.message,
+      recurrence: innateIssue.recurrence,
+      clip: innateIssue.clip,
+      runner: "kayle",
+      runnerExtras: innateIssue.runner_extras,
+      selector: innateIssue.selectors.join(","), // combo the selectors
+      context: innateIssue.context,
+    });
+
+    // add value to missing alt index handling
+    if (innateIssue.code === "Principle1.Guideline1_1.1_1_1.H37") {
+      results.automateable.missingAltIndexs.push(results.issues.length - 1);
+    }
+  }
+};
+
 /**
  * Run accessibility tests for page.
  * @param {Object} [config={}] config - Options to change the way tests run.
@@ -125,11 +185,9 @@ export const kayle = async (
 
   clearTimeout(watcher.timer as number);
 
-  if (results && o.clip && Array.isArray(results.issues)) {
+  if (results && o.clip && o.clip2Base64 && Array.isArray(results.issues)) {
     results.issues = await Promise.all(
       results.issues.map(async (item) => {
-        const { clip, selector } = item;
-
         // prevent screenshots
         if (typeof o.clipMax === "number") {
           if (!o.clipMax) {
@@ -143,15 +201,13 @@ export const kayle = async (
             path: o.clipDir
               ? `${o.clipDir}${
                   o.clipDir.endsWith("/") ? "" : "/"
-                }${selector.trim()}.png`
+                }${item.selector.trim()}.png`
               : undefined,
-            clip,
+            clip: item.clip,
           });
 
           // use a dynamic property to inject - todo: set the config initially before this iteration to keep shape aligned.
-          if (o.clip2Base64) {
-            item.clipBase64 = buffer.toString("base64");
-          }
+          item.clipBase64 = buffer.toString("base64");
         } catch (_) {
           // most likely not in the viewport
           // console.error(e);
@@ -161,6 +217,10 @@ export const kayle = async (
         return item;
       })
     );
+  }
+
+  if (config._kayleRunner) {
+    await auditPageInnate(config, results);
   }
 
   if (!preventClose && navigate) {

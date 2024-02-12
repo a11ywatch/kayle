@@ -1,6 +1,5 @@
-import { audit } from "kayle_innate";
 import puppeteer from "puppeteer";
-import { innateBuilder, kayle } from "kayle";
+import { kayle } from "kayle";
 import { drakeMock } from "./mocks/html-mock";
 import { performance } from "perf_hooks";
 
@@ -11,15 +10,7 @@ import { performance } from "perf_hooks";
   if (process.env.LOG_ENABLED) {
     page.on("console", (msg) => console.log("PAGE LOG:", msg.text()));
   }
-  const { html, css } = await innateBuilder({
-    page,
-    browser,
-    includeWarnings: true,
-    origin: "https://www.drake.com",
-    html: drakeMock,
-  });
-
-  const mock = html
+  const mock = drakeMock
     .replace(
       "<title>Drake Industries | Custom, Durable, High-Quality Labels, Asset Tags and Custom Server Bezels</title>",
       ""
@@ -33,35 +24,18 @@ import { performance } from "perf_hooks";
     );
 
   const startTime = performance.now();
-  await audit(mock, css, false);
+  // run kayle with a real browser against the page.
+  const issues = await kayle({
+    page,
+    browser,
+    runners: ["kayle"],
+    includeWarnings: true,
+    origin: "https://www.drake.com",
+    html: mock,
+  });
   const nextTime = performance.now() - startTime;
-  console.log("Rust/WASM TIME ", nextTime);
-
-  const st = performance.now();
-  await kayle({
-    page,
-    browser,
-    runners: ["htmlcs"],
-    includeWarnings: true,
-    origin: "https://www.drake.com",
-    html: drakeMock,
-    noIntercept: true,
-  });
-  const nt = performance.now() - st;
-  console.log("FAST_HTMLCS TIME", nt);
-
-  const s = performance.now();
-  await kayle({
-    page,
-    browser,
-    runners: ["axe"],
-    includeWarnings: true,
-    origin: "https://www.drake.com",
-    html: drakeMock,
-    noIntercept: true,
-  });
-  const n = performance.now() - s;
-  console.log("FAST_AXE TIME", n);
+  console.log("Kayle Innate TIME ", nextTime);
+  console.log(issues);
 
   await browser.close();
 })();

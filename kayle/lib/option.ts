@@ -19,12 +19,15 @@ export function extractArgs(o, watcher?: Watcher) {
     includeWarnings: o.includeWarnings,
     rootElement: o.rootElement,
     rules: o.rules || [],
+    // soon move default to kayle
     runners: o.runners || ["htmlcs"],
     standard: o.standard,
     origin: o.origin || (o.html && "http://localhost") || "",
     language: o.language || "en",
     // store clip tracking element position
     clip: o.clip,
+    _kayleRunner: false,
+    _includesBaseRunner: false,
   };
 
   // parse hidden elements into string
@@ -45,16 +48,19 @@ export function extractArgs(o, watcher?: Watcher) {
 
   // default to a runner
   if (
-    !options.runners.some(
-      (runner) => runner === "axe" || runner === "htmlcs"
-      // ||
-      // // wasm build when released
-      // runner === "kayle"
-    )
+    options.runners.forEach((runner, runnerIndex, ar) => {
+      if (runner === "axe" || runner === "htmlcs") {
+        options._includesBaseRunner = true;
+      }
+      if (runner === "kayle") {
+        options._kayleRunner = true;
+        ar.splice(runnerIndex, 1);
+      }
+    }) &&
+    (options._includesBaseRunner || options._kayleRunner)
   ) {
     options.runners.push("htmlcs");
   }
 
-  // todo: validate all options
   return options;
 }

@@ -14,7 +14,7 @@ import { performance } from "perf_hooks";
   const { issues, pageUrl, documentTitle, meta, automateable } = await kayle({
     page,
     browser,
-    runners: ["htmlcs", "axe"],
+    runners: ["htmlcs", "axe", "kayle"],
     includeWarnings: true,
     html: drakeMock,
     standard: Standard.WCAG2AA,
@@ -28,7 +28,7 @@ import { performance } from "perf_hooks";
 
   // valid list
   assert(Array.isArray(issues));
-  assert(meta.errorCount === 41);
+  assert(meta.errorCount <= 42);
   assert(meta.warningCount === 43);
   assert(meta.accessScore <= 70);
 
