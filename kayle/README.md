@@ -104,7 +104,7 @@ If you are using puppeteer expect around 2x slower results.
 
 Straight forward linting. You can pass a url or valid html.
 
-Linting is handled on the same machine not sandboxed. You can also use the `kayleInnateBuilder` to 
+Linting is handled on the same machine not sandboxed. You can also use the `kayleInnateBuilder` to
 get the wasm kayle setup to lint pages.
 
 ```js

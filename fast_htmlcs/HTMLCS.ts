@@ -355,7 +355,13 @@ _global.HTMLCS = new (function () {
         _standard,
         function () {
           // Script is included now register the standard.
-          this.registerStandard(_standard, part, callback, failCallback, options);
+          this.registerStandard(
+            _standard,
+            part,
+            callback,
+            failCallback,
+            options
+          );
         },
         failCallback
       );
@@ -369,13 +375,7 @@ _global.HTMLCS = new (function () {
    * @param {Function} callback The function to call once the standard is registered.
    * @param {Object}   options  The options for the standard (e.g. exclude sniffs).
    */
-  this.registerStandard = (
-    standard,
-    part,
-    callback,
-    failCallback,
-    options
-  ) => {
+  this.registerStandard = (standard, part, callback, failCallback, options) => {
     // Get a copy of the ruleset object.
     const oldRuleSet = _getRuleset(part);
 
@@ -549,7 +549,7 @@ _global.HTMLCS = new (function () {
     if (!sniffSet) {
       return null;
     }
-    
+
     sniffSet._name = sniff;
 
     return sniffSet;

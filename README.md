@@ -265,7 +265,7 @@ import { extendRunner, kayle } from "kayle"
         "H25.1.NoHeadEl"
     );
   }
-  
+
   // Add a new rule example - 4_1_4_1_4
 
   window["HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_4"] = {
@@ -280,7 +280,7 @@ import { extendRunner, kayle } from "kayle"
         );
     },
   };
-  
+
   // push the new sniff to the list
   HTMLCS_WCAG2AAA.sniffs.push("Principle4.Guideline4_1.4_1_4");
   // register the new sniff rule to run

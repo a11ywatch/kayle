@@ -46,19 +46,18 @@ export function extractArgs(o, watcher?: Watcher) {
     }
   }
 
+  options.runners.forEach((runner, runnerIndex, ar) => {
+    if (runner === "axe" || runner === "htmlcs") {
+      options._includesBaseRunner = true;
+    }
+    if (runner === "kayle") {
+      options._kayleRunner = true;
+      ar.splice(runnerIndex, 1);
+    }
+  });
+
   // default to a runner
-  if (
-    options.runners.forEach((runner, runnerIndex, ar) => {
-      if (runner === "axe" || runner === "htmlcs") {
-        options._includesBaseRunner = true;
-      }
-      if (runner === "kayle") {
-        options._kayleRunner = true;
-        ar.splice(runnerIndex, 1);
-      }
-    }) &&
-    (options._includesBaseRunner || options._kayleRunner)
-  ) {
+  if (!(options._includesBaseRunner || options._kayleRunner)) {
     options.runners.push("htmlcs");
   }
 
