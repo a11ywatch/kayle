@@ -177,8 +177,6 @@ export type RunnerConfig = {
   _initRequest?: boolean;
   // the incomplete kayle wasm runner
   _kayleRunner?: boolean;
-  // contains a base runner htmlcs or axe
-  _includesBaseRunner?: boolean;
 };
 
 // log singleton

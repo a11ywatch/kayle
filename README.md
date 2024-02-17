@@ -107,6 +107,7 @@ const results = await kayle({
 
 - [`fast_axecore`](./fast_htmlcs/README.md): run tests using fork of [axe-core](./lib/runners/axe.ts).
 - [`fast_htmlcs`](./fast_htmlcs/README.md): run tests using fork of [HTML CodeSniffer](./lib/runners/htmlcs.ts).
+- [`kayle`](./kayle_innate/README.md): run tests using the incomplete Rust/wasm [Kayle Innate](./kayle_innate).
 - `custom`: custom runners using [`injectRunner`](./kayle/lib/runner-js.ts#l=57) util - library authors.
 
 ## Linting

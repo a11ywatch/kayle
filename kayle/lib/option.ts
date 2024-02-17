@@ -27,7 +27,6 @@ export function extractArgs(o, watcher?: Watcher) {
     // store clip tracking element position
     clip: o.clip,
     _kayleRunner: false,
-    _includesBaseRunner: false,
   };
 
   // parse hidden elements into string
@@ -46,9 +45,11 @@ export function extractArgs(o, watcher?: Watcher) {
     }
   }
 
+  let _includesBaseRunner = false;
+
   options.runners.forEach((runner, runnerIndex, ar) => {
     if (runner === "axe" || runner === "htmlcs") {
-      options._includesBaseRunner = true;
+      _includesBaseRunner = true;
     }
     if (runner === "kayle") {
       options._kayleRunner = true;
@@ -57,7 +58,7 @@ export function extractArgs(o, watcher?: Watcher) {
   });
 
   // default to a runner
-  if (!(options._includesBaseRunner || options._kayleRunner)) {
+  if (!(_includesBaseRunner || options._kayleRunner)) {
     options.runners.push("htmlcs");
   }
 

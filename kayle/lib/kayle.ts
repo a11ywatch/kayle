@@ -39,8 +39,13 @@ const audit = async (config: RunnerConfig): Promise<Audit> => {
 // run accessibility audit
 const auditPage = async (config: RunnerConfig) => {
   await Promise.all([runActionsList(config), injectRunners(config)]);
+  const results = await audit(config);
 
-  return await audit(config);
+  if (config._kayleRunner) {
+    await auditPageInnate(config, results);
+  }
+
+  return results;
 };
 
 // run actions
@@ -102,18 +107,10 @@ export const auditExtension = async (config: RunnerConfig): Promise<Audit> => {
 // lazy load kayle innate
 let kayle_innate;
 
-// run the rust wasm audit.
-// we do not need timers here since almost all audits perform under 25ms.
+// run the Rust wasm audit.
 // we still need to add the score map and apply the score based on what is found.
-// the thing is we need the old map to make sure we do not repeat values.
-const auditPageInnate = async (
-  config: ReturnType<typeof extractArgs>,
-  results: Audit
-) => {
-  if (!config._includesBaseRunner) {
-    await runActionsList(config as RunnerConfig);
-  }
-
+// we need the old map to make sure we do not repeat values or opt in to the feature with the crate.
+const auditPageInnate = async (config: RunnerConf, results: Audit) => {
   const html = await config.page.content();
   const css = await getAllCss(config as RunnerConfig);
 
@@ -217,10 +214,6 @@ export const kayle = async (
         return item;
       })
     );
-  }
-
-  if (config._kayleRunner) {
-    await auditPageInnate(config, results);
   }
 
   if (!preventClose && navigate) {
