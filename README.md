@@ -189,31 +189,6 @@ type RunnerConfig = {
 1. zh-CN ("Chinese-Simplified")
 1. zh-TW ("Chinese-Traditional")
 
-## Testing
-
-For the comparison between using `fast_htmlcs`, `fast_axecore`, and the metrics for the 3rd party `@axe-core/playwright`.
-
-1. `yarn build:test`
-
-Checkout the [playwright-example](./kayle/tests/basic-playwright.spec.ts) or [puppeteer-example](./kayle/tests/basic.ts) for more information.
-
-## Benchmarks
-
-1. `fast_htmlcs` runs up to 110x base faster than HTML_CodeSniffer.
-1. `fast_axecore` runs up to 2.5x - 15x base faster than the original axe by default and scales the larger the website.
-
-Currently `fast_htmlcs` runs around 50x faster than axe-core and has several differences of handling the way issues are found. They both capture different cases and is best to used together which this library handles efficiently.
-
-If you use [`@playwright/axe-core`](https://playwright.dev/docs/next/accessibility-testing) you can swap it out with the following [playwright-axe-example](./kayle/tests/basic-axe-playwright.spec.ts) and get an increase in issues found and major performance boost of at least 100%. You can also include multiple runners to extend the issues beyond the basics in folds.
-
-## Performance Tips
-
-As we set the foundation to mark test cases that can pass and increase our target on automating accessibility we have a couple of layers that can make a major difference to the project. The following will save drastic time and money if done.
-
-1. Use a fast concurrent [crawler](https://github.com/a11ywatch/crawler) to gather all of the html to send to a web accessibility service that can perform audits like [pagemind](https://github.com/a11ywatch/pagemind) over CDP.
-
-2. Use the pre-compiled browser extensions to avoid over the wire latency `yarn build:extension`.
-
 ## Browser Extension
 
 If you want to compile a chrome extension for preloading scripts without needing to worry about bandwidth cost use the following to generate a custom extension to use.
@@ -314,6 +289,44 @@ const results = await kayle({
   origin: "https://a11ywatch.com",
 });
 ```
+
+## CLI
+
+The [kayle CLI](./kayle_cli/) is a work in progress.
+
+```sh
+npm install kayle_cli
+```
+
+Audit a website url.
+
+```sh
+kayle_cli https://www.somewebsite.com
+```
+
+## Testing
+
+For the comparison between using `fast_htmlcs`, `fast_axecore`, and the metrics for the 3rd party `@axe-core/playwright`.
+
+1. `yarn build:test`
+
+Checkout the [playwright-example](./kayle/tests/basic-playwright.spec.ts) or [puppeteer-example](./kayle/tests/basic.ts) for more information.
+
+## Benchmarks
+
+1. `fast_htmlcs` runs up to 110x base faster than HTML_CodeSniffer.
+1. `fast_axecore` runs up to 2.5x - 15x base faster than the original axe by default and scales the larger the website.
+
+Currently `fast_htmlcs` runs around 50x faster than axe-core and has several differences of handling the way issues are found. They both capture different cases and is best to used together which this library handles efficiently.
+
+If you use [`@playwright/axe-core`](https://playwright.dev/docs/next/accessibility-testing) you can swap it out with the following [playwright-axe-example](./kayle/tests/basic-axe-playwright.spec.ts) and get an increase in issues found and major performance boost of at least 100%. You can also include multiple runners to extend the issues beyond the basics in folds.
+
+### Performance Tips
+
+As we set the foundation to mark test cases that can pass and increase our target on automating accessibility we have a couple of layers that can make a major difference to the project. The following will save drastic time and money if done.
+
+1. Use a fast concurrent [crawler](https://github.com/a11ywatch/crawler) to gather all of the html to send to a web accessibility service that can perform audits like [pagemind](https://github.com/a11ywatch/pagemind) over CDP.
+2. Use the pre-compiled browser extensions to avoid over the wire latency `yarn build:extension`.
 
 ## Developing
 
