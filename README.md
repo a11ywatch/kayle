@@ -83,6 +83,20 @@ const results = await autoKayle({
 # FAST_AXE TIME 203.2565419971943
 ```
 
+## CLI
+
+If you need to use kayle in the CI or shell use [kayle CLI](./kayle_cli/).
+
+```sh
+npm install kayle_cli
+# configure the engine defaults.
+kayle_cli --automation-lib puppeteer --standard wcag2aa configure
+# install the deps for the runner.
+kayle_cli install
+# audit a website url.
+kayle_cli https://www.somewebsite.com
+```
+
 ## Clips
 
 You can include base64 images with the audits to get a visual of the exact location of the issue.
@@ -288,22 +302,6 @@ const results = await kayle({
   runners: ["htmlcs", "htmlcs_extended"]
   origin: "https://a11ywatch.com",
 });
-```
-
-## CLI
-
-The [kayle CLI](./kayle_cli/) is a work in progress.
-
-```sh
-npm install kayle_cli
-# install the deps - you can swap puppeteer with playwright
-kayle_cli --automation-lib puppeteer install
-```
-
-Audit a website url.
-
-```sh
-kayle_cli --automation-lib puppeteer https://www.somewebsite.com
 ```
 
 ## Testing
