@@ -1,13 +1,13 @@
 /// kayle script using puppeteer to drive the browser
 pub const SCRIPT_EXECUTION: &'static str = r###"
 const { argv, stdout } = require('node:process');
-const puppeteer = require('puppeteer');
+const { chromium } = require('playwright');
 const { kayle, Standard } = require('kayle');
 
 const args = argv.slice(1);
 
 (async () => {
-    const browser = await puppeteer.launch({ headless: "new" });    
+    const browser = await chromium.launch();
     const page = await browser.newPage();
     
     if (process.env.LOG_ENABLED) {

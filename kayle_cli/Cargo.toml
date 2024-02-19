@@ -1,6 +1,6 @@
 [package]
 name = "kayle_cli"
-version = "0.0.1"
+version = "0.0.2"
 edition = "2021"
 description = "The kayle CLI for web accessibility auditing"
 repository = "https://github.com/a11ywatch/kayle"

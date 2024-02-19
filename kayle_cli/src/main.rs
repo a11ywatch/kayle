@@ -1,18 +1,29 @@
-use clap::{Parser, Subcommand};
-use std::ffi::OsString;
-use std::process::Command;
+use clap::{Parser, Subcommand, ValueEnum};
+use std::{ffi::OsString, process::Command};
+mod playwright_script;
 mod puppeteer_script;
 
 #[derive(Debug, Subcommand)]
 enum Commands {
     /// Upgrade kayle and the dependencies required.
-    #[command(arg_required_else_help = true)]
     Upgrade,
+    /// Install kayle and the dependencies required.
+    Install,
     /// Configure the audits.
     Configure,
     /// The kayle program.
     #[command(external_subcommand)]
     Kayle(Vec<OsString>),
+}
+
+/// Automation libraries to use.
+#[derive(Debug, Default, Clone, PartialEq, ValueEnum)]
+enum AutomationLib {
+    #[default]
+    /// The puppeteer library. Defaults to this.
+    Puppeteer,
+    /// The playwright library by microsoft
+    Playwright,
 }
 
 /// Web Accessibility Auditing using the kayle engine
@@ -31,45 +42,70 @@ struct Args {
     /// The accessibility runner to use htmlcs, axecore, or kayle.
     #[arg(short, long)]
     runners: Option<Vec<String>>,
+    #[arg(long, value_enum)]
+    /// The automation lib to use either puppeteer or playwright.
+    automation_lib: Option<AutomationLib>,
     #[command(subcommand)]
     command: Commands,
 }
 
 fn main() {
     let args = Args::parse();
+    let puppeteer = args.automation_lib.unwrap_or_default() == AutomationLib::Puppeteer;
 
     match args.command {
         Commands::Configure => {
             println!("Configuration TODO");
         }
-        Commands::Upgrade => {
+        Commands::Upgrade | Commands::Install => {
+            println!(
+                "Installing kayle and {}...",
+                if puppeteer { "puppeteer" } else { "playwright" }
+            );
             Command::new("npm")
                 .args(["i", "kayle", "-g"])
                 .status()
                 .expect("Failed to execute command - npm install kayle command");
             Command::new("npm")
-                .args(["i", "puppeteer", "-g"])
+                .args([
+                    "i",
+                    if puppeteer { "puppeteer" } else { "playwright" },
+                    "-g",
+                ])
                 .status()
-                .expect("Failed to execute command - npm install puppeteer command");
+                .expect(if puppeteer {
+                    "Failed to execute command - npm install puppeteer command"
+                } else {
+                    "Failed to execute command - npm install playwright command"
+                });
         }
         Commands::Kayle(urls) => {
             let accessibility_standard = args.standard.unwrap_or_default();
             let include_warnings = args.include_warnings.unwrap_or_default();
             let include_notices = args.include_notices.unwrap_or_default();
             let runners = args.runners.unwrap_or_default().join(",");
+            let headless_script = if puppeteer {
+                puppeteer_script::SCRIPT_EXECUTION
+            } else {
+                playwright_script::SCRIPT_EXECUTION
+            };
 
             for u in urls.iter() {
                 Command::new("node")
                 .args([
                     "-e", 
-                    puppeteer_script::SCRIPT_EXECUTION, 
+                    headless_script,  
                     u.to_str().unwrap(), 
                     &accessibility_standard, 
                     if include_notices { "true"} else { "false" },
                     if include_warnings { "true"} else { "false" },
                     &runners])
                 .status()
-                .expect("Failed to execute node command. Make sure puppeteer and node is installed.");
+                .expect(if puppeteer {
+                    "Failed to execute node command - make sure node and puppeteer is installed."
+                } else {
+                    "Failed to execute node command - make sure node and playwright is installed."
+                });
             }
         }
     }

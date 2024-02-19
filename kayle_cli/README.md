@@ -5,7 +5,6 @@ The kayle CLI, for web accessibility audits. [WIP]
 ## Requirements
 
 Node.js is required.
-Install puppeteer globally `npm i puppeteer -g`.
 
 ## Installation
 
@@ -19,6 +18,12 @@ npm install kayle_cli
 
 ## Getting Started
 
+Make sure you have an automation lib installed.  Use the arg `--automation-lib` to switch from the default puppeteer to playwright.
+
+```sh
+kayle_cli --automation-lib puppeteer install
+```
+
 Pass in a list of urls to get the results.
 
 ```sh
@@ -28,20 +33,37 @@ Usage: kayle_cli [OPTIONS] <COMMAND>
 
 Commands:
   upgrade    Upgrade kayle and the dependencies required
+  install    Install kayle and the dependencies required
   configure  Configure the audits
   help       Print this message or the help of the given subcommand(s)
 
 Options:
   -s, --standard <STANDARD>
           The accessibility standard to run, WCAG2A, WCAG2AA, WCAG2AAA, and Section508
+
       --include-warnings <INCLUDE_WARNINGS>
-          Include warnings in the audit [possible values: true, false]
+          Include warnings in the audit
+          
+          [possible values: true, false]
+
       --include-notices <INCLUDE_NOTICES>
-          Include notices in the audit [possible values: true, false]
+          Include notices in the audit
+          
+          [possible values: true, false]
+
   -r, --runners <RUNNERS>
           The accessibility runner to use htmlcs, axecore, or kayle
+
+      --automation-lib <AUTOMATION_LIB>
+          The automation lib to use either puppeteer or playwright
+
+          Possible values:
+          - puppeteer:  The puppeteer library. Defaults to this
+          - playwright: The playwright library by microsoft
+
   -h, --help
-          Print help
+          Print help (see a summary with '-h')
+
   -V, --version
           Print version
 ```
@@ -54,4 +76,3 @@ kayle_cli https://www.drake.com
 ## Todo
 
 1. Configuration.
-2. Allow Opt between puppeteer or playwright.

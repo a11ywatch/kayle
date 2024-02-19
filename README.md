@@ -296,12 +296,14 @@ The [kayle CLI](./kayle_cli/) is a work in progress.
 
 ```sh
 npm install kayle_cli
+# install the deps - you can swap puppeteer with playwright
+kayle_cli --automation-lib puppeteer install
 ```
 
 Audit a website url.
 
 ```sh
-kayle_cli https://www.somewebsite.com
+kayle_cli --automation-lib puppeteer https://www.somewebsite.com
 ```
 
 ## Testing
