@@ -19,11 +19,16 @@ const args = argv.slice(1);
     const audit = await kayle({
       page,
       browser,
-      runners: runners.length && runners[0] ? runners : ["htmlcs"],
-      includeWarnings: args[3] === "true",
-      includeNotices: args[2] === "true",
-      standard: args[1] || Standard.WCAG2AA,
       origin: args[0],
+      standard: args[1] || Standard.WCAG2AA,
+      includeNotices: args[2] === "true",
+      includeWarnings: args[3] === "true",
+      runners: runners.length && runners[0] ? runners : ["htmlcs"],
+      waitUntil: args[5],
+      allowImages: args[6] === "true",
+      clip: args[7] === "true",
+      clipDir: args[8],
+      clip2Base64: args[9],
     });
     
     stdout.write(JSON.stringify(audit));

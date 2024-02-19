@@ -11,6 +11,7 @@ mod puppeteer_script;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Subcommand, Serialize, Deserialize)]
+/// The CLI commands to run.
 enum Commands {
     /// Upgrade kayle and the dependencies required.
     Upgrade,
@@ -27,7 +28,7 @@ enum Commands {
 #[derive(Debug, Default, Clone, PartialEq, ValueEnum, Serialize, Deserialize)]
 enum AutomationLib {
     #[default]
-    /// The puppeteer library. Defaults to this.
+    /// The puppeteer library. The Default.
     Puppeteer,
     /// The playwright library by microsoft
     Playwright,
@@ -72,12 +73,62 @@ enum AccessibilityRunner {
 }
 
 impl AccessibilityRunner {
-    /// get the standard to string
+    /// get the runner to string
     pub fn to_str(&self) -> &'static str {
         match self {
             AccessibilityRunner::Kayle => "kayle",
             AccessibilityRunner::Htmlcs => "htmlcs",
             AccessibilityRunner::Axe => "axe",
+        }
+    }
+}
+
+/// Wait for events.
+#[derive(Debug, Default, Clone, PartialEq, ValueEnum, Serialize, Deserialize)]
+enum WaitFor {
+    #[default]
+    ///  Waits till the window load event.
+    Load,
+    /// The dom loaded content first
+    DomcontentLoaded,
+    /// Wait for the commit event. Playwright only.
+    Commit,
+    ///  Waits till there are no more network connections for at least 500 ms. Playwright only.
+    NetworkIdle,
+    /// Waits till there are no more network connections for at least 500 ms. Puppeteer only.
+    NetworkIdle1,
+    /// Waits till there are no more than 2 network connections for at least 500 ms. Puppeteer only.
+    NetworkIdle2,
+}
+
+impl WaitFor {
+    /// get the wait_for event to string
+    pub fn to_str(&self, puppeteer: bool) -> &'static str {
+        match self {
+            WaitFor::Load => "load",
+            WaitFor::DomcontentLoaded => "domcontentloaded",
+            WaitFor::Commit => if puppeteer { "networkidle2" } else { "commit" },
+            WaitFor::NetworkIdle => {
+                if puppeteer {
+                    "networkidle1"
+                } else {
+                    "networkidle"
+                }
+            }
+            WaitFor::NetworkIdle1 => {
+                if puppeteer {
+                    "networkidle1"
+                } else {
+                    "networkidle"
+                }
+            }
+            WaitFor::NetworkIdle2 => {
+                if puppeteer {
+                    "networkidle2"
+                } else {
+                    "networkidle"
+                }
+            }
         }
     }
 }
@@ -98,9 +149,25 @@ struct Args {
     /// The accessibility runner to use htmlcs, axecore, or kayle.
     #[arg(short, long)]
     runners: Option<Vec<AccessibilityRunner>>,
+    /// WaitFor event for content to exist.
+    #[arg(short, long, value_enum)]
+    wait_for: Option<WaitFor>,
+    #[arg(long)]
+    /// Allow images to render, useful when setting clip option for bounding box.
+    allow_images: Option<bool>,
+    #[arg(long)]
+    /// Get the bounding box of an element.
+    clip: Option<bool>,
+    #[arg(long)]
+    /// The directory to store clip images.
+    clip_dir: Option<String>,
+    #[arg(long)]
+    /// Convert the clip to a base64 image.
+    clip_2_base64: Option<bool>,
     #[arg(long, value_enum)]
     /// The automation lib to use either puppeteer or playwright.
     automation_lib: Option<AutomationLib>,
+    /// The commands for the CLI.
     #[command(subcommand)]
     command: Commands,
 }
@@ -197,6 +264,40 @@ fn main() -> io::Result<()> {
             .map(|r| r.to_str())
             .collect::<Vec<&'static str>>()
             .join(",");
+            let wait_for = if args.wait_for.is_some() {
+                args.wait_for
+            } else {
+                loaded_config.wait_for
+            }
+            .unwrap_or_default();
+
+            let allow_images = if args.allow_images.is_some() {
+                args.allow_images
+            } else {
+                loaded_config.allow_images
+            }
+            .unwrap_or_default();
+
+            let clip = if args.clip.is_some() {
+                args.clip
+            } else {
+                loaded_config.clip
+            }
+            .unwrap_or_default();
+
+            let clip_dir = if args.clip_dir.is_some() {
+                args.clip_dir
+            } else {
+                loaded_config.clip_dir
+            }
+            .unwrap_or_default();
+
+            let clip_2_base64 = if args.clip_2_base64.is_some() {
+                args.clip_2_base64
+            } else {
+                loaded_config.clip_2_base64
+            }
+            .unwrap_or_default();
 
             let headless_script = if puppeteer {
                 puppeteer_script::SCRIPT_EXECUTION
@@ -208,12 +309,19 @@ fn main() -> io::Result<()> {
                 Command::new("node")
                 .args([
                     "-e", 
-                    headless_script,  
-                    u.to_str().unwrap(), 
-                    &accessibility_standard.to_str(), 
+                    headless_script,
+                    u.to_str().unwrap(),
+                    &accessibility_standard.to_str(),
                     if include_notices { "true"} else { "false" },
                     if include_warnings { "true"} else { "false" },
-                    &runners])
+                    &runners,
+                    &wait_for.to_str(puppeteer),
+                    if allow_images { "true"} else { "false" },
+                    if clip { "true"} else { "false" },
+                    &clip_dir,
+                    if clip_2_base64 { "true"} else { "false" },
+
+                ])
                 .status()
                 .expect(if puppeteer {
                     "Failed to execute node command - make sure node and puppeteer is installed."

@@ -1,6 +1,6 @@
 # kayle_innate
 
-The incomplete Rust lib for accessibility things. 
+The incomplete Rust lib for accessibility things.
 
 Check out [accessibility-rs](https://github.com/a11ywatch/accessibility-rs) to make updates and add new rules.
 

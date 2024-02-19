@@ -221,13 +221,9 @@ If you want to test the extension use `yarn test:puppeteer:extension`.
 
 The `kayle` function also expects a field called `browserExtension` with the option set to `true`. Currently the extension handling is experimental reason for the name.
 
-## Rust Runner
-
-We are building a rust based runner called [kayle_innate](./kayle_innate/) that can port to wasm that will take the audits into the nanoseconds - low milliseconds zone.
-
 ## Extend Runner
 
-Extending a runner can be done with the following.
+Extending a runner and adding new rules can be done with the following at runtime.
 
 ```ts
 import { extendRunner, kayle } from "kayle"
@@ -236,17 +232,12 @@ import { extendRunner, kayle } from "kayle"
   extendRunner(
     MainRunner.htmlcs,
     `
-  // use console.log(JSON.stringify(Object.keys(window))) to see all of the objects to extend.
-  // set the function HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_2.process to a variable to re-use the logic prior in the call.
-
   // store the prior sniff in a variable to re-use the logic
   const prevHeadSniffCase = HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_2.process;
 
   HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_2.process = (element, _) => {
     // re-run the logic for the case
     prevHeadSniffCase(element, _);
-    // log something to test if output ran
-    console.log("Running extended head element case");
     // we can write a test here that should pass some logic. For now we just add a new error
     HTMLCS.addMessage(
         HTMLCS.ERROR,
@@ -275,8 +266,7 @@ import { extendRunner, kayle } from "kayle"
   HTMLCS_WCAG2AAA.sniffs.push("Principle4.Guideline4_1.4_1_4");
   // register the new sniff rule to run
   HTMLCS.registerSniff("WCAG2AAA", "Principle4.Guideline4_1.4_1_4");
-  `.trimStart()
-  );
+  `.trimStart());
 
 const results = await kayle({
   page,
