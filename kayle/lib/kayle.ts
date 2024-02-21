@@ -220,7 +220,7 @@ export const kayle = async (
     try {
       await config.page.close();
     } catch (e) {
-      _log.enabled && console.error;
+      _log.enabled && console.error(e);
     }
   }
 
