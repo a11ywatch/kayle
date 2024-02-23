@@ -126,6 +126,7 @@ const axeRunner = {
 
 // hard code locales to the list to axe-core/locales - not likely to update often
 const locales = [
+  "ar",
   "da",
   "de",
   "es",
@@ -138,6 +139,7 @@ const locales = [
   "pl",
   "no_NB",
   "pt_BR",
+  "zh_CN"
 ];
 
 for (const lang of locales) {

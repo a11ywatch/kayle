@@ -31,6 +31,7 @@ const runnersJavascript = {
   kayle: readFileSync(`${__dirname}/runner.js`, "utf-8"),
   // htmlcs scripts in all locales
   htmlcs: loadRunnerScript("htmlcs", ""),
+  htmlcs_ar: loadRunnerScript("htmlcs", "ar"),
   htmlcs_es: loadRunnerScript("htmlcs", "es"),
   htmlcs_ja: loadRunnerScript("htmlcs", "ja"),
   htmlcs_fr: loadRunnerScript("htmlcs", "fr"),
@@ -38,9 +39,10 @@ const runnersJavascript = {
   htmlcs_nl: loadRunnerScript("htmlcs", "nl"),
   htmlcs_pl: loadRunnerScript("htmlcs", "pl"),
   htmlcs_zh_CN: loadRunnerScript("htmlcs", "zh-CN"),
-  // htmlcs_zh_TN: loadRunnerScript("htmlcs", "zh-TN"),
+  htmlcs_zh_TW: loadRunnerScript("htmlcs", "zh-TW"),
   // axe scripts in all locales
   axe: loadRunnerScript("axe", "en"),
+  axe_ar: loadRunnerScript("axe", "ar"),
   axe_es: loadRunnerScript("axe", "es"),
   axe_ja: loadRunnerScript("axe", "ja"),
   axe_fr: loadRunnerScript("axe", "fr"),
@@ -50,6 +52,8 @@ const runnersJavascript = {
   axe_nl: loadRunnerScript("axe", "nl"),
   axe_pl: loadRunnerScript("axe", "pl"),
   axe_ko: loadRunnerScript("axe", "ko"),
+  axe_zh_CN: loadRunnerScript("axe", "zh-CN"),
+  // axe_zh_TW: loadRunnerScript("axe", "zh-TW"),
   // axe_no_NB: loadRunnerScript("axe", "no-NB"),
   // axe_pt_BR: loadRunnerScript("axe", "pt-BR"),
 };
@@ -89,6 +93,7 @@ const getRunner = (
 
 export type Runner = Exclude<
   keyof typeof runnersJavascript,
+  | "htmlcs_ar"
   | "htmlcs_es"
   | "htmlcs_ja"
   | "htmlcs_fr"
@@ -96,6 +101,8 @@ export type Runner = Exclude<
   | "htmlcs_nl"
   | "htmlcs_pl"
   | "htmlcs_zh_CN"
+  | "htmlcs_zh_TW"
+  | "axe_ar"
   | "axe_es"
   | "axe_ja"
   | "axe_fr"

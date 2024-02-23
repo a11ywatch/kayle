@@ -49,7 +49,7 @@
     "cp:build": "echo 'building fast_axecore'",
     "tsc": "yarn compile:build && tsc && cp ./lib/intro.stub dist && cp ./lib/outro.stub dist",
     "develop": "grunt dev --force",
-    "build": "(rm -f -r ./dist/*) 2>/dev/null && yarn tsc && grunt --lang=en,da,de,es,eu,pl,fr,he,ja,ko,nl,no_NB,pt_BR",
+    "build": "(rm -f -r ./dist/*) 2>/dev/null && yarn tsc && grunt --lang=en,ar,da,de,es,eu,pl,fr,he,ja,ko,nl,no_NB,pt_BR,zh_CN",
     "build:fast_axecore": "yarn build",
     "eslint": "eslint --color --format stylish '{lib,test,build,doc}/**/*.js' 'Gruntfile.js'",
     "version": "echo \"use 'npm run release' to bump axe-core version\" && exit 1",

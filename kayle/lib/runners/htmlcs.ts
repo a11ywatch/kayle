@@ -62,7 +62,7 @@ const htmlcsRunner = {
 };
 
 // hard code locales to the list to htmlcs locales not EN
-const locales = ["fr", "es", "it", "ja", "nl", "pl", "zh_CN", "zh_TW"];
+const locales = ["ar", "fr", "es", "it", "ja", "nl", "pl", "zh_CN", "zh_TW"];
 
 for (const lang of locales) {
   htmlcsRunner[lang.replace("_", "-")] = {
