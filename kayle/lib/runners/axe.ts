@@ -139,7 +139,7 @@ const locales = [
   "pl",
   "no_NB",
   "pt_BR",
-  "zh_CN"
+  "zh_CN",
 ];
 
 for (const lang of locales) {

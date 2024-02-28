@@ -1,461 +1,406 @@
 _global.translation["ar"] = {
-    auditor_success_criterion: "Success Criterion",
-    auditor_suggested_techniques: "Suggested Techniques",
-    "1_1_1_H30.2":
-      "Img element is the only content of the link, but is missing alt text. The alt text should describe the purpose of the link.",
-    "1_1_1_H67.1":
-      "Img element with empty alt text must have absent or empty title attribute.",
-    "1_1_1_H67.2":
-      "Img element is marked so that it is ignored by Assistive Technology.",
-    "1_1_1_H37":
-      "Img element missing an alt attribute. Use the alt attribute to specify a short text alternative.",
-    "1_1_1_G94.Image":
-      "Ensure that the img element's alt text serves the same purpose and presents the same information as the image.",
-    "1_1_1_H36":
-      "Image submit button missing an alt attribute. Specify a text alternative that describes the button's function, using the alt attribute.",
-    "1_1_1_G94.Button":
-      "Ensure that the image submit button's alt text identifies the purpose of the button.",
-    "1_1_1_H24":
-      "Area element in an image map missing an alt attribute. Each area element must have a text alternative that describes the function of the image map area.",
-    "1_1_1_H24.2":
-      "Ensure that the area element's text alternative serves the same purpose as the part of image map image it references.",
-    "1_1_1_G73,G74":
-      "If this image cannot be fully described in a short text alternative, ensure a long text alternative is also available, such as in the body text or through a link.",
-    "1_1_1_H2.EG5":
-      "Img element inside a link must not use alt text that duplicates the text content of the link.",
-    "1_1_1_H2.EG4":
-      "Img element inside a link has empty or missing alt text when a link beside it contains link text. Consider combining the links.",
-    "1_1_1_H2.EG3":
-      "Img element inside a link must not use alt text that duplicates the content of a text link beside it.",
-    "1_1_1_H53,ARIA6":
-      "Object elements must contain a text alternative after all other alternatives are exhausted.",
-    "1_1_1_G94,G92.Object,ARIA6":
-      "Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and present the same information.",
-    "1_1_1_H35.3":
-      "Applet elements must contain a text alternative in the element's body, for browsers without support for the applet element.",
-    "1_1_1_H35.2":
-      "Applet elements must contain an alt attribute, to provide a text alternative to browsers supporting the element but are unable to load the applet.",
-    "1_1_1_G94,G92.Applet":
-      "Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and present the same information.",
-    "1_2_1_G158":
-      "If this embedded object contains pre-recorded audio only, and is not provided as an alternative for text content, check that an alternative text version is available.",
-    "1_2_1_G159,G166":
-      "If this embedded object contains pre-recorded video only, and is not provided as an alternative for text content, check that an alternative text version is available, or an audio track is provided that presents equivalent information.",
-    "1_2_2_G87,G93":
-      "If this embedded object contains pre-recorded synchronised media and is not provided as an alternative for text content, check that captions are provided for audio content.",
-    "1_2_3_G69,G78,G173,G8":
-      "If this embedded object contains pre-recorded synchronised media and is not provided as an alternative for text content, check that an audio description of its video, and/or an alternative text version of the content is provided.",
-    "1_2_4_G9,G87,G93":
-      "If this embedded object contains synchronised media, check that captions are provided for live audio content.",
-    "1_2_5_G78,G173,G8":
-      "If this embedded object contains pre-recorded synchronised media, check that an audio description is provided for its video content.",
-    "1_2_6_G54,G81":
-      "If this embedded object contains pre-recorded synchronised media, check that a sign language interpretation is provided for its audio.",
-    "1_2_7_G8":
-      "If this embedded object contains synchronised media, and where pauses in foreground audio is not sufficient to allow audio descriptions to convey the sense of pre-recorded video, check that an extended audio description is provided, either through scripting or an alternate version.",
-    "1_2_8_G69,G159":
-      "If this embedded object contains pre-recorded synchronised media or video-only content, check that an alternative text version of the content is provided.",
-    "1_2_9_G150,G151,G157":
-      "If this embedded object contains live audio-only content, check that an alternative text version of the content is provided.",
-    "1_3_1_F92,ARIA4":
-      'This element\'s role is "presentation" but contains child elements with semantic meaning.',
-    "1_3_1_H44.NonExistent":
-      'This label\'s "for" attribute contains an ID that does not exist in the document.',
-    "1_3_1_H44.NonExistentFragment":
-      'This label\'s "for" attribute contains an ID that does not exist in the document fragment.',
-    "1_3_1_H44.NotFormControl":
-      'This label\'s "for" attribute contains an ID for an element that is not a form control. Ensure that you have entered the correct ID for the intended element.',
-    "1_3_1_H65":
-      'This form control has a "title" attribute that is empty or contains only spaces. It will be ignored for labelling test purposes.',
-    "1_3_1_ARIA6":
-      'This form control has an "aria-label" attribute that is empty or contains only spaces. It will be ignored for labelling test purposes.',
-    "1_3_1_ARIA16,ARIA9":
-      'This form control contains an aria-labelledby attribute, however it includes an ID "{{id}}" that does not exist on an element. The aria-labelledby attribute will be ignored for labelling test purposes.',
-    "1_3_1_F68.Hidden":
-      "This hidden form field is labelled in some way. There should be no need to label a hidden form field.",
-    "1_3_1_F68.HiddenAttr":
-      'This form field is intended to be hidden (using the "hidden" attribute), but is also labelled in some way. There should be no need to label a hidden form field.',
-    "1_3_1_F68":
-      'This form field should be labelled in some way. Use the label element (either with a "for" attribute or wrapped around the form field), or "title", "aria-label" or "aria-labelledby" attributes as appropriate.',
-    "1_3_1_H49.": "Presentational markup used that has become obsolete in HTML5.",
-    "1_3_1_H49.AlignAttr": "Align attributes.",
-    "1_3_1_H49.Semantic":
-      "Semantic markup should be used to mark emphasised or special text so that it can be programmatically determined.",
-    "1_3_1_H49.AlignAttr.Semantic":
-      "Semantic markup should be used to mark emphasised or special text so that it can be programmatically determined.",
-    "1_3_1_H42":
-      "Heading markup should be used if this content is intended as a heading.",
-    "1_3_1_H63.3":
-      "Table cell has an invalid scope attribute. Valid values are row, col, rowgroup, or colgroup.",
-    "1_3_1_H63.2":
-      "Scope attributes on td elements that act as headings for other elements are obsolete in HTML5. Use a th element instead.",
-    "1_3_1_H43.ScopeAmbiguous":
-      "Scope attributes on th elements are ambiguous in a table with multiple levels of headings. Use the headers attribute on td elements instead.",
-    "1_3_1_H43.IncorrectAttr":
-      'Incorrect headers attribute on this td element. Expected "{{expected}}" but found "{{actual}}"',
-    "1_3_1_H43.IncorrectAttrNotice":
-      "Check that headers attribute on td elements are correct.",
-    "1_3_1_H43.HeadersRequired":
-      "The relationship between td elements and their associated th elements is not defined. As this table has multiple levels of th elements, you must use the headers attribute on td elements.",
-    "1_3_1_H43.MissingHeaderIds":
-      "Not all th elements in this table contain an id attribute. These cells should contain ids so that they may be referenced by td elements' headers attributes.",
-    "1_3_1_H43.MissingHeadersAttrs":
-      "Not all td elements in this table contain a headers attribute. Each headers attribute should list the ids of all th elements associated with that cell.",
-    "1_3_1_H43,H63":
-      "The relationship between td elements and their associated th elements is not defined. Use either the scope attribute on th elements, or the headers attribute on td elements.",
-    "1_3_1_H63.1":
-      "Not all th elements in this table have a scope attribute. These cells should contain a scope attribute to identify their association with td elements.",
-    "1_3_1_H73.3.LayoutTable":
-      "This table appears to be used for layout, but contains a summary attribute. Layout tables must not contain summary attributes, or if supplied, must be empty.",
-    "1_3_1_H39,H73.4":
-      "If this table is a data table, and both a summary attribute and a caption element are present, the summary should not duplicate the caption.",
-    "1_3_1_H73.3.Check":
-      "If this table is a data table, check that the summary attribute describes the table's organization or explains how to use the table.",
-    "1_3_1_H73.3.NoSummary":
-      "If this table is a data table, consider using the summary attribute of the table element to give an overview of this table.",
-    "1_3_1_H39.3.LayoutTable":
-      "This table appears to be used for layout, but contains a caption element. Layout tables must not contain captions.",
-    "1_3_1_H39.3.Check":
-      "If this table is a data table, check that the caption element accurately describes this table.",
-    "1_3_1_H39.3.NoCaption":
-      "If this table is a data table, consider using a caption element to the table element to identify this table.",
-    "1_3_1_H71.NoLegend":
-      "Fieldset does not contain a legend element. All fieldsets should contain a legend element that describes a description of the field group.",
-    "1_3_1_H85.2":
-      "If this selection list contains groups of related options, they should be grouped with optgroup.",
-    "1_3_1_H71.SameName":
-      "If these radio buttons or check boxes require a further group-level description, they should be contained within a fieldset element.",
-    "1_3_1_H48.1":
-      "This content looks like it is simulating an unordered list using plain text. If so, marking up this content with a ul element would add proper structure information to the document.",
-    "1_3_1_H48.2":
-      "This content looks like it is simulating an ordered list using plain text. If so, marking up this content with an ol element would add proper structure information to the document.",
-    "1_3_1_G141_a":
-      "The heading structure is not logically nested. This h{{headingNum}} element appears to be the primary document heading, so should be an h1 element.",
-    "1_3_1_G141_b":
-      "The heading structure is not logically nested. This h{{headingNum}} element should be an h{{properHeadingNum}} to be properly nested.",
-    "1_3_1_H42.2":
-      "Heading tag found with no content. Text that is not intended as a heading should not be marked up with heading tags.",
-    "1_3_1_H48":
-      "If this element contains a navigation section, it is recommended that it be marked up as a list.",
-    "1_3_1_LayoutTable":
-      "This table appears to be a layout table. If it is meant to instead be a data table, ensure header cells are identified using th elements.",
-    "1_3_1_DataTable":
-      "This table appears to be a data table. If it is meant to instead be a layout table, ensure there are no th elements, and no summary or caption.",
-    "1_3_2_G57":
-      "Check that the content is ordered in a meaningful sequence when linearised, such as when style sheets are disabled.",
-    "1_3_3_G96":
-      "Where instructions are provided for understanding the content, do not rely on sensory characteristics alone (such as shape, size or location) to describe objects.",
-    "1_3_4.RestrictView":
-      "Check that content does not restrict its view and operation to a single display orientation, such as portrait or landscape, unless a specific display orientation is essential.",
-    "1_3_5_H98.FaultyValue":
-      "This element contains a potentially faulty value in its autocomplete attribute: {{valuesStr}}.",
-    "1_3_5_H98.InvalidAutoComplete_Text":
-      "Invalid autocomplete value: {{x}}. Element does not belong to Text control group.",
-    "1_3_5_H98.InvalidAutoComplete_Multiline":
-      "Invalid autocomplete value: {{x}}. Element does not belong to Multiline control group.",
-    "1_3_5_H98.InvalidAutoComplete_Password":
-      "Invalid autocomplete value: {{x}}. Element does not belong to Password control group.",
-    "1_3_5_H98.InvalidAutoComplete_Url":
-      "Invalid autocomplete value: {{x}}. Element does not belong to Url control group.",
-    "1_3_5_H98.InvalidAutoComplete_Telephone":
-      "Invalid autocomplete value: {{x}}. Element does not belong to Telephone control group.",
-    "1_3_5_H98.InvalidAutoComplete_Numeric":
-      "Invalid autocomplete value: {{x}}. Element does not belong to Numeric control group.",
-    "1_3_5_H98.InvalidAutoComplete_Month":
-      "Invalid autocomplete value: {{x}}. Element does not belong to Month control group.",
-    "1_3_5_H98.InvalidAutoComplete_Date":
-      "Invalid autocomplete value: {{x}}. Element does not belong to Date control group.",
-    "1_3_5_H98.Purpose":
-      "Check that the input field serves a purpose identified in the Input Purposes for User Interface Components section; and that the content is implemented using technologies with support for identifying the expected meaning for form input data.",
-    "1_3_5_H98.MissingAutocomplete":
-      "This element does not have an autocomplete attribute. If this field collects information about the user, consider adding one to comply with this Success Criterion.",
-    "1_3_6_ARIA11.Check":
-      "Check that the purpose of User Interface Components, icons, and regions can be programmatically determined.",
-    "1_4_1_G14,G18":
-      "Check that any information conveyed using colour alone is also available in text, or through other visual cues.",
-    "1_4_2_F23":
-      "If this element contains audio that plays automatically for longer than 3 seconds, check that there is the ability to pause, stop or mute the audio.",
-    "1_4_3_F24.BGColour":
-      "Check that this element has an inherited foreground colour to complement the corresponding inline background colour or image.",
-    "1_4_3_F24.FGColour":
-      "Check that this element has an inherited background colour or image to complement the corresponding inline foreground colour.",
-    "1_4_3_G18_or_G145.Abs":
-      "This element is absolutely positioned and the background color can not be determined. Ensure the contrast ratio between the text and all covered parts of the background are at least {{required}}:1.",
-    "1_4_3_G18_or_G145.BgImage":
-      "This element's text is placed on a background image. Ensure the contrast ratio between the text and all covered parts of the image are at least {{required}}:1.",
-    "1_4_3_G18_or_G145.BgGradient":
-      "This element's text is placed on a gradient. Ensure the contrast ratio between the text and all covered parts of the gradient are at least {{required}}:1.",
-    "1_4_3_G18_or_G145.Alpha":
-      "This element's text or background contains transparency. Ensure the contrast ratio between the text and background are at least {{required}}:1.",
-    "1_4_3_G18_or_G145.Fail":
-      "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least {{required}}:1, but text in this element has a contrast ratio of {{value}}:1.",
-    "1_4_3_G18_or_G145.Fail.Recomendation": "Recommendation: ",
-    "1_4_3_G18_or_G145.Fail.Recomendation.Text":
-      "change text colour to {{value}}",
-    "1_4_3_G18_or_G145.Fail.Recomendation.Background":
-      "change background to {{value}}",
-    "1_4_4_G142":
-      "Check that text can be resized without assistive technology up to 200 percent without loss of content or functionality.",
-    "1_4_5_G140,C22,C30.AALevel":
-      "If the technologies being used can achieve the visual presentation, check that text is used to convey information rather than images of text, except when the image of text is essential to the information being conveyed, or can be visually customised to the user's requirements.",
-    "1_4_6_G18_or_G17.Abs":
-      "This element is absolutely positioned and the background color can not be determined. Ensure the contrast ratio between the text and all covered parts of the background are at least {{required}}:1.",
-    "1_4_6_G18_or_G17.BgImage":
-      "This element's text is placed on a background image. Ensure the contrast ratio between the text and all covered parts of the image are at least {{required}}:1.",
-    "1_4_6_G18_or_G17.BgGradient":
-      "This element's text is placed on a background gradient. Ensure the contrast ratio between the text and all covered parts of the gradient are at least {{required}}:1.",
-    "1_4_6_G18_or_G17.Fail":
-      "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least {{required}}:1, but text in this element has a contrast ratio of {{value}}:1.",
-    "1_4_6_G18_or_G17.Fail.Recomendation": "Recommendation: ",
-    "1_4_6_G18_or_G17.Fail.Recomendation.Text": "change text colour to {{value}}",
-    "1_4_6_G18_or_G17.Fail.Recomendation.Background":
-      "change background to {{value}}",
-    "1_4_7_G56":
-      "For pre-recorded audio-only content in this element that is primarily speech (such as narration), any background sounds should be muteable, or be at least 20 dB (or about 4 times) quieter than the speech.",
-    "1_4_8_G148,G156,G175":
-      "Check that a mechanism is available for the user to select foreground and background colours for blocks of text, either through the Web page or the browser.",
-    "1_4_8_H87,C20":
-      "Check that a mechanism exists to reduce the width of a block of text to no more than 80 characters (or 40 in Chinese, Japanese or Korean script).",
-    "1_4_8_C19,G172,G169":
-      "Check that blocks of text are not fully justified - that is, to both left and right edges - or a mechanism exists to remove full justification.",
-    "1_4_8_G188,C21":
-      "Check that line spacing in blocks of text are at least 150% in paragraphs, and paragraph spacing is at least 1.5 times the line spacing, or that a mechanism is available to achieve this.",
-    "1_4_8_H87,G146,C26":
-      "Check that text can be resized without assistive technology up to 200 percent without requiring the user to scroll horizontally on a full-screen window.",
-    "1_4_9_G140,C22,C30.NoException":
-      "Check that images of text are only used for pure decoration or where a particular presentation of text is essential to the information being conveyed.",
-    "1_4_10_C32,C31,C33,C38,SCR34,G206.Check":
-      "Check that content can be presented without loss of information or functionality, and without requiring scrolling in two dimensions for: \
-      Vertical scrolling content at a width equivalent to 320 CSS pixels; \
-      Horizontal scrolling content at a height equivalent to 256 CSS pixels; \
-      Except for parts of the content which require two-dimensional layout for usage or meaning.",
-    "1_4_10_C32,C31,C33,C38,SCR34,G206.Fixed":
-      'This element has "position: fixed". This may require scrolling in two dimensions, which is considered a failure of this Success Criterion.',
-    "1_4_10_C32,C31,C33,C38,SCR34,G206.Scrolling":
-      "Preformatted text may require scrolling in two dimensions, which is considered a failure of this Success Criterion.",
-    "1_4_10_C32,C31,C33,C38,SCR34,G206.Zoom":
-      "Interfering with a user agent's ability to zoom may be a failure of this Success Criterion.",
-    "1_4_11_G195,G207,G18,G145,G174,F78.Check":
-      "Check that the visual presentation of the following have a contrast ratio of at least 3:1 against adjacent color(s): \
-      User Interface Components: Visual information required to identify user interface components and states, except for inactive components or where the appearance of the component is determined by the user agent and not modified by the author; \
-      Graphical Objects: Parts of graphics required to understand the content, except when a particular presentation of graphics is essential to the information being conveyed.",
-    "1_4_12_C36,C35.Check":
-      "Check that no loss of content or functionality occurs by setting all of the following and by changing no other style property: \
-       \
-          Line height (line spacing) to at least 1.5 times the font size; \
-          Spacing following paragraphs to at least 2 times the font size; \
-          Letter spacing (tracking) to at least 0.12 times the font size; \
-          Word spacing to at least 0.16 times the font size.",
-    "1_4_13_F95.Check":
-      "Check that where receiving and then removing pointer hover or keyboard focus triggers additional content to become visible and then hidden, the following are true: \
-          Dismissable: A mechanism is available to dismiss the additional content without moving pointer hover or keyboard focus, unless the additional content communicates an input error or does not obscure or replace other content; \
-          Hoverable: If pointer hover can trigger the additional content, then the pointer can be moved over the additional content without the additional content disappearing; \
-          Persistent: The additional content remains visible until the hover or focus trigger is removed, the user dismisses it, or its information is no longer valid.",
-    "2_1_1_G90":
-      "Ensure the functionality provided by an event handler for this element is available through the keyboard",
-    "2_1_1_SCR20.DblClick":
-      "Ensure the functionality provided by double-clicking on this element is available through the keyboard.",
-    "2_1_1_SCR20.MouseOver":
-      "Ensure the functionality provided by mousing over this element is available through the keyboard; for instance, using the focus event.",
-    "2_1_1_SCR20.MouseOut":
-      "Ensure the functionality provided by mousing out of this element is available through the keyboard; for instance, using the blur event.",
-    "2_1_1_SCR20.MouseMove":
-      "Ensure the functionality provided by moving the mouse on this element is available through the keyboard.",
-    "2_1_1_SCR20.MouseDown":
-      "Ensure the functionality provided by mousing down on this element is available through the keyboard; for instance, using the keydown event.",
-    "2_1_1_SCR20.MouseUp":
-      "Ensure the functionality provided by mousing up on this element is available through the keyboard; for instance, using the keyup event.",
-    "2_1_2_F10":
-      "Check that this applet or plugin provides the ability to move the focus away from itself when using the keyboard.",
-    "2_1_4.Check":
-      "Check that if a keyboard shortcut is implemented in content using only letter (including upper- and lower-case letters), punctuation, number, or symbol characters, then at least one of the following is true: \
-       \
-          Turn off: A mechanism is available to turn the shortcut off; \
-          Remap: A mechanism is available to remap the shortcut to use one or more non-printable keyboard characters (e.g. Ctrl, Alt, etc); \
-          Active only on focus: The keyboard shortcut for a user interface component is only active when that component has focus. \
-      ",
-    "2_2_1_F40.2":
-      "Meta refresh tag used to redirect to another page, with a time limit that is not zero. Users cannot control this time limit.",
-    "2_2_1_F41.2":
-      "Meta refresh tag used to refresh the current page. Users cannot control the time limit for this refresh.",
-    "2_2_2_SCR33,SCR22,G187,G152,G186,G191":
-      "If any part of the content moves, scrolls or blinks for more than 5 seconds, or auto-updates, check that there is a mechanism available to pause, stop, or hide the content.",
-    "2_2_2_F4":
-      "Ensure there is a mechanism available to stop this blinking element in less than five seconds.",
-    "2_2_2_F47":
-      "Blink elements cannot satisfy the requirement that blinking information can be stopped within five seconds.",
-    "2_2_3_G5":
-      "Check that timing is not an essential part of the event or activity presented by the content, except for non-interactive synchronized media and real-time events.",
-    "2_2_4_SCR14":
-      "Check that all interruptions (including updates to content) can be postponed or suppressed by the user, except interruptions involving an emergency.",
-    "2_2_5_G105,G181":
-      "If this Web page is part of a set of Web pages with an inactivity time limit, check that an authenticated user can continue the activity without loss of data after re-authenticating.",
-    "2_2_6.Check":
-      "Check that users are warned of the duration of any user inactivity that could cause data loss, unless the data is preserved for more than 20 hours when the user does not take any actions.",
-    "2_3_1_G19,G176":
-      "Check that no component of the content flashes more than three times in any 1-second period, or that the size of any flashing area is sufficiently small.",
-    "2_3_2_G19":
-      "Check that no component of the content flashes more than three times in any 1-second period.",
-    "2_3_3.Check":
-      "Check that motion animation triggered by interaction can be disabled, unless the animation is essential to the functionality or the information being conveyed.",
-    "2_4_1_H64.1":
-      "Iframe element requires a non-empty title attribute that identifies the frame.",
-    "2_4_1_H64.2":
-      "Check that the title attribute of this element contains text that identifies the frame.",
-    "2_4_1_G1,G123,G124,H69":
-      "Ensure that any common navigation elements can be bypassed; for instance, by use of skip links, header elements, or ARIA landmark roles.",
-    "2_4_1_G1,G123,G124.NoSuchID":
-      'This link points to a named anchor "{{id}}" within the document, but no anchor exists with that name.',
-    "2_4_1_G1,G123,G124.NoSuchIDFragment":
-      'This link points to a named anchor "{{id}}" within the document, but no anchor exists with that name in the fragment tested.',
-    "2_4_2_H25.1.NoHeadEl":
-      "There is no head section in which to place a descriptive title element.",
-    "2_4_2_H25.1.NoTitleEl":
-      "A title should be provided for the document, using a non-empty title element in the head section.",
-    "2_4_2_H25.1.EmptyTitle":
-      "The title element in the head section should be non-empty.",
-    "2_4_2_H25.2": "Check that the title element describes the document.",
-    "2_4_3_H4.2":
-      "If tabindex is used, check that the tab order specified by the tabindex attributes follows relationships in the content.",
-    "2_4_4_H77,H78,H79,H80,H81,H33":
-      "Check that the link text combined with programmatically determined link context, or its title attribute, identifies the purpose of the link.",
-    "2_4_4_H77,H78,H79,H80,H81":
-      "Check that the link text combined with programmatically determined link context identifies the purpose of the link.",
-    "2_4_5_G125,G64,G63,G161,G126,G185":
-      "If this Web page is not part of a linear process, check that there is more than one way of locating this Web page within a set of Web pages.",
-    "2_4_6_G130,G131":
-      "Check that headings and labels describe topic or purpose.",
-    "2_4_7_G149,G165,G195,C15,SCR31":
-      "Check that there is at least one mode of operation where the keyboard focus indicator can be visually located on user interface controls.",
-    "2_4_8_H59.1":
-      "Link elements can only be located in the head section of the document.",
-    "2_4_8_H59.2a":
-      "Link element is missing a non-empty rel attribute identifying the link type.",
-    "2_4_8_H59.2b":
-      "Link element is missing a non-empty href attribute pointing to the resource being linked.",
-    "2_4_9_H30": "Check that text of the link describes the purpose of the link.",
-    "2_5_1.Check":
-      "Check that all functionality that uses multipoint or path-based gestures for operation can be operated with a single pointer without a path-based gesture, unless a multipoint or path-based gesture is essential.",
-    "2_5_2.SinglePointer_Check":
-      "Check that for functionality that can be operated using a single pointer, at least one of the following is true: \
-          No Down-Event: The down-event of the pointer is not used to execute any part of the function; \
-          Abort or Undo: Completion of the function is on the up-event, and a mechanism is available to abort the function before completion or to undo the function after completion; \
-          Up Reversal: The up-event reverses any outcome of the preceding down-event; \
-          Essential: Completing the function on the down-event is essential.",
-    "2_5_2.Mousedown_Check":
-      "This element has an mousedown event listener. Check that for functionality that can be operated using a single pointer, at least one of the following is true: \
-          No Down-Event: The down-event of the pointer is not used to execute any part of the function; \
-          Abort or Undo: Completion of the function is on the up-event, and a mechanism is available to abort the function before completion or to undo the function after completion; \
-          Up Reversal: The up-event reverses any outcome of the preceding down-event; \
-          Essential: Completing the function on the down-event is essential.",
-    "2_5_2.Touchstart_Check":
-      "This element has a touchstart event listener. Check that for functionality that can be operated using a single pointer, at least one of the following is true: \
-       \
-          No Down-Event: The down-event of the pointer is not used to execute any part of the function; \
-          Abort or Undo: Completion of the function is on the up-event, and a mechanism is available to abort the function before completion or to undo the function after completion; \
-          Up Reversal: The up-event reverses any outcome of the preceding down-event; \
-          Essential: Completing the function on the down-event is essential.",
-    "2_5_3_F96.Check":
-      "Check that for user interface components with labels that include text or images of text, the name contains the text that is presented visually.",
-    "2_5_3_F96.AccessibleName":
-      "Accessible name for this element does not contain the visible label text. Check that for user interface components with labels that include text or images of text, the name contains the text that is presented visually.",
-    "2_5_4.Check":
-      "Check that functionality that can be operated by device motion or user motion can also be operated by user interface components and responding to the motion can be disabled to prevent accidental actuation, except when: \
-       \
-          Supported Interface: The motion is used to operate functionality through an accessibility supported interface; \
-          Essential: The motion is essential for the function and doing so would invalidate the activity. \
-      ",
-    "2_5_4.Devicemotion":
-      "This element has a devicemotion event listener. Check that functionality that can be operated by device motion or user motion can also be operated by user interface components and responding to the motion can be disabled to prevent accidental actuation, except when: \
-       \
-          Supported Interface: The motion is used to operate functionality through an accessibility supported interface; \
-          Essential: The motion is essential for the function and doing so would invalidate the activity. \
-      ",
-    "2_5_5.Check":
-      "Check that the size of the target for pointer inputs is at least 44 by 44 CSS pixels except when: \
-       \
-          Equivalent: The target is available through an equivalent link or control on the same page that is at least 44 by 44 CSS pixels; \
-          Inline: The target is in a sentence or block of text; \
-          User Agent Control: The size of the target is determined by the user agent and is not modified by the author; \
-          Essential: A particular presentation of the target is essential to the information being conveyed. \
-      ",
-    "2_5_6.Check":
-      "Check that the content does not restrict use of input modalities available on a platform except where the restriction is essential, required to ensure the security of the content, or required to respect user settings.",
-    "3_1_1_H57.2":
-      "The html element should have a lang or xml:lang attribute which describes the language of the document.",
-    "3_1_1_H57.3.Lang":
-      "The language specified in the lang attribute of the document element does not appear to be well-formed.",
-    "3_1_1_H57.3.XmlLang":
-      "The language specified in the xml:lang attribute of the document element does not appear to be well-formed.",
-    "3_1_2_H58":
-      "Ensure that any change in language is marked using the lang and/or xml:lang attribute on an element, as appropriate.",
-    "3_1_2_H58.1.Lang":
-      "The language specified in the lang attribute of this element does not appear to be well-formed.",
-    "3_1_2_H58.1.XmlLang":
-      "The language specified in the xml:lang attribute of this element does not appear to be well-formed.",
-    "3_1_3_H40,H54,H60,G62,G70":
-      "Check that there is a mechanism available for identifying specific definitions of words or phrases used in an unusual or restricted way, including idioms and jargon.",
-    "3_1_4_G102,G55,G62,H28,G97":
-      "Check that a mechanism for identifying the expanded form or meaning of abbreviations is available.",
-    "3_1_5_G86,G103,G79,G153,G160":
-      "Where the content requires reading ability more advanced than the lower secondary education level, supplemental content or an alternative version should be provided.",
-    "3_1_6_H62.1.HTML5":
-      "Ruby element does not contain an rt element containing pronunciation information for its body text.",
-    "3_1_6_H62.1.XHTML11":
-      "Ruby element does not contain an rt element containing pronunciation information for the text inside the rb element.",
-    "3_1_6_H62.2":
-      "Ruby element does not contain rp elements, which provide extra punctuation to browsers not supporting ruby text.",
-    "3_2_1_G107":
-      "Check that a change of context does not occur when this input field receives focus.",
-    "3_2_2_H32.2":
-      'This form does not contain a submit button, which creates issues for those who cannot submit the form using the keyboard. Submit buttons are INPUT elements with type attribute "submit" or "image", or BUTTON elements with type "submit" or omitted/invalid.',
-    "3_2_3_G61":
-      "Check that navigational mechanisms that are repeated on multiple Web pages occur in the same relative order each time they are repeated, unless a change is initiated by the user.",
-    "3_2_4_G197":
-      "Check that components that have the same functionality within this Web page are identified consistently in the set of Web pages to which it belongs.",
-    "3_2_5_H83.3":
-      "Check that this link's link text contains information indicating that the link will open in a new window.",
-    "3_3_1_G83,G84,G85":
-      "If an input error is automatically detected in this form, check that the item(s) in error are identified and the error(s) are described to the user in text.",
-    "3_3_2_G131,G89,G184,H90":
-      "Check that descriptive labels or instructions (including for required fields) are provided for user input in this form.",
-    "3_3_3_G177":
-      "Check that this form provides suggested corrections to errors in user input, unless it would jeopardize the security or purpose of the content.",
-    "3_3_4_G98,G99,G155,G164,G168.LegalForms":
-      "If this form would bind a user to a financial or legal commitment, modify/delete user-controllable data, or submit test responses, ensure that submissions are either reversible, checked for input errors, and/or confirmed by the user.",
-    "3_3_5_G71,G184,G193":
-      "Check that context-sensitive help is available for this form, at a Web-page and/or control level.",
-    "3_3_6_G98,G99,G155,G164,G168.AllForms":
-      "Check that submissions to this form are either reversible, checked for input errors, and/or confirmed by the user.",
-    "4_1_2_H91.A.Empty":
-      "Anchor element found with an ID but without a href or link text. Consider moving its ID to a parent or nearby element.",
-    "4_1_2_H91.A.EmptyWithName":
-      "Anchor element found with a name attribute but without a href or link text. Consider moving the name attribute to become an ID of a parent or nearby element.",
-    "4_1_2_H91.A.EmptyNoId":
-      "Anchor element found with no link content and no name and/or ID attribute.",
-    "4_1_2_H91.A.NoHref":
-      "Anchor elements should not be used for defining in-page link targets. If not using the ID for other purposes (such as CSS or scripting), consider moving it to a parent element.",
-    "4_1_2_H91.A.Placeholder":
-      "Anchor element found with link content, but no href, ID or name attribute has been supplied.",
-    "4_1_2_H91.A.NoContent":
-      "Anchor element found with a valid href attribute, but no link content has been supplied.",
-    "4_1_2_input_element": "input element",
-    "4_1_2_element_content": "element content",
-    "4_1_2_element": "element",
-    "4_1_2_msg_pattern":
-      "This {{msgNodeType}} does not have a name available to an accessibility API. Valid names are: {{builtAttrs}}.",
-    "4_1_2_msg_pattern_role_of_button":
-      'This element has role of "button" but does not have a name available to an accessibility API. Valid names are: {{builtAttrs}}.',
-    "4_1_2_msg_pattern2":
-      "This {{msgNodeType}} does not have a value available to an accessibility API.",
-    "4_1_2_msg_add_one": "Add one by adding content to the element.",
-    "4_1_2_msg_pattern3":
-      "This {{msgNodeType}} does not have an initially selected option. Depending on your HTML version, the value exposed to an accessibility API may be undefined.",
-    "4_1_2_value_exposed_using_attribute":
-      "A value is exposed using the {{requiredValue}} attribute.",
-    "4_1_2_value_exposed_using_element":
-      "A value is exposed using the {{requiredValue}} element.",
-    "4_1_3_ARIA22,G199,ARIA19,G83,G84,G85,G139,G177,G194,ARIA23.Check":
-      "Check that status messages can be programmatically determined through role or properties such that they can be presented to the user by assistive technologies without receiving focus.",
-  };
-  
+  auditor_success_criterion: "معيار النجاح",
+  auditor_suggested_techniques: "التقنيات المقترحة",
+  "1_1_1_H30.2":
+    "عنصر Img هو المحتوى الوحيد للرابط، لكنه يفتقد إلى نص بديل. يجب أن يصف النص البديل غرض الرابط.",
+  "1_1_1_H67.1":
+    "يجب أن يكون عنصر Img ذو نص alt فارغ مزودًا بسمة title غائبة أو فارغة.",
+  "1_1_1_H67.2": "تم تمييز عنصر Img بحيث يتم تجاهله بواسطة تقنيات المساعدة.",
+  "1_1_1_H37":
+    "عنصر Img يفتقد إلى سمة alt. استخدم سمة alt لتحديد بديل نصي قصير.",
+  "1_1_1_G94.Image":
+    "تأكد من أن النص البديل لعنصر img يحقق نفس الغرض ويعرض نفس المعلومات كالصورة.",
+  "1_1_1_H36":
+    "زر إرسال الصورة يفتقد إلى سمة alt. حدد بديلاً نصيًا يصف وظيفة الزر باستخدام سمة alt.",
+  "1_1_1_G94.Button": "تأكد من أن النص البديل لزر إرسال الصورة يحدد غرض الزر.",
+  "1_1_1_H24":
+    "عنصر Area في خريطة صورة يفتقد إلى سمة alt. يجب أن يكون لكل عنصر area بديل نصي يصف وظيفة منطقة خريطة الصورة.",
+  "1_1_1_H24.2":
+    "تأكد من أن البديل النصي لعنصر المنطقة يحقق نفس الغرض كجزء من صورة خريطة الصورة التي يشير إليها.",
+  "1_1_1_G73,G74":
+    "إذا لم يتم وصف هذه الصورة بالكامل في بديل نصي قصير، تأكد من توفر بديل نصي طويل أيضًا، مثل في نص الجسم أو من خلال رابط.",
+  "1_1_1_H2.EG5":
+    "يجب ألا يستخدم عنصر Img داخل رابط نص alt يكرر محتوى نص الرابط.",
+  "1_1_1_H2.EG4":
+    "عنصر Img داخل رابط له نص alt فارغ أو مفقود عندما يحتوي رابط بجانبه على نص رابط. ضع في اعتبارك دمج الروابط.",
+  "1_1_1_H2.EG3":
+    "يجب ألا يستخدم عنصر Img داخل رابط النص alt الذي يكرر محتوى رابط النص بجانبه.",
+  "1_1_1_H53,ARIA6":
+    "يجب أن تحتوي عناصر الكائن على بديل نصي بعد استنفاد جميع البدائل الأخرى.",
+  "1_1_1_G94,G92.Object,ARIA6":
+    "تحقق من توفر بدائل نصية قصيرة (وإذا كان مناسبًا، طويلة) للمحتوى غير النصي التي تحقق نفس الغرض وتعرض نفس المعلومات.",
+  "1_1_1_H35.3":
+    "يجب أن تحتوي عناصر Applet على بديل نصي في جسم العنصر، للمتصفحات التي لا تدعم عنصر applet.",
+  "1_1_1_H35.2":
+    "يجب أن تحتوي عناصر Applet على سمة alt، لتوفير بديل نصي للمتصفحات التي تدعم العنصر ولكن لا يمكنها تحميل التطبيق.",
+  "1_1_1_G94,G92.Applet":
+    "تحقق من توفر بدائل نصية قصيرة (وإذا كان مناسبًا، طويلة) للمحتوى غير النصي التي تحقق نفس الغرض وتعرض نفس المعلومات.",
+  "1_2_1_G158":
+    "إذا كان هذا الجسم المضمن يحتوي على صوت مسبق التسجيل فقط، ولم يتم توفيره كبديل للمحتوى النصي، تحقق من توفر نسخة نصية بديلة.",
+  "1_2_1_G159,G166":
+    "إذا كان هذا الجسم المضمن يحتوي على فيديو مسبق التسجيل فقط، ولم يتم توفيره كبديل للمحتوى النصي، تحقق من توفر نسخة نصية بديلة، أو تتوفر مسار صوتي يعرض معلومات مكافئة.",
+  "1_2_2_G87,G93":
+    "إذا كان هذا الجسم المضمن يحتوي على وسائط متزامنة مسجلة مسبقًا ولم يتم توفيره كبديل للمحتوى النصي، تحقق من توفير ترجمات للمحتوى الصوتي.",
+  "1_2_3_G69,G78,G173,G8":
+    "إذا كان هذا الجسم المضمن يحتوي على وسائط متزامنة مسجلة مسبقًا ولم يتم توفيره كبديل للمحتوى النصي، تحقق من توفير وصف صوتي لفيديوهاته، و/أو نسخة نصية بديلة للمحتوى.",
+  "1_2_4_G9,G87,G93":
+    "إذا كان هذا الجسم المضمن يحتوي على وسائط متزامنة، تحقق من توفير ترجمات للمحتوى الصوتي المباشر.",
+  "1_2_5_G78,G173,G8":
+    "إذا كان هذا الجسم المضمن يحتوي على وسائط متزامنة مسجلة مسبقًا، تحقق من توفير وصف صوتي لمحتوى الفيديو الخاص به.",
+  "1_2_6_G54,G81":
+    "إذا كان هذا الجسم المضمن يحتوي على وسائط متزامنة مسجلة مسبقًا، تحقق من توفير تفسير بلغة الإشارة لمحتواه الصوتي.",
+  "1_2_7_G8":
+    "إذا كان هذا الجسم المضمن يحتوي على وسائط متزامنة، والتوقفات في الصوت الأمامي لا تكفي للسماح بوصفات صوتية لنقل معنى الفيديو المسجل مسبقًا، تحقق من توفر وصف صوتي ممتد، إما من خلال البرمجة أو نسخة بديلة.",
+  "1_2_8_G69,G159":
+    "إذا كان هذا الجسم المضمن يحتوي على وسائط متزامنة مسجلة مسبقًا أو محتوى فيديو فقط، تحقق من توفر نسخة نصية بديلة للمحتوى.",
+  "1_2_9_G150,G151,G157":
+    "إذا كان هذا الجسم المضمن يحتوي على محتوى صوتي مباشر فقط، تحقق من توفر نسخة نصية بديلة للمحتوى.",
+  "1_3_1_F92,ARIA4":
+    'دور هذا العنصر هو "presentation" لكنه يحتوي على عناصر فرعية ذات معنى دلالي.',
+  "1_3_1_H44.NonExistent":
+    'سمة "for" لهذه العلامة تحتوي على معرف غير موجود في الوثيقة.',
+  "1_3_1_H44.NonExistentFragment":
+    'سمة "for" لهذه العلامة تحتوي على معرف غير موجود في جزء الوثيقة.',
+  "1_3_1_H44.NotFormControl":
+    'سمة "for" لهذه العلامة تحتوي على معرف لعنصر ليس عنصر تحكم في النموذج. تأكد من أنك أدخلت المعرف الصحيح للعنصر المقصود.',
+  "1_3_1_H65":
+    'هذا عنصر التحكم في النموذج يحتوي على سمة "title" فارغة أو تحتوي على مسافات فقط. سيتم تجاهلها لأغراض اختبار التسمية.',
+  "1_3_1_ARIA6":
+    'هذا عنصر التحكم في النموذج يحتوي على سمة "aria-label" فارغة أو تحتوي على مسافات فقط. سيتم تجاهلها لأغراض اختبار التسمية.',
+  "1_3_1_ARIA16,ARIA9":
+    'هذا عنصر التحكم في النموذج يحتوي على سمة aria-labelledby، ومع ذلك فإنه يتضمن معرف "{{id}}" الذي لا يوجد في عنصر. ستتم تجاهل سمة aria-labelledby لأغراض اختبار التسمية.',
+  "1_3_1_F68.Hidden":
+    "هذا الحقل النموذجي المخفي مسمى بطريقة ما. يجب ألا تكون هناك حاجة لتسمية حقل نموذجي مخفي.",
+  "1_3_1_F68.HiddenAttr":
+    'يُفترض أن هذا الحقل النموذجي مخفي (باستخدام سمة "hidden")، لكنه مسمى أيضًا بطريقة ما. يجب ألا تكون هناك حاجة لتسمية حقل نموذجي مخفي.',
+  "1_3_1_F68":
+    'يجب تسمية هذا الحقل النموذجي بطريقة ما. استخدم عنصر العلامة (إما بسمة "for" أو ملفوفًا حول حقل النموذج)، أو سمات "title"، "aria-label" أو "aria-labelledby" حسب الاقتضاء.',
+  "1_3_1_H49.": "العلامات العرضية المستخدمة التي أصبحت قديمة في HTML5.",
+  "1_3_1_H49.AlignAttr": "سمات التوافق.",
+  "1_3_1_H49.Semantic":
+    "يجب استخدام العلامات الدلالية لتمييز النص المؤكد أو النص الخاص بحيث يمكن تحديده برمجيًا.",
+  "1_3_1_H49.AlignAttr.Semantic":
+    "يجب استخدام العلامات الدلالية لتمييز النص المؤكد أو النص الخاص بحيث يمكن تحديده برمجيًا.",
+  "1_3_1_H42": "يجب استخدام علامات العنوان إذا كان هذا المحتوى مقصودًا كعنوان.",
+  "1_3_1_H63.3":
+    "خلية الجدول لها سمة نطاق غير صالحة. القيم الصالحة هي الصف، العمود، مجموعة الصفوف، أو مجموعة الأعمدة.",
+  "1_3_1_H63.2":
+    "سمات النطاق على عناصر td التي تعمل كعناوين لعناصر أخرى قديمة في HTML5. استخدم عنصر th بدلاً من ذلك.",
+  "1_3_1_H43.ScopeAmbiguous":
+    "سمات النطاق على عناصر th غامضة في جدول به عدة مستويات من العناوين. استخدم سمة العناوين على عناصر td بدلاً من ذلك.",
+  "1_3_1_H43.IncorrectAttr":
+    'سمة العناوين غير صحيحة على عنصر td هذا. المتوقع "{{expected}}" ولكن وُجد "{{actual}}"',
+  "1_3_1_H43.IncorrectAttrNotice": "تحقق من صحة سمات العناوين على عناصر td.",
+  "1_3_1_H43.HeadersRequired":
+    "العلاقة بين عناصر td وعناصر th المرتبطة بها غير محددة. نظرًا لأن هذا الجدول يحتوي على عدة مستويات من عناصر th، يجب استخدام سمة العناوين على عناصر td.",
+  "1_3_1_H43.MissingHeaderIds":
+    "ليس كل عناصر th في هذا الجدول تحتوي على سمة id. يجب أن تحتوي هذه الخلايا على معرفات حتى يمكن الإشارة إليها بواسطة سمات العناوين في عناصر td.",
+  "1_3_1_H43.MissingHeadersAttrs":
+    "ليس كل عناصر td في هذا الجدول تحتوي على سمة عناوين. يجب أن تحتوي كل سمة عناوين على قائمة بمعرفات كل عناصر th المرتبطة بهذه الخلية.",
+  "1_3_1_H43,H63":
+    "العلاقة بين عناصر td وعناصر th المرتبطة بها غير محددة. استخدم إما سمة النطاق على عناصر th، أو سمة العناوين على عناصر td.",
+  "1_3_1_H63.1":
+    "ليس كل عناصر th في هذا الجدول تحتوي على سمة نطاق. يجب أن تحتوي هذه الخلايا على سمة نطاق لتحديد علاقتها بعناصر td.",
+  "1_3_1_H73.3.LayoutTable":
+    "يبدو أن هذا الجدول يستخدم للتخطيط، لكنه يحتوي على سمة ملخص. يجب ألا تحتوي جداول التخطيط على سمات ملخص، أو إذا تم توفيرها، يجب أن تكون فارغة.",
+  "1_3_1_H39,H73.4":
+    "إذا كان هذا الجدول جدول بيانات، وكل من سمة الملخص وعنصر العنوان موجودين، يجب ألا تكرر السمة الملخص العنوان.",
+  "1_3_1_H73.3.Check":
+    "إذا كان هذا الجدول جدول بيانات، تحقق من أن سمة الملخص تصف تنظيم الجدول أو تشرح كيفية استخدام الجدول.",
+  "1_3_1_H73.3.NoSummary":
+    "إذا كان هذا الجدول جدول بيانات، فكر في استخدام سمة الملخص للعنصر الجدولي لتقديم لمحة عامة عن هذا الجدول.",
+  "1_3_1_H39.3.LayoutTable":
+    "يبدو أن هذا الجدول يستخدم للتخطيط، لكنه يحتوي على عنصر عنوان. يجب ألا تحتوي جداول التخطيط على عناوين.",
+  "1_3_1_H39.3.Check":
+    "إذا كان هذا الجدول جدول بيانات، تحقق من أن عنصر العنوان يصف هذا الجدول بدقة.",
+  "1_3_1_H39.3.NoCaption":
+    "إذا كان هذا الجدول جدول بيانات، فكر في استخدام عنصر عنوان لعنصر الجدول لتحديد هذا الجدول.",
+  "1_3_1_H71.NoLegend":
+    "Fieldset لا يحتوي على عنصر legend. يجب أن تحتوي جميع الحقول على عنصر أسطورة يصف وصف مجموعة الحقل.",
+  "1_3_1_H85.2":
+    "إذا كانت قائمة التحديد هذه تحتوي على مجموعات من الخيارات ذات الصلة، فيجب تجميعها باستخدام optgroup.",
+  "1_3_1_H71.SameName":
+    "إذا كانت زر الراديو هذه أو خانات الاختيار تتطلب وصفًا إضافيًا على مستوى المجموعة، فيجب أن تكون موجودة داخل عنصر fieldset.",
+  "1_3_1_H48.1":
+    "يبدو أن هذا المحتوى يحاكي قائمة غير مرتبة باستخدام النص العادي. إذا كان الأمر كذلك، فإن وضع العلامة على هذا المحتوى بعنصر ul سيضيف معلومات هيكلية مناسبة للوثيقة.",
+  "1_3_1_H48.2":
+    "يبدو أن هذا المحتوى يحاكي قائمة مرتبة باستخدام النص العادي. إذا كان الأمر كذلك، فإن وضع العلامة على هذا المحتوى بعنصر ol سيضيف معلومات هيكلية مناسبة للوثيقة.",
+  "1_3_1_G141_a":
+    "هيكل العنوان غير متداخل بشكل منطقي. يبدو أن هذا العنصر h{{headingNum}} هو العنوان الرئيسي للوثيقة، لذا يجب أن يكون عنصر h1.",
+  "1_3_1_G141_b":
+    "هيكل العنوان غير متداخل بشكل منطقي. يجب أن يكون هذا العنصر h{{headingNum}} عنصر h{{properHeadingNum}} ليكون متداخلًا بشكل صحيح.",
+  "1_3_1_H42.2":
+    "تم العثور على علامة عنوان بدون محتوى. النص الذي لا يُقصد كعنوان يجب ألا يتم وضع علامة عليه بعلامات العنوان.",
+  "1_3_1_H48":
+    "إذا كان هذا العنصر يحتوي على قسم تنقل، يُوصى بأن يتم وضع علامة عليه كقائمة.",
+  "1_3_1_LayoutTable":
+    "يبدو أن هذا الجدول جدول تخطيط. إذا كان يُقصد به أن يكون جدول بيانات بدلاً من ذلك، تأكد من التعرف على خلايا العنوان باستخدام عناصر th.",
+  "1_3_1_DataTable":
+    "يبدو أن هذا الجدول جدول بيانات. إذا كان يُقصد به أن يكون جدول تخطيط بدلاً من ذلك، تأكد من عدم وجود عناصر th، ولا ملخص أو عنوان.",
+  "1_3_2_G57":
+    "تحقق من أن المحتوى مرتب بتسلسل ذي معنى عند تحويله إلى شكل خطي، مثل عند تعطيل أوراق الأنماط.",
+  "1_3_3_G96":
+    "عند تقديم التعليمات لفهم المحتوى، لا تعتمد فقط على الخصائص الحسية (مثل الشكل، الحجم أو الموقع) لوصف الأشياء.",
+  "1_3_4.RestrictView":
+    "تحقق من أن المحتوى لا يحد من عرضه وتشغيله إلى اتجاه عرض واحد، مثل العمودي أو الأفقي، ما لم يكن اتجاه العرض المحدد ضروريًا.",
+  "1_3_5_H98.FaultyValue":
+    "يحتوي هذا العنصر على قيمة محتملة الخطأ في سمة التكميل التلقائي: {{valuesStr}}.",
+  "1_3_5_H98.InvalidAutoComplete_Text":
+    "قيمة التكميل التلقائي غير صالحة: {{x}}. العنصر لا ينتمي إلى مجموعة تحكم نصية.",
+  "1_3_5_H98.InvalidAutoComplete_Multiline":
+    "قيمة التكميل التلقائي غير صالحة: {{x}}. العنصر لا ينتمي إلى مجموعة تحكم متعددة الخطوط.",
+  "1_3_5_H98.InvalidAutoComplete_Password":
+    "قيمة التكميل التلقائي غير صالحة: {{x}}. العنصر لا ينتمي إلى مجموعة تحكم كلمات المرور.",
+  "1_3_5_H98.InvalidAutoComplete_Url":
+    "قيمة التكميل التلقائي غير صالحة: {{x}}. العنصر لا ينتمي إلى مجموعة تحكم الرابط.",
+  "1_3_5_H98.InvalidAutoComplete_Telephone":
+    "قيمة التكميل التلقائي غير صالحة: {{x}}. العنصر لا ينتمي إلى مجموعة تحكم الهاتف.",
+  "1_3_5_H98.InvalidAutoComplete_Numeric":
+    "قيمة التكميل التلقائي غير صالحة: {{x}}. العنصر لا ينتمي إلى مجموعة تحكم رقمية.",
+  "1_3_5_H98.InvalidAutoComplete_Month":
+    "قيمة التكميل التلقائي غير صالحة: {{x}}. العنصر لا ينتمي إلى مجموعة تحكم شهر.",
+  "1_3_5_H98.InvalidAutoComplete_Date":
+    "قيمة التكميل التلقائي غير صالحة: {{x}}. العنصر لا ينتمي إلى مجموعة تحكم تاريخ.",
+  "1_3_5_H98.Purpose":
+    "تحقق من أن حقل الإدخال يخدم غرضًا محددًا في قسم أغراض الإدخال لمكونات واجهة المستخدم؛ وأن المحتوى مطبق باستخدام التقنيات الداعمة لتحديد المعنى المتوقع لبيانات الإدخال الخاصة بالنموذج.",
+  "1_3_5_H98.MissingAutocomplete":
+    "هذا العنصر لا يحتوي على سمة التكميل التلقائي. إذا كان هذا الحقل يجمع معلومات عن المستخدم، ففكر في إضافة واحدة للامتثال لهذا المعيار الناجح.",
+  "1_3_6_ARIA11.Check":
+    "تحقق من أن غرض مكونات واجهة المستخدم، والأيقونات، والمناطق يمكن تحديده برمجيًا.",
+  "1_4_1_G14,G18":
+    "تحقق من أن أي معلومات يتم نقلها باستخدام اللون وحده متاحة أيضًا في النص، أو من خلال إشارات بصرية أخرى.",
+  "1_4_2_F23":
+    "إذا احتوى هذا العنصر على صوت يتم تشغيله تلقائيًا لأكثر من 3 ثوان، تحقق من وجود القدرة على إيقاف الصوت مؤقتًا، أو إيقافه، أو كتم الصوت.",
+  "1_4_3_F24.BGColour":
+    "تحقق من أن هذا العنصر يحتوي على لون خلفية موروث لاستكمال لون الخلفية أو الصورة المضمنة المتناظرة.",
+  "1_4_3_F24.FGColour":
+    "تحقق من أن هذا العنصر يحتوي على لون خلفية أو صورة موروثة لاستكمال لون الخلفية المضمنة المتناظرة.",
+  "1_4_3_G18_or_G145.Abs":
+    "هذا العنصر موضوع بشكل مطلق ولا يمكن تحديد لون الخلفية. تأكد من أن نسبة التباين بين النص وجميع الأجزاء المغطاة من الخلفية على الأقل {{required}}:1.",
+  "1_4_3_G18_or_G145.BgImage":
+    "نص هذا العنصر موضوع على صورة خلفية. تأكد من أن نسبة التباين بين النص وجميع الأجزاء المغطاة من الصورة على الأقل {{required}}:1.",
+  "1_4_3_G18_or_G145.BgGradient":
+    "نص هذا العنصر موضوع على تدرج. تأكد من أن نسبة التباين بين النص وجميع الأجزاء المغطاة من التدرج على الأقل {{required}}:1.",
+  "1_4_3_G18_or_G145.Alpha":
+    "نص أو خلفية هذا العنصر يحتوي على شفافية. تأكد من أن نسبة التباين بين النص والخلفية على الأقل {{required}}:1.",
+  "1_4_3_G18_or_G145.Fail":
+    "هذا العنصر يحتوي على تباين غير كافٍ عند هذا المستوى من التوافق. كان من المتوقع نسبة تباين على الأقل {{required}}:1، ولكن النص في هذا العنصر يحتوي على نسبة تباين قدرها {{value}}:1.",
+  "1_4_3_G18_or_G145.Fail.Recomendation": "التوصية: ",
+  "1_4_3_G18_or_G145.Fail.Recomendation.Text": "غير لون النص إلى {{value}}",
+  "1_4_3_G18_or_G145.Fail.Recomendation.Background":
+    "غير الخلفية إلى {{value}}",
+  "1_4_4_G142":
+    "تحقق من أن النص يمكن تغيير حجمه بدون تقنية مساعدة حتى 200 في المائة دون فقدان المحتوى أو الوظيفة.",
+  "1_4_5_G140,C22,C30.AALevel":
+    "إذا كانت التقنيات المستخدمة يمكن أن تحقق العرض البصري، تحقق من استخدام النص لنقل المعلومات بدلاً من صور النص، إلا عندما تكون صورة النص ضرورية للمعلومات المنقولة، أو يمكن تخصيصها بصريًا لمتطلبات المستخدم.",
+  "1_4_6_G18_or_G17.Abs":
+    "هذا العنصر موضوع بشكل مطلق ولا يمكن تحديد لون الخلفية. تأكد من أن نسبة التباين بين النص وجميع الأجزاء المغطاة من الخلفية على الأقل {{required}}:1.",
+  "1_4_6_G18_or_G17.BgImage":
+    "نص هذا العنصر موضوع على صورة خلفية. تأكد من أن نسبة التباين بين النص وجميع الأجزاء المغطاة من الصورة على الأقل {{required}}:1.",
+  "1_4_6_G18_or_G17.BgGradient":
+    "نص هذا العنصر موضوع على تدرج. تأكد من أن نسبة التباين بين النص وجميع الأجزاء المغطاة من التدرج على الأقل {{required}}:1.",
+  "1_4_6_G18_or_G17.Fail":
+    "هذا العنصر يحتوي على تباين غير كافٍ عند هذا المستوى من التوافق. كان من المتوقع نسبة تباين على الأقل {{required}}:1، ولكن النص في هذا العنصر يحتوي على نسبة تباين قدرها {{value}}:1.",
+  "1_4_6_G18_or_G17.Fail.Recomendation": "التوصية: ",
+  "1_4_6_G18_or_G17.Fail.Recomendation.Text": "غير لون النص إلى {{value}}",
+  "1_4_6_G18_or_G17.Fail.Recomendation.Background": "غير الخلفية إلى {{value}}",
+  "1_4_7_G56":
+    "بالنسبة للمحتوى الصوتي المسجل فقط في هذا العنصر والذي يتكون أساسًا من كلام (مثل التعليق الصوتي)، يجب أن تكون أي أصوات خلفية قابلة للكتم، أو أن تكون أخف بمقدار 20 ديسيبل (أو حوالي 4 أضعاف) من الكلام.",
+  "1_4_8_G148,G156,G175":
+    "تحقق من وجود آلية متاحة للمستخدم لاختيار ألوان الخلفية والنص الأمامية لكتل النص، إما من خلال صفحة الويب أو المتصفح.",
+  "1_4_8_H87,C20":
+    "تحقق من وجود آلية لتقليل عرض كتلة النص إلى لا أكثر من 80 حرفًا (أو 40 بالنسبة للكتابة باللغات الصينية، اليابانية أو الكورية).",
+  "1_4_8_C19,G172,G169":
+    "تحقق من أن كتل النص ليست مبررة بالكامل - أي، إلى حواف اليمين واليسار - أو أن يكون هناك آلية متوفرة لإزالة التبرير الكامل.",
+  "1_4_8_G188,C21":
+    "تحقق من أن تباعد الأسطر في كتل النص على الأقل 150% في الفقرات، وتباعد الفقرات على الأقل 1.5 مرة من تباعد الأسطر، أو أن يكون هناك آلية متاحة لتحقيق ذلك.",
+  "1_4_8_H87,G146,C26":
+    "تحقق من أنه يمكن تغيير حجم النص بدون تقنية مساعدة حتى 200 في المائة دون تطلب من المستخدم التمرير أفقيًا على نافذة ملء الشاشة.",
+  "1_4_9_G140,C22,C30.NoException":
+    "تحقق من أن صور النص تُستخدم فقط للزينة البحتة أو عندما تكون العرض المحدد للنص ضروريًا للمعلومات المنقولة.",
+  "1_4_10_C32,C31,C33,C38,SCR34,G206.Check":
+    "تحقق من أن المحتوى يمكن تقديمه بدون فقدان المعلومات أو الوظيفة، وبدون الحاجة إلى التمرير في بُعدين لـ: \
+  التمرير الرأسي للمحتوى بعرض مكافئ لـ 320 بكسل CSS؛ \
+  التمرير الأفقي للمحتوى بارتفاع مكافئ لـ 256 بكسل CSS؛ \
+  باستثناء الأجزاء من المحتوى التي تتطلب تخطيطًا ثنائي الأبعاد للاستخدام أو المعنى.",
+  "1_4_10_C32,C31,C33,C38,SCR34,G206.Fixed":
+    "هذا العنصر يحتوي على 'position: fixed'. قد يتطلب هذا التمرير في بعدين، وهو ما يعتبر فشلًا لهذا المعيار الناجح.",
+  "1_4_10_C32,C31,C33,C38,SCR34,G206.Scrolling":
+    "قد يتطلب النص المنسق التمرير في بعدين، وهو ما يعتبر فشلاً لهذا المعيار الناجح.",
+  "1_4_10_C32,C31,C33,C38,SCR34,G206.Zoom":
+    "التدخل في قدرة وكيل المستخدم على التكبير قد يكون فشلاً لهذا المعيار الناجح.",
+  "1_4_11_G195,G207,G18,G145,G174,F78.Check":
+    "تحقق من أن العرض البصري للعناصر التالية يحتوي على نسبة تباين لوني لا تقل عن 3:1 مقابل اللون المجاور(الألوان): مكونات واجهة المستخدم: المعلومات البصرية المطلوبة لتحديد مكونات وحالات واجهة المستخدم، باستثناء المكونات الغير نشطة أو عندما يتم تحديد مظهر المكون بواسطة وكيل المستخدم ولا يتم تعديله بواسطة المؤلف؛ الأشياء الرسومية: أجزاء من الرسومات اللازمة لفهم المحتوى، باستثناء عندما تكون عرض الرسومات معين بشكل أساسي للمعلومات المنقولة.",
+  "1_4_12_C36,C35.Check":
+    "تحقق من عدم وجود فقدان للمحتوى أو الوظيفة عن طريق تعيين كل مما يلي وعدم تغيير أي خاصية أسلوب أخرى: ارتفاع الخط (مسافة الخط) إلى ما لا يقل عن 1.5 مرات حجم الخط؛ مسافة التالية للفقرات إلى ما لا يقل عن 2 مرة حجم الخط؛ التباعد بين الأحرف (تتبع) إلى ما لا يقل عن 0.12 مرة حجم الخط؛ تباعد الكلمات إلى ما لا يقل عن 0.16 مرة حجم الخط.",
+  "1_4_13_F95.Check":
+    "تحقق من أنه عند استقبال ثم إزالة تمرير المؤشر أو التركيز بلوحة المفاتيح يتسبب في ظهور محتوى إضافي ثم يختفي، الشروط التالية صحيحة: يمكن إلغاء: التسليم متاح لإلغاء المحتوى الإضافي دون تحريك تمرير المؤشر أو التركيز بلوحة المفاتيح، ما لم يتم التواصل مع خطأ في الإدخال أو لا يحجب أو يستبدل المحتوى الآخر؛ قابل للتمرير عليه: إذا يمكن لتمرير المؤشر تفعيل المحتوى الإضافي، فإن المؤشر يمكن تحريكه فوق المحتوى الإضافي دون اختفاء المحتوى الإضافي؛ مستمر: المحتوى الإضافي يظل ظاهراً حتى يتم إزالة محفز التمرير أو التركيز، أو يقوم المستخدم بإلغائه، أو تصبح معلوماته غير صالحة.",
+  "2_1_1_G90":
+    "تأكد من توفر الوظائف التي يوفرها معالج الأحداث لهذا العنصر من خلال لوحة المفاتيح",
+  "2_1_1_SCR20.DblClick":
+    "تأكد من توفر الوظائف التي يوفرها النقر المزدوج على هذا العنصر من خلال لوحة المفاتيح.",
+  "2_1_1_SCR20.MouseOver":
+    "تأكد من توفر الوظائف التي يوفرها تمرير الماوس فوق هذا العنصر من خلال لوحة المفاتيح؛ على سبيل المثال، باستخدام حدث التركيز.",
+  "2_1_1_SCR20.MouseOut":
+    "تأكد من توفر الوظائف التي يوفرها تمرير الماوس خارج هذا العنصر من خلال لوحة المفاتيح؛ على سبيل المثال، باستخدام حدث الغموض.",
+  "2_1_1_SCR20.MouseMove":
+    "تأكد من توفر الوظائف التي يوفرها تحريك الماوس على هذا العنصر من خلال لوحة المفاتيح.",
+  "2_1_1_SCR20.MouseDown":
+    "تأكد من توفر الوظائف التي يوفرها الضغط بالماوس على هذا العنصر من خلال لوحة المفاتيح؛ على سبيل المثال، باستخدام حدث keydown.",
+  "2_1_1_SCR20.MouseUp":
+    "تأكد من توفر الوظائف التي يوفرها رفع الماوس عن هذا العنصر من خلال لوحة المفاتيح؛ على سبيل المثال، باستخدام حدث keyup.",
+  "2_1_2_F10":
+    "تحقق من أن هذا البرنامج الإضافي أو التطبيق يوفر القدرة على نقل التركيز بعيدًا عن نفسه عند استخدام لوحة المفاتيح.",
+  "2_1_4.Check":
+    "تحقق من أنه إذا تم تطبيق اختصار لوحة المفاتيح في المحتوى باستخدام أحرف (بما في ذلك الأحرف الكبيرة والصغيرة)، علامات الترقيم، أرقام، أو رموز الأحرف فقط، فإن واحدًا على الأقل مما يلي صحيح: إيقاف: توفر آلية لإيقاف الاختصار؛ إعادة تعيين: توفر آلية لإعادة تعيين الاختصار لاستخدام واحد أو أكثر من أحرف لوحة المفاتيح غير القابلة للطباعة (مثل Ctrl، Alt، إلخ)؛ نشط فقط عند التركيز: اختصار لوحة المفاتيح لمكون واجهة المستخدم نشط فقط عندما يتم التركيز على ذلك المكون.",
+  "2_2_1_F40.2":
+    "يتم استخدام وسم التحديث التلقائي للانتقال إلى صفحة أخرى، مع حد زمني ليس صفرًا. لا يمكن للمستخدمين التحكم في هذا الحد الزمني.",
+  "2_2_1_F41.2":
+    "يتم استخدام وسم التحديث التلقائي لتحديث الصفحة الحالية. لا يمكن للمستخدمين التحكم في الحد الزمني لهذا التحديث.",
+  "2_2_2_SCR33,SCR22,G187,G152,G186,G191":
+    "إذا تحرك أي جزء من المحتوى، أو تمرير أو وميض لأكثر من 5 ثوانٍ، أو تم تحديثه تلقائيًا، تحقق من وجود آلية متاحة لإيقاف، أو إيقاف، أو إخفاء المحتوى.",
+  "2_2_2_F4":
+    "تأكد من وجود آلية متاحة لإيقاف هذا العنصر الوامض في أقل من خمس ثوان.",
+  "2_2_2_F47":
+    "لا يمكن لعناصر الوميض تلبية الشرط الذي ينص على أن المعلومات الوامضة يمكن إيقافها في غضون خمس ثوان.",
+  "2_2_3_G5":
+    "تحقق من أن التوقيت ليس جزءًا أساسيًا من الحدث أو النشاط الذي يقدمه المحتوى، باستثناء الوسائط المتزامنة غير التفاعلية والأحداث الزمنية الفعلية.",
+  "2_2_4_SCR14":
+    "تحقق من أن جميع الانقطاعات (بما في ذلك التحديثات للمحتوى) يمكن تأجيلها أو قمعها بواسطة المستخدم، باستثناء الانقطاعات التي تتضمن حالة طارئة.",
+  "2_2_5_G105,G181":
+    "إذا كانت هذه الصفحة الويب جزءًا من مجموعة صفحات ويب بها حد زمني للخمول، تحقق من أن المستخدم المصادق يمكنه متابعة النشاط دون فقدان البيانات بعد إعادة المصادقة.",
+  "2_2_6.Check":
+    "تحقق من أن المستخدمين يتم تحذيرهم من مدة أي خمول للمستخدم قد يتسبب في فقدان البيانات، ما لم يتم الحفاظ على البيانات لأكثر من 20 ساعة عندما لا يتخذ المستخدم أي إجراءات.",
+  "2_3_1_G19,G176":
+    "تحقق من أن أي مكون من مكونات المحتوى لا يومض أكثر من ثلاث مرات في أي فترة مدتها ثانية واحدة، أو أن حجم أي منطقة وامضة صغير بما فيه الكفاية.",
+  "2_3_2_G19":
+    "تحقق من أن أي مكون من مكونات المحتوى لا يومض أكثر من ثلاث مرات في أي فترة مدتها ثانية واحدة.",
+  "2_3_3.Check":
+    "تحقق من أن حركة الرسوم المتحركة التي يتم تفعيلها بالتفاعل يمكن تعطيلها، ما لم تكن الرسوم المتحركة ضرورية للوظيفة أو المعلومات المنقولة.",
+  "2_4_1_H64.1":
+    "يتطلب عنصر الإطار iframe وجود سمة عنوان غير فارغة تحدد الإطار.",
+  "2_4_1_H64.2": "تحقق من أن سمة العنوان لهذا العنصر تحتوي على نص يحدد الإطار.",
+  "2_4_1_G1,G123,G124,H69":
+    "تأكد من أنه يمكن تجاوز أي عناصر تنقل مشتركة؛ على سبيل المثال، باستخدام روابط التخطي، عناصر الرأس، أو أدوار علامة ARIA.",
+  "2_4_1_G1,G123,G124.NoSuchID":
+    "هذا الرابط يشير إلى مرساة مسماة '{{id}}' داخل المستند، ولكن لا يوجد مرساة موجودة بهذا الاسم.",
+  "2_4_1_G1,G123,G124.NoSuchIDFragment":
+    "هذا الرابط يشير إلى مرساة مسماة '{{id}}' داخل المستند، ولكن لا يوجد مرساة موجودة بهذا الاسم في الجزء المختبر.",
+  "2_4_2_H25.1.NoHeadEl": "لا يوجد قسم رأس فيه لوضع عنصر عنوان وصفي.",
+  "2_4_2_H25.1.NoTitleEl":
+    "يجب توفير عنوان للمستند، باستخدام عنصر عنوان غير فارغ في قسم الرأس.",
+  "2_4_2_H25.1.EmptyTitle": "يجب أن يكون عنصر العنوان في قسم الرأس غير فارغ.",
+  "2_4_2_H25.2": "تحقق من أن عنصر العنوان يصف المستند.",
+  "2_4_3_H4.2":
+    "إذا تم استخدام tabindex، تحقق من أن الترتيب التبويب المحدد بواسطة سمات tabindex يتبع العلاقات في المحتوى.",
+  "2_4_4_H77,H78,H79,H80,H81,H33":
+    "تحقق من أن نص الرابط مقرونًا بسياق الرابط المحدد برمجيًا، أو سمة العنوان الخاصة به، تحدد غرض الرابط.",
+  "2_4_4_H77,H78,H79,H80,H81":
+    "تحقق من أن نص الرابط مقرونًا بسياق الرابط المحدد برمجيًا يحدد غرض الرابط.",
+  "2_4_5_G125,G64,G63,G161,G126,G185":
+    "إذا لم تكن هذه الصفحة الويب جزءًا من عملية خطية، تحقق من وجود أكثر من طريقة لتحديد موقع هذه الصفحة الويب ضمن مجموعة من صفحات الويب.",
+  "2_4_6_G130,G131": "تحقق من أن العناوين والتسميات توضح الموضوع أو الغرض.",
+  "2_4_7_G149,G165,G195,C15,SCR31":
+    "تحقق من وجود وضع تشغيل واحد على الأقل حيث يمكن تحديد مؤشر التركيز باستخدام لوحة المفاتيح بصريًا على عناصر واجهة المستخدم.",
+  "2_4_8_H59.1": "يمكن تحديد عناصر الرابط في قسم الرأس من المستند فقط.",
+  "2_4_8_H59.2a": "عنصر الرابط يفتقد إلى سمة rel غير فارغة تحدد نوع الرابط.",
+  "2_4_8_H59.2b":
+    "عنصر الرابط يفتقد إلى سمة href غير فارغة تشير إلى المورد المرتبط.",
+  "2_4_9_H30": "تحقق من أن نص الرابط يصف غرض الرابط.",
+  "2_5_1.Check":
+    "تحقق من أن جميع الوظائف التي تستخدم الإيماءات المتعددة النقاط أو المسار يمكن تشغيلها بمؤشر واحد دون إيماءة مبنية على مسار، ما لم تكن الإيماءة متعددة النقاط أو المسار ضرورية.",
+  "2_5_2.SinglePointer_Check":
+    "تحقق من أنه بالنسبة للوظائف التي يمكن تشغيلها باستخدام مؤشر واحد، يكون واحد على الأقل مما يلي صحيحًا: لا يتم استخدام حدث الضغط: لا يتم استخدام حدث الضغط للمؤشر لتنفيذ أي جزء من الوظيفة؛ إلغاء أو تراجع: يكون إكمال الوظيفة عند حدث الرفع، وتتوفر آلية لإلغاء الوظيفة قبل الإكمال أو للتراجع عن الوظيفة بعد الإكمال؛ عكس حدث الرفع: حدث الرفع يعكس أي نتيجة لحدث الضغط السابق؛ ضروري: إكمال الوظيفة عند حدث الضغط ضروري.",
+  "2_5_2.Mousedown_Check":
+    "هذا العنصر لديه مستمع لحدث mousedown. تحقق من أنه بالنسبة للوظائف التي يمكن تشغيلها باستخدام مؤشر واحد، يكون واحد على الأقل مما يلي صحيحًا: لا يتم استخدام حدث الضغط: لا يتم استخدام حدث الضغط للمؤشر لتنفيذ أي جزء من الوظيفة؛ إلغاء أو تراجع: يكون إكمال الوظيفة عند حدث الرفع، وتتوفر آلية لإلغاء الوظيفة قبل الإكمال أو للتراجع عن الوظيفة بعد الإكمال؛ عكس حدث الرفع: حدث الرفع يعكس أي نتيجة لحدث الضغط السابق؛ ضروري: إكمال الوظيفة عند حدث الضغط ضروري.",
+  "2_5_2.Touchstart_Check":
+    "هذا العنصر لديه مستمع لحدث touchstart. تحقق من أنه بالنسبة للوظائف التي يمكن تشغيلها باستخدام مؤشر واحد، يكون واحد على الأقل مما يلي صحيحًا: لا يتم استخدام حدث الضغط: لا يتم استخدام حدث الضغط للمؤشر لتنفيذ أي جزء من الوظيفة؛ إلغاء أو تراجع: يكون إكمال الوظيفة عند حدث الرفع، وتتوفر آلية لإلغاء الوظيفة قبل الإكمال أو للتراجع عن الوظيفة بعد الإكمال؛ عكس حدث الرفع: حدث الرفع يعكس أي نتيجة لحدث الضغط السابق؛ ضروري: إكمال الوظيفة عند حدث الضغط ضروري.",
+  "2_5_3_F96.Check":
+    "تحقق من أنه بالنسبة لعناصر واجهة المستخدم التي تحتوي على تسميات تشمل نصًا أو صورًا للنص، يحتوي الاسم على النص المقدم بصريًا.",
+  "2_5_3_F96.AccessibleName":
+    "الاسم القابل للوصول لهذا العنصر لا يحتوي على نص التسمية المرئي. تحقق من أنه بالنسبة لعناصر واجهة المستخدم التي تحتوي على تسميات تشمل نصًا أو صورًا للنص، يحتوي الاسم على النص المقدم بصريًا.",
+  "2_5_4.Check":
+    "تحقق من أن الوظائف التي يمكن تشغيلها عن طريق حركة الجهاز أو حركة المستخدم يمكن أيضًا تشغيلها عن طريق عناصر واجهة المستخدم ويمكن تعطيل الاستجابة للحركة لمنع التشغيل العرضي، إلا عندما: تستخدم واجهة مدعومة: يتم استخدام الحركة لتشغيل الوظيفة من خلال واجهة مدعومة بالوصول؛ ضروري: الحركة ضرورية للوظيفة والقيام بذلك سيبطل النشاط.",
+  "2_5_4.Devicemotion":
+    "هذا العنصر لديه مستمع لحدث devicemotion. تحقق من أن الوظائف التي يمكن تشغيلها عن طريق حركة الجهاز أو حركة المستخدم يمكن أيضًا تشغيلها عن طريق عناصر واجهة المستخدم ويمكن تعطيل الاستجابة للحركة لمنع التشغيل العرضي، إلا عندما: تستخدم واجهة مدعومة: يتم استخدام الحركة لتشغيل الوظيفة من خلال واجهة مدعومة بالوصول؛ ضروري: الحركة ضرورية للوظيفة والقيام بذلك سيبطل النشاط.",
+  "2_5_5.Check":
+    "تحقق من أن حجم الهدف لمدخلات المؤشر لا يقل عن 44 في 44 بكسل CSS، إلا عندما: مكافئ: يتوفر الهدف من خلال رابط مكافئ أو عنصر تحكم على نفس الصفحة والذي يبلغ حجمه على الأقل 44 في 44 بكسل CSS؛ داخل النص: يكون الهدف في جملة أو كتلة من النص؛ تحكم وكيل المستخدم: يتم تحديد حجم الهدف بواسطة وكيل المستخدم ولا يتم تعديله بواسطة المؤلف؛ ضروري: عرض الهدف بطريقة معينة ضروري لنقل المعلومات.",
+  "2_5_6.Check":
+    "تحقق من أن المحتوى لا يقيد استخدام وسائط الإدخال المتاحة على منصة ما إلا عندما يكون القيد ضروريًا، أو مطلوبًا لضمان أمان المحتوى، أو مطلوبًا لاحترام إعدادات المستخدم.",
+  "3_1_1_H57.2":
+    "يجب أن يحتوي عنصر html على سمة lang أو xml:lang تصف لغة المستند.",
+  "3_1_1_H57.3.Lang":
+    "اللغة المحددة في سمة lang لعنصر المستند لا تبدو مكتوبة بشكل صحيح.",
+  "3_1_1_H57.3.XmlLang":
+    "اللغة المحددة في سمة xml:lang لعنصر المستند لا تبدو مكتوبة بشكل صحيح.",
+  "3_1_2_H58":
+    "تأكد من تمييز أي تغيير في اللغة باستخدام سمة اللغة lang و/أو xml:lang على عنصر، حسب الاقتضاء.",
+  "3_1_2_H58.1.Lang":
+    "اللغة المحددة في سمة اللغة lang لهذا العنصر لا تبدو مكتوبة بشكل صحيح.",
+  "3_1_2_H58.1.XmlLang":
+    "اللغة المحددة في سمة xml:lang لهذا العنصر لا تبدو مكتوبة بشكل صحيح.",
+  "3_1_3_H40,H54,H60,G62,G70":
+    "تحقق من توفر آلية لتحديد التعريفات الخاصة بكلمات أو عبارات تُستخدم بطريقة غير عادية أو محدودة، بما في ذلك الاصطلاحات والجargon.",
+  "3_1_4_G102,G55,G62,H28,G97":
+    "تحقق من توفر آلية لتحديد الشكل الموسع أو معنى الاختصارات.",
+  "3_1_5_G86,G103,G79,G153,G160":
+    "حيث يتطلب المحتوى قدرة قراءة أكثر تقدمًا من مستوى التعليم الثانوي الأدنى، يجب توفير محتوى إضافي أو نسخة بديلة.",
+  "3_1_6_H62.1.HTML5":
+    "عنصر Ruby لا يحتوي على عنصر rt يحتوي على معلومات النطق لنصه.",
+  "3_1_6_H62.1.XHTML11":
+    "عنصر Ruby لا يحتوي على عنصر rt يحتوي على معلومات النطق للنص داخل عنصر rb.",
+  "3_1_6_H62.2":
+    "عنصر Ruby لا يحتوي على عناصر rp، التي توفر علامات ترقيم إضافية إلى المتصفحات التي لا تدعم نص ruby.",
+  "3_2_1_G107":
+    "تحقق من أن تغيير السياق لا يحدث عندما يتلقى هذا الحقل المدخل التركيز.",
+  "3_2_2_H32.2":
+    'هذا النموذج لا يحتوي على زر إرسال، مما يخلق مشاكل لأولئك الذين لا يستطيعون إرسال النموذج باستخدام لوحة المفاتيح. أزرار الإرسال هي عناصر INPUT مع سمة النوع "submit" أو "image"، أو عناصر BUTTON مع نوع "submit" أو مُهمل/غير صالح.',
+  "3_2_3_G61":
+    "تحقق من أن آليات التنقل المتكررة على صفحات ويب متعددة تحدث بنفس الترتيب النسبي في كل مرة يتم تكرارها، ما لم يبادر المستخدم بتغيير.",
+  "3_2_4_G197":
+    "تحقق من أن المكونات التي لها نفس الوظيفة ضمن هذه الصفحة الويب محددة بشكل متسق في مجموعة الصفحات الويب التي تنتمي إليها.",
+  "3_2_5_H83.3":
+    "تحقق من أن نص الرابط هذا يحتوي على معلومات تشير إلى أن الرابط سيفتح في نافذة جديدة.",
+  "3_3_1_G83,G84,G85":
+    "إذا تم اكتشاف خطأ في الإدخال تلقائيًا في هذا النموذج، تحقق من تحديد العنصر(العناصر) المعني(المعنية) بالخطأ ووصف الخطأ(أخطاء) للمستخدم بنص.",
+  "3_3_2_G131,G89,G184,H90":
+    "تحقق من توفير تسميات واصفة أو تعليمات (بما في ذلك للحقول المطلوبة) لإدخال المستخدم في هذا النموذج.",
+  "3_3_3_G177":
+    "تحقق من أن هذا النموذج يوفر تصحيحات مقترحة لأخطاء إدخال المستخدم، ما لم يعرض ذلك الأمان أو الغرض من المحتوى للخطر.",
+  "3_3_4_G98,G99,G155,G164,G168.LegalForms":
+    "إذا كان هذا النموذج سيُلزم المستخدم بالتزام مالي أو قانوني، أو يعدل/يحذف بيانات يمكن للمستخدم التحكم فيها، أو يقدم استجابات للاختبار، فتأكد من أن الإرساليات إما قابلة للعكس، أو تم التحقق منها بحثًا عن أخطاء الإدخال، و/أو تم تأكيدها من قبل المستخدم.",
+  "3_3_5_G71,G184,G193":
+    "تحقق من توفر المساعدة الحساسة للسياق لهذا النموذج، على مستوى صفحة الويب و/أو على مستوى التحكم.",
+  "3_3_6_G98,G99,G155,G164,G168.AllForms":
+    "تحقق من أن الإرساليات لهذا النموذج إما قابلة للعكس، أو تم التحقق منها بحثًا عن أخطاء في الإدخال، و/أو تم تأكيدها من قبل المستخدم.",
+  "4_1_2_H91.A.Empty":
+    "تم العثور على عنصر الرابط مع معرف ولكن بدون href أو نص رابط. فكر في نقل معرفه إلى عنصر أصل أو قريب.",
+  "4_1_2_H91.A.EmptyWithName":
+    "تم العثور على عنصر الرابط بصفة اسم ولكن بدون href أو نص رابط. فكر في نقل الصفة الاسمية لتصبح معرفاً لعنصر أصل أو قريب.",
+  "4_1_2_H91.A.EmptyNoId":
+    "تم العثور على عنصر الرابط بدون محتوى رابط ولا صفة اسم و/أو معرف.",
+  "4_1_2_H91.A.NoHref":
+    "يجب عدم استخدام عناصر الربط لتحديد أهداف ربط داخل الصفحة. إذا لم تستخدم المعرف لأغراض أخرى (مثل CSS أو البرمجة)، فكر في نقله إلى عنصر أصل.",
+  "4_1_2_H91.A.Placeholder":
+    "تم العثور على عنصر الرابط مع محتوى رابط، ولكن لم يتم توفير صفة href، معرف، أو اسم.",
+  "4_1_2_H91.A.NoContent":
+    "تم العثور على عنصر الرابط مع صفة href صالحة، ولكن لم يتم توفير محتوى رابط.",
+  "4_1_2_input_element": "عنصر input",
+  "4_1_2_element_content": "محتوى العنصر",
+  "4_1_2_element": "عنصر",
+  "4_1_2_msg_pattern":
+    "هذا ال{{msgNodeType}} لا يملك اسمًا متاحًا لواجهة برمجة التطبيقات الخاصة بالإتاحة. الأسماء الصالحة هي: {{builtAttrs}}.",
+  "4_1_2_msg_pattern_role_of_button":
+    'هذا العنصر له دور "زر" ولكن لا يملك اسمًا متاحًا لواجهة برمجة التطبيقات الخاصة بالإتاحة. الأسماء الصالحة هي: {{builtAttrs}}.',
+  "4_1_2_msg_pattern2":
+    "هذا ال{{msgNodeType}} لا يملك قيمة متاحة لواجهة برمجة التطبيقات الخاصة بالإتاحة.",
+  "4_1_2_msg_add_one": "أضف واحدة عن طريق إضافة محتوى إلى العنصر.",
+  "4_1_2_msg_pattern3":
+    "هذا ال{{msgNodeType}} لا يملك خيارًا مختارًا بشكل أولي. حسب نسخة HTML الخاصة بك، قد تكون القيمة المعرضة لواجهة برمجة التطبيقات الخاصة بالإتاحة غير محددة.",
+  "4_1_2_value_exposed_using_attribute":
+    "القيمة معرضة باستخدام الصفة {{requiredValue}}.",
+  "4_1_2_value_exposed_using_element":
+    "القيمة معرضة باستخدام عنصر {{requiredValue}}.",
+  "4_1_3_ARIA22,G199,ARIA19,G83,G84,G85,G139,G177,G194,ARIA23.Check":
+    "تحقق من أن رسائل الحالة يمكن تحديدها برمجيًا من خلال الدور أو الخواص بحيث يمكن تقديمها للمستخدم بواسطة تقنيات المساعدة دون تلقي التركيز.",
+};
