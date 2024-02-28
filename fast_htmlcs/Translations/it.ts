@@ -2,55 +2,55 @@ _global.translation["it"] = {
   auditor_success_criterion: "Requisito di successo",
   auditor_suggested_techniques: "Tecniche suggerite",
   "1_1_1_H30.2":
-    "Img element is the only content of the link, but is missing alt text. The alt text should describe the purpose of the link.",
+    "L'elemento Img è l'unico contenuto del link, ma manca del testo alt. Il testo alt dovrebbe descrivere lo scopo del link.",
   "1_1_1_H67.1":
-    "Img element with empty alt text must have absent or empty title attribute.",
+    "L'elemento Img con testo alt vuoto deve avere l'attributo title assente o vuoto.",
   "1_1_1_H67.2":
-    "Img element is marked so that it is ignored by Assistive Technology.",
+    "L'elemento Img è contrassegnato in modo da essere ignorato dalla Tecnologia Assistiva.",
   "1_1_1_H37":
-    "Img element missing an alt attribute. Use the alt attribute to specify a short text alternative.",
+    "Manca un attributo alt nell'elemento Img. Utilizzare l'attributo alt per specificare un'alternativa testuale breve.",
   "1_1_1_G94.Image":
-    "Ensure that the img element's alt text serves the same purpose and presents the same information as the image.",
+    "Assicurarsi che il testo alt dell'elemento img abbia lo stesso scopo e presenti le stesse informazioni dell'immagine.",
   "1_1_1_H36":
-    "Image submit button missing an alt attribute. Specify a text alternative that describes the button's function, using the alt attribute.",
+    "Manca un attributo alt nel pulsante di invio immagine. Specificare un'alternativa testuale che descriva la funzione del pulsante, usando l'attributo alt.",
   "1_1_1_G94.Button":
-    "Ensure that the image submit button's alt text identifies the purpose of the button.",
+    "Assicurarsi che il testo alt del pulsante di invio immagine identifichi lo scopo del pulsante.",
   "1_1_1_H24":
-    "Area element in an image map missing an alt attribute. Each area element must have a text alternative that describes the function of the image map area.",
+    "Elemento area in una mappa immagine mancante di un attributo alt. Ogni elemento area deve avere un'alternativa testuale che descriva la funzione dell'area della mappa immagine.",
   "1_1_1_H24.2":
-    "Ensure that the area element's text alternative serves the same purpose as the part of image map image it references.",
+    "Assicurarsi che l'alternativa testuale dell'elemento area abbia lo stesso scopo della parte dell'immagine della mappa immagine a cui fa riferimento.",
   "1_1_1_G73,G74":
-    "If this image cannot be fully described in a short text alternative, ensure a long text alternative is also available, such as in the body text or through a link.",
+    "Se questa immagine non può essere completamente descritta in un'alternativa testuale breve, assicurarsi che sia disponibile anche un'alternativa testuale lunga, come nel testo del corpo o tramite un link.",
   "1_1_1_H2.EG5":
-    "Img element inside a link must not use alt text that duplicates the text content of the link.",
+    "L'elemento Img all'interno di un link non deve utilizzare un testo alt che duplica il contenuto testuale del link.",
   "1_1_1_H2.EG4":
-    "Img element inside a link has empty or missing alt text when a link beside it contains link text. Consider combining the links.",
+    "L'elemento Img all'interno di un link ha un testo alternativo vuoto o mancante quando un link vicino contiene testo del link. Prendere in considerazione l'unione dei link.",
   "1_1_1_H2.EG3":
-    "Img element inside a link must not use alt text that duplicates the content of a text link beside it.",
+    "L'elemento Img all'interno di un link non deve utilizzare un testo alternativo che duplica il contenuto di un link testuale accanto.",
   "1_1_1_H53,ARIA6":
-    "Object elements must contain a text alternative after all other alternatives are exhausted.",
+    "Gli elementi Object devono contenere un'alternativa testuale dopo che tutte le altre alternative sono esaurite.",
   "1_1_1_G94,G92.Object,ARIA6":
-    "Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and present the same information.",
+    "Verificare che siano disponibili alternative testuali brevi (e, se appropriato, lunghe) per i contenuti non testuali che servono lo stesso scopo e presentano le stesse informazioni.",
   "1_1_1_H35.3":
-    "Applet elements must contain a text alternative in the element's body, for browsers without support for the applet element.",
+    "Gli elementi Applet devono contenere un'alternativa testuale nel corpo dell'elemento, per i browser senza supporto per l'elemento applet.",
   "1_1_1_H35.2":
-    "Applet elements must contain an alt attribute, to provide a text alternative to browsers supporting the element but are unable to load the applet.",
+    "Gli elementi Applet devono contenere un attributo alt, per fornire un'alternativa testuale ai browser che supportano l'elemento ma non sono in grado di caricare l'applet.",
   "1_1_1_G94,G92.Applet":
-    "Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and present the same information.",
+    "Verificare che siano disponibili alternative testuali brevi (e, se appropriato, lunghe) per i contenuti non testuali che servono lo stesso scopo e presentano le stesse informazioni.",
   "1_2_1_G158":
-    "If this embedded object contains pre-recorded audio only, and is not provided as an alternative for text content, check that an alternative text version is available.",
+    "Se questo oggetto incorporato contiene solo audio pre-registrato e non viene fornito come alternativa per il contenuto testuale, verificare che sia disponibile una versione in testo alternativo.",
   "1_2_1_G159,G166":
-    "If this embedded object contains pre-recorded video only, and is not provided as an alternative for text content, check that an alternative text version is available, or an audio track is provided that presents equivalent information.",
+    "Se questo oggetto incorporato contiene solo video pre-registrato e non viene fornito come alternativa per il contenuto testuale, verificare che sia disponibile una versione in testo alternativo, o sia fornita una traccia audio che presenta informazioni equivalenti.",
   "1_2_2_G87,G93":
-    "If this embedded object contains pre-recorded synchronised media and is not provided as an alternative for text content, check that captions are provided for audio content.",
+    "Se questo oggetto incorporato contiene media sincronizzati pre-registrati e non viene fornito come alternativa per il contenuto testuale, verificare che siano forniti sottotitoli per il contenuto audio.",
   "1_2_3_G69,G78,G173,G8":
-    "If this embedded object contains pre-recorded synchronised media and is not provided as an alternative for text content, check that an audio description of its video, and/or an alternative text version of the content is provided.",
+    "Se questo oggetto incorporato contiene media sincronizzati pre-registrati e non viene fornito come alternativa per il contenuto testuale, verificare che sia fornita una descrizione audio del suo video, e/o sia disponibile una versione in testo alternativo del contenuto.",
   "1_2_4_G9,G87,G93":
-    "If this embedded object contains synchronised media, check that captions are provided for live audio content.",
+    "Se questo oggetto incorporato contiene media sincronizzati, verificare che siano forniti sottotitoli per il contenuto audio dal vivo.",
   "1_2_5_G78,G173,G8":
-    "If this embedded object contains pre-recorded synchronised media, check that an audio description is provided for its video content.",
+    "Se questo oggetto incorporato contiene media sincronizzati pre-registrati, verificare che sia fornita una descrizione audio per il suo contenuto video.",
   "1_2_6_G54,G81":
-    "If this embedded object contains pre-recorded synchronised media, check that a sign language interpretation is provided for its audio.",
+    "Se questo oggetto incorporato contiene media sincronizzati pre-registrati, verificare che sia fornita un'interpretazione in lingua dei segni per il suo audio.",
   "1_2_7_G8":
     "If this embedded object contains synchronised media, and where pauses in foreground audio is not sufficient to allow audio descriptions to convey the sense of pre-recorded video, check that an extended audio description is provided, either through scripting or an alternate version.",
   "1_2_8_G69,G159":
@@ -94,7 +94,7 @@ _global.translation["it"] = {
   "1_3_1_H43.IncorrectAttr":
     'Incorrect headers attribute on this td element. Expected "{{expected}}" but found "{{actual}}"',
   "1_3_1_H43.IncorrectAttrNotice":
-    "Check that headers attribute on td element is correct.",
+    "Check that headers attribute on td elements are correct.",
   "1_3_1_H43.HeadersRequired":
     "The relationship between td elements and their associated th elements is not defined. As this table has multiple levels of th elements, you must use the headers attribute on td elements.",
   "1_3_1_H43.MissingHeaderIds":
@@ -145,27 +145,55 @@ _global.translation["it"] = {
     "Check that the content is ordered in a meaningful sequence when linearised, such as when style sheets are disabled.",
   "1_3_3_G96":
     "Where instructions are provided for understanding the content, do not rely on sensory characteristics alone (such as shape, size or location) to describe objects.",
+  "1_3_4.RestrictView":
+    "Check that content does not restrict its view and operation to a single display orientation, such as portrait or landscape, unless a specific display orientation is essential.",
+  "1_3_5_H98.FaultyValue":
+    "This element contains a potentially faulty value in its autocomplete attribute: {{valuesStr}}.",
+  "1_3_5_H98.InvalidAutoComplete_Text":
+    "Invalid autocomplete value: {{x}}. Element does not belong to Text control group.",
+  "1_3_5_H98.InvalidAutoComplete_Multiline":
+    "Invalid autocomplete value: {{x}}. Element does not belong to Multiline control group.",
+  "1_3_5_H98.InvalidAutoComplete_Password":
+    "Invalid autocomplete value: {{x}}. Element does not belong to Password control group.",
+  "1_3_5_H98.InvalidAutoComplete_Url":
+    "Invalid autocomplete value: {{x}}. Element does not belong to Url control group.",
+  "1_3_5_H98.InvalidAutoComplete_Telephone":
+    "Invalid autocomplete value: {{x}}. Element does not belong to Telephone control group.",
+  "1_3_5_H98.InvalidAutoComplete_Numeric":
+    "Invalid autocomplete value: {{x}}. Element does not belong to Numeric control group.",
+  "1_3_5_H98.InvalidAutoComplete_Month":
+    "Invalid autocomplete value: {{x}}. Element does not belong to Month control group.",
+  "1_3_5_H98.InvalidAutoComplete_Date":
+    "Invalid autocomplete value: {{x}}. Element does not belong to Date control group.",
+  "1_3_5_H98.Purpose":
+    "Check that the input field serves a purpose identified in the Input Purposes for User Interface Components section; and that the content is implemented using technologies with support for identifying the expected meaning for form input data.",
+  "1_3_5_H98.MissingAutocomplete":
+    "This element does not have an autocomplete attribute. If this field collects information about the user, consider adding one to comply with this Success Criterion.",
+  "1_3_6_ARIA11.Check":
+    "Check that the purpose of User Interface Components, icons, and regions can be programmatically determined.",
   "1_4_1_G14,G18":
     "Check that any information conveyed using colour alone is also available in text, or through other visual cues.",
   "1_4_2_F23":
-    "If this element contains audio that plays automatically for longer than 3 seconds, check that there is the ability to pause, stop or mute the audio.",
+    "Se questo elemento contiene audio che viene riprodotto automaticamente per più di 3 secondi, verifica che ci sia la possibilità di mettere in pausa, fermare o disattivare l'audio.",
   "1_4_3_F24.BGColour":
-    "Check that this element has an inherited foreground colour to complement the corresponding inline background colour or image.",
+    "Verifica che questo elemento abbia un colore di primo piano ereditato per completare il corrispondente colore di sfondo o immagine inline.",
   "1_4_3_F24.FGColour":
-    "Check that this element has an inherited background colour or image to complement the corresponding inline foreground colour.",
+    "Verifica che questo elemento abbia un colore di sfondo o un'immagine ereditata per completare il corrispondente colore di primo piano inline.",
   "1_4_3_G18_or_G145.Abs":
-    "This element is absolutely positioned and the background color can not be determined. Ensure the contrast ratio between the text and all covered parts of the background are at least {{required}}:1.",
-  "1_4_3_G18_or_G145.BgGradient":
-    "This element's text is placed on a gradient. Ensure the contrast ratio between the text and all covered parts of the gradient are at least {{required}}:1.",
+    "Questo elemento è posizionato in modo assoluto e il colore dello sfondo non può essere determinato. Assicurati che il rapporto di contrasto tra il testo e tutte le parti coperte dello sfondo sia di almeno {{required}}:1.",
   "1_4_3_G18_or_G145.BgImage":
-    "This element's text is placed on a background image. Ensure the contrast ratio between the text and all covered parts of the image are at least {{required}}:1.",
+    "Il testo di questo elemento è posizionato su un'immagine di sfondo. Assicurati che il rapporto di contrasto tra il testo e tutte le parti coperte dell'immagine sia di almeno {{required}}:1.",
+  "1_4_3_G18_or_G145.BgGradient":
+    "Il testo di questo elemento è posizionato su un gradiente. Assicurati che il rapporto di contrasto tra il testo e tutte le parti coperte del gradiente sia di almeno {{required}}:1.",
   "1_4_3_G18_or_G145.Alpha":
-    "This element's text or background contains transparency. Ensure the contrast ratio between the text and background are at least {{required}}:1.",
+    "Il testo o lo sfondo di questo elemento contiene trasparenza. Assicurati che il rapporto di contrasto tra il testo e lo sfondo sia di almeno {{required}}:1.",
   "1_4_3_G18_or_G145.Fail":
-    "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least {{required}}:1, but text in this element has a contrast ratio of {{value}}:1.",
-  "1_4_3_G18_or_G145.Fail.Recomendation": "Recommendation: change",
-  "1_4_3_G18_or_G145.Fail.Recomendation.Text": "text colour to",
-  "1_4_3_G18_or_G145.Fail.Recomendation.Background": "background to",
+    "Questo elemento ha un contrasto insufficiente a questo livello di conformità. Era atteso un rapporto di contrasto di almeno {{required}}:1, ma il testo in questo elemento ha un rapporto di contrasto di {{value}}:1.",
+  "1_4_3_G18_or_G145.Fail.Recomendation": "Raccomandazione: ",
+  "1_4_3_G18_or_G145.Fail.Recomendation.Text":
+    "cambia il colore del testo in {{value}}",
+  "1_4_3_G18_or_G145.Fail.Recomendation.Background":
+    "cambia lo sfondo in {{value}}",
   "1_4_4_G142":
     "Check that text can be resized without assistive technology up to 200 percent without loss of content or functionality.",
   "1_4_5_G140,C22,C30.AALevel":
@@ -174,13 +202,14 @@ _global.translation["it"] = {
     "This element is absolutely positioned and the background color can not be determined. Ensure the contrast ratio between the text and all covered parts of the background are at least {{required}}:1.",
   "1_4_6_G18_or_G17.BgImage":
     "This element's text is placed on a background image. Ensure the contrast ratio between the text and all covered parts of the image are at least {{required}}:1.",
-  "1_4_6_G18_or_G145.BgGradient":
-    "This element's text is placed on a gradient. Ensure the contrast ratio between the text and all covered parts of the gradient are at least {{required}}:1.",
+  "1_4_6_G18_or_G17.BgGradient":
+    "This element's text is placed on a background gradient. Ensure the contrast ratio between the text and all covered parts of the gradient are at least {{required}}:1.",
   "1_4_6_G18_or_G17.Fail":
     "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least {{required}}:1, but text in this element has a contrast ratio of {{value}}:1.",
-  "1_4_6_G18_or_G17.Fail.Recomendation": "Recommendation: change",
-  "1_4_6_G18_or_G17.Fail.Recomendation.Text": "text colour to",
-  "1_4_6_G18_or_G17.Fail.Recomendation.Background": "background to",
+  "1_4_6_G18_or_G17.Fail.Recomendation": "Recommendation: ",
+  "1_4_6_G18_or_G17.Fail.Recomendation.Text": "change text colour to {{value}}",
+  "1_4_6_G18_or_G17.Fail.Recomendation.Background":
+    "change background to {{value}}",
   "1_4_7_G56":
     "For pre-recorded audio-only content in this element that is primarily speech (such as narration), any background sounds should be muteable, or be at least 20 dB (or about 4 times) quieter than the speech.",
   "1_4_8_G148,G156,G175":
@@ -195,6 +224,33 @@ _global.translation["it"] = {
     "Check that text can be resized without assistive technology up to 200 percent without requiring the user to scroll horizontally on a full-screen window.",
   "1_4_9_G140,C22,C30.NoException":
     "Check that images of text are only used for pure decoration or where a particular presentation of text is essential to the information being conveyed.",
+  "1_4_10_C32,C31,C33,C38,SCR34,G206.Check":
+    "Check that content can be presented without loss of information or functionality, and without requiring scrolling in two dimensions for: \
+      Vertical scrolling content at a width equivalent to 320 CSS pixels; \
+      Horizontal scrolling content at a height equivalent to 256 CSS pixels; \
+      Except for parts of the content which require two-dimensional layout for usage or meaning.",
+  "1_4_10_C32,C31,C33,C38,SCR34,G206.Fixed":
+    'This element has "position: fixed". This may require scrolling in two dimensions, which is considered a failure of this Success Criterion.',
+  "1_4_10_C32,C31,C33,C38,SCR34,G206.Scrolling":
+    "Preformatted text may require scrolling in two dimensions, which is considered a failure of this Success Criterion.",
+  "1_4_10_C32,C31,C33,C38,SCR34,G206.Zoom":
+    "Interfering with a user agent's ability to zoom may be a failure of this Success Criterion.",
+  "1_4_11_G195,G207,G18,G145,G174,F78.Check":
+    "Check that the visual presentation of the following have a contrast ratio of at least 3:1 against adjacent color(s): \
+      User Interface Components: Visual information required to identify user interface components and states, except for inactive components or where the appearance of the component is determined by the user agent and not modified by the author; \
+      Graphical Objects: Parts of graphics required to understand the content, except when a particular presentation of graphics is essential to the information being conveyed.",
+  "1_4_12_C36,C35.Check":
+    "Check that no loss of content or functionality occurs by setting all of the following and by changing no other style property: \
+       \
+          Line height (line spacing) to at least 1.5 times the font size; \
+          Spacing following paragraphs to at least 2 times the font size; \
+          Letter spacing (tracking) to at least 0.12 times the font size; \
+          Word spacing to at least 0.16 times the font size.",
+  "1_4_13_F95.Check":
+    "Check that where receiving and then removing pointer hover or keyboard focus triggers additional content to become visible and then hidden, the following are true: \
+          Dismissable: A mechanism is available to dismiss the additional content without moving pointer hover or keyboard focus, unless the additional content communicates an input error or does not obscure or replace other content; \
+          Hoverable: If pointer hover can trigger the additional content, then the pointer can be moved over the additional content without the additional content disappearing; \
+          Persistent: The additional content remains visible until the hover or focus trigger is removed, the user dismisses it, or its information is no longer valid.",
   "2_1_1_G90":
     "Ensure the functionality provided by an event handler for this element is available through the keyboard",
   "2_1_1_SCR20.DblClick":
@@ -211,6 +267,13 @@ _global.translation["it"] = {
     "Ensure the functionality provided by mousing up on this element is available through the keyboard; for instance, using the keyup event.",
   "2_1_2_F10":
     "Check that this applet or plugin provides the ability to move the focus away from itself when using the keyboard.",
+  "2_1_4.Check":
+    "Check that if a keyboard shortcut is implemented in content using only letter (including upper- and lower-case letters), punctuation, number, or symbol characters, then at least one of the following is true: \
+       \
+          Turn off: A mechanism is available to turn the shortcut off; \
+          Remap: A mechanism is available to remap the shortcut to use one or more non-printable keyboard characters (e.g. Ctrl, Alt, etc); \
+          Active only on focus: The keyboard shortcut for a user interface component is only active when that component has focus. \
+      ",
   "2_2_1_F40.2":
     "Meta refresh tag used to redirect to another page, with a time limit that is not zero. Users cannot control this time limit.",
   "2_2_1_F41.2":
@@ -227,10 +290,14 @@ _global.translation["it"] = {
     "Check that all interruptions (including updates to content) can be postponed or suppressed by the user, except interruptions involving an emergency.",
   "2_2_5_G105,G181":
     "If this Web page is part of a set of Web pages with an inactivity time limit, check that an authenticated user can continue the activity without loss of data after re-authenticating.",
+  "2_2_6.Check":
+    "Check that users are warned of the duration of any user inactivity that could cause data loss, unless the data is preserved for more than 20 hours when the user does not take any actions.",
   "2_3_1_G19,G176":
     "Check that no component of the content flashes more than three times in any 1-second period, or that the size of any flashing area is sufficiently small.",
   "2_3_2_G19":
     "Check that no component of the content flashes more than three times in any 1-second period.",
+  "2_3_3.Check":
+    "Check that motion animation triggered by interaction can be disabled, unless the animation is essential to the functionality or the information being conveyed.",
   "2_4_1_H64.1":
     "Iframe element requires a non-empty title attribute that identifies the frame.",
   "2_4_1_H64.2":
@@ -267,6 +334,53 @@ _global.translation["it"] = {
   "2_4_8_H59.2b":
     "Link element is missing a non-empty href attribute pointing to the resource being linked.",
   "2_4_9_H30": "Check that text of the link describes the purpose of the link.",
+  "2_5_1.Check":
+    "Check that all functionality that uses multipoint or path-based gestures for operation can be operated with a single pointer without a path-based gesture, unless a multipoint or path-based gesture is essential.",
+  "2_5_2.SinglePointer_Check":
+    "Check that for functionality that can be operated using a single pointer, at least one of the following is true: \
+          No Down-Event: The down-event of the pointer is not used to execute any part of the function; \
+          Abort or Undo: Completion of the function is on the up-event, and a mechanism is available to abort the function before completion or to undo the function after completion; \
+          Up Reversal: The up-event reverses any outcome of the preceding down-event; \
+          Essential: Completing the function on the down-event is essential.",
+  "2_5_2.Mousedown_Check":
+    "This element has an mousedown event listener. Check that for functionality that can be operated using a single pointer, at least one of the following is true: \
+          No Down-Event: The down-event of the pointer is not used to execute any part of the function; \
+          Abort or Undo: Completion of the function is on the up-event, and a mechanism is available to abort the function before completion or to undo the function after completion; \
+          Up Reversal: The up-event reverses any outcome of the preceding down-event; \
+          Essential: Completing the function on the down-event is essential.",
+  "2_5_2.Touchstart_Check":
+    "This element has a touchstart event listener. Check that for functionality that can be operated using a single pointer, at least one of the following is true: \
+       \
+          No Down-Event: The down-event of the pointer is not used to execute any part of the function; \
+          Abort or Undo: Completion of the function is on the up-event, and a mechanism is available to abort the function before completion or to undo the function after completion; \
+          Up Reversal: The up-event reverses any outcome of the preceding down-event; \
+          Essential: Completing the function on the down-event is essential.",
+  "2_5_3_F96.Check":
+    "Check that for user interface components with labels that include text or images of text, the name contains the text that is presented visually.",
+  "2_5_3_F96.AccessibleName":
+    "Accessible name for this element does not contain the visible label text. Check that for user interface components with labels that include text or images of text, the name contains the text that is presented visually.",
+  "2_5_4.Check":
+    "Check that functionality that can be operated by device motion or user motion can also be operated by user interface components and responding to the motion can be disabled to prevent accidental actuation, except when: \
+       \
+          Supported Interface: The motion is used to operate functionality through an accessibility supported interface; \
+          Essential: The motion is essential for the function and doing so would invalidate the activity. \
+      ",
+  "2_5_4.Devicemotion":
+    "This element has a devicemotion event listener. Check that functionality that can be operated by device motion or user motion can also be operated by user interface components and responding to the motion can be disabled to prevent accidental actuation, except when: \
+       \
+          Supported Interface: The motion is used to operate functionality through an accessibility supported interface; \
+          Essential: The motion is essential for the function and doing so would invalidate the activity. \
+      ",
+  "2_5_5.Check":
+    "Check that the size of the target for pointer inputs is at least 44 by 44 CSS pixels except when: \
+       \
+          Equivalent: The target is available through an equivalent link or control on the same page that is at least 44 by 44 CSS pixels; \
+          Inline: The target is in a sentence or block of text; \
+          User Agent Control: The size of the target is determined by the user agent and is not modified by the author; \
+          Essential: A particular presentation of the target is essential to the information being conveyed. \
+      ",
+  "2_5_6.Check":
+    "Check that the content does not restrict use of input modalities available on a platform except where the restriction is essential, required to ensure the security of the content, or required to respect user settings.",
   "3_1_1_H57.2":
     "The html element should have a lang or xml:lang attribute which describes the language of the document.",
   "3_1_1_H57.3.Lang":
@@ -326,11 +440,12 @@ _global.translation["it"] = {
   "4_1_2_H91.A.NoContent":
     "Anchor element found with a valid href attribute, but no link content has been supplied.",
   "4_1_2_input_element": "input element",
-  "4_1_2_role_of_button": 'element has a role of "button" but',
   "4_1_2_element_content": "element content",
   "4_1_2_element": "element",
   "4_1_2_msg_pattern":
     "This {{msgNodeType}} does not have a name available to an accessibility API. Valid names are: {{builtAttrs}}.",
+  "4_1_2_msg_pattern_role_of_button":
+    'This element has role of "button" but does not have a name available to an accessibility API. Valid names are: {{builtAttrs}}.',
   "4_1_2_msg_pattern2":
     "This {{msgNodeType}} does not have a value available to an accessibility API.",
   "4_1_2_msg_add_one": "Add one by adding content to the element.",
@@ -340,4 +455,6 @@ _global.translation["it"] = {
     "A value is exposed using the {{requiredValue}} attribute.",
   "4_1_2_value_exposed_using_element":
     "A value is exposed using the {{requiredValue}} element.",
+  "4_1_3_ARIA22,G199,ARIA19,G83,G84,G85,G139,G177,G194,ARIA23.Check":
+    "Check that status messages can be programmatically determined through role or properties such that they can be presented to the user by assistive technologies without receiving focus.",
 };
