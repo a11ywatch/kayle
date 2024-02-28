@@ -38,6 +38,7 @@ const runnersJavascript = {
   htmlcs_it: loadRunnerScript("htmlcs", "it"),
   htmlcs_nl: loadRunnerScript("htmlcs", "nl"),
   htmlcs_pl: loadRunnerScript("htmlcs", "pl"),
+  htmlcs_ko: loadRunnerScript("htmlcs", "ko"),
   htmlcs_zh_CN: loadRunnerScript("htmlcs", "zh-CN"),
   htmlcs_zh_TW: loadRunnerScript("htmlcs", "zh-TW"),
   // axe scripts in all locales
@@ -98,6 +99,7 @@ export type Runner = Exclude<
   | "htmlcs_ja"
   | "htmlcs_fr"
   | "htmlcs_it"
+  | "htmlcs_ko"
   | "htmlcs_nl"
   | "htmlcs_pl"
   | "htmlcs_zh_CN"

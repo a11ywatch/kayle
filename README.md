@@ -196,6 +196,7 @@ type RunnerConfig = {
 1. eu ("Basque")
 1. fr ("French")
 1. ar ("Arabic")
+1. ko ("Korean")
 1. he ("Hebrew")
 1. nl ("Dutch")
 1. no_NB ("Norwegian")
