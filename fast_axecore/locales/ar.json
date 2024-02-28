@@ -2,1042 +2,994 @@
   "lang": "ar",
   "rules": {
     "accesskeys": {
-      "description": "Ensures every accesskey attribute value is unique",
-      "help": "accesskey attribute value should be unique"
+      "description": "يضمن أن قيمة خاصية الوصول لكل مفتاح فريدة",
+      "help": "يجب أن تكون قيمة خاصية الوصول فريدة"
     },
     "area-alt": {
-      "description": "Ensures <area> elements of image maps have alternate text",
-      "help": "Active <area> elements must have alternate text"
+      "description": "يضمن أن عناصر <area> لخرائط الصور لها نص بديل",
+      "help": "يجب أن تحتوي عناصر <area> الفعالة على نص بديل"
     },
     "aria-allowed-attr": {
-      "description": "Ensures ARIA attributes are allowed for an element's role",
-      "help": "Elements must only use allowed ARIA attributes"
+      "description": "يضمن أن خصائص ARIA مسموحة لدور عنصر معين",
+      "help": "يجب أن تستخدم العناصر خصائص ARIA المسموحة فقط"
     },
     "aria-allowed-role": {
-      "description": "Ensures role attribute has an appropriate value for the element",
-      "help": "ARIA role should be appropriate for the element"
+      "description": "يضمن أن خاصية الدور لها قيمة مناسبة للعنصر",
+      "help": "يجب أن يكون دور ARIA مناسباً للعنصر"
     },
     "aria-command-name": {
-      "description": "Ensures every ARIA button, link and menuitem has an accessible name",
-      "help": "ARIA commands must have an accessible name"
+      "description": "يضمن أن كل أمر ARIA ورابط وعنصر قائمة له اسم متاح",
+      "help": "يجب أن تحتوي أوامر ARIA على اسم متاح"
     },
     "aria-dialog-name": {
-      "description": "Ensures every ARIA dialog and alertdialog node has an accessible name",
-      "help": "ARIA dialog and alertdialog nodes should have an accessible name"
+      "description": "يضمن أن كل عقدة حوار وتنبيه حوار في ARIA لها اسم متاح",
+      "help": "يجب أن تحتوي عقد الحوار وتنبيه الحوار في ARIA على اسم متاح"
     },
     "aria-hidden-body": {
-      "description": "Ensures aria-hidden='true' is not present on the document body.",
-      "help": "aria-hidden='true' must not be present on the document body"
+      "description": "يضمن عدم وجود 'aria-hidden=\"true\"' على جسم الوثيقة",
+      "help": "يجب ألا يتواجد 'aria-hidden=\"true\"' على جسم الوثيقة"
     },
     "aria-hidden-focus": {
-      "description": "Ensures aria-hidden elements are not focusable nor contain focusable elements",
-      "help": "ARIA hidden element must not be focusable or contain focusable elements"
+      "description": "يضمن أن العناصر المخفية بـ aria-hidden ليست قابلة للتركيز ولا تحتوي على عناصر قابلة للتركيز",
+      "help": "يجب ألا يكون العنصر المخفي بـ ARIA قابل للتركيز أو يحتوي على عناصر قابلة للتركيز"
     },
     "aria-input-field-name": {
-      "description": "Ensures every ARIA input field has an accessible name",
-      "help": "ARIA input fields must have an accessible name"
+      "description": "يضمن أن كل حقل إدخال ARIA له اسم متاح",
+      "help": "يجب أن تحتوي حقول إدخال ARIA على اسم متاح"
     },
     "aria-meter-name": {
-      "description": "Ensures every ARIA meter node has an accessible name",
-      "help": "ARIA meter nodes must have an accessible name"
+      "description": "يضمن أن كل عقدة قياس في ARIA لها اسم متاح",
+      "help": "يجب أن تحتوي عقد القياس في ARIA على اسم متاح"
     },
     "aria-progressbar-name": {
-      "description": "Ensures every ARIA progressbar node has an accessible name",
-      "help": "ARIA progressbar nodes must have an accessible name"
+      "description": "يضمن أن كل عقدة شريط تقدم في ARIA لها اسم متاح",
+      "help": "يجب أن تحتوي عقد شريط التقدم في ARIA على اسم متاح"
     },
     "aria-required-attr": {
-      "description": "Ensures elements with ARIA roles have all required ARIA attributes",
-      "help": "Required ARIA attributes must be provided"
+      "description": "يضمن أن العناصر بأدوار ARIA تحتوي على كل خصائص ARIA المطلوبة",
+      "help": "يجب توفير خصائص ARIA المطلوبة"
     },
     "aria-required-children": {
-      "description": "Ensures elements with an ARIA role that require child roles contain them",
-      "help": "Certain ARIA roles must contain particular children"
+      "description": "يضمن أن العناصر بدور ARIA يحتوي على الأدوار الفرعية المطلوبة",
+      "help": "يجب أن تحتوي بعض الأدوار في ARIA على أدوار فرعية محددة"
     },
     "aria-required-parent": {
-      "description": "Ensures elements with an ARIA role that require parent roles are contained by them",
-      "help": "Certain ARIA roles must be contained by particular parents"
+      "description": "يضمن أن العناصر بدور ARIA تحتوي على الأدوار الأصلية المطلوبة",
+      "help": "يجب أن تحتوي بعض الأدوار في ARIA على أدوار أصلية محددة"
     },
     "aria-roledescription": {
-      "description": "Ensure aria-roledescription is only used on elements with an implicit or explicit role",
-      "help": "aria-roledescription must be on elements with a semantic role"
+      "description": "يضمن استخدام aria-roledescription فقط على العناصر بدور ضمني أو صريح",
+      "help": "يجب استخدام aria-roledescription على العناصر بدور دلالي"
     },
     "aria-roles": {
-      "description": "Ensures all elements with a role attribute use a valid value",
-      "help": "ARIA roles used must conform to valid values"
+      "description": "يضمن أن كل العناصر بخاصية دور تستخدم قيمة صالحة",
+      "help": "يجب أن تتوافق الأدوار في ARIA مع قيم صالحة"
     },
     "aria-text": {
-      "description": "Ensures \"role=text\" is used on elements with no focusable descendants",
-      "help": "\"role=text\" should have no focusable descendants"
+      "description": "يضمن استخدام \"role=text\" على العناصر بدون أحفاد قابلين للتركيز",
+      "help": "\"role=text\" يجب ألا يحتوي على أحفاد قابلين للتركيز"
     },
     "aria-toggle-field-name": {
-      "description": "Ensures every ARIA toggle field has an accessible name",
-      "help": "ARIA toggle fields must have an accessible name"
+      "description": "يضمن أن كل حقل تبديل في ARIA له اسم متاح",
+      "help": "يجب أن تحتوي حقول التبديل في ARIA على اسم متاح"
     },
     "aria-tooltip-name": {
-      "description": "Ensures every ARIA tooltip node has an accessible name",
-      "help": "ARIA tooltip nodes must have an accessible name"
+      "description": "يضمن أن كل عقدة تلميح في ARIA لها اسم متاح",
+      "help": "يجب أن تحتوي عقد التلميح في ARIA على اسم متاح"
     },
     "aria-treeitem-name": {
-      "description": "Ensures every ARIA treeitem node has an accessible name",
-      "help": "ARIA treeitem nodes should have an accessible name"
+      "description": "يضمن أن كل عقدة عنصر شجرة في ARIA لها اسم متاح",
+      "help": "يجب أن تحتوي عقد عناصر الشجرة في ARIA على اسم متاح"
     },
     "aria-valid-attr-value": {
-      "description": "Ensures all ARIA attributes have valid values",
-      "help": "ARIA attributes must conform to valid values"
+      "description": "يضمن أن كل خصائص ARIA لها قيم صالحة",
+      "help": "يجب أن تتوافق خصائص ARIA مع قيم صالحة"
     },
     "aria-valid-attr": {
-      "description": "Ensures attributes that begin with aria- are valid ARIA attributes",
-      "help": "ARIA attributes must conform to valid names"
+      "description": "يضمن أن الخصائص التي تبدأ بـ aria- هي خصائص ARIA صالحة",
+      "help": "يجب أن تتوافق خصائص ARIA مع أسماء صالحة"
     },
     "audio-caption": {
-      "description": "Ensures <audio> elements have captions",
-      "help": "<audio> elements must have a captions track"
+      "description": "يضمن أن عناصر <audio> لها توضيحات",
+      "help": "يجب أن تحتوي عناصر <audio> على مسار التوضيحات"
     },
     "autocomplete-valid": {
-      "description": "Ensure the autocomplete attribute is correct and suitable for the form field",
-      "help": "autocomplete attribute must be used correctly"
+      "description": "يضمن صحة خاصية autocomplete وملاءمتها لحقل النموذج",
+      "help": "يجب استخدام خاصية autocomplete بشكل صحيح"
     },
     "avoid-inline-spacing": {
-      "description": "Ensure that text spacing set through style attributes can be adjusted with custom stylesheets",
-      "help": "Inline text spacing must be adjustable with custom stylesheets"
+      "description": "يضمن أن تباعد النص المضبوط من خلال خصائص الأسلوب يمكن ضبطه بأنماط مخصصة",
+      "help": "يجب أن يكون تباعد النص الداخلي قابل للتعديل باستخدام أنماط مخصصة"
     },
     "blink": {
-      "description": "Ensures <blink> elements are not used",
-      "help": "<blink> elements are deprecated and must not be used"
+      "description": "يضمن عدم استخدام عناصر <blink>",
+      "help": "يجب عدم استخدام عناصر <blink> لأنها تم إهمالها"
     },
     "button-name": {
-      "description": "Ensures buttons have discernible text",
-      "help": "Buttons must have discernible text"
+      "description": "يضمن أن الأزرار لها نص مميز",
+      "help": "يجب أن تحتوي الأزرار على نص مميز"
     },
     "bypass": {
-      "description": "Ensures each page has at least one mechanism for a user to bypass navigation and jump straight to the content",
-      "help": "Page must have means to bypass repeated blocks"
+      "description": "يضمن أن كل صفحة لها آلية واحدة على الأقل للمستخدم لتجاوز التنقل والانتقال مباشرة إلى المحتوى",
+      "help": "يجب أن تحتوي الصفحة على وسائل لتجاوز الكتل المتكررة"
     },
     "color-contrast-enhanced": {
-      "description": "Ensures the contrast between foreground and background colors meets WCAG 2 AAA contrast ratio thresholds",
-      "help": "Elements must have sufficient color contrast"
+      "description": "يضمن أن التباين بين ألوان الخلفية والأمام تلبي عتبات نسبة التباين في WCAG 2 AAA",
+      "help": "يجب أن تحتوي العناصر على تباين ألوان كاف"
     },
     "color-contrast": {
-      "description": "Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds",
-      "help": "Elements must have sufficient color contrast"
+      "description": "يضمن أن التباين بين ألوان الخلفية والأمام تلبي عتبات نسبة التباين في WCAG 2 AA",
+      "help": "يجب أن تحتوي العناصر على تباين ألوان كاف"
     },
     "css-orientation-lock": {
-      "description": "Ensures content is not locked to any specific display orientation, and the content is operable in all display orientations",
-      "help": "CSS Media queries must not lock display orientation"
+      "description": "يضمن عدم إغلاق المحتوى لأي توجه عرض محدد، وأن المحتوى قابل للتشغيل في كل توجهات العرض",
+      "help": "يجب ألا تقفل استعلامات الوسائط في CSS توجه العرض"
     },
     "definition-list": {
-      "description": "Ensures <dl> elements are structured correctly",
-      "help": "<dl> elements must only directly contain properly-ordered <dt> and <dd> groups, <script>, <template> or <div> elements"
+      "description": "يضمن أن عناصر <dl> مهيكلة بشكل صحيح",
+      "help": "يجب أن تحتوي عناصر <dl> فقط على مجموعات <dt> و<dd> مرتبة بشكل صحيح، <script>، <template> أو <div>"
     },
     "dlitem": {
-      "description": "Ensures <dt> and <dd> elements are contained by a <dl>",
-      "help": "<dt> and <dd> elements must be contained by a <dl>"
+      "description": "يضمن أن عناصر <dt> و<dd> محتواة بواسطة <dl>",
+      "help": "يجب أن تكون عناصر <dt> و<dd> محتواة بواسطة <dl>"
     },
     "document-title": {
-      "description": "Ensures each HTML document contains a non-empty <title> element",
-      "help": "Documents must have <title> element to aid in navigation"
+      "description": "يضمن أن كل وثيقة HTML تحتوي على عنصر <title> غير فارغ",
+      "help": "يجب أن تحتوي الوثائق على عنصر <title> للمساعدة في التنقل"
     },
     "empty-heading": {
-      "description": "Ensures headings have discernible text",
-      "help": "Headings should not be empty"
+      "description": "يضمن أن العناوين لها نص مميز",
+      "help": "يجب ألا تكون العناوين فارغة"
     },
     "empty-table-header": {
-      "description": "Ensures table headers have discernible text",
-      "help": "Table header text should not be empty"
+      "description": "يضمن أن رؤوس الجداول لها نص مميز",
+      "help": "يجب ألا يكون نص رأس الجدول فارغاً"
     },
     "focus-order-semantics": {
-      "description": "Ensures elements in the focus order have a role appropriate for interactive content",
-      "help": "Elements in the focus order should have an appropriate role"
+      "description": "يضمن أن العناصر في ترتيب التركيز لها دور مناسب للمحتوى التفاعلي",
+      "help": "يجب أن تحتوي العناصر في ترتيب التركيز على دور مناسب"
     },
     "form-field-multiple-labels": {
-      "description": "Ensures form field does not have multiple label elements",
-      "help": "Form field must not have multiple label elements"
+      "description": "يضمن أن حقل النموذج لا يحتوي على عناصر تسمية متعددة",
+      "help": "يجب ألا يحتوي حقل النموذج على عناصر تسمية متعددة"
     },
     "frame-focusable-content": {
-      "description": "Ensures <frame> and <iframe> elements with focusable content do not have tabindex=-1",
-      "help": "Frames with focusable content must not have tabindex=-1"
+      "description": "يضمن أن عناصر <frame> و<iframe> ذات المحتوى القابل للتركيز لا تحتوي على tabindex=-1",
+      "help": "يجب ألا تحتوي الإطارات ذات المحتوى القابل للتركيز على tabindex=-1"
     },
     "frame-tested": {
-      "description": "Ensures <iframe> and <frame> elements contain the axe-core script",
-      "help": "Frames should be tested with axe-core"
+      "description": "يضمن أن عناصر <iframe> و<frame> تحتوي على سكريبت axe-core",
+      "help": "يجب اختبار الإطارات باستخدام axe-core"
     },
     "frame-title-unique": {
-      "description": "Ensures <iframe> and <frame> elements contain a unique title attribute",
-      "help": "Frames must have a unique title attribute"
+      "description": "يضمن أن عناصر <iframe> و<frame> تحتوي على خاصية عنوان فريدة",
+      "help": "يجب أن تحتوي الإطارات على خاصية عنوان فريدة"
     },
     "frame-title": {
-      "description": "Ensures <iframe> and <frame> elements have an accessible name",
-      "help": "Frames must have an accessible name"
+      "description": "يضمن أن عناصر <iframe> و<frame> لها اسم متاح",
+      "help": "يجب أن تحتوي الإطارات على اسم متاح"
     },
     "heading-order": {
-      "description": "Ensures the order of headings is semantically correct",
-      "help": "Heading levels should only increase by one"
+      "description": "يضمن أن ترتيب العناوين منطقي",
+      "help": "يجب أن تزيد مستويات العناوين بواحد فقط"
     },
     "hidden-content": {
-      "description": "Informs users about hidden content.",
-      "help": "Hidden content on the page should be analyzed"
+      "description": "يبلغ المستخدمين عن المحتوى المخفي",
+      "help": "يجب تحليل المحتوى المخفي على الصفحة"
     },
     "html-has-lang": {
-      "description": "Ensures every HTML document has a lang attribute",
-      "help": "<html> element must have a lang attribute"
+      "description": "يضمن أن كل وثيقة HTML تحتوي على خاصية lang",
+      "help": "يجب أن يحتوي العنصر <html> على خاصية lang"
     },
     "html-lang-valid": {
-      "description": "Ensures the lang attribute of the <html> element has a valid value",
-      "help": "<html> element must have a valid value for the lang attribute"
+      "description": "يضمن أن خاصية lang لعنصر <html> لها قيمة صالحة",
+      "help": "يجب أن يحتوي العنصر <html> على قيمة صالحة لخاصية lang"
     },
     "html-xml-lang-mismatch": {
-      "description": "Ensure that HTML elements with both valid lang and xml:lang attributes agree on the base language of the page",
-      "help": "HTML elements with lang and xml:lang must have the same base language"
+      "description": "تأكد من أن عناصر HTML التي تحتوي على صفات lang و xml:lang صالحة تتفق على لغة الأساس للصفحة",
+      "help": "يجب أن تحتوي عناصر HTML مع الصفتين lang و xml:lang على نفس اللغة الأساسية"
     },
     "identical-links-same-purpose": {
-      "description": "Ensure that links with the same accessible name serve a similar purpose",
-      "help": "Links with the same name must have a similar purpose"
+      "description": "يضمن أن الروابط ذات الاسم الواضح تخدم نفس الغرض",
+      "help": "الروابط بنفس الاسم يجب أن تكون لنفس الغرض"
     },
     "image-alt": {
-      "description": "Ensures <img> elements have alternate text or a role of none or presentation",
-      "help": "Images must have alternate text"
+      "description": "يضمن أن عناصر <img> لها نص بديل أو دور من 'none' أو 'presentation'",
+      "help": "يجب أن تحتوي الصور على نص بديل"
     },
     "image-redundant-alt": {
-      "description": "Ensure image alternative is not repeated as text",
-      "help": "Alternative text of images should not be repeated as text"
+      "description": "يضمن ألا يتم تكرار النص البديل للصورة كنص",
+      "help": "يجب ألا يتم تكرار نص بديل الصورة كنص"
     },
     "input-button-name": {
-      "description": "Ensures input buttons have discernible text",
-      "help": "Input buttons must have discernible text"
+      "description": "يضمن أن أزرار الإدخال لها نص قابل للتمييز",
+      "help": "يجب أن تحتوي أزرار الإدخال على نص مميز"
     },
     "input-image-alt": {
-      "description": "Ensures <input type=\"image\"> elements have alternate text",
-      "help": "Image buttons must have alternate text"
+      "description": "يضمن أن عناصر <input type=\"image\"> لها نص بديل",
+      "help": "يجب أن تحتوي أزرار الصورة على نص بديل"
     },
     "label-content-name-mismatch": {
-      "description": "Ensures that elements labelled through their content must have their visible text as part of their accessible name",
-      "help": "Elements must have their visible text as part of their accessible name"
+      "description": "يضمن أن العناصر الموسومة من خلال محتواها يجب أن تكون النصوص الظاهرة جزءًا من اسمها المتاح",
+      "help": "يجب أن يحتوي العناصر على النص الظاهر كجزء من اسمها المتاح"
     },
     "label-title-only": {
-      "description": "Ensures that every form element has a visible label and is not solely labeled using hidden labels, or the title or aria-describedby attributes",
-      "help": "Form elements should have a visible label"
+      "description": "يضمن أن كل عنصر نموذج له تسمية مرئية ولا يتم تسميته فقط باستخدام تسميات مخفية، أو خاصيتي العنوان أو aria-describedby",
+      "help": "يجب أن تحتوي عناصر النموذج على تسمية مرئية"
     },
     "label": {
-      "description": "Ensures every form element has a label",
-      "help": "Form elements must have labels"
+      "description": "يضمن أن كل عنصر نموذج له تسمية",
+      "help": "يجب أن تحتوي عناصر النموذج على تسميات"
     },
     "landmark-banner-is-top-level": {
-      "description": "Ensures the banner landmark is at top level",
-      "help": "Banner landmark should not be contained in another landmark"
+      "description": "يضمن أن العلامة المميزة الرئيسية في أعلى مستوى",
+      "help": "يجب ألا تحتوي العلامة المميزة الرئيسية على علامة مميزة أخرى"
     },
     "landmark-complementary-is-top-level": {
-      "description": "Ensures the complementary landmark or aside is at top level",
-      "help": "Aside should not be contained in another landmark"
+      "description": "يضمن أن العلامة المميزة التكميلية أو جانبية في أعلى مستوى",
+      "help": "يجب ألا تحتوي الجانبية على علامة مميزة أخرى"
     },
     "landmark-contentinfo-is-top-level": {
-      "description": "Ensures the contentinfo landmark is at top level",
-      "help": "Contentinfo landmark should not be contained in another landmark"
+      "description": "يضمن أن العلامة المميزة للمعلومات المحتوى في أعلى مستوى",
+      "help": "يجب ألا تحتوي العلامة المميزة للمعلومات المحتوى على علامة مميزة أخرى"
     },
     "landmark-main-is-top-level": {
-      "description": "Ensures the main landmark is at top level",
-      "help": "Main landmark should not be contained in another landmark"
+      "description": "يضمن أن العلامة المميزة الرئيسية في أعلى مستوى",
+      "help": "يجب ألا تحتوي العلامة المميزة الرئيسية على علامة مميزة أخرى"
     },
     "landmark-no-duplicate-banner": {
-      "description": "Ensures the document has at most one banner landmark",
-      "help": "Document should not have more than one banner landmark"
+      "description": "يضمن أن الوثيقة تحتوي على واحدة فقط علامة مميزة رئيسية",
+      "help": "يجب ألا تحتوي الوثيقة على أكثر من علامة رئيسية واحدة"
     },
     "landmark-no-duplicate-contentinfo": {
-      "description": "Ensures the document has at most one contentinfo landmark",
-      "help": "Document should not have more than one contentinfo landmark"
+      "description": "يضمن أن الوثيقة تحتوي على واحدة فقط علامة مميزة للمعلومات المحتوى",
+      "help": "يجب ألا تحتوي الوثيقة على أكثر من علامة مميزة للمعلومات المحتوى واحدة"
     },
     "landmark-no-duplicate-main": {
-      "description": "Ensures the document has at most one main landmark",
-      "help": "Document should not have more than one main landmark"
+      "description": "يضمن أن الوثيقة تحتوي على واحدة فقط علامة مميزة رئيسية",
+      "help": "يجب ألا تحتوي الوثيقة على أكثر من علامة رئيسية واحدة"
     },
     "landmark-one-main": {
-      "description": "Ensures the document has a main landmark",
-      "help": "Document should have one main landmark"
+      "description": "يضمن أن الوثيقة تحتوي على علامة مميزة رئيسية",
+      "help": "يجب أن تحتوي الوثيقة على علامة رئيسية واحدة"
     },
     "landmark-unique": {
-      "help": "Ensures landmarks are unique",
-      "description": "Landmarks should have a unique role or role/label/title (i.e. accessible name) combination"
+      "help": "يضمن أن تكون العلامات المميزة فريدة",
+      "description": "يجب أن تحتوي العلامات المميزة على دور فريد أو مزيج دور/تسمية/عنوان (أي اسم متاح) فريد"
     },
     "link-in-text-block": {
-      "description": "Ensure links are distinguished from surrounding text in a way that does not rely on color",
-      "help": "Links must be distinguishable without relying on color"
+      "description": "يضمن تمييز الروابط عن النص المحيط بطريقة لا تعتمد على اللون فقط",
+      "help": "يجب تمييز الروابط دون الاعتماد على اللون"
     },
     "link-name": {
-      "description": "Ensures links have discernible text",
-      "help": "Links must have discernible text"
+      "description": "يضمن أن الروابط لها نص مميز",
+      "help": "يجب أن تحتوي الروابط على نص مميز"
     },
     "list": {
-      "description": "Ensures that lists are structured correctly",
-      "help": "<ul> and <ol> must only directly contain <li>, <script> or <template> elements"
+      "description": "يضمن أن القوائم مهيكلة بشكل صحيح",
+      "help": "يجب أن تحتوي <ul> و <ol> فقط على عناصر <li>، <script> أو <template> مباشرة "
     },
     "listitem": {
-      "description": "Ensures <li> elements are used semantically",
-      "help": "<li> elements must be contained in a <ul> or <ol>"
+      "description": "يضمن استخدام عناصر <li> بشكل دلالي",
+      "help": "يجب أن تُحتوى عناصر <li> في <ul> أو <ol>"
     },
     "marquee": {
-      "description": "Ensures <marquee> elements are not used",
-      "help": "<marquee> elements are deprecated and must not be used"
+      "description": "يضمن عدم استخدام عناصر <marquee>",
+      "help": "يجب عدم استخدام عناصر <marquee> لأنها تم إهمالها"
     },
     "meta-refresh-no-exceptions": {
-      "description": "Ensures <meta http-equiv=\"refresh\"> is not used for delayed refresh",
-      "help": "Delayed refresh must not be used"
+      "description": "يضمن عدم استخدام <meta http-equiv=\"refresh\"> لتحديث مؤجل",
+      "help": "يجب عدم استخدام التحديث المؤجل"
     },
     "meta-refresh": {
-      "description": "Ensures <meta http-equiv=\"refresh\"> is not used for delayed refresh",
-      "help": "Delayed refresh under 20 hours must not be used"
+      "description": "يضمن عدم استخدام <meta http-equiv=\"refresh\"> لتحديث مؤجل",
+      "help": "يجب عدم استخدام التحديث المؤجل أقل من 20 ساعة"
     },
     "meta-viewport-large": {
-      "description": "Ensures <meta name=\"viewport\"> can scale a significant amount",
-      "help": "Users should be able to zoom and scale the text up to 500%"
+      "description": "يضمن أن <meta name=\"viewport\"> يمكن تكبير نسبة كبيرة",
+      "help": "يجب أن يتمكن المستخدمون من تكبير وتغيير حجم النص حتى 500%"
     },
     "meta-viewport": {
-      "description": "Ensures <meta name=\"viewport\"> does not disable text scaling and zooming",
-      "help": "Zooming and scaling must not be disabled"
+      "description": "يضمن أن <meta name=\"viewport\"> لا يعطل تكبير النص والتقريب",
+      "help": "يجب عدم تعطيل التقريب وتغيير الحجم"
     },
     "nested-interactive": {
-      "description": "Ensures interactive controls are not nested as they are not always announced by screen readers or can cause focus problems for assistive technologies",
-      "help": "Interactive controls must not be nested"
+      "description": "يضمن أن الأدوات التفاعلية ليست متداخلة لأنها لا يتم الإعلان عنها دائمًا بواسطة قارئات الشاشة أو يمكن أن تسبب مشاكل في التركيز لتقنيات المساعدة",
+      "help": "يجب عدم تداخل الأدوات التفاعلية"
     },
     "no-autoplay-audio": {
-      "description": "Ensures <video> or <audio> elements do not autoplay audio for more than 3 seconds without a control mechanism to stop or mute the audio",
-      "help": "<video> or <audio> elements must not play automatically"
+      "description": "يضمن أن عناصر <video> أو <audio> لا تقوم بتشغيل الصوت تلقائيًا لأكثر من 3 ثوان بدون وجود آلية تحكم لإيقاف أو كتم الصوت",
+      "help": "يجب ألا تقوم عناصر <video> أو <audio> بالتشغيل التلقائي"
     },
     "object-alt": {
-      "description": "Ensures <object> elements have alternate text",
-      "help": "<object> elements must have alternate text"
+      "description": "يضمن أن عناصر <object> لها نص بديل",
+      "help": "يجب أن تحتوي عناصر <object> على نص بديل"
     },
     "p-as-heading": {
-      "description": "Ensure bold, italic text and font-size is not used to style <p> elements as a heading",
-      "help": "Styled <p> elements must not be used as headings"
+      "description": "يضمن عدم استخدام النص الغامق، المائل وحجم الخط لتنسيق عناصر <p> كعناوين",
+      "help": "يجب عدم استخدام عناصر <p> المنسقة بمثابة عناوين"
     },
     "page-has-heading-one": {
-      "description": "Ensure that the page, or at least one of its frames contains a level-one heading",
-      "help": "Page should contain a level-one heading"
+      "description": "يضمن أن الصفحة، أو على الأقل أحد إطاراتها يحتوي على عنوان من المستوى الأول",
+      "help": "يجب أن تحتوي الصفحة على عنوان من المستوى الأول"
     },
     "presentation-role-conflict": {
-      "description": "Elements marked as presentational should not have global ARIA or tabindex to ensure all screen readers ignore them",
-      "help": "Ensure elements marked as presentational are consistently ignored"
+      "description": "يضمن أن العناصر المعلمة كتقديمية لا تحتوي على خاصية ARIA عالمية أو tabindex لضمان تجاهلها باستمرار من قبل جميع قارئات الشاشة",
+      "help": "يجب ضمان تجاهل العناصر المعلمة كتقديمية باستمرار"
     },
     "region": {
-      "description": "Ensures all page content is contained by landmarks",
-      "help": "All page content should be contained by landmarks"
+      "description": "يضمن احتواء كل محتوى الصفحة بواسطة علامات مميزة",
+      "help": "يجب احتواء كل محتوى الصفحة بواسطة علامات مميزة"
     },
     "role-img-alt": {
-      "description": "Ensures [role='img'] elements have alternate text",
-      "help": "[role='img'] elements must have an alternative text"
+      "description": "يضمن أن عناصر [role='img'] لها نص بديل",
+      "help": "يجب أن تحتوي عناصر [role='img'] على نص بديل"
     },
     "scope-attr-valid": {
-      "description": "Ensures the scope attribute is used correctly on tables",
-      "help": "scope attribute should be used correctly"
+      "description": "يضمن استخدام خاصية النطاق بشكل صحيح في الجداول",
+      "help": "يجب استخدام خاصية النطاق بشكل صحيح"
     },
     "scrollable-region-focusable": {
-      "description": "Ensure elements that have scrollable content are accessible by keyboard",
-      "help": "Scrollable region must have keyboard access"
-    },
-    "select-name": {
-      "description": "Ensures select element has an accessible name",
-      "help": "Select element must have an accessible name"
-    },
-    "server-side-image-map": {
-      "description": "Ensures that server-side image maps are not used",
-      "help": "Server-side image maps must not be used"
-    },
-    "skip-link": {
-      "description": "Ensure all skip links have a focusable target",
-      "help": "The skip-link target should exist and be focusable"
-    },
-    "svg-img-alt": {
-      "description": "Ensures <svg> elements with an img, graphics-document or graphics-symbol role have an accessible text",
-      "help": "<svg> elements with an img role must have an alternative text"
-    },
-    "tabindex": {
-      "description": "Ensures tabindex attribute values are not greater than 0",
-      "help": "Elements should not have tabindex greater than zero"
-    },
-    "table-duplicate-name": {
-      "description": "Ensure the <caption> element does not contain the same text as the summary attribute",
-      "help": "tables should not have the same summary and caption"
-    },
-    "table-fake-caption": {
-      "description": "Ensure that tables with a caption use the <caption> element.",
-      "help": "Data or header cells must not be used to give caption to a data table."
-    },
-    "target-size": {
-      "description": "Ensure touch target have sufficient size and space",
-      "help": "All touch targets must be 24px large, or leave sufficient space"
-    },
-    "td-has-header": {
-      "description": "Ensure that each non-empty data cell in a <table> larger than 3 by 3  has one or more table headers",
-      "help": "Non-empty <td> elements in larger <table> must have an associated table header"
-    },
-    "td-headers-attr": {
-      "description": "Ensure that each cell in a table that uses the headers attribute refers only to other cells in that table",
-      "help": "Table cells that use the headers attribute must only refer to cells in the same table"
-    },
-    "th-has-data-cells": {
-      "description": "Ensure that <th> elements and elements with role=columnheader/rowheader have data cells they describe",
-      "help": "Table headers in a data table must refer to data cells"
-    },
-    "valid-lang": {
-      "description": "Ensures lang attributes have valid values",
-      "help": "lang attribute must have a valid value"
-    },
-    "video-caption": {
-      "description": "Ensures <video> elements have captions",
-      "help": "<video> elements must have captions"
+      "description": "يضمن إمكانية الوصول إلى العناصر التي لها محتوى قابل للتمرير بواسطة لوحة المفاتيح",
+      "help": "يجب أن تكون المنطقة القابلة للتمرير قابلة للوصول بواسطة لوحة المفاتيح"
     }
   },
   "checks": {
     "abstractrole": {
-      "pass": "Abstract roles are not used",
+      "pass": "الأدوار الأساسية لم يتم استخدامها",
       "fail": {
-        "singular": "Abstract role cannot be directly used: ${data.values}",
-        "plural": "Abstract roles cannot be directly used: ${data.values}"
+        "singular": "لا يمكن استخدام الدور الأساسي مباشرة: ${data.values}",
+        "plural": "لا يمكن استخدام الأدوار الأساسية مباشرة: ${data.values}"
       }
     },
     "aria-allowed-attr": {
-      "pass": "ARIA attributes are used correctly for the defined role",
+      "pass": "تم استخدام خصائص ARIA بشكل صحيح للدور المحدد",
       "fail": {
-        "singular": "ARIA attribute is not allowed: ${data.values}",
-        "plural": "ARIA attributes are not allowed: ${data.values}"
+        "singular": "خاصية ARIA غير مسموح بها: ${data.values}",
+        "plural": "خصائص ARIA غير مسموح بها: ${data.values}"
       },
-      "incomplete": "Check that there is no problem if the ARIA attribute is ignored on this element: ${data.values}"
+      "incomplete": "تحقق من عدم وجود مشكلة إذا تم تجاهل خاصية ARIA على هذا العنصر: ${data.values}"
     },
     "aria-allowed-role": {
-      "pass": "ARIA role is allowed for given element",
+      "pass": "الدور الـ ARIA مسموح بالنسبة للعنصر المعين",
       "fail": {
-        "singular": "ARIA role ${data.values} is not allowed for given element",
-        "plural": "ARIA roles ${data.values} are not allowed for given element"
+        "singular": "الدور ${data.values} في ARIA غير مسموح به للعنصر المعين",
+        "plural": "الأدوار ${data.values} في ARIA غير مسموح بها للعنصر المعين"
       },
       "incomplete": {
-        "singular": "ARIA role ${data.values} must be removed when the element is made visible, as it is not allowed for the element",
-        "plural": "ARIA roles ${data.values} must be removed when the element is made visible, as they are not allowed for the element"
+        "singular": "يجب إزالة دور ${data.values} في ARIA عند جعل العنصر مرئيًا، لأنه غير مسموح به للعنصر",
+        "plural": "يجب إزالة أدوار ${data.values} في ARIA عند جعل العنصر مرئيًا، لأنها غير مسموح بها للعنصر"
       }
     },
     "aria-busy": {
-      "pass": "Element has an aria-busy attribute",
-      "fail": "Element has no aria-busy=\"true\" attribute"
+      "pass": "العنصر لديه سمة aria-busy",
+      "fail": "العنصر لا يمتلك سمة aria-busy=\"true\""
     },
     "aria-errormessage": {
-      "pass": "aria-errormessage exists and references elements visible to screen readers that use a supported aria-errormessage technique",
+      "pass": "aria-errormessage موجود ويشير إلى عناصر مرئية لقارئات الشاشة التي تستخدم تقنية aria-errormessage مدعومة",
       "fail": {
-        "singular": "aria-errormessage value `${data.values}` must use a technique to announce the message (e.g., aria-live, aria-describedby, role=alert, etc.)",
-        "plural": "aria-errormessage values `${data.values}` must use a technique to announce the message (e.g., aria-live, aria-describedby, role=alert, etc.)",
-        "hidden": "aria-errormessage value `${data.values}` cannot reference a hidden element"
+        "singular": "يجب أن تستخدم قيمة aria-errormessage `${data.values}` تقنية لإعلان الرسالة (على سبيل المثال، aria-live, aria-describedby, role=alert، إلخ.)",
+        "plural": "يجب أن تستخدم قيم aria-errormessage `${data.values}` تقنية لإعلان الرسالة (على سبيل المثال، aria-live, aria-describedby, role=alert، إلخ.)",
+        "hidden": "لا يمكن أن تشير قيمة aria-errormessage `${data.values}` إلى عنصر مخفي"
       },
       "incomplete": {
-        "singular": "ensure aria-errormessage value `${data.values}` references an existing element",
-        "plural": "ensure aria-errormessage values `${data.values}` reference existing elements",
-        "idrefs": "unable to determine if aria-errormessage element exists on the page: ${data.values}"
+        "singular": "تأكد من أن قيمة aria-errormessage `${data.values}` تشير إلى عنصر موجود",
+        "plural": "تأكد من أن قيم aria-errormessage `${data.values}` تشير إلى عناصر موجودة",
+        "idrefs": "غير قادر على تحديد إذا كان عنصر aria-errormessage موجودًا على الصفحة: ${data.values}"
       }
     },
     "aria-hidden-body": {
-      "pass": "No aria-hidden attribute is present on document body",
-      "fail": "aria-hidden=true should not be present on the document body"
+      "pass": "لا توجد سمة aria-hidden على جسم الوثيقة",
+      "fail": "يجب ألا تكون سمة aria-hidden=true موجودة على جسم الوثيقة"
     },
     "aria-level": {
-      "pass": "aria-level values are valid",
-      "incomplete": "aria-level values greater than 6 are not supported in all screenreader and browser combinations"
+      "pass": "قيم aria-level صالحة",
+      "incomplete": "قيم aria-level التي تزيد عن 6 ليست مدعومة في جميع توليفات قارئات الشاشة والمتصفح"
     },
     "aria-prohibited-attr": {
-      "pass": "ARIA attribute is allowed",
+      "pass": "سمة ARIA مسموح بها",
       "fail": {
-        "hasRolePlural": "${data.prohibited} attributes cannot be used with role \"${data.role}\".",
-        "hasRoleSingular": "${data.prohibited} attribute cannot be used with role \"${data.role}\".",
-        "noRolePlural": "${data.prohibited} attributes cannot be used on a ${data.nodeName} with no valid role attribute.",
-        "noRoleSingular": "${data.prohibited} attribute cannot be used on a ${data.nodeName} with no valid role attribute."
+        "hasRolePlural": "لا يمكن استخدام سمات ${data.prohibited} مع دور \"${data.role}\".",
+        "hasRoleSingular": "لا يمكن استخدام سمة ${data.prohibited} مع دور \"${data.role}\".",
+        "noRolePlural": "لا يمكن استخدام سمات ${data.prohibited} على ${data.nodeName} ليس له سمة دور صالحة.",
+        "noRoleSingular": "لا يمكن استخدام سمة ${data.prohibited} على ${data.nodeName} ليس له سمة دور صالحة."
       },
       "incomplete": {
-        "hasRoleSingular": "${data.prohibited} attribute is not well supported with role \"${data.role}\".",
-        "hasRolePlural": "${data.prohibited} attributes are not well supported with role \"${data.role}\".",
-        "noRoleSingular": "${data.prohibited} attribute is not well supported on a ${data.nodeName} with no valid role attribute.",
-        "noRolePlural": "${data.prohibited} attributes are not well supported on a ${data.nodeName} with no valid role attribute."
+        "hasRoleSingular": "سمة ${data.prohibited} غير مدعومة جيدًا مع دور \"${data.role}\".",
+        "hasRolePlural": "السمات ${data.prohibited} غير مدعومة جيدًا مع دور \"${data.role}\".",
+        "noRoleSingular": "سمة ${data.prohibited} غير مدعومة جيدًا على ${data.nodeName} ليس له دور صالح.",
+        "noRolePlural": "السمات ${data.prohibited} غير مدعومة جيدًا على ${data.nodeName} ليس له دور صالح."
       }
     },
     "aria-required-attr": {
-      "pass": "All required ARIA attributes are present",
+      "pass": "جميع السمات الضرورية لـ ARIA موجودة",
       "fail": {
-        "singular": "Required ARIA attribute not present: ${data.values}",
-        "plural": "Required ARIA attributes not present: ${data.values}"
+        "singular": "سمة ARIA الضرورية غير موجودة: ${data.values}",
+        "plural": "السمات الضرورية لـ ARIA غير موجودة: ${data.values}"
       }
     },
     "aria-required-children": {
-      "pass": "Required ARIA children are present",
+      "pass": "الأطفال الضروريون لـ ARIA موجودون",
       "fail": {
-        "singular": "Required ARIA child role not present: ${data.values}",
-        "plural": "Required ARIA children role not present: ${data.values}",
-        "unallowed": "Element has children which are not allowed (see related nodes)"
+        "singular": "دور الطفل الضروري لـ ARIA غير موجود: ${data.values}",
+        "plural": "أدوار الأطفال الضرورية لـ ARIA غير موجودة: ${data.values}",
+        "unallowed": "العنصر لديه أطفال غير مسموح بهم (راجع العقد ذات الصلة)"
       },
       "incomplete": {
-        "singular": "Expecting ARIA child role to be added: ${data.values}",
-        "plural": "Expecting ARIA children role to be added: ${data.values}"
+        "singular": "يتوقع إضافة دور طفل ARIA: ${data.values}",
+        "plural": "يتوقع إضافة أدوار أطفال ARIA: ${data.values}"
       }
     },
     "aria-required-parent": {
-      "pass": "Required ARIA parent role present",
+      "pass": "دور الوالد الضروري لـ ARIA موجود",
       "fail": {
-        "singular": "Required ARIA parent role not present: ${data.values}",
-        "plural": "Required ARIA parents role not present: ${data.values}"
+        "singular": "دور الوالد الضروري لـ ARIA غير موجود: ${data.values}",
+        "plural": "أدوار الوالدين الضرورية لـ ARIA غير موجودة: ${data.values}"
       }
     },
     "aria-roledescription": {
-      "pass": "aria-roledescription used on a supported semantic role",
-      "incomplete": "Check that the aria-roledescription is announced by supported screen readers",
-      "fail": "Give the element a role that supports aria-roledescription"
+      "pass": "تم استخدام aria-roledescription على دور دلالي مدعوم",
+      "incomplete": "تحقق من أن aria-roledescription يتم الإعلان عنه بواسطة قارئات الشاشة المدعومة",
+      "fail": "أعط العنصر دورًا يدعم aria-roledescription"
     },
     "aria-unsupported-attr": {
-      "pass": "ARIA attribute is supported",
-      "fail": "ARIA attribute is not widely supported in screen readers and assistive technologies: ${data.values}"
+      "pass": "سمة ARIA مدعومة",
+      "fail": "سمة ARIA غير مدعومة على نطاق واسع في قارئات الشاشة والتقنيات المساعدة: ${data.values}"
     },
     "aria-valid-attr-value": {
-      "pass": "ARIA attribute values are valid",
+      "pass": "قيم سمات ARIA صالحة",
       "fail": {
-        "singular": "Invalid ARIA attribute value: ${data.values}",
-        "plural": "Invalid ARIA attribute values: ${data.values}"
+        "singular": "قيمة سمة ARIA غير صالحة: ${data.values}",
+        "plural": "قيم سمات ARIA غير صالحة: ${data.values}"
       },
       "incomplete": {
-        "noId": "ARIA attribute element ID does not exist on the page: ${data.needsReview}",
-        "noIdShadow": "ARIA attribute element ID does not exist on the page or is a descendant of a different shadow DOM tree: ${data.needsReview}",
-        "ariaCurrent": "ARIA attribute value is invalid and will be treated as \"aria-current=true\": ${data.needsReview}",
-        "idrefs": "Unable to determine if ARIA attribute element ID exists on the page: ${data.needsReview}",
-        "empty": "ARIA attribute value is ignored while empty: ${data.needsReview}"
+        "noId": "معرّف العنصر لسمة ARIA غير موجود على الصفحة: ${data.needsReview}",
+        "noIdShadow": "معرّف العنصر لسمة ARIA غير موجود على الصفحة أو هو سليل لشجرة DOM ظلية مختلفة: ${data.needsReview}",
+        "ariaCurrent": "قيمة سمة ARIA غير صالحة وسيتم معاملتها كـ \"aria-current=true\": ${data.needsReview}",
+        "idrefs": "غير قادر على تحديد إذا كان معرّف العنصر لسمة ARIA موجودًا على الصفحة: ${data.needsReview}",
+        "empty": "قيمة سمة ARIA مهملة وهي فارغة: ${data.needsReview}"
       }
     },
     "aria-valid-attr": {
-      "pass": "ARIA attribute name is valid",
+      "pass": "اسم سمة ARIA صالح",
       "fail": {
-        "singular": "Invalid ARIA attribute name: ${data.values}",
-        "plural": "Invalid ARIA attribute names: ${data.values}"
+        "singular": "اسم سمة ARIA غير صالح: ${data.values}",
+        "plural": "أسماء سمات ARIA غير صالحة: ${data.values}"
       }
     },
     "deprecatedrole": {
-      "pass": "ARIA role is not deprecated",
-      "fail": "The role used is deprecated: ${data}"
+      "pass": "دور ARIA غير مهجور",
+      "fail": "الدور المستخدم مهجور: ${data}"
     },
     "fallbackrole": {
-      "pass": "Only one role value used",
-      "fail": "Use only one role value, since fallback roles are not supported in older browsers",
-      "incomplete": "Use only role 'presentation' or 'none' since they are synonymous."
+      "pass": "تم استخدام قيمة دور واحدة فقط",
+      "fail": "استخدم قيمة دور واحدة فقط، لأن الأدوار البديلة غير مدعومة في المتصفحات الأقدم",
+      "incomplete": "استخدم دور 'presentation' أو 'none' فقط لأنهما مترادفان."
     },
     "has-global-aria-attribute": {
       "pass": {
-        "singular": "Element has global ARIA attribute: ${data.values}",
-        "plural": "Element has global ARIA attributes: ${data.values}"
+        "singular": "العنصر يحتوي على سمة ARIA عالمية: ${data.values}",
+        "plural": "العنصر يحتوي على سمات ARIA عالمية: ${data.values}"
       },
-      "fail": "Element does not have global ARIA attribute"
+      "fail": "العنصر لا يحتوي على سمة ARIA عالمية"
     },
     "has-widget-role": {
-      "pass": "Element has a widget role.",
-      "fail": "Element does not have a widget role."
+      "pass": "العنصر يحتوي على دور ويدجت.",
+      "fail": "العنصر لا يحتوي على دور ويدجت."
     },
     "invalidrole": {
-      "pass": "ARIA role is valid",
+      "pass": "دور ARIA صالح",
       "fail": {
-        "singular": "Role must be one of the valid ARIA roles: ${data.values}",
-        "plural": "Roles must be one of the valid ARIA roles: ${data.values}"
+        "singular": "يجب أن يكون الدور واحداً من أدوار ARIA الصالحة: ${data.values}",
+        "plural": "يجب أن تكون الأدوار واحدة من أدوار ARIA الصالحة: ${data.values}"
       }
     },
     "is-element-focusable": {
-      "pass": "Element is focusable.",
-      "fail": "Element is not focusable."
+      "pass": "العنصر قابل للتركيز.",
+      "fail": "العنصر غير قابل للتركيز."
     },
     "no-implicit-explicit-label": {
-      "pass": "There is no mismatch between a <label> and accessible name",
-      "incomplete": "Check that the <label> does not need be part of the ARIA ${data} field's name"
+      "pass": "لا يوجد تناقض بين <label> والاسم القابل للوصول",
+      "incomplete": "تحقق من أن <label> لا يحتاج إلى أن يكون جزءاً من اسم حقل ARIA ${data}"
     },
     "unsupportedrole": {
-      "pass": "ARIA role is supported",
-      "fail": "The role used is not widely supported in screen readers and assistive technologies: ${data}"
+      "pass": "دور ARIA مدعوم",
+      "fail": "الدور المستخدم غير مدعوم على نطاق واسع في قراء الشاشة والتقنيات المساعدة: ${data}"
     },
     "valid-scrollable-semantics": {
-      "pass": "Element has valid semantics for an element in the focus order.",
-      "fail": "Element has invalid semantics for an element in the focus order."
+      "pass": "العنصر يحتوي على دلالات صالحة لعنصر في ترتيب التركيز.",
+      "fail": "العنصر يحتوي على دلالات غير صالحة لعنصر في ترتيب التركيز."
     },
     "color-contrast-enhanced": {
-      "pass": "Element has sufficient color contrast of ${data.contrastRatio}",
+      "pass": "العنصر لديه تباين لوني كافٍ بمعدل ${data.contrastRatio}",
       "fail": {
-        "default": "Element has insufficient color contrast of ${data.contrastRatio} (foreground color: ${data.fgColor}, background color: ${data.bgColor}, font size: ${data.fontSize}, font weight: ${data.fontWeight}). Expected contrast ratio of ${data.expectedContrastRatio}",
-        "fgOnShadowColor": "Element has insufficient color contrast of ${data.contrastRatio} between the foreground and shadow color (foreground color: ${data.fgColor}, text-shadow color: ${data.shadowColor}, font size: ${data.fontSize}, font weight: ${data.fontWeight}). Expected contrast ratio of ${data.expectedContrastRatio}",
-        "shadowOnBgColor": "Element has insufficient color contrast of ${data.contrastRatio} between the shadow color and background color (text-shadow color: ${data.shadowColor}, background color: ${data.bgColor}, font size: ${data.fontSize}, font weight: ${data.fontWeight}). Expected contrast ratio of ${data.expectedContrastRatio}"
+        "default": "العنصر لديه تباين لوني غير كافي بمعدل ${data.contrastRatio} (لون الواجهة: ${data.fgColor}، لون الخلفية: ${data.bgColor}، حجم الخط: ${data.fontSize}، وزن الخط: ${data.fontWeight}). المتوقع معدل تباين ${data.expectedContrastRatio}",
+        "fgOnShadowColor": "العنصر لديه تباين لوني غير كافي بمعدل ${data.contrastRatio} بين لون الواجهة ولون الظل (لون الواجهة: ${data.fgColor}، لون ظل النص: ${data.shadowColor}، حجم الخط: ${data.fontSize}، وزن الخط: ${data.fontWeight}). المتوقع معدل تباين ${data.expectedContrastRatio}",
+        "shadowOnBgColor": "العنصر لديه تباين لوني غير كافي بمعدل ${data.contrastRatio} بين لون الظل ولون الخلفية (لون ظل النص: ${data.shadowColor}، لون الخلفية: ${data.bgColor}، حجم الخط: ${data.fontSize}، وزن الخط: ${data.fontWeight}). المتوقع معدل تباين ${data.expectedContrastRatio}"
       },
       "incomplete": {
-        "default": "Unable to determine contrast ratio",
-        "bgImage": "Element's background color could not be determined due to a background image",
-        "bgGradient": "Element's background color could not be determined due to a background gradient",
-        "imgNode": "Element's background color could not be determined because element contains an image node",
-        "bgOverlap": "Element's background color could not be determined because it is overlapped by another element",
-        "fgAlpha": "Element's foreground color could not be determined because of alpha transparency",
-        "elmPartiallyObscured": "Element's background color could not be determined because it's partially obscured by another element",
-        "elmPartiallyObscuring": "Element's background color could not be determined because it partially overlaps other elements",
-        "outsideViewport": "Element's background color could not be determined because it's outside the viewport",
-        "equalRatio": "Element has a 1:1 contrast ratio with the background",
-        "shortTextContent": "Element content is too short to determine if it is actual text content",
-        "nonBmp": "Element content contains only non-text characters",
-        "pseudoContent": "Element's background color could not be determined due to a pseudo element"
+        "default": "لا يمكن تحديد معدل التباين",
+        "bgImage": "لا يمكن تحديد لون خلفية العنصر بسبب صورة خلفية",
+        "bgGradient": "لا يمكن تحديد لون خلفية العنصر بسبب تدرج اللون الخلفي",
+        "imgNode": "لا يمكن تحديد لون خلفية العنصر لأن العنصر يحوي على عقدة صورة",
+        "bgOverlap": "لا يمكن تحديد لون خلفية العنصر لأنه مغطى بعنصر آخر",
+        "fgAlpha": "لا يمكن تحديد لون واجهة العنصر بسبب الشفافية الألفا",
+        "elmPartiallyObscured": "لا يمكن تحديد لون خلفية العنصر لأن جزءًا منه مغطى بعنصر آخر",
+        "elmPartiallyObscuring": "لا يمكن تحديد لون خلفية العنصر لأنه يغطي جزئياً عناصر أخرى",
+        "outsideViewport": "لا يمكن تحديد لون خلفية العنصر لأنه خارج نطاق العرض",
+        "equalRatio": "العنصر لديه معدل تباين 1:1 مع الخلفية",
+        "shortTextContent": "محتوى العنصر قصير جدًا بحيث لا يمكن تحديد ما إذا كان نصًا فعليًا",
+        "nonBmp": "محتوى العنصر يحتوي على أحرف غير نصية فقط",
+        "pseudoContent": "لا يمكن تحديد لون خلفية العنصر بسبب عنصر مزيف"
       }
     },
     "color-contrast": {
       "pass": {
-        "default": "Element has sufficient color contrast of ${data.contrastRatio}",
-        "hidden": "Element is hidden"
+        "default": "العنصر لديه تباين لوني كافٍ بمعدل ${data.contrastRatio}",
+        "hidden": "العنصر مخفي"
       },
       "fail": {
-        "default": "Element has insufficient color contrast of ${data.contrastRatio} (foreground color: ${data.fgColor}, background color: ${data.bgColor}, font size: ${data.fontSize}, font weight: ${data.fontWeight}). Expected contrast ratio of ${data.expectedContrastRatio}",
-        "fgOnShadowColor": "Element has insufficient color contrast of ${data.contrastRatio} between the foreground and shadow color (foreground color: ${data.fgColor}, text-shadow color: ${data.shadowColor}, font size: ${data.fontSize}, font weight: ${data.fontWeight}). Expected contrast ratio of ${data.expectedContrastRatio}",
-        "shadowOnBgColor": "Element has insufficient color contrast of ${data.contrastRatio} between the shadow color and background color (text-shadow color: ${data.shadowColor}, background color: ${data.bgColor}, font size: ${data.fontSize}, font weight: ${data.fontWeight}). Expected contrast ratio of ${data.expectedContrastRatio}"
+        "default": "العنصر لديه تباين لوني غير كافي بمعدل ${data.contrastRatio} (لون الواجهة: ${data.fgColor}، لون الخلفية: ${data.bgColor}، حجم الخط: ${data.fontSize}، وزن الخط: ${data.fontWeight}). المتوقع معدل تباين ${data.expectedContrastRatio}",
+        "fgOnShadowColor": "العنصر لديه تباين لوني غير كافي بمعدل ${data.contrastRatio} بين لون الواجهة ولون الظل (لون الواجهة: ${data.fgColor}، لون ظل النص: ${data.shadowColor}، حجم الخط: ${data.fontSize}، وزن الخط: ${data.fontWeight}). المتوقع معدل تباين ${data.expectedContrastRatio}",
+        "shadowOnBgColor": "العنصر لديه تباين لوني غير كافي بمعدل ${data.contrastRatio} بين لون الظل ولون الخلفية (لون ظل النص: ${data.shadowColor}، لون الخلفية: ${data.bgColor}، حجم الخط: ${data.fontSize}، وزن الخط: ${data.fontWeight}). المتوقع معدل تباين ${data.expectedContrastRatio}"
       },
       "incomplete": {
-        "default": "Unable to determine contrast ratio",
-        "bgImage": "Element's background color could not be determined due to a background image",
-        "bgGradient": "Element's background color could not be determined due to a background gradient",
-        "imgNode": "Element's background color could not be determined because element contains an image node",
-        "bgOverlap": "Element's background color could not be determined because it is overlapped by another element",
-        "fgAlpha": "Element's foreground color could not be determined because of alpha transparency",
-        "elmPartiallyObscured": "Element's background color could not be determined because it's partially obscured by another element",
-        "elmPartiallyObscuring": "Element's background color could not be determined because it partially overlaps other elements",
-        "outsideViewport": "Element's background color could not be determined because it's outside the viewport",
-        "equalRatio": "Element has a 1:1 contrast ratio with the background",
-        "shortTextContent": "Element content is too short to determine if it is actual text content",
-        "nonBmp": "Element content contains only non-text characters",
-        "pseudoContent": "Element's background color could not be determined due to a pseudo element"
+        "default": "لا يمكن تحديد معدل التباين",
+        "bgImage": "لا يمكن تحديد لون خلفية العنصر بسبب صورة خلفية",
+        "bgGradient": "لا يمكن تحديد لون خلفية العنصر بسبب تدرج اللون الخلفي",
+        "imgNode": "لا يمكن تحديد لون خلفية العنصر لأن العنصر يحوي على عقدة صورة",
+        "bgOverlap": "لا يمكن تحديد لون خلفية العنصر لأنه مغطى بعنصر آخر",
+        "fgAlpha": "لا يمكن تحديد لون واجهة العنصر بسبب الشفافية الألفا",
+        "elmPartiallyObscured": "لا يمكن تحديد لون خلفية العنصر لأن جزءًا منه مغطى بعنصر آخر",
+        "elmPartiallyObscuring": "لا يمكن تحديد لون خلفية العنصر لأنه يغطي جزئياً عناصر أخرى",
+        "outsideViewport": "لا يمكن تحديد لون خلفية العنصر لأنه خارج نطاق العرض",
+        "equalRatio": "العنصر لديه معدل تباين 1:1 مع الخلفية",
+        "shortTextContent": "محتوى العنصر قصير جدًا بحيث لا يمكن تحديد ما إذا كان نصًا فعليًا",
+        "nonBmp": "محتوى العنصر يحتوي على أحرف غير نصية فقط",
+        "pseudoContent": "لا يمكن تحديد لون خلفية العنصر بسبب عنصر مزيف"
       }
     },
     "link-in-text-block-style": {
-      "pass": "Links can be distinguished from surrounding text by visual styling",
-      "fail": "The link has no styling (such as underline) to distinguish it from the surrounding text"
+      "pass": "يمكن التمييز بين الروابط والنص المحيط بها من خلال التنسيق البصري",
+      "fail": "الرابط لا يحتوي على تنسيق (مثل التسطير) لتمييزه عن النص المحيط"
     },
     "link-in-text-block": {
-      "pass": "Links can be distinguished from surrounding text in some way other than by color",
+      "pass": "يمكن التمييز بين الروابط والنص المحيط بها بطريقة أخرى غير اللون",
       "fail": {
-        "fgContrast": "The link has insufficient color contrast of ${data.contrastRatio}:1 with the surrounding text. (Minimum contrast is ${data.requiredContrastRatio}:1, link text: ${data.nodeColor}, surrounding text: ${data.parentColor})",
-        "bgContrast": "The link background has insufficient color contrast of ${data.contrastRatio} (Minimum contrast is ${data.requiredContrastRatio}:1, link background color: ${data.nodeBackgroundColor}, surrounding background color: ${data.parentBackgroundColor})"
+        "fgContrast": "الرابط لديه تباين لوني غير كافي بمعدل ${data.contrastRatio}:1 مع النص المحيط. (الحد الأدنى للتباين هو ${data.requiredContrastRatio}:1، لون نص الرابط: ${data.nodeColor}، لون النص المحيط: ${data.parentColor})",
+        "bgContrast": "خلفية الرابط لديها تباين لوني غير كافي بمعدل ${data.contrastRatio} (الحد الأدنى للتباين هو ${data.requiredContrastRatio}:1، لون خلفية الرابط: ${data.nodeBackgroundColor}، لون الخلفية المحيطة: ${data.parentBackgroundColor})"
       },
       "incomplete": {
-        "default": "Element's foreground contrast ratio could not be determined",
-        "bgContrast": "Element's background contrast ratio could not be determined",
-        "bgImage": "Element's contrast ratio could not be determined due to a background image",
-        "bgGradient": "Element's contrast ratio could not be determined due to a background gradient",
-        "imgNode": "Element's contrast ratio could not be determined because element contains an image node",
-        "bgOverlap": "Element's contrast ratio could not be determined because of element overlap"
+        "default": "لا يمكن تحديد معدل تباين الواجهة",
+        "bgContrast": "لا يمكن تحديد معدل تباين الخلفية",
+        "bgImage": "لا يمكن تحديد معدل التباين بسبب صورة خلفية",
+        "bgGradient": "لا يمكن تحديد معدل التباين بسبب تدرج اللون الخلفي",
+        "imgNode": "لا يمكن تحديد معدل التباين لأن العنصر يحوي على عقدة صورة",
+        "bgOverlap": "لا يمكن تحديد معدل التباين بسبب تداخل العناصر"
       }
     },
     "autocomplete-appropriate": {
-      "pass": "the autocomplete value is on an appropriate element",
-      "fail": "the autocomplete value is inappropriate for this type of input"
+      "pass": "قيمة الإكمال التلقائي مناسبة لهذا النوع من الإدخال",
+      "fail": "قيمة الإكمال التلقائي غير مناسبة لهذا النوع من الإدخال"
     },
     "autocomplete-valid": {
-      "pass": "the autocomplete attribute is correctly formatted",
-      "fail": "the autocomplete attribute is incorrectly formatted"
+      "pass": "صيغة صفة الإكمال التلقائي مُنسقة بشكل صحيح",
+      "fail": "صيغة صفة الإكمال التلقائي مُنسقة بشكل غير صحيح"
     },
     "accesskeys": {
-      "pass": "Accesskey attribute value is unique",
-      "fail": "Document has multiple elements with the same accesskey"
+      "pass": "قيمة صفة مفتاح الوصول فريدة",
+      "fail": "المستند يحتوي على عدة عناصر بنفس مفتاح الوصول"
     },
     "focusable-content": {
-      "pass": "Element contains focusable elements",
-      "fail": "Element should have focusable content"
+      "pass": "العنصر يحتوي على عناصر قابلة للتركيز",
+      "fail": "يجب أن يحتوي العنصر على محتوى قابل للتركيز"
     },
     "focusable-disabled": {
-      "pass": "No focusable elements contained within element",
-      "incomplete": "Check if the focusable elements immediately move the focus indicator",
-      "fail": "Focusable content should be disabled or be removed from the DOM"
+      "pass": "لا توجد عناصر قابلة للتركيز ضمن العنصر",
+      "incomplete": "تحقق مما إذا كانت العناصر القابلة للتركيز تنقل مؤشر التركيز على الفور",
+      "fail": "يجب تعطيل المحتوى القابل للتركيز أو إزالته من DOM"
     },
     "focusable-element": {
-      "pass": "Element is focusable",
-      "fail": "Element should be focusable"
+      "pass": "العنصر قابل للتركيز",
+      "fail": "يجب أن يكون العنصر قابلًا للتركيز"
     },
     "focusable-modal-open": {
-      "pass": "No focusable elements while a modal is open",
-      "incomplete": "Check that focusable elements are not tabbable in the current state"
+      "pass": "لا توجد عناصر قابلة للتركيز أثناء فتح نافذة مودال",
+      "incomplete": "تحقق من أن العناصر القابلة للتركيز ليست قابلة للتبويب في الحالة الحالية"
     },
     "focusable-no-name": {
-      "pass": "Element is not in tab order or has accessible text",
-      "fail": "Element is in tab order and does not have accessible text",
-      "incomplete": "Unable to determine if element has an accessible name"
+      "pass": "العنصر ليس في ترتيب التبويب أو لديه نص يمكن الوصول إليه",
+      "fail": "العنصر موجود في ترتيب التبويب ولا يحتوي على نص يمكن الوصول إليه",
+      "incomplete": "لا يمكن تحديد ما إذا كان العنصر يحتوي على اسم يمكن الوصول إليه"
     },
     "focusable-not-tabbable": {
-      "pass": "No focusable elements contained within element",
-      "incomplete": "Check if the focusable elements immediately move the focus indicator",
-      "fail": "Focusable content should have tabindex='-1' or be removed from the DOM"
+      "pass": "لا توجد عناصر قابلة للتركيز ضمن العنصر",
+      "incomplete": "تحقق مما إذا كانت العناصر القابلة للتركيز تنقل مؤشر التركيز على الفور",
+      "fail": "المحتوى القابل للتركيز يجب أن يكون لديه tabindex='-1' أو يجب إزالته من DOM"
     },
     "frame-focusable-content": {
-      "pass": "Element does not have focusable descendants",
-      "fail": "Element has focusable descendants",
-      "incomplete": "Could not determine if element has descendants"
+      "pass": "العنصر لا يحتوي على أحفاد قابلين للتركيز",
+      "fail": "العنصر يحتوي على أحفاد قابلين للتركيز",
+      "incomplete": "تعذر تحديد ما إذا كان العنصر يحتوي على أحفاد"
     },
     "landmark-is-top-level": {
-      "pass": "The ${data.role} landmark is at the top level.",
-      "fail": "The ${data.role} landmark is contained in another landmark."
+      "pass": "علامة الأرض ${data.role} على المستوى الأعلى.",
+      "fail": "علامة الأرض ${data.role} موجودة داخل علامة أرض أخرى."
     },
     "no-focusable-content": {
-      "pass": "Element does not have focusable descendants",
+      "pass": "العنصر لا يحتوي على أحفاد قابلين للتركيز",
       "fail": {
-        "default": "Element has focusable descendants",
-        "notHidden": "Using a negative tabindex on an element inside an interactive control does not prevent assistive technologies from focusing the element (even with 'aria-hidden=true')"
+        "default": "العنصر يحتوي على أحفاد قابلين للتركيز",
+        "notHidden": "استخدام tabindex سالب على عنصر داخل عنصر تحكم تفاعلي لا يمنع تقنيات المساعدة من التركيز على العنصر (حتى مع 'aria-hidden=true')"
       },
-      "incomplete": "Could not determine if element has descendants"
+      "incomplete": "تعذر تحديد ما إذا كان العنصر يحتوي على أحفاد"
     },
+
     "page-has-heading-one": {
-      "pass": "Page has at least one level-one heading",
-      "fail": "Page must have a level-one heading"
-    },
-    "page-has-main": {
-      "pass": "Document has at least one main landmark",
-      "fail": "Document does not have a main landmark"
-    },
-    "page-no-duplicate-banner": {
-      "pass": "Document does not have more than one banner landmark",
-      "fail": "Document has more than one banner landmark"
-    },
-    "page-no-duplicate-contentinfo": {
-      "pass": "Document does not have more than one contentinfo landmark",
-      "fail": "Document has more than one contentinfo landmark"
-    },
-    "page-no-duplicate-main": {
-      "pass": "Document does not have more than one main landmark",
-      "fail": "Document has more than one main landmark"
-    },
-    "tabindex": {
-      "pass": "Element does not have a tabindex greater than 0",
-      "fail": "Element has a tabindex greater than 0"
-    },
-    "alt-space-value": {
-      "pass": "Element has a valid alt attribute value",
-      "fail": "Element has an alt attribute containing only a space character, which is not ignored by all screen readers"
-    },
-    "duplicate-img-label": {
-      "pass": "Element does not duplicate existing text in <img> alt text",
-      "fail": "Element contains <img> element with alt text that duplicates existing text"
-    },
-    "explicit-label": {
-      "pass": "Form element has an explicit <label>",
-      "fail": "Form element does not have an explicit <label>",
-      "incomplete": "Unable to determine if form element has an explicit <label>"
-    },
-    "help-same-as-label": {
-      "pass": "Help text (title or aria-describedby) does not duplicate label text",
-      "fail": "Help text (title or aria-describedby) text is the same as the label text"
-    },
-    "hidden-explicit-label": {
-      "pass": "Form element has a visible explicit <label>",
-      "fail": "Form element has explicit <label> that is hidden",
-      "incomplete": "Unable to determine if form element has explicit <label> that is hidden"
-    },
-    "implicit-label": {
-      "pass": "Form element has an implicit (wrapped) <label>",
-      "fail": "Form element does not have an implicit (wrapped) <label>",
-      "incomplete": "Unable to determine if form element has an implicit (wrapped} <label>"
-    },
-    "label-content-name-mismatch": {
-      "pass": "Element contains visible text as part of it's accessible name",
-      "fail": "Text inside the element is not included in the accessible name"
-    },
-    "multiple-label": {
-      "pass": "Form field does not have multiple label elements",
-      "incomplete": "Multiple label elements is not widely supported in assistive technologies. Ensure the first label contains all necessary information."
-    },
-    "title-only": {
-      "pass": "Form element does not solely use title attribute for its label",
-      "fail": "Only title used to generate label for form element"
-    },
-    "landmark-is-unique": {
-      "pass": "Landmarks must have a unique role or role/label/title (i.e. accessible name) combination",
-      "fail": "The landmark must have a unique aria-label, aria-labelledby, or title to make landmarks distinguishable"
-    },
-    "has-lang": {
-      "pass": "The <html> element has a lang attribute",
+      "pass": "الصفحة لديها على الأقل عنوان من المستوى الأول واحد",
+      "fail": "يجب أن تحتوي الصفحة على عنوان من المستوى الأول"
+  },
+  "page-has-main": {
+      "pass": "الوثيقة تحتوي على الأقل على علامة رئيسية واحدة",
+      "fail": "الوثيقة لا تحتوي على علامة رئيسية"
+  },
+  "page-no-duplicate-banner": {
+      "pass": "الوثيقة لا تحتوي على أكثر من علامة بانر واحدة",
+      "fail": "الوثيقة تحتوي على أكثر من علامة بانر واحدة"
+  },
+  "page-no-duplicate-contentinfo": {
+      "pass": "الوثيقة لا تحتوي على أكثر من علامة معلومات المحتوى واحدة",
+      "fail": "الوثيقة تحتوي على أكثر من علامة معلومات المحتوى واحدة"
+  },
+  "page-no-duplicate-main": {
+      "pass": "الوثيقة لا تحتوي على أكثر من علامة رئيسية واحدة",
+      "fail": "الوثيقة تحتوي على أكثر من علامة رئيسية واحدة"
+  },
+  "tabindex": {
+      "pass": "العنصر لا يحتوي على tabindex أكبر من 0",
+      "fail": "العنصر يحتوي على tabindex أكبر من 0"
+  },
+  "alt-space-value": {
+      "pass": "العنصر يحتوي على قيمة سمة alt صالحة",
+      "fail": "العنصر يحتوي على سمة alt تحتوي على مسافة فارغة فقط، والتي لا يتم تجاهلها بواسطة جميع قارئات الشاشة"
+  },
+  "duplicate-img-label": {
+      "pass": "العنصر لا يكرر النص الموجود في نص بديل <img>",
+      "fail": "العنصر يحتوي على عنصر <img> مع نص بديل يكرر النص الموجود"
+  },
+  "explicit-label": {
+      "pass": "عنصر النموذج يحتوي على <label> صريح",
+      "fail": "عنصر النموذج لا يحتوي على <label> صريح",
+      "incomplete": "تعذر تحديد ما إذا كان عنصر النموذج يحتوي على <label> صريح"
+  },
+  "help-same-as-label": {
+      "pass": "نص المساعدة (title أو aria-describedby) لا يكرر نص العلامة",
+      "fail": "نص المساعدة (title أو aria-describedby) مطابق لنص العلامة"
+  },
+  "hidden-explicit-label": {
+      "pass": "عنصر النموذج يحتوي على <label> صريح ظاهر",
+      "fail": "عنصر النموذج يحتوي على <label> صريح مخفي",
+      "incomplete": "تعذر تحديد ما إذا كان عنصر النموذج يحتوي على <label> صريح مخفي"
+  },
+  "implicit-label": {
+      "pass": "عنصر النموذج يحتوي على <label> ضمني (ملفوف)",
+      "fail": "عنصر النموذج لا يحتوي على <label> ضمني (ملفوف)",
+      "incomplete": "تعذر تحديد ما إذا كان عنصر النموذج يحتوي على <label> ضمني (ملفوف)"
+  },
+  "label-content-name-mismatch": {
+      "pass": "العنصر يحتوي على نص ظاهر كجزء من اسمه القابل للوصول",
+      "fail": "النص داخل العنصر غير مدرج في الاسم القابل للوصول"
+  },
+  "multiple-label": {
+      "pass": "حقل النموذج لا يحتوي على عدة عناصر علامة",
+      "incomplete": "عناصر العلامة العديدة غير مدعومة على نطاق واسع في تقنيات المساعدة. تأكد من أن العلامة الأولى تحتوي على جميع المعلومات الضرورية."
+  },
+  "title-only": {
+      "pass": "عنصر النموذج لا يستخدم سمة العنوان بشكل حصري لعنوانه",
+      "fail": "العنوان المستخدم فقط لإنشاء علامة لعنصر النموذج"
+  },
+  "landmark-is-unique": {
+      "pass": "يجب أن تكون العلامات المميزة لها دور أو مجموعة دور/علامة/عنوان (أي اسم قابل للوصول) فريدة",
+      "fail": "يجب أن تحتوي العلامة المميزة على aria-label أو aria-labelledby أو عنوان فريد لجعل العلامات المميزة قابلة للتمييز"
+  },
+  "has-lang": {
+      "pass": "عنصر <html> يحتوي على سمة lang",
       "fail": {
-        "noXHTML": "The xml:lang attribute is not valid on HTML pages, use the lang attribute.",
-        "noLang": "The <html> element does not have a lang attribute"
+          "noXHTML": "سمة xml:lang غير صالحة على صفحات HTML، استخدم سمة lang.",
+          "noLang": "عنصر <html> لا يحتوي على سمة lang"
       }
-    },
-    "valid-lang": {
-      "pass": "Value of lang attribute is included in the list of valid languages",
-      "fail": "Value of lang attribute not included in the list of valid languages"
-    },
-    "xml-lang-mismatch": {
-      "pass": "Lang and xml:lang attributes have the same base language",
-      "fail": "Lang and xml:lang attributes do not have the same base language"
-    },
-    "dlitem": {
-      "pass": "Description list item has a <dl> parent element",
-      "fail": "Description list item does not have a <dl> parent element"
-    },
-    "listitem": {
-      "pass": "List item has a <ul>, <ol> or role=\"list\" parent element",
+  },
+  "valid-lang": {
+      "pass": "قيمة سمة اللغة مدرجة في قائمة اللغات الصالحة",
+      "fail": "قيمة سمة اللغة غير مدرجة في قائمة اللغات الصالحة"
+  },
+  "xml-lang-mismatch": {
+      "pass": "سمتي Lang و xml:lang تحتويان على نفس اللغة الأساسية",
+      "fail": "سمتي Lang و xml:lang لا تحتويان على نفس اللغة الأساسية"
+  },
+  "dlitem": {
+      "pass": "عنصر قائمة الوصف لديه عنصر أب <dl>",
+      "fail": "عنصر قائمة الوصف لا يحتوي على عنصر أب <dl>"
+  },
+  "listitem": {
+      "pass": "عنصر قائمة لديه عنصر أب <ul>، <ol> أو role=\"list\"",
       "fail": {
-        "default": "List item does not have a <ul>, <ol> parent element",
-        "roleNotValid": "List item does not have a <ul>, <ol> parent element without a role, or a role=\"list\""
+          "default": "عنصر القائمة لا يحتوي على عنصر أب <ul>، <ol>",
+          "roleNotValid": "عنصر القائمة لا يحتوي على عنصر أب <ul>، <ol> بدون دور، أو role=\"list\""
       }
-    },
-    "only-dlitems": {
-      "pass": "dl element only has direct children that are allowed inside; <dt>, <dd>, or <div> elements",
-      "fail": "dl element has direct children that are not allowed: ${data.values}"
-    },
-    "only-listitems": {
-      "pass": "List element only has direct children that are allowed inside <li> elements",
-      "fail": "List element has direct children that are not allowed: ${data.values}"
-    },
-    "structured-dlitems": {
-      "pass": "When not empty, element has both <dt> and <dd> elements",
-      "fail": "When not empty, element does not have at least one <dt> element followed by at least one <dd> element"
-    },
-    "caption": {
-      "pass": "The multimedia element has a captions track",
-      "incomplete": "Check that captions is available for the element"
-    },
-    "frame-tested": {
-      "pass": "The iframe was tested with axe-core",
-      "fail": "The iframe could not be tested with axe-core",
-      "incomplete": "The iframe still has to be tested with axe-core"
-    },
-    "no-autoplay-audio": {
-      "pass": "<video> or <audio> does not output audio for more than allowed duration or has controls mechanism",
-      "fail": "<video> or <audio> outputs audio for more than allowed duration and does not have a controls mechanism",
-      "incomplete": "Check that the <video> or <audio> does not output audio for more than allowed duration or provides a controls mechanism"
-    },
-    "css-orientation-lock": {
-      "pass": "Display is operable, and orientation lock does not exist",
-      "fail": "CSS Orientation lock is applied, and makes display inoperable",
-      "incomplete": "CSS Orientation lock cannot be determined"
-    },
-    "meta-viewport-large": {
-      "pass": "<meta> tag does not prevent significant zooming on mobile devices",
-      "fail": "<meta> tag limits zooming on mobile devices"
-    },
-    "meta-viewport": {
-      "pass": "<meta> tag does not disable zooming on mobile devices",
-      "fail": "${data} on <meta> tag disables zooming on mobile devices"
-    },
-    "target-offset": {
-      "pass": "Target has sufficient offset from its closest neighbor (${data.closestOffset}px should be at least ${data.minOffset}px)",
-      "fail": "Target has insufficient offset from its closest neighbor (${data.closestOffset}px should be at least ${data.minOffset}px)",
-      "incomplete": {
-        "default": "Element with negative tabindex has insufficient offset from its closest neighbor (${data.closestOffset}px should be at least ${data.minOffset}px). Is this a target?",
-        "nonTabbableNeighbor": "Target has insufficient offset from a neighbor with negative tabindex (${data.closestOffset}px should be at least ${data.minOffset}px). Is the neighbor a target?"
-      }
-    },
-    "target-size": {
-      "pass": {
-        "default": "Control has sufficient size (${data.width}px by ${data.height}px, should be at least ${data.minSize}px by ${data.minSize}px)",
-        "obscured": "Control is ignored because it is fully obscured and thus not clickable"
-      },
-      "fail": {
-        "default": "Target has insufficient size (${data.width}px by ${data.height}px, should be at least ${data.minSize}px by ${data.minSize}px)",
-        "partiallyObscured": "Target has insufficient size because it is partially obscured (smallest space is ${data.width}px by ${data.height}px, should be at least ${data.minSize}px by ${data.minSize}px)"
-      },
-      "incomplete": {
-        "default": "Element with negative tabindex has insufficient size (${data.width}px by ${data.height}px, should be at least ${data.minSize}px by ${data.minSize}px). Is this a target?",
-        "contentOverflow": "Element size could not be accurately determined due to overflow content",
-        "partiallyObscured": "Element with negative tabindex has insufficient size because it is partially obscured (smallest space is ${data.width}px by ${data.height}px, should be at least ${data.minSize}px by ${data.minSize}px). Is this a target?",
-        "partiallyObscuredNonTabbable": "Target has insufficient size because it is partially obscured by a neighbor with negative tabindex (smallest space is ${data.width}px by ${data.height}px, should be at least ${data.minSize}px by ${data.minSize}px). Is the neighbor a target?"
-      }
-    },
-    "header-present": {
-      "pass": "Page has a heading",
-      "fail": "Page does not have a heading"
-    },
-    "heading-order": {
-      "pass": "Heading order valid",
-      "fail": "Heading order invalid",
-      "incomplete": "Unable to determine previous heading"
-    },
-    "identical-links-same-purpose": {
-      "pass": "There are no other links with the same name, that go to a different URL",
-      "incomplete": "Check that links have the same purpose, or are intentionally ambiguous."
-    },
-    "internal-link-present": {
-      "pass": "Valid skip link found",
-      "fail": "No valid skip link found"
-    },
-    "landmark": {
-      "pass": "Page has a landmark region",
-      "fail": "Page does not have a landmark region"
-    },
-    "meta-refresh-no-exceptions": {
-      "pass": "<meta> tag does not immediately refresh the page",
-      "fail": "<meta> tag forces timed refresh of page"
-    },
-    "meta-refresh": {
-      "pass": "<meta> tag does not immediately refresh the page",
-      "fail": "<meta> tag forces timed refresh of page (less than 20 hours)"
-    },
-    "p-as-heading": {
-      "pass": "<p> elements are not styled as headings",
-      "fail": "Heading elements should be used instead of styled <p> elements",
-      "incomplete": "Unable to determine if <p> elements are styled as headings"
-    },
-    "region": {
-      "pass": "All page content is contained by landmarks",
-      "fail": "Some page content is not contained by landmarks"
-    },
-    "skip-link": {
-      "pass": "Skip link target exists",
-      "incomplete": "Skip link target should become visible on activation",
-      "fail": "No skip link target"
-    },
-    "unique-frame-title": {
-      "pass": "Element's title attribute is unique",
-      "fail": "Element's title attribute is not unique"
-    },
-    "aria-label": {
-      "pass": "aria-label attribute exists and is not empty",
-      "fail": "aria-label attribute does not exist or is empty"
-    },
-    "aria-labelledby": {
-      "pass": "aria-labelledby attribute exists and references elements that are visible to screen readers",
-      "fail": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
-      "incomplete": "ensure aria-labelledby references an existing element"
-    },
-    "avoid-inline-spacing": {
-      "pass": "No inline styles with '!important' that affect text spacing has been specified",
-      "fail": {
-        "singular": "Remove '!important' from inline style ${data.values}, as overriding this is not supported by most browsers",
-        "plural": "Remove '!important' from inline styles ${data.values}, as overriding this is not supported by most browsers"
-      }
-    },
-    "button-has-visible-text": {
-      "pass": "Element has inner text that is visible to screen readers",
-      "fail": "Element does not have inner text that is visible to screen readers",
-      "incomplete": "Unable to determine if element has children"
-    },
-    "doc-has-title": {
-      "pass": "Document has a non-empty <title> element",
-      "fail": "Document does not have a non-empty <title> element"
-    },
-    "exists": {
-      "pass": "Element does not exist",
-      "incomplete": "Element exists"
-    },
-    "has-alt": {
-      "pass": "Element has an alt attribute",
-      "fail": "Element does not have an alt attribute"
-    },
-    "has-visible-text": {
-      "pass": "Element has text that is visible to screen readers",
-      "fail": "Element does not have text that is visible to screen readers",
-      "incomplete": "Unable to determine if element has children"
-    },
-    "important-letter-spacing": {
-      "pass": "Letter-spacing in the style attribute is not set to !important, or meets the minimum",
-      "fail": "letter-spacing in the style attribute must not use !important, or be at ${data.minValue}em (current ${data.value}em)"
-    },
-    "important-line-height": {
-      "pass": "line-height in the style attribute is not set to !important, or meets the minimum",
-      "fail": "line-height in the style attribute must not use !important, or be at ${data.minValue}em (current ${data.value}em)"
-    },
-    "important-word-spacing": {
-      "pass": "word-spacing in the style attribute is not set to !important, or meets the minimum",
-      "fail": "word-spacing in the style attribute must not use !important, or be at ${data.minValue}em (current ${data.value}em)"
-    },
-    "is-on-screen": {
-      "pass": "Element is not visible",
-      "fail": "Element is visible"
-    },
-    "non-empty-alt": {
-      "pass": "Element has a non-empty alt attribute",
-      "fail": {
-        "noAttr": "Element has no alt attribute",
-        "emptyAttr": "Element has an empty alt attribute"
-      }
-    },
-    "non-empty-if-present": {
-      "pass": {
-        "default": "Element does not have a value attribute",
-        "has-label": "Element has a non-empty value attribute"
-      },
-      "fail": "Element has a value attribute and the value attribute is empty"
-    },
-    "non-empty-placeholder": {
-      "pass": "Element has a placeholder attribute",
-      "fail": {
-        "noAttr": "Element has no placeholder attribute",
-        "emptyAttr": "Element has an empty placeholder attribute"
-      }
-    },
-    "non-empty-title": {
-      "pass": "Element has a title attribute",
-      "fail": {
-        "noAttr": "Element has no title attribute",
-        "emptyAttr": "Element has an empty title attribute"
-      }
-    },
-    "non-empty-value": {
-      "pass": "Element has a non-empty value attribute",
-      "fail": {
-        "noAttr": "Element has no value attribute",
-        "emptyAttr": "Element has an empty value attribute"
-      }
-    },
-    "presentational-role": {
-      "pass": "Element's default semantics were overriden with role=\"${data.role}\"",
-      "fail": {
-        "default": "Element's default semantics were not overridden with role=\"none\" or role=\"presentation\"",
-        "globalAria": "Element's role is not presentational because it has a global ARIA attribute",
-        "focusable": "Element's role is not presentational because it is focusable",
-        "both": "Element's role is not presentational because it has a global ARIA attribute and is focusable",
-        "iframe": "Using the \"title\" attribute on an ${data.nodeName} element with a presentational role behaves inconsistently between screen readers"
-      }
-    },
-    "role-none": {
-      "pass": "Element's default semantics were overriden with role=\"none\"",
-      "fail": "Element's default semantics were not overridden with role=\"none\""
-    },
-    "role-presentation": {
-      "pass": "Element's default semantics were overriden with role=\"presentation\"",
-      "fail": "Element's default semantics were not overridden with role=\"presentation\""
-    },
-    "svg-non-empty-title": {
-      "pass": "Element has a child that is a title",
-      "fail": {
-        "noTitle": "Element has no child that is a title",
-        "emptyTitle": "Element child title is empty"
-      },
-      "incomplete": "Unable to determine element has a child that is a title"
-    },
-    "caption-faked": {
-      "pass": "The first row of a table is not used as a caption",
-      "fail": "The first child of the table should be a caption instead of a table cell"
-    },
-    "html5-scope": {
-      "pass": "Scope attribute is only used on table header elements (<th>)",
-      "fail": "In HTML 5, scope attributes may only be used on table header elements (<th>)"
-    },
-    "same-caption-summary": {
-      "pass": "Content of summary attribute and <caption> are not duplicated",
-      "fail": "Content of summary attribute and <caption> element are identical",
-      "incomplete": "Unable to determine if <table> element has a caption"
-    },
-    "scope-value": {
-      "pass": "Scope attribute is used correctly",
-      "fail": "The value of the scope attribute may only be 'row' or 'col'"
-    },
-    "td-has-header": {
-      "pass": "All non-empty data cells have table headers",
-      "fail": "Some non-empty data cells do not have table headers"
-    },
-    "td-headers-attr": {
-      "pass": "The headers attribute is exclusively used to refer to other cells in the table",
-      "incomplete": "The headers attribute is empty",
-      "fail": "The headers attribute is not exclusively used to refer to other cells in the table"
-    },
-    "th-has-data-cells": {
-      "pass": "All table header cells refer to data cells",
-      "fail": "Not all table header cells refer to data cells",
-      "incomplete": "Table data cells are missing or empty"
-    },
-    "hidden-content": {
-      "pass": "All content on the page has been analyzed.",
-      "fail": "There were problems analyzing the content on this page.",
-      "incomplete": "There is hidden content on the page that was not analyzed. You will need to trigger the display of this content in order to analyze it."
+  },
+
+  "only-dlitems": {
+    "pass": "يحتوي عنصر dl على أبناء مباشرين مسموح بهم فقط داخله؛ عناصر <dt>، <dd>، أو <div>",
+    "fail": "عنصر dl يحتوي على أبناء مباشرين غير مسموح بهم: ${data.values}"
+  },
+  "only-listitems": {
+    "pass": "عنصر القائمة يحتوي فقط على أبناء مباشرين مسموح بهم داخل عناصر <li>",
+    "fail": "عنصر القائمة يحتوي على أبناء مباشرين غير مسموح بهم: ${data.values}"
+  },
+  "structured-dlitems": {
+    "pass": "عندما لا يكون فارغًا، يحتوي العنصر على عناصر <dt> و <dd>",
+    "fail": "عندما لا يكون فارغًا، العنصر لا يحتوي على على الأقل عنصر <dt> واحد يليه على الأقل عنصر <dd> واحد"
+  },
+  "caption": {
+    "pass": "عنصر الوسائط المتعددة يحتوي على مسار ترجمات",
+    "incomplete": "تحقق من توفر الترجمات للعنصر"
+  },
+  "frame-tested": {
+    "pass": "تم اختبار iframe بواسطة axe-core",
+    "fail": "لا يمكن اختبار iframe بواسطة axe-core",
+    "incomplete": "لا يزال يتعين اختبار iframe بواسطة axe-core"
+  },
+  "no-autoplay-audio": {
+    "pass": "<video> أو <audio> لا يصدر صوتًا لأكثر من المدة المسموح بها أو يحتوي على آلية تحكم",
+    "fail": "<video> أو <audio> يصدر صوتًا لأكثر من المدة المسموح بها ولا يحتوي على آلية تحكم",
+    "incomplete": "تحقق من أن <video> أو <audio> لا يصدر صوتًا لأكثر من المدة المسموح بها أو يوفر آلية تحكم"
+  },
+  "css-orientation-lock": {
+    "pass": "العرض قابل للتشغيل، ولا يوجد قفل توجيه",
+    "fail": "تم تطبيق قفل توجيه CSS، ويجعل العرض غير قابل للتشغيل",
+    "incomplete": "لا يمكن تحديد وجود قفل توجيه CSS"
+  },
+  "meta-viewport-large": {
+    "pass": "لا يمنع علامة <meta> التكبير الكبير على الأجهزة المحمولة",
+    "fail": "علامة <meta> تحد من التكبير على الأجهزة المحمولة"
+  },
+  "meta-viewport": {
+    "pass": "علامة <meta> لا تعطل التكبير على الأجهزة المحمولة",
+    "fail": "${data} على علامة <meta> يعطل التكبير على الأجهزة المحمولة"
+  },
+  "target-offset": {
+    "pass": "الهدف يمتلك إزاحة كافية من أقرب جار له (${data.closestOffset}px يجب أن تكون على الأقل ${data.minOffset}px)",
+    "fail": "الهدف لا يمتلك إزاحة كافية من أقرب جار له (${data.closestOffset}px يجب أن تكون على الأقل ${data.minOffset}px)",
+    "incomplete": {
+      "default": "العنصر ذو tabindex سلبي لا يمتلك إزاحة كافية من أقرب جار له (${data.closestOffset}px يجب أن تكون على الأقل ${data.minOffset}px). هل هذا هدف؟",
+      "nonTabbableNeighbor": "الهدف لا يمتلك إزاحة كافية من جار ذو tabindex سلبي (${data.closestOffset}px يجب أن تكون على الأقل ${data.minOffset}px). هل الجار هدف؟"
     }
+  },
+  "target-size": {
+    "pass": {
+      "default": "التحكم يمتلك حجمًا كافيًا (${data.width}px بواسطة ${data.height}px، يجب أن يكون على الأقل ${data.minSize}px بواسطة ${data.minSize}px)",
+      "obscured": "يتم تجاهل التحكم لأنه مغطى بالكامل وبالتالي ليس قابل للنقر"
+    },
+    "fail": {
+      "default": "الهدف لا يمتلك حجمًا كافيًا (${data.width}px بواسطة ${data.height}px، يجب أن يكون على الأقل ${data.minSize}px بواسطة ${data.minSize}px)",
+      "partiallyObscured": "الهدف لا يمتلك حجمًا كافيًا لأنه مغطى جزئيًا (أصغر مساحة هي ${data.width}px بواسطة ${data.height}px، يجب أن تكون على الأقل ${data.minSize}px بواسطة ${data.minSize}px)"
+    },
+    "incomplete": {
+      "default": "العنصر ذو tabindex سلبي لا يمتلك حجمًا كافيًا (${data.width}px بواسطة ${data.height}px، يجب أن يكون على الأقل ${data.minSize}px بواسطة ${data.minSize}px). هل هذا هدف؟",
+      "contentOverflow": "لا يمكن تحديد حجم العنصر بدقة بسبب محتوى الفائض",
+      "partiallyObscured": "العنصر ذو tabindex سلبي لا يمتلك حجمًا كافيًا لأنه مغطى جزئيًا (أصغر مساحة هي ${data.width}px بواسطة ${data.height}px، يجب أن تكون على الأقل ${data.minSize}px بواسطة ${data.minSize}px). هل هذا هدف؟",
+      "partiallyObscuredNonTabbable": "الهدف لا يمتلك حجمًا كافيًا لأنه مغطى جزئيًا بواسطة جار ذو tabindex سلبي (أصغر مساحة هي ${data.width}px بواسطة ${data.height}px، يجب أن تكون على الأقل ${data.minSize}px بواسطة ${data.minSize}px). هل الجار هدف؟"
+    }
+  },
+  "header-present": {
+    "pass": "الصفحة تحتوي على عنوان",
+    "fail": "الصفحة لا تحتوي على عنوان"
+  },
+  "heading-order": {
+    "pass": "ترتيب العناوين صحيح",
+    "fail": "ترتيب العناوين غير صحيح",
+    "incomplete": "تعذر تحديد العنوان السابق"
+  },
+  "identical-links-same-purpose": {
+    "pass": "لا توجد روابط أخرى بنفس الاسم تؤدي إلى عنوان URL مختلف",
+    "incomplete": "تحقق من أن الروابط لها نفس الغرض، أو أنها مبهمة عمدًا."
+  },
+  "internal-link-present": {
+    "pass": "تم العثور على رابط تخطي صالح",
+    "fail": "لم يتم العثور على رابط تخطي صالح"
+  },
+  "landmark": {
+    "pass": "الصفحة تحتوي على منطقة لاندمارك",
+    "fail": "الصفحة لا تحتوي على منطقة لاندمارك"
+  },
+
+
+  "meta-refresh-no-exceptions": {
+    "pass": "لا يقوم الوسم <meta> بتحديث الصفحة فورًا",
+    "fail": "يفرض الوسم <meta> عملية تحديث مؤقتة للصفحة"
+  },
+  "meta-refresh": {
+    "pass": "لا يقوم الوسم <meta> بتحديث الصفحة فورًا",
+    "fail": "يفرض الوسم <meta> عملية تحديث مؤقتة للصفحة (أقل من 20 ساعة)"
+  },
+  "p-as-heading": {
+    "pass": "العناصر <p> ليست مصممة كعناوين",
+    "fail": "يجب استخدام عناصر العناوين بدلاً من تصميم عناصر <p>",
+    "incomplete": "غير قادر على تحديد ما إذا كانت عناصر <p> مصممة كعناوين"
+  },
+  "region": {
+    "pass": "كل محتوى الصفحة محتوى من قبل معالم",
+    "fail": "بعض محتوى الصفحة غير محتوى من قبل معالم"
+  },
+  "skip-link": {
+    "pass": "وجود هدف لوصلة التخطي",
+    "incomplete": "يجب أن يصبح هدف وصلة التخطي ظاهرًا عند التفعيل",
+    "fail": "لا يوجد هدف لوصلة التخطي"
+  },
+  "unique-frame-title": {
+    "pass": "صفة العنوان للعنصر فريدة",
+    "fail": "صفة العنوان للعنصر ليست فريدة"
+  },
+  "aria-label": {
+    "pass": "صفة aria-label موجودة وغير فارغة",
+    "fail": "صفة aria-label غير موجودة أو فارغة"
+  },
+  "aria-labelledby": {
+    "pass": "صفة aria-labelledby موجودة وتشير إلى عناصر مرئية لقارئات الشاشة",
+    "fail": "صفة aria-labelledby غير موجودة، تشير إلى عناصر غير موجودة أو تشير إلى عناصر فارغة",
+    "incomplete": "تأكد من أن aria-labelledby تشير إلى عنصر موجود"
+  },
+  "avoid-inline-spacing": {
+    "pass": "لم يتم تحديد أية أنماط داخلية بـ '!important' تؤثر على تباعد النص",
+    "fail": {
+      "singular": "أزل '!important' من الأنماط الداخلية ${data.values}، لأن تجاوز هذا لا يدعم من قبل معظم المتصفحات",
+      "plural": "أزل '!important' من الأنماط الداخلية ${data.values}، لأن تجاوز هذا لا يدعم من قبل معظم المتصفحات"
+    }
+  },
+  "button-has-visible-text": {
+    "pass": "العنصر يحتوي على نص داخلي مرئي لقارئات الشاشة",
+    "fail": "العنصر لا يحتوي على نص داخلي مرئي لقارئات الشاشة",
+    "incomplete": "غير قادر على تحديد ما إذا كان العنصر يحتوي على عناصر فرعية"
+  },
+  "doc-has-title": {
+    "pass": "المستند يحتوي على عنصر <title> غير فارغ",
+    "fail": "المستند لا يحتوي على عنصر <title> غير فارغ"
+  },
+  "exists": {
+    "pass": "العنصر غير موجود",
+    "incomplete": "العنصر موجود"
+  },
+  "has-alt": {
+    "pass": "العنصر يحتوي على صفة alt",
+    "fail": "العنصر لا يحتوي على صفة alt"
+  },
+  "has-visible-text": {
+    "pass": "العنصر يحتوي على نص مرئي لقارئات الشاشة",
+    "fail": "العنصر لا يحتوي على نص مرئي لقارئات الشاشة",
+    "incomplete": "غير قادر على تحديد ما إذا كان العنصر يحتوي على عناصر فرعية"
+  },
+  "important-letter-spacing": {
+    "pass": "تباعد الأحرف في صفة الأنماط ليس محددًا بـ !important، أو يلبي الحد الأدنى",
+    "fail": "يجب أن لا يستخدم تباعد الأحرف في صفة الأنماط !important، أو يكون عند ${data.minValue}em (الحالي ${data.value}em)"
+  },
+  "important-line-height": {
+    "pass": "الارتفاع السطري في صفة الأنماط ليس محددًا بـ !important، أو يلبي الحد الأدنى",
+    "fail": "يجب أن لا يستخدم الارتفاع السطري في صفة الأنماط !important، أو يكون عند ${data.minValue}em (الحالي ${data.value}em)"
+  },
+  "important-word-spacing": {
+    "pass": "تباعد الكلمات في صفة الأنماط ليس محددًا بـ !important، أو يلبي الحد الأدنى",
+    "fail": "يجب أن لا يستخدم تباعد الكلمات في صفة الأنماط !important، أو يكون عند ${data.minValue}em (الحالي ${data.value}em)"
+  },
+  "is-on-screen": {
+    "pass": "العنصر غير مرئي",
+    "fail": "العنصر مرئي"
+  },
+  "non-empty-alt": {
+    "pass": "العنصر يحتوي على صفة alt غير فارغة",
+    "fail": {
+      "noAttr": "العنصر لا يحتوي على صفة alt",
+      "emptyAttr": "العنصر يحتوي على صفة alt فارغة"
+    }
+  },
+  "non-empty-if-present": {
+    "pass": {
+      "default": "العنصر لا يحتوي على خاصية قيمة",
+      "has-label": "العنصر يحتوي على خاصية قيمة غير فارغة"
+    },
+    "fail": "العنصر يحتوي على خاصية قيمة وخاصية القيمة فارغة"
+  },
+  "non-empty-placeholder": {
+    "pass": "العنصر يحتوي على خاصية نائب",
+    "fail": {
+      "noAttr": "العنصر لا يحتوي على خاصية نائب",
+      "emptyAttr": "العنصر يحتوي على خاصية نائب فارغة"
+    }
+  },
+  "non-empty-title": {
+    "pass": "العنصر يحتوي على خاصية عنوان",
+    "fail": {
+      "noAttr": "العنصر لا يحتوي على خاصية عنوان",
+      "emptyAttr": "العنصر يحتوي على خاصية عنوان فارغة"
+    }
+  },
+  "non-empty-value": {
+    "pass": "العنصر يحتوي على خاصية قيمة غير فارغة",
+    "fail": {
+      "noAttr": "العنصر لا يحتوي على خاصية قيمة",
+      "emptyAttr": "العنصر يحتوي على خاصية قيمة فارغة"
+    }
+  },
+  "presentational-role": {
+    "pass": "تم تجاوز الدلالات الافتراضية للعنصر بالدور=\"${data.role}\"",
+    "fail": {
+      "default": "لم يتم تجاوز الدلالات الافتراضية للعنصر بالدور=\"none\" أو الدور=\"presentation\"",
+      "globalAria": "دور العنصر ليس تقديميًا لأنه يحتوي على خاصية ARIA عالمية",
+      "focusable": "دور العنصر ليس تقديميًا لأنه قابل للتركيز",
+      "both": "دور العنصر ليس تقديميًا لأنه يحتوي على خاصية ARIA عالمية وقابل للتركيز",
+      "iframe": "استخدام خاصية \"العنوان\" على عنصر ${data.nodeName} بدور تقديمي يتصرف بشكل غير متسق بين قارئات الشاشة"
+    }
+  },
+  "role-none": {
+    "pass": "تم تجاوز الدلالات الافتراضية للعنصر بالدور=\"none\"",
+    "fail": "لم يتم تجاوز الدلالات الافتراضية للعنصر بالدور=\"none\""
+  },
+  "role-presentation": {
+    "pass": "تم تجاوز الدلالات الافتراضية للعنصر بالدور=\"presentation\"",
+    "fail": "لم يتم تجاوز الدلالات الافتراضية للعنصر بالدور=\"presentation\""
+  },
+  "svg-non-empty-title": {
+    "pass": "العنصر يحتوي على فرع هو عنوان",
+    "fail": {
+      "noTitle": "العنصر لا يحتوي على فرع هو عنوان",
+      "emptyTitle": "عنوان الفرع فارغ في العنصر"
+    },
+    "incomplete": "غير قادر على تحديد إذا كان العنصر يحتوي على فرع هو عنوان"
+  },
+  "caption-faked": {
+    "pass": "الصف الأول من الجدول لا يستخدم كوصف",
+    "fail": "يجب أن يكون الطفل الأول للجدول وصفًا بدلاً من خلية جدول"
+  },
+  "html5-scope": {
+    "pass": "يستخدم سمة النطاق فقط على عناصر رأس الجدول (<th>)",
+    "fail": "في HTML 5، قد تستخدم سمات النطاق على عناصر رأس الجدول (<th>) فقط"
+  },
+  "same-caption-summary": {
+    "pass": "محتوى سمة الملخص و<caption> غير مكرر",
+    "fail": "محتوى سمة الملخص وعنصر <caption> متطابقان",
+    "incomplete": "غير قادر على تحديد إذا كان عنصر <table> يحتوي على تسمية"
+  },
+  "scope-value": {
+    "pass": "تم استخدام سمة النطاق بشكل صحيح",
+    "fail": "قيمة سمة النطاق يجب أن تكون 'row' أو 'col' فقط"
+  },
+  "td-has-header": {
+    "pass": "جميع خلايا البيانات غير الفارغة لديها رؤوس جداول",
+    "fail": "بعض خلايا البيانات غير الفارغة لا تملك رؤوس جداول"
+  },
+  "td-headers-attr": {
+    "pass": "يستخدم سمة الرؤوس حصريًا للإشارة إلى خلايا أخرى في الجدول",
+    "incomplete": "سمة الرؤوس فارغة",
+    "fail": "سمة الرؤوس ليست مستخدمة حصريًا للإشارة إلى خلايا أخرى في الجدول"
+  },
+  "th-has-data-cells": {
+    "pass": "جميع خلايا رأس الجدول تشير إلى خلايا بيانات",
+    "fail": "ليس كل خلايا رأس الجدول تشير إلى خلايا بيانات",
+    "incomplete": "خلايا البيانات في الجدول مفقودة أو فارغة"
+  },
+  "hidden-content": {
+    "pass": "تم تحليل كل المحتوى على الصفحة.",
+    "fail": "كانت هناك مشاكل في تحليل المحتوى على هذه الصفحة.",
+    "incomplete": "يوجد محتوى مخفي في الصفحة لم يتم تحليله. ستحتاج إلى تفعيل عرض هذا المحتوى لتتمكن من تحليله."
+  }
   },
   "failureSummaries": {
     "any": {
-      "failureMessage": "Fix any of the following:{{~it:value}}\n  {{=value.split('\\n').join('\\n  ')}}{{~}}"
+      "failureMessage": "قم بإصلاح أيٍ من التالي:{{~it:value}}\n  {{=value.split('\\n').join('\\n  ')}}{{~}}"
     },
     "none": {
-      "failureMessage": "Fix all of the following:{{~it:value}}\n  {{=value.split('\\n').join('\\n  ')}}{{~}}"
+      "failureMessage": "قم بإصلاح كل ما يلي:{{~it:value}}\n  {{=value.split('\\n').join('\\n  ')}}{{~}}"
     }
   },
-  "incompleteFallbackMessage": "axe couldn't tell the reason. Time to break out the element inspector!"
+  "incompleteFallbackMessage": "لم يتمكن axe من تحديد السبب. حان وقت استخدام أداة فحص العنصر!"
 }
