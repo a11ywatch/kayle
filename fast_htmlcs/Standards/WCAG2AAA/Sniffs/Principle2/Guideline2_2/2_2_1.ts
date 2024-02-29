@@ -7,7 +7,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_2_2_2_1 = {
    *
    * @returns {Array} The list of elements.
    */
-  register: () => ["meta"],
+  get register() {
+    return ["meta"];
+  },
 
   /**
    * Process the registered element.
@@ -20,26 +22,27 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_2_2_2_1 = {
     // NOTE: H76 only lists criterion 3.2.5, but F41 also covers refreshes to
     // same page (no URL content), which is covered by non-adjustable timeouts
     // in criterion 2.2.1.
-    if (element.hasAttribute("http-equiv")) {
-      if (element.getAttribute("http-equiv").toLowerCase() === "refresh") {
-        if (/^[1-9]\d*/.test(element.getAttribute("content"))) {
-          if (/url=/i.test(element.getAttribute("content"))) {
-            // Redirect.
-            HTMLCS.addMessage(
-              HTMLCS.ERROR,
-              element,
-              _global.HTMLCS.getTranslation("2_2_1_F40.2"),
-              "F40.2"
-            );
-          } else {
-            // Just a refresh.
-            HTMLCS.addMessage(
-              HTMLCS.ERROR,
-              element,
-              _global.HTMLCS.getTranslation("2_2_1_F41.2"),
-              "F41.2"
-            );
-          }
+    if (
+      element.hasAttribute("http-equiv") &&
+      element.getAttribute("http-equiv").toLowerCase() === "refresh"
+    ) {
+      if (/^[1-9]\d*/.test(element.getAttribute("content"))) {
+        if (/url=/i.test(element.getAttribute("content"))) {
+          // Redirect.
+          HTMLCS.addMessage(
+            HTMLCS.ERROR,
+            element,
+            _global.HTMLCS.getTranslation("2_2_1_F40.2"),
+            "F40.2"
+          );
+        } else {
+          // Just a refresh.
+          HTMLCS.addMessage(
+            HTMLCS.ERROR,
+            element,
+            _global.HTMLCS.getTranslation("2_2_1_F41.2"),
+            "F41.2"
+          );
         }
       }
     }

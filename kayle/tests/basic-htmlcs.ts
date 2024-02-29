@@ -16,9 +16,9 @@ import { performance } from "perf_hooks";
     browser,
     runners: ["htmlcs"],
     includeWarnings: true,
-    standard: Standard.WCAG2AAA,
-    origin: "https://www.drake.com",
     html: drakeMock,
+    standard: Standard.WCAG2AA,
+    origin: "https://www.drake.com",
   });
   const nextTime = performance.now() - startTime;
 

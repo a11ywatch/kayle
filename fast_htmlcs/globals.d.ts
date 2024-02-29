@@ -128,8 +128,7 @@ type RuleSet = {
 // Guidelines to follow
 type GuideLine = {
   _labelNames?: string[];
-  //  primary entrys todo: move to getter
-  register?(): string[];
+  register?: string[];
   process?(element: Element, top?: Element): void;
   // custom
   addNullAltTextResults?(top: Element): void;

@@ -1,7 +1,9 @@
 _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1_AAA = {
   _labelNames: null,
 
-  register: () => ["_top"],
+  get register() {
+    return ["_top"];
+  },
 
   /**
    * Process the registered element.

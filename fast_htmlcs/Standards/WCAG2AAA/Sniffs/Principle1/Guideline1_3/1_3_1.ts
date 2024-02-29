@@ -1,24 +1,26 @@
 _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
   _labelNames: null,
 
-  register: () => [
-    "_top",
-    "p",
-    "div",
-    "input",
-    "select",
-    "textarea",
-    "button",
-    "table",
-    "fieldset",
-    "form",
-    "h1",
-    "h2",
-    "h3",
-    "h4",
-    "h5",
-    "h6",
-  ],
+  get register() {
+    return [
+      "_top",
+      "p",
+      "div",
+      "input",
+      "select",
+      "textarea",
+      "button",
+      "table",
+      "fieldset",
+      "form",
+      "h1",
+      "h2",
+      "h3",
+      "h4",
+      "h5",
+      "h6",
+    ];
+  },
 
   /**
    * Process the registered element.
@@ -369,7 +371,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
    *
    * @param [DOMNode] top The top element of the tested code.
    */
-  testPresentationMarkup: function (top) {
+  testPresentationMarkup: (top) => {
     // In HTML4, the following were marked as presentational:
     // b, i, u, s, strike, tt, big, small, center, font
     // In HTML5, the following were repurposed as pseudo-semantic:

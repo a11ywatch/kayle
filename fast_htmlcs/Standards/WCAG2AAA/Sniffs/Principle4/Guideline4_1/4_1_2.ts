@@ -7,7 +7,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
    *
    * @returns {Array} The list of elements.
    */
-  register: () => ["_top"],
+  get register() {
+    return ["_top"];
+  },
 
   /**
    * Process the registered element.
@@ -99,7 +101,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
     }
   },
 
-  processLinks: function (top) {
+  processLinks: (top) => {
     const errors = {
       empty: [],
       emptyWithName: [],
@@ -161,18 +163,16 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
             errors.placeholder.push(element);
           }
         }
-      } else {
-        if (nameFound === false) {
-          // Href provided, but no content, title or valid aria label.
-          // We only fire this message when there are no images in the content.
-          // A link around an image with no alt text is already covered in SC
-          // 1.1.1 (test H30).
-          if (
-            !element.querySelectorAll("img").length &&
-            !HTMLCS.util.hasValidAriaLabel(element)
-          ) {
-            errors.noContent.push(element);
-          }
+      } else if (!nameFound) {
+        // Href provided, but no content, title or valid aria label.
+        // We only fire this message when there are no images in the content.
+        // A link around an image with no alt text is already covered in SC
+        // 1.1.1 (test H30).
+        if (
+          !element.querySelectorAll("img").length &&
+          !HTMLCS.util.hasValidAriaLabel(element)
+        ) {
+          errors.noContent.push(element);
         }
       }
     }

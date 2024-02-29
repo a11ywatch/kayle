@@ -7,7 +7,9 @@ _global.HTMLCS_Section508_Sniffs_H = {
    *
    * @returns {Array} The list of elements.
    */
-  register: () => ["table"],
+  get register() {
+    return ["table"];
+  },
 
   /**
    * Process the registered element.
@@ -15,7 +17,7 @@ _global.HTMLCS_Section508_Sniffs_H = {
    * @param {DOMNode} element The element registered.
    * @param {DOMNode} top     The top element of the tested code.
    */
-  process: function (table, _) {
+  process: (table, _) => {
     const headersAttr = HTMLCS.util.testTableHeaders(table);
 
     // Incorrect usage of headers - error; emit always.

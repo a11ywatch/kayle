@@ -7,7 +7,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_1 = {
    *
    * @returns {Array} The list of elements.
    */
-  register: () => ["html"],
+  get register() {
+    return ["html"];
+  },
 
   /**
    * Process the registered element.

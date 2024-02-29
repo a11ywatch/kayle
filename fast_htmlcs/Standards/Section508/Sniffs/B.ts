@@ -7,7 +7,9 @@ _global.HTMLCS_Section508_Sniffs_B = {
    *
    * @returns {Array} The list of elements.
    */
-  register: () => ["object", "applet", "embed", "video"],
+  get register() {
+    return ["object", "applet", "embed", "video"];
+  },
 
   /**
    * Process the registered element.
@@ -15,7 +17,7 @@ _global.HTMLCS_Section508_Sniffs_B = {
    * @param {DOMNode} element The element registered.
    * @param {DOMNode} top     The top element of the tested code.
    */
-  process: function (element, _) {
+  process: (element, _) => {
     HTMLCS.addMessage(
       HTMLCS.NOTICE,
       element,

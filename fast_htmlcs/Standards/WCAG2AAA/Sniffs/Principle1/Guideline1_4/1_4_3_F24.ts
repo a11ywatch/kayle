@@ -7,7 +7,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_F24 = {
    *
    * @returns {Array} The list of elements.
    */
-  register: () => ["_top"],
+  get register() {
+    return ["_top"];
+  },
 
   /**
    * Process the registered element.
@@ -53,7 +55,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_F24 = {
      *
      * @param Node element The element to test.
      */
-  testColourComboFail: function (element) {
+  testColourComboFail: (element) => {
     let hasFg =
       element.hasAttribute("color") ||
       element.hasAttribute("link") ||

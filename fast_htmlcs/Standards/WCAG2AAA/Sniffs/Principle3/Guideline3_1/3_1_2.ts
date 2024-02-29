@@ -7,7 +7,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_2 = {
    *
    * @returns {Array} The list of elements.
    */
-  register: () => ["_top"],
+  get register() {
+    return ["_top"];
+  },
 
   /**
    * Process the registered element.
@@ -57,11 +59,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_2 = {
           }
         }
 
-        if (langEl.hasAttribute("xml:lang") === true) {
-          if (
-            sc3_1_1.isValidLanguageTag(langEl.getAttribute("xml:lang")) ===
-            false
-          ) {
+        if (langEl.hasAttribute("xml:lang")) {
+          if (!sc3_1_1.isValidLanguageTag(langEl.getAttribute("xml:lang"))) {
             HTMLCS.addMessage(
               HTMLCS.ERROR,
               langEl,

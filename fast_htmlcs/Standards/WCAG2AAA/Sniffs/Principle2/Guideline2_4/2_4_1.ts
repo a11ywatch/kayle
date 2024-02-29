@@ -7,7 +7,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_1 = {
    *
    * @returns {Array} The list of elements.
    */
-  register: () => ["iframe", "a", "area", "_top"],
+  get register() {
+    return ["iframe", "a", "area", "_top"];
+  },
 
   /**
    * Process the registered element.
@@ -97,7 +99,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_1 = {
    *
    * @returns void
    */
-  testSameDocFragmentLinks: function (element, top) {
+  testSameDocFragmentLinks: (element, top) => {
     if (element.hasAttribute("href") && HTMLCS.util.isFocusable(element)) {
       // has attribute checked string will always return
       const href = element.getAttribute("href").trim();

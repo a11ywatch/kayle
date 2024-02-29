@@ -7,7 +7,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_3_3_3_1 = {
    *
    * @returns {Array} The list of elements.
    */
-  register: function () {
+  get register() {
     return ["form"];
   },
 
@@ -17,7 +17,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_3_3_3_1 = {
    * @param {DOMNode} element The element registered.
    * @param {DOMNode} top     The top element of the tested code.
    */
-  process: function (element, _) {
+  process: (element, _) => {
     HTMLCS.addMessage(
       HTMLCS.NOTICE,
       element,

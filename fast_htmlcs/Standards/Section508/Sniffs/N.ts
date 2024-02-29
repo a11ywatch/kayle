@@ -7,7 +7,9 @@ _global.HTMLCS_Section508_Sniffs_N = {
    *
    * @returns {Array} The list of elements.
    */
-  register: () => ["form"],
+  get register() {
+    return ["form"];
+  },
 
   /**
    * Process the registered element.
@@ -15,7 +17,7 @@ _global.HTMLCS_Section508_Sniffs_N = {
    * @param {DOMNode} element The element registered.
    * @param {DOMNode} top     The top element of the tested code.
    */
-  process: function (element, _) {
+  process: (element, _) => {
     if (element.nodeName === "FORM") {
       HTMLCS.addMessage(
         HTMLCS.NOTICE,

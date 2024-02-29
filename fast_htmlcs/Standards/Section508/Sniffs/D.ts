@@ -7,7 +7,9 @@ _global.HTMLCS_Section508_Sniffs_D = {
    *
    * @returns {Array} The list of elements.
    */
-  register: () => ["_top"],
+  get register() {
+    return ["_top"];
+  },
 
   /**
    * Process the registered element.
@@ -23,18 +25,19 @@ _global.HTMLCS_Section508_Sniffs_D = {
         "Ensure that content is ordered in a meaningful sequence when linearised, such as when style sheets are disabled.",
         "Linearised"
       );
-      this.testPresentationMarkup(top);
+
+      _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1.testPresentationMarkup(
+        top
+      )
       this.testHeadingOrder(top);
 
       // Look for any script elements, and fire off another notice regarding
       // potentially hidden text (eg. "click to expand" sections). For instance,
       // such text should be stored semantically in the page, not loaded into
       // a container through AJAX (and thus not accessible with scripting off).
-      const hasScript = HTMLCS.util.getAllElements(
-        top,
-        'script, link[rel="stylesheet"]'
-      );
-      if (hasScript.length > 0) {
+      if (
+        HTMLCS.util.getAllElements(top, 'script, link[rel="stylesheet"]').length
+      ) {
         HTMLCS.addMessage(
           HTMLCS.NOTICE,
           top,
@@ -43,17 +46,6 @@ _global.HTMLCS_Section508_Sniffs_D = {
         );
       }
     }
-  },
-
-  /**
-   * Test for the use of presentational elements.
-   *
-   * @param [DOMNode] top The top element of the tested code.
-   */
-  testPresentationMarkup: function (top) {
-    _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1.testPresentationMarkup(
-      top
-    );
   },
 
   testHeadingOrder: function (top) {

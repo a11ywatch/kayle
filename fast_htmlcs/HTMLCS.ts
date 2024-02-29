@@ -218,8 +218,9 @@ _global.HTMLCS = new (function () {
   this.addMessage = (type, element, msg, code, data) => {
     const ccode = _getMessageCode(code);
     const textId = ccode + element.outerHTML;
+    const pos = _duplicates.get(textId);
 
-    if (!_duplicates.has(textId)) {
+    if (typeof pos === "undefined") {
       // track the position to use to update the prior message on duplicates.
       _duplicates.set(textId, this.messages.length);
       this.messages.push({
@@ -232,7 +233,6 @@ _global.HTMLCS = new (function () {
         runner: "htmlcs",
       });
     } else {
-      const pos = _duplicates.get(textId);
       this.messages[pos].recurrence = this.messages[pos].recurrence + 1;
     }
   };
@@ -259,26 +259,25 @@ _global.HTMLCS = new (function () {
       const element = elements.shift();
       const tagName =
         element === topElement ? "_top" : element.tagName.toLowerCase();
+      const tag = _tags.get(tagName);
 
-      if (_tags.has(tagName)) {
-        const tag = _tags.get(tagName);
-
-        if (tag.length > 0) {
-          // do not pass in callback
-          _processSniffs(element, tag, topElement, undefined);
-        }
+      if (tag && tag.length > 0) {
+        _processSniffs(element, tag, topElement, undefined);
       }
     }
-
-    _currentSniff = HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1;
 
     // Due to filtering of presentation roles for general sniffing these need to be handled
     // separately. The 1.3.1 sniff needs to run to detect any incorrect usage of the presentation
     // role.
-    for (const element of topElement.querySelectorAll(
+    const presentationElements = topElement.querySelectorAll(
       '[role="presentation"]'
-    )) {
-      _currentSniff.testSemanticPresentationRole(element);
+    );
+
+    if (presentationElements) {
+      _currentSniff = HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1;
+      for (const element of presentationElements) {
+        _currentSniff.testSemanticPresentationRole(element);
+      }
     }
 
     if (callback instanceof Function === true) {
@@ -347,10 +346,8 @@ _global.HTMLCS = new (function () {
     const ruleSet = _getRuleset(part);
 
     if (ruleSet) {
-      // Already included.
       this.registerStandard(standard, part, callback, failCallback, options);
     } else {
-      // TODO: remove _include script callback standard always included
       _includeScript(
         _standard,
         function () {
@@ -380,7 +377,7 @@ _global.HTMLCS = new (function () {
     const oldRuleSet = _getRuleset(part);
 
     const ruleSet = {
-      sniffs: undefined,
+      sniffs: [],
     };
 
     for (const x in oldRuleSet) {
@@ -396,7 +393,6 @@ _global.HTMLCS = new (function () {
     if (options) {
       if (options.include && options.include.length > 0) {
         // Included sniffs.
-        // @ts-ignore
         ruleSet.sniffs = options.include;
       } else if (options.exclude) {
         // Excluded sniffs.
@@ -414,7 +410,6 @@ _global.HTMLCS = new (function () {
     // Register the sniffs for this standard.
     _registerSniffs(
       standard,
-      // @ts-ignore
       ruleSet.sniffs.slice(0, ruleSet.sniffs.length),
       callback,
       failCallback
@@ -429,7 +424,7 @@ _global.HTMLCS = new (function () {
    * @param {Function} callback The function to call once the sniffs are registered.
    */
   const _registerSniffs = (standard, sniffs, callback, failCallback) => {
-    if (sniffs.length === 0) {
+    if (!sniffs || sniffs.length === 0) {
       return callback.call(this);
     }
 
@@ -438,7 +433,7 @@ _global.HTMLCS = new (function () {
       standard,
       sniffs.shift(),
       function () {
-        _registerSniffs(standard, sniffs, callback, failCallback);
+         _registerSniffs(standard, sniffs, callback, failCallback);
       },
       failCallback
     );
@@ -491,21 +486,18 @@ _global.HTMLCS = new (function () {
    * @param {String} sniff    The name of the sniff.
    */
   this.registerSniff = (standard: string, sniff: string) => {
-    // Get the sniff object.
     const sniffObj = _getSniff(standard, sniff);
 
-    if (!sniffObj) {
-      return false;
-    }
-
     // Call the register method of the sniff, it should return an array of tags.
-    if (sniffObj.register) {
-      const watchedTags = sniffObj.register();
+    if (sniffObj && "register" in sniffObj) {
+      for (const wtag of sniffObj.register) {
+        const tag = _tags.get(wtag);
 
-      for (const wtag of watchedTags) {
-        !_tags.has(wtag)
-          ? _tags.set(wtag, [sniffObj])
-          : _tags.get(wtag).push(sniffObj);
+        if (!tag) {
+          _tags.set(wtag, [sniffObj]);
+        } else {
+          tag.push(sniffObj);
+        }
       }
     }
   };

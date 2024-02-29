@@ -125,7 +125,7 @@ _global.HTMLCS.util = {
    *
    * @returns {Window}
    */
-  getElementWindow: function (element) {
+  getElementWindow: (element) => {
     const doc = element.ownerDocument || element;
 
     // @ts-ignore check for element window

@@ -7,7 +7,9 @@ _global.HTMLCS_Section508_Sniffs_I = {
    *
    * @returns {Array} The list of elements.
    */
-  register: () => ["frame", "iframe", "object"],
+  get register() {
+    return ["frame", "iframe", "object"];
+  },
 
   /**
    * Process the registered element.

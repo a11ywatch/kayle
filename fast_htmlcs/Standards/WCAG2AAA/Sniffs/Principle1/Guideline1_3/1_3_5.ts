@@ -7,14 +7,16 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
    *
    * @returns {Array} The list of elements.
    */
-  register: () => ["_top", "input", "select", "textarea"],
+  get register() {
+    return ["_top", "input", "select", "textarea"];
+  },
 
   /**
    * Checks that the values of the autocomplete attribute are values listed in the HTML 5.2 spec.
    *
    * @param {DOMNode} element The element registered.
    */
-  checkValidAttributes: function (element) {
+  checkValidAttributes: (element) => {
     const valuesStr = element.getAttribute("autocomplete");
 
     if (typeof valuesStr !== "string") {
@@ -117,7 +119,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
    *
    * @param {DOMNode} element The element registered.
    */
-  checkControlGroups: function (element) {
+  checkControlGroups: (element) => {
     const textFields = [
       "name",
       "honorific-prefix",
