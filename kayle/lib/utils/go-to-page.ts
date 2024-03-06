@@ -14,7 +14,11 @@ export const setCDPIntercept = async (o: Partial<RunnerConfig>) => {
       o.page._client();
 
   if (!cdpSession) {
-    o.cdpSession = await o.page.context().newCDPSession(o.page);
+    try {
+      o.cdpSession = await o.page.context().newCDPSession(o.page);
+    } catch(e) {
+      console.error(e)
+    }
   }
 
   await sendCDPPageConfigurationEnable(o.cdpSession ?? cdpSession, o);
