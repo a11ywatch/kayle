@@ -16,21 +16,28 @@
     3: "notice",
   };
 
-  // start of code score maps todo: use enums A = Axe, H = Htmlcs
+  // start of code score maps todo: use enums A = Axe, H = Htmlcs. 
+
+  // color contrast
   const A_1 = "color-contrast";
-  const H_1 = "Principle1.Guideline14.143.G18.Fail";
+  const H_1 = "Principle1.Guideline1_4.1_4_3.G18.Fail";
+  // alt element found
   const A_2 = "has-alt";
   const H_2 = "Principle1.Guideline1_1.1_1_1.H37";
+  // empty element heading
   const A_3 = "empty-heading";
-  const H_3 = "Principle1.Guideline13.131.H42.2";
+  const H_3 = "Principle1.Guideline1_3.1_3_1.H42.2";
+  // empty iframe title
   const A_4 = "frame-title";
-  const H_4 = "Principle2.Guideline24.241.H64.1";
+  const H_4 = "Principle2.Guideline2_4.2_4_1.H64.1";
+  // empty link name
   const A_5 = "link-name";
-  const H_5 = "Principle4.Guideline41.412.H91.A.EmptyNoId";
+  const H_5 = "Principle4.Guideline4_1.4_1_2.H91.A.EmptyNoId";
+  // incorrect heading order
   const A_6 = "heading-order";
-  const H_6 = "Principle1.Guideline13.131A.G141"; // HeadingOrder map
+  const H_6 = "Principle1.Guideline1_3.1_3_1_A.G141";
 
-  // oneshot map
+  // oneshot web accessibility score map between runners fast_htmlcs and fast_axecore
   const scoreMap = new Map<string, [number, string]>([
     [A_1, [20, H_1]],
     [H_1, [20, A_1]],
@@ -45,7 +52,6 @@
     [A_6, [10, H_6]],
     [H_6, [10, A_6]],
   ]);
-
   // root html element
   let rootElement = null;
   // hidden elements
