@@ -26,3 +26,5 @@ export {
   type WaitForOptions,
 } from "./config";
 export { extractLinks, innateBuilder } from "./wasm";
+export { htmlcsRules } from "./rules/htmlcs-rules";
+export { axeRules } from "./rules/axe-rules";

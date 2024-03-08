@@ -238,16 +238,6 @@ _global.HTMLCS = new (function () {
   };
 
   /**
-   * Returns all the messages for the last run.
-   *
-   * Return a copy of the array so the class variable doesn't get modified by
-   * future modification (eg. splicing).
-   *
-   * @returns {Array} Array of message objects.
-   */
-  this.getMessages = () => this.messages;
-
-  /**
    * Runs the sniffs in the loaded standard for the specified element.
    *
    * @param {Node}     element    The element to test.

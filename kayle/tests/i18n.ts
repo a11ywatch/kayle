@@ -29,7 +29,7 @@ import { performance } from "perf_hooks";
   assert(typeof documentTitle === "string");
   assert(
     issues[issues.length - 1].message ===
-      "この要素のテキストまたは背景は透明部分を含みます。テキストと背景のコントラスト比が少なくとも4.5:1であることを確認してください。"
+      "この要素のテキストまたは背景は透明部分を含みます。テキストと背景のコントラスト比が少なくとも4.5:1であることを確認してください。",
   );
   await browser.close();
 })();

@@ -46,10 +46,10 @@ const run = async (options) => {
           return reject(error);
         }
         // @ts-ignore
-        resolve(window.HTMLCS.getMessages());
+        resolve(window.HTMLCS.messages);
       },
       (error) => reject(error),
-      options.language
+      options.language,
     );
   });
 };

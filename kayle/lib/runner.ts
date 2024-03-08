@@ -16,7 +16,7 @@
     3: "notice",
   };
 
-  // start of code score maps todo: use enums A = Axe, H = Htmlcs. 
+  // start of code score maps todo: use enums A = Axe, H = Htmlcs.
 
   // color contrast
   const A_1 = "color-contrast";
@@ -124,7 +124,7 @@
     if (element.innerHTML.length > 31) {
       outerHTML = outerHTML.replace(
         element.innerHTML,
-        `${element.innerHTML.substring(0, 32)}...`
+        `${element.innerHTML.substring(0, 32)}...`,
       );
     }
 
@@ -166,7 +166,7 @@
 
     const elementSelector = getElementSelector(
       element.parentNode as HTMLElement,
-      true
+      true,
     );
 
     return `${
@@ -180,7 +180,7 @@
     const isIssueNotIgnored = (issue) => {
       return !options.ignore.some(
         (element) =>
-          element === issue.type || element === issue.code?.toLowerCase()
+          element === issue.type || element === issue.code?.toLowerCase(),
       );
     };
 
@@ -231,7 +231,7 @@
       acc,
       tracker,
       meta,
-      missingAltIndexs: number[]
+      missingAltIndexs: number[],
     ) => {
       for (const is of issues) {
         if (validateIssue(is)) {
@@ -307,7 +307,7 @@
           }
           return [];
         });
-      })
+      }),
     );
 
     // meta information keep records shaped to numbers

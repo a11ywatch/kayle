@@ -8,5 +8,4 @@ build
 _tests
 ./test-results
 _data
-
 ./screenshot.png

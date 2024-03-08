@@ -17,7 +17,7 @@ export async function autoKayle(
     cb?: ((result: Audit) => Promise<void>) | ((result: Audit) => void);
   } = {},
   ignoreSet?: Set<String>,
-  _results?: Audit[]
+  _results?: Audit[],
 ): Promise<Audit[]> {
   if (!write) {
     const { writeFile } = await import("fs/promises");
@@ -51,7 +51,7 @@ export async function autoKayle(
   if (o.store) {
     await write(
       `${o.store}/${encodeURIComponent(o.page.url())}`,
-      await o.page.content()
+      await o.page.content(),
     );
   }
 
@@ -84,7 +84,7 @@ export async function autoKayle(
               origin: link,
             },
             ignoreSet,
-            _results
+            _results,
           );
         })
         .catch((e) => {
@@ -94,7 +94,7 @@ export async function autoKayle(
             console.error(e);
           }
         });
-    })
+    }),
   );
 
   return _results;

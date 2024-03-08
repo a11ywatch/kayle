@@ -1,6 +1,6 @@
 {
   "name": "kayle",
-  "version": "0.8.26",
+  "version": "0.8.27",
   "description": "Extremely fast and accurate accessibility engine built for any headless tool like playwright or puppeteer.",
   "main": "./build/index.js",
   "keywords": [
@@ -22,10 +22,12 @@
   "scripts": {
     "prepare": "tsc",
     "build": "tsc && yarn swc:dist",
-    "prepack": "yarn build",
+    "prepack": "yarn build:rules && yarn build",
     "compile:test": "yarn build && tsc --project tsconfig.test.json",
     "compile:extension": "tsc build-extension.ts",
+    "compile:rules": "tsc build-rules.ts",
     "build:extension": "yarn compile:extension && node build-extension.js",
+    "build:rules": "yarn compile:rules && node build-rules.js",
     "lint": "eslint .",
     "fix": "prettier --write '**/*.{js,jsx,ts,tsx, json}'",
     "swc:dist": "npx swc --copy-files --config-file .swcrc ./build -d ./build",
@@ -79,7 +81,7 @@
     "@swc/helpers": "^0.5.1",
     "@types/jsdom": "^20.0.1",
     "@types/node": "^18.11.9",
-    "prettier": "^2.8.0",
+    "prettier": "^3.2.5",
     "puppeteer": "^21.2.1",
     "typescript": "^4.9.3"
   },
