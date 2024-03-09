@@ -2,19 +2,14 @@ import { chromium } from "playwright";
 import { Standard, kayle } from "kayle";
 import { writeFile } from "fs/promises";
 import { format } from "prettier";
-
-type Rule = {
-  ruleId: string;
-  description?: string;
-  help?: string;
-  helpUrl?: string;
-  tags?: string[];
-  actIds?: string[];
-};
+import { htmlcsRuleMap } from "./htmlcs-rule-map";
+import { processParams } from "./build-htmlcs-params";
+import type { Rule } from "./build-types";
 
 (async () => {
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage();
+  page.on("console", (msg) => console.log("PAGE LOG:", msg.text()));
 
   const fast_htmlcs_rules: Rule[] = [];
   const fast_axe_rules: Rule[] = [];
@@ -32,26 +27,29 @@ type Rule = {
     true,
   );
 
-  await page.exposeFunction("pushHtmlcsRule", (t: Rule) => {
-    fast_htmlcs_rules.push(t);
+  const paramList = await processParams();
+
+  await page.evaluate((o) => {
+    window.paramList = o;
+  }, paramList);
+
+  await page.addScriptTag({
+    content: `window.htmlcsRuleMap = ${htmlcsRuleMap.toString()};`,
   });
 
-  await page.exposeFunction("pushAxeRule", (t: Rule) => {
-    fast_axe_rules.push(t);
-  });
+  await page.exposeFunction("pushHtmlcsRule", (t: Rule) =>
+    fast_htmlcs_rules.push(t),
+  );
+
+  await page.exposeFunction("pushAxeRule", (t: Rule) => fast_axe_rules.push(t));
 
   await page.evaluate(() => {
-    // @ts-ignore
     for (const r of window.axe.getRules()) {
-      // @ts-ignore we need to get the rules description and urls.
       window.pushAxeRule(r);
     }
-    for (const k of Object.keys(window)) {
-      if (k.startsWith("HTMLCS_WCAG2AAA_Sniffs_Principle")) {
-        // @ts-ignore
-        window.pushHtmlcsRule({
-          ruleId: k,
-        });
+    for (const k of window.paramList) {
+      if (k && k.length >= 4) {
+        window.pushHtmlcsRule(window.htmlcsRuleMap(k));
       }
     }
   });

@@ -972,7 +972,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
       }
     }
   },
-  testHeadingOrder: function (top, level) {
+  testHeadingOrder: function (top) {
     let lastHeading = 0;
 
     for (const heading of HTMLCS.util.getAllElements(
@@ -988,7 +988,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
           // If last heading is empty, we are at document top and we are
           // expecting a H1, generally speaking.
           HTMLCS.addMessage(
-            level,
+            HTMLCS.ERROR,
             heading,
             _global.HTMLCS.getTranslation("1_3_1_G141_a").replace(
               /\{\{headingNum\}\}/g,
@@ -999,7 +999,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         }
 
         HTMLCS.addMessage(
-          level,
+          HTMLCS.ERROR,
           heading,
           _global.HTMLCS.getTranslation("1_3_1_G141_b")
             .replace(/\{\{headingNum\}\}/g, headingNumStr)

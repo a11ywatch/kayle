@@ -106,7 +106,7 @@ type TestContrastRatio = (
 type Snif = null | {
   isValidLanguageTag?(element): boolean;
   testSemanticPresentationRole(element: Element): boolean;
-  testHeadingOrder?(element: Element, typeCode: string): boolean;
+  testHeadingOrder?(element: Element): boolean;
   testLabelsOnInputs?(element: Element, top: Element, t: boolean): boolean;
   testContrastRatio?: TestContrastRatio;
 };
@@ -163,7 +163,7 @@ type GuideLine = {
   testOptgroup?(element: Element): void;
   testRequiredFieldsets?(element: Element): void;
   testListsWithBreaks?(element: Element): void;
-  testHeadingOrder?(element: Element, level: string): void;
+  testHeadingOrder?(element: Element): void;
   testEmptyHeading?(element: Element): void;
   testUnstructuredNavLinks?(element: Element): void;
   testIframeTitle?(element: Element): void;

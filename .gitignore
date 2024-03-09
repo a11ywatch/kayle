@@ -62,8 +62,7 @@ kayle/screenshot.png
 chrome-extension
 
 # build custom extension
-build-extension.js
-build-rules.js
+kayle/builder/*.js
 
 # data dir
 _data

@@ -1,6 +1,6 @@
 // compiler the runners into a valid chrome extension
 import { writeFileSync, mkdirSync, existsSync } from "fs";
-import { runnersJavascript } from "./build/runner-js";
+import { runnersJavascript } from "../build/runner-js";
 import { cwd } from "process";
 import { join } from "path";
 
