@@ -2,6 +2,7 @@ import { lstatSync, readdirSync, readFileSync } from "fs";
 import { join, parse as pathParse } from "path";
 import { parse } from "acorn";
 import { simple } from "acorn-walk";
+import { generate } from "escodegen";
 import type { ParamList } from "./build-types";
 
 const paramList: ParamList[] = [];
@@ -30,16 +31,32 @@ const processFile = (filePath) => {
         // @ts-ignore
         node.callee.property.name === "addMessage"
       ) {
-        const params = node.arguments.map((arg) => {
+        const params = node.arguments.map((arg, index) => {
           if (arg.type === "Literal") {
             return arg.value;
           }
           if (arg.type === "Identifier") {
             return arg.name;
           }
+
           if (arg.type === "MemberExpression") {
             // @ts-ignore
             return arg.property.name?.toLowerCase();
+          }
+
+          if (
+            index === 2 &&
+            arg.type === "CallExpression" &&
+            // @ts-ignore
+            arg.callee?.object?.object?.name === "_global" &&
+            // @ts-ignore
+            arg.callee?.object?.property?.name === "HTMLCS" &&
+            // @ts-ignore
+            arg.callee?.property?.name === "getTranslation"
+          ) {
+            if (arg.arguments.length) {
+              return generate(arg).replace("_global.", "");
+            }
           }
 
           return null;

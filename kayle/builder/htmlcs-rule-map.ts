@@ -23,19 +23,31 @@ export const htmlcsRuleMap = (rule: ParamList) => {
   ];
 
   // TODO: PATCH RULES FROM INLINE TRANSLATIONS
+  const inlineTranslation =
+    rule[2] && rule[2].startsWith("HTMLCS.getTranslation");
 
   const description =
+    (inlineTranslation && eval(rule[2])) ||
     rule[2] ||
     window.HTMLCS.getTranslation(`${rule[4]}_${rule[3]}`) ||
     window.HTMLCS.getTranslation(`${rule[4]}${rule[3]}`) ||
     "";
 
+  const baseRule = `${rule[4]}${directRuleAssignments.includes(rule[3]) ? "." : "_"}${rule[3]}`;
+  const baseRuleId =
+    section508 || !description ? rule[3] || baseRule : baseRule;
+
+  const inlineRule = inlineTranslation
+    ? rule[2].replace("HTMLCS.getTranslation(", "").replace(")", "")
+    : "";
+
+  const ruleId = inlineTranslation
+    ? inlineRule.substring(1, inlineRule.length - 1)
+    : baseRuleId;
+
   return {
-    ruleId:
-      section508 || !description
-        ? rule[3]
-        : `${rule[4]}${directRuleAssignments.includes(rule[3]) ? "." : "_"}${rule[3]}`,
-    description: description,
+    ruleId,
+    description,
     helpUrl: section508
       ? []
       : helpLinks.map((r) => concatWcagLink(r.split(".")[0])),

@@ -67,7 +67,7 @@ import type { Rule } from "./build-types";
     Buffer.from(
       await format(
         `/* ${DNE} */\nexport const htmlcsRules = ${JSON.stringify(
-          fast_htmlcs_rules,
+          fast_htmlcs_rules.filter((r) => r.description),
         )};`,
         pConfig,
       ),
