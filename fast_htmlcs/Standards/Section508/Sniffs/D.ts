@@ -28,7 +28,7 @@ _global.HTMLCS_Section508_Sniffs_D = {
 
       _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1.testPresentationMarkup(
         top
-      )
+      );
       this.testHeadingOrder(top);
 
       // Look for any script elements, and fire off another notice regarding

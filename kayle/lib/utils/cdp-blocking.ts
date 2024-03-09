@@ -9,7 +9,7 @@ const blockedResourceUrls = Object.keys(skippedResources);
 export const blockFilter = async (
   e: any,
   client: CDPSession,
-  o: Partial<RunnerConf>,
+  o: Partial<RunnerConf>
 ) => {
   const resourceType = e.resourceType;
 
@@ -51,7 +51,7 @@ export const blockFilter = async (
 // perform native cdp blocking
 export const sendCDPPageConfigurationEnable = async (
   client: CDPSession,
-  o: Partial<RunnerConf>,
+  o: Partial<RunnerConf>
 ) => {
   if (!client || (client && !client.on)) {
     return;
@@ -102,7 +102,7 @@ export const sendCDPPageConfigurationReset = async (
   client: CDPSession,
   o: Partial<RunnerConf>,
   allowImages?: boolean,
-  all?: boolean, // reset all CDP
+  all?: boolean // reset all CDP
 ) => {
   if (!client || (client && !client.on)) {
     return;

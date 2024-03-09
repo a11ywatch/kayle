@@ -1,15 +1,16 @@
 import assert from "assert";
 import puppeteer from "puppeteer";
 import { Standard, kayle } from "kayle";
+// import { htmlcsRulesIT } from "kayle/build/rules";
+
 import { drakeMock } from "./mocks/html-mock";
 import { performance } from "perf_hooks";
 
 (async () => {
   const browser = await puppeteer.launch({ headless: "new" });
   const page = await browser.newPage();
-  if (process.env.LOG_ENABLED) {
-    page.on("console", (msg) => console.log("PAGE LOG:", msg.text()));
-  }
+  page.on("console", (msg) => console.log("PAGE LOG:", msg.text()));
+
   const startTime = performance.now();
   const { issues, pageUrl, documentTitle, meta, automateable } = await kayle({
     page,
@@ -18,6 +19,7 @@ import { performance } from "perf_hooks";
     includeWarnings: true,
     html: drakeMock,
     standard: Standard.WCAG2AA,
+    // ignore: htmlcsRulesIT.map((r) => r.ruleId),
     origin: "https://www.drake.com", // origin is the fake url in place of the raw content
   });
   const nextTime = performance.now() - startTime;

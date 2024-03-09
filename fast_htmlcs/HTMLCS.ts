@@ -384,7 +384,9 @@ _global.HTMLCS = new (function () {
       if (options.include && options.include.length > 0) {
         // Included sniffs.
         ruleSet.sniffs = options.include;
-      } else if (options.exclude) {
+      }
+
+      if (options.exclude) {
         // Excluded sniffs.
         for (const exclude of options.exclude) {
           // @ts-ignore
@@ -423,7 +425,7 @@ _global.HTMLCS = new (function () {
       standard,
       sniffs.shift(),
       function () {
-         _registerSniffs(standard, sniffs, callback, failCallback);
+        _registerSniffs(standard, sniffs, callback, failCallback);
       },
       failCallback
     );

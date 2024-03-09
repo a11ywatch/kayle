@@ -26,7 +26,7 @@ export const setCDPIntercept = async (o: Partial<RunnerConfig>) => {
 
 // block expensive resources
 export const setNetworkInterception = async (
-  o: Partial<RunnerConfig>,
+  o: Partial<RunnerConfig>
 ): Promise<boolean | void> => await setCDPIntercept(o);
 
 /**
@@ -36,7 +36,7 @@ export const setNetworkInterception = async (
  * @returns {Promise<Boolean>} Returns if the page was navigated to successfully.
  */
 export const goToPage = async (
-  o: Partial<RunnerConfig & { html?: string }>,
+  o: Partial<RunnerConfig & { html?: string }>
 ): Promise<boolean> => {
   await setCDPIntercept(o);
 

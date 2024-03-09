@@ -49,7 +49,7 @@ const run = async (options) => {
         resolve(window.HTMLCS.messages);
       },
       (error) => reject(error),
-      options.language,
+      options.language
     );
   });
 };
@@ -62,7 +62,7 @@ const htmlcsRunner = {
 };
 
 // hard code locales to the list to htmlcs locales not EN
-const locales = [
+const htmlcsLocales = [
   "ar",
   "fr",
   "es",
@@ -75,11 +75,11 @@ const locales = [
   "zh_TW",
 ];
 
-for (const lang of locales) {
+for (const lang of htmlcsLocales) {
   htmlcsRunner[lang.replace("_", "-")] = {
     scripts: [require.resolve(`fast_htmlcs/build/HTMLCS.${lang}.js`)],
     run,
   };
 }
 
-export { htmlcsRunner };
+export { htmlcsRunner, htmlcsLocales };

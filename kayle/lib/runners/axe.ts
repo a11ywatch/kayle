@@ -10,7 +10,7 @@ const runAxeAudit = async (options) => {
 
   axeOptions.rules = a11yRulesToAxe(
     Array.isArray(options.rules) ? options.rules : [],
-    Array.isArray(options.ignore) ? options.ignore : [],
+    Array.isArray(options.ignore) ? options.ignore : []
   );
 
   // @ts-ignore todo: fix origin crashing test in axe-core when set direct html
@@ -25,7 +25,7 @@ const runAxeAudit = async (options) => {
         (options.rootElement &&
           window.document.querySelector(options.rootElement)) ||
           window.document,
-        axeOptions,
+        axeOptions
       );
 
       const issues = [];
@@ -125,7 +125,7 @@ const axeRunner = {
 };
 
 // hard code locales to the list to axe-core/locales - not likely to update often
-const locales = [
+const axeLocales = [
   "ar",
   "da",
   "de",
@@ -142,7 +142,7 @@ const locales = [
   "zh_CN",
 ];
 
-for (const lang of locales) {
+for (const lang of axeLocales) {
   axeRunner[lang.replace("_", "-")] = {
     scripts: [require.resolve(`fast_axecore/axe.${lang}.min.js`)],
     run: runAxeAudit,
@@ -150,4 +150,4 @@ for (const lang of locales) {
 }
 
 // locale map
-export { axeRunner };
+export { axeRunner, axeLocales };

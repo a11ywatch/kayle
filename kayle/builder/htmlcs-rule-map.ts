@@ -1,4 +1,4 @@
-import type { Rule, ParamList } from "./build-types";
+import type { ParamList } from "./build-types";
 
 // Hand stich the rules to map from htmlcs.
 // We need to map the ruleId to the translation file key.
@@ -26,14 +26,20 @@ export const htmlcsRuleMap = (rule: ParamList) => {
   const inlineTranslation =
     rule[2] && rule[2].startsWith("HTMLCS.getTranslation");
 
-  const description =
-    (inlineTranslation && eval(rule[2])) ||
-    rule[2] ||
-    window.HTMLCS.getTranslation(`${rule[4]}_${rule[3]}`) ||
-    window.HTMLCS.getTranslation(`${rule[4]}${rule[3]}`) ||
-    "";
+  let description = "";
 
-  const baseRule = `${rule[4]}${directRuleAssignments.includes(rule[3]) ? "." : "_"}${rule[3]}`;
+  try {
+    description =
+      (inlineTranslation && eval(rule[2])) ||
+      rule[2] ||
+      window.HTMLCS.getTranslation(`${rule[4]}_${rule[3]}`) ||
+      window.HTMLCS.getTranslation(`${rule[4]}${rule[3]}`) ||
+      "";
+  } catch (_e) {}
+
+  const baseRule = `${rule[4]}${
+    directRuleAssignments.includes(rule[3]) ? "." : "_"
+  }${rule[3]}`;
   const baseRuleId =
     section508 || !description ? rule[3] || baseRule : baseRule;
 
@@ -41,6 +47,7 @@ export const htmlcsRuleMap = (rule: ParamList) => {
     ? rule[2].replace("HTMLCS.getTranslation(", "").replace(")", "")
     : "";
 
+  // FIXME: we need to get the BASE GUIDELINES upfront like WCAG2AA.Principle1.Guideline1_4 to concat the id with.
   const ruleId = inlineTranslation
     ? inlineRule.substring(1, inlineRule.length - 1)
     : baseRuleId;
