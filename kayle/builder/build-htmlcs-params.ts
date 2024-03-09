@@ -22,6 +22,8 @@ const processFile = (filePath) => {
   const code = readFileSync(filePath, "utf8");
   const ast = parse(code, { sourceType: "script", ecmaVersion: 2020 });
 
+  let guide: RegExpMatchArray | null = null;
+
   simple(ast, {
     CallExpression(node) {
       if (
@@ -63,6 +65,17 @@ const processFile = (filePath) => {
         });
 
         params.push(pathParse(filePath).name);
+
+        // run regex on first match
+        if (!guide) {
+          guide = code.match(
+            /(_global\.HTMLCS_WCAG2AAA_Sniffs_)([A-Za-z0-9_]+)/,
+          );
+        }
+
+        if (guide && guide[2]) {
+          params.push(guide[2]);
+        }
 
         paramList.push(params as ParamList);
       }

@@ -55,7 +55,7 @@ import { performance } from "perf_hooks";
   HTMLCS_WCAG2AAA.sniffs.push("Principle4.Guideline4_1.4_1_4");
   // register the new sniff rule to run
   HTMLCS.registerSniff("WCAG2AAA", "Principle4.Guideline4_1.4_1_4");
-  `.trimStart()
+  `.trimStart(),
   );
 
   const { issues, pageUrl, documentTitle, meta, automateable } = await kayle({

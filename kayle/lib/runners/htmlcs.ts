@@ -49,7 +49,7 @@ const run = async (options) => {
         resolve(window.HTMLCS.messages);
       },
       (error) => reject(error),
-      options.language
+      options.language,
     );
   });
 };

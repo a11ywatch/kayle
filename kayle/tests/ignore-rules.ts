@@ -27,6 +27,7 @@ import { performance } from "perf_hooks";
   console.log(meta);
   console.log(automateable);
   console.log("time took", nextTime);
+  console.log(issues);
 
   // valid list
   assert(Array.isArray(issues));

@@ -53,7 +53,9 @@ export const htmlcsRuleMap = (rule: ParamList) => {
     : baseRuleId;
 
   return {
-    ruleId,
+    ruleId: rule[5]
+      ? `${rule[5].replace("_Guideline", ".Guideline")}.${ruleId}`
+      : ruleId,
     description,
     helpUrl: section508
       ? []

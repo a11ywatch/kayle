@@ -52,7 +52,7 @@ window.addEventListener("kayle_send", async (event) => {
 
 writeFileSync(
   `${ext}/content-script.js`,
-  `${extensionRunner}\n${extensionAxe}\n${extensionHtmlcs}\n${extensionRawEnd}`
+  `${extensionRunner}\n${extensionAxe}\n${extensionHtmlcs}\n${extensionRawEnd}`,
 );
 
 const extensionManifest = `{
