@@ -73,7 +73,7 @@ import { drakeMock } from "./mocks/html-mock";
       "https://www.drake.com/vinyl-pvc",
       "https://www.drake.com/wide-format-digital-printing",
       "https://www.drake.com/wide-narrow-format-digital-cutting",
-    ].sort(),
+    ].sort()
   );
   await browser.close();
 })();

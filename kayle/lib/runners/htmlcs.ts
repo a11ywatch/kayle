@@ -12,7 +12,6 @@ const run = async (options) => {
         Object.keys(htmlcs).forEach((key) => {
           window[key] = htmlcs[key];
         });
-        // @ts-ignore set the window runner
         window.HTMLCS = htmlcs.HTMLCS;
       });
     }
@@ -26,7 +25,6 @@ const run = async (options) => {
       )
     ) {
       for (const rule of options.rules) {
-        // @ts-ignore
         if (window.HTMLCS_WCAG2AAA.sniffs.includes(rule)) {
           window[`HTMLCS_${options.standard}`].sniffs[0].include.push(rule);
         } else {
@@ -34,6 +32,8 @@ const run = async (options) => {
         }
       }
     }
+
+    // todo: remove complete rules from running
 
     // @ts-ignore
     window.HTMLCS.process(
@@ -49,7 +49,7 @@ const run = async (options) => {
         resolve(window.HTMLCS.messages);
       },
       (error) => reject(error),
-      options.language,
+      options.language
     );
   });
 };

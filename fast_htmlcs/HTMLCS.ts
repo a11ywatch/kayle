@@ -386,10 +386,9 @@ _global.HTMLCS = new (function () {
         ruleSet.sniffs = options.include;
       }
 
-      if (options.exclude) {
+      if (options.exclude && options.exclude.length > 0) {
         // Excluded sniffs.
         for (const exclude of options.exclude) {
-          // @ts-ignore
           const index = ruleSet.sniffs.find(exclude);
 
           if (index >= 0) {
@@ -402,7 +401,7 @@ _global.HTMLCS = new (function () {
     // Register the sniffs for this standard.
     _registerSniffs(
       standard,
-      ruleSet.sniffs.slice(0, ruleSet.sniffs.length),
+      ruleSet.sniffs,
       callback,
       failCallback
     );

@@ -69,7 +69,7 @@ const processFile = (filePath) => {
         // run regex on first match
         if (!guide) {
           guide = code.match(
-            /(_global\.HTMLCS_WCAG2AAA_Sniffs_)([A-Za-z0-9_]+)/,
+            /(_global\.HTMLCS_WCAG2AAA_Sniffs_)([A-Za-z0-9_]+)/
           );
         }
 

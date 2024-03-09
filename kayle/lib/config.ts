@@ -42,7 +42,7 @@ type BrowserContext = {
   newCDPSession?(page: Partial<Page> | Frame): Partial<CDPSession>;
   overridePermissions?(
     origin: string,
-    permissions: Permission[],
+    permissions: Permission[]
   ): Promise<void>;
 };
 
@@ -89,7 +89,7 @@ type Page = {
   _routes?: { url: string }[];
   route(
     path: string,
-    intercept: (config: any, next: any) => Promise<void> | Promise<boolean>,
+    intercept: (config: any, next: any) => Promise<void> | Promise<boolean>
   ): Promise<void>;
   setRequestInterception?(enable?: boolean): Promise<void>;
   listenerCount?(name: string): number;
@@ -99,19 +99,19 @@ type Page = {
       | Function
       | {
           default: Function;
-        },
+        }
   ): Promise<void>;
   addInitScript?(script: { content?: string }): Promise<void>;
   evaluateOnNewDocument?<
     Params extends unknown[],
-    Func extends (...args: Params) => unknown = (...args: Params) => unknown,
+    Func extends (...args: Params) => unknown = (...args: Params) => unknown
   >(
     pageFunction: Func | string,
     ...args: Params
   ): Promise<{ identifier: string }>;
   evaluate<
     Params extends unknown[],
-    Func extends EvaluateFunc<Params> = EvaluateFunc<Params>,
+    Func extends EvaluateFunc<Params> = EvaluateFunc<Params>
   >(
     pageFunction: Func | string,
     ...args: Params
@@ -145,13 +145,21 @@ export type RunnerConfig = {
   // audit
   actions?: string[];
   hideElements?: string;
+  // ignore codes from the run. Can be either an exact code + ruleid ex: WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail or general "warning", "error", "notice".
   ignore?: string[];
+  // include notices in the results.
   includeNotices?: boolean;
+  // include warnings in the results.
   includeWarnings?: boolean;
+  // the root element to start the test in.
   rootElement?: string;
+  // extra rules to run.
   rules?: string[];
+  // the test runner.
   runners?: Runner[];
+  // the access standard WCAGA, WCAGAA, WCAGAAA, or SECTION508
   standard?: keyof typeof Standard | Standard;
+  // the timeout to stop the test in ms. Usually a good idea to set to 30000 for 30s
   timeout?: number;
   // allow capturing the image visually to base64
   clip?: boolean;

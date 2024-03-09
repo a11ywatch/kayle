@@ -53,7 +53,7 @@ async function launchBench() {
         unit: "OPS/S",
         value: 1000 / avg,
       },
-    ]),
+    ])
   );
 }
 

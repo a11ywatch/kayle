@@ -35,7 +35,7 @@ test("fast_htmlcs audit drakeMock", async ({ page, browser }, testInfo) => {
   writeFileSync(
     testInfo.outputPath("htmlcs.json"),
     JSON.stringify(results, null, 2),
-    "utf8",
+    "utf8"
   );
 
   writeFileSync(
@@ -50,8 +50,8 @@ test("fast_htmlcs audit drakeMock", async ({ page, browser }, testInfo) => {
         runner: ["fast_htmlcs"],
       },
       null,
-      2,
+      2
     ),
-    "utf8",
+    "utf8"
   );
 });

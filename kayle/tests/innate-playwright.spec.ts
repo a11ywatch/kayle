@@ -21,7 +21,7 @@ test("kayle_innate, fast_htmlcs and fast_axecore audit drakeMock profiling compa
   });
   const mock = html.replace(
     "<title>Drake Industries | Custom, Durable, High-Quality Labels, Asset Tags and Custom Server Bezels</title>",
-    "",
+    ""
   );
   const startTime = performance.now();
   await audit(mock, css, false);

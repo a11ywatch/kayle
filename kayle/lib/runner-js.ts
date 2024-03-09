@@ -78,7 +78,7 @@ const injectRunner = (runner: string, path: string, lang: string) => {
  */
 const getRunner = (
   language: string,
-  runner: keyof typeof runnersJavascript,
+  runner: keyof typeof runnersJavascript
 ) => {
   // if langauge exist get the runner type
   if (language) {

@@ -35,7 +35,7 @@ import { performance } from "perf_hooks";
       origin: "https://jeffmendez.com", // origin is the fake url in place of the raw content
       browserExtension: true, // enable the extension
     },
-    true,
+    true
   );
 
   const nextTime = performance.now() - startTime;

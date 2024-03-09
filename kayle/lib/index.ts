@@ -28,3 +28,6 @@ export {
 export { extractLinks, innateBuilder } from "./wasm";
 export { htmlcsLocales } from "./runners/htmlcs";
 export { axeLocales } from "./runners/axe";
+// export base rules to use upfront
+export { axeRules } from "./rules/en/axe-rules";
+export { htmlcsRules } from "./rules/en/htmlcs-rules";

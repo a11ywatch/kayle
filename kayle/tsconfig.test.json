@@ -22,6 +22,6 @@
       "removeComments": true,
       "downlevelIteration": true
     },
-    "include": ["./lib", "./tests", "./bench"]
+    "include": ["./lib", "./tests", "./bench", "../fast_htmlcs/globals.d.ts"]
   }
   

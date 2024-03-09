@@ -63,14 +63,14 @@ const engine: unknown | AdCheck =
                 serializedArrayBuffer.byteLength /
                 1024 /
                 1024
-              ).toFixed(2)} MB`,
+              ).toFixed(2)} MB`
             );
 
           return engine;
         } catch (_) {
           // error for now without exiting since feature is opt in
           console.error(
-            "Error: adblock-rs installation missing! Run `npm i adblock-rs` or `yarn add adblock-rs` to start with the adblock engine.",
+            "Error: adblock-rs installation missing! Run `npm i adblock-rs` or `yarn add adblock-rs` to start with the adblock engine."
           );
         }
       })()

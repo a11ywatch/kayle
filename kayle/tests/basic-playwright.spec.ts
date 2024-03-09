@@ -42,7 +42,7 @@ test("fast_htmlcs and fast_axecore audit drakeMock", async ({
   writeFileSync(
     testInfo.outputPath("htmlcs.json"),
     JSON.stringify(results, null, 2),
-    "utf8",
+    "utf8"
   );
 
   writeFileSync(
@@ -57,8 +57,8 @@ test("fast_htmlcs and fast_axecore audit drakeMock", async ({
         runner: ["fast_htmlcs", "fast_axecore"],
       },
       null,
-      2,
+      2
     ),
-    "utf8",
+    "utf8"
   );
 });
