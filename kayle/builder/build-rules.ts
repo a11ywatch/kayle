@@ -76,7 +76,7 @@ import type { Rule } from "./build-types";
       Buffer.from(
         await format(
           `/* ${DNE} */\nexport const htmlcsRules = ${JSON.stringify(
-            fast_htmlcs_rules.filter((r) => r.description),
+            fast_htmlcs_rules.filter((r) => r.description).sort((a, b) => a.ruleId.localeCompare(b.ruleId)),
           )};`,
           pConfig,
         ),
@@ -89,7 +89,7 @@ import type { Rule } from "./build-types";
       Buffer.from(
         await format(
           `/* ${DNE} */\nexport const axeRules = ${JSON.stringify(
-            fast_axe_rules,
+            fast_axe_rules.sort((a, b) => a.ruleId.localeCompare(b.ruleId)),
           )};`,
           pConfig,
         ),

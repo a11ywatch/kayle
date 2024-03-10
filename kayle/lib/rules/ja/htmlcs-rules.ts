@@ -1,1645 +1,1645 @@
 /* THIS FILE WAS CREATED DYNAMICALLY - DO NOT EDIT */
 export const htmlcsRules = [
   {
-    ruleId: "Audio",
-    description:
-      "For multimedia containing audio only, ensure an alternative is available, such as a full text transcript.",
-    helpUrl: [],
-    ruleType: "notice",
-  },
-  {
-    ruleId: "Img.EmptyAltInLink",
-    description:
-      "Img element is the only content of the link, but is missing alt text. The alt text should describe the purpose of the link.",
-    helpUrl: [],
-    ruleType: "error",
-  },
-  {
-    ruleId: "Img.NullAltWithTitle",
-    description:
-      "Img element with empty alt text must have absent or empty title attribute.",
-    helpUrl: [],
-    ruleType: "error",
-  },
-  {
-    ruleId: "Img.Ignored",
-    description:
-      "Img element is marked so that it is ignored by Assistive Technology.",
-    helpUrl: [],
-    ruleType: "warning",
-  },
-  {
-    ruleId: "Img.MissingAlt",
-    description:
-      "Img element missing an alt attribute. Use the alt attribute to specify a short text alternative.",
-    helpUrl: [],
-    ruleType: "error",
-  },
-  {
-    ruleId: "Img.GeneralAlt",
-    description:
-      "Ensure that the img element's alt text serves the same purpose and presents the same information as the image.",
-    helpUrl: [],
-    ruleType: "notice",
-  },
-  {
-    ruleId: "InputImage.MissingAlt",
-    description:
-      "Image submit button missing an alt attribute. Specify a text alternative that describes the button's function, using the alt attribute.",
-    helpUrl: [],
-    ruleType: "error",
-  },
-  {
-    ruleId: "InputImage.GeneralAlt",
-    description:
-      "Ensure that the image submit button's alt text identifies the purpose of the button.",
-    helpUrl: [],
-    ruleType: "notice",
-  },
-  {
-    ruleId: "Area.MissingAlt",
-    description:
-      "Area element in an image map missing an alt attribute. Each area element must have a text alternative that describes the function of the image map area.",
-    helpUrl: [],
-    ruleType: "error",
-  },
-  {
-    ruleId: "Area.GeneralAlt",
-    description:
-      "Ensure that the area element's text alternative serves the same purpose as the part of image map image it references.",
-    helpUrl: [],
-    ruleType: "notice",
-  },
-  {
-    ruleId: "Object.MissingBody",
-    description:
-      "Object elements must contain a text alternative after all other alternatives are exhausted.",
-    helpUrl: [],
-    ruleType: "error",
-  },
-  {
-    ruleId: "Object.GeneralAlt",
-    description:
-      "Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and present the same information.",
-    helpUrl: [],
-    ruleType: "notice",
-  },
-  {
-    ruleId: "Applet.MissingBody",
-    description:
-      "Applet elements must contain a text alternative in the element's body, for browsers without support for the applet element.",
-    helpUrl: [],
-    ruleType: "error",
-  },
-  {
-    ruleId: "Applet.MissingAlt",
-    description:
-      "Applet elements must contain an alt attribute, to provide a text alternative to browsers supporting the element but are unable to load the applet.",
-    helpUrl: [],
-    ruleType: "error",
-  },
-  {
-    ruleId: "Applet.GeneralAlt",
-    description:
-      "Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and present the same information.",
-    helpUrl: [],
-    ruleType: "notice",
-  },
-  {
-    ruleId: "Video",
-    description:
-      "For multimedia containing video, ensure a synchronised audio description or text alternative for the video portion is provided.",
-    helpUrl: [],
-    ruleType: "notice",
-  },
-  {
-    ruleId: "Captions",
-    description:
-      "For multimedia containing synchronised audio and video, ensure synchronised captions are provided for the audio portion.",
-    helpUrl: [],
-    ruleType: "notice",
-  },
-  {
-    ruleId: "Colour",
-    description:
-      "Ensure that any information conveyed using colour alone is also available without colour, such as through context or markup.",
-    helpUrl: [],
-    ruleType: "notice",
-  },
-  {
-    ruleId: "Principle1.Guideline1_3.Linearised",
-    description:
-      "Ensure that content is ordered in a meaningful sequence when linearised, such as when style sheets are disabled.",
-    helpUrl: [],
-    ruleType: "notice",
-  },
-  {
-    ruleId: "Principle1.Guideline1_3.HiddenText",
-    description:
-      'If content is hidden and made visible using scripting (such as "click to expand" sections), ensure this content is readable when scripts and style sheets are disabled.',
-    helpUrl: [],
-    ruleType: "notice",
-  },
-  {
-    ruleId: "TableHeaders",
-    description:
-      "This table has no headers. If this is a data table, ensure row and column headers are identified using th elements.",
-    helpUrl: [],
-    ruleType: "notice",
-  },
-  {
-    ruleId: "MissingHeadersAttrs",
-    description:
-      "The relationship between td elements and their associated th elements is not defined. As this table has multiple levels of th elements, you must use the headers attribute on td elements.",
-    helpUrl: [],
-    ruleType: "error",
-  },
-  {
-    ruleId: "MissingHeaderIds",
-    description:
-      "Not all th elements in this table contain an id attribute. These cells should contain ids so that they may be referenced by td elements' headers attributes.",
-    helpUrl: [],
-    ruleType: "error",
-  },
-  {
-    ruleId: "IncompleteHeadersAttrs",
-    description:
-      "Not all td elements in this table contain a headers attribute. Each headers attribute should list the ids of all th elements associated with that cell.",
-    helpUrl: [],
-    ruleType: "error",
-  },
-  {
-    ruleId: "Flicker",
-    description:
-      "Check that no component of the content flickers at a rate of greater than 2 and less than 55 times per second.",
-    helpUrl: [],
-    ruleType: "notice",
-  },
-  {
-    ruleId: "AltVersion",
+    ruleId: 'AltVersion',
     description:
       "If this page cannot be made compliant, a text-only page with equivalent information or functionality should be provided. The alternative page needs to be updated in line with this page's content.",
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "EmptyAnchorNoId",
+    ruleId: 'Applet.GeneralAlt',
     description:
-      "Anchor element found with no link content and no name and/or ID attribute.",
+      'Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and present the same information.',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'notice',
   },
   {
-    ruleId: "PlaceholderAnchor",
+    ruleId: 'Applet.MissingAlt',
     description:
-      "Anchor element found with link content, but no href, ID, or name attribute has been supplied.",
+      'Applet elements must contain an alt attribute, to provide a text alternative to browsers supporting the element but are unable to load the applet.',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'error',
   },
   {
-    ruleId: "NoContentAnchor",
+    ruleId: 'Applet.MissingBody',
     description:
-      "Anchor element found with a valid href attribute, but no link content has been supplied.",
+      "Applet elements must contain a text alternative in the element's body, for browsers without support for the applet element.",
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "DblClick",
+    ruleId: 'Area.GeneralAlt',
     description:
-      "Ensure the functionality provided by double-clicking on this element is available through the keyboard.",
+      "Ensure that the area element's text alternative serves the same purpose as the part of image map image it references.",
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'notice',
   },
   {
-    ruleId: "MouseOver",
+    ruleId: 'Area.MissingAlt',
     description:
-      "Ensure the functionality provided by mousing over this element is available through the keyboard; for instance, using the focus event.",
+      'Area element in an image map missing an alt attribute. Each area element must have a text alternative that describes the function of the image map area.',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'error',
   },
   {
-    ruleId: "MouseOut",
+    ruleId: 'Audio',
     description:
-      "Ensure the functionality provided by mousing out of this element is available through the keyboard; for instance, using the blur event.",
+      'For multimedia containing audio only, ensure an alternative is available, such as a full text transcript.',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'notice',
   },
   {
-    ruleId: "MouseMove",
+    ruleId: 'Captions',
     description:
-      "Ensure the functionality provided by moving the mouse on this element is available through the keyboard.",
+      'For multimedia containing synchronised audio and video, ensure synchronised captions are provided for the audio portion.',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'notice',
   },
   {
-    ruleId: "MouseDown",
+    ruleId: 'Colour',
     description:
-      "Ensure the functionality provided by mousing down on this element is available through the keyboard; for instance, using the keydown event.",
+      'Ensure that any information conveyed using colour alone is also available without colour, such as through context or markup.',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'notice',
   },
   {
-    ruleId: "MouseUp",
+    ruleId: 'DblClick',
     description:
-      "Ensure the functionality provided by mousing up on this element is available through the keyboard; for instance, using the keyup event.",
+      'Ensure the functionality provided by double-clicking on this element is available through the keyboard.',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'warning',
   },
   {
-    ruleId: "PluginLink",
+    ruleId: 'EmptyAnchorNoId',
     description:
-      "If external media requires a plugin or application to view, ensure a link is provided to a plugin or application that complies with Section 508 accessibility requirements for applications.",
+      'Anchor element found with no link content and no name and/or ID attribute.',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'error',
   },
   {
-    ruleId: "Errors",
+    ruleId: 'Errors',
     description:
-      "If an input error is automatically detected in this form, check that the item(s) in error are identified and the error(s) are described to the user in text.",
+      'If an input error is automatically detected in this form, check that the item(s) in error are identified and the error(s) are described to the user in text.',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Labels",
+    ruleId: 'Flicker',
     description:
-      "Check that descriptive labels or instructions (including for required fields) are provided for user input in this form.",
+      'Check that no component of the content flickers at a rate of greater than 2 and less than 55 times per second.',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "KeyboardNav",
+    ruleId: 'Img.EmptyAltInLink',
     description:
-      "Ensure that this form can be navigated using the keyboard and other accessibility tools.",
+      'Img element is the only content of the link, but is missing alt text. The alt text should describe the purpose of the link.',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'error',
   },
   {
-    ruleId: "SkipLinks",
+    ruleId: 'Img.GeneralAlt',
     description:
-      "Ensure that any common navigation elements can be bypassed; for instance, by use of skip links, header elements, or ARIA landmark roles.",
+      "Ensure that the img element's alt text serves the same purpose and presents the same information as the image.",
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "TimeLimit",
+    ruleId: 'Img.Ignored',
     description:
-      "If a timed response is required on this page, alert the user and provide sufficient time to allow them to indicate that more time is required.",
+      'Img element is marked so that it is ignored by Assistive Technology.',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'warning',
   },
   {
-    ruleId: "MetaRedirect",
+    ruleId: 'Img.MissingAlt',
     description:
-      "Meta refresh tag used to redirect to another page, with a time limit that is not zero. Users cannot control this time limit.",
+      'Img element missing an alt attribute. Use the alt attribute to specify a short text alternative.',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "MetaRefresh",
+    ruleId: 'Img.NullAltWithTitle',
     description:
-      "Meta refresh tag used to refresh the current page. Users cannot control the time limit for this refresh.",
+      'Img element with empty alt text must have absent or empty title attribute.',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_1.1_1_1_H30.2",
+    ruleId: 'IncompleteHeadersAttrs',
     description:
-      "img 要素がこのリンクの唯一のコンテンツですが、 alt テキストがありません。 alt テキストがリンクの目的を説明するべきです。",
+      'Not all td elements in this table contain a headers attribute. Each headers attribute should list the ids of all th elements associated with that cell.',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_1.1_1_1_H67.1",
+    ruleId: 'InputImage.GeneralAlt',
     description:
-      "空の alt テキストをもつ img 要素は title 属性をもたないか、または、空でなければなりません。",
+      "Ensure that the image submit button's alt text identifies the purpose of the button.",
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle1.Guideline1_1.1_1_1_H67.2",
-    description: "img 要素は支援技術に無視されるようマークアップされています。",
-    helpUrl: [],
-    ruleType: "warning",
-  },
-  {
-    ruleId: "Principle1.Guideline1_1.1_1_1_H37",
+    ruleId: 'InputImage.MissingAlt',
     description:
-      "Img 要素に alt 属性が不足しています。 alt 属性で短い代替テキストを明示してください。",
+      "Image submit button missing an alt attribute. Specify a text alternative that describes the button's function, using the alt attribute.",
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_1.1_1_1_G94.Image",
+    ruleId: 'KeyboardNav',
     description:
-      "img 要素 の alt テキストが、この画像と同じ目的や情報を提供していることを確認してください。",
+      'Ensure that this form can be navigated using the keyboard and other accessibility tools.',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle1.Guideline1_1.1_1_1_H36",
+    ruleId: 'Labels',
     description:
-      "画像による送信ボタンに alt 属性が不足しています。このボタンの機能を説明する代替テキストを alt 属性で明示してください。",
+      'Check that descriptive labels or instructions (including for required fields) are provided for user input in this form.',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle1.Guideline1_1.1_1_1_G94.Button",
+    ruleId: 'MetaRedirect',
     description:
-      "画像による送信ボタンの代替テキストがそのボタンの目的を特定していることを確認してください。",
+      'Meta refresh tag used to redirect to another page, with a time limit that is not zero. Users cannot control this time limit.',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_1.1_1_1_H24",
+    ruleId: 'MetaRefresh',
     description:
-      "イメージマップのArea 要素に alt 属性が不足しています。各 area 要素は、そのイメージマップエリアの機能を説明する代替テキストを持たなければなりません。",
+      'Meta refresh tag used to refresh the current page. Users cannot control the time limit for this refresh.',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_1.1_1_1_H24.2",
+    ruleId: 'MissingHeaderIds',
     description:
-      "area 要素の代替テキストが、参照するイメージマップ画像の部分と同じ目的を提供していることを確認してください。",
+      "Not all th elements in this table contain an id attribute. These cells should contain ids so that they may be referenced by td elements' headers attributes.",
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_1.1_1_1_G73,G74",
+    ruleId: 'MissingHeadersAttrs',
     description:
-      "もし短い代替テキストでこのイメージが十分に説明できないなら、ボディテキストやリンクなどを通じて長い代替テキストを提供してください。",
+      'The relationship between td elements and their associated th elements is not defined. As this table has multiple levels of th elements, you must use the headers attribute on td elements.',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_1.1_1_1_H2.EG5",
+    ruleId: 'MouseDown',
     description:
-      "リンク内の img 要素は 代替テキストにリンクのコンテンツのテキストの複製を使用してはなりません。",
+      'Ensure the functionality provided by mousing down on this element is available through the keyboard; for instance, using the keydown event.',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle1.Guideline1_1.1_1_1_H2.EG4",
+    ruleId: 'MouseMove',
     description:
-      "テキストリンクと隣り合うリンク内の img 要素の alt 属性が指定されていないか空になっています。テキストと画像のリンクを一つにまとめることを検討してください。",
+      'Ensure the functionality provided by moving the mouse on this element is available through the keyboard.',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle1.Guideline1_1.1_1_1_H2.EG3",
+    ruleId: 'MouseOut',
     description:
-      "テキストリンクと隣り合うリンク内の img 要素の alt 属性にテキストリンクの内容の複製を使用してはいけません。",
+      'Ensure the functionality provided by mousing out of this element is available through the keyboard; for instance, using the blur event.',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle1.Guideline1_1.1_1_1_H2.EG4",
+    ruleId: 'MouseOver',
     description:
-      "テキストリンクと隣り合うリンク内の img 要素の alt 属性が指定されていないか空になっています。テキストと画像のリンクを一つにまとめることを検討してください。",
+      'Ensure the functionality provided by mousing over this element is available through the keyboard; for instance, using the focus event.',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle1.Guideline1_1.1_1_1_H2.EG3",
+    ruleId: 'MouseUp',
     description:
-      "テキストリンクと隣り合うリンク内の img 要素の alt 属性にテキストリンクの内容の複製を使用してはいけません。",
+      'Ensure the functionality provided by mousing up on this element is available through the keyboard; for instance, using the keyup event.',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle1.Guideline1_1.1_1_1_H53,ARIA6",
+    ruleId: 'NoContentAnchor',
     description:
-      "他のすべての選択肢が尽きた後は、 object 要素に代替テキストを含める必要があります。",
+      'Anchor element found with a valid href attribute, but no link content has been supplied.',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_1.1_1_1_G94,G92.Object,ARIA6",
+    ruleId: 'Object.GeneralAlt',
     description:
-      "短い（適切な場合は長い）代替テキストが、同じ目的を果たし同じ情報を提示する非テキストコンテンツに対して提供されていることを確認してください。",
+      'Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and present the same information.',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle1.Guideline1_1.1_1_1_H35.3",
+    ruleId: 'Object.MissingBody',
     description:
-      "applet 要素をサポートしていないブラウザでは、 applet 要素の要素本文に代替テキストを含める必要があります。",
+      'Object elements must contain a text alternative after all other alternatives are exhausted.',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_1.1_1_1_H35.2",
+    ruleId: 'PlaceholderAnchor',
     description:
-      "applet 要素をサポートしているがロードできないブラウザに対して代替テキストを提供するために、 applet 要素は alt 属性を含まなければなりません。",
+      'Anchor element found with link content, but no href, ID, or name attribute has been supplied.',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle1.Guideline1_1.1_1_1_G94,G92.Applet",
+    ruleId: 'PluginLink',
     description:
-      "非テキストコンテンツに対して、同じ目的を果たし、かつ同じ情報を示す短い（適切な場合は長い）代替テキストが提供されていることを確認してください。",
+      'If external media requires a plugin or application to view, ensure a link is provided to a plugin or application that complies with Section 508 accessibility requirements for applications.',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle1.Guideline1_2.1_2_1_G158",
+    ruleId: 'Principle1.Guideline1_1.1_1_1_G73,G74',
     description:
-      "この埋め込みオブジェクトに録音済みの音声のみが含まれていて、テキストコンテンツの代替として提供されていない場合は、代替テキストバージョンが利用可能であることを確認してください。",
+      'もし短い代替テキストでこのイメージが十分に説明できないなら、ボディテキストやリンクなどを通じて長い代替テキストを提供してください。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle1.Guideline1_2.1_2_1_G159,G166",
+    ruleId: 'Principle1.Guideline1_1.1_1_1_G94,G92.Applet',
     description:
-      "この埋め込みオブジェクトに録画済みの映像のみが含まれており、テキストコンテンツの代替として提供されていない場合は、代替テキストバージョンが利用可能であるか、同等の情報を示す音声トラックが提供されていることを確認してください。",
+      '非テキストコンテンツに対して、同じ目的を果たし、かつ同じ情報を示す短い（適切な場合は長い）代替テキストが提供されていることを確認してください。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle1.Guideline1_2.1_2_2_G87,G93",
+    ruleId: 'Principle1.Guideline1_1.1_1_1_G94,G92.Object,ARIA6',
     description:
-      "この埋め込みオブジェクトに事前に記録された同期したメディアが含まれており、テキストコンテンツの代替として提供されていない場合は、音声コンテンツ用のキャプションが提供されていることを確認してください",
+      '短い（適切な場合は長い）代替テキストが、同じ目的を果たし同じ情報を提示する非テキストコンテンツに対して提供されていることを確認してください。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle1.Guideline1_2.1_2_3_G69,G78,G173,G8",
+    ruleId: 'Principle1.Guideline1_1.1_1_1_G94.Button',
     description:
-      "この埋め込みオブジェクトに事前に記録された同期したメディアが含まれていて、テキストコンテンツの代替として提供されていない場合は、その映像の音声説明および/またはコンテンツの代替テキストバージョンが提供されていることを確認してください。",
+      '画像による送信ボタンの代替テキストがそのボタンの目的を特定していることを確認してください。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle1.Guideline1_2.1_2_4_G9,G87,G93",
+    ruleId: 'Principle1.Guideline1_1.1_1_1_G94.Image',
     description:
-      "この埋め込みオブジェクトに同期したメディアが含まれている場合は、ライブの音声コンテンツにキャプションが提供されていることを確認してください。",
+      'img 要素 の alt テキストが、この画像と同じ目的や情報を提供していることを確認してください。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle1.Guideline1_2.1_2_5_G78,G173,G8",
+    ruleId: 'Principle1.Guideline1_1.1_1_1_H2.EG3',
     description:
-      "この埋め込みオブジェクトに事前に記録された同期したメディアが含まれている場合は、その映像コンテンツに音声の説明があることを確認してください。",
+      'テキストリンクと隣り合うリンク内の img 要素の alt 属性にテキストリンクの内容の複製を使用してはいけません。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_2.1_2_6_G54,G81",
+    ruleId: 'Principle1.Guideline1_1.1_1_1_H2.EG3',
     description:
-      "この埋め込みオブジェクトに記録済みの同期したメディアが含まれている場合は、その音声に手話の解釈が提供されていることを確認してください。",
+      'テキストリンクと隣り合うリンク内の img 要素の alt 属性にテキストリンクの内容の複製を使用してはいけません。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_2.1_2_7_G8",
+    ruleId: 'Principle1.Guideline1_1.1_1_1_H2.EG4',
     description:
-      "この埋め込みオブジェクトに同期したメディアが含まれていて、前景音の一時停止による音声解説が収録済映像の意味を伝えるのに不十分な場合、スクリプトまたは代替バージョンで拡張音声解説が提供させていることを確認してください。",
+      'テキストリンクと隣り合うリンク内の img 要素の alt 属性が指定されていないか空になっています。テキストと画像のリンクを一つにまとめることを検討してください。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_2.1_2_8_G69,G159",
+    ruleId: 'Principle1.Guideline1_1.1_1_1_H2.EG4',
     description:
-      "この埋め込みオブジェクトに事前に記録された同期したメディアまたは映像のみのコンテンツが含まれている場合は、コンテンツの代替テキストバージョンが提供されていることを確認してください。",
+      'テキストリンクと隣り合うリンク内の img 要素の alt 属性が指定されていないか空になっています。テキストと画像のリンクを一つにまとめることを検討してください。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_2.1_2_9_G150,G151,G157",
+    ruleId: 'Principle1.Guideline1_1.1_1_1_H2.EG5',
     description:
-      "この埋め込みオブジェクトにライブの音声のみのコンテンツが含まれている場合は、そのコンテンツの代替テキストバージョンが提供されていることを確認してください。",
+      'リンク内の img 要素は 代替テキストにリンクのコンテンツのテキストの複製を使用してはなりません。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_F92,ARIA4",
+    ruleId: 'Principle1.Guideline1_1.1_1_1_H24',
     description:
-      'この要素の役割は"プレゼンテーション"ですが、セマンティックな意味を持つ子要素を含みます。',
+      'イメージマップのArea 要素に alt 属性が不足しています。各 area 要素は、そのイメージマップエリアの機能を説明する代替テキストを持たなければなりません。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_3.code",
-    description: "msg",
-    helpUrl: [],
-    ruleType: "level",
-  },
-  {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H44.NotFormControl",
+    ruleId: 'Principle1.Guideline1_1.1_1_1_H24.2',
     description:
-      'このラベルの "for" 属性には、フォームコントロールでない要素の ID が含まれています。目的の要素に正しい ID を入力していることを確認してください。',
+      'area 要素の代替テキストが、参照するイメージマップ画像の部分と同じ目的を提供していることを確認してください。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H65",
+    ruleId: 'Principle1.Guideline1_1.1_1_1_H30.2',
     description:
-      'このフォームコントロールには、空またはスペースのみを含む "title" 属性があります。ラベリングテストの目的では無視されます。',
+      'img 要素がこのリンクの唯一のコンテンツですが、 alt テキストがありません。 alt テキストがリンクの目的を説明するべきです。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_ARIA6",
+    ruleId: 'Principle1.Guideline1_1.1_1_1_H35.2',
+    description:
+      'applet 要素をサポートしているがロードできないブラウザに対して代替テキストを提供するために、 applet 要素は alt 属性を含まなければなりません。',
+    helpUrl: [],
+    ruleType: 'error',
+  },
+  {
+    ruleId: 'Principle1.Guideline1_1.1_1_1_H35.3',
+    description:
+      'applet 要素をサポートしていないブラウザでは、 applet 要素の要素本文に代替テキストを含める必要があります。',
+    helpUrl: [],
+    ruleType: 'error',
+  },
+  {
+    ruleId: 'Principle1.Guideline1_1.1_1_1_H36',
+    description:
+      '画像による送信ボタンに alt 属性が不足しています。このボタンの機能を説明する代替テキストを alt 属性で明示してください。',
+    helpUrl: [],
+    ruleType: 'error',
+  },
+  {
+    ruleId: 'Principle1.Guideline1_1.1_1_1_H37',
+    description:
+      'Img 要素に alt 属性が不足しています。 alt 属性で短い代替テキストを明示してください。',
+    helpUrl: [],
+    ruleType: 'error',
+  },
+  {
+    ruleId: 'Principle1.Guideline1_1.1_1_1_H53,ARIA6',
+    description:
+      '他のすべての選択肢が尽きた後は、 object 要素に代替テキストを含める必要があります。',
+    helpUrl: [],
+    ruleType: 'error',
+  },
+  {
+    ruleId: 'Principle1.Guideline1_1.1_1_1_H67.1',
+    description:
+      '空の alt テキストをもつ img 要素は title 属性をもたないか、または、空でなければなりません。',
+    helpUrl: [],
+    ruleType: 'error',
+  },
+  {
+    ruleId: 'Principle1.Guideline1_1.1_1_1_H67.2',
+    description: 'img 要素は支援技術に無視されるようマークアップされています。',
+    helpUrl: [],
+    ruleType: 'warning',
+  },
+  {
+    ruleId: 'Principle1.Guideline1_2.1_2_1_G158',
+    description:
+      'この埋め込みオブジェクトに録音済みの音声のみが含まれていて、テキストコンテンツの代替として提供されていない場合は、代替テキストバージョンが利用可能であることを確認してください。',
+    helpUrl: [],
+    ruleType: 'notice',
+  },
+  {
+    ruleId: 'Principle1.Guideline1_2.1_2_1_G159,G166',
+    description:
+      'この埋め込みオブジェクトに録画済みの映像のみが含まれており、テキストコンテンツの代替として提供されていない場合は、代替テキストバージョンが利用可能であるか、同等の情報を示す音声トラックが提供されていることを確認してください。',
+    helpUrl: [],
+    ruleType: 'notice',
+  },
+  {
+    ruleId: 'Principle1.Guideline1_2.1_2_2_G87,G93',
+    description:
+      'この埋め込みオブジェクトに事前に記録された同期したメディアが含まれており、テキストコンテンツの代替として提供されていない場合は、音声コンテンツ用のキャプションが提供されていることを確認してください',
+    helpUrl: [],
+    ruleType: 'notice',
+  },
+  {
+    ruleId: 'Principle1.Guideline1_2.1_2_3_G69,G78,G173,G8',
+    description:
+      'この埋め込みオブジェクトに事前に記録された同期したメディアが含まれていて、テキストコンテンツの代替として提供されていない場合は、その映像の音声説明および/またはコンテンツの代替テキストバージョンが提供されていることを確認してください。',
+    helpUrl: [],
+    ruleType: 'notice',
+  },
+  {
+    ruleId: 'Principle1.Guideline1_2.1_2_4_G9,G87,G93',
+    description:
+      'この埋め込みオブジェクトに同期したメディアが含まれている場合は、ライブの音声コンテンツにキャプションが提供されていることを確認してください。',
+    helpUrl: [],
+    ruleType: 'notice',
+  },
+  {
+    ruleId: 'Principle1.Guideline1_2.1_2_5_G78,G173,G8',
+    description:
+      'この埋め込みオブジェクトに事前に記録された同期したメディアが含まれている場合は、その映像コンテンツに音声の説明があることを確認してください。',
+    helpUrl: [],
+    ruleType: 'notice',
+  },
+  {
+    ruleId: 'Principle1.Guideline1_2.1_2_6_G54,G81',
+    description:
+      'この埋め込みオブジェクトに記録済みの同期したメディアが含まれている場合は、その音声に手話の解釈が提供されていることを確認してください。',
+    helpUrl: [],
+    ruleType: 'notice',
+  },
+  {
+    ruleId: 'Principle1.Guideline1_2.1_2_7_G8',
+    description:
+      'この埋め込みオブジェクトに同期したメディアが含まれていて、前景音の一時停止による音声解説が収録済映像の意味を伝えるのに不十分な場合、スクリプトまたは代替バージョンで拡張音声解説が提供させていることを確認してください。',
+    helpUrl: [],
+    ruleType: 'notice',
+  },
+  {
+    ruleId: 'Principle1.Guideline1_2.1_2_8_G69,G159',
+    description:
+      'この埋め込みオブジェクトに事前に記録された同期したメディアまたは映像のみのコンテンツが含まれている場合は、コンテンツの代替テキストバージョンが提供されていることを確認してください。',
+    helpUrl: [],
+    ruleType: 'notice',
+  },
+  {
+    ruleId: 'Principle1.Guideline1_2.1_2_9_G150,G151,G157',
+    description:
+      'この埋め込みオブジェクトにライブの音声のみのコンテンツが含まれている場合は、そのコンテンツの代替テキストバージョンが提供されていることを確認してください。',
+    helpUrl: [],
+    ruleType: 'notice',
+  },
+  {
+    ruleId: 'Principle1.Guideline1_3.1_3_1_ARIA6',
     description:
       'このフォームコントロールには、空またはスペースのみを含む "aria-label" 属性があります。ラベリングテストの目的では無視されます。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_F68.Hidden",
+    ruleId: 'Principle1.Guideline1_3.1_3_1_DataTable',
     description:
-      "この hidden のフォームフィールドには何らかの方法でラベルが付けられています。 hidden のフォームフィールドにラベルを付ける必要はありません。",
+      'このテーブルはデータテーブルのようにみえます。もしレイアウトテーブルであることを意図している場合は、 th 要素がないこと、および summary または caption がないことを確認してください。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_F68.HiddenAttr",
-    description:
-      'このフォームフィールドは（ "hidden" 属性を使用して）非表示にすることを目的としていますが、何らかの方法でラベル付けされています。隠しフォームフィールドにラベルを付ける必要はありません。',
-    helpUrl: [],
-    ruleType: "warning",
-  },
-  {
-    ruleId: "Principle1.Guideline1_3.1_3_1_F68",
+    ruleId: 'Principle1.Guideline1_3.1_3_1_F68',
     description:
       'このフォームフィールドは何らかの方法でラベル付けされるべきです。 label 要素（ "for" 属性を持つかフォームフィールドを囲む）、または "title"、 "aria-label" 、または "aria-labelledby" 属性を適切に使用してください。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H49.",
+    ruleId: 'Principle1.Guideline1_3.1_3_1_F68.Hidden',
     description:
-      "HTML5では時代遅れになっているプレゼンテーションマークアップが使用されています。",
+      'この hidden のフォームフィールドには何らかの方法でラベルが付けられています。 hidden のフォームフィールドにラベルを付ける必要はありません。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle1.Guideline1_3.H49.AlignAttr",
-    description: "Align attributes .",
-    helpUrl: [],
-    ruleType: "error",
-  },
-  {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H49.Semantic",
+    ruleId: 'Principle1.Guideline1_3.1_3_1_F68.HiddenAttr',
     description:
-      "強調テキストまたは特殊テキストには、プログラム的に決定できるようセマンティックマークアップが使用されるべきです。",
+      'このフォームフィールドは（ "hidden" 属性を使用して）非表示にすることを目的としていますが、何らかの方法でラベル付けされています。隠しフォームフィールドにラベルを付ける必要はありません。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H49.AlignAttr.Semantic",
+    ruleId: 'Principle1.Guideline1_3.1_3_1_F92,ARIA4',
     description:
-      "強調テキストまたは特殊テキストには、プログラム的に決定できるようセマンティックマークアップが使用されるべきです。",
+      'この要素の役割は"プレゼンテーション"ですが、セマンティックな意味を持つ子要素を含みます。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H42",
+    ruleId: 'Principle1.Guideline1_3.1_3_1_G141_a',
     description:
-      "このコンテンツが見出しとして意図されている場合は、見出しマークアップを使用する必要があります。",
+      '見出し構造が論理的にネストされていません。この h{{headingNum}} 要素は主な文書見出しであるようにみえるため、 h1 要素であるべきです。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H63.3",
+    ruleId: 'Principle1.Guideline1_3.1_3_1_H39,H73.4',
     description:
-      "テーブルセルに無効な scope 属性があります。有効な値は、 row 、 col 、 rowgroup 、または colgroup です。",
+      'このテーブルがデータテーブルで、 summary 属性と caption 要素の両方が存在する場合、 summary は caption を複製しないでください。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H63.2",
+    ruleId: 'Principle1.Guideline1_3.1_3_1_H39.3.Check',
     description:
-      "他の要素の見出しとして機能する td 要素のスコープ属性は、HTML5では廃止されました。代わりに th 要素を使用してください。",
+      'このテーブルがデータテーブルの場合は、 caption 要素がこのテーブルを正確に記述していることを確認してください。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H43.ScopeAmbiguous",
+    ruleId: 'Principle1.Guideline1_3.1_3_1_H39.3.LayoutTable',
     description:
-      "複数のレベルの見出しを持つテーブルでは、 th 要素のスコープ属性はあいまいです。代わりに td 要素の headers 属性を使用してください。",
+      'このテーブルはレイアウトに使用されているように見えますが、 caption 要素が含まれています。レイアウトテーブルに caption を含めることはできません。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H43.IncorrectAttrNotice",
-    description: "Check that headers attribute on td element is correct.",
-    helpUrl: [],
-    ruleType: "notice",
-  },
-  {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H43.HeadersRequired",
+    ruleId: 'Principle1.Guideline1_3.1_3_1_H39.3.NoCaption',
     description:
-      "td 要素とそれに関連する th 要素の関係は定義されていません。このテーブルには複数レベルの th 要素があるため、 td 要素には headers 属性を使用する必要があります。",
+      'このテーブルがデータテーブルである場合は、このテーブルを識別するために table 要素に caption 要素を使用することを検討してください。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H43.MissingHeaderIds",
+    ruleId: 'Principle1.Guideline1_3.1_3_1_H42',
     description:
-      "このテーブルに id 属性を含まない th 要素があります。これらのセルは、それらが td 要素の headers 属性によって参照されるように ID を含むべきです。",
+      'このコンテンツが見出しとして意図されている場合は、見出しマークアップを使用する必要があります。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H43.MissingHeadersAttrs",
+    ruleId: 'Principle1.Guideline1_3.1_3_1_H42.2',
     description:
-      "このテーブルに headers 属性を含まない td 要素があります。各 headers 属性は、そのセルに関連付けられているすべての th 要素の ID を列挙する必要があります。",
+      '見出しタグがコンテンツなしで見つかりました。見出しとして意図されていないテキストは、見出しタグでマークアップしてはいけません。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H43,H63",
+    ruleId: 'Principle1.Guideline1_3.1_3_1_H43,H63',
     description:
-      "td 要素とそれに関連する th 要素の関係は定義されていません。 th 要素に scope 属性を使用するか、td 要素に headers 属性を使用してください。",
+      'td 要素とそれに関連する th 要素の関係は定義されていません。 th 要素に scope 属性を使用するか、td 要素に headers 属性を使用してください。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H43.MissingHeaderIds",
+    ruleId: 'Principle1.Guideline1_3.1_3_1_H43,H63',
     description:
-      "このテーブルに id 属性を含まない th 要素があります。これらのセルは、それらが td 要素の headers 属性によって参照されるように ID を含むべきです。",
+      'td 要素とそれに関連する th 要素の関係は定義されていません。 th 要素に scope 属性を使用するか、td 要素に headers 属性を使用してください。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H43.MissingHeadersAttrs",
+    ruleId: 'Principle1.Guideline1_3.1_3_1_H43.HeadersRequired',
     description:
-      "このテーブルに headers 属性を含まない td 要素があります。各 headers 属性は、そのセルに関連付けられているすべての th 要素の ID を列挙する必要があります。",
+      'td 要素とそれに関連する th 要素の関係は定義されていません。このテーブルには複数レベルの th 要素があるため、 td 要素には headers 属性を使用する必要があります。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H63.1",
+    ruleId: 'Principle1.Guideline1_3.1_3_1_H43.IncorrectAttrNotice',
+    description: 'Check that headers attribute on td element is correct.',
+    helpUrl: [],
+    ruleType: 'notice',
+  },
+  {
+    ruleId: 'Principle1.Guideline1_3.1_3_1_H43.MissingHeaderIds',
     description:
-      "このテーブルに scope 属性をもたない th 要素があります。これらのセルは、 td 要素との関連を識別するための scope 属性を含むべきです。",
+      'このテーブルに id 属性を含まない th 要素があります。これらのセルは、それらが td 要素の headers 属性によって参照されるように ID を含むべきです。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H43,H63",
+    ruleId: 'Principle1.Guideline1_3.1_3_1_H43.MissingHeaderIds',
     description:
-      "td 要素とそれに関連する th 要素の関係は定義されていません。 th 要素に scope 属性を使用するか、td 要素に headers 属性を使用してください。",
+      'このテーブルに id 属性を含まない th 要素があります。これらのセルは、それらが td 要素の headers 属性によって参照されるように ID を含むべきです。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H73.3.LayoutTable",
+    ruleId: 'Principle1.Guideline1_3.1_3_1_H43.MissingHeadersAttrs',
     description:
-      "このテーブルはレイアウトに使用されているように見えますが、 summary 属性が含まれています。レイアウトテーブルに summary 属性を含めないか、または、指定されている場合は空にしてください。",
+      'このテーブルに headers 属性を含まない td 要素があります。各 headers 属性は、そのセルに関連付けられているすべての th 要素の ID を列挙する必要があります。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H39,H73.4",
+    ruleId: 'Principle1.Guideline1_3.1_3_1_H43.MissingHeadersAttrs',
     description:
-      "このテーブルがデータテーブルで、 summary 属性と caption 要素の両方が存在する場合、 summary は caption を複製しないでください。",
+      'このテーブルに headers 属性を含まない td 要素があります。各 headers 属性は、そのセルに関連付けられているすべての th 要素の ID を列挙する必要があります。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H73.3.Check",
+    ruleId: 'Principle1.Guideline1_3.1_3_1_H43.ScopeAmbiguous',
     description:
-      "このテーブルがデータテーブルである場合は、 summary 属性がテーブルの構成を説明していること、またはテーブルの使用方法を説明していることを確認してください。",
+      '複数のレベルの見出しを持つテーブルでは、 th 要素のスコープ属性はあいまいです。代わりに td 要素の headers 属性を使用してください。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H73.3.NoSummary",
+    ruleId: 'Principle1.Guideline1_3.1_3_1_H44.NotFormControl',
     description:
-      "このテーブルがデータテーブルの場合は、 table 要素の summary 属性を使用してこのテーブルの概要を説明してください。",
+      'このラベルの "for" 属性には、フォームコントロールでない要素の ID が含まれています。目的の要素に正しい ID を入力していることを確認してください。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H39.3.LayoutTable",
+    ruleId: 'Principle1.Guideline1_3.1_3_1_H48',
     description:
-      "このテーブルはレイアウトに使用されているように見えますが、 caption 要素が含まれています。レイアウトテーブルに caption を含めることはできません。",
+      'この要素にナビゲーションセクションが含まれる場合は、リストとしてマークアップすることを推奨します。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H39.3.Check",
+    ruleId: 'Principle1.Guideline1_3.1_3_1_H48.1',
     description:
-      "このテーブルがデータテーブルの場合は、 caption 要素がこのテーブルを正確に記述していることを確認してください。",
+      'このコンテンツは、プレーンテキストを使用して番号なしリストをシミュレートしているように見えます。もしそうなら、 ul 要素でこの内容をマークアップすることで文書に適切な構造情報を追加します。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H39.3.NoCaption",
+    ruleId: 'Principle1.Guideline1_3.1_3_1_H48.2',
     description:
-      "このテーブルがデータテーブルである場合は、このテーブルを識別するために table 要素に caption 要素を使用することを検討してください。",
+      'このコンテンツは、プレーンテキストを使用して番号付きリストをシミュレートしているように見えます。もしそうなら、 ol 要素でこの内容をマークアップすることで文書に適切な構造情報を追加します。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H71.NoLegend",
+    ruleId: 'Principle1.Guideline1_3.1_3_1_H49.',
     description:
-      "フィールドセットに legend 要素が含まれていません。すべてのフィールドセットには、フィールドグループの説明を記述する legend 要素を含める必要があります。",
+      'HTML5では時代遅れになっているプレゼンテーションマークアップが使用されています。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H85.2",
+    ruleId: 'Principle1.Guideline1_3.1_3_1_H49.AlignAttr.Semantic',
     description:
-      "この選択リストに関連オプションのグループが含まれている場合は、それらを optgroup とグループ化する必要があります。",
+      '強調テキストまたは特殊テキストには、プログラム的に決定できるようセマンティックマークアップが使用されるべきです。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H71.SameName",
+    ruleId: 'Principle1.Guideline1_3.1_3_1_H49.Semantic',
     description:
-      "これらのラジオボタンまたはチェックボックスにさらにグループレベルの説明が必要な場合は、それらを fieldset 要素に含める必要があります。",
+      '強調テキストまたは特殊テキストには、プログラム的に決定できるようセマンティックマークアップが使用されるべきです。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H48.1",
+    ruleId: 'Principle1.Guideline1_3.1_3_1_H63.1',
     description:
-      "このコンテンツは、プレーンテキストを使用して番号なしリストをシミュレートしているように見えます。もしそうなら、 ul 要素でこの内容をマークアップすることで文書に適切な構造情報を追加します。",
+      'このテーブルに scope 属性をもたない th 要素があります。これらのセルは、 td 要素との関連を識別するための scope 属性を含むべきです。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H48.2",
+    ruleId: 'Principle1.Guideline1_3.1_3_1_H63.2',
     description:
-      "このコンテンツは、プレーンテキストを使用して番号付きリストをシミュレートしているように見えます。もしそうなら、 ol 要素でこの内容をマークアップすることで文書に適切な構造情報を追加します。",
+      '他の要素の見出しとして機能する td 要素のスコープ属性は、HTML5では廃止されました。代わりに th 要素を使用してください。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_G141_a",
+    ruleId: 'Principle1.Guideline1_3.1_3_1_H63.3',
     description:
-      "見出し構造が論理的にネストされていません。この h{{headingNum}} 要素は主な文書見出しであるようにみえるため、 h1 要素であるべきです。",
+      'テーブルセルに無効な scope 属性があります。有効な値は、 row 、 col 、 rowgroup 、または colgroup です。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H42.2",
+    ruleId: 'Principle1.Guideline1_3.1_3_1_H65',
     description:
-      "見出しタグがコンテンツなしで見つかりました。見出しとして意図されていないテキストは、見出しタグでマークアップしてはいけません。",
+      'このフォームコントロールには、空またはスペースのみを含む "title" 属性があります。ラベリングテストの目的では無視されます。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H48",
+    ruleId: 'Principle1.Guideline1_3.1_3_1_H71.NoLegend',
     description:
-      "この要素にナビゲーションセクションが含まれる場合は、リストとしてマークアップすることを推奨します。",
+      'フィールドセットに legend 要素が含まれていません。すべてのフィールドセットには、フィールドグループの説明を記述する legend 要素を含める必要があります。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_LayoutTable",
+    ruleId: 'Principle1.Guideline1_3.1_3_1_H71.SameName',
     description:
-      "このテーブルはレイアウトテーブルのようにみえます。もしデータテーブルであることを意図している場合、 th 要素を使用することでヘッダーセルが識別されるようにしてください。",
+      'これらのラジオボタンまたはチェックボックスにさらにグループレベルの説明が必要な場合は、それらを fieldset 要素に含める必要があります。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_DataTable",
+    ruleId: 'Principle1.Guideline1_3.1_3_1_H73.3.Check',
     description:
-      "このテーブルはデータテーブルのようにみえます。もしレイアウトテーブルであることを意図している場合は、 th 要素がないこと、および summary または caption がないことを確認してください。",
+      'このテーブルがデータテーブルである場合は、 summary 属性がテーブルの構成を説明していること、またはテーブルの使用方法を説明していることを確認してください。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_2_G57",
+    ruleId: 'Principle1.Guideline1_3.1_3_1_H73.3.LayoutTable',
     description:
-      "スタイルシートが無効になっている場合など、線形化されたときにコンテンツが意味のある順序で並べられていることを確認してください。",
+      'このテーブルはレイアウトに使用されているように見えますが、 summary 属性が含まれています。レイアウトテーブルに summary 属性を含めないか、または、指定されている場合は空にしてください。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_3_G96",
+    ruleId: 'Principle1.Guideline1_3.1_3_1_H73.3.NoSummary',
     description:
-      "コンテンツを理解するための説明が提供されている場合は、オブジェクトを説明するために（形状、サイズ、場所などの）感覚的な特性だけに頼らないでください。",
+      'このテーブルがデータテーブルの場合は、 table 要素の summary 属性を使用してこのテーブルの概要を説明してください。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_4.RestrictView",
+    ruleId: 'Principle1.Guideline1_3.1_3_1_H85.2',
+    description:
+      'この選択リストに関連オプションのグループが含まれている場合は、それらを optgroup とグループ化する必要があります。',
+    helpUrl: [],
+    ruleType: 'warning',
+  },
+  {
+    ruleId: 'Principle1.Guideline1_3.1_3_1_LayoutTable',
+    description:
+      'このテーブルはレイアウトテーブルのようにみえます。もしデータテーブルであることを意図している場合、 th 要素を使用することでヘッダーセルが識別されるようにしてください。',
+    helpUrl: [],
+    ruleType: 'notice',
+  },
+  {
+    ruleId: 'Principle1.Guideline1_3.1_3_2_G57',
+    description:
+      'スタイルシートが無効になっている場合など、線形化されたときにコンテンツが意味のある順序で並べられていることを確認してください。',
+    helpUrl: [],
+    ruleType: 'notice',
+  },
+  {
+    ruleId: 'Principle1.Guideline1_3.1_3_3_G96',
+    description:
+      'コンテンツを理解するための説明が提供されている場合は、オブジェクトを説明するために（形状、サイズ、場所などの）感覚的な特性だけに頼らないでください。',
+    helpUrl: [],
+    ruleType: 'notice',
+  },
+  {
+    ruleId: 'Principle1.Guideline1_3.1_3_4.RestrictView',
     description: "HTMLCS.getTranslation('1_3_4.RestrictView')",
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_5_H98.FaultyValue",
+    ruleId: 'Principle1.Guideline1_3.1_3_5_H98.FaultyValue',
     description: "HTMLCS.getTranslation('1_3_5_H98.FaultyValue')",
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_5_H98.InvalidAutoComplete_Text",
-    description: "HTMLCS.getTranslation('1_3_5_H98.InvalidAutoComplete_Text')",
+    ruleId: 'Principle1.Guideline1_3.1_3_5_H98.InvalidAutoComplete_Date',
+    description: "HTMLCS.getTranslation('1_3_5_H98.InvalidAutoComplete_Date')",
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_5_H98.InvalidAutoComplete_Multiline",
+    ruleId: 'Principle1.Guideline1_3.1_3_5_H98.InvalidAutoComplete_Month',
+    description: "HTMLCS.getTranslation('1_3_5_H98.InvalidAutoComplete_Month')",
+    helpUrl: [],
+    ruleType: 'error',
+  },
+  {
+    ruleId: 'Principle1.Guideline1_3.1_3_5_H98.InvalidAutoComplete_Multiline',
     description:
       "HTMLCS.getTranslation('1_3_5_H98.InvalidAutoComplete_Multiline')",
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_5_H98.InvalidAutoComplete_Password",
-    description:
-      "HTMLCS.getTranslation('1_3_5_H98.InvalidAutoComplete_Password')",
-    helpUrl: [],
-    ruleType: "error",
-  },
-  {
-    ruleId: "Principle1.Guideline1_3.1_3_5_H98.InvalidAutoComplete_Url",
-    description: "HTMLCS.getTranslation('1_3_5_H98.InvalidAutoComplete_Url')",
-    helpUrl: [],
-    ruleType: "error",
-  },
-  {
-    ruleId: "Principle1.Guideline1_3.1_3_5_H98.InvalidAutoComplete_Telephone",
-    description:
-      "HTMLCS.getTranslation('1_3_5_H98.InvalidAutoComplete_Telephone')",
-    helpUrl: [],
-    ruleType: "error",
-  },
-  {
-    ruleId: "Principle1.Guideline1_3.1_3_5_H98.InvalidAutoComplete_Numeric",
+    ruleId: 'Principle1.Guideline1_3.1_3_5_H98.InvalidAutoComplete_Numeric',
     description:
       "HTMLCS.getTranslation('1_3_5_H98.InvalidAutoComplete_Numeric')",
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_5_H98.InvalidAutoComplete_Month",
-    description: "HTMLCS.getTranslation('1_3_5_H98.InvalidAutoComplete_Month')",
+    ruleId: 'Principle1.Guideline1_3.1_3_5_H98.InvalidAutoComplete_Password',
+    description:
+      "HTMLCS.getTranslation('1_3_5_H98.InvalidAutoComplete_Password')",
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_5_H98.InvalidAutoComplete_Date",
-    description: "HTMLCS.getTranslation('1_3_5_H98.InvalidAutoComplete_Date')",
+    ruleId: 'Principle1.Guideline1_3.1_3_5_H98.InvalidAutoComplete_Telephone',
+    description:
+      "HTMLCS.getTranslation('1_3_5_H98.InvalidAutoComplete_Telephone')",
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_5_H98.Purpose",
-    description: "HTMLCS.getTranslation('1_3_5_H98.Purpose')",
+    ruleId: 'Principle1.Guideline1_3.1_3_5_H98.InvalidAutoComplete_Text',
+    description: "HTMLCS.getTranslation('1_3_5_H98.InvalidAutoComplete_Text')",
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_5_H98.MissingAutocomplete",
+    ruleId: 'Principle1.Guideline1_3.1_3_5_H98.InvalidAutoComplete_Url',
+    description: "HTMLCS.getTranslation('1_3_5_H98.InvalidAutoComplete_Url')",
+    helpUrl: [],
+    ruleType: 'error',
+  },
+  {
+    ruleId: 'Principle1.Guideline1_3.1_3_5_H98.MissingAutocomplete',
     description: "HTMLCS.getTranslation('1_3_5_H98.MissingAutocomplete')",
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_6_ARIA11.Check",
+    ruleId: 'Principle1.Guideline1_3.1_3_5_H98.Purpose',
+    description: "HTMLCS.getTranslation('1_3_5_H98.Purpose')",
+    helpUrl: [],
+    ruleType: 'notice',
+  },
+  {
+    ruleId: 'Principle1.Guideline1_3.1_3_6_ARIA11.Check',
     description: "HTMLCS.getTranslation('1_3_6_ARIA11.Check')",
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle1.Guideline1_4.1_4_1_G14,G18",
-    description:
-      "色だけを使って伝えられる情報がテキストや他の視覚的な手がかりを通しても利用可能であることを確認してください。",
+    ruleId: 'Principle1.Guideline1_3.code',
+    description: 'msg',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'level',
   },
   {
-    ruleId: "Principle1.Guideline1_4.1_4_10_C32,C31,C33,C38,SCR34,G206.Check",
+    ruleId: 'Principle1.Guideline1_3.H49.AlignAttr',
+    description: 'Align attributes .',
+    helpUrl: [],
+    ruleType: 'error',
+  },
+  {
+    ruleId: 'Principle1.Guideline1_3.HiddenText',
+    description:
+      'If content is hidden and made visible using scripting (such as "click to expand" sections), ensure this content is readable when scripts and style sheets are disabled.',
+    helpUrl: [],
+    ruleType: 'notice',
+  },
+  {
+    ruleId: 'Principle1.Guideline1_3.Linearised',
+    description:
+      'Ensure that content is ordered in a meaningful sequence when linearised, such as when style sheets are disabled.',
+    helpUrl: [],
+    ruleType: 'notice',
+  },
+  {
+    ruleId: 'Principle1.Guideline1_4.1_4_1_G14,G18',
+    description:
+      '色だけを使って伝えられる情報がテキストや他の視覚的な手がかりを通しても利用可能であることを確認してください。',
+    helpUrl: [],
+    ruleType: 'notice',
+  },
+  {
+    ruleId: 'Principle1.Guideline1_4.1_4_10_C32,C31,C33,C38,SCR34,G206.Check',
     description:
       "HTMLCS.getTranslation('1_4_10_C32,C31,C33,C38,SCR34,G206.Check')",
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle1.Guideline1_4.1_4_10_C32,C31,C33,C38,SCR34,G206.Fixed",
+    ruleId: 'Principle1.Guideline1_4.1_4_10_C32,C31,C33,C38,SCR34,G206.Fixed',
     description:
       "HTMLCS.getTranslation('1_4_10_C32,C31,C33,C38,SCR34,G206.Fixed')",
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'warning',
   },
   {
     ruleId:
-      "Principle1.Guideline1_4.1_4_10_C32,C31,C33,C38,SCR34,G206.Scrolling",
+      'Principle1.Guideline1_4.1_4_10_C32,C31,C33,C38,SCR34,G206.Scrolling',
     description:
       "HTMLCS.getTranslation('1_4_10_C32,C31,C33,C38,SCR34,G206.Scrolling')",
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle1.Guideline1_4.1_4_10_C32,C31,C33,C38,SCR34,G206.Zoom",
+    ruleId: 'Principle1.Guideline1_4.1_4_10_C32,C31,C33,C38,SCR34,G206.Zoom',
     description:
       "HTMLCS.getTranslation('1_4_10_C32,C31,C33,C38,SCR34,G206.Zoom')",
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle1.Guideline1_4.1_4_11_G195,G207,G18,G145,G174,F78.Check",
+    ruleId: 'Principle1.Guideline1_4.1_4_11_G195,G207,G18,G145,G174,F78.Check',
     description:
       "HTMLCS.getTranslation('1_4_11_G195,G207,G18,G145,G174,F78.Check')",
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle1.Guideline1_4.1_4_12_C36,C35.Check",
+    ruleId: 'Principle1.Guideline1_4.1_4_12_C36,C35.Check',
     description: "HTMLCS.getTranslation('1_4_12_C36,C35.Check')",
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle1.Guideline1_4.1_4_13_F95.Check",
+    ruleId: 'Principle1.Guideline1_4.1_4_13_F95.Check',
     description: "HTMLCS.getTranslation('1_4_13_F95.Check')",
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle1.Guideline1_4.1_4_2_F23",
+    ruleId: 'Principle1.Guideline1_4.1_4_2_F23',
     description:
-      "この要素に3秒を超えて自動再生される音声が含まれている場合は、音声を一時停止、停止、またはミュートする機能があることを確認してください。",
+      'この要素に3秒を超えて自動再生される音声が含まれている場合は、音声を一時停止、停止、またはミュートする機能があることを確認してください。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle1.Guideline1_4.1_4_3_G18_or_G145.BgGradient",
+    ruleId: 'Principle1.Guideline1_4.1_4_3_F24.BGColour',
     description:
-      "この要素のテキストはグラデーションの上に配置されます。テキストとグラデーションのすべての覆われた部分のコントラスト比が少なくとも {{required}}:1 であることを確認してください。",
+      'この要素に継承された前景色があり、対応するインラインの背景色または画像を引き立てていることを確認してください。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle1.Guideline1_4.1_4_3_G18_or_G145.Abs",
+    ruleId: 'Principle1.Guideline1_4.1_4_3_F24.FGColour',
     description:
-      "この要素は絶対位置に配置されているため、背景色を決定できません。テキストと背景の覆われた部分すべてのコントラスト比が少なくとも{{required}}:1であることを確認してください。",
+      'この要素に継承された背景色または画像があり、対応するインラインの前景色を引き立てていることを確認してください。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle1.Guideline1_4.1_4_3_G18_or_G145.BgImage",
+    ruleId: 'Principle1.Guideline1_4.1_4_3_G18_or_G145.Abs',
     description:
-      "この要素のテキストは背景画像に配置されます。テキストと画像の覆われている部分すべてのコントラスト比が少なくとも{{required}}:1であることを確認してください。",
+      'この要素は絶対位置に配置されているため、背景色を決定できません。テキストと背景の覆われた部分すべてのコントラスト比が少なくとも{{required}}:1であることを確認してください。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle1.Guideline1_4.1_4_3_G18_or_G145.Alpha",
+    ruleId: 'Principle1.Guideline1_4.1_4_3_G18_or_G145.Alpha',
     description:
-      "この要素のテキストまたは背景は透明部分を含みます。テキストと背景のコントラスト比が少なくとも{{required}}:1であることを確認してください。",
+      'この要素のテキストまたは背景は透明部分を含みます。テキストと背景のコントラスト比が少なくとも{{required}}:1であることを確認してください。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle1.Guideline1_4.1_4_3_F24.BGColour",
+    ruleId: 'Principle1.Guideline1_4.1_4_3_G18_or_G145.BgGradient',
     description:
-      "この要素に継承された前景色があり、対応するインラインの背景色または画像を引き立てていることを確認してください。",
+      'この要素のテキストはグラデーションの上に配置されます。テキストとグラデーションのすべての覆われた部分のコントラスト比が少なくとも {{required}}:1 であることを確認してください。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle1.Guideline1_4.1_4_3_F24.FGColour",
+    ruleId: 'Principle1.Guideline1_4.1_4_3_G18_or_G145.BgImage',
     description:
-      "この要素に継承された背景色または画像があり、対応するインラインの前景色を引き立てていることを確認してください。",
+      'この要素のテキストは背景画像に配置されます。テキストと画像の覆われている部分すべてのコントラスト比が少なくとも{{required}}:1であることを確認してください。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle1.Guideline1_4.1_4_4_G142",
+    ruleId: 'Principle1.Guideline1_4.1_4_4_G142',
     description:
-      "コンテンツや機能を損なうことなく、支援技術なしでテキストを200パーセントまでリサイズできることを確認してください。",
+      'コンテンツや機能を損なうことなく、支援技術なしでテキストを200パーセントまでリサイズできることを確認してください。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle1.Guideline1_4.1_4_5_G140,C22,C30.AALevel",
+    ruleId: 'Principle1.Guideline1_4.1_4_5_G140,C22,C30.AALevel',
     description:
-      "使用している技術で意図した視覚的提示が可能である場合、文字画像ではなくテキストが情報伝達に用いられているか確認してください。ただし、文字画像が、伝えようとする情報にとって必要不可欠であるか、または、利用者の要求に応じて視覚的にカスタマイズできる場合を除きます。",
+      '使用している技術で意図した視覚的提示が可能である場合、文字画像ではなくテキストが情報伝達に用いられているか確認してください。ただし、文字画像が、伝えようとする情報にとって必要不可欠であるか、または、利用者の要求に応じて視覚的にカスタマイズできる場合を除きます。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle1.Guideline1_4.1_4_6_G18_or_G145.BgGradient",
+    ruleId: 'Principle1.Guideline1_4.1_4_6_G18_or_G145.BgGradient',
     description:
-      "この要素のテキストはグラデーションの上に配置されます。テキストとグラデーションのすべての覆われた部分のコントラスト比が少なくとも {{required}}:1 であることを確認してください。",
+      'この要素のテキストはグラデーションの上に配置されます。テキストとグラデーションのすべての覆われた部分のコントラスト比が少なくとも {{required}}:1 であることを確認してください。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle1.Guideline1_4.1_4_6_G18_or_G17.Abs",
+    ruleId: 'Principle1.Guideline1_4.1_4_6_G18_or_G17.Abs',
     description:
-      "この要素は絶対位置に配置されているため、背景色を決定できません。テキストと背景の覆われた部分すべてのコントラスト比が少なくとも{{required}}:1であることを確認してください。",
+      'この要素は絶対位置に配置されているため、背景色を決定できません。テキストと背景の覆われた部分すべてのコントラスト比が少なくとも{{required}}:1であることを確認してください。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle1.Guideline1_4.1_4_6_G18_or_G17.BgImage",
+    ruleId: 'Principle1.Guideline1_4.1_4_6_G18_or_G17.BgImage',
     description:
-      "この要素のテキストは背景画像に配置されます。テキストと画像の覆われている部分すべてのコントラスト比が少なくとも{{required}}:1であることを確認してください。",
+      'この要素のテキストは背景画像に配置されます。テキストと画像の覆われている部分すべてのコントラスト比が少なくとも{{required}}:1であることを確認してください。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle1.Guideline1_4.1_4_7_G56",
+    ruleId: 'Principle1.Guideline1_4.1_4_7_G56',
     description:
-      "主に（ナレーションなどの）スピーチである要素内の事前録音された音声のみのコンテンツでは、背景音はミュート可能であるか、またはスピーチより少なくとも20dB（または約4倍）静かである必要があります。",
+      '主に（ナレーションなどの）スピーチである要素内の事前録音された音声のみのコンテンツでは、背景音はミュート可能であるか、またはスピーチより少なくとも20dB（または約4倍）静かである必要があります。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle1.Guideline1_4.1_4_8_G148,G156,G175",
+    ruleId: 'Principle1.Guideline1_4.1_4_8_C19,G172,G169',
     description:
-      "ウェブページまたはブラウザを介して、ユーザーがテキストブロックの前景色と背景色を選択できるメカニズムがあることを確認してください。",
+      'テキストブロックが両端揃えされていないこと、または両端揃えを削除するためのメカニズムが存在することを確認してください。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle1.Guideline1_4.1_4_8_H87,C20",
+    ruleId: 'Principle1.Guideline1_4.1_4_8_G148,G156,G175',
     description:
-      "テキストブロックの幅を80文字以下（中国語、日本語、または韓国語のスクリプトでは40文字以下）に縮小するメカニズムが存在することを確認してください。",
+      'ウェブページまたはブラウザを介して、ユーザーがテキストブロックの前景色と背景色を選択できるメカニズムがあることを確認してください。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle1.Guideline1_4.1_4_8_C19,G172,G169",
+    ruleId: 'Principle1.Guideline1_4.1_4_8_G188,C21',
     description:
-      "テキストブロックが両端揃えされていないこと、または両端揃えを削除するためのメカニズムが存在することを確認してください。",
+      'テキストブロック内の行間隔が段落内で少なくとも150％であり、段落間隔が行間隔の少なくとも1.5倍であること、またはこれを達成するためのメカニズムが使用可能であることを確認してください。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle1.Guideline1_4.1_4_8_G188,C21",
+    ruleId: 'Principle1.Guideline1_4.1_4_8_H87,C20',
     description:
-      "テキストブロック内の行間隔が段落内で少なくとも150％であり、段落間隔が行間隔の少なくとも1.5倍であること、またはこれを達成するためのメカニズムが使用可能であることを確認してください。",
+      'テキストブロックの幅を80文字以下（中国語、日本語、または韓国語のスクリプトでは40文字以下）に縮小するメカニズムが存在することを確認してください。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle1.Guideline1_4.1_4_8_H87,G146,C26",
+    ruleId: 'Principle1.Guideline1_4.1_4_8_H87,G146,C26',
     description:
-      "ユーザーがフルスクリーンウィンドウ上で水平にスクロールすることを必要とせずに、支援技術なしでテキストを200パーセントまでリサイズできることを確認してください。",
+      'ユーザーがフルスクリーンウィンドウ上で水平にスクロールすることを必要とせずに、支援技術なしでテキストを200パーセントまでリサイズできることを確認してください。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle1.Guideline1_4.1_4_9_G140,C22,C30.NoException",
+    ruleId: 'Principle1.Guideline1_4.1_4_9_G140,C22,C30.NoException',
     description:
-      "テキストのイメージが純粋な装飾のためか、または、伝えられる情報にテキストの特定の表現が不可欠である場合にだけ使われているか確認してください。",
+      'テキストのイメージが純粋な装飾のためか、または、伝えられる情報にテキストの特定の表現が不可欠である場合にだけ使われているか確認してください。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle2.Guideline2_1.2_1_1_G90",
+    ruleId: 'Principle2.Guideline2_1.2_1_1_G90',
     description:
-      "この要素のイベントハンドラによって提供される機能がキーボードから利用可能であることを確認してください。",
+      'この要素のイベントハンドラによって提供される機能がキーボードから利用可能であることを確認してください。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle2.Guideline2_1.2_1_1_SCR20.DblClick",
+    ruleId: 'Principle2.Guideline2_1.2_1_1_SCR20.DblClick',
     description:
-      "この要素をダブルクリックすることで提供される機能がキーボードから利用可能であることを確認してください。",
+      'この要素をダブルクリックすることで提供される機能がキーボードから利用可能であることを確認してください。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle2.Guideline2_1.2_1_1_SCR20.MouseOver",
+    ruleId: 'Principle2.Guideline2_1.2_1_1_SCR20.MouseDown',
     description:
-      "この要素の上にマウスを置くことで提供される機能がキーボードから利用可能であることを確認してください。たとえば、フォーカスイベントの使用などです。",
+      'この要素をマウスオーバーすることで提供される機能がキーボードから利用可能であることを確認してください。たとえば、 keydown イベントの使用などです。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle2.Guideline2_1.2_1_1_SCR20.MouseOut",
+    ruleId: 'Principle2.Guideline2_1.2_1_1_SCR20.MouseMove',
     description:
-      "この要素からマウスを外すことによって提供される機能がキーボードを通して利用可能であることを確認してください。たとえば、 blur イベントの使用などです。",
+      'この要素上でマウスを動かすことによって提供される機能がキーボードを通して利用可能であることを確認してください。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle2.Guideline2_1.2_1_1_SCR20.MouseMove",
+    ruleId: 'Principle2.Guideline2_1.2_1_1_SCR20.MouseOut',
     description:
-      "この要素上でマウスを動かすことによって提供される機能がキーボードを通して利用可能であることを確認してください。",
+      'この要素からマウスを外すことによって提供される機能がキーボードを通して利用可能であることを確認してください。たとえば、 blur イベントの使用などです。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle2.Guideline2_1.2_1_1_SCR20.MouseDown",
+    ruleId: 'Principle2.Guideline2_1.2_1_1_SCR20.MouseOver',
     description:
-      "この要素をマウスオーバーすることで提供される機能がキーボードから利用可能であることを確認してください。たとえば、 keydown イベントの使用などです。",
+      'この要素の上にマウスを置くことで提供される機能がキーボードから利用可能であることを確認してください。たとえば、フォーカスイベントの使用などです。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle2.Guideline2_1.2_1_1_SCR20.MouseUp",
+    ruleId: 'Principle2.Guideline2_1.2_1_1_SCR20.MouseUp',
     description:
-      "この要素にマウスを合わせることで提供される機能がキーボードから利用可能であることを確認してください。たとえば、 keyup イベントの使用などです。",
+      'この要素にマウスを合わせることで提供される機能がキーボードから利用可能であることを確認してください。たとえば、 keyup イベントの使用などです。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle2.Guideline2_1.2_1_2_F10",
+    ruleId: 'Principle2.Guideline2_1.2_1_2_F10',
     description:
-      "このアプレットまたはプラグインが、キーボードを使用しているときにフォーカスをそれ自体から遠ざける機能を提供することを確認してください。",
+      'このアプレットまたはプラグインが、キーボードを使用しているときにフォーカスをそれ自体から遠ざける機能を提供することを確認してください。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle2.Guideline2_1.2_1_4.Check",
+    ruleId: 'Principle2.Guideline2_1.2_1_4.Check',
     description: "HTMLCS.getTranslation('2_1_4.Check')",
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle2.Guideline2_2.2_2_1_F40.2",
+    ruleId: 'Principle2.Guideline2_2.2_2_1_F40.2',
     description:
-      "別のページにリダイレクトするために使用される Meta リフレッシュタグの制限時間が0ではありません。ユーザーはこの制限時間を制御できません。",
+      '別のページにリダイレクトするために使用される Meta リフレッシュタグの制限時間が0ではありません。ユーザーはこの制限時間を制御できません。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle2.Guideline2_2.2_2_1_F41.2",
+    ruleId: 'Principle2.Guideline2_2.2_2_1_F41.2',
     description:
-      "現在のページを更新するために meta リフレッシュタグが使用されています。ユーザーはこの更新の制限時間を制御できません。",
+      '現在のページを更新するために meta リフレッシュタグが使用されています。ユーザーはこの更新の制限時間を制御できません。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle2.Guideline2_2.2_2_2_SCR33,SCR22,G187,G152,G186,G191",
+    ruleId: 'Principle2.Guideline2_2.2_2_2_F4',
     description:
-      "コンテンツの一部が5秒より長く移動、スクロール、点滅、または自動更新される場合は、コンテンツを一時停止、停止、非表示にできるメカニズムがあることを確認してください。",
+      'この点滅している要素を5秒以内に止めることができるメカニズムがあることを確認してください。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle2.Guideline2_2.2_2_2_F4",
+    ruleId: 'Principle2.Guideline2_2.2_2_2_F47',
     description:
-      "この点滅している要素を5秒以内に止めることができるメカニズムがあることを確認してください。",
+      'blink 要素は、点滅情報を5秒以内に停止できるという要件を満たせません。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle2.Guideline2_2.2_2_2_F47",
+    ruleId: 'Principle2.Guideline2_2.2_2_2_SCR33,SCR22,G187,G152,G186,G191',
     description:
-      "blink 要素は、点滅情報を5秒以内に停止できるという要件を満たせません。",
+      'コンテンツの一部が5秒より長く移動、スクロール、点滅、または自動更新される場合は、コンテンツを一時停止、停止、非表示にできるメカニズムがあることを確認してください。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle2.Guideline2_2.2_2_3_G5",
+    ruleId: 'Principle2.Guideline2_2.2_2_3_G5',
     description:
-      "タイミングがコンテンツによって提示されるイベントまたはアクティビティの重要な部分でないことを確認してください。ただし、インタラクティブでない同期したメディアおよびリアルタイムイベントを除きます。",
+      'タイミングがコンテンツによって提示されるイベントまたはアクティビティの重要な部分でないことを確認してください。ただし、インタラクティブでない同期したメディアおよびリアルタイムイベントを除きます。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle2.Guideline2_2.2_2_4_SCR14",
+    ruleId: 'Principle2.Guideline2_2.2_2_4_SCR14',
     description:
-      "緊急時の中断を除いて、すべての中断（コンテンツの更新を含む）がユーザーによって延期または抑制できることを確認してください。",
+      '緊急時の中断を除いて、すべての中断（コンテンツの更新を含む）がユーザーによって延期または抑制できることを確認してください。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle2.Guideline2_2.2_2_5_G105,G181",
+    ruleId: 'Principle2.Guideline2_2.2_2_5_G105,G181',
     description:
-      "このウェブページが無活動時間制限のある一連のウェブページの一部である場合は、認証されたユーザーが再認証後にデータを失うことなくアクティビティを続行できることを確認してください。",
+      'このウェブページが無活動時間制限のある一連のウェブページの一部である場合は、認証されたユーザーが再認証後にデータを失うことなくアクティビティを続行できることを確認してください。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle2.Guideline2_2.2_2_6.Check",
+    ruleId: 'Principle2.Guideline2_2.2_2_6.Check',
     description: "HTMLCS.getTranslation('2_2_6.Check')",
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle2.Guideline2_3.2_3_1_G19,G176",
+    ruleId: 'Principle2.Guideline2_3.2_3_1_G19,G176',
     description:
-      "コンテンツのすべてのコンポーネントが、どの1秒間においても3回を超えて点滅していないこと、または点滅している領域のサイズが十分に小さいことを確認してください。",
+      'コンテンツのすべてのコンポーネントが、どの1秒間においても3回を超えて点滅していないこと、または点滅している領域のサイズが十分に小さいことを確認してください。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle2.Guideline2_3.2_3_2_G19",
+    ruleId: 'Principle2.Guideline2_3.2_3_2_G19',
     description:
-      "コンテンツのすべてのコンポーネントが、どの1秒間においても3回を超えて点滅していないことを確認してください。",
+      'コンテンツのすべてのコンポーネントが、どの1秒間においても3回を超えて点滅していないことを確認してください。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle2.Guideline2_3.2_3_3.Check",
+    ruleId: 'Principle2.Guideline2_3.2_3_3.Check',
     description: "HTMLCS.getTranslation('2_3_3.Check')",
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle2.Guideline2_4.2_4_1_H64.1",
+    ruleId: 'Principle2.Guideline2_4.2_4_1_G1,G123,G124,H69',
     description:
-      "iframe 要素には、フレームを識別する空でない title 属性が必要です。",
+      '一般的なナビゲーション要素はすべて迂回できることを確認してください。例えば、スキップリンク、ヘッダ要素、または ARIA ランドマークを使用します。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle2.Guideline2_4.2_4_1_H64.2",
-    description:
-      "この要素の title 属性にフレームを識別するテキストが含まれていることを確認してください。",
-    helpUrl: [],
-    ruleType: "notice",
-  },
-  {
-    ruleId: "Principle2.Guideline2_4.2_4_1_G1,G123,G124,H69",
-    description:
-      "一般的なナビゲーション要素はすべて迂回できることを確認してください。例えば、スキップリンク、ヘッダ要素、または ARIA ランドマークを使用します。",
-    helpUrl: [],
-    ruleType: "notice",
-  },
-  {
-    ruleId: "Principle2.Guideline2_4.2_4_1_G1,G123,G124.NoSuchID",
+    ruleId: 'Principle2.Guideline2_4.2_4_1_G1,G123,G124.NoSuchID',
     description:
       'このリンクはドキュメント内の名前付きアンカー "{{id}}" を指していますが、その名前のアンカーは存在しません。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle2.Guideline2_4.2_4_1_G1,G123,G124.NoSuchIDFragment",
+    ruleId: 'Principle2.Guideline2_4.2_4_1_G1,G123,G124.NoSuchIDFragment',
     description:
       'このリンクはドキュメント内の名前付きアンカー "{{id}}" を指していますが、テストされたフラグメント内にその名前のアンカーは存在しません。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle2.Guideline2_4.2_4_2_H25.1.NoHeadEl",
+    ruleId: 'Principle2.Guideline2_4.2_4_1_H64.1',
     description:
-      "説明的な title 要素を配置するための head セクションがありません。",
+      'iframe 要素には、フレームを識別する空でない title 属性が必要です。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle2.Guideline2_4.2_4_2_H25.1.NoTitleEl",
+    ruleId: 'Principle2.Guideline2_4.2_4_1_H64.2',
     description:
-      "head セクションの空でない title 要素を使って、文書にタイトルをつけるべきです。",
+      'この要素の title 属性にフレームを識別するテキストが含まれていることを確認してください。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle2.Guideline2_4.2_4_2_H25.1.EmptyTitle",
-    description: "head セクションの title 要素が空ではありません。",
+    ruleId: 'Principle2.Guideline2_4.2_4_2_H25.1.EmptyTitle',
+    description: 'head セクションの title 要素が空ではありません。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle2.Guideline2_4.2_4_2_H25.2",
-    description: "title 要素が文書を説明していることを確認してください。",
-    helpUrl: [],
-    ruleType: "notice",
-  },
-  {
-    ruleId: "Principle2.Guideline2_4.2_4_3_H4.2",
+    ruleId: 'Principle2.Guideline2_4.2_4_2_H25.1.NoHeadEl',
     description:
-      "tabindex が使用されている場合は、 tabindex 属性で指定されたタブ順序がコンテンツ内の関係に従っていることを確認してください。",
+      '説明的な title 要素を配置するための head セクションがありません。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle2.Guideline2_4.2_4_4_H77,H78,H79,H80,H81,H33",
+    ruleId: 'Principle2.Guideline2_4.2_4_2_H25.1.NoTitleEl',
     description:
-      "プログラムで解釈されるリンクのコンテキストまたはその title 属性と組み合わせたときに、リンクテキストからリンクの目的が判断できることを確認してください。",
+      'head セクションの空でない title 要素を使って、文書にタイトルをつけるべきです。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle2.Guideline2_4.2_4_4_H77,H78,H79,H80,H81",
+    ruleId: 'Principle2.Guideline2_4.2_4_2_H25.2',
+    description: 'title 要素が文書を説明していることを確認してください。',
+    helpUrl: [],
+    ruleType: 'notice',
+  },
+  {
+    ruleId: 'Principle2.Guideline2_4.2_4_3_H4.2',
     description:
-      "プログラムで解釈されるリンクのコンテキストと組み合わせたときに、リンクテキストからリンクの目的が判断できることを確認してください。",
+      'tabindex が使用されている場合は、 tabindex 属性で指定されたタブ順序がコンテンツ内の関係に従っていることを確認してください。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle2.Guideline2_4.2_4_5_G125,G64,G63,G161,G126,G185",
+    ruleId: 'Principle2.Guideline2_4.2_4_4_H77,H78,H79,H80,H81',
     description:
-      "このウェブページが一連のプロセスの一部でない場合は、ウェブページ一式の中でこのウェブページを見つける方法が複数あることを確認してください。",
+      'プログラムで解釈されるリンクのコンテキストと組み合わせたときに、リンクテキストからリンクの目的が判断できることを確認してください。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle2.Guideline2_4.2_4_6_G130,G131",
+    ruleId: 'Principle2.Guideline2_4.2_4_4_H77,H78,H79,H80,H81,H33',
     description:
-      "見出しとラベルがトピックや目的を説明していることを確認してください。",
+      'プログラムで解釈されるリンクのコンテキストまたはその title 属性と組み合わせたときに、リンクテキストからリンクの目的が判断できることを確認してください。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle2.Guideline2_4.2_4_7_G149,G165,G195,C15,SCR31",
+    ruleId: 'Principle2.Guideline2_4.2_4_5_G125,G64,G63,G161,G126,G185',
     description:
-      "キーボードフォーカスのインジケータをユーザーインターフェイス操作子に視覚的に配置できる操作モードが少なくとも1つあることを確認してください。",
+      'このウェブページが一連のプロセスの一部でない場合は、ウェブページ一式の中でこのウェブページを見つける方法が複数あることを確認してください。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle2.Guideline2_4.2_4_8_H59.1",
+    ruleId: 'Principle2.Guideline2_4.2_4_6_G130,G131',
     description:
-      "link 要素はドキュメントのヘッドセクションにのみ配置できます。",
+      '見出しとラベルがトピックや目的を説明していることを確認してください。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle2.Guideline2_4.2_4_8_H59.2a",
+    ruleId: 'Principle2.Guideline2_4.2_4_7_G149,G165,G195,C15,SCR31',
     description:
-      "link 要素に、リンクタイプを識別する空でない rel 属性がありません。",
+      'キーボードフォーカスのインジケータをユーザーインターフェイス操作子に視覚的に配置できる操作モードが少なくとも1つあることを確認してください。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle2.Guideline2_4.2_4_8_H59.2b",
+    ruleId: 'Principle2.Guideline2_4.2_4_8_H59.1',
     description:
-      "link 要素に、リンクされているリソースを指す空でない href 属性がありません。",
+      'link 要素はドキュメントのヘッドセクションにのみ配置できます。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle2.Guideline2_4.2_4_9_H30",
+    ruleId: 'Principle2.Guideline2_4.2_4_8_H59.2a',
     description:
-      "リンクテキストがリンクの目的を説明していることを確認してください。",
+      'link 要素に、リンクタイプを識別する空でない rel 属性がありません。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle2.Guideline2_5.2_5_1.Check",
+    ruleId: 'Principle2.Guideline2_4.2_4_8_H59.2b',
+    description:
+      'link 要素に、リンクされているリソースを指す空でない href 属性がありません。',
+    helpUrl: [],
+    ruleType: 'error',
+  },
+  {
+    ruleId: 'Principle2.Guideline2_4.2_4_9_H30',
+    description:
+      'リンクテキストがリンクの目的を説明していることを確認してください。',
+    helpUrl: [],
+    ruleType: 'notice',
+  },
+  {
+    ruleId: 'Principle2.Guideline2_5.2_5_1.Check',
     description: "HTMLCS.getTranslation('2_5_1.Check')",
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle2.Guideline2_5.2_5_2.SinglePointer_Check",
-    description: "HTMLCS.getTranslation('2_5_2.SinglePointer_Check')",
-    helpUrl: [],
-    ruleType: "notice",
-  },
-  {
-    ruleId: "Principle2.Guideline2_5.2_5_2.Mousedown_Check",
+    ruleId: 'Principle2.Guideline2_5.2_5_2.Mousedown_Check',
     description: "HTMLCS.getTranslation('2_5_2.Mousedown_Check')",
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle2.Guideline2_5.2_5_2.Touchstart_Check",
+    ruleId: 'Principle2.Guideline2_5.2_5_2.SinglePointer_Check',
+    description: "HTMLCS.getTranslation('2_5_2.SinglePointer_Check')",
+    helpUrl: [],
+    ruleType: 'notice',
+  },
+  {
+    ruleId: 'Principle2.Guideline2_5.2_5_2.Touchstart_Check',
     description: "HTMLCS.getTranslation('2_5_2.Touchstart_Check')",
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle2.Guideline2_5.2_5_3_F96.Check",
-    description: "HTMLCS.getTranslation('2_5_3_F96.Check')",
-    helpUrl: [],
-    ruleType: "notice",
-  },
-  {
-    ruleId: "Principle2.Guideline2_5.2_5_3_F96.AccessibleName",
+    ruleId: 'Principle2.Guideline2_5.2_5_3_F96.AccessibleName',
     description: "HTMLCS.getTranslation('2_5_3_F96.AccessibleName')",
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle2.Guideline2_5.2_5_4.Check",
+    ruleId: 'Principle2.Guideline2_5.2_5_3_F96.Check',
+    description: "HTMLCS.getTranslation('2_5_3_F96.Check')",
+    helpUrl: [],
+    ruleType: 'notice',
+  },
+  {
+    ruleId: 'Principle2.Guideline2_5.2_5_4.Check',
     description: "HTMLCS.getTranslation('2_5_4.Check')",
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle2.Guideline2_5.2_5_4.Devicemotion",
+    ruleId: 'Principle2.Guideline2_5.2_5_4.Devicemotion',
     description: "HTMLCS.getTranslation('2_5_4.Devicemotion')",
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle2.Guideline2_5.2_5_5.Check",
+    ruleId: 'Principle2.Guideline2_5.2_5_5.Check',
     description: "HTMLCS.getTranslation('2_5_5.Check')",
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle2.Guideline2_5.2_5_6.Check",
+    ruleId: 'Principle2.Guideline2_5.2_5_6.Check',
     description: "HTMLCS.getTranslation('2_5_6.Check')",
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle3.Guideline3_1.3_1_1_H57.2",
+    ruleId: 'Principle3.Guideline3_1.3_1_1_H57.2',
     description:
-      "html 要素には、ドキュメントの言語を記述する lang 属性または xml:lang 属性を含める必要があります。",
+      'html 要素には、ドキュメントの言語を記述する lang 属性または xml:lang 属性を含める必要があります。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle3.Guideline3_1.3_1_1_H57.3.Lang",
+    ruleId: 'Principle3.Guideline3_1.3_1_1_H57.3.Lang',
     description:
-      "document 要素の lang 属性に指定されている言語が整形式ではないようです。",
+      'document 要素の lang 属性に指定されている言語が整形式ではないようです。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle3.Guideline3_1.3_1_1_H57.3.XmlLang",
+    ruleId: 'Principle3.Guideline3_1.3_1_1_H57.3.XmlLang',
     description:
-      "document 要素の xml:lang 属性に指定されている言語が整形式ではないようです。",
+      'document 要素の xml:lang 属性に指定されている言語が整形式ではないようです。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle3.Guideline3_1.3_1_2_H58",
+    ruleId: 'Principle3.Guideline3_1.3_1_2_H58',
     description:
-      "言語の変更が、要素の lang 属性または xml:lang 属性、あるいはその両方を使用して適切にマークアップされていることを確認してください。",
+      '言語の変更が、要素の lang 属性または xml:lang 属性、あるいはその両方を使用して適切にマークアップされていることを確認してください。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle3.Guideline3_1.3_1_2_H58.1.Lang",
+    ruleId: 'Principle3.Guideline3_1.3_1_2_H58.1.Lang',
     description:
-      "この要素の lang 属性に指定されている言語は、整形式ではないようです。",
+      'この要素の lang 属性に指定されている言語は、整形式ではないようです。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle3.Guideline3_1.3_1_2_H58.1.XmlLang",
+    ruleId: 'Principle3.Guideline3_1.3_1_2_H58.1.XmlLang',
     description:
-      "この要素の xml:lang 属性に指定されている言語は、整形式ではないようです。",
+      'この要素の xml:lang 属性に指定されている言語は、整形式ではないようです。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle3.Guideline3_1.3_1_3_H40,H54,H60,G62,G70",
+    ruleId: 'Principle3.Guideline3_1.3_1_3_H40,H54,H60,G62,G70',
     description:
-      "慣用句や専門用語を含む、特殊または制限された用法の単語やフレーズの特定の定義を識別するためのメカニズムが利用可能であることを確認してください。",
+      '慣用句や専門用語を含む、特殊または制限された用法の単語やフレーズの特定の定義を識別するためのメカニズムが利用可能であることを確認してください。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle3.Guideline3_1.3_1_4_G102,G55,G62,H28,G97",
+    ruleId: 'Principle3.Guideline3_1.3_1_4_G102,G55,G62,H28,G97',
     description:
-      "展開形式または略語の意味を識別するためのメカニズムが利用可能であることを確認してください。",
+      '展開形式または略語の意味を識別するためのメカニズムが利用可能であることを確認してください。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle3.Guideline3_1.3_1_5_G86,G103,G79,G153,G160",
+    ruleId: 'Principle3.Guideline3_1.3_1_5_G86,G103,G79,G153,G160',
     description:
-      "コンテンツが中等教育レベルよりも高度な読解力を必要とする場合は、補足的なコンテンツまたは代替バージョンを提供する必要があります。",
+      'コンテンツが中等教育レベルよりも高度な読解力を必要とする場合は、補足的なコンテンツまたは代替バージョンを提供する必要があります。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle3.Guideline3_1.3_1_6_H62.1.HTML5",
-    description: "ruby 要素が、本文の発音情報を含む rt 要素を含んでいません。",
+    ruleId: 'Principle3.Guideline3_1.3_1_6_H62.1.HTML5',
+    description: 'ruby 要素が、本文の発音情報を含む rt 要素を含んでいません。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle3.Guideline3_1.3_1_6_H62.1.XHTML11",
+    ruleId: 'Principle3.Guideline3_1.3_1_6_H62.1.XHTML11',
     description:
-      "ruby 要素が、 rb 要素内のテキストの発音情報を含む rt 要素を含んでいません。",
+      'ruby 要素が、 rb 要素内のテキストの発音情報を含む rt 要素を含んでいません。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle3.Guideline3_1.3_1_6_H62.2",
+    ruleId: 'Principle3.Guideline3_1.3_1_6_H62.2',
     description:
-      "ruby 要素に rp 要素が含まれていません。これは、ルビテキストをサポートしていないブラウザに余分な句読点を提供します。",
+      'ruby 要素に rp 要素が含まれていません。これは、ルビテキストをサポートしていないブラウザに余分な句読点を提供します。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle3.Guideline3_2.3_2_1_G107",
+    ruleId: 'Principle3.Guideline3_2.3_2_1_G107',
     description:
-      "この入力フィールドがフォーカスを受けたときにコンテキストの変更が起こらないことを確認してください。",
+      'この入力フィールドがフォーカスを受けたときにコンテキストの変更が起こらないことを確認してください。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle3.Guideline3_2.3_2_2_H32.2",
+    ruleId: 'Principle3.Guideline3_2.3_2_2_H32.2',
     description:
       'このフォームには送信ボタンがありません。キーボードを使用してフォームを送信できないユーザーに問題が発生します。送信ボタンは、 type 属性が "submit" または "image" の INPUT 要素、またはタイプが "submit" または省略/無効の BUTTON 要素です。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle3.Guideline3_2.3_2_3_G61",
+    ruleId: 'Principle3.Guideline3_2.3_2_3_G61',
     description:
-      "複数のウェブページ上で繰り返されているナビゲーションのメカニズムは、繰り返されるたびに相対的に同じ順序で出現することを確認してください。ただし、利用者が変更した場合を除きます。",
+      '複数のウェブページ上で繰り返されているナビゲーションのメカニズムは、繰り返されるたびに相対的に同じ順序で出現することを確認してください。ただし、利用者が変更した場合を除きます。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle3.Guideline3_2.3_2_4_G197",
+    ruleId: 'Principle3.Guideline3_2.3_2_4_G197',
     description:
-      "このウェブページ内で同じ機能を有するコンポーネントが、それが属するウェブページ一式の中で一貫して識別できることを確認してください。",
+      'このウェブページ内で同じ機能を有するコンポーネントが、それが属するウェブページ一式の中で一貫して識別できることを確認してください。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle3.Guideline3_2.3_2_5_H83.3",
+    ruleId: 'Principle3.Guideline3_2.3_2_5_H83.3',
     description:
-      "このリンクのリンクテキストに、リンクが新しいウィンドウで開くことを示す情報が含まれていることを確認してください。",
+      'このリンクのリンクテキストに、リンクが新しいウィンドウで開くことを示す情報が含まれていることを確認してください。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle3.Guideline3_3.3_3_1_G83,G84,G85",
+    ruleId: 'Principle3.Guideline3_3.3_3_1_G83,G84,G85',
     description:
-      "この形式で入力エラーが自動的に検出された場合は、エラーのある項目が識別され、エラーがテキストでユーザーに説明されていることを確認してください。",
+      'この形式で入力エラーが自動的に検出された場合は、エラーのある項目が識別され、エラーがテキストでユーザーに説明されていることを確認してください。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle3.Guideline3_3.3_3_2_G131,G89,G184,H90",
+    ruleId: 'Principle3.Guideline3_3.3_3_2_G131,G89,G184,H90',
     description:
-      "このフォームのユーザー入力に説明ラベルまたは説明（必須フィールドを含む）が指定されていることを確認してください。",
+      'このフォームのユーザー入力に説明ラベルまたは説明（必須フィールドを含む）が指定されていることを確認してください。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle3.Guideline3_3.3_3_3_G177",
+    ruleId: 'Principle3.Guideline3_3.3_3_3_G177',
     description:
-      "コンテンツのセキュリティや目的を損なうことがない限り、このフォームがユーザー入力の誤りに対する推奨される修正を提供することを確認してください。",
+      'コンテンツのセキュリティや目的を損なうことがない限り、このフォームがユーザー入力の誤りに対する推奨される修正を提供することを確認してください。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle3.Guideline3_3.3_3_4_G98,G99,G155,G164,G168.LegalForms",
+    ruleId: 'Principle3.Guideline3_3.3_3_4_G98,G99,G155,G164,G168.LegalForms',
     description:
-      "このフォームがユーザーに財務上または法律上のコミットメントを義務付ける場合、ユーザーが制御可能なデータを修正または削除する、またはテスト回答を送信する場合は、送信が可逆であるか、入力エラーのチェックを行っているか、またはユーザーによる確認を行っているかを確認してください。",
+      'このフォームがユーザーに財務上または法律上のコミットメントを義務付ける場合、ユーザーが制御可能なデータを修正または削除する、またはテスト回答を送信する場合は、送信が可逆であるか、入力エラーのチェックを行っているか、またはユーザーによる確認を行っているかを確認してください。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle3.Guideline3_3.3_3_5_G71,G184,G193",
+    ruleId: 'Principle3.Guideline3_3.3_3_5_G71,G184,G193',
     description:
-      "ウェブフォームやコントロールレベルで、このフォームの状況依存ヘルプが利用できることを確認してください。",
+      'ウェブフォームやコントロールレベルで、このフォームの状況依存ヘルプが利用できることを確認してください。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle3.Guideline3_3.3_3_6_G98,G99,G155,G164,G168.AllForms",
+    ruleId: 'Principle3.Guideline3_3.3_3_6_G98,G99,G155,G164,G168.AllForms',
     description:
-      "このフォームへの送信が可逆であるか、入力エラーのチェックを行っているか、またはユーザーによる確認を行っているかを確認してください。",
+      'このフォームへの送信が可逆であるか、入力エラーのチェックを行っているか、またはユーザーによる確認を行っているかを確認してください。',
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
   {
-    ruleId: "Principle4.Guideline4_1.4_1_2_null",
-    description: "msg",
-    helpUrl: [],
-    ruleType: "error",
-  },
-  {
-    ruleId: "Principle4.Guideline4_1.4_1_2_null",
-    description: "msg",
-    helpUrl: [],
-    ruleType: "warning",
-  },
-  {
-    ruleId: "Principle4.Guideline4_1.4_1_2_H91.A.Empty",
+    ruleId: 'Principle4.Guideline4_1.4_1_2_H91.A.Empty',
     description:
-      "アンカー要素がID付きで見つかりましたが href またはリンクテキストがありません。このIDを親または近くの要素に移動することを検討してください。",
+      'アンカー要素がID付きで見つかりましたが href またはリンクテキストがありません。このIDを親または近くの要素に移動することを検討してください。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle4.Guideline4_1.4_1_2_H91.A.EmptyWithName",
+    ruleId: 'Principle4.Guideline4_1.4_1_2_H91.A.EmptyNoId',
     description:
-      "name属性を持つアンカー要素が見つかりましたが、 href またはリンクテキストがありません。 name 属性を親または近くの要素のIDになるように移動することを検討してください。",
+      'アンカー要素にリンクのコンテンツがなく、name または ID 属性もありません。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle4.Guideline4_1.4_1_2_H91.A.EmptyNoId",
+    ruleId: 'Principle4.Guideline4_1.4_1_2_H91.A.EmptyWithName',
     description:
-      "アンカー要素にリンクのコンテンツがなく、name または ID 属性もありません。",
+      'name属性を持つアンカー要素が見つかりましたが、 href またはリンクテキストがありません。 name 属性を親または近くの要素のIDになるように移動することを検討してください。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle4.Guideline4_1.4_1_2_H91.A.NoHref",
+    ruleId: 'Principle4.Guideline4_1.4_1_2_H91.A.NoContent',
     description:
-      "アンカー要素をページ内リンクの対象の定義に使用するべきではありません。このIDが別の目的(CSSやスクリプト等)で使用されていないなら、親要素へ移動することを検討してください。",
+      '有効なhref属性をもつアンカー要素が見つかりましたが、リンクのコンテンツが与えられていません。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'error',
   },
   {
-    ruleId: "Principle4.Guideline4_1.4_1_2_H91.A.Placeholder",
+    ruleId: 'Principle4.Guideline4_1.4_1_2_H91.A.NoHref',
     description:
-      "有効なリンクのコンテンツをもつアンカー要素が見つかりましたが、 href 、 ID 、 name のいずれの属性も与えられていません。",
+      'アンカー要素をページ内リンクの対象の定義に使用するべきではありません。このIDが別の目的(CSSやスクリプト等)で使用されていないなら、親要素へ移動することを検討してください。',
     helpUrl: [],
-    ruleType: "warning",
+    ruleType: 'warning',
   },
   {
-    ruleId: "Principle4.Guideline4_1.4_1_2_H91.A.NoContent",
+    ruleId: 'Principle4.Guideline4_1.4_1_2_H91.A.Placeholder',
     description:
-      "有効なhref属性をもつアンカー要素が見つかりましたが、リンクのコンテンツが与えられていません。",
+      '有効なリンクのコンテンツをもつアンカー要素が見つかりましたが、 href 、 ID 、 name のいずれの属性も与えられていません。',
     helpUrl: [],
-    ruleType: "error",
+    ruleType: 'warning',
+  },
+  {
+    ruleId: 'Principle4.Guideline4_1.4_1_2_null',
+    description: 'msg',
+    helpUrl: [],
+    ruleType: 'error',
+  },
+  {
+    ruleId: 'Principle4.Guideline4_1.4_1_2_null',
+    description: 'msg',
+    helpUrl: [],
+    ruleType: 'warning',
   },
   {
     ruleId:
-      "Principle4.Guideline4_1.4_1_3_ARIA22,G199,ARIA19,G83,G84,G85,G139,G177,G194,ARIA23.Check",
+      'Principle4.Guideline4_1.4_1_3_ARIA22,G199,ARIA19,G83,G84,G85,G139,G177,G194,ARIA23.Check',
     description:
       "HTMLCS.getTranslation('4_1_3_ARIA22,G199,ARIA19,G83,G84,G85,G139,G177,G194,ARIA23.Check')",
     helpUrl: [],
-    ruleType: "notice",
+    ruleType: 'notice',
   },
-];
+  {
+    ruleId: 'SkipLinks',
+    description:
+      'Ensure that any common navigation elements can be bypassed; for instance, by use of skip links, header elements, or ARIA landmark roles.',
+    helpUrl: [],
+    ruleType: 'notice',
+  },
+  {
+    ruleId: 'TableHeaders',
+    description:
+      'This table has no headers. If this is a data table, ensure row and column headers are identified using th elements.',
+    helpUrl: [],
+    ruleType: 'notice',
+  },
+  {
+    ruleId: 'TimeLimit',
+    description:
+      'If a timed response is required on this page, alert the user and provide sufficient time to allow them to indicate that more time is required.',
+    helpUrl: [],
+    ruleType: 'notice',
+  },
+  {
+    ruleId: 'Video',
+    description:
+      'For multimedia containing video, ensure a synchronised audio description or text alternative for the video portion is provided.',
+    helpUrl: [],
+    ruleType: 'notice',
+  },
+]
