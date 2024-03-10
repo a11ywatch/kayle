@@ -16,7 +16,7 @@ import type { Rule } from "./build-types";
   const pConfig = {
     singleQuote: false,
     semi: true,
-    parser: "babel",
+    parser: "typescript",
   };
 
   const runBuildRules = async (language: string) => {
@@ -117,16 +117,42 @@ import type { Rule } from "./build-types";
 
   await Promise.all(localesList.map(runBuildRules));
 
+  const runnerImports =
+    `
+  export type Rule = {
+    ruleId: string;
+    description?: string;
+    help?: string;
+    helpUrl?: string | string[];
+    tags?: string[];
+    actIds?: string[];
+    ruleType?: "error" | "warning" | "notice";
+  };
+  
+  // import rule list with locales
+  export const importRules = async (locale: ${localesList.map((l) => `"${l}"`).join(" | ")}, runner: "htmlcs" | "axe"): Promise<Rule[]> => {
+    const rules = await import(` +
+    "`./${locale.replace('-', '_')}/${runner === 'htmlcs' ? 'htmlcs' : 'axe'}-rules`" +
+    `` +
+    `);
+
+    return rules.axeRules || rules.htmlcsRules
+  }`;
+
   await writeFile(
     `./lib/rules/index.ts`,
     Buffer.from(
       await format(
-        localesList
+        `${localesList
           .map((l) => {
             return `export { axeRules as axeRules${l.toUpperCase()} } from "./${l}/axe-rules";
-          export { htmlcsRules as htmlcsRules${l.toUpperCase()} } from "./${l}/htmlcs-rules";`;
+          export { htmlcsRules as htmlcsRules${l.toUpperCase()} } from "./${l}/htmlcs-rules";
+          `;
           })
-          .join(""),
+          .join("")}
+          
+          ${runnerImports}
+          `,
         pConfig,
       ),
     ),

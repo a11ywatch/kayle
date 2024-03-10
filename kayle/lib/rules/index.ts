@@ -32,3 +32,42 @@ export { axeRules as axeRulesPT_BR } from "./pt_BR/axe-rules";
 export { htmlcsRules as htmlcsRulesPT_BR } from "./pt_BR/htmlcs-rules";
 export { axeRules as axeRulesEN } from "./en/axe-rules";
 export { htmlcsRules as htmlcsRulesEN } from "./en/htmlcs-rules";
+
+export type Rule = {
+  ruleId: string;
+  description?: string;
+  help?: string;
+  helpUrl?: string | string[];
+  tags?: string[];
+  actIds?: string[];
+  ruleType?: "error" | "warning" | "notice";
+};
+
+// import rule list with locales
+export const importRules = async (
+  locale:
+    | "ar"
+    | "fr"
+    | "es"
+    | "it"
+    | "ja"
+    | "nl"
+    | "pl"
+    | "ko"
+    | "zh_CN"
+    | "zh_TW"
+    | "da"
+    | "de"
+    | "eu"
+    | "he"
+    | "no_NB"
+    | "pt_BR"
+    | "en",
+  runner: "htmlcs" | "axe",
+): Promise<Rule[]> => {
+  const rules = await import(
+    `./${locale.replace("-", "_")}/${runner === "htmlcs" ? "htmlcs" : "axe"}-rules`
+  );
+
+  return rules.axeRules || rules.htmlcsRules;
+};

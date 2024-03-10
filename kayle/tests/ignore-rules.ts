@@ -1,6 +1,6 @@
 import assert from "assert";
 import puppeteer from "puppeteer";
-import { Standard, kayle, htmlcsRules } from "kayle";
+import { Standard, kayle, importRules } from "kayle";
 
 import { drakeMock } from "./mocks/html-mock";
 import { performance } from "perf_hooks";
@@ -10,6 +10,8 @@ import { performance } from "perf_hooks";
   const page = await browser.newPage();
 
   page.on("console", (msg) => console.log("PAGE LOG:", msg.text()));
+
+  const htmlcsRules = await importRules("en", "htmlcs");
 
   const startTime = performance.now();
   const { issues, pageUrl, documentTitle, meta, automateable } = await kayle({
