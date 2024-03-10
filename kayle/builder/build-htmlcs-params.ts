@@ -4,16 +4,15 @@ import { parse } from "acorn";
 import { simple } from "acorn-walk";
 import { generate } from "escodegen";
 import type { ParamList } from "./build-types";
+import { processIncludeFiles } from "./build-htmlcs-rule-list";
 
-const paramList: ParamList[] = [];
-
-const processDirectory = (directory) => {
+const processDirectory = (directory, paramList: ParamList[]) => {
   readdirSync(directory).forEach((file) => {
     const fullPath = join(directory, file);
     if (lstatSync(fullPath).isDirectory()) {
-      processDirectory(fullPath);
+      processDirectory(fullPath, paramList);
     } else if (fullPath.endsWith(".js")) {
-      processFile(fullPath);
+      processFile(fullPath, paramList);
     }
   });
 };
@@ -36,11 +35,10 @@ const isHTMLCSAddMessageCall = (node) => {
 };
 
 // get the add Message call directly
-const extractPureAddMessageArgs = (s: string) => {
-  return s.replace(/\.replace\(.*?\)/, "").replace(/^_global\./, "");
-};
+const extractPureAddMessageArgs = (s: string) =>
+  s.replace(/\.replace\(.*?\)/, "").replace(/^_global\./, "");
 
-const processFile = (filePath) => {
+const processFile = (filePath, paramList: ParamList[]) => {
   const code = readFileSync(filePath, "utf8");
   const ast = parse(code, { sourceType: "script", ecmaVersion: 2020 });
 
@@ -105,6 +103,16 @@ const processFile = (filePath) => {
 
 // process the params to a list
 export const processParams = () => {
-  processDirectory("../fast_htmlcs/dist/Standards");
-  return paramList;
+  const paramList: ParamList[] = [];
+
+  const { WCAGAAA, WCAGAA, WCAGA } = processIncludeFiles();
+
+  processDirectory("../fast_htmlcs/dist/Standards", paramList);
+
+  return {
+    WCAGAAA,
+    WCAGAA,
+    WCAGA,
+    paramList,
+  };
 };

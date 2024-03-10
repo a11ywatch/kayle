@@ -9,7 +9,7 @@ import { processParams } from "./build-htmlcs-params";
 import type { Rule } from "./build-types";
 
 (async () => {
-  const paramList = await processParams();
+  const dynamicParams = await processParams();
   const browser = await chromium.launch({ headless: true });
 
   // default config
@@ -21,6 +21,7 @@ import type { Rule } from "./build-types";
 
   const runBuildRules = async (language: string) => {
     const page = await browser.newPage();
+    page.on("console", (msg) => console.log("PAGE LOG:", msg.text()));
 
     const fast_htmlcs_rules: Rule[] = [];
     const fast_axe_rules: Rule[] = [];
@@ -39,21 +40,24 @@ import type { Rule } from "./build-types";
       true,
     );
 
-    await page.evaluate((o) => {
-      window.paramList = o;
-    }, paramList);
-
-    await page.addScriptTag({
-      content: `window.htmlcsRuleMap = ${htmlcsRuleMap.toString()};`,
-    });
-
-    await page.exposeFunction("pushHtmlcsRule", (t: Rule[]) =>
-      fast_htmlcs_rules.push(...t),
-    );
-
-    await page.exposeFunction("pushAxeRule", (t: Rule) =>
-      fast_axe_rules.push(t),
-    );
+    await Promise.all([
+      page.evaluate((o) => {
+        window.paramList = o.paramList;
+        window.WCAGA = o.WCAGA;
+        window.WCAGAA = o.WCAGAA;
+        window.WCAGAAA = o.WCAGAAA;
+      }, dynamicParams),
+      page.addScriptTag({
+        content: `window.htmlcsRuleMap = ${htmlcsRuleMap.toString()};`,
+      }),
+      page.addScriptTag({
+        content: `window.htmlcsRuleMap = ${htmlcsRuleMap.toString()};`,
+      }),
+      page.exposeFunction("pushHtmlcsRule", (t: Rule[]) =>
+        fast_htmlcs_rules.push(...t),
+      ),
+      page.exposeFunction("pushAxeRule", (t: Rule) => fast_axe_rules.push(t)),
+    ]);
 
     await page.evaluate(() => {
       for (const r of window.axe.getRules()) {
@@ -100,7 +104,9 @@ import type { Rule } from "./build-types";
       "utf8",
     );
 
-    await page.close();
+    await page.close({
+      runBeforeUnload: true,
+    });
   };
 
   const localesList: string[] = Array.from(

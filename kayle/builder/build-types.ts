@@ -18,6 +18,9 @@ declare global {
     pushAxeRule: (r: Rule) => void;
     htmlcsRuleMap: (t: ParamList) => Rule[];
     paramList: ParamList[];
+    WCAGAAA: string[];
+    WCAGAA: string[];
+    WCAGA: string[];
   }
 }
 

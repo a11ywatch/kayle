@@ -39,7 +39,9 @@ export const htmlcsRuleMap = (rule: ParamList) => {
   } catch (_e) {}
 
   if (description.startsWith("HTMLCS.getTranslation(")) {
-    description = eval(description);
+    try {
+      description = eval(description);
+    } catch (_e) {}
   }
 
   const baseRule = `${rule[4]}${
@@ -56,30 +58,57 @@ export const htmlcsRuleMap = (rule: ParamList) => {
     ? inlineRule.substring(1, inlineRule.length - 1)
     : baseRuleId;
 
-  const ruleId = rule[5]
-    ? `${rule[5].replace("_Guideline", ".Guideline")}.${_ruleId}`
-    : _ruleId;
+  const ruleId =
+    rule[5] && (inlineRule || !rule[2])
+      ? `${rule[5].replace("_Guideline", ".Guideline")}.${_ruleId}`
+      : _ruleId;
 
   const pattern = /(.{3})_or_(.{3})/;
 
   const [, leftPart, rightPart] = ruleId.match(pattern) || [];
 
   const ruleObj = {
-    ruleId,
+    ruleId: ruleId.replace("'", ""),
     description,
     helpUrl: section508
       ? []
       : helpLinks.map((r) => concatWcagLink(r.split(".")[0])),
     ruleType: rule[0] as "error" | "warning" | "notice",
+    tags: [] as string[],
+  };
+
+  // invalid rule
+  if (!ruleObj.description || ruleObj.description === "msg") {
+    return;
+  }
+
+  const getTags = (rid: string) => {
+    const _rid = rid.split(".");
+    const sl = _rid[2] || "";
+    const ruleTarget =
+      rid.length >= 3 ? `${_rid[0]}.${_rid[1]}.${sl.substring(0, 5)}` : _rid[0];
+
+    return [
+      ruleTarget.startsWith("Principle") ? "" : "SECTION508",
+      window.WCAGA.includes(ruleTarget) ? "WCAGA" : "",
+      window.WCAGAA.includes(ruleTarget) ? "WCAGAA" : "",
+      window.WCAGAAA.includes(ruleTarget) ? "WCAGAAA" : "",
+    ].filter(Boolean);
   };
 
   // Check if both parts were found
   if (leftPart && rightPart) {
-    ruleObj.ruleId = ruleId.replace(pattern, leftPart);
+    ruleObj.ruleId = ruleId.replace(pattern, leftPart).replace("'", "");
+    ruleObj.tags = getTags(ruleObj.ruleId);
     rules.push(ruleObj);
-    ruleObj.ruleId = ruleId.replace(pattern, rightPart);
+
+    ruleObj.ruleId = ruleId.replace(pattern, rightPart).replace("'", "");
+    ruleObj.tags = getTags(ruleObj.ruleId);
+
     rules.push(ruleObj);
   } else {
+    ruleObj.tags = getTags(ruleObj.ruleId);
+
     rules.push(ruleObj);
   }
 
