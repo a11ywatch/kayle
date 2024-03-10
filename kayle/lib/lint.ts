@@ -12,7 +12,7 @@ export const kayleLint = async (
   source?: string, // url or html source
   o: Partial<RunnerConfig> = {},
   runner?: keyof typeof runnersJavascript,
-  forward?: boolean // forward messages to console
+  forward?: boolean, // forward messages to console
 ) => {
   const config = extractArgs(o);
   let html = source;
@@ -55,7 +55,7 @@ export const kayleLint = async (
 
     dom.window.eval(runnersJavascript.kayle);
     dom.window.eval(
-      runner ? runnersJavascript[runner] : runnersJavascript["htmlcs"]
+      runner ? runnersJavascript[runner] : runnersJavascript["htmlcs"],
     );
 
     const results = await dom.window.__a11y.run({

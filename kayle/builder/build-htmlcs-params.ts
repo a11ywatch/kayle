@@ -35,6 +35,11 @@ const isHTMLCSAddMessageCall = (node) => {
   return false;
 };
 
+// get the add Message call directly
+const extractPureAddMessageArgs = (s: string) => {
+  return s.replace(/\.replace\(.*?\)/, "").replace(/^_global\./, "");
+};
+
 const processFile = (filePath) => {
   const code = readFileSync(filePath, "utf8");
   const ast = parse(code, { sourceType: "script", ecmaVersion: 2020 });
@@ -52,24 +57,25 @@ const processFile = (filePath) => {
             return arg.name;
           }
 
-          if (arg.type === "MemberExpression") {
-            // @ts-ignore
-            return arg.property.name?.toLowerCase();
+          if (
+            arg.type === "MemberExpression" &&
+            arg.property &&
+            arg.property.type === "Identifier"
+          ) {
+            return arg.property.name.toLowerCase();
+          }
+
+          if (arg.type === "CallExpression" && arg.callee) {
+            return extractPureAddMessageArgs(generate(arg));
           }
 
           if (
             index === 2 &&
             arg.type === "CallExpression" &&
-            // @ts-ignore
-            arg.callee?.object?.object?.name === "_global" &&
-            // @ts-ignore
-            arg.callee?.object?.property?.name === "HTMLCS" &&
-            // @ts-ignore
-            arg.callee?.property?.name === "getTranslation"
+            arg.callee &&
+            arg.arguments.length
           ) {
-            if (arg.arguments.length) {
-              return generate(arg).replace("_global.", "");
-            }
+            return extractPureAddMessageArgs(generate(arg));
           }
 
           return null;
@@ -77,11 +83,14 @@ const processFile = (filePath) => {
 
         params.push(pathParse(filePath).name);
 
-        // run regex on first match
         if (!guide) {
           guide = code.match(
-            /(_global\.HTMLCS_WCAG2AAA_Sniffs_)([A-Za-z0-9_]+)/
+            /(_global\.HTMLCS_WCAG2AAA_Sniffs_)([A-Za-z0-9_]+)/,
           );
+          if (guide && guide[2]) {
+            const end = guide[2].length - 23;
+            guide[2] = guide[2].slice(0, guide[2].length - end);
+          }
         }
 
         if (guide && guide[2]) {

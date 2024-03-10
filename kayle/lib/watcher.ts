@@ -29,7 +29,7 @@ Watcher.prototype.watch = function (timeout: number): Promise<Audit> {
           },
           issues: [],
         }),
-      timeout
+      timeout,
     );
   });
 };

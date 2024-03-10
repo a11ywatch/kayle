@@ -9,8 +9,8 @@ import { processParams } from "./build-htmlcs-params";
 import type { Rule } from "./build-types";
 
 (async () => {
-  const browser = await chromium.launch({ headless: true });
   const paramList = await processParams();
+  const browser = await chromium.launch({ headless: true });
 
   const pConfig = {
     singleQuote: true,
@@ -35,7 +35,7 @@ import type { Rule } from "./build-types";
         origin: "https://www.example.com",
         language,
       },
-      true
+      true,
     );
 
     await page.evaluate((o) => {
@@ -47,11 +47,11 @@ import type { Rule } from "./build-types";
     });
 
     await page.exposeFunction("pushHtmlcsRule", (t: Rule) =>
-      fast_htmlcs_rules.push(t)
+      fast_htmlcs_rules.push(t),
     );
 
     await page.exposeFunction("pushAxeRule", (t: Rule) =>
-      fast_axe_rules.push(t)
+      fast_axe_rules.push(t),
     );
 
     await page.evaluate(() => {
@@ -76,12 +76,12 @@ import type { Rule } from "./build-types";
       Buffer.from(
         await format(
           `/* ${DNE} */\nexport const htmlcsRules = ${JSON.stringify(
-            fast_htmlcs_rules.filter((r) => r.description)
+            fast_htmlcs_rules.filter((r) => r.description),
           )};`,
-          pConfig
-        )
+          pConfig,
+        ),
       ),
-      "utf8"
+      "utf8",
     );
 
     await writeFile(
@@ -89,19 +89,19 @@ import type { Rule } from "./build-types";
       Buffer.from(
         await format(
           `/* ${DNE} */\nexport const axeRules = ${JSON.stringify(
-            fast_axe_rules
+            fast_axe_rules,
           )};`,
-          pConfig
-        )
+          pConfig,
+        ),
       ),
-      "utf8"
+      "utf8",
     );
 
     await page.close();
   };
 
   const localesList: string[] = Array.from(
-    new Set(htmlcsLocales.concat(axeLocales))
+    new Set(htmlcsLocales.concat(axeLocales)),
   );
 
   localesList.push("en");
@@ -118,10 +118,10 @@ import type { Rule } from "./build-types";
           export { htmlcsRules as htmlcsRules${l.toUpperCase()} } from "./${l}/htmlcs-rules";`;
           })
           .join(""),
-        pConfig
-      )
+        pConfig,
+      ),
     ),
-    "utf8"
+    "utf8",
   );
 
   await browser.close();

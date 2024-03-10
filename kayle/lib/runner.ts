@@ -124,7 +124,7 @@
     if (element.innerHTML.length > 31) {
       outerHTML = outerHTML.replace(
         element.innerHTML,
-        `${element.innerHTML.substring(0, 32)}...`
+        `${element.innerHTML.substring(0, 32)}...`,
       );
     }
 
@@ -166,7 +166,7 @@
 
     const elementSelector = getElementSelector(
       element.parentNode as HTMLElement,
-      true
+      true,
     );
 
     return `${
@@ -178,10 +178,47 @@
   const runA11y = async (options) => {
     // determine if valid issue
     const isIssueNotIgnored = (issue) => {
-      return !options.ignore.some(
-        (element) =>
-          element === issue.type || element === issue.code?.toLowerCase()
-      );
+      return !options.ignore.some((element) => {
+        if (element === issue.type) {
+          return true;
+        }
+        const _code = issue.code?.toLowerCase();
+
+        if (element === _code) {
+          return _code;
+        }
+
+        // take the principle and guideline and rule end to see if any matches
+        if (element.length >= 8) {
+          const ignoreSplit = element.split(".");
+
+          if (ignoreSplit.length) {
+            const codeSplit = _code.split(".");
+            const ruleMatch =
+              ignoreSplit[0] === codeSplit[1] &&
+              ignoreSplit[1] === codeSplit[2];
+
+            // the entire principle is ignored.
+            if (ignoreSplit.length === 2) {
+              return true;
+            }
+
+            // same princimple and guideline. Perform partial rule match ignore. We need to fix some of the match identity - this does not cover all the areas.
+            if (ruleMatch) {
+              if (
+                ignoreSplit[ignoreSplit.length - 1] ===
+                  codeSplit[codeSplit.length - 1] ||
+                ignoreSplit[ignoreSplit.length - 1] ===
+                  codeSplit[codeSplit.length - 2]
+              ) {
+                return true;
+              }
+            }
+          }
+        }
+
+        return false;
+      });
     };
 
     // element test area
@@ -231,7 +268,7 @@
       acc,
       tracker,
       meta,
-      missingAltIndexs: number[]
+      missingAltIndexs: number[],
     ) => {
       for (const is of issues) {
         if (validateIssue(is)) {
@@ -307,7 +344,7 @@
           }
           return [];
         });
-      })
+      }),
     );
 
     // meta information keep records shaped to numbers

@@ -42,7 +42,7 @@ type BrowserContext = {
   newCDPSession?(page: Partial<Page> | Frame): Partial<CDPSession>;
   overridePermissions?(
     origin: string,
-    permissions: Permission[]
+    permissions: Permission[],
   ): Promise<void>;
 };
 
@@ -89,7 +89,7 @@ type Page = {
   _routes?: { url: string }[];
   route(
     path: string,
-    intercept: (config: any, next: any) => Promise<void> | Promise<boolean>
+    intercept: (config: any, next: any) => Promise<void> | Promise<boolean>,
   ): Promise<void>;
   setRequestInterception?(enable?: boolean): Promise<void>;
   listenerCount?(name: string): number;
@@ -99,19 +99,19 @@ type Page = {
       | Function
       | {
           default: Function;
-        }
+        },
   ): Promise<void>;
   addInitScript?(script: { content?: string }): Promise<void>;
   evaluateOnNewDocument?<
     Params extends unknown[],
-    Func extends (...args: Params) => unknown = (...args: Params) => unknown
+    Func extends (...args: Params) => unknown = (...args: Params) => unknown,
   >(
     pageFunction: Func | string,
     ...args: Params
   ): Promise<{ identifier: string }>;
   evaluate<
     Params extends unknown[],
-    Func extends EvaluateFunc<Params> = EvaluateFunc<Params>
+    Func extends EvaluateFunc<Params> = EvaluateFunc<Params>,
   >(
     pageFunction: Func | string,
     ...args: Params

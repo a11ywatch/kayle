@@ -1,7 +1,6 @@
 import assert from "assert";
 import puppeteer from "puppeteer";
-import { Standard, kayle } from "kayle";
-// import { htmlcsRulesIT } from "kayle/build/rules";
+import { Standard, kayle, htmlcsRules } from "kayle";
 
 import { drakeMock } from "./mocks/html-mock";
 import { performance } from "perf_hooks";
@@ -20,7 +19,7 @@ import { performance } from "perf_hooks";
     includeWarnings: true,
     html: drakeMock,
     standard: Standard.WCAG2AA,
-    // ignore: htmlcsRulesIT.map((r) => r.ruleId),
+    ignore: htmlcsRules.map((r) => r.ruleId),
     origin: "https://www.drake.com", // origin is the fake url in place of the raw content
   });
   const nextTime = performance.now() - startTime;

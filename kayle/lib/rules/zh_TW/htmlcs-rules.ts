@@ -127,14 +127,14 @@ export const htmlcsRules = [
     ruleType: "notice",
   },
   {
-    ruleId: "Principle1.Guideline1_3_1_3_1.Linearised",
+    ruleId: "Principle1.Guideline1_3.Linearised",
     description:
       "Ensure that content is ordered in a meaningful sequence when linearised, such as when style sheets are disabled.",
     helpUrl: [],
     ruleType: "notice",
   },
   {
-    ruleId: "Principle1.Guideline1_3_1_3_1.HiddenText",
+    ruleId: "Principle1.Guideline1_3.HiddenText",
     description:
       'If content is hidden and made visible using scripting (such as "click to expand" sections), ensure this content is readable when scripts and style sheets are disabled.',
     helpUrl: [],
@@ -302,25 +302,25 @@ export const htmlcsRules = [
     ruleType: "error",
   },
   {
-    ruleId: "Principle1.Guideline1_3_1_3_1.code",
+    ruleId: "Principle1.Guideline1_3.code",
     description: "msg",
     helpUrl: [],
     ruleType: "level",
   },
   {
-    ruleId: "Principle1.Guideline1_3_1_3_1.H49.AlignAttr",
+    ruleId: "Principle1.Guideline1_3.H49.AlignAttr",
     description: "Align attributes .",
     helpUrl: [],
     ruleType: "error",
   },
   {
-    ruleId: "Principle4.Guideline4_1_4_1_2.4_1_2_null",
+    ruleId: "Principle4.Guideline4_1.4_1_2_null",
     description: "msg",
     helpUrl: [],
     ruleType: "error",
   },
   {
-    ruleId: "Principle4.Guideline4_1_4_1_2.4_1_2_null",
+    ruleId: "Principle4.Guideline4_1.4_1_2_null",
     description: "msg",
     helpUrl: [],
     ruleType: "warning",

@@ -22,7 +22,6 @@ export const htmlcsRuleMap = (rule: ParamList) => {
     "Devicemotion",
   ];
 
-  // TODO: PATCH RULES FROM INLINE TRANSLATIONS
   const inlineTranslation =
     rule[2] && rule[2].startsWith("HTMLCS.getTranslation");
 
@@ -47,7 +46,6 @@ export const htmlcsRuleMap = (rule: ParamList) => {
     ? rule[2].replace("HTMLCS.getTranslation(", "").replace(")", "")
     : "";
 
-  // FIXME: we need to get the BASE GUIDELINES upfront like WCAG2AA.Principle1.Guideline1_4 to concat the id with.
   const ruleId = inlineTranslation
     ? inlineRule.substring(1, inlineRule.length - 1)
     : baseRuleId;

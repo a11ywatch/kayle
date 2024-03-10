@@ -44,7 +44,7 @@ const blockedResourcePatterns = Array.from(blockedResourceTypesCDP).map(
   (resource) => ({
     resourceType: resource,
     requestStage: "Request",
-  })
+  }),
 );
 
 export { blockedResourceTypesCDP, blockedResourcePatterns };
