@@ -60,6 +60,6 @@ export const htmlcsRuleMap = (rule: ParamList) => {
     helpUrl: section508
       ? []
       : helpLinks.map((r) => concatWcagLink(r.split(".")[0])),
-    ruleType: rule[0]
+    ruleType: rule[0],
   };
 };

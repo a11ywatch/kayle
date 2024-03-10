@@ -10,6 +10,7 @@ import type { Rule } from "./build-types";
 
 (async () => {
   const browser = await chromium.launch({ headless: true });
+  const paramList = await processParams();
 
   const pConfig = {
     singleQuote: true,
@@ -36,8 +37,6 @@ import type { Rule } from "./build-types";
       },
       true
     );
-
-    const paramList = await processParams();
 
     await page.evaluate((o) => {
       window.paramList = o;
@@ -98,9 +97,7 @@ import type { Rule } from "./build-types";
       "utf8"
     );
 
-    await page.close({
-      runBeforeUnload: true,
-    });
+    await page.close();
   };
 
   const localesList: string[] = Array.from(
@@ -109,7 +106,7 @@ import type { Rule } from "./build-types";
 
   localesList.push("en");
 
-  await Promise.all(localesList.map((r) => runBuildRules(r)));
+  await Promise.all(localesList.map(runBuildRules));
 
   await writeFile(
     `./lib/rules/index.ts`,

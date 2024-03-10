@@ -399,12 +399,7 @@ _global.HTMLCS = new (function () {
     }
 
     // Register the sniffs for this standard.
-    _registerSniffs(
-      standard,
-      ruleSet.sniffs,
-      callback,
-      failCallback
-    );
+    _registerSniffs(standard, ruleSet.sniffs, callback, failCallback);
   };
 
   /**

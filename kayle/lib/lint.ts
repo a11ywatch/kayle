@@ -64,7 +64,7 @@ export const kayleLint = async (
       rootElement: config.rootElement,
       rules: config.rules || [],
       runners: config.runners || ["htmlcs"],
-      standard: config.standard || "WCAG2AA"
+      standard: config.standard || "WCAG2AA",
     });
 
     resolve({

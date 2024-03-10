@@ -18,6 +18,23 @@ const processDirectory = (directory) => {
   });
 };
 
+const isHTMLCSAddMessageCall = (node) => {
+  if (
+    node.type === "MemberExpression" &&
+    node.object &&
+    node.object.name === "HTMLCS" &&
+    node.property &&
+    node.property.name === "addMessage"
+  ) {
+    return true;
+  } else if (node.type === "CallExpression" && node.callee) {
+    return isHTMLCSAddMessageCall(node.callee);
+  } else if (node.type === "MemberExpression" && node.object) {
+    return isHTMLCSAddMessageCall(node.object);
+  }
+  return false;
+};
+
 const processFile = (filePath) => {
   const code = readFileSync(filePath, "utf8");
   const ast = parse(code, { sourceType: "script", ecmaVersion: 2020 });
@@ -26,13 +43,7 @@ const processFile = (filePath) => {
 
   simple(ast, {
     CallExpression(node) {
-      if (
-        node.callee.type === "MemberExpression" &&
-        // @ts-ignore
-        node.callee.object.name === "HTMLCS" &&
-        // @ts-ignore
-        node.callee.property.name === "addMessage"
-      ) {
+      if (isHTMLCSAddMessageCall(node)) {
         const params = node.arguments.map((arg, index) => {
           if (arg.type === "Literal") {
             return arg.value;
