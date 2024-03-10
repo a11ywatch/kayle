@@ -12,9 +12,10 @@ import type { Rule } from "./build-types";
   const paramList = await processParams();
   const browser = await chromium.launch({ headless: true });
 
+  // default config
   const pConfig = {
-    singleQuote: true,
-    semi: false,
+    singleQuote: false,
+    semi: true,
     parser: "babel",
   };
 
@@ -46,8 +47,8 @@ import type { Rule } from "./build-types";
       content: `window.htmlcsRuleMap = ${htmlcsRuleMap.toString()};`,
     });
 
-    await page.exposeFunction("pushHtmlcsRule", (t: Rule) =>
-      fast_htmlcs_rules.push(t),
+    await page.exposeFunction("pushHtmlcsRule", (t: Rule[]) =>
+      fast_htmlcs_rules.push(...t),
     );
 
     await page.exposeFunction("pushAxeRule", (t: Rule) =>
@@ -76,7 +77,9 @@ import type { Rule } from "./build-types";
       Buffer.from(
         await format(
           `/* ${DNE} */\nexport const htmlcsRules = ${JSON.stringify(
-            fast_htmlcs_rules.filter((r) => r.description).sort((a, b) => a.ruleId.localeCompare(b.ruleId)),
+            fast_htmlcs_rules
+              .filter((r) => r.description)
+              .sort((a, b) => a.ruleId.localeCompare(b.ruleId)),
           )};`,
           pConfig,
         ),

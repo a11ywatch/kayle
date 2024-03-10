@@ -1,4 +1,4 @@
-import type { ParamList } from "./build-types";
+import type { ParamList, Rule } from "./build-types";
 
 // Hand stich the rules to map from htmlcs.
 // We need to map the ruleId to the translation file key.
@@ -6,6 +6,8 @@ import type { ParamList } from "./build-types";
 // map the rules to a detailed object
 // the descriptions handling is not perfect and needs to handle split cases.
 export const htmlcsRuleMap = (rule: ParamList) => {
+  const rules: Rule[] = [];
+
   const concatWcagLink = (l: string) =>
     `https://www.w3.org/TR/WCAG20-TECHS/${l}`;
 
@@ -36,6 +38,10 @@ export const htmlcsRuleMap = (rule: ParamList) => {
       "";
   } catch (_e) {}
 
+  if (description.startsWith("HTMLCS.getTranslation(")) {
+    description = eval(description);
+  }
+
   const baseRule = `${rule[4]}${
     directRuleAssignments.includes(rule[3]) ? "." : "_"
   }${rule[3]}`;
@@ -46,18 +52,36 @@ export const htmlcsRuleMap = (rule: ParamList) => {
     ? rule[2].replace("HTMLCS.getTranslation(", "").replace(")", "")
     : "";
 
-  const ruleId = inlineTranslation
+  const _ruleId = inlineTranslation
     ? inlineRule.substring(1, inlineRule.length - 1)
     : baseRuleId;
 
-  return {
-    ruleId: rule[5]
-      ? `${rule[5].replace("_Guideline", ".Guideline")}.${ruleId}`
-      : ruleId,
+  const ruleId = rule[5]
+    ? `${rule[5].replace("_Guideline", ".Guideline")}.${_ruleId}`
+    : _ruleId;
+
+  const pattern = /(.{3})_or_(.{3})/;
+
+  const [, leftPart, rightPart] = ruleId.match(pattern) || [];
+
+  const ruleObj = {
+    ruleId,
     description,
     helpUrl: section508
       ? []
       : helpLinks.map((r) => concatWcagLink(r.split(".")[0])),
-    ruleType: rule[0],
+    ruleType: rule[0] as "error" | "warning" | "notice",
   };
+
+  // Check if both parts were found
+  if (leftPart && rightPart) {
+    ruleObj.ruleId = ruleId.replace(pattern, leftPart);
+    rules.push(ruleObj);
+    ruleObj.ruleId = ruleId.replace(pattern, rightPart);
+    rules.push(ruleObj);
+  } else {
+    rules.push(ruleObj);
+  }
+
+  return rules;
 };

@@ -14,9 +14,9 @@ declare global {
   interface Window {
     HTMLCS: any;
     axe: any;
-    pushHtmlcsRule: (r: Rule) => void;
+    pushHtmlcsRule: (r: Rule[]) => void;
     pushAxeRule: (r: Rule) => void;
-    htmlcsRuleMap: (t: ParamList) => Rule;
+    htmlcsRuleMap: (t: ParamList) => Rule[];
     paramList: ParamList[];
   }
 }
