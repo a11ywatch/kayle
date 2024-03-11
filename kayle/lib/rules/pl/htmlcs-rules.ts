@@ -368,22 +368,6 @@ export const htmlcsRules = [
     tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
   },
   {
-    ruleId: "Principle1.Guideline1_1.1_1_1_H2.EG3",
-    description:
-      "Element <img> znajdujący się wewnątrz linku nie może mieć opisu alternatywnego tej samej treści, co  tekst linku znajdujący się w jego sąsiedztwie.",
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_1.1_1_1_H2.EG4",
-    description:
-      "Element <img> znajdujący się wewnątrz linku nie ma atrybutu alt lub alt jest pusty. Ponieważ w sąsiedztwie znajduje się  tekst linku, zaleca się połączenie tych elementów w jedno łącze ze wspólnym opisem.",
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
     ruleId: "Principle1.Guideline1_1.1_1_1_H2.EG4",
     description:
       "Element <img> znajdujący się wewnątrz linku nie ma atrybutu alt lub alt jest pusty. Ponieważ w sąsiedztwie znajduje się  tekst linku, zaleca się połączenie tych elementów w jedno łącze ze wspólnym opisem.",
@@ -672,14 +656,6 @@ export const htmlcsRules = [
     tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H43,H63",
-    description:
-      'Komórki <td> nie mają ustalonej relacji z komórkami nagłówkowymi <th>. Należy zdefiniować atryb "scope" dla <th> lub "headers" dla <td>.',
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
     ruleId: "Principle1.Guideline1_3.1_3_1_H43.HeadersRequired",
     description:
       'Nie zdefiniowano relacji pomiędzy komórką <td> a powiązanym z nią nagłówkiem <th>. Wskazana tabela ma wiele poziomów <th>, zatem należałoby użyć atrybutu "headers" w komórkach <td>.',
@@ -698,22 +674,6 @@ export const htmlcsRules = [
     ruleId: "Principle1.Guideline1_3.1_3_1_H43.MissingHeaderIds",
     description:
       'Nie wszystkie nagłówki th w tej tabeli posiadają atrybut "id" i nie będzie się można do nich odwołać za pomocą atrybutu "headers" w znacznikach <td>.',
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H43.MissingHeaderIds",
-    description:
-      'Nie wszystkie nagłówki th w tej tabeli posiadają atrybut "id" i nie będzie się można do nich odwołać za pomocą atrybutu "headers" w znacznikach <td>.',
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H43.MissingHeadersAttrs",
-    description:
-      "Nie wszystkie komórki <td> w tej tabeli posiadają atrybut headers. W atrybucie headers powinny znajdować się identyfikatory powiązanych nagłówków.",
     helpUrl: [],
     ruleType: "error",
     tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
@@ -1096,22 +1056,6 @@ export const htmlcsRules = [
     tags: ["WCAGAA"],
   },
   {
-    ruleId: "Principle1.Guideline1_4.1_4_3_G145.Abs",
-    description:
-      "Ten element jest pozycjonowany absolutnie i nie jest możliwe zweryfikowanie jego kontrastu. Sprawdź, czy kontrast jest na wystarczającym poziomie: {{required}}:1.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_4.1_4_3_G145.Alpha",
-    description:
-      "Tekst lub tło tego elementu jest przezroczyste. Upewnij się, że współczynnik kontrastu między tekstem a tłem wynosi co najmniej {{required}}:1.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAA"],
-  },
-  {
     ruleId: "Principle1.Guideline1_4.1_4_3_G145.Alpha",
     description:
       "Tekst lub tło tego elementu jest przezroczyste. Upewnij się, że współczynnik kontrastu między tekstem a tłem wynosi co najmniej {{required}}:1.",
@@ -1123,22 +1067,6 @@ export const htmlcsRules = [
     ruleId: "Principle1.Guideline1_4.1_4_3_G145.BgGradient",
     description:
       "Tekst tego elementu jest umieszczony na gradiencie. Upewnij się, że współczynnik kontrastu między tekstem a wszystkimi zakrytymi częściami gradientu wynosi co najmniej {{required}}:1.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_4.1_4_3_G145.BgGradient",
-    description:
-      "Tekst tego elementu jest umieszczony na gradiencie. Upewnij się, że współczynnik kontrastu między tekstem a wszystkimi zakrytymi częściami gradientu wynosi co najmniej {{required}}:1.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_4.1_4_3_G145.BgImage",
-    description:
-      "Tekst elementu wyświetlany jest na obrazku. Należy upewnić się, że stosunek kontrastu tekstu do tła wynosi co najmniej {{required}}:1.",
     helpUrl: [],
     ruleType: "warning",
     tags: ["WCAGAA"],
@@ -1176,33 +1104,9 @@ export const htmlcsRules = [
     tags: ["WCAGAAA"],
   },
   {
-    ruleId: "Principle1.Guideline1_4.1_4_6_G145.BgGradient",
-    description:
-      "Tekst tego elementu jest umieszczony na gradiencie. Upewnij się, że współczynnik kontrastu między tekstem a wszystkimi zakrytymi częściami gradientu wynosi co najmniej {{required}}:1.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAAA"],
-  },
-  {
     ruleId: "Principle1.Guideline1_4.1_4_6_G17.Abs",
     description:
       "Ten element jest pozycjonowany absolutnie i nie jest możliwe zweryfikowanie jego kontrastu. Sprawdź samodzielnie czy kontrast jest na wystarczającym poziomie: {{required}}:1.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_4.1_4_6_G17.Abs",
-    description:
-      "Ten element jest pozycjonowany absolutnie i nie jest możliwe zweryfikowanie jego kontrastu. Sprawdź samodzielnie czy kontrast jest na wystarczającym poziomie: {{required}}:1.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_4.1_4_6_G17.BgImage",
-    description:
-      "Tekst elementu wyświetlany jest na obrazku. Należy upewnić się, że stosunek kontrastu tekstu do tła wynosi conajmniej {{required}}:1.",
     helpUrl: [],
     ruleType: "warning",
     tags: ["WCAGAAA"],

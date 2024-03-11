@@ -368,22 +368,6 @@ export const htmlcsRules = [
     tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
   },
   {
-    ruleId: "Principle1.Guideline1_1.1_1_1_H2.EG3",
-    description:
-      "L'élément Img à l'intérieur d'un lien ne doit pas utiliser de texte alt qui duplique le contenu d'un lien texte à côté.",
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_1.1_1_1_H2.EG4",
-    description:
-      "L'élément Img à l'intérieur d'un lien a du texte alt vide ou manquant lorsqu'un lien à côté contient du texte de lien. Pensez à combiner les liens.",
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
     ruleId: "Principle1.Guideline1_1.1_1_1_H2.EG4",
     description:
       "L'élément Img à l'intérieur d'un lien a du texte alt vide ou manquant lorsqu'un lien à côté contient du texte de lien. Pensez à combiner les liens.",
@@ -672,14 +656,6 @@ export const htmlcsRules = [
     tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H43,H63",
-    description:
-      "La relation entre les éléments td et leurs éléments associés n'est pas définie. Utilisez soit l'attribut scope sur ces éléments, soit l'attribut headers sur les éléments td.",
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
     ruleId: "Principle1.Guideline1_3.1_3_1_H43.HeadersRequired",
     description:
       "La relation entre les éléments td et leurs éléments associés n'est pas définie. Comme cette table a plusieurs niveaux de ces éléments, vous devez utiliser l'attribut headers sur les éléments td.",
@@ -698,22 +674,6 @@ export const htmlcsRules = [
     ruleId: "Principle1.Guideline1_3.1_3_1_H43.MissingHeaderIds",
     description:
       "Tous les éléments de cette table ne contiennent pas un attribut id. Ces cellules devraient contenir des ids de sorte qu'elles puissent être référencées par des éléments td attributs d'en-têtes.",
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H43.MissingHeaderIds",
-    description:
-      "Tous les éléments de cette table ne contiennent pas un attribut id. Ces cellules devraient contenir des ids de sorte qu'elles puissent être référencées par des éléments td attributs d'en-têtes.",
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H43.MissingHeadersAttrs",
-    description:
-      "Tous les éléments td de cette table ne contiennent pas un attribut d'en-tête. Chaque attribut d'en-tête devrait énumérer les ids de tous les éléments associés à cette cellule.",
     helpUrl: [],
     ruleType: "error",
     tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
@@ -1032,22 +992,6 @@ export const htmlcsRules = [
     tags: ["WCAGAA"],
   },
   {
-    ruleId: "Principle1.Guideline1_4.1_4_3_G145.Abs",
-    description:
-      "Cet élément est absolument positionné et la couleur de fond ne peut pas être déterminée. Assurez-vous que le rapport de contraste entre le texte et toutes les parties couvertes de l'arrière-plan est d'au moins {{nécessaire}}:1.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_4.1_4_3_G145.Alpha",
-    description:
-      "Le texte ou l'arrière-plan de cet élément contient de la transparence. Assurez-vous que le rapport de contraste entre le texte et l'arrière-plan est d'au moins {{nécessaire}}:1.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAA"],
-  },
-  {
     ruleId: "Principle1.Guideline1_4.1_4_3_G145.Alpha",
     description:
       "Le texte ou l'arrière-plan de cet élément contient de la transparence. Assurez-vous que le rapport de contraste entre le texte et l'arrière-plan est d'au moins {{nécessaire}}:1.",
@@ -1059,22 +1003,6 @@ export const htmlcsRules = [
     ruleId: "Principle1.Guideline1_4.1_4_3_G145.BgGradient",
     description:
       "Le texte de cet élément est placé sur une pente de fond. Assurez-vous que le rapport de contraste entre le texte et toutes les parties couvertes de l'pente est d'au moins {{nécessaire}}:1.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_4.1_4_3_G145.BgGradient",
-    description:
-      "Le texte de cet élément est placé sur une pente de fond. Assurez-vous que le rapport de contraste entre le texte et toutes les parties couvertes de l'pente est d'au moins {{nécessaire}}:1.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_4.1_4_3_G145.BgImage",
-    description:
-      "Le texte de cet élément est placé sur une image de fond. Assurez-vous que le rapport de contraste entre le texte et toutes les parties couvertes de l'image est d'au moins {{nécessaire}}:1.",
     helpUrl: [],
     ruleType: "warning",
     tags: ["WCAGAA"],
@@ -1112,33 +1040,9 @@ export const htmlcsRules = [
     tags: ["WCAGAAA"],
   },
   {
-    ruleId: "Principle1.Guideline1_4.1_4_6_G145.BgGradient",
-    description:
-      "Le texte de cet élément est placé sur une pente de fond. Assurez-vous que le rapport de contraste entre le texte et toutes les parties couvertes de l'pente est d'au moins {{nécessaire}}:1.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAAA"],
-  },
-  {
     ruleId: "Principle1.Guideline1_4.1_4_6_G17.Abs",
     description:
       "Cet élément est absolument positionné et la couleur de fond ne peut pas être déterminée. Assurez-vous que le rapport de contraste entre le texte et toutes les parties couvertes de l'arrière-plan est d'au moins {{nécessaire}}:1.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_4.1_4_6_G17.Abs",
-    description:
-      "Cet élément est absolument positionné et la couleur de fond ne peut pas être déterminée. Assurez-vous que le rapport de contraste entre le texte et toutes les parties couvertes de l'arrière-plan est d'au moins {{nécessaire}}:1.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_4.1_4_6_G17.BgImage",
-    description:
-      "Le texte de cet élément est placé sur une image de fond. Assurez-vous que le rapport de contraste entre le texte et toutes les parties couvertes de l'image est d'au moins {{nécessaire}}:1.",
     helpUrl: [],
     ruleType: "warning",
     tags: ["WCAGAAA"],

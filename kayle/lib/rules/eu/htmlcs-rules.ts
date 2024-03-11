@@ -368,22 +368,6 @@ export const htmlcsRules = [
     tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
   },
   {
-    ruleId: "Principle1.Guideline1_1.1_1_1_H2.EG3",
-    description:
-      "Img element inside a link must not use alt text that duplicates the content of a text link beside it.",
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_1.1_1_1_H2.EG4",
-    description:
-      "Img element inside a link has empty or missing alt text when a link beside it contains link text. Consider combining the links.",
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
     ruleId: "Principle1.Guideline1_1.1_1_1_H2.EG4",
     description:
       "Img element inside a link has empty or missing alt text when a link beside it contains link text. Consider combining the links.",
@@ -672,14 +656,6 @@ export const htmlcsRules = [
     tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H43,H63",
-    description:
-      "The relationship between td elements and their associated th elements is not defined. Use either the scope attribute on th elements, or the headers attribute on td elements.",
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
     ruleId: "Principle1.Guideline1_3.1_3_1_H43.HeadersRequired",
     description:
       "The relationship between td elements and their associated th elements is not defined. As this table has multiple levels of th elements, you must use the headers attribute on td elements.",
@@ -698,22 +674,6 @@ export const htmlcsRules = [
     ruleId: "Principle1.Guideline1_3.1_3_1_H43.MissingHeaderIds",
     description:
       "Not all th elements in this table contain an id attribute. These cells should contain ids so that they may be referenced by td elements' headers attributes.",
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H43.MissingHeaderIds",
-    description:
-      "Not all th elements in this table contain an id attribute. These cells should contain ids so that they may be referenced by td elements' headers attributes.",
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H43.MissingHeadersAttrs",
-    description:
-      "Not all td elements in this table contain a headers attribute. Each headers attribute should list the ids of all th elements associated with that cell.",
     helpUrl: [],
     ruleType: "error",
     tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
@@ -1096,22 +1056,6 @@ export const htmlcsRules = [
     tags: ["WCAGAA"],
   },
   {
-    ruleId: "Principle1.Guideline1_4.1_4_3_G145.Abs",
-    description:
-      "This element is absolutely positioned and the background color can not be determined. Ensure the contrast ratio between the text and all covered parts of the background are at least {{required}}:1.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_4.1_4_3_G145.Alpha",
-    description:
-      "This element's text or background contains transparency. Ensure the contrast ratio between the text and background are at least {{required}}:1.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAA"],
-  },
-  {
     ruleId: "Principle1.Guideline1_4.1_4_3_G145.Alpha",
     description:
       "This element's text or background contains transparency. Ensure the contrast ratio between the text and background are at least {{required}}:1.",
@@ -1123,22 +1067,6 @@ export const htmlcsRules = [
     ruleId: "Principle1.Guideline1_4.1_4_3_G145.BgGradient",
     description:
       "This element's text is placed on a gradient. Ensure the contrast ratio between the text and all covered parts of the gradient are at least {{required}}:1.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_4.1_4_3_G145.BgGradient",
-    description:
-      "This element's text is placed on a gradient. Ensure the contrast ratio between the text and all covered parts of the gradient are at least {{required}}:1.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_4.1_4_3_G145.BgImage",
-    description:
-      "This element's text is placed on a background image. Ensure the contrast ratio between the text and all covered parts of the image are at least {{required}}:1.",
     helpUrl: [],
     ruleType: "warning",
     tags: ["WCAGAA"],
@@ -1171,22 +1099,6 @@ export const htmlcsRules = [
     ruleId: "Principle1.Guideline1_4.1_4_6_G17.Abs",
     description:
       "This element is absolutely positioned and the background color can not be determined. Ensure the contrast ratio between the text and all covered parts of the background are at least {{required}}:1.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_4.1_4_6_G17.Abs",
-    description:
-      "This element is absolutely positioned and the background color can not be determined. Ensure the contrast ratio between the text and all covered parts of the background are at least {{required}}:1.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_4.1_4_6_G17.BgImage",
-    description:
-      "This element's text is placed on a background image. Ensure the contrast ratio between the text and all covered parts of the image are at least {{required}}:1.",
     helpUrl: [],
     ruleType: "warning",
     tags: ["WCAGAAA"],

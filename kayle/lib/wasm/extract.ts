@@ -12,6 +12,6 @@ export async function extractLinks(config: RunnerConfig, target?: string) {
   const domain = typeof target === "string" ? target : config.page.url();
   return get_document_links(
     htmlContent,
-    domain !== "about:blank" ? domain : "",
+    domain !== "about:blank" ? domain : ""
   );
 }

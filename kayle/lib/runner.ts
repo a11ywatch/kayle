@@ -124,7 +124,7 @@
     if (element.innerHTML.length > 31) {
       outerHTML = outerHTML.replace(
         element.innerHTML,
-        `${element.innerHTML.substring(0, 32)}...`,
+        `${element.innerHTML.substring(0, 32)}...`
       );
     }
 
@@ -166,7 +166,7 @@
 
     const elementSelector = getElementSelector(
       element.parentNode as HTMLElement,
-      true,
+      true
     );
 
     return `${
@@ -268,7 +268,7 @@
       acc,
       tracker,
       meta,
-      missingAltIndexs: number[],
+      missingAltIndexs: number[]
     ) => {
       for (const is of issues) {
         if (validateIssue(is)) {
@@ -344,7 +344,7 @@
           }
           return [];
         });
-      }),
+      })
     );
 
     // meta information keep records shaped to numbers

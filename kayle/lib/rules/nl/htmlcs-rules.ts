@@ -368,22 +368,6 @@ export const htmlcsRules = [
     tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
   },
   {
-    ruleId: "Principle1.Guideline1_1.1_1_1_H2.EG3",
-    description:
-      "Img element binnen een link mag geen alt tekst gebruiken die de tekstinhoud van de link ernaast herhaalt.",
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_1.1_1_1_H2.EG4",
-    description:
-      "Img element binnen een link heeft een lege of ontbrekende alt tekst terwijl een link net ernaast linktekst bevat. Overweeg beide links samen te voegen.",
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
     ruleId: "Principle1.Guideline1_1.1_1_1_H2.EG4",
     description:
       "Img element binnen een link heeft een lege of ontbrekende alt tekst terwijl een link net ernaast linktekst bevat. Overweeg beide links samen te voegen.",
@@ -672,14 +656,6 @@ export const htmlcsRules = [
     tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H43,H63",
-    description:
-      "De relatie tussen td elementen en de ermee verband houdende th elementen is niet omschreven. Gebruik ofwel het scope attribuut op th elementen of het headers attribuut op td elementen.",
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
     ruleId: "Principle1.Guideline1_3.1_3_1_H43.HeadersRequired",
     description:
       "De relatie tussen td elementen en de eraan gebonden th elementen werd niet omschreven. Gezien deze tabel meerdere niveaus th elmenten bevat, moet het headers attribuut gebruikt worden op td elementen.",
@@ -698,22 +674,6 @@ export const htmlcsRules = [
     ruleId: "Principle1.Guideline1_3.1_3_1_H43.MissingHeaderIds",
     description:
       "Niet alle th elementen in deze tabel hebben een id attribuut. Deze cellen zouden ids moeten bevatten zodat er kan naar verwezen worden in het headers attribuut van td elementen.",
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H43.MissingHeaderIds",
-    description:
-      "Niet alle th elementen in deze tabel hebben een id attribuut. Deze cellen zouden ids moeten bevatten zodat er kan naar verwezen worden in het headers attribuut van td elementen.",
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H43.MissingHeadersAttrs",
-    description:
-      "Niet alle td elementen in deze tabel hebben een headers attribuut. Elk headers attribuut zou een lijst moeten bevatten van de ids van alle th elementen die verband houden met deze cel",
     helpUrl: [],
     ruleType: "error",
     tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
@@ -1095,22 +1055,6 @@ export const htmlcsRules = [
     tags: ["WCAGAA"],
   },
   {
-    ruleId: "Principle1.Guideline1_4.1_4_3_G145.Abs",
-    description:
-      "Dit element is absoluut gepositioneerd en de achtergrondkleur kan niet bepaald worden. Zorg ervoor dat de contrastverhouding tussen de tekst en alle bedekte delen van de achtergond minstens {{required}}:1 is.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_4.1_4_3_G145.Alpha",
-    description:
-      "De tekst of achtergrond van dit element bevat transparantie. Zorg ervoor dat de contrastverhouding tussen de tekst en de achtergond minstens {{required}}:1 is.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAA"],
-  },
-  {
     ruleId: "Principle1.Guideline1_4.1_4_3_G145.Alpha",
     description:
       "De tekst of achtergrond van dit element bevat transparantie. Zorg ervoor dat de contrastverhouding tussen de tekst en de achtergond minstens {{required}}:1 is.",
@@ -1122,22 +1066,6 @@ export const htmlcsRules = [
     ruleId: "Principle1.Guideline1_4.1_4_3_G145.BgGradient",
     description:
       "De tekst van dit element is op een achtergrondverloop geplaatst. Zorg ervoor dat de contrastverhouding tussen de tekst en alle bedekte delen van het achtergrondverloop minimaal {{vereist}}:1 is.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_4.1_4_3_G145.BgGradient",
-    description:
-      "De tekst van dit element is op een achtergrondverloop geplaatst. Zorg ervoor dat de contrastverhouding tussen de tekst en alle bedekte delen van het achtergrondverloop minimaal {{vereist}}:1 is.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_4.1_4_3_G145.BgImage",
-    description:
-      "De tekst van dit element werd geplaatst op een achtergrondafbeelding. Zorg ervoor dat de contrastverhouding tussen de tekst en alle bedekte delen van de achtergrondafbeelding minstens {{required}}:1 is.",
     helpUrl: [],
     ruleType: "warning",
     tags: ["WCAGAA"],
@@ -1175,33 +1103,9 @@ export const htmlcsRules = [
     tags: ["WCAGAAA"],
   },
   {
-    ruleId: "Principle1.Guideline1_4.1_4_6_G145.BgGradient",
-    description:
-      "De tekst van dit element is op een achtergrondverloop geplaatst. Zorg ervoor dat de contrastverhouding tussen de tekst en alle bedekte delen van het achtergrondverloop minimaal {{vereist}}:1 is.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAAA"],
-  },
-  {
     ruleId: "Principle1.Guideline1_4.1_4_6_G17.Abs",
     description:
       "Dit element is absoluut gepositioneerd en de achtergrondkleur kan niet bepaald worden. Zorg ervoor dat de contrastverhouding tussen de tekst en alle bedekte delen van de achtergond minstens {{required}}:1 is.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_4.1_4_6_G17.Abs",
-    description:
-      "Dit element is absoluut gepositioneerd en de achtergrondkleur kan niet bepaald worden. Zorg ervoor dat de contrastverhouding tussen de tekst en alle bedekte delen van de achtergond minstens {{required}}:1 is.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_4.1_4_6_G17.BgImage",
-    description:
-      "De tekst van dit element werd geplaatst op een achtergrondafbeelding. Zorg ervoor dat de contrastverhouding tussen de tekst en alle bedekte delen van de achtergrondafbeelding minstens {{required}}:1 is.",
     helpUrl: [],
     ruleType: "warning",
     tags: ["WCAGAAA"],

@@ -36,7 +36,7 @@ test("fast_axecore audit drakeMock", async ({ page, browser }, testInfo) => {
   writeFileSync(
     testInfo.outputPath("axe-core.json"),
     JSON.stringify(results, null, 2),
-    "utf8",
+    "utf8"
   );
 
   writeFileSync(
@@ -51,8 +51,8 @@ test("fast_axecore audit drakeMock", async ({ page, browser }, testInfo) => {
         runner: ["fast_axecore"],
       },
       null,
-      2,
+      2
     ),
-    "utf8",
+    "utf8"
   );
 });

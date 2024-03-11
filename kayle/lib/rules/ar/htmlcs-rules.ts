@@ -367,22 +367,6 @@ export const htmlcsRules = [
     tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
   },
   {
-    ruleId: "Principle1.Guideline1_1.1_1_1_H2.EG3",
-    description:
-      "يجب ألا يستخدم عنصر Img داخل رابط النص alt الذي يكرر محتوى رابط النص بجانبه.",
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_1.1_1_1_H2.EG4",
-    description:
-      "عنصر Img داخل رابط له نص alt فارغ أو مفقود عندما يحتوي رابط بجانبه على نص رابط. ضع في اعتبارك دمج الروابط.",
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
     ruleId: "Principle1.Guideline1_1.1_1_1_H2.EG4",
     description:
       "عنصر Img داخل رابط له نص alt فارغ أو مفقود عندما يحتوي رابط بجانبه على نص رابط. ضع في اعتبارك دمج الروابط.",
@@ -670,14 +654,6 @@ export const htmlcsRules = [
     tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H43,H63",
-    description:
-      "العلاقة بين عناصر td وعناصر th المرتبطة بها غير محددة. استخدم إما سمة النطاق على عناصر th، أو سمة العناوين على عناصر td.",
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
     ruleId: "Principle1.Guideline1_3.1_3_1_H43.HeadersRequired",
     description:
       "العلاقة بين عناصر td وعناصر th المرتبطة بها غير محددة. نظرًا لأن هذا الجدول يحتوي على عدة مستويات من عناصر th، يجب استخدام سمة العناوين على عناصر td.",
@@ -696,22 +672,6 @@ export const htmlcsRules = [
     ruleId: "Principle1.Guideline1_3.1_3_1_H43.MissingHeaderIds",
     description:
       "ليس كل عناصر th في هذا الجدول تحتوي على سمة id. يجب أن تحتوي هذه الخلايا على معرفات حتى يمكن الإشارة إليها بواسطة سمات العناوين في عناصر td.",
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H43.MissingHeaderIds",
-    description:
-      "ليس كل عناصر th في هذا الجدول تحتوي على سمة id. يجب أن تحتوي هذه الخلايا على معرفات حتى يمكن الإشارة إليها بواسطة سمات العناوين في عناصر td.",
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H43.MissingHeadersAttrs",
-    description:
-      "ليس كل عناصر td في هذا الجدول تحتوي على سمة عناوين. يجب أن تحتوي كل سمة عناوين على قائمة بمعرفات كل عناصر th المرتبطة بهذه الخلية.",
     helpUrl: [],
     ruleType: "error",
     tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
@@ -1093,22 +1053,6 @@ export const htmlcsRules = [
     tags: ["WCAGAA"],
   },
   {
-    ruleId: "Principle1.Guideline1_4.1_4_3_G145.Abs",
-    description:
-      "هذا العنصر موضوع بشكل مطلق ولا يمكن تحديد لون الخلفية. تأكد من أن نسبة التباين بين النص وجميع الأجزاء المغطاة من الخلفية على الأقل {{required}}:1.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_4.1_4_3_G145.Alpha",
-    description:
-      "نص أو خلفية هذا العنصر يحتوي على شفافية. تأكد من أن نسبة التباين بين النص والخلفية على الأقل {{required}}:1.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAA"],
-  },
-  {
     ruleId: "Principle1.Guideline1_4.1_4_3_G145.Alpha",
     description:
       "نص أو خلفية هذا العنصر يحتوي على شفافية. تأكد من أن نسبة التباين بين النص والخلفية على الأقل {{required}}:1.",
@@ -1120,22 +1064,6 @@ export const htmlcsRules = [
     ruleId: "Principle1.Guideline1_4.1_4_3_G145.BgGradient",
     description:
       "نص هذا العنصر موضوع على تدرج. تأكد من أن نسبة التباين بين النص وجميع الأجزاء المغطاة من التدرج على الأقل {{required}}:1.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_4.1_4_3_G145.BgGradient",
-    description:
-      "نص هذا العنصر موضوع على تدرج. تأكد من أن نسبة التباين بين النص وجميع الأجزاء المغطاة من التدرج على الأقل {{required}}:1.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_4.1_4_3_G145.BgImage",
-    description:
-      "نص هذا العنصر موضوع على صورة خلفية. تأكد من أن نسبة التباين بين النص وجميع الأجزاء المغطاة من الصورة على الأقل {{required}}:1.",
     helpUrl: [],
     ruleType: "warning",
     tags: ["WCAGAA"],
@@ -1168,22 +1096,6 @@ export const htmlcsRules = [
     ruleId: "Principle1.Guideline1_4.1_4_6_G17.Abs",
     description:
       "هذا العنصر موضوع بشكل مطلق ولا يمكن تحديد لون الخلفية. تأكد من أن نسبة التباين بين النص وجميع الأجزاء المغطاة من الخلفية على الأقل {{required}}:1.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_4.1_4_6_G17.Abs",
-    description:
-      "هذا العنصر موضوع بشكل مطلق ولا يمكن تحديد لون الخلفية. تأكد من أن نسبة التباين بين النص وجميع الأجزاء المغطاة من الخلفية على الأقل {{required}}:1.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_4.1_4_6_G17.BgImage",
-    description:
-      "نص هذا العنصر موضوع على صورة خلفية. تأكد من أن نسبة التباين بين النص وجميع الأجزاء المغطاة من الصورة على الأقل {{required}}:1.",
     helpUrl: [],
     ruleType: "warning",
     tags: ["WCAGAAA"],

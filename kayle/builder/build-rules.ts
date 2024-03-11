@@ -37,7 +37,7 @@ import type { Rule } from "./build-types";
         origin: "https://www.example.com",
         language,
       },
-      true,
+      true
     );
 
     await Promise.all([
@@ -54,7 +54,7 @@ import type { Rule } from "./build-types";
         content: `window.htmlcsRuleMap = ${htmlcsRuleMap.toString()};`,
       }),
       page.exposeFunction("pushHtmlcsRule", (t: Rule[]) =>
-        fast_htmlcs_rules.push(...t),
+        fast_htmlcs_rules.push(...t)
       ),
       page.exposeFunction("pushAxeRule", (t: Rule) => fast_axe_rules.push(t)),
     ]);
@@ -76,19 +76,29 @@ import type { Rule } from "./build-types";
 
     const DNE = "THIS FILE WAS CREATED DYNAMICALLY - DO NOT EDIT";
 
+    const rs = new Set();
+
     await writeFile(
       `./lib/rules/${language}/htmlcs-rules.ts`,
       Buffer.from(
         await format(
           `/* ${DNE} */\nexport const htmlcsRules = ${JSON.stringify(
             fast_htmlcs_rules
-              .filter((r) => r.description)
-              .sort((a, b) => a.ruleId.localeCompare(b.ruleId)),
+              .filter((r) => {
+                if (rs.has(r.ruleId)) {
+                  return false;
+                }
+
+                rs.add(r.ruleId);
+
+                return r.description;
+              })
+              .sort((a, b) => a.ruleId.localeCompare(b.ruleId))
           )};`,
-          pConfig,
-        ),
+          pConfig
+        )
       ),
-      "utf8",
+      "utf8"
     );
 
     await writeFile(
@@ -96,12 +106,12 @@ import type { Rule } from "./build-types";
       Buffer.from(
         await format(
           `/* ${DNE} */\nexport const axeRules = ${JSON.stringify(
-            fast_axe_rules.sort((a, b) => a.ruleId.localeCompare(b.ruleId)),
+            fast_axe_rules.sort((a, b) => a.ruleId.localeCompare(b.ruleId))
           )};`,
-          pConfig,
-        ),
+          pConfig
+        )
       ),
-      "utf8",
+      "utf8"
     );
 
     await page.close({
@@ -110,7 +120,7 @@ import type { Rule } from "./build-types";
   };
 
   const localesList: string[] = Array.from(
-    new Set(htmlcsLocales.concat(axeLocales)),
+    new Set(htmlcsLocales.concat(axeLocales))
   );
 
   localesList.push("en");
@@ -130,9 +140,13 @@ import type { Rule } from "./build-types";
   };
   
   // import rule list with locales
-  export const importRules = async (locale: ${localesList.map((l) => `"${l}"`).join(" | ")}, runner: "htmlcs" | "axe"): Promise<Rule[]> => {
+  export const importRules = async (locale: ${localesList
+    .map((l) => `"${l}"`)
+    .join(
+      " | "
+    )}, runner: "htmlcs" | "axe", baseDir?: "string"): Promise<Rule[]> => {
     const rules = await import(` +
-    "`./${locale.replace('-', '_')}/${runner === 'htmlcs' ? 'htmlcs' : 'axe'}-rules`" +
+    "`${baseDir || './'}${locale.replace('-', '_')}/${runner === 'htmlcs' ? 'htmlcs' : 'axe'}-rules`" +
     `` +
     `);
 
@@ -153,10 +167,10 @@ import type { Rule } from "./build-types";
           
           ${runnerImports}
           `,
-        pConfig,
-      ),
+        pConfig
+      )
     ),
-    "utf8",
+    "utf8"
   );
 
   await browser.close();

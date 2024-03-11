@@ -368,22 +368,6 @@ export const htmlcsRules = [
     tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
   },
   {
-    ruleId: "Principle1.Guideline1_1.1_1_1_H2.EG3",
-    description:
-      "El elemento Img dentro de un enlace no debe usar un texto alternativo que duplique el contenido de un enlace de texto junto a él.",
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_1.1_1_1_H2.EG4",
-    description:
-      "El elemento Img dentro de un enlace tiene un texto alternativo vacío o faltante cuando un enlace junto a él contiene texto de enlace. Considera la posibilidad de combinar los enlaces.",
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
     ruleId: "Principle1.Guideline1_1.1_1_1_H2.EG4",
     description:
       "El elemento Img dentro de un enlace tiene un texto alternativo vacío o faltante cuando un enlace junto a él contiene texto de enlace. Considera la posibilidad de combinar los enlaces.",
@@ -672,14 +656,6 @@ export const htmlcsRules = [
     tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H43,H63",
-    description:
-      "La relación entre los elementos td y sus elementos th asociados no está definida. Utiliza either el atributo scope en los elementos th o el atributo headers en los elementos td.",
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
     ruleId: "Principle1.Guideline1_3.1_3_1_H43.HeadersRequired",
     description:
       "La relación entre los elementos td y sus elementos th asociados no está definida. Como esta tabla tiene múltiples niveles de elementos th, debes utilizar el atributo headers en los elementos td.",
@@ -699,22 +675,6 @@ export const htmlcsRules = [
     ruleId: "Principle1.Guideline1_3.1_3_1_H43.MissingHeaderIds",
     description:
       "No todos los elementos th en esta tabla contienen un atributo id. Estas celdas deben contener ids para que puedan ser referenciadas por los atributos headers de los elementos td.",
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H43.MissingHeaderIds",
-    description:
-      "No todos los elementos th en esta tabla contienen un atributo id. Estas celdas deben contener ids para que puedan ser referenciadas por los atributos headers de los elementos td.",
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H43.MissingHeadersAttrs",
-    description:
-      "No todos los elementos td en esta tabla contienen un atributo headers. Cada atributo headers debe enumerar los ids de todos los elementos th asociados con esa celda.",
     helpUrl: [],
     ruleType: "error",
     tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
@@ -1096,33 +1056,9 @@ export const htmlcsRules = [
     tags: ["WCAGAA"],
   },
   {
-    ruleId: "Principle1.Guideline1_4.1_4_3_G145.Abs",
-    description:
-      "Este elemento está posicionado absolutamente y no se puede determinar el color de fondo. Asegúrate de que la relación de contraste entre el texto y todas las partes cubiertas del fondo sea al menos de {{required}}:1.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAA"],
-  },
-  {
     ruleId: "Principle1.Guideline1_4.1_4_3_G145.Alpha",
     description:
       "El texto o el fondo de este elemento contienen transparencia. Asegúrate de que la relación de contraste entre el texto y el fondo sea de al menos de {{required}}:1.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_4.1_4_3_G145.Alpha",
-    description:
-      "El texto o el fondo de este elemento contienen transparencia. Asegúrate de que la relación de contraste entre el texto y el fondo sea de al menos de {{required}}:1.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_4.1_4_3_G145.BgImage",
-    description:
-      "El texto de este elemento se coloca sobre una imagen de fondo. Asegúrate de que la relación de contraste entre el texto y todas las partes cubiertas de la imagen sea al menos de {{required}}:1.",
     helpUrl: [],
     ruleType: "warning",
     tags: ["WCAGAA"],
@@ -1155,22 +1091,6 @@ export const htmlcsRules = [
     ruleId: "Principle1.Guideline1_4.1_4_6_G17.Abs",
     description:
       "Este elemento está posicionado absolutamente y no se puede determinar el color de fondo. Asegúrate de que la relación de contraste entre el texto y todas las partes cubiertas del fondo sea al menos de {{required}}:1.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_4.1_4_6_G17.Abs",
-    description:
-      "Este elemento está posicionado absolutamente y no se puede determinar el color de fondo. Asegúrate de que la relación de contraste entre el texto y todas las partes cubiertas del fondo sea al menos de {{required}}:1.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_4.1_4_6_G17.BgImage",
-    description:
-      "El texto de este elemento se coloca sobre una imagen de fondo. Asegúrate de que la relación de contraste entre el texto y todas las partes cubiertas de la imagen sea al menos de {{required}}:1.",
     helpUrl: [],
     ruleType: "warning",
     tags: ["WCAGAAA"],

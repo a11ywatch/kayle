@@ -368,22 +368,6 @@ export const htmlcsRules = [
     tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
   },
   {
-    ruleId: "Principle1.Guideline1_1.1_1_1_H2.EG3",
-    description:
-      "링크 내부의 Img 요소는 옆에 있는 텍스트 링크의 내용을 중복하는 alt 텍스트를 사용해서는 안됩니다.",
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_1.1_1_1_H2.EG4",
-    description:
-      "링크 옆에 링크 텍스트가 있는 경우 링크 내부의 Img 요소가 빈 alt 텍스트를 가지거나 누락되었습니다. 링크를 결합하는 것을 고려하세요.",
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
     ruleId: "Principle1.Guideline1_1.1_1_1_H2.EG4",
     description:
       "링크 옆에 링크 텍스트가 있는 경우 링크 내부의 Img 요소가 빈 alt 텍스트를 가지거나 누락되었습니다. 링크를 결합하는 것을 고려하세요.",
@@ -671,14 +655,6 @@ export const htmlcsRules = [
     tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H43,H63",
-    description:
-      "td 요소와 관련된 th 요소 사이의 관계가 정의되지 않았습니다. th 요소에 범위 속성을 사용하거나 td 요소에 헤더 속성을 사용하세요.",
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
     ruleId: "Principle1.Guideline1_3.1_3_1_H43.HeadersRequired",
     description:
       "td 요소와 관련된 th 요소 사이의 관계가 정의되지 않았습니다. 이 테이블에 여러 레벨의 th 요소가 있으므로 td 요소에 헤더 속성을 사용해야 합니다.",
@@ -697,22 +673,6 @@ export const htmlcsRules = [
     ruleId: "Principle1.Guideline1_3.1_3_1_H43.MissingHeaderIds",
     description:
       "이 테이블의 모든 th 요소에 id 속성이 포함되어 있지 않습니다. 이 셀들은 td 요소의 헤더 속성에서 참조할 수 있도록 id를 포함해야 합니다.",
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H43.MissingHeaderIds",
-    description:
-      "이 테이블의 모든 th 요소에 id 속성이 포함되어 있지 않습니다. 이 셀들은 td 요소의 헤더 속성에서 참조할 수 있도록 id를 포함해야 합니다.",
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H43.MissingHeadersAttrs",
-    description:
-      "이 테이블의 모든 td 요소에 헤더 속성이 포함되어 있지 않습니다. 각 헤더 속성은 해당 셀과 관련된 모든 th 요소의 id를 나열해야 합니다.",
     helpUrl: [],
     ruleType: "error",
     tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
@@ -1095,22 +1055,6 @@ export const htmlcsRules = [
     tags: ["WCAGAA"],
   },
   {
-    ruleId: "Principle1.Guideline1_4.1_4_3_G145.Abs",
-    description:
-      "이 요소는 절대 위치가 지정되어 있고 배경색을 결정할 수 없습니다. 텍스트와 모든 덮힌 배경 부분 사이의 대비 비율이 최소 {{required}}:1 이상인지 확인하십시오.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_4.1_4_3_G145.Alpha",
-    description:
-      "이 요소의 텍스트 또는 배경에 투명도가 포함되어 있습니다. 텍스트와 배경 사이의 대비 비율이 최소 {{required}}:1 이상인지 확인하십시오.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAA"],
-  },
-  {
     ruleId: "Principle1.Guideline1_4.1_4_3_G145.Alpha",
     description:
       "이 요소의 텍스트 또는 배경에 투명도가 포함되어 있습니다. 텍스트와 배경 사이의 대비 비율이 최소 {{required}}:1 이상인지 확인하십시오.",
@@ -1122,22 +1066,6 @@ export const htmlcsRules = [
     ruleId: "Principle1.Guideline1_4.1_4_3_G145.BgGradient",
     description:
       "이 요소의 텍스트는 그라데이션 위에 배치됩니다. 텍스트와 모든 덮인 그라데이션 부분 사이의 대비 비율이 최소 {{required}}:1 이상인지 확인하십시오.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_4.1_4_3_G145.BgGradient",
-    description:
-      "이 요소의 텍스트는 그라데이션 위에 배치됩니다. 텍스트와 모든 덮인 그라데이션 부분 사이의 대비 비율이 최소 {{required}}:1 이상인지 확인하십시오.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_4.1_4_3_G145.BgImage",
-    description:
-      "이 요소의 텍스트는 배경 이미지 위에 배치됩니다. 텍스트와 모든 덮인 이미지 부분 사이의 대비 비율이 최소 {{required}}:1 이상인지 확인하십시오.",
     helpUrl: [],
     ruleType: "warning",
     tags: ["WCAGAA"],
@@ -1170,22 +1098,6 @@ export const htmlcsRules = [
     ruleId: "Principle1.Guideline1_4.1_4_6_G17.Abs",
     description:
       "이 요소는 절대 위치가 지정되어 있고 배경색을 결정할 수 없습니다. 텍스트와 모든 덮힌 배경 부분 사이의 대비 비율이 최소 {{required}}:1 이상인지 확인하십시오.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_4.1_4_6_G17.Abs",
-    description:
-      "이 요소는 절대 위치가 지정되어 있고 배경색을 결정할 수 없습니다. 텍스트와 모든 덮힌 배경 부분 사이의 대비 비율이 최소 {{required}}:1 이상인지 확인하십시오.",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_4.1_4_6_G17.BgImage",
-    description:
-      "이 요소의 텍스트는 배경 이미지 위에 배치됩니다. 텍스트와 모든 덮인 이미지 부분 사이의 대비 비율이 최소 {{required}}:1 이상인지 확인하십시오.",
     helpUrl: [],
     ruleType: "warning",
     tags: ["WCAGAAA"],

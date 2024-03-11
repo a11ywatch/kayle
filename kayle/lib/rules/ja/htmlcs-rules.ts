@@ -368,22 +368,6 @@ export const htmlcsRules = [
     tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
   },
   {
-    ruleId: "Principle1.Guideline1_1.1_1_1_H2.EG3",
-    description:
-      "テキストリンクと隣り合うリンク内の img 要素の alt 属性にテキストリンクの内容の複製を使用してはいけません。",
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_1.1_1_1_H2.EG4",
-    description:
-      "テキストリンクと隣り合うリンク内の img 要素の alt 属性が指定されていないか空になっています。テキストと画像のリンクを一つにまとめることを検討してください。",
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
     ruleId: "Principle1.Guideline1_1.1_1_1_H2.EG4",
     description:
       "テキストリンクと隣り合うリンク内の img 要素の alt 属性が指定されていないか空になっています。テキストと画像のリンクを一つにまとめることを検討してください。",
@@ -671,14 +655,6 @@ export const htmlcsRules = [
     tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
   },
   {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H43,H63",
-    description:
-      "td 要素とそれに関連する th 要素の関係は定義されていません。 th 要素に scope 属性を使用するか、td 要素に headers 属性を使用してください。",
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
     ruleId: "Principle1.Guideline1_3.1_3_1_H43.HeadersRequired",
     description:
       "td 要素とそれに関連する th 要素の関係は定義されていません。このテーブルには複数レベルの th 要素があるため、 td 要素には headers 属性を使用する必要があります。",
@@ -697,22 +673,6 @@ export const htmlcsRules = [
     ruleId: "Principle1.Guideline1_3.1_3_1_H43.MissingHeaderIds",
     description:
       "このテーブルに id 属性を含まない th 要素があります。これらのセルは、それらが td 要素の headers 属性によって参照されるように ID を含むべきです。",
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H43.MissingHeaderIds",
-    description:
-      "このテーブルに id 属性を含まない th 要素があります。これらのセルは、それらが td 要素の headers 属性によって参照されるように ID を含むべきです。",
-    helpUrl: [],
-    ruleType: "error",
-    tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_3.1_3_1_H43.MissingHeadersAttrs",
-    description:
-      "このテーブルに headers 属性を含まない td 要素があります。各 headers 属性は、そのセルに関連付けられているすべての th 要素の ID を列挙する必要があります。",
     helpUrl: [],
     ruleType: "error",
     tags: ["WCAGA", "WCAGAA", "WCAGAAA"],
@@ -934,22 +894,6 @@ export const htmlcsRules = [
     tags: ["WCAGAA"],
   },
   {
-    ruleId: "Principle1.Guideline1_4.1_4_3_G145.Abs",
-    description:
-      "この要素は絶対位置に配置されているため、背景色を決定できません。テキストと背景の覆われた部分すべてのコントラスト比が少なくとも{{required}}:1であることを確認してください。",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_4.1_4_3_G145.Alpha",
-    description:
-      "この要素のテキストまたは背景は透明部分を含みます。テキストと背景のコントラスト比が少なくとも{{required}}:1であることを確認してください。",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAA"],
-  },
-  {
     ruleId: "Principle1.Guideline1_4.1_4_3_G145.Alpha",
     description:
       "この要素のテキストまたは背景は透明部分を含みます。テキストと背景のコントラスト比が少なくとも{{required}}:1であることを確認してください。",
@@ -961,22 +905,6 @@ export const htmlcsRules = [
     ruleId: "Principle1.Guideline1_4.1_4_3_G145.BgGradient",
     description:
       "この要素のテキストはグラデーションの上に配置されます。テキストとグラデーションのすべての覆われた部分のコントラスト比が少なくとも {{required}}:1 であることを確認してください。",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_4.1_4_3_G145.BgGradient",
-    description:
-      "この要素のテキストはグラデーションの上に配置されます。テキストとグラデーションのすべての覆われた部分のコントラスト比が少なくとも {{required}}:1 であることを確認してください。",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_4.1_4_3_G145.BgImage",
-    description:
-      "この要素のテキストは背景画像に配置されます。テキストと画像の覆われている部分すべてのコントラスト比が少なくとも{{required}}:1であることを確認してください。",
     helpUrl: [],
     ruleType: "warning",
     tags: ["WCAGAA"],
@@ -1014,33 +942,9 @@ export const htmlcsRules = [
     tags: ["WCAGAAA"],
   },
   {
-    ruleId: "Principle1.Guideline1_4.1_4_6_G145.BgGradient",
-    description:
-      "この要素のテキストはグラデーションの上に配置されます。テキストとグラデーションのすべての覆われた部分のコントラスト比が少なくとも {{required}}:1 であることを確認してください。",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAAA"],
-  },
-  {
     ruleId: "Principle1.Guideline1_4.1_4_6_G17.Abs",
     description:
       "この要素は絶対位置に配置されているため、背景色を決定できません。テキストと背景の覆われた部分すべてのコントラスト比が少なくとも{{required}}:1であることを確認してください。",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_4.1_4_6_G17.Abs",
-    description:
-      "この要素は絶対位置に配置されているため、背景色を決定できません。テキストと背景の覆われた部分すべてのコントラスト比が少なくとも{{required}}:1であることを確認してください。",
-    helpUrl: [],
-    ruleType: "warning",
-    tags: ["WCAGAAA"],
-  },
-  {
-    ruleId: "Principle1.Guideline1_4.1_4_6_G17.BgImage",
-    description:
-      "この要素のテキストは背景画像に配置されます。テキストと画像の覆われている部分すべてのコントラスト比が少なくとも{{required}}:1であることを確認してください。",
     helpUrl: [],
     ruleType: "warning",
     tags: ["WCAGAAA"],
