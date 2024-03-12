@@ -89,7 +89,7 @@ export const htmlcsRuleMap = (rule: ParamList) => {
       rid.length >= 3 ? `${_rid[0]}.${_rid[1]}.${sl.substring(0, 5)}` : _rid[0];
 
     return [
-      ruleTarget.startsWith("Principle") ? "" : "SECTION508",
+      ruleTarget.startsWith("Principle") ? "" : "Section508",
       window.WCAGA.includes(ruleTarget) ? "WCAGA" : "",
       window.WCAGAA.includes(ruleTarget) ? "WCAGAA" : "",
       window.WCAGAAA.includes(ruleTarget) ? "WCAGAAA" : "",
