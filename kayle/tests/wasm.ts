@@ -5,7 +5,7 @@ import { performance } from "perf_hooks";
 import { drakeMock } from "./mocks/html-mock";
 
 (async () => {
-  const browser = await puppeteer.launch({ headless: "new" });
+  const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
   await page.setContent(drakeMock);
   const startTime = performance.now();

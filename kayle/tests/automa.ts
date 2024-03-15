@@ -7,7 +7,7 @@ setLogging(false);
 
 // this will crawl until all pages are finished.
 (async () => {
-  const browser = await launch({ waitForInitialPage: false, headless: "new" });
+  const browser = await launch({ waitForInitialPage: false, headless: true });
   const page = await browser.newPage();
 
   const startTime = performance.now();

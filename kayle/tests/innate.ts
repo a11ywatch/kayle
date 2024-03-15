@@ -5,7 +5,7 @@ import { performance } from "perf_hooks";
 
 // setup test for rust wasm auditing
 (async () => {
-  const browser = await puppeteer.launch({ headless: "new" });
+  const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
   if (process.env.LOG_ENABLED) {
     page.on("console", (msg) => console.log("PAGE LOG:", msg.text()));
