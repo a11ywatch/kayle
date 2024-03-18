@@ -4,9 +4,9 @@ version = 3
 
 [[package]]
 name = "accessibility-rs"
-version = "0.0.47"
+version = "0.0.49"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7405841aaedfe5ad1328b6da51d079a7f4afe415565d1d1c2525b95df059ec48"
+checksum = "c4a620da827d1e4d85d9007fcf5d61a3f550cf43239801860055b0a159bb236e"
 dependencies = [
  "accessibility-scraper",
  "accessibility-tree",
@@ -530,7 +530,7 @@ dependencies = [
 
 [[package]]
 name = "kayle_innate"
-version = "0.0.26"
+version = "0.0.27"
 dependencies = [
  "accessibility-rs",
  "case_insensitive_string",
