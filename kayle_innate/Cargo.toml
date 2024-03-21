@@ -1,6 +1,6 @@
 [package]
 name = "kayle_innate"
-version = "0.0.27"
+version = "0.0.30"
 authors = ["j-mendez"]
 edition = "2018"
 license = "MIT"
@@ -15,21 +15,21 @@ crate-type = ["cdylib", "rlib"]
 default = ["console_error_panic_hook"]
 
 [dependencies]
-wasm-bindgen = { version = "0.2.91", features = ["serde-serialize"] }
-console_error_panic_hook = { version = "0.1.6", optional = true }
+wasm-bindgen = { version = "0.2.92", features = ["serde-serialize"] }
+console_error_panic_hook = { version = "0.1.7", optional = true }
 wee_alloc = { version = "0.4.5", optional = true }
-url = "2.4.0"
+url = "2.5.0"
 lazy_static = "1.4"
-case_insensitive_string = "0.1.0"
+case_insensitive_string = "0.1.7"
 scraper = { version = "0.17.1", features = ["main"], default-features = false }
 getrandom = { version = "0.2", features = ["js"] }
-serde = { version = "1.0.196", features = ["derive"] }
-serde-wasm-bindgen = "0.6.3"
-js-sys = "0.3.64"
-accessibility-rs = "^0.0.49"
+serde = { version = "1.0.197", features = ["derive"] }
+serde-wasm-bindgen = "0.6.5"
+js-sys = "0.3.69"
+accessibility-rs = "^0.0.52"
 
 [dev-dependencies]
-wasm-bindgen-test = "0.3.41"
+wasm-bindgen-test = "0.3.42"
 
 [profile.dev]
 opt-level = 3
