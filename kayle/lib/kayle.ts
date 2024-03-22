@@ -168,61 +168,81 @@ export const kayle = async (
   const watcher = new Watcher();
   const navigate = o.page.url() === "about:blank" && (o.origin || o.html);
   const config = extractArgs(o, watcher);
+  let validPage = true;
 
   if (navigate) {
-    await goToPage(o);
+    validPage = await goToPage(o);
   } else if (!o.noIntercept) {
     await setNetworkInterception(o);
   }
 
-  const results = await Promise.race([
-    watcher.watch(config.timeout),
-    auditPage(config),
-  ]);
+  if (validPage) {
+    const results = await Promise.race([
+      watcher.watch(config.timeout),
+      auditPage(config),
+    ]);
 
-  clearTimeout(watcher.timer as number);
+    clearTimeout(watcher.timer as number);
 
-  if (results && o.clip && o.clip2Base64 && Array.isArray(results.issues)) {
-    results.issues = await Promise.all(
-      results.issues.map(async (item) => {
-        // prevent screenshots
-        if (typeof o.clipMax === "number") {
-          if (!o.clipMax) {
-            return item;
+    if (results && o.clip && o.clip2Base64 && Array.isArray(results.issues)) {
+      results.issues = await Promise.all(
+        results.issues.map(async (item) => {
+          // prevent screenshots
+          if (typeof o.clipMax === "number") {
+            if (!o.clipMax) {
+              return item;
+            }
+            o.clipMax--;
           }
-          o.clipMax--;
-        }
 
-        try {
-          const buffer = await o.page.screenshot({
-            path: o.clipDir
-              ? `${o.clipDir}${
-                  o.clipDir.endsWith("/") ? "" : "/"
-                }${item.selector.trim()}.png`
-              : undefined,
-            clip: item.clip,
-          });
+          try {
+            const buffer = await o.page.screenshot({
+              path: o.clipDir
+                ? `${o.clipDir}${
+                    o.clipDir.endsWith("/") ? "" : "/"
+                  }${item.selector.trim()}.png`
+                : undefined,
+              clip: item.clip,
+            });
 
-          // use a dynamic property to inject - todo: set the config initially before this iteration to keep shape aligned.
-          item.clipBase64 = buffer.toString("base64");
-        } catch (_) {
-          // most likely not in the viewport
-          // console.error(e);
-          item.clipBase64 = "";
-        }
+            // use a dynamic property to inject - todo: set the config initially before this iteration to keep shape aligned.
+            item.clipBase64 = buffer.toString("base64");
+          } catch (_) {
+            // most likely not in the viewport
+            // console.error(e);
+            item.clipBase64 = "";
+          }
 
-        return item;
-      })
-    );
-  }
-
-  if (!preventClose && navigate) {
-    try {
-      await config.page.close();
-    } catch (e) {
-      _log.enabled && console.error(e);
+          return item;
+        })
+      );
     }
-  }
 
-  return results;
+    if (!preventClose && navigate) {
+      try {
+        await config.page.close();
+      } catch (e) {
+        _log.enabled && console.error(e);
+      }
+    }
+
+    return results;
+  } else {
+    if (!preventClose && navigate) {
+      try {
+        await config.page.close();
+      } catch (e) {
+        _log.enabled && console.error(e);
+      }
+    }
+
+    return null;
+    // return {
+    //   automateable: null,
+    //   documentTitle: "",
+    //   issues: [],
+    //   meta: null,
+    //   pageUrl: config.origin
+    // }
+  }
 };
