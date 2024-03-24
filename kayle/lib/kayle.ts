@@ -170,6 +170,20 @@ export const kayle = async (
   const config = extractArgs(o, watcher);
   let validPage = true;
 
+  if (o.dialogHandle) {
+    o.page.on("dialog", async (dialog) => {
+      try {
+        if (o.dialogHandle.action === "accept") {
+          await dialog.accept(o.dialogHandle.promptText);
+        } else {
+          await dialog.dismiss();
+        }
+      } catch(e) {
+        // memory could be full - simply ignore the log
+      }
+    });
+  }
+
   if (navigate) {
     validPage = await goToPage(o);
   } else if (!o.noIntercept) {

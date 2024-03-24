@@ -80,16 +80,18 @@ export type WaitForOptions = {
 };
 
 // playwright mouse actions
-type DefaultMouseActions = {
-  delay?: number;
-  clickCount?: number;
-  button?: "left"|"right"|"middle"
-} | number;
+type DefaultMouseActions =
+  | {
+      delay?: number;
+      clickCount?: number;
+      button?: "left" | "right" | "middle";
+    }
+  | number;
 
 type Point = {
-  x?: number
-  y?: number
-}
+  x?: number;
+  y?: number;
+};
 
 // puppeteer mouse events
 type MouseActions = {
@@ -110,12 +112,9 @@ type MouseActions = {
     source: number | Readonly<DefaultMouseActions> | unknown,
     target?: number,
   ): Promise<void>;
-  move?(
-    source: number,
-    target: number,
-  ): Promise<void>;
+  move?(source: number, target: number): Promise<void>;
   wheel?(
-    deltaX: number | Readonly<{x: number, y: number}> | unknown,
+    deltaX: number | Readonly<{ x: number; y: number }> | unknown,
     deltaY?: number,
   ): Promise<void>;
   reset?(): Promise<void>;
@@ -125,7 +124,7 @@ type MouseActions = {
     options?: {
       delay?: number;
       clickCount?: number;
-      button?: "left"|"right"|"middle"
+      button?: "left" | "right" | "middle";
     },
   ): Promise<void>;
   dblclick?(
@@ -134,7 +133,7 @@ type MouseActions = {
     options?: {
       delay?: number;
       clickCount?: number;
-      button?: "left"|"right"|"middle"
+      button?: "left" | "right" | "middle";
     },
   ): Promise<void>;
 };
@@ -278,6 +277,8 @@ export type RunnerConfig = {
   noIntercept?: boolean;
   // run as accesibility extension: Experimental. Must setup extensions with the browser before hand.
   browserExtension?: boolean;
+  /// Dismiss all dialogs that appear. By default it will dismiss all dialogs.
+  dialogHandle?: { action?: "dismiss" | "accept"; promptText?: string };
   // watch config
   _watcher?: Watcher;
   // initial fake request ran to enable Js

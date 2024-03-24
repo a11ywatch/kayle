@@ -67,9 +67,7 @@ export const importRules = async (
   baseDir?: "string",
 ): Promise<Rule[]> => {
   const rules = await import(
-    `${baseDir || "./"}${locale.replace("-", "_")}/${
-      runner === "htmlcs" ? "htmlcs" : "axe"
-    }-rules`
+    `${baseDir || "./"}${locale.replace("-", "_")}/${runner === "htmlcs" ? "htmlcs" : "axe"}-rules`
   );
 
   return rules.axeRules || rules.htmlcsRules;
