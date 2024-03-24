@@ -20,7 +20,7 @@ const audit = async (config: RunnerConfig): Promise<Audit> => {
         window.origin = runOptions.origin;
       }
       // @ts-ignore
-      return await window.__a11y.run(runOptions);
+      return await window?.__a11y?.run(runOptions);
     },
     {
       hideElements: config.hideElements,
