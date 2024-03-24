@@ -10,7 +10,7 @@ const runAxeAudit = async (options) => {
 
   axeOptions.rules = a11yRulesToAxe(
     Array.isArray(options.rules) ? options.rules : [],
-    Array.isArray(options.ignore) ? options.ignore : []
+    Array.isArray(options.ignore) ? options.ignore : [],
   );
 
   // @ts-ignore todo: fix origin crashing test in axe-core when set direct html
@@ -25,7 +25,7 @@ const runAxeAudit = async (options) => {
         (options.rootElement &&
           window.document.querySelector(options.rootElement)) ||
           window.document,
-        axeOptions
+        axeOptions,
       );
 
       const issues = [];

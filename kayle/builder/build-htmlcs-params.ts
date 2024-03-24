@@ -83,7 +83,7 @@ const processFile = (filePath, paramList: ParamList[]) => {
 
         if (!guide) {
           guide = code.match(
-            /(_global\.HTMLCS_WCAG2AAA_Sniffs_)([A-Za-z0-9_]+)/
+            /(_global\.HTMLCS_WCAG2AAA_Sniffs_)([A-Za-z0-9_]+)/,
           );
           if (guide && guide[2]) {
             const end = guide[2].length - 23;

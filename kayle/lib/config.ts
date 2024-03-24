@@ -42,7 +42,7 @@ type BrowserContext = {
   newCDPSession?(page: Partial<Page> | Frame): Partial<CDPSession>;
   overridePermissions?(
     origin: string,
-    permissions: Permission[]
+    permissions: Permission[],
   ): Promise<void>;
 };
 
@@ -52,6 +52,11 @@ type Browser = {
   wsEndpoint?(): string;
   createIncognitoBrowserContext?(): Promise<BrowserContext | any>;
 };
+
+declare abstract class JSHandle<T = unknown> {}
+declare abstract class ElementHandle<
+  ElementType extends Node = Element,
+> extends JSHandle<ElementType> {}
 
 // a type that impls cdp target
 type Target = {};
@@ -74,6 +79,66 @@ export type WaitForOptions = {
   waitUntil?: LifeCycleEvent | LifeCycleEvent[] | string;
 };
 
+// playwright mouse actions
+type DefaultMouseActions = {
+  delay?: number;
+  clickCount?: number;
+  button?: "left"|"right"|"middle"
+} | number;
+
+type Point = {
+  x?: number
+  y?: number
+}
+
+// puppeteer mouse events
+type MouseActions = {
+  dragAndDrop?(
+    source: Point,
+    target: Point,
+    options?: {
+      delay?: number;
+    },
+  ): Promise<void>;
+
+  up?(
+    source: number | Readonly<DefaultMouseActions> | unknown,
+    target?: number,
+  ): Promise<void>;
+
+  down?(
+    source: number | Readonly<DefaultMouseActions> | unknown,
+    target?: number,
+  ): Promise<void>;
+  move?(
+    source: number,
+    target: number,
+  ): Promise<void>;
+  wheel?(
+    deltaX: number | Readonly<{x: number, y: number}> | unknown,
+    deltaY?: number,
+  ): Promise<void>;
+  reset?(): Promise<void>;
+  click?(
+    source: number,
+    target: number,
+    options?: {
+      delay?: number;
+      clickCount?: number;
+      button?: "left"|"right"|"middle"
+    },
+  ): Promise<void>;
+  dblclick?(
+    source: number,
+    target: number,
+    options?: {
+      delay?: number;
+      clickCount?: number;
+      button?: "left"|"right"|"middle"
+    },
+  ): Promise<void>;
+};
+
 // a type that impls the puppeteer/playwright page
 type Page = {
   goto(url: string, options?: WaitForOptions): Promise<any | null>;
@@ -89,7 +154,7 @@ type Page = {
   _routes?: { url: string }[];
   route(
     path: string,
-    intercept: (config: any, next: any) => Promise<void> | Promise<boolean>
+    intercept: (config: any, next: any) => Promise<void> | Promise<boolean>,
   ): Promise<void>;
   setRequestInterception?(enable?: boolean): Promise<void>;
   listenerCount?(name: string): number;
@@ -99,24 +164,23 @@ type Page = {
       | Function
       | {
           default: Function;
-        }
+        },
   ): Promise<void>;
   addInitScript?(script: { content?: string }): Promise<void>;
   evaluateOnNewDocument?<
     Params extends unknown[],
-    Func extends (...args: Params) => unknown = (...args: Params) => unknown
+    Func extends (...args: Params) => unknown = (...args: Params) => unknown,
   >(
     pageFunction: Func | string,
     ...args: Params
   ): Promise<{ identifier: string }>;
   evaluate<
     Params extends unknown[],
-    Func extends EvaluateFunc<Params> = EvaluateFunc<Params>
+    Func extends EvaluateFunc<Params> = EvaluateFunc<Params>,
   >(
     pageFunction: Func | string,
     ...args: Params
   ): Promise<Awaited<ReturnType<Func>>>;
-
   on(eventName: any, handler: (event: any, next?: any) => any): void;
   once(eventName: any, handler: (event: any, _?: any) => void): void;
   off(eventName: any, handler: (event: any, _?: any) => void): void;
@@ -124,10 +188,45 @@ type Page = {
   url(): string;
   title(): Promise<string>;
   content(): Promise<string>;
+  addStyleTag(options: {
+    content?: string;
+    path?: string;
+    url?: string;
+  }): Promise<ElementHandle>;
+  dragAndDrop?(
+    source: string,
+    target: string,
+    options?: {
+      force?: boolean;
+      noWaitAfter?: boolean;
+      strict?: boolean;
+      trial?: boolean;
+      timeout?: number;
+      sourcePosition?: { x: number; y: number };
+      targetPosition?: { x: number; y: number };
+    },
+  ): Promise<void>;
+  mouse?: Partial<MouseActions>;
   emulateCPUThrottling(factor: number | null): Promise<void>;
   screenshot(s: {
     path?: string;
     clip?: Pick<DOMRect, "x" | "y" | "width" | "height">;
+  }): Promise<string | Buffer>;
+  pdf(s: {
+    path?: string;
+    displayHeaderFooter?: boolean;
+    footerTemplate?: string;
+    headerTemplate?: string;
+    height?: string | number;
+    width?: string | number;
+    omitBackground?: boolean;
+    outline?: boolean;
+    preferCSSPageSize?: boolean;
+    // a number between 0.1 - 2.
+    scale?: number;
+    tagged?: boolean;
+    timeout?: number;
+    landscape?: boolean;
   }): Promise<string | Buffer>;
 };
 

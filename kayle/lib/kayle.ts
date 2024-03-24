@@ -16,7 +16,7 @@ const audit = async (config: RunnerConfig): Promise<Audit> => {
 
   return await config.page.evaluate(
     async (runOptions) => {
-      if (runOptions.origin && window.origin === "null") {
+      if (window.origin === "null" && runOptions.origin) {
         window.origin = runOptions.origin;
       }
       // @ts-ignore
@@ -32,7 +32,7 @@ const audit = async (config: RunnerConfig): Promise<Audit> => {
       origin: config.origin,
       language: config.language,
       clip: config.clip,
-    }
+    },
   );
 };
 
@@ -61,7 +61,7 @@ const injectRunners = async (config: RunnerConfig) => {
     return await Promise.allSettled([
       config.page.evaluate(runnersJavascript["kayle"]),
       ...config.runners.map((r) =>
-        config.page.evaluate(getRunner(config.language, r))
+        config.page.evaluate(getRunner(config.language, r)),
       ),
     ]);
   }
@@ -77,7 +77,7 @@ export const auditExtension = async (config: RunnerConfig): Promise<Audit> => {
         }
 
         window.addEventListener("kayle_receive", (event: CustomEvent) =>
-          resolve(event.detail.data)
+          resolve(event.detail.data),
         );
 
         window.dispatchEvent(
@@ -86,7 +86,7 @@ export const auditExtension = async (config: RunnerConfig): Promise<Audit> => {
               name: "kayle",
               options: runOptions,
             },
-          })
+          }),
         );
       });
     },
@@ -100,7 +100,7 @@ export const auditExtension = async (config: RunnerConfig): Promise<Audit> => {
       origin: config.origin,
       language: config.language,
       clip: config.clip,
-    }
+    },
   );
 };
 
@@ -121,7 +121,7 @@ const auditPageInnate = async (config: RunnerConf, results: Audit) => {
   const innateAudit: InnateIssue[] = await kayle_innate.audit(
     html,
     css,
-    config.clip
+    config.clip,
   );
 
   for (const innateIssue of innateAudit) {
@@ -163,7 +163,7 @@ const auditPageInnate = async (config: RunnerConf, results: Audit) => {
  */
 export const kayle = async (
   o: RunnerConf = {},
-  preventClose?: boolean
+  preventClose?: boolean,
 ): Promise<Audit> => {
   const watcher = new Watcher();
   const navigate = o.page.url() === "about:blank" && (o.origin || o.html);
@@ -214,7 +214,7 @@ export const kayle = async (
           }
 
           return item;
-        })
+        }),
       );
     }
 
