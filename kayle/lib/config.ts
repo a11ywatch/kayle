@@ -330,6 +330,8 @@ export type RunnerConfig = {
   browserExtension?: boolean;
   /// Dismiss all dialogs that appear. By default it will dismiss all dialogs.
   dialogHandle?: { action?: "dismiss" | "accept"; promptText?: string };
+  /// Check the HTML content for the initial response in order to determine if extra actions are required. Example bypassing cloudflare waf.
+  smart_check?: boolean;
   // watch config
   _watcher?: Watcher;
   // initial fake request ran to enable Js

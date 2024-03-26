@@ -1,6 +1,6 @@
 {
   "name": "kayle",
-  "version": "0.8.53",
+  "version": "0.8.54",
   "description": "Extremely fast and accurate accessibility engine built for any headless tool like playwright or puppeteer.",
   "main": "./build/index.js",
   "keywords": [
@@ -56,6 +56,7 @@
     "test:puppeteer:clips": "npm run compile:test && node _tests/tests/clips.js",
     "test:puppeteer:kayle": "npm run compile:test && node _tests/tests/basic-kayle.js",
     "test:puppeteer:innate": "npm run compile:test && node _tests/tests/innate.js",
+    "test:puppeteer:smart_check": "npm run compile:test && node _tests/tests/smart_check.js",
     "test:htmlcs:extend": "npm run compile:test && node _tests/tests/extend-runner.js",
     "test:ignore": "npm run compile:test && node _tests/tests/ignore-rules.js",
     "test:full": "npm run compile:test && node _tests/tests/full.js",
@@ -87,7 +88,7 @@
     "escodegen": "^2.1.0",
     "prettier": "^3.2.5",
     "puppeteer": "^22.6.1",
-    "typescript": "^5.4.2"
+    "typescript": "^5.4.3"
   },
   "jest": {
     "clearMocks": true,

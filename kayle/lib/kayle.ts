@@ -6,6 +6,7 @@ import { goToPage, setNetworkInterception } from "./utils/go-to-page";
 import { Watcher } from "./watcher";
 import { Audit, type InnateIssue, RunnerConf } from "./common";
 import { getAllCss } from "./wasm";
+import { smartCheck } from "./utils/smart-check";
 
 // perform audit
 const audit = async (config: RunnerConfig): Promise<Audit> => {
@@ -35,8 +36,6 @@ const audit = async (config: RunnerConfig): Promise<Audit> => {
       if (window.origin === "null" && runOptions.origin) {
         window.origin = runOptions.origin;
       }
-
-      console.log("running audit");
       // @ts-ignore
       return await window?.__a11y?.run(runOptions);
     },
@@ -201,6 +200,10 @@ export const kayle = async (
         // memory could be full - simply ignore the log
       }
     });
+  }
+
+  if (o.smart_check) {
+    await smartCheck(o);
   }
 
   if (navigate) {
