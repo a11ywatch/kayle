@@ -59,7 +59,9 @@ declare abstract class ElementHandle<
 > extends JSHandle<ElementType> {}
 
 // a type that impls cdp target
-type Target = {};
+type Target = {
+  createCDPSession?(): Promise<CDPSession>;
+};
 
 // dom lifecycles
 export type LifeCycleEvent =
@@ -78,6 +80,33 @@ export type WaitForOptions = {
   timeout?: number;
   waitUntil?: LifeCycleEvent | LifeCycleEvent[] | string;
 };
+
+declare interface WaitTimeoutOptions {
+  /**
+   * Maximum wait time in milliseconds. Pass 0 to disable the timeout.
+   *
+   * The default value can be changed by using the
+   * {@link Page.setDefaultTimeout} method.
+   *
+   * @defaultValue `30000`
+   */
+  timeout?: number;
+}
+
+declare interface WaitForNetworkIdleOptions extends WaitTimeoutOptions {
+  /**
+   * Time (in milliseconds) the network should be idle.
+   *
+   * @defaultValue `500`
+   */
+  idleTime?: number;
+  /**
+   * Maximum number concurrent of network connections to be considered inactive.
+   *
+   * @defaultValue `0`
+   */
+  concurrency?: number;
+}
 
 // playwright mouse actions
 type DefaultMouseActions =
@@ -227,6 +256,28 @@ type Page = {
     timeout?: number;
     landscape?: boolean;
   }): Promise<string | Buffer>;
+  getByRole?(
+    role: string,
+    o?: Record<string, string>,
+  ): { click?(): Promise<void> };
+  waitForSelector?(
+    role: string,
+    o?: Record<string, string>,
+  ): Partial<
+    | unknown
+    | {
+        click(): Promise<void>;
+        dispose(): Promise<void>;
+        hover(): Promise<void>;
+      }
+  >;
+  waitForLoadState?(s: string): Promise<void>;
+  waitForNetworkIdle?(options?: WaitForNetworkIdleOptions): Promise<void>;
+  waitForNavigation?(options?: WaitForOptions): Promise<any>;
+  waitForResponse?(
+    urlOrPredicate: string | any,
+    options?: WaitTimeoutOptions,
+  ): Promise<any>;
 };
 
 export interface CDPSession {

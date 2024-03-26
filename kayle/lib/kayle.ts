@@ -14,11 +14,29 @@ const audit = async (config: RunnerConfig): Promise<Audit> => {
     return await auditExtension(config);
   }
 
+  // we only need the shape
+  if (config._kayleRunner && config.runners.length === 1) {
+    return {
+      automateable: null,
+      documentTitle: "",
+      issues: [],
+      meta: {
+        errorCount: 0,
+        warningCount: 0,
+        noticeCount: 0,
+        accessScore: 0,
+      },
+      pageUrl: config.origin,
+    };
+  }
+
   return await config.page.evaluate(
     async (runOptions) => {
       if (window.origin === "null" && runOptions.origin) {
         window.origin = runOptions.origin;
       }
+
+      console.log("running audit");
       // @ts-ignore
       return await window?.__a11y?.run(runOptions);
     },
@@ -39,6 +57,7 @@ const audit = async (config: RunnerConfig): Promise<Audit> => {
 // run accessibility audit
 const auditPage = async (config: RunnerConfig) => {
   await Promise.all([runActionsList(config), injectRunners(config)]);
+
   const results = await audit(config);
 
   if (config._kayleRunner) {
@@ -178,7 +197,7 @@ export const kayle = async (
         } else {
           await dialog.dismiss();
         }
-      } catch(e) {
+      } catch (e) {
         // memory could be full - simply ignore the log
       }
     });

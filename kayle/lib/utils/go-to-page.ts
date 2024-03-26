@@ -1,17 +1,24 @@
 import { RunnerConfig } from "../config";
 import { sendCDPPageConfigurationEnable } from "./cdp-blocking";
 
+// get the cdp session playwright or puppeteer
+export const getCdp = (o: Partial<RunnerConfig>) => {
+  const cdpSession = o.cdpSession
+    ? o.cdpSession
+    : o?.page?._client &&
+      typeof o.page._client === "function" &&
+      o.page._client();
+
+  return cdpSession;
+};
+
 /**
  * Block network based on resource type and url.
  * @param {Object} [o={}] - Intercept config for resourceType, request, and url.
  * @returns {Promise} Returns a promise void.
  */
 export const setCDPIntercept = async (o: Partial<RunnerConfig>) => {
-  const cdpSession = o.cdpSession
-    ? o.cdpSession
-    : o?.page?._client &&
-      typeof o.page._client === "function" &&
-      o.page._client();
+  const cdpSession = getCdp(o);
 
   if (!cdpSession) {
     try {

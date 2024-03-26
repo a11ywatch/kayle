@@ -1,6 +1,6 @@
 {
   "name": "kayle",
-  "version": "0.8.51",
+  "version": "0.8.53",
   "description": "Extremely fast and accurate accessibility engine built for any headless tool like playwright or puppeteer.",
   "main": "./build/index.js",
   "keywords": [
@@ -86,7 +86,7 @@
     "acorn-walk": "^8.3.2",
     "escodegen": "^2.1.0",
     "prettier": "^3.2.5",
-    "puppeteer": "^22.4.1",
+    "puppeteer": "^22.6.1",
     "typescript": "^5.4.2"
   },
   "jest": {

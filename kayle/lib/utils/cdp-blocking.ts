@@ -101,7 +101,7 @@ export const sendCDPPageConfigurationEnable = async (
 export const sendCDPPageConfigurationReset = async (
   client: CDPSession,
   o: Partial<RunnerConf>,
-  allowImages?: boolean,
+  _allowImages?: boolean,
   all?: boolean, // reset all CDP
 ) => {
   if (!client || (client && !client.on)) {
