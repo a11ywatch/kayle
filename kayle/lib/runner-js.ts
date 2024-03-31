@@ -39,8 +39,8 @@ const runnersJavascript = {
   htmlcs_nl: loadRunnerScript("htmlcs", "nl"),
   htmlcs_pl: loadRunnerScript("htmlcs", "pl"),
   htmlcs_ko: loadRunnerScript("htmlcs", "ko"),
-  htmlcs_zh_CN: loadRunnerScript("htmlcs", "zh-CN"),
-  htmlcs_zh_TW: loadRunnerScript("htmlcs", "zh-TW"),
+  "htmlcs_zh-CN": loadRunnerScript("htmlcs", "zh-CN"),
+  "htmlcs_zh-TW": loadRunnerScript("htmlcs", "zh-TW"),
   // axe scripts in all locales
   axe: loadRunnerScript("axe", "en"),
   axe_ar: loadRunnerScript("axe", "ar"),
@@ -53,10 +53,10 @@ const runnersJavascript = {
   axe_nl: loadRunnerScript("axe", "nl"),
   axe_pl: loadRunnerScript("axe", "pl"),
   axe_ko: loadRunnerScript("axe", "ko"),
-  axe_zh_CN: loadRunnerScript("axe", "zh-CN"),
+  "axe_zh-CN": loadRunnerScript("axe", "zh-CN"),
   // axe_zh_TW: loadRunnerScript("axe", "zh-TW"),
-  // axe_no_NB: loadRunnerScript("axe", "no-NB"),
-  // axe_pt_BR: loadRunnerScript("axe", "pt-BR"),
+  "axe_no-NB": loadRunnerScript("axe", "no-NB"),
+  "axe_pt-BR": loadRunnerScript("axe", "pt-BR"),
 };
 
 /**
@@ -87,6 +87,7 @@ const getRunner = (
     if (typeof runnersJavascript[script] !== "undefined") {
       return runnersJavascript[script];
     }
+
   }
 
   return runnersJavascript[runner];
@@ -102,8 +103,8 @@ export type Runner = Exclude<
   | "htmlcs_ko"
   | "htmlcs_nl"
   | "htmlcs_pl"
-  | "htmlcs_zh_CN"
-  | "htmlcs_zh_TW"
+  | "htmlcs_zh-CN"
+  | "htmlcs_zh-TW"
   | "axe_ar"
   | "axe_es"
   | "axe_ja"
