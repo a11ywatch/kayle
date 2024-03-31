@@ -201,7 +201,7 @@ type RunnerConfig = {
 1. nl ("Dutch")
 1. no_NB ("Norwegian")
 1. pl ("Polish Poland")
-1. pt_BR ("Portuguese Brazil")
+1. pt-BR ("Portuguese Brazil")
 1. zh-CN ("Chinese-Simplified")
 1. zh-TW ("Chinese-Traditional")
 
