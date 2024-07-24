@@ -202,7 +202,7 @@ _global.translation["en"] = {
     "This element is absolutely positioned and the background color can not be determined. Ensure the contrast ratio between the text and all covered parts of the background are at least {{required}}:1.",
   "1_4_6_G18_or_G17.BgImage":
     "This element's text is placed on a background image. Ensure the contrast ratio between the text and all covered parts of the image are at least {{required}}:1.",
-  "1_4_6_G18_or_G17.BgGradient":
+  "1_4_6_G18_or_G145.BgGradient":
     "This element's text is placed on a background gradient. Ensure the contrast ratio between the text and all covered parts of the gradient are at least {{required}}:1.",
   "1_4_6_G18_or_G17.Fail":
     "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least {{required}}:1, but text in this element has a contrast ratio of {{value}}:1.",

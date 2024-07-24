@@ -1096,6 +1096,14 @@ export const htmlcsRules = [
     tags: ["WCAGAA"],
   },
   {
+    ruleId: "Principle1.Guideline1_4.1_4_6_G145.BgGradient",
+    description:
+      "This element's text is placed on a background gradient. Ensure the contrast ratio between the text and all covered parts of the gradient are at least {{required}}:1.",
+    helpUrl: [],
+    ruleType: "warning",
+    tags: ["WCAGAAA"],
+  },
+  {
     ruleId: "Principle1.Guideline1_4.1_4_6_G17.Abs",
     description:
       "This element is absolutely positioned and the background color can not be determined. Ensure the contrast ratio between the text and all covered parts of the background are at least {{required}}:1.",

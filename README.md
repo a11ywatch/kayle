@@ -41,7 +41,7 @@ const results = await kayle({
 It is recommended to use `htmlcs` as the runner or simply not declare a runner for the default.
 We did a massive rewrite on htmlcs and it is extremely fast and stable.
 
-When passing raw `html` try to also include the `origin` or the url, this sets `window.origin` and helps scripts that rely on it to work correctly or else relatives scripts will not work since the relative path does not exist on the locale machine.
+When passing raw `html` try to also include the `origin` or the url, this sets `window.origin` and helps scripts that rely on it to work correctly or else relatives scripts will not work since the relative path does not exist on the local machine.
 
 If you need to run a full site-wide crawl import `autoKayle` which uses Rust/Wasm to gather the links fast.
 

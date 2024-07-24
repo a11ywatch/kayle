@@ -1088,6 +1088,14 @@ export const htmlcsRules = [
     tags: ["WCAGAA"],
   },
   {
+    ruleId: "Principle1.Guideline1_4.1_4_6_G145.BgGradient",
+    description:
+      "El texto de este elemento se coloca sobre una gradiente de fondo. Asegúrate de que la relación de contraste entre el texto y todas las partes cubiertas de el gradiente sea al menos de {{required}}:1.",
+    helpUrl: [],
+    ruleType: "warning",
+    tags: ["WCAGAAA"],
+  },
+  {
     ruleId: "Principle1.Guideline1_4.1_4_6_G17.Abs",
     description:
       "Este elemento está posicionado absolutamente y no se puede determinar el color de fondo. Asegúrate de que la relación de contraste entre el texto y todas las partes cubiertas del fondo sea al menos de {{required}}:1.",
