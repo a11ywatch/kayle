@@ -37,7 +37,7 @@ jobs:
         run: cd kayle_innate && wasm-pack build --release --target nodejs && cd ../
 
       - name: Install and build locales
-        run: yarn --no-immutable && yarn build && npx playwright install --with-deps chromium
+        run: yarn --no-immutable && yarn build && npx playwright install --with-deps chromium --only-shell
 
       - name: Run Bench fast_htmlcs
         run: cd ./kayle && yarn bench:playwright:htmlcs > output.json
