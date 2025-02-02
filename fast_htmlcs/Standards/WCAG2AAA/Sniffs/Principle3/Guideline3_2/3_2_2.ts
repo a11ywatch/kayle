@@ -57,12 +57,13 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_2_3_2_2 = {
         const externalButtons = document.querySelectorAll(
           "button[form], input[form][type=submit], input[form][type=image]"
         );
+
         for (const el of externalButtons) {
           // Check they aren't reset buttons, or normal buttons.
           switch (el.getAttribute("type")) {
             case "reset":
             case "button":
-              break;
+              continue;
             default:
           }
 
