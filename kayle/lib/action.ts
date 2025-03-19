@@ -11,7 +11,7 @@ export const actions = [
       try {
         await page.goto(navigateTo);
       } catch (error) {
-        throw new Error(`Failed action: Could not navigate to "${navigateTo}"`);
+        console.error(`Failed action: Could not navigate to "${navigateTo}"`);
       }
     },
   },
@@ -23,7 +23,7 @@ export const actions = [
       try {
         await page.click(selector);
       } catch (error) {
-        throw new Error(`${failedActionElement} "${selector}"`);
+        console.error(`${failedActionElement} "${selector}"`);
       }
     },
   },
@@ -65,7 +65,7 @@ export const actions = [
           value
         );
       } catch (error) {
-        throw new Error(`${failedActionElement} "${selector}"`);
+        console.error(`${failedActionElement} "${selector}"`);
       }
     },
   },
@@ -96,7 +96,7 @@ export const actions = [
           return Promise.resolve();
         }, selector);
       } catch (error) {
-        throw new Error(`${failedActionElement} "${selector}"`);
+        console.error(`${failedActionElement} "${selector}"`);
       }
     },
   },
@@ -125,7 +125,7 @@ export const actions = [
           checked
         );
       } catch (error) {
-        throw new Error(`${failedActionElement} "${selector}"`);
+        console.error(`${failedActionElement} "${selector}"`);
       }
     },
   },
@@ -300,7 +300,7 @@ export const actions = [
           }
         );
       } catch (error) {
-        throw new Error(`${failedActionElement} "${selector}"`);
+       return console.error(`${failedActionElement} "${selector}"`);
       }
     },
   },
@@ -329,7 +329,7 @@ export async function runAction(browser, page, options, act, customActions?) {
   );
 
   if (!action) {
-    throw new Error(`Failed action: "${act}" cannot be resolved`);
+    return console.error(`Failed action: "${act}" cannot be resolved`);
   }
 
   await action.run(browser, page, options, act.match(action.match));
