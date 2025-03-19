@@ -56,13 +56,13 @@ export const actions = [
             target.dispatchEvent(
               new Event("input", {
                 bubbles: true,
-              }),
+              })
             );
 
             return Promise.resolve();
           },
           selector,
-          value,
+          value
         );
       } catch (error) {
         throw new Error(`${failedActionElement} "${selector}"`);
@@ -91,7 +91,7 @@ export const actions = [
           target.dispatchEvent(
             new Event("input", {
               bubbles: true,
-            }),
+            })
           );
           return Promise.resolve();
         }, selector);
@@ -117,12 +117,12 @@ export const actions = [
             target.dispatchEvent(
               new Event("change", {
                 bubbles: true,
-              }),
+              })
             );
             return Promise.resolve();
           },
           selector,
-          checked,
+          checked
         );
       } catch (error) {
         throw new Error(`${failedActionElement} "${selector}"`);
@@ -167,7 +167,7 @@ export const actions = [
         const positions = await page.$$eval(
           [matches[1], matches[3]],
           (elements: HTMLInputElement[]) =>
-            elements.map((e) => e.getBoundingClientRect),
+            elements.map((e) => e.getBoundingClientRect)
         );
         await page.dragAndDrop(positions[0], positions[1]);
       }
@@ -210,7 +210,7 @@ export const actions = [
         {},
         property,
         expectedValue,
-        negated,
+        negated
       );
     },
   },
@@ -250,7 +250,7 @@ export const actions = [
           polling: 200,
         },
         selector,
-        state,
+        state
       );
     },
   },
@@ -278,11 +278,11 @@ export const actions = [
               },
               {
                 once: true,
-              },
+              }
             );
           },
           selector,
-          eventType,
+          eventType
         );
 
         await page.waitForFunction(
@@ -297,11 +297,19 @@ export const actions = [
           },
           {
             polling: 200,
-          },
+          }
         );
       } catch (error) {
         throw new Error(`${failedActionElement} "${selector}"`);
       }
+    },
+  },
+  {
+    name: "wait",
+    match: /^wait (\d+)ms$/i,
+    run: async (_, __, ___, matches) => {
+      const waitTime = parseInt(matches[1], 10);
+      await new Promise((resolve) => setTimeout(resolve, waitTime));
     },
   },
 ];
@@ -317,7 +325,7 @@ export const actions = [
  */
 export async function runAction(browser, page, options, act, customActions?) {
   const action = (customActions ?? actions).find((item) =>
-    item.match.test(act),
+    item.match.test(act)
   );
 
   if (!action) {
