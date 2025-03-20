@@ -33,7 +33,7 @@ export const setCDPIntercept = async (o: Partial<RunnerConfig>) => {
 
 // block expensive resources
 export const setNetworkInterception = async (
-  o: Partial<RunnerConfig>,
+  o: Partial<RunnerConfig>
 ): Promise<boolean | void> => await setCDPIntercept(o);
 
 /**
@@ -43,20 +43,24 @@ export const setNetworkInterception = async (
  * @returns {Promise<Boolean>} Returns if the page was navigated to successfully.
  */
 export const goToPage = async (
-  o: Partial<RunnerConfig & { html?: string }>,
+  o: Partial<RunnerConfig & { html?: string }>
 ): Promise<boolean> => {
   await setCDPIntercept(o);
 
-  const { page, timeout, waitUntil, origin } = o;
+  const { page, timeout, waitUntil, origin, html, _setContent } = o;
 
   let valid = false;
 
+  const navConfigs = {
+    timeout: timeout ?? 0,
+    waitUntil: waitUntil ?? "domcontentloaded",
+  };
+
   try {
     // open blank page fallback for proxy intercept
-    const res = await page.goto(origin || "http://localhost", {
-      timeout: timeout ?? 0,
-      waitUntil: waitUntil ?? "domcontentloaded",
-    });
+    const res = _setContent && html
+      ? await page.setContent(html, navConfigs)
+      : await page.goto(origin || "http://localhost", navConfigs);
 
     if (res) {
       valid = res.status() === 304 || res.ok();

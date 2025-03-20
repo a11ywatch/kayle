@@ -29,6 +29,7 @@ import type { Rule } from "./build-types";
     // inject the scripts
     await kayle(
       {
+        // @ts-ignore
         page,
         browser,
         runners: ["htmlcs", "axe"],
@@ -37,7 +38,7 @@ import type { Rule } from "./build-types";
         origin: "https://www.example.com",
         language,
       },
-      true,
+      true
     );
 
     await Promise.all([
@@ -54,7 +55,7 @@ import type { Rule } from "./build-types";
         content: `window.htmlcsRuleMap = ${htmlcsRuleMap.toString()};`,
       }),
       page.exposeFunction("pushHtmlcsRule", (t: Rule[]) =>
-        fast_htmlcs_rules.push(...t),
+        fast_htmlcs_rules.push(...t)
       ),
       page.exposeFunction("pushAxeRule", (t: Rule) => fast_axe_rules.push(t)),
     ]);
@@ -93,12 +94,12 @@ import type { Rule } from "./build-types";
 
                 return r.description;
               })
-              .sort((a, b) => a.ruleId.localeCompare(b.ruleId)),
+              .sort((a, b) => a.ruleId.localeCompare(b.ruleId))
           )};`,
-          pConfig,
-        ),
+          pConfig
+        )
       ),
-      "utf8",
+      "utf8"
     );
 
     await writeFile(
@@ -106,12 +107,12 @@ import type { Rule } from "./build-types";
       Buffer.from(
         await format(
           `/* ${DNE} */\nexport const axeRules = ${JSON.stringify(
-            fast_axe_rules.sort((a, b) => a.ruleId.localeCompare(b.ruleId)),
+            fast_axe_rules.sort((a, b) => a.ruleId.localeCompare(b.ruleId))
           )};`,
-          pConfig,
-        ),
+          pConfig
+        )
       ),
-      "utf8",
+      "utf8"
     );
 
     await page.close({
@@ -120,7 +121,7 @@ import type { Rule } from "./build-types";
   };
 
   const localesList: string[] = Array.from(
-    new Set(htmlcsLocales.concat(axeLocales)),
+    new Set(htmlcsLocales.concat(axeLocales))
   );
 
   localesList.push("en");
@@ -143,7 +144,7 @@ import type { Rule } from "./build-types";
   export const importRules = async (locale: ${localesList
     .map((l) => `"${l}"`)
     .join(
-      " | ",
+      " | "
     )}, runner: "htmlcs" | "axe", baseDir?: "string"): Promise<Rule[]> => {
     const rules = await import(` +
     "`${baseDir || './'}${locale.replace('-', '_')}/${runner === 'htmlcs' ? 'htmlcs' : 'axe'}-rules`" +
@@ -167,10 +168,10 @@ import type { Rule } from "./build-types";
           
           ${runnerImports}
           `,
-        pConfig,
-      ),
+        pConfig
+      )
     ),
-    "utf8",
+    "utf8"
   );
 
   await browser.close();
