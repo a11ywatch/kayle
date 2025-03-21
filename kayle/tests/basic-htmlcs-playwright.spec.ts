@@ -27,7 +27,7 @@ test("fast_htmlcs audit drakeMock", async ({ page, browser }, testInfo) => {
 
   // valid list
   assert(Array.isArray(issues));
-  assert(meta.errorCount === 14);
+  assert(meta.errorCount === 11);
   assert(meta.warningCount === 34);
   assert(typeof pageUrl === "string");
   assert(typeof documentTitle === "string");

@@ -184,7 +184,7 @@ export const kayle = async (
   preventClose?: boolean,
 ): Promise<Audit> => {
   const watcher = new Watcher();
-  const navigate = o.page.url() === "about:blank" && (o.origin || o.html);
+  const navigate = o.page?.url() === "about:blank" && (o.origin || o.html);
   const config = extractArgs(o, watcher);
   let validPage = true;
 

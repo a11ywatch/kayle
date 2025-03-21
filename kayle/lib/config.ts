@@ -338,8 +338,6 @@ export type RunnerConfig = {
   _initRequest?: boolean;
   // the incomplete kayle wasm runner
   _kayleRunner?: boolean;
-  /// testing only set the content directly
-  _setContent?: boolean;
 };
 
 // log singleton
